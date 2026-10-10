@@ -438,7 +438,7 @@ hash = "56a5eae4fbd7007e550db9c67b4b9d41a480b57a32300c9a97e89ee3c32cb368"
 
 [[files]]
 file = "modlist.txt"
-hash = "58e3b4a7150840bad34f5d4e2af75d531e1ea3ab1cbdfb29a289fd2fa8a23072"
+hash = "1baa4560239ddad7a4925c6a3cffdad0bd0ec325f059afa467876d9559958bf5"
 
 [[files]]
 file = "mods/ad-astra-giselle-addon.pw.toml"
@@ -571,6 +571,11 @@ hash = "5d153abacc6aebc94c81bf9eb99b6990d7420a494474432a8822bdc05e7f555d"
 metafile = true
 
 [[files]]
+file = "mods/arknights-weapon.pw.toml"
+hash = "dcae1ee7c78a7a3e89bb73713457090acf534f89b26b7d3caba529cca46e9330"
+metafile = true
+
+[[files]]
 file = "mods/arknightsfurniture.pw.toml"
 hash = "2a654e039efa33e70dc9fb704b28bee6fab94b156d5e6c1dc8ea585becb221a3"
 metafile = true
@@ -618,6 +623,11 @@ metafile = true
 [[files]]
 file = "mods/ars-technica.pw.toml"
 hash = "f74d674d172fb27b93f1738f092a2d6b2d4cecc578656f9357886b8e13fecc35"
+metafile = true
+
+[[files]]
+file = "mods/arsarms.pw.toml"
+hash = "33ea4aa3d559b90db01cd24a9f095000794b198f087a3823f21c7287ff25220b"
 metafile = true
 
 [[files]]
@@ -746,6 +756,11 @@ hash = "a5b279a4fb95c2d2342903d06bf78c2188157657de59d0c38afc1b6da4c16411"
 metafile = true
 
 [[files]]
+file = "mods/create-big-cannons-advanced-technologies.pw.toml"
+hash = "20eb89a98a2c8ead2dba950f2d727dc3862447b11c657c5a4e095fef55bcab69"
+metafile = true
+
+[[files]]
 file = "mods/create-big-cannons.pw.toml"
 hash = "c64e1f8850019986e1974adc68edfe7bbcedd3bd7ac2008df07ca32a41f4a574"
 metafile = true
@@ -793,6 +808,11 @@ metafile = true
 [[files]]
 file = "mods/cupboard.pw.toml"
 hash = "77f479f765b307ff09a3d0b90719bb3b929d59af193d1ed746dab513fe14f2c5"
+metafile = true
+
+[[files]]
+file = "mods/curios-for-ammo-box.pw.toml"
+hash = "e55f947418497f5bc71b5a71d1141f4643592aef91ef57ab84d8e9ab790be5ad"
 metafile = true
 
 [[files]]
@@ -846,6 +866,11 @@ hash = "5ec0c37f3f4ad07a40c10376668bca80334ddb7ad2bab06eb4de8f7aac339c8e"
 metafile = true
 
 [[files]]
+file = "mods/enchanted-arsenal.pw.toml"
+hash = "c478ba740218e68222019013989751bd018b844b9352870d57d25679f7e7b73f"
+metafile = true
+
+[[files]]
 file = "mods/endfield-industry.pw.toml"
 hash = "804668b56c46801184f8b9b75e3e19772f78ecfd36e7627feb025ecf5220ce7e"
 metafile = true
@@ -895,6 +920,11 @@ file = "mods/gaboulibs-shim-1.0.0.jar"
 hash = "88593902bf6f6c8e5dc8595bfc54aec61f4a9210ca846e7a997b70d7b34c8799"
 
 [[files]]
+file = "mods/gathering-torches-become-sunlight.pw.toml"
+hash = "9fc03487cbafe132b7c2a0b93221b18be9480f266c6ab8ff22561fc5582c4efd"
+metafile = true
+
+[[files]]
 file = "mods/geckolib.pw.toml"
 hash = "7ffae05c3b8101588b231db8116c34b36a77a0c6e6d7e6af867ae1c5b47e4d10"
 metafile = true
@@ -937,6 +967,11 @@ metafile = true
 [[files]]
 file = "mods/irons-spells-n-spellbooks.pw.toml"
 hash = "e2337a3930d3dfb07c051ff0000b2ebd8d4638e17f091b7ad2c786bf0b25d095"
+metafile = true
+
+[[files]]
+file = "mods/ironsarms.pw.toml"
+hash = "a1682456faeee447f52356d84459bddb13fb084ef474a5c75c9150b7f676239e"
 metafile = true
 
 [[files]]
@@ -1173,6 +1208,11 @@ hash = "765987a78e5d8c782d0da2de99998b43b5907d6c41347d3804045ad109e4a586"
 metafile = true
 
 [[files]]
+file = "mods/precise-manufacturing.pw.toml"
+hash = "0a3948be149a027161d4b932d486370b3a5be582845a9881853319e1390ca0a6"
+metafile = true
+
+[[files]]
 file = "mods/resourceful-config.pw.toml"
 hash = "b85e8417e797be3fdae046c487eeda8f54cdc88f3f20e462e0e229f8dd734214"
 metafile = true
@@ -1190,6 +1230,11 @@ metafile = true
 [[files]]
 file = "mods/rpl.pw.toml"
 hash = "93128d85ae0b3be9c8248b09f3a63ed88c746568480cc7e9a8e2a9b4bd13477c"
+metafile = true
+
+[[files]]
+file = "mods/sarkazs-furnace-side-fables.pw.toml"
+hash = "d1f4e512c48699dc96f839ce3ad750aa58e542dc8c7938510ff9b7179a7f4e94"
 metafile = true
 
 [[files]]
@@ -1255,6 +1300,11 @@ metafile = true
 [[files]]
 file = "mods/tacz-tweaks.pw.toml"
 hash = "d6bab7d56578ffb57ea793f916e76a13f423043f9e334020b33a67833df5cdd8"
+metafile = true
+
+[[files]]
+file = "mods/taczaddon.pw.toml"
+hash = "c12186b89fe15296adbf89150120d8a1c8854329e4812197a5708d4d66b90cff"
 metafile = true
 
 [[files]]
@@ -1338,8 +1388,18 @@ hash = "326ae5ec28efb7ebf523f130c1d737d87293bfeaf1ec65ba9d5e0993b63f3fbc"
 metafile = true
 
 [[files]]
+file = "mods/valkyrien-sails.pw.toml"
+hash = "0f52cf65f6deb25a1c887c6791267c78856fb1080051d0866bd627d7bbe6f137"
+metafile = true
+
+[[files]]
 file = "mods/valkyrien-skies.pw.toml"
 hash = "380bacc16e7736fc791bfd34ab38684d69642a93b80da0543cd06b7cee8a36d0"
+metafile = true
+
+[[files]]
+file = "mods/vs-tournament-reforged.pw.toml"
+hash = "abeada2b86ac6524853d2ece2b363565f19516ae679f58ce5fccd482e3793235"
 metafile = true
 
 [[files]]

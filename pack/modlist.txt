@@ -192,3 +192,19 @@ cf mechanical-botania-revived     # мана Botania → вращение Create
 mr occult-engineering             # Occultism × Create
 mr occultism-ritual-satchel
 mr animus                         # Blood Magic
+# Пачка 4: оружие, Valkyrien Skies, Arknights
+# mr superbvs                    # ОТКЛЮЧЕН: собран под VS 2.3, с VS 2.4.11 роняет загрузку Superb Warfare (ShipWorldCore) — задача потоку 4
+# mr sbw-vintage-vehicle-pack     # ОТКЛЮЧЕН: требует ровно superbwarfare 0.8.9 (у нас 0.8.9.2) и snassets_particles
+mr taczaddon
+mr enchanted-arsenal              # зачарования для оружия TACZ
+mr precise-manufacturing          # Create × TACZ
+mr arsarms                        # Ars Nouveau через оружие TACZ
+mr ironsarms                      # Iron's Spells через оружие TACZ
+mr curios-for-ammo-box
+mr create-big-cannons-advanced-technologies
+mr valkyrien-sails
+mr vs-tournament-reforged         # порт VS Tournament под VS 2.4 (оригинал vs-tournament падает: VSConfigClass)
+# cf create-eureka                # ОТЛОЖЕН: это датапак (.zip), а не мод — в сборке нет загрузки датапаков (задача потоку 4)
+cf gathering-torches-become-sunlight
+cf arknights-weapon
+cf sarkazs-furnace-side-fables

@@ -1,0 +1,13 @@
+name = "[TaCZ] IronsArms - Iron's Spells & Timeless and Classics Zero"
+filename = "IronsArms-1.20.1-3.0.6.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/FTtiRPsV/versions/vCgTgKQC/IronsArms-1.20.1-3.0.6.jar"
+hash-format = "sha512"
+hash = "58391bbfc0ebc67cff644e1b4ee9bf7d66827879e3a5e076dcba5b3139d0aaf617e9535312bb463e000ce9544e03c71ec3005772a441aa7eaa7160f5903705a4"
+
+[update]
+[update.modrinth]
+mod-id = "FTtiRPsV"
+version = "vCgTgKQC"

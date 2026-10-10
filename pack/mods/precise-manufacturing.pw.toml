@@ -1,0 +1,13 @@
+name = "[TACZ] Create: Precise Manufacturing"
+filename = "prma-1.20.1-0.4.4-cr6.0-SIMPLE-beta-all.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/xs8lcts0/versions/kPQmixfM/prma-1.20.1-0.4.4-cr6.0-SIMPLE-beta-all.jar"
+hash-format = "sha512"
+hash = "f04d9d1f5666d5e5078bae10a4fd05be46c3c5542256a240726448c9cdbca6bfb605a9d1cf9a3fba2e30ab70ce66a1443225320261159cff953e955994f9fe5f"
+
+[update]
+[update.modrinth]
+mod-id = "xs8lcts0"
+version = "kPQmixfM"

@@ -93,6 +93,17 @@ Create: Occult Engineering, Occultism Ritual Satchel, Animus (Blood Magic). Се
 - Almost Unified: Occult Engineering даёт `forge:dusts/zinc` и `forge:dusts/brass` — единственный поставщик, объединять
   не с чем. Изменений не нужно.
 
+Пачка 4 — оружие, VS, Arknights: TaCZ addon, Enchanted Arsenal, Create: Precise Manufacturing, ArsArms, IronsArms,
+Curios For Ammo Box, CBC: Advanced Technologies, Valkyrien Sails, VS Tournament Reforged, Gathering Torches Become Sunlight,
+Arknights Weapon, Sarkaz's Furnace Side Fables. Сервер — `Done`.
+- Superb VS 1.0.0-beta (связка Superb Warfare × VS) собрана под VS 2.3: с VS 2.4.11 падает загрузка Superb Warfare
+  (`MixinApplyError superbvs.mixins.json:ProjectileEntityMixin`, нет `ShipWorldCore`). Отключена, задача — поток 4.
+- VS Tournament 1.1.0-beta (2024) — `NoClassDefFoundError VSConfigClass` с VS 2.4. Заменён на **VS Tournament Reforged**.
+- SBW Vintage Vehicle Pack 0.2.1 требует ровно `superbwarfare 0.8.9` (у нас 0.8.9.2) и `snassets_particles`. Отключён.
+- Create: Eureka! — датапак, не мод; отложен (задача — поток 4).
+- CBC: Advanced Technologies: 4 таблицы добычи на несуществующие блоки литейных форм — некритично.
+- Almost Unified: новые моды не дают предметов в объединяемые теги.
+
 ## Объединение дублей (Almost Unified)
 Один ресурс — один предмет: `pack/config/almostunified/unify.json`. Приоритет модов:
 minecraft → kubejs → create → mekanism → createaddition → ad_astra → northstar. Например, вся сталь

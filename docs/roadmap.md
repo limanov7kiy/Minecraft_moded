@@ -72,7 +72,9 @@
 - [x] Пачка 3 — магия (Ars Nouveau, Iron's Spells, Botania, Occultism, Blood Magic): 13 модов, сервер до `Done`.
   Отключены T.O Magic 'n Extras и Alshanex's Familiars (собраны под старые Cataclysm / Iron's Spells);
   Botanical Machinery Extra отложен (обязательно тянет Applied Energistics 2).
-- [ ] Пачка 4 — оружие, Valkyrien Skies, Arknights
+- [x] Пачка 4 — оружие, Valkyrien Skies, Arknights: 12 модов, сервер до `Done`. Отключены Superb VS и
+  SBW Vintage Vehicle Pack (несовместимые версии), VS Tournament заменён портом Tournament Reforged;
+  Create: Eureka! отложен (это датапак).
 - [ ] Пачка 5 — техника и удобство (Mekanism, рюкзаки, Waystones × Xaero, Jade, LSO)
 - Для Bumblezone и Mahou Tsukai подходящих дополнений под 1.20.1 Forge нет (Mahou Tsukai Combat требует Better Combat).
 
@@ -89,6 +91,13 @@
      нет в Cataclysm 3.31 — мод не грузится, отключён. Следить за обновлением.
    - (поток 3) Alshanex's Familiars 1.1.2 (единственная версия под 1.20.1) обращается к
      `ironsspellbooks.item.curios.SimpleAttributeCurio`, которого нет в Iron's Spells 3.16 — отключён.
+   - (поток 3) **Superb Warfare × Valkyrien Skies: попадания по кораблям.** Связка Superb VS 1.0.0-beta собрана под VS 2.3;
+     с VS 2.4.11 её миксин `ProjectileEntityMixin` не применяется (`ClassMetadataNotFoundException
+     org.valkyrienskies.core.apigame.world.ShipWorldCore`) и роняет загрузку Superb Warfare. Отключена. Без неё пули
+     Superb Warfare не попадают по блокам кораблей VS. Нужен свой патч (миксин на трассировку снаряда с учётом кораблей
+     через API VS 2.4) или обновление Superb VS.
+   - (поток 3) Create: Eureka! (CurseForge) — датапак `.zip`, а не мод. В сборке нет загрузки глобальных датапаков
+     (`fetch-mods.py` берёт только `mods/`). Решить: подключить загрузчик датапаков или развернуть его в `pack/kubejs/data/`.
 
 ### Поток 5 — Проверка клиента
 Серверный тест клиент не покрывает. Запуск клиента (Xvfb в облаке или у игрока): Oculus + Embeddium,

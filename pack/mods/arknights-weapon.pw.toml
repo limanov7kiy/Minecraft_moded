@@ -1,0 +1,13 @@
+name = "Arknights_Weapon"
+filename = "arknights_weapon-1.5.6.jar"
+side = "both"
+
+[download]
+hash-format = "sha1"
+hash = "b11d993f7fa2f38d8ea810705b7a5c4acc2a248f"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 7267892
+project-id = 1315198
