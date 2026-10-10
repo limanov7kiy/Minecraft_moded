@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Тестовый запуск сервера со сборкой: ставит Forge, качает серверные моды, запускает до "Done" и
 # останавливает. Лог: <папка>/logs/latest.log. Использование: test-server.sh <папка> [таймаут_сек]
+# TEST_COMMANDS=<файл> — команды консоли, которые выполнить после запуска.
 set -eu
 dir="$1"; tmo="${2:-900}"
 root="$(cd "$(dirname "$0")/.." && pwd)"
@@ -12,7 +13,7 @@ if [ ! -f run.sh ]; then
 fi
 python3 "$root/scripts/fetch-mods.py" server mods | grep -v '^got' || true
 # конфиги сборки поверх сгенерированных
-mkdir -p config && cp -r "$root/pack/config/." config/
+for d in config kubejs; do [ -d "$root/pack/$d" ] && mkdir -p "$d" && cp -r "$root/pack/$d/." "$d/"; done
 echo eula=true > eula.txt
 [ -f server.properties ] || printf 'online-mode=false\nlevel-seed=12345\n' > server.properties
 echo "-Xmx8G" > user_jvm_args.txt
@@ -28,7 +29,11 @@ while kill -0 $pid 2>/dev/null; do
   size=$(stat -c %s logs/latest.log 2>/dev/null || echo 0)
   if [ "$size" = "$last" ]; then still=$((still+5)); else still=0; last=$size; fi
   if [ $still -ge 180 ]; then echo "log stalled"; pkill -9 -f unix_args.txt || true; break; fi
-  if grep -qs 'Done (' logs/latest.log; then echo stop >&3; break; fi
+  if grep -qs 'Done (' logs/latest.log; then
+    # проверочные команды консоли (по одной в строке), затем stop
+    [ -n "${TEST_COMMANDS:-}" ] && { while read -r c; do [ -n "$c" ] && echo "$c" >&3; sleep 2; done < "$TEST_COMMANDS"; sleep 5; }
+    echo stop >&3; break
+  fi
   # после падения сторонние потоки могут держать JVM живой — добиваем
   if grep -qs 'Failed to start the minecraft server\|Crash report saved\|crash report has been saved' logs/latest.log; then sleep 5; pkill -9 -f unix_args.txt || true; break; fi
   sleep 5

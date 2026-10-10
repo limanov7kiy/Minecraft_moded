@@ -19,8 +19,8 @@
 2. Create: Northstar (оригинал) несовместим с Create 6 — заменён (см. выше).
 3. Origin Furs (unofficial port) на выделенном сервере падает: в общей инициализации обращается к
    клиентскому классу `GeoObjectRenderer` из AzureLib. Это чисто визуальный мод (шерсть/уши origins),
-   поэтому `origin-furs-unofficial-forge-port`, `arknights-furs` и `azurelib` вручную помечены
-   `side = "client"`. **После `packwiz update` проверить, что пометка не слетела.**
+   поэтому `origin-furs-unofficial-forge-port` и `arknights-furs` вручную помечены
+   `side = "client"` (AzureLib остаётся на обеих сторонах — он нужен Cataclysm Spellbooks на сервере). **После `packwiz update` проверить, что пометка не слетела.**
 4. Lycanites Mobs: предупреждение `Mixin apply failed lycanitesmobs.mixins.json:StructureAccessor`
    (не находит поле `settings` в `Structure`). Причина: в jar `lycanitesmobs-1.20.1` нет
    `lycanitesmobs.refmap.json`, хотя конфиг миксинов на него ссылается, — миксины к ванильным классам
@@ -35,7 +35,18 @@
    `PoiManager.getInRange`, после чего миксин VS `feature.poi.MixinPOIManager` не может встроиться —
    сервер падает при создании мира. Фикс: `pack/config/canary.properties` → `mixin.ai.poi=false`
    (отключена одна оптимизация, остальные работают).
-7. После падения загрузки сторонние потоки держат JVM живой, сервер «висит» без вывода.
+7. Iron's Spells 1.20.1-3.16.3 поставляет таблицы добычи `chests/catacombs/crypt_loot` и
+   `chests/citadel/citadel_tomes` в формате 1.21 (`"value"` вместо `"name"`, функция
+   `set_written_book_pages`) — на 1.20.1 они не загружаются, сундуки пустые. **Патч:**
+   `patches/irons_loot_1_20_1.py` переписывает их в формат 1.20.1 → `pack/kubejs/data/...`
+   (KubeJS перекрывает данные модов). Проверено командой `/loot spawn`: книги и добыча выпадают.
+   После обновления Iron's Spells перезапустить скрипт или удалить патч, если автор исправил.
+8. Serene Seasons Plus требует GabouLibs, которой нет ни на Modrinth, ни на CurseForge, — отключён.
+9. Некритичное (в логе, игру не ломает): рецепты/теги для модов, которых нет в сборке
+   (Ancient Aether, Aether Genesis и т.п.); спам `cataclysm_spellbooks:*laser_beam has no attributes`;
+   способности рас Arknights `arks:*/thought` ссылаются на атрибут `the_massestravels:thought_load_limit`
+   из мода, которого нет в открытом доступе, — эта способность у рас не работает.
+10. После падения загрузки сторонние потоки держат JVM живой, сервер «висит» без вывода.
    `test-server.sh` теперь это распознаёт.
 
 ## Открытые вопросы

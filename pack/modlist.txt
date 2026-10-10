@@ -95,3 +95,45 @@ mr playeranimator         # нужна Iron's Spells
 mr irons-lib              # Iron's Spells: >=1.20.1-2, <1.20.1-3
 mr caelus                 # нужна Origins (apoli)
 mr ldlib                  # нужна Originium Arts
+
+## Дополнения и связки — волна 1
+# Магия
+mr ars-ocultas            # Ars Nouveau × Occultism
+mr ars-creo               # Ars Nouveau × Create
+mr ars-additions
+mr tome-of-blood-rebirth  # Ars Nouveau × Blood Magic
+mr mythicbotany           # Botania: руны, альфхейм
+mr cataclysm-spellbooks   # Iron's Spells × Cataclysm  (нужен azurelib на сервере)
+# Ракеты, техника
+mr ad-astra-giselle-addon # Ad Astra × Mekanism/Create (кислород, энергия)
+mr create-ad-astra-recipes
+mr mekanism-ad-astra-ores
+mr mekanism-tools
+mr mekanism-additions
+mr copycats
+mr create-deco
+mr create-steam-n-rails
+mr create-propulsion      # Create × Valkyrien Skies (двигатели для кораблей)
+mr jade-vs                # Jade × Valkyrien Skies
+# Оружие
+mr tacz-tweaks
+mr lr-tactical            # ганпак для TACZ
+# Измерения
+mr deep-aether
+mr aether-lost-content
+mr the-aether-redux
+mr aether-villages
+mr twilight-delight
+# Еда-связки (Farmer's Delight)
+mr farmers-delight
+mr arsdelight
+mr alexs-caves-delight-(-farmers-delight-alexs-caves-add-on)
+mr l_enders-cataclysm-delight
+# Реализм
+# mr serene-seasons-plus  # ОТКЛЮЧЕН: требует GabouLibs, которой нет ни на Modrinth, ни на CurseForge
+# Удобство
+mr just-enough-resources-jer
+mr just-enough-effect-descriptions-jeed
+
+## Инструменты патчей
+mr kubejs                 # патчи данных/рецептов/добычи: pack/kubejs/
