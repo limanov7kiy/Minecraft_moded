@@ -24,7 +24,7 @@ ServerEvents.tick(event => {
   const count = (block) => { let n = 0; for (let x = -6; x <= 6; x++) for (let y = 200; y < 206; y++) for (let z = -6; z <= 6; z++)
     if (String(level.getBlockState(new BlockPos(x, y, z)).getBlock().getDescriptionId()) == 'block.minecraft.' + block) n++; return n }
   const near = (type, r, out) => (out = []) && level.getEntitiesOfClass(Java.loadClass('net.minecraft.world.entity.Entity'), fake.getBoundingBox().inflate(r)).stream()
-    .filter(e => String(e.getType()) == 'minecraft:' + type).forEach(e => out.push(e)) || out
+    .filter(e => String(e.getType()) == (type.includes(':') ? type : 'minecraft:' + type)).forEach(e => out.push(e)) || out
   const spawn = (type, x, z) => { server.runCommandSilent(`summon ${type} ${x} 200 ${z} {NoAI:1b,PersistenceRequired:1b}`); return near(type, 12)[near(type, 12).length - 1] }
 
   place(0); let r = cast('frost_barrier'); report('frost_barrier', r && count('packed_ice') == 15, `cast=${r} ice=${count('packed_ice')}`)
@@ -85,4 +85,21 @@ ServerEvents.tick(event => {
   fake.removeAllEffects(); place(0); r = cast('diamondflesh'); report('diamondflesh', r && fake.getEffect(Eff.DAMAGE_RESISTANCE).getAmplifier() == 2, `cast=${r}`)
   fake.removeAllEffects(); place(0); fake.setPos(0.5, 205, 0.5); fake.setOnGround(false); fake.setDeltaMovement(new (Java.loadClass('net.minecraft.world.phys.Vec3'))(0, -1, 0))
   r = cast('glide'); report('glide', r && fake.getDeltaMovement().y() >= -0.11, `cast=${r} vy=${fake.getDeltaMovement().y()}`)
+
+  // ---- партия 4 (0.4.0) ----
+  const Slot = Java.loadClass('net.minecraft.world.entity.EquipmentSlot')
+  clear(); place(0); r = cast('freezing_weapon'); report('freezing_weapon', r && String(fake.nbt).includes('freezing_weapon_until'), `cast=${r}`)
+  clear(); place(0); r = cast('empowering_presence'); report('empowering_presence', r && String(fake.nbt).includes('empower_until'), `cast=${r}`)
+  clear(); place(0); r = cast('muffle'); report('muffle', r && String(fake.nbt).includes('muffle_until'), `cast=${r}`)
+  clear(); a = mob(0.5, 6.5); place(10); r = cast('grapple'); report('grapple', r && a.getDeltaMovement().z() < 0, `cast=${r} vz=${a.getDeltaMovement().z()}`)
+  clear(); place(0); fake.setShiftKeyDown(true); let r1 = cast('transportation'); fake.setShiftKeyDown(false); fake.setPos(6.5, 200, 6.5); r = cast('transportation')
+  report('transportation', r1 && r && Math.abs(fake.getX() - 0.5) < 0.01 && Math.abs(fake.getZ() - 0.5) < 0.01, `mark=${r1} go=${r} pos=${fake.getX()},${fake.getZ()}`)
+  clear(); a = mob(0.5, 3.5); place(10); r = cast('ice_statue'); report('ice_statue', r && count('ice') >= 8 && effId(a, 'paralysis'), `cast=${r} ice=${count('ice')}`)
+  clear(); a = mob(0.5, 3.5); place(10); r = cast('petrify'); report('petrify', r && effId(a, 'paralysis') && a.hasEffect(Eff.DAMAGE_RESISTANCE), `cast=${r}`)
+  clear(); a = mob(2.5, 0.5); place(0); r = cast('lightning_pulse'); report('lightning_pulse', r && a.getHealth() < 20, `cast=${r} hp=${a.getHealth()}`)
+  clear(); place(0); r = cast('summon_ice_giant'); report('summon_ice_giant', r && near('ebwizardry:ice_giant', 8).length == 1, `cast=${r} n=${near('ebwizardry:ice_giant', 8).length}`)
+  clear(); place(0); [Slot.HEAD, Slot.CHEST, Slot.LEGS, Slot.FEET].forEach(sl => fake.setItemSlot(sl, Item.of('minecraft:air')))
+  r = cast('conjure_armor'); report('conjure_armor', r && !fake.getItemBySlot(Slot.CHEST).isEmpty(), `cast=${r} chest=${fake.getItemBySlot(Slot.CHEST)}`)
+  clear(); place(0); r = cast('silverfish_swarm'); report('silverfish_swarm', r && near('silverfish', 8).length >= 10, `cast=${r} n=${near('silverfish', 8).length}`)
+  clear()
 })

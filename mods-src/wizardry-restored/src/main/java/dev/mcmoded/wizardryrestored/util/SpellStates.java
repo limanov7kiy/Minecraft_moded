@@ -34,7 +34,15 @@ public final class SpellStates {
     public static final String MIND_CONTROLLER = "mind_controller";
     public static final String SPIRIT_HORSE = "spirit_horse";
     public static final String SPIRIT_HORSE_IDLE = "spirit_horse_idle";
+    public static final String FREEZING_WEAPON_UNTIL = "freezing_weapon_until";
+    public static final String FREEZING_WEAPON_FROST = "freezing_weapon_frost";
+    public static final String MUFFLE_UNTIL = "muffle_until";
+    public static final String EMPOWER_UNTIL = "empower_until";
+    public static final String MARK = "transport_mark";
     public static final float SHADOW_WARD_FRACTION = 0.5f;
+    /// Видимость приглушённого заклинателя: дальше — мобы его не замечают.
+    public static final double MUFFLE_DETECT_RANGE = 6.0;
+    public static final java.util.UUID EMPOWER_MODIFIER = java.util.UUID.fromString("6f2a6e8e-3b9c-4c0e-9a5b-6e2b7f1d9c41");
 
     private SpellStates() {
     }
@@ -60,6 +68,10 @@ public final class SpellStates {
             event.setAmount(event.getAmount() - reflected);
             attacker.hurt(MagicDamageSource.causeDirectMagicDamage(victim, EBDamageSources.MAGIC), reflected);
         }
+        // Морозное оружие: удар в ближнем бою замораживает цель
+        if (event.getSource().getDirectEntity() == attacker && active(attacker, FREEZING_WEAPON_UNTIL)) {
+            victim.addEffect(new MobEffectInstance(EBMobEffects.FROST.get(), data(attacker).getInt(FREEZING_WEAPON_FROST), 1));
+        }
         // Ледяной покров: нападающий обмерзает
         if (active(victim, ICE_SHROUD_UNTIL)) {
             attacker.addEffect(new MobEffectInstance(EBMobEffects.FROST.get(), data(victim).getInt(ICE_SHROUD_FROST), 0));
@@ -73,7 +85,13 @@ public final class SpellStates {
     public static void onChangeTarget(LivingChangeTargetEvent event) {
         LivingEntity mob = event.getEntity();
         LivingEntity target = event.getNewTarget();
-        if (target == null || !active(mob, MIND_CONTROL_UNTIL)) return;
+        if (target == null) return;
+        // Приглушение: дальше 6 блоков существо не замечает заклинателя
+        if (active(target, MUFFLE_UNTIL) && mob.distanceTo(target) > MUFFLE_DETECT_RANGE) {
+            event.setCanceled(true);
+            return;
+        }
+        if (!active(mob, MIND_CONTROL_UNTIL)) return;
         UUID owner = data(mob).getUUID(MIND_CONTROLLER);
         Player o = mob.level().getPlayerByUUID(owner);
         if (target.getUUID().equals(owner) || (o != null && target instanceof Player p && AllyDesignation.isAllied(o, p)))
@@ -99,6 +117,13 @@ public final class SpellStates {
                                 x -> x != e && x instanceof Enemy && !x.getUUID().equals(owner) && x.isAlive())
                         .stream().min(Comparator.comparingDouble(x -> x.distanceToSqr(e))).ifPresent(mob::setTarget);
             }
+        }
+
+        // Усиливающее присутствие: снимаем бонус силы заклинаний по окончании
+        if (d.contains(EMPOWER_UNTIL) && d.getLong(EMPOWER_UNTIL) <= e.level().getGameTime()) {
+            d.remove(EMPOWER_UNTIL);
+            var attr = e.getAttribute(com.binaris.wizardry.setup.registries.EBAttributes.CAST_POTENCY.get());
+            if (attr != null) attr.removeModifier(EMPOWER_MODIFIER);
         }
 
         // Призрачный конь: исчезает через 30 секунд без всадника

@@ -15,13 +15,14 @@
 | Объединение дублей (Almost Unified), проверка жёстких ссылок | `pack/config/almostunified/`, `scripts/hardrefs.py` |
 | Одна Солнечная система: планеты Ad Astra, ракеты Northstar/Creating Space, реальная гравитация, руды на всех планетах | `patches/space_unify.py`, `patches/ore_crossgen.py` |
 | Кислород скафандров Northstar/CS в системе Ad Astra | `mods-src/mm-compat` |
-| Wizardry Restored 0.3.0: 31 из 61 недостающего заклинания, тест применения в мире `castcheck.js` (31/31) | `mods-src/wizardry-restored`, `docs/wizardry-port.md` |
+| Wizardry Restored 0.4.0: 38 из 61 недостающего заклинания + 4 SENSIBLE-заклинания Redux, тест в мире `castcheck.js` (42/42) | `mods-src/wizardry-restored`, `docs/wizardry-port.md` |
 | Lycanites Mobs: недостающий refmap миксинов (сделано в основном чате до разделения) | `patches/lycanites-refmap`, `docs/compat.md` |
 | Серверные тесты: гравитация, маршруты, ракеты, кислород, руды, заклинания | `scripts/tests/` |
 
 ## В работе
-- Поток 1 (Wizardry Restored): 0.3.0 готов и запушен (`a655627`, тесты `spellcheck.js` + `castcheck.js`: 31/31).
-  Дальше — этап 2: оставшиеся заклинания на механиках Redux; затем этап 3 (новые сущности/блоки).
+- Поток 1 (Wizardry Restored): **0.4.0** — 38 из 61 заклинания + 4 «тестовых» заклинания Redux возвращены
+  на выделенный сервер; `castcheck.js` 42/42. Этап 2 (механики Redux/ванилла) исчерпан; дальше — этап 3
+  (новые сущности и блоки), точка остановки и список — в `docs/wizardry-port.md`.
 
 ## Потоки (по чату на каждый)
 
@@ -37,8 +38,8 @@
 1. Оставшиеся заклинания (≈30): этап 2 — на механиках Redux; этап 3 — новые сущности и блоки
    (phoenix, storm elemental, black hole, ice statue, ice wraith, forest of thorns…).
 2. Этап 4: предметы-артефакты (`ring_spirit_animal`, `transportation_stone`, `snare`, `thorns`…).
-3. Вернуть на выделенный сервер `SENSIBLE`-заклинания Redux (lightning_pulse, summon_ice_giant,
-   conjure_armor, silverfish_swarm), если они не ломаются.
+3. ~~Вернуть на выделенный сервер `SENSIBLE`-заклинания Redux~~ — **сделано** в 0.4.0 (копии под
+   `wizardry_restored:*`, проверены `castcheck.js`).
 4. Проверить дополнения Redux с CurseForge: Spell Forge, Wizardry Golems, Necromancer's Delight.
 
 ### Поток 2 — Мультиплеер: голосовой чат, раздача сборки, хостинг
