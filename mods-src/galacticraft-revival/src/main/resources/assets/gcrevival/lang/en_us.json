@@ -1,0 +1,23 @@
+{
+  "itemGroup.gcrevival": "Galacticraft Revival",
+  "block.gcrevival.moon_dungeon_brick": "Moon Dungeon Brick",
+  "block.gcrevival.unlit_wall_torch": "Unlit Torch",
+  "block.gcrevival.boss_spawner": "Boss Spawner",
+  "block.gcrevival.treasure_chest_t1": "Treasure Chest",
+  "container.gcrevival.treasure_chest": "Tier %s Treasure Chest",
+  "item.gcrevival.key_t1": "Tier 1 Dungeon Key",
+  "item.gcrevival.key.tooltip": "Opens a tier %s treasure chest",
+  "item.gcrevival.schematic_rocket_t2": "Schematic: Tier 2 Rocket",
+  "item.gcrevival.schematic_rocket_t2.tooltip": "Unlocks rocket parts for flights beyond the Moon",
+  "item.gcrevival.schematic_buggy": "Schematic: Moon Buggy",
+  "item.gcrevival.schematic_buggy.tooltip": "Unlocks the moon buggy",
+  "entity.gcrevival.skeleton_boss": "Evolved Skeleton Boss",
+  "entity.gcrevival.evolved_zombie": "Evolved Zombie",
+  "entity.gcrevival.evolved_skeleton": "Evolved Skeleton",
+  "entity.gcrevival.evolved_spider": "Evolved Spider",
+  "entity.gcrevival.evolved_creeper": "Evolved Creeper",
+  "gui.gcrevival.skeleton_boss.despawn": "Boss despawned, don't leave the boss room while fighting! Re-enter room to respawn boss.",
+  "gui.gcrevival.treasure_chest.locked": "Locked: needs a tier %s dungeon key",
+  "gui.gcrevival.treasure_chest.unlocked": "Treasure chest unlocked",
+  "subtitles.gcrevival.skeleton_boss.laugh": "Skeleton Boss laughs"
+}

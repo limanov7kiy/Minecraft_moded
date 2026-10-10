@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "gcrevival:block/treasure_chest_t1"
+    },
+    "facing=east": {
+      "model": "gcrevival:block/treasure_chest_t1",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "gcrevival:block/treasure_chest_t1",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "gcrevival:block/treasure_chest_t1",
+      "y": 270
+    }
+  }
+}
