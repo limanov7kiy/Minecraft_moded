@@ -91,9 +91,60 @@ JEI). Двигатели и баки Ad Astra оставлены — из них
 Northstar/CS выживает на Луне, воздух тратится ~1/с; при 5 ед. воздуха — через 5 с удушье и гибель),
 `spacecheck.js` (руды на планетах).
 
+## Проверка клиента (поток 5, 2026-10-10)
+Клиент 1.20.1 Forge 47.4.26 запущен в облаке под Xvfb (Mesa llvmpipe, OpenGL 4.6, ~1 FPS) и подключён к
+серверу из `scripts/test-server.sh`. Повторить: `scripts/test-client.sh <папка>` (подробности в шапке скрипта).
+**С текущей сборкой клиент не запускается вообще** — три блокера подряд, все только на клиенте
+(серверный тест их не видит). Дальше проверка шла с локальными обходами (в репо не вносились).
+
+Блокеры (задачи — в `docs/roadmap.md`, потоки 3 и 4):
+1. **`.gitignore`: правило `world*/` отрезает все папки `worldgen/`.** Размещения руд, которые генерирует
+   `patches/ore_crossgen.py` (`pack/kubejs/data/mm_space/worldgen/placed_feature/...`), не попали в git —
+   сервер из чистой ветки падает: `Unbound values in registry ... placed_feature: [mm_space:mars/northstar_...]`.
+   Для теста сгенерированы локально (`ore_crossgen.py` + `space_unify.py` по папке модов сервера).
+2. **ImmediatelyFast 1.2.7+1.20.2 × Oculus 1.8.0** — молча закрывает игру (`System.exit` в `IrisCompat.init`,
+   ищет класс старого Iris `net.coderbot.iris.vertices.ImmediateState`; краш-репорта нет). packwiz выбрал
+   старую версию; ImmediatelyFast **1.5.5+1.20.4-forge** (заявлена и для 1.20.1) с Oculus 1.8.0 работает.
+3. **Origin Furs (`origin_visuals` 1.0.5) × AzureLib 3.1.20** — краш при загрузке ресурсов:
+   `ClassMetadataNotFoundException: mod.azure.azurelib.model.GeoModel`. В AzureLib 3.1.0+ старый API
+   `Geo*` удалён; последняя версия с ним — 3.0.27. А Cataclysm Spellbooks 1.2.6+ требует новый API `Az*`
+   (3.1). Spellbooks 1.2.5 работает с AzureLib 3.0.27, но не с L_Ender's Cataclysm 3.31. Общей версии нет.
+   Arknights furs — это ресурс-пак для Origin Furs, без него бесполезен.
+4. **Cataclysm Spellbooks 1.2.9 × L_Ender's Cataclysm 3.31** — краш в `ClientSetup.registerEntityRenderers`:
+   `NoClassDefFoundError: com/github/L_Ender/cataclysm/client/render/entity/Ancient_Remnant_Rework_Renderer`.
+   Класс есть в Cataclysm 3.16, убран в 3.24+. Откат Cataclysm до 3.16 запускает игру, но модели Cataclysm 3.16
+   падают с LionfishAPI 3.0 из сборки (`AbstractMethodError ... Koboleton_Model ... root()` при рендере
+   кобольда) — откатывать пришлось бы и LionfishAPI, и проверять остальные дополнения Cataclysm.
+
+Что проверено и работает (с обходами: ImmediatelyFast 1.5.5, без Origin Furs/Arknights furs, Cataclysm 3.16):
+- **Oculus 1.8.0 + Embeddium 0.3.31 + шейдеры** Complementary Reimagined r5.9.3 — шейдер грузится
+  (`Using shaderpack`, тени в F3), картинка есть. Предупреждения шейдера `Unknown variable: BIOME_PALE_GARDEN`
+  и т.п. — переменные новых версий Iris, не мешают. Embeddium пишет «tainted by valkyrienskies, oculus» — норма.
+- **Вход на сервер**, экран выбора Origin и класса (Origins + Arknights races), **миникарта и карта мира Xaero**,
+  подсказки Jade/Valkyrien Skies.
+- **Рендер AzureLib** (Cataclysm Spellbooks): дрон наблюдения, ледяной блок, маска Abyssal Warlock — без ошибок.
+- **Distant Horizons**: загружается, миксин в Oculus применяется (`MixinOculusFrameBuffer`). Предупреждения:
+  G1 GC (советует ZGC на Java 21 — у 1.20.1 Forge Java 17, можно Shenandoah), Alex's Caves «частично
+  несовместим, может потребовать настройки». Сами LOD при 1 FPS визуально не проверить.
+
+Новые находки:
+5. **Lycanites `LightTextureMixin` по-прежнему не применяется на клиенте**: `@Shadow field lightTexture was not
+   located` — в `patches/lycanites-refmap` нет имени поля (`LightTexture.lightTexture` → SRG `f_109870_`,
+   сверить по маппингам). Серверные миксины патч починил, клиентский — нет.
+6. **Конфиг Serene Seasons Plus в старом формате**: при входе мод пишет «This update renamed the configuration
+   settings», переносит `sereneseasonsplus-common.toml` в `.pre-descriptive-config-update.bak` и создаёт новый —
+   значит, настройка накопления снега из сборки **не действует** (так же и на сервере).
+7. **Yes Steve Model** под виртуальной машиной не работает («YSM client cannot run under a virtual machine») —
+   в облаке не проверить; у игроков на обычном ПК должно быть нормально (Windows/Linux x64, не macOS).
+8. **Память**: клиент со сборкой занимает ~9 ГБ (куча 4,5–5 ГБ + ~4 ГБ вне кучи: Mesa, DH, шейдеры).
+   Игрокам — `-Xmx6G` и не меньше 12–16 ГБ ОЗУ в системе. Старт клиента — 2–2,5 мин (на 4 ядрах).
+9. Simple Voice Chat в сборке пока нет (поток 2) — не проверялся. Wizardry Restored в тесте была 0.3.0
+   (0.6.0 вышла во время проверки) — рендер новых сущностей 0.6.0 не смотрели.
+
 ## Открытые вопросы
 - Legendary Survival Overhaul и Serene Seasons: проверить интеграцию температуры с сезонами.
-- Серверный тест не проверяет клиент (рендер, шейдеры Oculus + Embeddium): нужен запуск клиента у игрока.
+- Клиент на настоящей видеокарте: FPS с шейдерами и DH, вид LOD, YSM, голосовой чат — чек-лист у потока 5
+  в `docs/roadmap.md`.
 
 ## Порт Galacticraft (если решим делать)
 Galacticraft Legacy (1.12.2) → 1.20.1 — это фактически переписывание: между версиями сменились
