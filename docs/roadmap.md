@@ -103,7 +103,7 @@ Distant Horizons, Yes Steve Model, AzureLib-рендер, клиентские �
 
 ## Интеграция (ревью PR, поток «Ревью и интеграция», ветка `claude/confident-hypatia-2zqr1t`)
 Цикл 1 — 2026-10-10:
-- **PR #1, поток 2** (голосовой чат, экспорт, UDP): проверен, **готов к слиянию**. `add-mods.sh` пусто,
+- **PR #1, поток 2** (голосовой чат, экспорт, UDP): проверен и **влит** (`013bf69`). `add-mods.sh` пусто,
   `packwiz refresh` без изменений, стороны совпадают с Modrinth. Тест в новом мире вместе с Wizardry 0.6.0:
   `Done`, без «Mods loaded with N warnings», голосовой сервер на 24454, castcheck 69/69, гравитация/маршруты/
   руды/кислород как раньше. Поправка интегратора: `export-pack.sh` подкладывает packwiz-у jar CurseForge с
