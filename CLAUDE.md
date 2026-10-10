@@ -27,6 +27,14 @@
 - `scripts/test-server.sh <папка вне репо>` — ставит Forge-сервер, качает серверные моды, запускает до `Done`.
   После каждого изменения набора модов прогоняй его и записывай находки в `docs/compat.md`.
 - Сторону мода (`side` в `pack/mods/*.pw.toml`) packwiz берёт с Modrinth; если она неверна — поправь вручную.
+- Свои моды и патчи: `mods-src/` (Gradle, ModDevGradle legacyforge + Parchment, как у Redux) и `patches/`.
+  Готовые jar кладутся в `pack/mods/*.jar` и раздаются вместе со сборкой; `fetch-mods.py` их копирует.
+  - `mods-src/wizardry-restored` — недостающие заклинания Electroblob's Wizardry поверх Redux
+    (план и опись — `docs/wizardry-port.md`; код оригинала не копировать — лицензия Electroblob).
+    Сборка: `cd mods-src/wizardry-restored && ./gradlew build`, затем `cp build/libs/*.jar ../../pack/mods/`.
+  - `patches/gaboulibs-shim` — замена удалённой библиотеки для Serene Seasons Plus.
+- Объединение дублей: Almost Unified (`pack/config/almostunified/`), перед изменениями проверять
+  `scripts/hardrefs.py`.
 - Пользователь хочет: для каждого мода — все дополнения и моды-связки; где совместимость плохая —
   дописывать патчи (отдельным модом-патчем или KubeJS/датапаком).
 

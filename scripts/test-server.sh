@@ -2,6 +2,7 @@
 # Тестовый запуск сервера со сборкой: ставит Forge, качает серверные моды, запускает до "Done" и
 # останавливает. Лог: <папка>/logs/latest.log. Использование: test-server.sh <папка> [таймаут_сек]
 # TEST_COMMANDS=<файл> — команды консоли, которые выполнить после запуска (строка «#sleep N» — пауза).
+# EXTRA_SERVER_SCRIPTS=<папка> — тестовые KubeJS-скрипты (например scripts/tests), только для этого запуска.
 set -eu
 dir="$1"; tmo="${2:-900}"
 root="$(cd "$(dirname "$0")/.." && pwd)"
@@ -14,6 +15,7 @@ fi
 python3 "$root/scripts/fetch-mods.py" server mods | grep -v '^got' || true
 # конфиги сборки поверх сгенерированных
 for d in config kubejs; do [ -d "$root/pack/$d" ] && mkdir -p "$d" && cp -r "$root/pack/$d/." "$d/"; done
+[ -n "${EXTRA_SERVER_SCRIPTS:-}" ] && mkdir -p kubejs/server_scripts && cp "$EXTRA_SERVER_SCRIPTS"/*.js kubejs/server_scripts/
 echo eula=true > eula.txt
 [ -f server.properties ] || printf 'online-mode=false\nlevel-seed=12345\n' > server.properties
 echo "-Xmx8G" > user_jvm_args.txt

@@ -1,0 +1,26 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+license = "GPL-3.0-only"
+
+[[mods]]
+modId = "${mod_id}"
+version = "${mod_version}"
+displayName = "Wizardry Restored"
+authors = "Minecraft_moded"
+description = '''
+Заклинания Electroblob's Wizardry, которых пока нет в Electroblob's Wizardry Redux. Новый код (не копия оригинала).
+'''
+
+[[dependencies.${mod_id}]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "ebwizardry"
+mandatory = true
+versionRange = "[0.8.9,)"
+ordering = "AFTER"
+side = "BOTH"

@@ -1,0 +1,84 @@
+# Electroblob's Wizardry: перенос недостающего
+
+В сборке — **Electroblob's Wizardry Redux 0.8.9** (пересоздание мода под 1.20.1, alpha, активно развивается).
+Сравнение с оригиналом 1.12.2 (Electroblob77/Wizardry, `assets/ebwizardry/spells/*.json` — 189 заклинаний)
+и исходниками Redux (Binaris00/ElectroblobsWizardryRedux, коммит 27156de от 2026-10-07).
+
+## Лицензии — как переносим
+- **Оригинал**: собственная лицензия Electroblob. Форки и изменения разрешены **только на GitHub**;
+  распространять код/ассеты где-либо ещё — только с письменного разрешения автора. Коммерция запрещена.
+- **Redux**: GPL-3.0 (на Modrinth; в gradle.properties указан MIT).
+- Поэтому недостающее делаем **«чистой комнатой»**: новый код в стиле Redux, поведение — по описаниям
+  заклинаний; числовые параметры (стоимость, перезарядка, урон) — игровые характеристики. Код и текстуры
+  оригинала не копируем. Иконки и звуки — свои (или ссылки на звуки, уже присутствующие у игрока).
+- Вариант на будущее: попросить у Electroblob разрешение — тогда можно переносить и ассеты.
+
+## Архитектура
+Отдельный мод-дополнение **`wizardry_restored`** (`mods-src/wizardry-restored`), зависит от Redux.
+Регистрирует заклинания в реестре Redux `ebwizardry:spell` под своим namespace. Плюсы:
+переживает обновления Redux; когда Redux сам добавит заклинание — наше удаляем.
+Кандидаты на отправку в Redux pull request'ами (GPL), чтобы не расходиться с апстримом.
+
+## Недостающие заклинания (61)
+Переименованы, но есть: `conjure_armour`→`conjure_armor`, `darkvision`→`dark_vision`, `fireskin`→`fire_skin`.
+
+| Уровень | Стихия | Заклинания |
+|---|---|---|
+| novice | earth | mine, snare |
+| novice | ice | snowball |
+| novice | necromancy | mind_trick |
+| novice | sorcery | light, muffle |
+| apprentice | earth | grapple, sixth_sense, summon_spirit_wolf |
+| apprentice | healing | empowering_presence, mark_sacrifice, shield |
+| apprentice | ice | frost_barrier, ice_statue |
+| apprentice | lightning | lightning_ray |
+| apprentice | necromancy | intimidate, metamorphosis |
+| apprentice | sorcery | blink, clairvoyance, divination, imbue_weapon |
+| advanced | earth | glide, summon_spirit_horse |
+| advanced | fire | disintegration, greater_fireball |
+| advanced | healing | forcefield, ironflesh, radiant_totem, transience |
+| advanced | ice | freezing_weapon, ice_shroud, summon_ice_wraith |
+| advanced | lightning | chain_lightning, lightning_bolt, lightning_disc, paralysis, stormcloud |
+| advanced | necromancy | mind_control, shadow_ward, withering_totem |
+| advanced | sorcery | decoy, mirage, petrify, transportation |
+| master | earth | earthquake, forest_of_thorns |
+| master | fire | summon_phoenix |
+| master | healing | celestial_smite, diamondflesh, resurrection |
+| master | ice | wall_of_frost |
+| master | lightning | lightning_hammer, lightning_web, summon_storm_elemental, thunderstorm |
+| master | necromancy | possession, summon_shadow_wraith |
+| master | sorcery | black_hole, shockwave, slow_time, summon_iron_golem |
+
+(В исходнике Redux стоят комментарии-заглушки `// decoy`, `// lightning web`, `// summon storm elemental`,
+`// earthquake` — автор планирует их сам; при выходе — убираем свои.)
+
+## Отключены на выделенном сервере
+Redux помечает «тестовые» заклинания `SENSIBLE` и удаляет их на выделенном сервере, т.е. в нашей сетевой
+игре их нет: **lightning_pulse, summon_ice_giant, conjure_armor, silverfish_swarm** (+ служебные
+ojospocos, block_surprise, player_hand, wizard_hand). Вернуть — после проверки, что они не ломаются.
+
+## Предметы
+Почти все предметы оригинала есть под новыми именами (`wand_novice_fire` вместо `novice_fire_wand`,
+`magic_crystal_*`, `gilded_*_wood` и т.д.). Отсутствуют только предметы, привязанные к недостающим
+заклинаниям: кольцо `ring_spirit_animal`, `transportation_stone`, `petrified_stone`, `ice_statue`,
+`magic_light`, `thorns`, `snare`, `vanishing_cobweb`, `spectral_block`, а также праздничные
+(`festive_*`).
+
+## Дополнения
+На Modrinth дополнений для Redux пока нет; на CurseForge есть Spell Forge for Electroblob's Wizardry:
+Redux, Wizardry Golems, Wizardry — Necromancer's Delight (проверить совместимость с 0.8.9).
+Аддоны оригинала 1.12.2 (Ancient Spellcraft и др.) на 1.20.1 не существуют.
+
+## Сделано
+- `mods-src/wizardry-restored` 0.1.0 — каркас дополнения + 3 заклинания:
+  **lightning_bolt** (advanced, молния), **sixth_sense** (apprentice, земля), **shockwave** (master, колдовство).
+  Иконки свои (`tools/make_icons.py`), звуки — ссылки на ванильные, переводы en/ru.
+  Проверено на сервере (`EXTRA_SERVER_SCRIPTS=scripts/tests scripts/test-server.sh ...`): все три в реестре
+  Redux с правильными уровнем/стоимостью/перезарядкой. Само применение в игре — проверить игроку.
+- Упрощение: sixth_sense использует ванильное свечение (видно всем игрокам рядом, а не только заклинателю).
+
+## План
+1. Каркас дополнения + первые заклинания без новых сущностей/блоков (вертикальный срез, проверка на сервере).
+2. Заклинания на существующих механиках Redux (лучи, снаряды, призывы, баффы).
+3. Заклинания, требующие новых сущностей/блоков (phoenix, storm elemental, black hole, ice statue…).
+4. Предметы-артефакты, связанные с ними.
