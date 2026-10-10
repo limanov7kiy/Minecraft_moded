@@ -108,7 +108,7 @@ Distant Horizons, Yes Steve Model, AzureLib-рендер, клиентские �
 - (из потока 2) Импорт `dist/*.mrpack` в Prism Launcher и Modrinth App (серверные моды не должны ставиться),
   голосовой чат клиент↔сервер (микрофон, группы, рации Simple Radio), Sound Physics вместе с Oculus.
 
-- (из потока Galacticraft, после включения в сборку) Galacticraft Revival 0.1.0: рендер скелета-босса (модель GC5),
+- (из потока Galacticraft) Galacticraft Revival 0.1.0 (в сборке): рендер скелета-босса (модель GC5),
   модель сундука сокровищ (Legacy, UV под 1.12 — может быть перевёрнута), потухший факел, полоса здоровья босса,
   захват и бросок игрока боссом, звуки босса.
 ## Интеграция (ревью PR, поток «Ревью и интеграция», ветка `claude/confident-hypatia-2zqr1t`)
@@ -133,5 +133,5 @@ Distant Horizons, Yes Steve Model, AzureLib-рендер, клиентские �
   здоровья мобов удалять `<папка>/world` перед запуском.
 
 ### Отложено (решение за пользователем)
-- Galacticraft — **в работе отдельным потоком** (ветка `claude/determined-sagan-51u10p`): свой мод поверх Ad Astra
+- Galacticraft — **в работе отдельным потоком** (0.1.0 «лунный данж с боссом» в сборке) (ветка `claude/determined-sagan-51u10p`): свой мод поверх Ad Astra
   с портом недостающего из GC Legacy/GC5 (данжи, боссы, схемы, астероиды). План и точка остановки — `docs/galacticraft.md`.
