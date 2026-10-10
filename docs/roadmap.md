@@ -63,6 +63,8 @@
 2. Для каждой новой пачки: тест сервера, Almost Unified (`scripts/hardrefs.py` перед изменением),
    запись в `docs/compat.md`.
 3. Где совместимость плохая — не чинить самому, а записать задачу в поток 4.
+4. (из потока Galacticraft) Проверить `beyond-oxygen` (GPL, 1.20.1 Forge) — герметизация отсеков кораблей
+   Valkyrien Skies; нужна ли связка с кислородом Ad Astra.
 
 ### Поток 4 — Совместимость и патчи
 Файлы: `patches/`, `mods-src/mm-compat/`, `pack/kubejs/`, `docs/compat.md`.
@@ -82,5 +84,5 @@ Distant Horizons, Yes Steve Model, AzureLib-рендер, клиентские �
   своя текстура), частицы силового поля/тучи/диска, иконки заклинаний и эффекта «Метка жертвы», звуки Redux.
 
 ### Отложено (решение за пользователем)
-- Порт Galacticraft Legacy на 1.20.1 — фактически переписывание (см. `docs/compat.md`). Нужен отдельный
-  чат (лицензия не препятствует — CLAUDE.md «Назначение и лицензии»); пока космос закрыт связкой Ad Astra + Northstar + Creating Space.
+- Galacticraft — **в работе отдельным потоком** (ветка `claude/determined-sagan-51u10p`): свой мод поверх Ad Astra
+  с портом недостающего из GC Legacy/GC5 (данжи, боссы, схемы, астероиды). План и точка остановки — `docs/galacticraft.md`.
