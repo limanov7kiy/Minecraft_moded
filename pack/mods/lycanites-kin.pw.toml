@@ -1,0 +1,13 @@
+name = "Lycanites Kin"
+filename = "lycaniteskin-1.1.jar"
+side = "both"
+
+[download]
+hash-format = "sha1"
+hash = "748ff25c9984ae41f7ed85f66a1617de82b88cf4"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 8161118
+project-id = 1550005

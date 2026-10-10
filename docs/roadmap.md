@@ -67,7 +67,8 @@
 раздел «волна 2»):
 - [x] Пачка 1 — измерения (Aether, Twilight Forest, Blue Skies, Undergarden, Deeper and Darker, Alex's Caves): 20 модов,
   сервер до `Done`. CBC: Nuclear отключён (несовместим с Create Big Cannons 5.11.4).
-- [ ] Пачка 2 — мобы и боссы (Lycanites, Mowzie's, Alex's Mobs, Cataclysm)
+- [x] Пачка 2 — мобы и боссы (Lycanites, Mowzie's, Alex's Mobs, Cataclysm): 9 модов + библиотеки, сервер до `Done`.
+  Integrated Mowzie's Mobs отложен: обязательно тянет Quark + Supplementaries + Amendments — решает пользователь.
 - [ ] Пачка 3 — магия (Ars Nouveau, Iron's Spells, Botania, Occultism, Blood Magic)
 - [ ] Пачка 4 — оружие, Valkyrien Skies, Arknights
 - [ ] Пачка 5 — техника и удобство (Mekanism, рюкзаки, Waystones × Xaero, Jade, LSO)

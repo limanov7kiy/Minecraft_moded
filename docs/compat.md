@@ -72,6 +72,14 @@ Dungeons and Villages: Deeper and Darker, Create: Alex's Caves Compat. Серв�
   такие изменения откатывать (`git checkout pack/mods/<мод>.pw.toml`).
 - Almost Unified: новые моды не дают предметов в объединяемые теги; изменений не нужно.
 
+Пачка 2 — мобы и боссы: Lycanite Delight, Lycanites Kin, Mowzie's Cataclysm, GTBC's Geomancy Plus (Iron's Spells ×
+Mowzie's, + GTBC's SpellLib), Alex's Delight, Alex's Mobs Interaction, Capsid Fix, Cinematic Cataclysm (+ FDLib),
+Loot Integrations: Cataclysm (+ Loot Integrations). Сервер — `Done`.
+- Loot Integrations требует **Cupboard** (`>=1.20.1-1.5`, только CurseForge), не объявленную в зависимостях — добавлена.
+  На Modrinth slug `cupboard` занят другим модом (Aesthetic Storage) — брать только `cf cupboard`.
+- Integrated Mowzie's Mobs не добавлен: обязательные зависимости Quark, Supplementaries, Amendments.
+- В логе только `gtbcs_geomancy_plus:chests/test` (тестовая таблица добычи автора) — некритично. Almost Unified — без изменений.
+
 ## Объединение дублей (Almost Unified)
 Один ресурс — один предмет: `pack/config/almostunified/unify.json`. Приоритет модов:
 minecraft → kubejs → create → mekanism → createaddition → ad_astra → northstar. Например, вся сталь

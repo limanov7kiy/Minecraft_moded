@@ -438,7 +438,7 @@ hash = "56a5eae4fbd7007e550db9c67b4b9d41a480b57a32300c9a97e89ee3c32cb368"
 
 [[files]]
 file = "modlist.txt"
-hash = "353abf613ae47451adc6f8451d9a869a06b751e113b44e54b129f119977c4c3d"
+hash = "e25b18b14dfa37add63526de9a44f1c7a167405a0d28d93a2a688c2ec274807e"
 
 [[files]]
 file = "mods/ad-astra-giselle-addon.pw.toml"
@@ -503,6 +503,21 @@ metafile = true
 [[files]]
 file = "mods/alexs-caves.pw.toml"
 hash = "0cbc4b2c6b58b7a94f030ae84f18057e5dc78a17bad429f40b8884926a6ab233"
+metafile = true
+
+[[files]]
+file = "mods/alexs-delight.pw.toml"
+hash = "99f6d4e46f784953d16aa1ce5f72327b21487dc0e27d3143c8a6b60c6d02381a"
+metafile = true
+
+[[files]]
+file = "mods/alexs-mobs-capsid-fix.pw.toml"
+hash = "1c25b25923708698cba07f532035248c36dae1d21acff71c4cad3e47cd21851d"
+metafile = true
+
+[[files]]
+file = "mods/alexs-mobs-interaction.pw.toml"
+hash = "21264fb5f052c240d71a36f6e014c91ce189d50ee8cd986bb8e42a96b31e29c4"
 metafile = true
 
 [[files]]
@@ -661,6 +676,11 @@ hash = "46d7e45a470ab4280c68c2d435214ee63a1c016c426d889d9deee049c6f39a08"
 metafile = true
 
 [[files]]
+file = "mods/cinematic-cataclysm.pw.toml"
+hash = "51a26b15b158cb016944b8ac19d3badc251ccde6ce58d8143e0a37524ea09ce7"
+metafile = true
+
+[[files]]
 file = "mods/citadel.pw.toml"
 hash = "c7ac7f84731a0ca1fefb3491c3f65c2767afd4be207e094fcb65c4cea99c9549"
 metafile = true
@@ -733,6 +753,11 @@ metafile = true
 [[files]]
 file = "mods/creating-space.pw.toml"
 hash = "12e24f9c16cb0cb2ff7044be7fa6291042147c02cc0e94451a1e8ead30a94e67"
+metafile = true
+
+[[files]]
+file = "mods/cupboard.pw.toml"
+hash = "77f479f765b307ff09a3d0b90719bb3b929d59af193d1ed746dab513fe14f2c5"
 metafile = true
 
 [[files]]
@@ -811,6 +836,11 @@ hash = "c83385838fbf5cdd40684e5f6d4b7bcc2126de4abca229a60b7063e57a5a4615"
 metafile = true
 
 [[files]]
+file = "mods/fdlib.pw.toml"
+hash = "34320e557d3321623f5b68cf86a370d04b71adb7d01648ea259c37c653041f1c"
+metafile = true
+
+[[files]]
 file = "mods/ferrite-core.pw.toml"
 hash = "902bac905b93271f02bd0951a22bac06a3da24f5c237fcaeb469e14a7679e508"
 metafile = true
@@ -832,6 +862,16 @@ metafile = true
 [[files]]
 file = "mods/gravestone-mod.pw.toml"
 hash = "df07d5af0d287b944943b65e0b0990dc21fbbad6fee05b9d698a9f62b906ea9c"
+metafile = true
+
+[[files]]
+file = "mods/gtbcs-geomancy-plus.pw.toml"
+hash = "415883ca37b8caf4a02b20925c35516183752f87026baaa2ae46348c48fb5488"
+metafile = true
+
+[[files]]
+file = "mods/gtbcs-spelllib.pw.toml"
+hash = "60f2793e8461de7c88164a93af59b119f8376b3c8e9a5b8f6b3a801009fafda1"
 metafile = true
 
 [[files]]
@@ -915,8 +955,28 @@ hash = "f3b6b7cd660a91a34a4e18010c9eaacaeb7ff306cadfee14431fa25a15b041ec"
 metafile = true
 
 [[files]]
+file = "mods/loot-integrations-cataclysm.pw.toml"
+hash = "b66363bc8af99fdca57b3ad7446e346cac6258e462d495327889fae99730fdaa"
+metafile = true
+
+[[files]]
+file = "mods/loot-integrations.pw.toml"
+hash = "41a036a86db9c0cab20b9b8956b0749bdfea13942d6ca00668304e5d0731166f"
+metafile = true
+
+[[files]]
 file = "mods/lr-tactical.pw.toml"
 hash = "143569673f10c7517a0b1f09beaa9ccaf97478908d55923c1f5a6a37547d51f6"
+metafile = true
+
+[[files]]
+file = "mods/lycanite-delight.pw.toml"
+hash = "f5bd4863b308ea0e697c554e7319f86a0ad225207ed3aa6369727a5331b8ff7b"
+metafile = true
+
+[[files]]
+file = "mods/lycanites-kin.pw.toml"
+hash = "5035fc485894f85fadaf76b404141b0ec939ea3e811f553ed8b396b137d446b9"
 metafile = true
 
 [[files]]
@@ -985,6 +1045,11 @@ metafile = true
 [[files]]
 file = "mods/modonomicon.pw.toml"
 hash = "11a52fe3ca031baf3f9425b0ac98bc79c8818bc261ee8f59ee7d322193902658"
+metafile = true
+
+[[files]]
+file = "mods/mowzies-cataclysm.pw.toml"
+hash = "ea8b8c09541160788f82d028df77d70900cc023fcb4729048beee8d9c0f6b1b4"
 metafile = true
 
 [[files]]

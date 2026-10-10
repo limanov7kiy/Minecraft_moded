@@ -1,0 +1,13 @@
+name = "Cinematic Cataclysm"
+filename = "cinematiccataclysm-1.0.1-1.20.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/1WAsDg6d/versions/VxqBCb8y/cinematiccataclysm-1.0.1-1.20.1.jar"
+hash-format = "sha512"
+hash = "8d2c2c3456db59b6fd63943e41998048dca1a9b68c73dbc2db0354009bcbd524080dd2cc53a85dde7bf06dacaf5a0ca828fbbc88cbbac31f624cc4f266ac45de"
+
+[update]
+[update.modrinth]
+mod-id = "1WAsDg6d"
+version = "VxqBCb8y"
