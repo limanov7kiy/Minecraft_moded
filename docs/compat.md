@@ -41,13 +41,30 @@
    `patches/irons_loot_1_20_1.py` переписывает их в формат 1.20.1 → `pack/kubejs/data/...`
    (KubeJS перекрывает данные модов). Проверено командой `/loot spawn`: книги и добыча выпадают.
    После обновления Iron's Spells перезапустить скрипт или удалить патч, если автор исправил.
-8. Serene Seasons Plus требует GabouLibs, которой нет ни на Modrinth, ни на CurseForge, — отключён.
+8. Serene Seasons Plus требует библиотеку GabouLibs, которую автор удалил отовсюду (ни Modrinth, ни
+   CurseForge). **Патч:** своя замена `patches/gaboulibs-shim` — 7 классов с тем же API (снежные бури,
+   защита от двойной инициализации, совместимость с Project Atmosphere), восстановлены по декомпиляции
+   SS+. Собирается `patches/gaboulibs-shim/build.sh <тестовый сервер>` → `pack/mods/gaboulibs-shim-1.0.0.jar`
+   (FMLModType: GAMELIBRARY). Включено накопление снега (`pack/config/sereneseasonsplus-common.toml`).
+   Проверено: зима + дождь → буря записана в `ssp_snow_history.dat`.
+   Замечание: первая смена сезона командой `/season set` после запуска сервера не шлёт событие
+   (особенность Serene Seasons) — при естественной смене сезонов не мешает.
 9. Некритичное (в логе, игру не ломает): рецепты/теги для модов, которых нет в сборке
    (Ancient Aether, Aether Genesis и т.п.); спам `cataclysm_spellbooks:*laser_beam has no attributes`;
    способности рас Arknights `arks:*/thought` ссылаются на атрибут `the_massestravels:thought_load_limit`
    из мода, которого нет в открытом доступе, — эта способность у рас не работает.
 10. После падения загрузки сторонние потоки держат JVM живой, сервер «висит» без вывода.
    `test-server.sh` теперь это распознаёт.
+
+## Объединение дублей (Almost Unified)
+Один ресурс — один предмет: `pack/config/almostunified/unify.json`. Приоритет модов:
+minecraft → kubejs → create → mekanism → createaddition → ad_astra → northstar. Например, вся сталь
+(Ad Astra, Create Big Cannons, Mekanism, Superb Warfare) выдаётся как `mekanism:ingot_steel`, свинец —
+Mekanism, листы — Create. Не объединяются (`ignoredItems`): уран Alex's Caves (своя механика радиации),
+изумруд Caerula Arbor и никелевая руда Creating Space (у них ошибочные теги).
+Генерация серебра и свинца Superb Warfare в Верхнем мире отключена (дубль Occultism/Mekanism):
+`pack/kubejs/data/superbwarfare/forge/biome_modifier/`. Проверка рецептов, завязанных на конкретный
+предмет: `scripts/hardrefs.py`.
 
 ## Открытые вопросы
 - Ad Astra и Northstar Redux добавляют свои Луну и Марс — на одной планете будет две версии. Нужно

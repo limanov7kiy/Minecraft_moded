@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Тестовый запуск сервера со сборкой: ставит Forge, качает серверные моды, запускает до "Done" и
 # останавливает. Лог: <папка>/logs/latest.log. Использование: test-server.sh <папка> [таймаут_сек]
-# TEST_COMMANDS=<файл> — команды консоли, которые выполнить после запуска.
+# TEST_COMMANDS=<файл> — команды консоли, которые выполнить после запуска (строка «#sleep N» — пауза).
 set -eu
 dir="$1"; tmo="${2:-900}"
 root="$(cd "$(dirname "$0")/.." && pwd)"
@@ -31,7 +31,7 @@ while kill -0 $pid 2>/dev/null; do
   if [ $still -ge 180 ]; then echo "log stalled"; pkill -9 -f unix_args.txt || true; break; fi
   if grep -qs 'Done (' logs/latest.log; then
     # проверочные команды консоли (по одной в строке), затем stop
-    [ -n "${TEST_COMMANDS:-}" ] && { while read -r c; do [ -n "$c" ] && echo "$c" >&3; sleep 2; done < "$TEST_COMMANDS"; sleep 5; }
+    [ -n "${TEST_COMMANDS:-}" ] && { while read -r c; do case "$c" in "#sleep "*) sleep "${c#\#sleep }" ;; ''|\#*) ;; *) echo "$c" >&3; sleep 2 ;; esac; done < "$TEST_COMMANDS"; sleep 5; }
     echo stop >&3; break
   fi
   # после падения сторонние потоки могут держать JVM живой — добиваем

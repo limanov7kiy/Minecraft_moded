@@ -89,6 +89,8 @@ mr sophisticated-backpacks
 mr gravestone-mod
 mr xaeros-minimap         # клиент
 mr xaeros-world-map       # клиент
+mr yes-steve-model        # модели игроков (нативный код: Windows/Linux x64, macOS не поддерживается)
+mr almostunified          # объединение дублей: один предмет на ресурс (config/almostunified)
 
 ## Библиотеки, не объявленные в зависимостях на Modrinth (найдены тестовым запуском сервера)
 mr playeranimator         # нужна Iron's Spells
@@ -130,7 +132,7 @@ mr arsdelight
 mr alexs-caves-delight-(-farmers-delight-alexs-caves-add-on)
 mr l_enders-cataclysm-delight
 # Реализм
-# mr serene-seasons-plus  # ОТКЛЮЧЕН: требует GabouLibs, которой нет ни на Modrinth, ни на CurseForge
+mr serene-seasons-plus      # требует GabouLibs (удалена автором) — заменена нашей библиотекой pack/mods/gaboulibs-shim (patches/gaboulibs-shim)
 # Удобство
 mr just-enough-resources-jer
 mr just-enough-effect-descriptions-jeed

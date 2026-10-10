@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+FMLModType: GAMELIBRARY
+Automatic-Module-Name: gaboulibs.shim
+Implementation-Title: GabouLibs shim (Minecraft_moded)
+Implementation-Version: 1.0.0
+

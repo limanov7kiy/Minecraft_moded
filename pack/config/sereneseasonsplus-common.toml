@@ -1,0 +1,54 @@
+
+[performance]
+	#Run supported snow-processing work on background threads. Enabled by default only on systems with more than 6 processor cores. Disable this when diagnosing mod compatibility or threading problems.
+	runSnowUpdatesAsynchronously = false
+
+[snowUpdateTiming]
+	#Number of Minecraft ticks between snow-placement updates. 20 ticks is approximately 1 real-time second.
+	#Range: > 1
+	snowPlacementIntervalInTicks = 20
+	#Number of Minecraft ticks between snow replacement and accumulation scans. Lower values update snow more frequently but require more processing. 20 ticks is approximately 1 real-time second.
+	#Range: > 1
+	snowReplacementIntervalInTicks = 100
+
+[seasonalSnowAccumulation]
+	#Allow Serene Seasons Plus to place, replace, and accumulate snow during supported seasonal weather.
+	enableSeasonalSnowAccumulation = true
+
+[seasonalPlantGrowth]
+	#Allow the mod to apply extra grass and flower growth during warm seasons.
+	enableSeasonalGrassAndFlowerGrowth = true
+
+[snowLimits]
+	#Maximum number of snow layers allowed in one vertical column. Eight layers equal one full snow block; the default of 24 equals three blocks.
+	#Range: 0 ~ 512
+	maximumSnowLayersPerColumn = 24
+
+[realWorldSeasonSynchronization]
+	#Synchronize the in-game season with the current real-world date in the America/Toronto time zone. Leave disabled to let Serene Seasons progress normally in-game.
+	syncSeasonsToEasternCanadianCalendar = false
+
+[dayNightCycle]
+	#Change the daylight and nighttime proportions according to the current in-game sub-season, giving summer longer days and winter longer nights.
+	changeDayNightLengthsWithSeasons = true
+	#Allow Serene Seasons Plus to control Better Days day and night speed values. Disable this if Better Days or another mod should control time speed by itself.
+	allowSeasonalControlOfBetterDaysTimeSpeed = true
+	#Keep one complete day and night at a fixed total elapsed length while seasons change the daylight/night split. When false, the original seasonal speed behavior is preserved. This does not sync to the computer clock.
+	keepFullDayNightCycleAtFixedLength = false
+	#Total elapsed real-world minutes in one complete day and night when keepFullDayNightCycleAtFixedLength is enabled. Set to 1440 for 24 hours. This controls duration only and does not sync to the computer clock.
+	#Range: 0.1 ~ 10080.0
+	fullDayNightCycleLengthInRealMinutes = 20.0
+	#After Better Days finishes accelerating through sleep, move the world to the configured wake time. This does not alter Better Days day-start or night-start boundaries.
+	setWakeTimeAfterBetterDaysSleep = true
+	#Minecraft time-of-day tick used after a Better Days sleep cycle. Valid values are 0 through 23999; 1000 is approximately 7:00 AM.
+	#Range: 0 ~ 23999
+	wakeTimeAfterBetterDaysSleepInMinecraftTicks = 1000
+	#Use the custom day and night speed multipliers below when seasonal day/night length changes are disabled.
+	useCustomDayAndNightSpeedMultipliers = false
+	#Better Days speed multiplier for daytime when custom speed mode is active. Values below 1 make daytime longer; values above 1 make it shorter.
+	#Range: 0.05 ~ 100.0
+	customDaySpeedMultiplier = 1.0
+	#Better Days speed multiplier for nighttime when custom speed mode is active. Values below 1 make nighttime longer; values above 1 make it shorter.
+	#Range: 0.05 ~ 100.0
+	customNightSpeedMultiplier = 1.0
+

@@ -1,8 +1,28 @@
 hash-format = "sha256"
 
 [[files]]
+file = "config/almostunified/debug.json"
+hash = "3e03a291b5310a6b94a45aff63e4731baa643701c42a968ed716483ccd1d5a37"
+
+[[files]]
+file = "config/almostunified/duplicates.json"
+hash = "40639e8cb9e9ea52b8557c50d29fc06e73e2ad1e7ca27ae5ce8fe2eca2e97188"
+
+[[files]]
+file = "config/almostunified/startup.json"
+hash = "ad711622f9b8c5cc8115f52396f5d82587b809fb20cbf9d94c7744aeebcaf4d5"
+
+[[files]]
+file = "config/almostunified/unify.json"
+hash = "f51b0cd5c833b65997901eba8cd168b9cd5b533b36f377b3362ee5dc6e51a3e6"
+
+[[files]]
 file = "config/canary.properties"
 hash = "8b34973d33381c95c7bb176234d5ed927110c5b81c0c0d82b5ebbf06dea97b81"
+
+[[files]]
+file = "config/sereneseasonsplus-common.toml"
+hash = "ae0213dfbc7561b527d00565ad849c32e096914967590c1aaf85c4133195c885"
 
 [[files]]
 file = "kubejs/data/irons_spellbooks/loot_tables/chests/catacombs/crypt_loot.json"
@@ -13,8 +33,24 @@ file = "kubejs/data/irons_spellbooks/loot_tables/chests/citadel/citadel_tomes.js
 hash = "2786b834de51e30e359168272b7f307289d8f9ef846d39ff9e809da310e3b6b0"
 
 [[files]]
+file = "kubejs/data/superbwarfare/forge/biome_modifier/deepslate_galena_ore_biome_modifier.json"
+hash = "a75d5d611e58e3c80bbf0244f82a8a8351c4e8c4aa0f3a1c56da5343aa6d5ae5"
+
+[[files]]
+file = "kubejs/data/superbwarfare/forge/biome_modifier/deepslate_silver_ore_biome_modifier.json"
+hash = "a75d5d611e58e3c80bbf0244f82a8a8351c4e8c4aa0f3a1c56da5343aa6d5ae5"
+
+[[files]]
+file = "kubejs/data/superbwarfare/forge/biome_modifier/galena_ore_biome_modifier.json"
+hash = "a75d5d611e58e3c80bbf0244f82a8a8351c4e8c4aa0f3a1c56da5343aa6d5ae5"
+
+[[files]]
+file = "kubejs/data/superbwarfare/forge/biome_modifier/silver_ore_biome_modifier.json"
+hash = "a75d5d611e58e3c80bbf0244f82a8a8351c4e8c4aa0f3a1c56da5343aa6d5ae5"
+
+[[files]]
 file = "modlist.txt"
-hash = "d9c41dae55698d81d18ed003038febec6f9c897ebab3d02a7e78459f9570471d"
+hash = "f0319fca80dfd73bd40147d6aa2c23e0d85e3879b20d482158a49566dba6c1dc"
 
 [[files]]
 file = "mods/ad-astra-giselle-addon.pw.toml"
@@ -64,6 +100,11 @@ metafile = true
 [[files]]
 file = "mods/alexs-mobs.pw.toml"
 hash = "e1016eb125a5a41a10f80847eb00affae0e539e703846f303949ed5d82b7f1bf"
+metafile = true
+
+[[files]]
+file = "mods/almostunified.pw.toml"
+hash = "bc9bc4dc5e09b5213fb158a83d63d5def7bb016c3cef65405f8f2f6c0c62b158"
 metafile = true
 
 [[files]]
@@ -144,6 +185,11 @@ metafile = true
 [[files]]
 file = "mods/balm.pw.toml"
 hash = "92eef137f9ea740673053ec3604ddf3ed197f22fdf5e5da35c8364f88ad31650"
+metafile = true
+
+[[files]]
+file = "mods/betterdays.pw.toml"
+hash = "598205e268c0f43a288b21fcccacf3eded9662270a0411bb0d025bfcb2ed043d"
 metafile = true
 
 [[files]]
@@ -315,6 +361,10 @@ metafile = true
 file = "mods/ferrite-core.pw.toml"
 hash = "902bac905b93271f02bd0951a22bac06a3da24f5c237fcaeb469e14a7679e508"
 metafile = true
+
+[[files]]
+file = "mods/gaboulibs-shim-1.0.0.jar"
+hash = "88593902bf6f6c8e5dc8595bfc54aec61f4a9210ca846e7a997b70d7b34c8799"
 
 [[files]]
 file = "mods/geckolib.pw.toml"
@@ -557,6 +607,11 @@ hash = "3602f220a9d98e89d44168a6e84dc7bb169fb8b8209b4b966288d1fa1c3650bc"
 metafile = true
 
 [[files]]
+file = "mods/serene-seasons-plus.pw.toml"
+hash = "e9ffc868ab6289c0f19aeb8b9550867129a91e0315d826920dfbf10ba7f14529"
+metafile = true
+
+[[files]]
 file = "mods/serene-seasons.pw.toml"
 hash = "23ef0c67ed600fb75d47161cdbe43b860837afe9d1f3012c44f3e7eb13bdd1e5"
 metafile = true
@@ -674,4 +729,9 @@ metafile = true
 [[files]]
 file = "mods/yacl.pw.toml"
 hash = "f3b3d035b89519faccc4ddd8b0b4407ce96c0eb49068fe50a445d43a3baa8bea"
+metafile = true
+
+[[files]]
+file = "mods/yes-steve-model.pw.toml"
+hash = "6008940c3cab0fcf660f78fa5ad81a2ad6ca382f913e8cdd546086cab0dba19a"
 metafile = true
