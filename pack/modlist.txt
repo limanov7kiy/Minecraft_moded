@@ -47,7 +47,7 @@ mr create-stuff-additions
 mr ad-astra
 mr northstar-redux          # порт Create: Northstar под Create 6 (оригинал несовместим)
 mr mekanism-x-create-northstar
-# mr create-northstar-structures  # ОТКЛЮЧЕН: несовместим с Northstar Redux 0.6+, роняет генерацию мира
+mr create-northstar-structures  # биомы Луны под Redux 0.6+ и кратеры на Луне Ad Astra: patches/northstar_structures_fix.py
 mr creating-space
 mr valkyrien-skies
 mr eureka
@@ -92,6 +92,18 @@ mr xaeros-minimap         # клиент
 mr xaeros-world-map       # клиент
 mr yes-steve-model        # модели игроков (нативный код: Windows/Linux x64, macOS не поддерживается)
 mr almostunified          # объединение дублей: один предмет на ресурс (config/almostunified)
+# Голосовой чат (UDP 24454, см. docs/hosting.md; конфиг сервера — config/voicechat/)
+mr simple-voice-chat        # both: сам голосовой чат, группы
+mr simple-radio             # both: рации и радио через SVC; связки с Create и Valkyrien Skies
+mr sound-physics-remastered # client: эхо и заглушение звука, в т.ч. голосов
+mr talkingheads             # client: голова говорящего игрока покачивается
+mr let-them-talk            # client: приглушает музыку и другие звуки, пока кто-то говорит
+mr voicechatprofiles        # client: профили настроек голосового чата
+mr vibrative-voice          # server: голос — вибрация для скалк-сенсоров и Хранителя
+mr vc-admin-voice-chat-moderation-tool # server: OP заходят в запароленные группы (модерация)
+mr simplevoicechat-broadcast # server: OP вещает на всех (группа "broadcast")
+# Нет под Forge 1.20.1 (только Fabric): Voice Chat Interaction, Audio Player, Enhanced Groups.
+# Не подходит: Zombie Have Ears 1.1.2 — mods.toml без поля mandatory, Forge 47 из-за него не грузит ни один мод.
 
 ## Библиотеки, не объявленные в зависимостях на Modrinth (найдены тестовым запуском сервера)
 mr playeranimator         # нужна Iron's Spells

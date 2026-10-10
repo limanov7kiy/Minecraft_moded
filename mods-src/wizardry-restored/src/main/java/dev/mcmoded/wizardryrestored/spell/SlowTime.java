@@ -42,14 +42,20 @@ public class SlowTime extends Spell {
         if (!(ctx.world() instanceof ServerLevel server)) return true;
         float radius = ctx.modifiers().get(SpellModifiers.BLAST, property(DefaultProperties.EFFECT_RADIUS));
         int duration = (int) (property(DefaultProperties.EFFECT_DURATION) * ctx.modifiers().get(SpellModifiers.DURATION));
+        // Странные карманные часы: время не замедляется, а останавливается
+        boolean stop = dev.mcmoded.wizardryrestored.util.Artifacts.has(caster, com.binaris.wizardry.setup.registries.EBItems.CHARM_STOP_TIME);
         for (LivingEntity t : EntityUtil.getLivingWithinRadius(radius, caster.getX(), caster.getY(), caster.getZ(), server)) {
             if (t == caster || !AllyDesignation.isValidTarget(caster, t)) continue;
             t.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, duration, 4));
             t.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, duration, 3));
             t.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, duration, 1));
+            if (stop) {
+                t.addEffect(new MobEffectInstance(com.binaris.wizardry.setup.registries.EBMobEffects.PARALYSIS.get(), duration, 0));
+                t.setDeltaMovement(net.minecraft.world.phys.Vec3.ZERO);
+            }
         }
         server.getEntitiesOfClass(net.minecraft.world.entity.projectile.Projectile.class, caster.getBoundingBox().inflate(radius))
-                .forEach(pr -> { if (pr.getOwner() != caster) { pr.setDeltaMovement(pr.getDeltaMovement().scale(0.1)); pr.hurtMarked = true; } });
+                .forEach(pr -> { if (pr.getOwner() != caster) { pr.setDeltaMovement(pr.getDeltaMovement().scale(stop ? 0 : 0.1)); if (stop) pr.setNoGravity(true); pr.hurtMarked = true; } });
         server.sendParticles(ParticleTypes.REVERSE_PORTAL, caster.getX(), caster.getY() + 1, caster.getZ(), 120, radius / 2, 1, radius / 2, 0.02);
         this.playSound(ctx.world(), caster, ctx.castingTicks(), -1);
         return true;

@@ -41,7 +41,7 @@ public class Shockwave extends Spell {
                 Vec3 push = away.normalize().scale(strength).add(0, 0.4 + strength * 0.3, 0);
 
                 target.hurt(MagicDamageSource.causeDirectMagicDamage(caster, EBDamageSources.BLAST), damage);
-                target.setDeltaMovement(push);
+                if (!dev.mcmoded.wizardryrestored.util.Artifacts.anchored(target)) target.setDeltaMovement(push);
                 target.hurtMarked = true;
                 if (target instanceof ServerPlayer p) p.connection.send(new ClientboundSetEntityMotionPacket(target));
             }

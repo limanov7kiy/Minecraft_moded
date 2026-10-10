@@ -70,13 +70,12 @@
   "spell.wizardry_restored.grapple": "Grapple",
   "spell.wizardry_restored.grapple.desc": "A magical vine pulls a creature to you, or pulls you to a block.",
   "spell.wizardry_restored.transportation": "Transportation",
-  "spell.wizardry_restored.transportation.desc": "Sneak-cast to remember this place; cast normally to return to it (same dimension).",
+  "spell.wizardry_restored.transportation.desc": "Teleports you to a remembered circle of four transportation stones. Sneak-cast in the centre of a circle to remember it.",
   "spell.wizardry_restored.ice_statue": "Ice Statue",
   "spell.wizardry_restored.ice_statue.desc": "Encases the target in ice for 20 seconds.",
   "spell.wizardry_restored.petrify": "Petrify",
   "spell.wizardry_restored.petrify.desc": "Turns the target to stone for a long while. Does not work on bosses.",
-  "spell.wizardry_restored.transportation.marked": "Location remembered",
-  "spell.wizardry_restored.transportation.other_dimension": "The remembered place is in another dimension",
+  "spell.wizardry_restored.transportation.marked": "Stone circle remembered (%s of %s)",
   "spell.wizardry_restored.lightning_pulse": "Lightning Pulse",
   "spell.wizardry_restored.lightning_pulse.desc": "Charges the ground around the caster with lightning, damaging and repelling nearby creatures.",
   "spell.wizardry_restored.summon_ice_giant": "Summon Ice Giant",
@@ -150,5 +149,9 @@
   "spell.wizardry_restored.possession": "Possession",
   "spell.wizardry_restored.possession.desc": "Take over a creature's body for 30 seconds: you turn invisible and it moves as you do. Sneak-cast to leave early.",
   "entity.wizardry_restored.phoenix": "Phoenix",
-  "spell.wizardry_restored.resurrection.nobody": "No fallen player nearby"
+  "spell.wizardry_restored.resurrection.nobody": "No fallen player nearby",
+  "block.wizardry_restored.transportation_stone": "Transportation Stone",
+  "spell.wizardry_restored.transportation.selected": "Destination %s: %s %s %s (%s)",
+  "spell.wizardry_restored.transportation.no_circle": "Stand in the centre of four transportation stones (two blocks away, one on each side) and sneak-cast to remember it",
+  "spell.wizardry_restored.transportation.broken": "That stone circle is broken and has been forgotten"
 }

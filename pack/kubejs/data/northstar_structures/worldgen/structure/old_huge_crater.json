@@ -1,0 +1,20 @@
+{
+  "type": "northstar_structures:chunked_old_rimmed_crater",
+  "biomes": "#northstar_structures:crater_moon_biomes",
+  "spawn_overrides": {},
+  "step": "surface_structures",
+  "terrain_adaptation": "none",
+  "min_radius": 150,
+  "radius_range": 101,
+  "cell_spacing_chunks": 64,
+  "salt": 97351421,
+  "depth_scale": 0.09,
+  "rim_width": 96,
+  "rim_height": 27,
+  "floor_block": "ad_astra:moon_sand",
+  "rim_block": "ad_astra:moon_sand",
+  "avoid_fresh_craters": false,
+  "flatten_floor": true,
+  "config_group": "huge",
+  "config_key": "old_huge"
+}

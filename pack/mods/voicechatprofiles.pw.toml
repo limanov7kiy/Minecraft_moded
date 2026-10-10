@@ -1,0 +1,13 @@
+name = "VoiceChatProfiles"
+filename = "voicechatprofiles-forge-1.20.1-1.0.1.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/oKmFIgOU/versions/D3ll2XDf/voicechatprofiles-forge-1.20.1-1.0.1.jar"
+hash-format = "sha512"
+hash = "b491fce9151bbf00fb3afc0e27ed8021de541816094a8850c6a214bcab5582d93eb085f61663f0aada17c718bbb7174247beac63592fe9307fc953d51ea40f87"
+
+[update]
+[update.modrinth]
+mod-id = "oKmFIgOU"
+version = "D3ll2XDf"

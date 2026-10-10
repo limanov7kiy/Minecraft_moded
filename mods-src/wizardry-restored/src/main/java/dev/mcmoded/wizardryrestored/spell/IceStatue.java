@@ -34,15 +34,23 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
-/// Ледяная статуя: цель вмерзает в лёд на 20 секунд (паралич + обморожение Redux, ледяная оболочка вокруг).
+/// Ледяная статуя: существо на 20 секунд вмерзает в лёд (`StatueEntity`, после — обморожение Redux); игрока —
+/// паралич + обморожение + ледяная оболочка из временных блоков.
 public class IceStatue extends Spell {
     @Override
     public boolean cast(PlayerCastContext ctx) {
         float range = ctx.modifiers().get(SpellModifiers.RANGE, property(DefaultProperties.RANGE));
         LivingEntity target = Targeting.lookTarget(ctx.caster(), range);
-        if (target == null || !AllyDesignation.isValidTarget(ctx.caster(), target)) return false;
+        if (target == null || !AllyDesignation.isValidTarget(ctx.caster(), target)
+                || target.getType().is(net.minecraftforge.common.Tags.EntityTypes.BOSSES)) return false;
         if (ctx.world() instanceof ServerLevel server) {
             int duration = (int) (property(DefaultProperties.EFFECT_DURATION) * ctx.modifiers().get(SpellModifiers.DURATION));
+            if (target instanceof Mob mob && dev.mcmoded.wizardryrestored.entity.StatueEntity.petrify(mob, true, duration) != null) {
+                server.sendParticles(ParticleTypes.SNOWFLAKE, target.getX(), target.getY() + 1, target.getZ(), 40, 0.4, 0.6, 0.4, 0.02);
+                this.playSound(ctx.world(), ctx.caster(), ctx.castingTicks(), -1);
+                return true;
+            }
+            // Игрока — прежним способом: паралич, обморожение и ледяная оболочка из временных блоков
             target.addEffect(new MobEffectInstance(com.binaris.wizardry.setup.registries.EBMobEffects.PARALYSIS.get(), duration, 0));
             target.addEffect(new MobEffectInstance(com.binaris.wizardry.setup.registries.EBMobEffects.FROST.get(), duration, 2));
             target.setDeltaMovement(Vec3.ZERO);

@@ -27,6 +27,8 @@ public final class ClientSetup {
         event.registerEntityRenderer(ModEntities.BLACK_HOLE.get(), ctx -> new BlockStackRenderer<>(ctx, 0.7f, 0.15f, Blocks.BLACK_CONCRETE.defaultBlockState()));
         event.registerEntityRenderer(ModEntities.DECOY.get(), DecoyRenderer::new);
         event.registerEntityRenderer(ModEntities.PHOENIX.get(), PhoenixRenderer::new);
+        event.registerEntityRenderer(ModEntities.STATUE.get(), StatueRenderer::new);
+        event.registerEntityRenderer(ModEntities.GRAPPLE_HOOK.get(), GrappleRenderer::new);
         event.registerEntityRenderer(ModEntities.LIGHTNING_DISC.get(), NoopRenderer::new);
         event.registerEntityRenderer(ModEntities.SNARE.get(), ctx -> new BlockStackRenderer<>(ctx, 0.8f, 0, false, Blocks.SPRUCE_PRESSURE_PLATE.defaultBlockState()));
         event.registerEntityRenderer(ModEntities.THORNS.get(), ctx -> new BlockStackRenderer<>(ctx, 1f, 0, false,

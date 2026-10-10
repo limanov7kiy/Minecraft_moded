@@ -22,10 +22,14 @@ public final class ModEntities {
     public static final RegistryObject<EntityType<ThornsEntity>> THORNS = construct("thorns", ThornsEntity::new, 1f, 1f, 20);
     public static final RegistryObject<EntityType<LightningDiscEntity>> LIGHTNING_DISC = construct("lightning_disc", LightningDiscEntity::new, 1f, 0.2f, 1);
     public static final RegistryObject<EntityType<LightningHammerEntity>> LIGHTNING_HAMMER = construct("lightning_hammer", LightningHammerEntity::new, 0.8f, 1.6f, 2);
+    public static final RegistryObject<EntityType<GrappleHookEntity>> GRAPPLE_HOOK = construct("grapple_hook", GrappleHookEntity::new, 0.25f, 0.25f, 1);
     public static final RegistryObject<EntityType<DecoyEntity>> DECOY = ENTITY_TYPES.register("decoy", () ->
             EntityType.Builder.of(DecoyEntity::new, MobCategory.MISC).sized(0.6f, 1.8f).clientTrackingRange(10)
                     .build(WizardryRestored.MOD_ID + ":decoy"));
 
+    public static final RegistryObject<EntityType<StatueEntity>> STATUE = ENTITY_TYPES.register("statue", () ->
+            EntityType.Builder.<StatueEntity>of(StatueEntity::new, MobCategory.MISC).sized(0.6f, 1.8f).fireImmune().clientTrackingRange(10)
+                    .build(WizardryRestored.MOD_ID + ":statue"));
     public static final RegistryObject<EntityType<PhoenixEntity>> PHOENIX = ENTITY_TYPES.register("phoenix", () ->
             EntityType.Builder.of(PhoenixEntity::new, MobCategory.MONSTER).sized(0.6f, 1.8f).fireImmune().clientTrackingRange(8)
                     .build(WizardryRestored.MOD_ID + ":phoenix"));

@@ -39,19 +39,24 @@
   путь передаётся через `PACKWIZ=`).
 - `scripts/test-server.sh <папка вне репо>` — ставит Forge-сервер, качает серверные моды, запускает до `Done`.
   После каждого изменения набора модов прогоняй его и записывай находки в `docs/compat.md`.
+- `scripts/export-pack.sh` — раздача: `dist/*.mrpack` (клиент) и `dist/*-server.zip` (сервер); инструкция для друзей — `docs/friends.md`.
 - Сторону мода (`side` в `pack/mods/*.pw.toml`) packwiz берёт с Modrinth; если она неверна — поправь вручную.
 - Свои моды и патчи: `mods-src/` (Gradle, ModDevGradle legacyforge + Parchment, как у Redux) и `patches/`.
   Готовые jar кладутся в `pack/mods/*.jar` и раздаются вместе со сборкой; `fetch-mods.py` их копирует.
   - `mods-src/wizardry-restored` — недостающие заклинания Electroblob's Wizardry поверх Redux
     (план и опись — `docs/wizardry-port.md`; код и ассеты оригинала 1.12.2 переносить можно — см. «Назначение и лицензии»).
     Сборка: `cd mods-src/wizardry-restored && ./gradlew build`, затем `cp build/libs/*.jar ../../pack/mods/`.
-  - `mods-src/mm-compat` — кодовые связки сборки (кислород скафандров Northstar/Creating Space в Ad Astra).
+  - `mods-src/mm-compat` — кодовые связки и исправления сборки (кислород скафандров Northstar/Creating Space в Ad Astra,
+    категория лучей Cataclysm Spellbooks, недостающий атрибут рас Arknights).
     Ad Astra в зависимостях — по Modrinth version id Forge-сборки (номер версии у Forge и Fabric одинаковый).
   - `patches/gaboulibs-shim` — замена удалённой библиотеки для Serene Seasons Plus.
   - `patches/lycanites-refmap` — недостающий refmap миксинов Lycanites Mobs (без пересборки 120-МБ jar).
   - Тесты на сервере: `scripts/tests/*.js` (через `EXTRA_SERVER_SCRIPTS`), `castcheck.js` кастует все заклинания
     Wizardry Restored фейковым игроком и проверяет результат в мире.
   - `patches/space_unify.py`, `patches/ore_crossgen.py` — одна Солнечная система (см. docs/compat.md).
+  - `patches/northstar_structures_fix.py` — биомы Northstar Structures под Northstar Redux 0.6 и кратеры на Луне Ad Astra.
+  - `scripts/missing_tag_refs.py <latest.log>` — убрать из тегов ссылки на отсутствующие предметы (иначе тег
+    выбрасывается целиком) → `pack/kubejs/server_scripts/missing_mod_refs.js`.
 - Объединение дублей: Almost Unified (`pack/config/almostunified/`), перед изменениями проверять
   `scripts/hardrefs.py`.
 - Пользователь хочет: для каждого мода — все дополнения и моды-связки; где совместимость плохая —
