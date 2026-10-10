@@ -1,0 +1,13 @@
+name = "[NoCube's] Undergarden Delight"
+filename = "undergardendelight-2.0.2-forge-1.20.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/H340jsJv/versions/M9f9CF8z/undergardendelight-2.0.2-forge-1.20.1.jar"
+hash-format = "sha512"
+hash = "9f6831829c97919cc85b36083359dff73f64ec2faa1dca4739e693511ef8230e4ea5738c18caf121291aa55f11a53382fd958aef83e88b1a4e5180fad8bf3781"
+
+[update]
+[update.modrinth]
+mod-id = "H340jsJv"
+version = "M9f9CF8z"

@@ -1,0 +1,13 @@
+name = "Blue Skies Gravestones Compat"
+filename = "blue_skies_gravestones_compat-0.1-1.20.1.jar"
+side = "server"
+
+[download]
+url = "https://cdn.modrinth.com/data/pXS1mDIy/versions/FQAPkazt/blue_skies_gravestones_compat-0.1-1.20.1.jar"
+hash-format = "sha512"
+hash = "00895513b89e30ab1960b8c151ad5b11d2491655ef2c49e21f8e8e14e6fb6357bd70f401cbc23a64c0726dee2a65cf29f16f8b82601fa101c4f71bc829c6f905"
+
+[update]
+[update.modrinth]
+mod-id = "pXS1mDIy"
+version = "FQAPkazt"

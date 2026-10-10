@@ -1,0 +1,13 @@
+name = "Twilight Forest Cave Fix"
+filename = "TwilightCaveFix-1.0.0.jar"
+side = "server"
+
+[download]
+url = "https://cdn.modrinth.com/data/hRxKc8ZK/versions/3r7FahQ4/TwilightCaveFix-1.0.0.jar"
+hash-format = "sha512"
+hash = "ce98220857b8b3b201bc962d7366171998a3aa669f0707aca036b5c69b43716887c31ca8e64272ca3a77086aef9d453d31ade012aca7d1772e2fd13fe968c9fd"
+
+[update]
+[update.modrinth]
+mod-id = "hRxKc8ZK"
+version = "3r7FahQ4"

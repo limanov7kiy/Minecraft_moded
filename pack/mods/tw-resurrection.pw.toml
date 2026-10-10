@@ -1,0 +1,13 @@
+name = "Twilight Forest Bosses Resurrection"
+filename = "tfbr-1.20.1-4.2.2.jar"
+side = "both"
+
+[download]
+hash-format = "sha1"
+hash = "a3ae127b50c2585bfd5a846d1f36a970575a35b2"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 7382267
+project-id = 916943

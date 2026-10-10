@@ -54,6 +54,23 @@
    из мода, которого нет в открытом доступе, — эта способность у рас не работает.
 10. После падения загрузки сторонние потоки держат JVM живой, сервер «висит» без вывода.
    `test-server.sh` теперь это распознаёт.
+11. `.gitignore` правилом `world*/` прятал `pack/kubejs/data/mm_space/worldgen/` — размещения руд из
+   `patches/ore_crossgen.py` не попадали в git, и на чистой копии мир не создавался
+   (`Unbound values in registry ... placed_feature: [mm_space:mars/...]`). Правило привязано к корню (`/world*/`),
+   файлы перегенерированы и закоммичены.
+
+### Дополнения, волна 2 (поток 3)
+Пачка 1 — измерения: Ancient Aether, Aether's Delight, Protect Your Moa, Treasure Reforging, Enhanced Extinguishing,
+Aether Emissivity (клиент), Umbral Skies (TF × Aether), TF Dungeons & Villages, TF Lost Blocks, TF Bosses Resurrection,
+Twilight Cave Fix (сервер), Create Blue Skies Compat, Blue Skies Tweaks, Farmer's Cutting: Blue Skies,
+Blue Skies Gravestones Compat (сервер), Undergarden Delight, Deeper and Darker: Spellbooks, Deeper and Darker → Cataclysm,
+Dungeons and Villages: Deeper and Darker, Create: Alex's Caves Compat. Сервер — `Done`.
+- CBC: Nuclear 2.1.1 (и все прежние версии) — `NoSuchMethodError CBCBuilderTransformersImpl.safeNbt()` с
+  Create Big Cannons 5.11.4, мод не грузится. Отключён (задача в потоке 4).
+- Create: Alex's Caves Compat: часть рецептов и тегов для Create: New Age (его нет в сборке) не загружается — некритично.
+- При добавлении с CurseForge packwiz перезаписывает уже стоящие зависимости (Aether, Structure Gel) CF-метаданными —
+  такие изменения откатывать (`git checkout pack/mods/<мод>.pw.toml`).
+- Almost Unified: новые моды не дают предметов в объединяемые теги; изменений не нужно.
 
 ## Объединение дублей (Almost Unified)
 Один ресурс — один предмет: `pack/config/almostunified/unify.json`. Приоритет модов:

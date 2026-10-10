@@ -139,3 +139,27 @@ mr just-enough-effect-descriptions-jeed
 
 ## Инструменты патчей
 mr kubejs                 # патчи данных/рецептов/добычи: pack/kubejs/
+
+## Дополнения и связки — волна 2
+# Пачка 1: измерения
+mr ancient-aether
+mr the-aethers-delight            # Aether × Farmer's Delight
+mr aether-protect-your-moa
+mr aether-treasure-reforging
+mr aether-enhanced-extinguishing
+mr aether-emissivity              # клиент
+cf umbral-skies                   # Twilight Forest × Aether
+mr the-twilight-forest-dungeons-villages
+mr twilight-forest-the-lost-blocks
+cf tw-resurrection                # повторный призыв боссов TF
+mr twilight-forest-cave-fix       # сервер
+cf create-blue-skies-compat
+cf blue-skies-tweaks
+mr farmers-cutting-blue-skies
+mr blue-skies-gravestones-compat  # сервер
+mr undergarden-delight
+mr deeper-and-darker-spellbooks   # Iron's Spells × Deeper and Darker
+cf deeper-and-darker-to-cataclysm-progression
+mr dungeons-and-villages-deeper-and-darker
+# mr cbc-nuclear                  # ОТКЛЮЧЕН: собран под старую Create Big Cannons, с 5.11.4 падает (NoSuchMethodError CBCBuilderTransformersImpl.safeNbt)
+mr create-alexs-caves-compat

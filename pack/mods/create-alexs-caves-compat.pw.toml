@@ -1,0 +1,13 @@
+name = "Create: Alex's Caves Compat"
+filename = "create_alexscaves_compat-1.20.1-1.6.2.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/1uJ2rMf6/versions/aqpInCWh/create_alexscaves_compat-1.20.1-1.6.2.jar"
+hash-format = "sha512"
+hash = "c9fe24729232ae443991675812e8dcd26070ed8639be33a7a073e0a18b1496d3fd7b09489b6094c729e0a8690959f15f6dab0d98d160c69d32c20fda480a269d"
+
+[update]
+[update.modrinth]
+mod-id = "1uJ2rMf6"
+version = "aqpInCWh"

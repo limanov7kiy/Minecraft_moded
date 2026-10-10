@@ -1,0 +1,13 @@
+name = "Farmer's Cutting: Blue Skies"
+filename = "farmers-cutting-blue-skies-1.20.1-1.0.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/UB87WTC6/versions/iVqQZVNM/farmers-cutting-blue-skies-1.20.1-1.0.jar"
+hash-format = "sha512"
+hash = "5b79b84d9a95af2e7d09721df4a98108039d81114e80ae41432d75a187621e485133b23fc27959785fb188d922fde6987a017dc3a127a530b956cbc4b45bc175"
+
+[update]
+[update.modrinth]
+mod-id = "UB87WTC6"
+version = "iVqQZVNM"
