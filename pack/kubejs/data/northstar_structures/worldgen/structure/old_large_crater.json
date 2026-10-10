@@ -1,0 +1,17 @@
+{
+  "type": "northstar_structures:old_rimmed_crater",
+  "biomes": "#northstar_structures:crater_moon_biomes",
+  "spawn_overrides": {},
+  "step": "surface_structures",
+  "terrain_adaptation": "none",
+  "min_radius": 45,
+  "radius_range": 24,
+  "depth_scale": 0.18,
+  "rim_width": 14,
+  "rim_height": 4,
+  "floor_block": "ad_astra:moon_sand",
+  "rim_block": "ad_astra:moon_sand",
+  "avoid_fresh_craters": true,
+  "config_group": "large",
+  "config_key": "old_large"
+}
