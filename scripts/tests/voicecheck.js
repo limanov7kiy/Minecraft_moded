@@ -8,6 +8,8 @@ ServerEvents.loaded(event => {
   for (let id of ['voicechat', 'vcinteraction', 'audioplayer', 'enhancedgroups', 'admiral']) {
     console.info(`VOICECHECK mod ${id}: ${Platform.isLoaded(id)}`)
   }
+  const VCI = Java.loadClass('de.maxhenkel.vcinteraction.VoicechatInteraction')
+  console.info(`VOICECHECK vcinteraction enabled=${VCI.SERVER_CONFIG.enabled.get()} (в сборке ожидается false)`)
   let ev = Registries.GAME_EVENT.get(new RL('vcinteraction', 'voice'))
   if (ev == null) {
     console.info('VOICECHECK event vcinteraction:voice: MISSING')

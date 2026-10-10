@@ -23,6 +23,7 @@ Minecraft_moded и раздаётся только её игрокам (см. «
 - AudioPlayer: access widener убран (закрытый конструктор `LevelResource` — через
   `ObfuscationReflectionHelper`); веб-интерфейс читается из файла мода (`ModFile.findResource`).
   Миксины — те же, с refmap.
+- Voice Chat Interaction: добавлена опция `enabled` (в сборке `false` — голос-вибрацию даёт Vibrative Voice).
 - Fabric Permissions API на Forge нет: права — по уровням из оригинала (все / операторы).
 - Библиотеки (ConfigBuilder, mp3spi, microhttp) переупакованы внутрь jar с переносом пакетов, как у оригиналов.
 

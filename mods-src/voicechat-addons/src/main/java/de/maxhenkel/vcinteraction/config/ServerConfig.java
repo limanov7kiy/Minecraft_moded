@@ -5,6 +5,7 @@ import de.maxhenkel.configbuilder.entry.ConfigEntry;
 
 public class ServerConfig {
 
+    public final ConfigEntry<Boolean> enabled;
     public final ConfigEntry<Boolean> groupInteraction;
     public final ConfigEntry<Boolean> whisperInteraction;
     public final ConfigEntry<Boolean> sneakInteraction;
@@ -12,6 +13,12 @@ public class ServerConfig {
     public final ConfigEntry<Integer> minActivationThreshold;
 
     public ServerConfig(ConfigBuilder builder) {
+        // Добавлено в порте Minecraft_moded: в сборке голос-вибрацию даёт Vibrative Voice, этот мод выключен
+        enabled = builder.booleanEntry(
+                "enabled",
+                true,
+                "If voice should trigger vibrations at all (Minecraft_moded port option)"
+        );
         groupInteraction = builder.booleanEntry(
                 "group_interaction",
                 false,

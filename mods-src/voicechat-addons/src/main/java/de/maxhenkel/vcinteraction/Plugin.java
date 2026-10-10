@@ -49,6 +49,9 @@ public class Plugin implements VoicechatPlugin {
     }
 
     private void onMicPacket(MicrophonePacketEvent event) {
+        if (!VoicechatInteraction.SERVER_CONFIG.enabled.get()) {
+            return;
+        }
         VoicechatConnection senderConnection = event.getSenderConnection();
         if (senderConnection == null) {
             return;

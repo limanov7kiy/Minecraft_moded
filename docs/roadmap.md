@@ -64,7 +64,8 @@
 - [x] Попутно: `test-server.sh` ловит «Mods loaded with N warnings» (сервер без модов); `.gitignore` больше не
   прячет `kubejs/data/*/worldgen/` — закоммичены размещения `mm_space` из `patches/ore_crossgen.py`.
 - [x] Порт на Forge Voice Chat Interaction, AudioPlayer, Enhanced Groups (Max Henkel, только Fabric) —
-  `mods-src/voicechat-addons`, тест `scripts/tests/voicecheck.js`.
+  `mods-src/voicechat-addons`, тест `scripts/tests/voicecheck.js`. Voice Chat Interaction выключен в пользу
+  Vibrative Voice (родная Forge-сборка, связка с рациями), вернуть — `enabled=true` в его конфиге.
 - [ ] Пункт 3 (хостинг с пользователем, боевая проверка) — открыт.
 
 ### Поток 3 — Дополнения, волна 2 (связки для каждого мода)
@@ -107,7 +108,7 @@ Distant Horizons, Yes Steve Model, AzureLib-рендер, клиентские �
   своя текстура; статуи — модель существа текстурой камня/льда; лоза — линия до крюка), частицы силового поля/тучи/диска, иконки заклинаний и эффекта «Метка жертвы», звуки Redux.
 - (из потока 2) Импорт `dist/*.mrpack` в Prism Launcher и Modrinth App (серверные моды не должны ставиться),
   голосовой чат клиент↔сервер (микрофон, группы, рации Simple Radio), Sound Physics вместе с Oculus;
-  порт аддонов: голос будит скалк-сенсор, своя пластинка/козий рог (`/audioplayer`), загрузка через браузер.
+  порт аддонов: своя пластинка/козий рог (`/audioplayer`), загрузка через браузер.
 
 ## Интеграция (ревью PR, поток «Ревью и интеграция», ветка `claude/confident-hypatia-2zqr1t`)
 Цикл 1 — 2026-10-10:
