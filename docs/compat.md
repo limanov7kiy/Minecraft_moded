@@ -104,6 +104,14 @@ Arknights Weapon, Sarkaz's Furnace Side Fables. Сервер — `Done`.
 - CBC: Advanced Technologies: 4 таблицы добычи на несуществующие блоки литейных форм — некритично.
 - Almost Unified: новые моды не дают предметов в объединяемые теги.
 
+Пачка 5 — техника и удобство: Mekanism: More Machine, Mekanism Covers, Mekanism Curios, Just Enough Mekanism
+Multiblocks (клиент), Sophisticated Backpacks Create Integration, Gravestone x Curios API Compat (+ BaguetteLib; сервер),
+Xaero's Minimap & World Map — Waystones Compatibility, Jade Addons, Legendary Survival Addon (Create × LSO). Сервер — `Done`.
+- More Backpack Upgrades 1.0.2 требует Refined Storage (`Mod mobackup requires refinedstorage`) — не добавлен.
+- Mekanism: More Machine: 75 таблиц добычи на фабрики, которые регистрируются только с другими аддонами Mekanism
+  (предметов `mekmm:*_factory` нет) — некритично.
+- Almost Unified: новые моды не дают предметов в объединяемые теги.
+
 ## Объединение дублей (Almost Unified)
 Один ресурс — один предмет: `pack/config/almostunified/unify.json`. Приоритет модов:
 minecraft → kubejs → create → mekanism → createaddition → ad_astra → northstar. Например, вся сталь

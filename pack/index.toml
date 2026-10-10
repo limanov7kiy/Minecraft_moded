@@ -438,7 +438,7 @@ hash = "56a5eae4fbd7007e550db9c67b4b9d41a480b57a32300c9a97e89ee3c32cb368"
 
 [[files]]
 file = "modlist.txt"
-hash = "1baa4560239ddad7a4925c6a3cffdad0bd0ec325f059afa467876d9559958bf5"
+hash = "f5752039ce480f1d154542aff79e5b7986f1607483b7046f01f95bab9ed71d6a"
 
 [[files]]
 file = "mods/ad-astra-giselle-addon.pw.toml"
@@ -648,6 +648,11 @@ metafile = true
 [[files]]
 file = "mods/azurelib.pw.toml"
 hash = "cb064f309245a3a917495590a1e8b4aa3f890f66537bdec5e814861e3b118f0e"
+metafile = true
+
+[[files]]
+file = "mods/baguettelib.pw.toml"
+hash = "769bc03aef7bab6df224d019e861b2a3b9cc2e894f9bd4a0264d3b7b7c49a68f"
 metafile = true
 
 [[files]]
@@ -940,6 +945,11 @@ hash = "df07d5af0d287b944943b65e0b0990dc21fbbad6fee05b9d698a9f62b906ea9c"
 metafile = true
 
 [[files]]
+file = "mods/gravestone-x-curios-api-compat.pw.toml"
+hash = "8d4571e084208f1ac5914d79293141615b6308f7dda215166e8c1f4aa2e3332f"
+metafile = true
+
+[[files]]
 file = "mods/gtbcs-geomancy-plus.pw.toml"
 hash = "415883ca37b8caf4a02b20925c35516183752f87026baaa2ae46348c48fb5488"
 metafile = true
@@ -975,6 +985,11 @@ hash = "a1682456faeee447f52356d84459bddb13fb084ef474a5c75c9150b7f676239e"
 metafile = true
 
 [[files]]
+file = "mods/jade-addons-forge.pw.toml"
+hash = "2e88de6ccb041493cc6fa75ce102892ddb88529d5c380ba288c7b5f928a4f998"
+metafile = true
+
+[[files]]
 file = "mods/jade-vs.pw.toml"
 hash = "1e78cd9986696b1f92d43fb6455907f84cb539a09d23d3912856ae99b5e3f2f2"
 metafile = true
@@ -992,6 +1007,11 @@ metafile = true
 [[files]]
 file = "mods/just-enough-effect-descriptions-jeed.pw.toml"
 hash = "ffb380d0c3a85701b3bb594ed39e76b9bd748e6282da79b7bea31765a8fce4c3"
+metafile = true
+
+[[files]]
+file = "mods/just-enough-mekanism-multiblocks.pw.toml"
+hash = "15605633c96dd7f8a66442aa3fdfa98bb26bd0286804e13f72ef06bb593e49a4"
 metafile = true
 
 [[files]]
@@ -1022,6 +1042,11 @@ metafile = true
 [[files]]
 file = "mods/ldlib.pw.toml"
 hash = "609dd7d63f8506348dcf1b190aed83f9d77b8a43d48ceddc5da28f0a7478ea16"
+metafile = true
+
+[[files]]
+file = "mods/legendary-survival-addon.pw.toml"
+hash = "f214dd9e36160e6177eb28fb19b80f6b47760b98fdc68a6acd7c08e5ca407e61"
 metafile = true
 
 [[files]]
@@ -1094,6 +1119,16 @@ hash = "b70b0220d902edd85ff5fff43ba6c3a3aaa2fe05f1b420e62beb68a028b7c38e"
 metafile = true
 
 [[files]]
+file = "mods/mekanism-covers.pw.toml"
+hash = "c449074fffc45f50b0e7735f6117516a554ca012193ccc6fcbada07579d18b45"
+metafile = true
+
+[[files]]
+file = "mods/mekanism-curios.pw.toml"
+hash = "34886c1a89b6d16cc856b4b6d47c896dd296343d76cae906b12475b0e928299a"
+metafile = true
+
+[[files]]
 file = "mods/mekanism-generators.pw.toml"
 hash = "ff3c572cc8a57df72f4a9ee7aa06388bec703a7f9bf08068a62fe3221efe3e80"
 metafile = true
@@ -1111,6 +1146,11 @@ metafile = true
 [[files]]
 file = "mods/mekanism.pw.toml"
 hash = "426fd37ec95797af16797632e70c63436ca12719c0adb16ffca931970a411ee2"
+metafile = true
+
+[[files]]
+file = "mods/mekanismmoremachine.pw.toml"
+hash = "bcfa4afed8b90d5bbaab6bfcf62e24f4f6b1eb5e126affcea1b7744e51571b95"
 metafile = true
 
 [[files]]
@@ -1273,6 +1313,11 @@ hash = "daf32b14b2274f7aae1cfc76dabd879a4a7f249fa41d039afab48d1d038d6aed"
 metafile = true
 
 [[files]]
+file = "mods/sophisticated-backpacks-create-integration.pw.toml"
+hash = "3e43a344f79222aad5e749be193bcf7900001e6fac5f980908f7a365848895cc"
+metafile = true
+
+[[files]]
 file = "mods/sophisticated-backpacks.pw.toml"
 hash = "d0a96fe57be1729dc0d4e697b4b1238b0f2d51eb5c16bbc8b4cdd7e525220b6b"
 metafile = true
@@ -1410,6 +1455,11 @@ metafile = true
 [[files]]
 file = "mods/wizardry-restored-0.3.0.jar"
 hash = "370f5d29dd5148cdfaad692aac7a397ca9a901957b7d29bb096c2e8b353024a6"
+
+[[files]]
+file = "mods/xaeros-minimap-world-map-waystones-compatibility-forge.pw.toml"
+hash = "a2330eba9359f699e4c7a6c2f44691b7cf746d188f23d2c985d276d5733b9f2a"
+metafile = true
 
 [[files]]
 file = "mods/xaeros-minimap.pw.toml"

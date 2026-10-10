@@ -1,0 +1,13 @@
+name = "Gravestone x Curios API Compat"
+filename = "gravestonecurioscompat-1.20.1-Forge-4.0.2.jar"
+side = "server"
+
+[download]
+url = "https://cdn.modrinth.com/data/NaiL8bPN/versions/hP20517C/gravestonecurioscompat-1.20.1-Forge-4.0.2.jar"
+hash-format = "sha512"
+hash = "fc3b767dcc187f2e9d98e8cbe9434d2f56b19b5f38cc6ba1a9583f6669f4ab62cd72341bc977bcaf858b9fb8893191b6f5ac33c6c89eeb5e1454dba492bd9b57"
+
+[update]
+[update.modrinth]
+mod-id = "NaiL8bPN"
+version = "hP20517C"

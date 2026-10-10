@@ -208,3 +208,14 @@ mr vs-tournament-reforged         # порт VS Tournament под VS 2.4 (ори
 cf gathering-torches-become-sunlight
 cf arknights-weapon
 cf sarkazs-furnace-side-fables
+# Пачка 5: техника и удобство
+mr mekanismmoremachine            # Mekanism: больше машин и фабрик
+mr mekanism-covers
+mr mekanism-curios
+mr just-enough-mekanism-multiblocks   # клиент
+mr sophisticated-backpacks-create-integration
+# mr more-backpack-upgrades        # ОТЛОЖЕН: обязательно требует Refined Storage — ждёт решения пользователя
+mr gravestone-x-curios-api-compat     # сервер
+mr xaeros-minimap-world-map-waystones-compatibility-forge
+mr jade-addons-forge
+mr legendary-survival-addon       # Create × Legendary Survival Overhaul

@@ -75,7 +75,11 @@
 - [x] Пачка 4 — оружие, Valkyrien Skies, Arknights: 12 модов, сервер до `Done`. Отключены Superb VS и
   SBW Vintage Vehicle Pack (несовместимые версии), VS Tournament заменён портом Tournament Reforged;
   Create: Eureka! отложен (это датапак).
-- [ ] Пачка 5 — техника и удобство (Mekanism, рюкзаки, Waystones × Xaero, Jade, LSO)
+- [x] Пачка 5 — техника и удобство (Mekanism, рюкзаки, Waystones × Xaero, Jade, LSO): 9 модов, сервер до `Done`.
+  More Backpack Upgrades отложен (обязательно требует Refined Storage).
+- **Ждут решения пользователя** (тянут крупные моды, которых не было в согласованном списке):
+  Integrated Mowzie's Mobs → Quark + Supplementaries + Amendments; Botanical Machinery Extra → Applied Energistics 2;
+  More Backpack Upgrades → Refined Storage.
 - Для Bumblezone и Mahou Tsukai подходящих дополнений под 1.20.1 Forge нет (Mahou Tsukai Combat требует Better Combat).
 
 ### Поток 4 — Совместимость и патчи
