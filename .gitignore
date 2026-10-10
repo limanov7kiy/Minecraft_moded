@@ -1,0 +1,26 @@
+# Локальные настройки Claude Code
+.claude/settings.local.json
+
+# Gradle / IDE
+.gradle/
+build/
+out/
+run/
+.idea/
+*.iml
+.vscode/
+
+# Данные запущенного сервера / клиента
+world*/
+logs/
+crash-reports/
+*.log
+eula.txt
+usercache.json
+banned-*.json
+ops.json
+whitelist.json
+
+# OS
+.DS_Store
+Thumbs.db
