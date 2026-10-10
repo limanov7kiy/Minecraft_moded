@@ -438,7 +438,7 @@ hash = "56a5eae4fbd7007e550db9c67b4b9d41a480b57a32300c9a97e89ee3c32cb368"
 
 [[files]]
 file = "modlist.txt"
-hash = "15230f541dba3cb13bbfecf5f0892dcd90dfbd5619177f23bd78c5c1bdd9f8ed"
+hash = "f383dbb1eaa58c37c6f1c56cf608a188eb9e0d55ec3c890ec447891d73cb82c2"
 
 [[files]]
 file = "mods/ad-astra-giselle-addon.pw.toml"
@@ -1045,6 +1045,11 @@ metafile = true
 [[files]]
 file = "mods/spark.pw.toml"
 hash = "0be4976227df8e261fd362889bf8e85b93e224d1b1c3cd2a11b73a9de3b64083"
+metafile = true
+
+[[files]]
+file = "mods/spell-forge-for-electroblobs-wizardry-redux.pw.toml"
+hash = "fa4b474dc9dab003f2b920356c5c25c7009a17daa22577af2c1c2f566f268d7b"
 metafile = true
 
 [[files]]

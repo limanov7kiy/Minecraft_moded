@@ -65,9 +65,10 @@ ojospocos, block_surprise, player_hand, wizard_hand). Вернуть — пос�
 (`festive_*`).
 
 ## Дополнения
-На Modrinth дополнений для Redux пока нет; на CurseForge есть Spell Forge for Electroblob's Wizardry:
-Redux, Wizardry Golems, Wizardry — Necromancer's Delight (проверить совместимость с 0.8.9).
-Аддоны оригинала 1.12.2 (Ancient Spellcraft и др.) на 1.20.1 не существуют.
+На Modrinth дополнений для Redux пока нет. С CurseForge в сборке **Spell Forge for Electroblob's Wizardry:
+Redux 1.1.0** (`cf spell-forge-for-electroblobs-wizardry-redux`, сторона both): сервер стартует, в реестре
+162 заклинания (было 151), castcheck 42/42. Wizardry Golems и Wizardry — Necromancer's Delight выпущены
+только для 1.12.2, на 1.20.1 их нет. Аддоны оригинала 1.12.2 (Ancient Spellcraft и др.) на 1.20.1 тоже не существуют.
 
 ## Сделано (Wizardry Restored 0.4.0 — 38 из 61 + 4 «тестовых» Redux)
 | Заклинание | Уровень, стихия | Как сделано |
