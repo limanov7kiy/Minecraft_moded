@@ -39,6 +39,7 @@
   путь передаётся через `PACKWIZ=`).
 - `scripts/test-server.sh <папка вне репо>` — ставит Forge-сервер, качает серверные моды, запускает до `Done`.
   После каждого изменения набора модов прогоняй его и записывай находки в `docs/compat.md`.
+- `scripts/export-pack.sh` — раздача: `dist/*.mrpack` (клиент) и `dist/*-server.zip` (сервер); инструкция для друзей — `docs/friends.md`.
 - Сторону мода (`side` в `pack/mods/*.pw.toml`) packwiz берёт с Modrinth; если она неверна — поправь вручную.
 - Свои моды и патчи: `mods-src/` (Gradle, ModDevGradle legacyforge + Parchment, как у Redux) и `patches/`.
   Готовые jar кладутся в `pack/mods/*.jar` и раздаются вместе со сборкой; `fetch-mods.py` их копирует.

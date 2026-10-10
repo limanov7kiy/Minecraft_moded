@@ -1,0 +1,13 @@
+name = "Let Them Talk (LTT)"
+filename = "let-them-talk-1.0.1+1.20.1+forge.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/SZ1DDiij/versions/Ib6K0Xbf/let-them-talk-1.0.1%2B1.20.1%2Bforge.jar"
+hash-format = "sha512"
+hash = "4830788e05aa3cd77a88fcd0cde6eeada973e8757e8f3fc8e6273cb231b973e2f538bb80caf9af8c50bc39d058a88a3ae9c63c37f91f0d021d68d5dc27850264"
+
+[update]
+[update.modrinth]
+mod-id = "SZ1DDiij"
+version = "Ib6K0Xbf"

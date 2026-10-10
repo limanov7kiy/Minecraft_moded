@@ -1,0 +1,53 @@
+{
+  "feature": {
+    "type": "minecraft:ore",
+    "config": {
+      "size": 9,
+      "discard_chance_on_air_exposure": 0,
+      "targets": [
+        {
+          "target": {
+            "predicate_type": "minecraft:tag_match",
+            "tag": "creatingspace:moon_stone_ore_replaceable"
+          },
+          "state": {
+            "Name": "creatingspace:moon_cobalt_ore"
+          }
+        },
+        {
+          "target": {
+            "predicate_type": "minecraft:tag_match",
+            "tag": "ad_astra:moon_stone_replaceables"
+          },
+          "state": {
+            "Name": "creatingspace:moon_cobalt_ore"
+          }
+        }
+      ]
+    }
+  },
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 10
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:trapezoid",
+        "min_inclusive": {
+          "absolute": -64
+        },
+        "max_inclusive": {
+          "absolute": 60
+        }
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}
