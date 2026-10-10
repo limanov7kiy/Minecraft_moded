@@ -66,10 +66,16 @@
 Файлы: `patches/`, `mods-src/mm-compat/`, `pack/kubejs/`, `docs/compat.md`.
 1. ~~Lycanites Mobs: недостающий `lycanitesmobs.refmap.json`~~ — **сделано** (`patches/lycanites-refmap`,
    коммит `b8f38e7`); осталось проверить клиентский `LightTextureMixin` в потоке 5.
-2. Legendary Survival Overhaul × Serene Seasons: проверить связку температуры с сезонами, при надобности патч.
-3. Create: Northstar — Structures: следить за совместимой версией или сделать свой патч на `moon_*_blob`.
-4. Шум в логах (рецепты для отсутствующих модов, `laser_beam has no attributes`, атрибут `thought_load_limit`).
+2. ~~Legendary Survival Overhaul × Serene Seasons~~ — **проверено**: связка встроена в LSO и работает
+   (лето +8, зима −9.5 к температуре мира), патч не нужен (`scripts/tests/seasontemp.js`, compat.md п. 11).
+3. ~~Create: Northstar — Structures~~ — **сделано**: совместимой версии нет, патч
+   `patches/northstar_structures_fix.py` (биомы под Redux 0.6, кратеры и на Луне Ad Astra), мод возвращён.
+4. ~~Шум в логах~~ — **сделано** (compat.md п. 9): теги с отсутствующими ссылками больше не теряются,
+   рецепты для отсутствующих модов отключены, лучи Cataclysm Spellbooks и `thought_load_limit` — в `mm-compat` 0.2.0.
+   Попутно: `.gitignore` прятал `pack/kubejs/data/*/worldgen` — без них чистая копия не создавала мир (п. 12).
 5. Задачи совместимости, пришедшие из потока 3.
+6. (из потока 2) Zombie Have Ears 1.1.2 — **не делаем**: лицензия All Rights Reserved, перепакованный jar
+   раздавать нельзя. Ждать исправления от автора (или спросить у него разрешение).
 
 ### Поток 5 — Проверка клиента
 Серверный тест клиент не покрывает. Запуск клиента (Xvfb в облаке или у игрока): Oculus + Embeddium,
