@@ -85,7 +85,7 @@
 4. ~~Шум в логах~~ — **сделано** (compat.md п. 9): теги с отсутствующими ссылками больше не теряются,
    рецепты для отсутствующих модов отключены, лучи Cataclysm Spellbooks и `thought_load_limit` — в `mm-compat` 0.2.0.
    Попутно: `.gitignore` прятал `pack/kubejs/data/*/worldgen` — без них чистая копия не создавала мир (п. 12).
-5. ~~Задачи совместимости из потока 3~~ — **сделано** (compat.md п. 13–15):
+5. ~~Задачи совместимости из потока 3~~ — **сделано** (compat.md п. 14–16):
    - ~~Superb Warfare × Valkyrien Skies~~ — Superb VS не нужен (SBW 0.8.9+ умеет сам); исправлен блок попадания
      по кораблю (`mm-compat` 0.3.0), тест `vshitcheck.js`.
    - ~~CBC: Nuclear~~, ~~Alshanex's Familiars~~, ~~T.O Magic 'n Extras~~ — порты `patches/jar-ports` в `pack/mods/*-mmport.jar`
