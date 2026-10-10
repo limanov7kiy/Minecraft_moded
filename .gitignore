@@ -11,7 +11,7 @@ run/
 .vscode/
 
 # Данные запущенного сервера / клиента
-world*/
+/world*/
 logs/
 crash-reports/
 *.log
@@ -27,3 +27,4 @@ Thumbs.db
 
 # Тестовые серверы
 test-server/
+dist/

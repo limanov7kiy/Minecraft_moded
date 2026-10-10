@@ -25,6 +25,10 @@ file = "config/sereneseasonsplus-common.toml"
 hash = "ae0213dfbc7561b527d00565ad849c32e096914967590c1aaf85c4133195c885"
 
 [[files]]
+file = "config/voicechat/voicechat-server.properties"
+hash = "44e28ca45bf8648f18a9363105a7faa363d254ed8ace91ff523193b60786968d"
+
+[[files]]
 file = "kubejs/client_scripts/space_rockets.js"
 hash = "c5f3ef1a27991ac16c6f99ff138572a82654f52f514605e7a423b3c9adfb0eac"
 
@@ -437,10 +441,6 @@ file = "kubejs/startup_scripts/space_rockets_list.js"
 hash = "56a5eae4fbd7007e550db9c67b4b9d41a480b57a32300c9a97e89ee3c32cb368"
 
 [[files]]
-file = "modlist.txt"
-hash = "f383dbb1eaa58c37c6f1c56cf608a188eb9e0d55ec3c890ec447891d73cb82c2"
-
-[[files]]
 file = "mods/ad-astra-giselle-addon.pw.toml"
 hash = "a0cb7428cb0419d9b503d1365cbb1e2a901cfa44c5865dfec680e282dd6c3bc7"
 metafile = true
@@ -840,6 +840,16 @@ hash = "ea4d77bb6c47075adc618d297723368fd8889d93381c5decdc637e51ceb551ae"
 metafile = true
 
 [[files]]
+file = "mods/let-them-talk.pw.toml"
+hash = "e39a8e9842af9b6cc500393308675263e45921c671f703fb6c6667221d0c03f6"
+metafile = true
+
+[[files]]
+file = "mods/lexiconfig.pw.toml"
+hash = "fe598f1df2bae9a68a16d3fcac3ae91b97a552f410a8c03dda36ca759eca2e8f"
+metafile = true
+
+[[files]]
 file = "mods/libx.pw.toml"
 hash = "5f92ea3a89a013d4a004e1a391ee00dad45715d46e002210a5692b87ef324815"
 metafile = true
@@ -1013,6 +1023,21 @@ hash = "23ef0c67ed600fb75d47161cdbe43b860837afe9d1f3012c44f3e7eb13bdd1e5"
 metafile = true
 
 [[files]]
+file = "mods/simple-radio.pw.toml"
+hash = "96f3f2fd9fab18ddfaf27d1ccd44e750d4c3e7f3d7b61980968aefd7d085c385"
+metafile = true
+
+[[files]]
+file = "mods/simple-voice-chat.pw.toml"
+hash = "3bd4e09190316b4c4901ba9fd822b891e2cf216eb645687458e3547ad13f93f0"
+metafile = true
+
+[[files]]
+file = "mods/simplevoicechat-broadcast.pw.toml"
+hash = "7a3cfb8251c4b86cb0cbdfa02ac9bcad640888eafacdec92a5e4032e4b04b412"
+metafile = true
+
+[[files]]
 file = "mods/skills-origins.pw.toml"
 hash = "5358a0bbce2c140e566079f88a1e8461373564ed81a3792f97e197a06934bbea"
 metafile = true
@@ -1043,6 +1068,11 @@ hash = "503a9d9b148aa94e7839d0024cccc918bdc321875037219aa35b370a51051db3"
 metafile = true
 
 [[files]]
+file = "mods/sound-physics-remastered.pw.toml"
+hash = "aa662713661e95a7fdd6bd4fc3bb8231a615dc144b7825fde504355dc0698a31"
+metafile = true
+
+[[files]]
 file = "mods/spark.pw.toml"
 hash = "0be4976227df8e261fd362889bf8e85b93e224d1b1c3cd2a11b73a9de3b64083"
 metafile = true
@@ -1065,6 +1095,11 @@ metafile = true
 [[files]]
 file = "mods/tacz-tweaks.pw.toml"
 hash = "d6bab7d56578ffb57ea793f916e76a13f423043f9e334020b33a67833df5cdd8"
+metafile = true
+
+[[files]]
+file = "mods/talkingheads.pw.toml"
+hash = "67f56e9707da5a2c0cea05b07f73e05b05c2379ea4149643b9065ff66c319bc7"
 metafile = true
 
 [[files]]
@@ -1110,6 +1145,21 @@ metafile = true
 [[files]]
 file = "mods/valkyrien-skies.pw.toml"
 hash = "380bacc16e7736fc791bfd34ab38684d69642a93b80da0543cd06b7cee8a36d0"
+metafile = true
+
+[[files]]
+file = "mods/vc-admin-voice-chat-moderation-tool.pw.toml"
+hash = "3661397a6d91392055620cb8ea08e1ab2973385683a2e5189246353299d43c9c"
+metafile = true
+
+[[files]]
+file = "mods/vibrative-voice.pw.toml"
+hash = "5194dedc1d09130cf3635ea8f32e8d95ce0615d08d9c60006ec94e512a01eb46"
+metafile = true
+
+[[files]]
+file = "mods/voicechatprofiles.pw.toml"
+hash = "e331574ff5d923951f0161c627de1f5c14b45cc70727309977c3737d021f1e91"
 metafile = true
 
 [[files]]

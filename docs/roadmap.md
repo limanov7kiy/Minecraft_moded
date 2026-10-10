@@ -53,6 +53,16 @@
    — скрипт экспорта и короткая инструкция для друзей.
 3. Выбор хостинга с пользователем и проверка сервера в боевых условиях (RAM, флаги JVM, `spark`).
 
+Сделано (ветка `claude/lucid-babbage-8qj4no`):
+- [x] Голосовой чат: Simple Voice Chat + Simple Radio, Sound Physics Remastered, Talking Heads, Let Them Talk,
+  VoiceChatProfiles, Vibrative Voice, VC Admin, Broadcast; конфиг `pack/config/voicechat/`. Voice Chat
+  Interaction, Audio Player, Enhanced Groups — только Fabric. Подробности — `docs/compat.md`.
+- [x] UDP 24454 в `docs/hosting.md`: проброс, UDP-туннель playit.gg + `voice_host`, Tailscale, платный хостинг.
+- [x] `scripts/export-pack.sh` → `.mrpack` и `*-server.zip` (проверен запуском); инструкция — `docs/friends.md`.
+- [x] Попутно: `test-server.sh` ловит «Mods loaded with N warnings» (сервер без модов); `.gitignore` больше не
+  прячет `kubejs/data/*/worldgen/` — закоммичены размещения `mm_space` из `patches/ore_crossgen.py`.
+- [ ] Пункт 3 (хостинг с пользователем, боевая проверка) — открыт.
+
 ### Поток 3 — Дополнения, волна 2 (связки для каждого мода)
 Файлы: `pack/modlist.txt`, `pack/mods/*.pw.toml`, `pack/config/almostunified/`, `docs/compat.md`.
 1. Пройти каждый мод из `modlist.txt` и найти недостающие дополнения и связки (особенно: Lycanites,
@@ -70,11 +80,15 @@
 3. Create: Northstar — Structures: следить за совместимой версией или сделать свой патч на `moon_*_blob`.
 4. Шум в логах (рецепты для отсутствующих модов, `laser_beam has no attributes`, атрибут `thought_load_limit`).
 5. Задачи совместимости, пришедшие из потока 3.
+6. (из потока 2) По желанию: Zombie Have Ears 1.1.2 (зомби слышат голосовой чат) — в `mods.toml` нет поля
+   `mandatory`, Forge 47 его не грузит. Можно перепаковать jar с исправленным `mods.toml` в `patches/`.
 
 ### Поток 5 — Проверка клиента
 Серверный тест клиент не покрывает. Запуск клиента (Xvfb в облаке или у игрока): Oculus + Embeddium,
 Distant Horizons, Yes Steve Model, AzureLib-рендер, клиентские моды Arknights furs. Найденное — в
-`docs/compat.md`; правки модов — через поток 3/4. Начинать после потоков 2–3, когда набор модов устоится.
+`docs/compat.md`; правки модов — через поток 3/4.
+Из потока 2: импорт `dist/*.mrpack` в Prism Launcher и Modrinth App (серверные моды не должны ставиться),
+голосовой чат клиент↔сервер (микрофон, группы, рации Simple Radio), Sound Physics вместе с Oculus. Начинать после потоков 2–3, когда набор модов устоится.
 
 ### Отложено (решение за пользователем)
 - Порт Galacticraft Legacy на 1.20.1 — фактически переписывание (см. `docs/compat.md`). Нужен отдельный
