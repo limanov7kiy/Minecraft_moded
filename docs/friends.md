@@ -48,5 +48,5 @@ macOS: модели игроков Yes Steve Model на Mac не работаю�
    `*-server.zip`.
 2. Распаковать `*-server.zip` на машину сервера (нужна Java 17), запустить `start.bat` (Windows) или
    `./start.sh`. Первый запуск ставит Forge и просит принять EULA: создать `eula.txt` со строкой `eula=true`.
-3. ОЗУ сервера — `user_jvm_args.txt` (по умолчанию 8 ГБ). Открыть порты **25565/TCP** и **24454/UDP**
+3. ОЗУ сервера — `user_jvm_args.txt` (по умолчанию 10 ГБ). Открыть порты **25565/TCP** и **24454/UDP**
    (или туннели playit.gg / Tailscale) — подробно в `docs/hosting.md`.

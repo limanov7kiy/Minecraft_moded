@@ -66,7 +66,9 @@
 - [x] Порт на Forge Voice Chat Interaction, AudioPlayer, Enhanced Groups (Max Henkel, только Fabric) —
   `mods-src/voicechat-addons`, тест `scripts/tests/voicecheck.js`. Voice Chat Interaction выключен в пользу
   Vibrative Voice (родная Forge-сборка, связка с рациями), вернуть — `enabled=true` в его конфиге.
-- [ ] Пункт 3 (хостинг с пользователем, боевая проверка) — открыт.
+- [~] Пункт 3: замер ресурсов (`spark`: 3 ГБ кучи без игроков, TPS 20) и сравнение вариантов — `docs/hosting.md`;
+  серверный пакет теперь `-Xmx10G` (5–8 игроков). Ждём решения пользователя, где хостить, и первую сессию с
+  игроками — тогда `spark profiler` под нагрузкой.
 
 ### Поток 3 — Дополнения, волна 2 (связки для каждого мода)
 Файлы: `pack/modlist.txt`, `pack/mods/*.pw.toml`, `pack/config/almostunified/`, `docs/compat.md`.
