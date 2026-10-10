@@ -178,11 +178,131 @@ def petrify():
 def conjure_armor():
     im, d = base(ELEMENT["sorcery"]); d.polygon([(9, 9), (13, 7), (16, 10), (19, 7), (23, 9), (22, 25), (10, 25)], fill=(170, 255, 220, 170), outline=(230, 255, 240, 255)); return im
 
+def forcefield():
+    im, d = base(ELEMENT["healing"]); d.ellipse((6, 6, 26, 26), outline=(255, 255, 220, 255), width=2); d.ellipse((9, 9, 23, 23), fill=(255, 250, 190, 90)); return im
+
+def radiant_totem():
+    im, d = base(ELEMENT["healing"]); d.rectangle((13, 12, 19, 27), fill=(235, 230, 215, 255)); d.rectangle((12, 6, 20, 12), fill=(255, 220, 90, 255))
+    for x, y in ((6, 9), (26, 9), (16, 2)): d.line([(16, 9), (x, y)], fill=(255, 255, 200, 255), width=1)
+    return im
+
+def withering_totem():
+    im, d = base(ELEMENT["necromancy"]); d.rectangle((13, 12, 19, 27), fill=(45, 40, 50, 255)); d.rectangle((12, 6, 20, 12), fill=(110, 40, 170, 255))
+    d.point([(9, 14), (23, 16), (10, 21), (22, 22)], fill=(200, 160, 255, 255)); return im
+
+def black_hole():
+    im, d = base(ELEMENT["sorcery"])
+    for r, a in ((12, 90), (9, 150)): d.arc((16 - r, 16 - r, 16 + r, 16 + r), 20, 300, fill=(180, 120, 255, a), width=2)
+    d.ellipse((11, 11, 21, 21), fill=(0, 0, 0, 255)); return im
+
+def stormcloud():
+    im, d = base(ELEMENT["lightning"]); d.ellipse((6, 8, 18, 18), fill=(120, 130, 150, 255)); d.ellipse((13, 6, 26, 18), fill=(140, 150, 170, 255))
+    d.line([(16, 18), (13, 23), (17, 23), (14, 28)], fill=(255, 255, 140, 255), width=2); return im
+
+def decoy():
+    im, d = base(ELEMENT["sorcery"])
+    for x, a in ((11, 255), (19, 110)): d.ellipse((x - 3, 7, x + 3, 13), fill=(220, 255, 230, a)); d.rectangle((x - 3, 14, x + 3, 25), fill=(220, 255, 230, a))
+    return im
+
+def _wraith(color, eye):
+    im, d = base(color); d.polygon([(10, 26), (12, 10), (16, 6), (20, 10), (22, 26), (19, 22), (16, 26), (13, 22)], fill=tuple(min(255, c + 40) for c in color) + (220,))
+    d.point([(14, 12), (18, 12)], fill=eye); return im
+
+def summon_ice_wraith():
+    return _wraith(ELEMENT["ice"], (40, 90, 200, 255))
+
+def summon_shadow_wraith():
+    return _wraith((90, 30, 140), (255, 60, 60, 255))
+
+def summon_storm_elemental():
+    im = _wraith(ELEMENT["lightning"], (255, 255, 255, 255)); d = ImageDraw.Draw(im)
+    d.line([(24, 5), (21, 11), (25, 11), (22, 17)], fill=(255, 255, 140, 255), width=1); return im
+
+def shield():
+    im, d = base(ELEMENT["healing"]); d.polygon([(16, 5), (25, 9), (23, 20), (16, 27), (9, 20), (7, 9)], fill=(255, 245, 170, 160), outline=(255, 255, 230, 255)); return im
+
+def lightning_web():
+    im, d = base(ELEMENT["lightning"]); pts = [(8, 9), (24, 8), (16, 16), (7, 23), (25, 24)]
+    for a in pts:
+        for b in pts:
+            if a < b: d.line([a, b], fill=(200, 240, 255, 200), width=1)
+    for x, y in pts: d.ellipse((x - 2, y - 2, x + 2, y + 2), fill=(255, 255, 255, 255))
+    return im
+
+def imbue_weapon():
+    im, d = base(ELEMENT["sorcery"]); d.line([(9, 24), (23, 8)], fill=(220, 230, 240, 255), width=3); d.line([(8, 19), (14, 25)], fill=(140, 90, 40, 255), width=2)
+    d.point([(20, 18), (24, 14), (12, 10)], fill=(200, 140, 255, 255)); return im
+
+def mark_sacrifice():
+    im, d = base(ELEMENT["healing"]); d.ellipse((9, 9, 23, 23), outline=(255, 220, 90, 255), width=2); d.line([(16, 6), (16, 26)], fill=(255, 220, 90, 255), width=2); d.line([(6, 16), (26, 16)], fill=(255, 220, 90, 255), width=2); return im
+
+def mirage():
+    im, d = base(ELEMENT["sorcery"])
+    for x, a in ((10, 70), (16, 140), (22, 255)): d.ellipse((x - 3, 7, x + 3, 13), fill=(220, 255, 230, a)); d.rectangle((x - 3, 14, x + 3, 25), fill=(220, 255, 230, a))
+    return im
+
+def snare():
+    im, d = base(ELEMENT["earth"]); d.ellipse((7, 14, 25, 24), outline=(170, 120, 70, 255), width=2); d.line([(16, 19), (16, 6)], fill=(170, 120, 70, 255), width=2); return im
+
+def forest_of_thorns():
+    im, d = base(ELEMENT["earth"])
+    for x in (9, 16, 23): d.polygon([(x - 4, 26), (x, 8 + (x % 3) * 2), (x + 4, 26)], fill=(60, 140, 50, 255)); d.point([(x - 1, 16), (x + 1, 20)], fill=(220, 60, 60, 255))
+    return im
+
+def lightning_disc():
+    im, d = base(ELEMENT["lightning"]); d.ellipse((6, 12, 26, 20), fill=(200, 240, 255, 220), outline=(255, 255, 255, 255)); d.line([(10, 16), (22, 16)], fill=(255, 255, 160, 255), width=1); return im
+
+def lightning_hammer():
+    im, d = base(ELEMENT["lightning"]); d.rectangle((9, 7, 23, 14), fill=(190, 195, 205, 255)); d.rectangle((15, 14, 17, 27), fill=(150, 100, 60, 255))
+    d.line([(24, 16), (21, 21), (25, 21), (22, 26)], fill=(255, 255, 140, 255), width=1); return im
+
+def clairvoyance():
+    im, d = base(ELEMENT["sorcery"]); d.line([(7, 25), (12, 20), (12, 14), (19, 12), (24, 7)], fill=(220, 255, 230, 255), width=2); d.ellipse((21, 4, 27, 10), fill=(255, 255, 255, 255)); return im
+
+def divination():
+    im, d = base(ELEMENT["sorcery"]); d.polygon([(16, 6), (24, 16), (16, 26), (8, 16)], fill=(90, 230, 230, 255), outline=(220, 255, 255, 255)); d.line([(16, 6), (16, 26)], fill=(200, 255, 255, 255)); return im
+
+def effect_mark_sacrifice():
+    im = Image.new("RGBA", (18, 18), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+    d.ellipse((3, 3, 14, 14), outline=(255, 220, 90, 255), width=2); d.line([(9, 1), (9, 16)], fill=(255, 220, 90, 255), width=2); d.line([(1, 9), (16, 9)], fill=(255, 220, 90, 255), width=2)
+    return im
+
+def summon_phoenix():
+    im, d = base(ELEMENT["fire"]); d.polygon([(16, 8), (27, 12), (19, 16), (16, 26), (13, 16), (5, 12)], fill=(255, 170, 40, 255), outline=(255, 240, 120, 255))
+    d.ellipse((14, 6, 18, 10), fill=(255, 230, 90, 255)); return im
+
+def resurrection():
+    im, d = base(ELEMENT["healing"]); d.rectangle((14, 6, 18, 26), fill=(255, 250, 210, 255)); d.rectangle((9, 11, 23, 15), fill=(255, 250, 210, 255))
+    d.arc((5, 3, 27, 13), 200, 340, fill=(255, 230, 100, 255), width=2); return im
+
+def possession():
+    im, d = base(ELEMENT["necromancy"]); d.ellipse((8, 10, 24, 26), fill=(60, 120, 60, 255)); d.point([(13, 16), (19, 16)], fill=(255, 60, 60, 255))
+    d.polygon([(12, 4), (20, 4), (17, 11), (15, 11)], fill=(200, 160, 255, 200)); return im
+
+def entity_phoenix():
+    import random
+    rnd = random.Random(7); im = Image.new("RGBA", (64, 32)); px = im.load()
+    for y in range(32):
+        for x in range(64):
+            t = (y % 16) / 16 + rnd.uniform(-0.2, 0.2)
+            r = 255; g = int(max(60, min(230, 230 - t * 170))); b = int(max(0, min(90, 70 - t * 60)))
+            if rnd.random() < 0.08: g, b = 245, 160
+            px[x, y] = (r, g, b, 255)
+    for x, y in ((9, 12), (13, 12)): px[x, y] = px[x + 1, y] = (255, 255, 230, 255)
+    return im
+
 if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
     for f in (lightning_bolt, sixth_sense, shockwave, snowball, mine, mind_trick, blink, intimidate, glide, ironflesh,
               diamondflesh, greater_fireball, chain_lightning, paralysis, summon_iron_golem, lightning_ray, disintegration,
               transience, mind_control, metamorphosis, frost_barrier, wall_of_frost, thunderstorm, earthquake, celestial_smite,
               slow_time, light, shadow_ward, ice_shroud, summon_spirit_wolf, summon_spirit_horse, freezing_weapon,
-              empowering_presence, muffle, grapple, transportation, ice_statue, petrify, conjure_armor):
+              empowering_presence, muffle, grapple, transportation, ice_statue, petrify, conjure_armor,
+              forcefield, radiant_totem, withering_totem, black_hole, stormcloud, decoy, summon_ice_wraith,
+              summon_shadow_wraith, summon_storm_elemental, shield, lightning_web, imbue_weapon, mark_sacrifice, mirage,
+              snare, forest_of_thorns, lightning_disc, lightning_hammer, clairvoyance, divination, summon_phoenix, resurrection, possession):
         f().save(OUT / f"{f.__name__}.png"); print("icon", f.__name__)
+    eff = OUT.parent / "mob_effect"; eff.mkdir(parents=True, exist_ok=True)
+    effect_mark_sacrifice().save(eff / "mark_sacrifice.png"); print("effect mark_sacrifice")
+    ent = OUT.parent / "entity"; ent.mkdir(parents=True, exist_ok=True)
+    entity_phoenix().save(ent / "phoenix.png"); print("entity phoenix")

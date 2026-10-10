@@ -334,5 +334,189 @@
         "type": "event"
       }
     ]
+  },
+  "spell.forcefield": {
+    "sounds": [
+      {
+        "name": "ebwizardry:spell.forcefield",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.radiant_totem": {
+    "sounds": [
+      {
+        "name": "ebwizardry:spell.radiant_totem",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.withering_totem": {
+    "sounds": [
+      {
+        "name": "ebwizardry:spell.withering_totem",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.black_hole": {
+    "sounds": [
+      {
+        "name": "ebwizardry:spell.black_hole",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.stormcloud": {
+    "sounds": [
+      {
+        "name": "ebwizardry:spell.stormcloud",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.decoy": {
+    "sounds": [
+      {
+        "name": "ebwizardry:spell.decoy",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.summon_ice_wraith": {
+    "sounds": [
+      {
+        "name": "ebwizardry:spell.summon_ice_wraith",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.summon_shadow_wraith": {
+    "sounds": [
+      {
+        "name": "ebwizardry:spell.summon_shadow_wraith",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.summon_storm_elemental": {
+    "sounds": [
+      {
+        "name": "ebwizardry:spell.summon_storm_elemental",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.shield": {
+    "sounds": [
+      {
+        "name": "ebwizardry:spell.shield.loop",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.lightning_web": {
+    "sounds": [
+      {
+        "name": "ebwizardry:spell.lightning_web.loop",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.imbue_weapon": {
+    "sounds": [
+      {
+        "name": "ebwizardry:spell.imbue_weapon",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.mark_sacrifice": {
+    "sounds": [
+      {
+        "name": "ebwizardry:spell.mark_sacrifice",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.mirage": {
+    "sounds": [
+      {
+        "name": "ebwizardry:spell.mirage",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.snare": {
+    "sounds": [
+      {
+        "name": "ebwizardry:spell.snare",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.forest_of_thorns": {
+    "sounds": [
+      {
+        "name": "ebwizardry:spell.forest_of_thorns",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.lightning_disc": {
+    "sounds": [
+      {
+        "name": "ebwizardry:spell.lightning_disc",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.lightning_hammer": {
+    "sounds": [
+      {
+        "name": "ebwizardry:spell.lightning_hammer",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.clairvoyance": {
+    "sounds": [
+      {
+        "name": "ebwizardry:spell.clairvoyance",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.divination": {
+    "sounds": [
+      {
+        "name": "ebwizardry:spell.divination",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.summon_phoenix": {
+    "sounds": [
+      {
+        "name": "ebwizardry:spell.summon_phoenix",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.resurrection": {
+    "sounds": [
+      {
+        "name": "ebwizardry:spell.resurrection",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.possession": {
+    "sounds": [
+      {
+        "name": "ebwizardry:spell.possession.possess",
+        "type": "event"
+      }
+    ]
   }
 }
