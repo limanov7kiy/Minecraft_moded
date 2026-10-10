@@ -105,8 +105,20 @@
 | Vibrative Voice | server | голос — вибрация для скалк-сенсоров/Хранителя |
 | VC Admin, SimpleVoiceChat Broadcast | server | модерация групп и вещание на всех для OP |
 
-Нет под Forge 1.20.1 (только Fabric/Quilt, проверено на Modrinth и CurseForge): Voice Chat Interaction,
-Audio Player, Enhanced Groups. Не взяты: связки с модами, которых нет в сборке (CPM, Figura, Plasmo Voice).
+| Voice Chat Interaction, AudioPlayer, Enhanced Groups (+ Admiral) | both | **свой порт на Forge** (`mods-src/voicechat-addons`): голос будит скалк, свои звуки на пластинках/рогах/нотных блоках/головах, постоянные и авто-группы |
+
+Voice Chat Interaction, AudioPlayer и Enhanced Groups Max Henkel выпускает только под Fabric — перенесены на
+Forge в одном jar `pack/mods/voicechat-addons-forge-*.jar` (подробности и авторство — `mods-src/voicechat-addons/README.md`).
+Проверено на сервере: SVC регистрирует плагины `vcinteraction`, `audioplayer`, `enhancedgroups`; все 6 миксинов
+AudioPlayer применились; `/audioplayer serverfile` принимает mp3 и wav, `/audioplayer play` проигрывает через SVC
+(Opus/LAME инициализированы); веб-загрузка (`run_web_server=true`) отдаёт страницу на :8080; `/persistentgroup add`
+создаёт группу; `scripts/tests/voicecheck.js` — событие `vcinteraction:voice` есть, частота 7, в тегах
+`vibrations` и `warden_can_listen`. Simple Radio сам включил связку с AudioPlayer.
+Голос как вибрацию теперь дают два мода — Voice Chat Interaction и Vibrative Voice (у второго есть пороги
+громкости, крикуны и связка с рациями). Оба включены; если скалк/Хранитель реагируют слишком резко, один
+отключить. Не проверено без клиента: настоящий голос → сенсор, загрузка через браузер (нужен токен игрока).
+Ошибка «Failed to load persistent groups» при первом запуске — так у оригинала, файла ещё нет.
+Не взяты: связки с модами, которых нет в сборке (CPM, Figura, Plasmo Voice).
 Серверные моды проверены на отсутствие своих сетевых каналов — клиенту без них подключаться можно.
 Sound Physics на Modrinth помечен `client_only_server_optional` — packwiz ставит `both`, исправлено на `client`.
 Тест: SVC загрузил 3 плагина (vibrativevoice, simplevoicechat_broadcast, simpleradio), `Voice chat server

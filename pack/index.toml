@@ -543,6 +543,11 @@ hash = "d94f5fd662671e6f6f4bda5d89234aded7461a8a90d9f9fe3d5b8a7f17c25b54"
 metafile = true
 
 [[files]]
+file = "mods/admiral.pw.toml"
+hash = "a25d868d37c78985c604b897191bf5ded528f7ba58b55096779c0e5a1890a586"
+metafile = true
+
+[[files]]
 file = "mods/aeroblender.pw.toml"
 hash = "3003828b74335546dab094b9e20db143f9c01fe7a22dbcb934106a904819602f"
 metafile = true
@@ -1253,6 +1258,10 @@ metafile = true
 file = "mods/vibrative-voice.pw.toml"
 hash = "5194dedc1d09130cf3635ea8f32e8d95ce0615d08d9c60006ec94e512a01eb46"
 metafile = true
+
+[[files]]
+file = "mods/voicechat-addons-forge-1.0.0.jar"
+hash = "9537b340ed5ae2d89947b9e73bf20201727305a548578df3e912f9a63fe4b9f2"
 
 [[files]]
 file = "mods/voicechatprofiles.pw.toml"
