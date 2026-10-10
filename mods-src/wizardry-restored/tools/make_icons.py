@@ -150,10 +150,39 @@ def summon_spirit_wolf():
 def summon_spirit_horse():
     im, d = base(ELEMENT["earth"]); d.polygon([(10, 26), (12, 12), (18, 7), (23, 9), (20, 14), (18, 26)], fill=(200, 230, 255, 200)); return im
 
+def freezing_weapon():
+    im, d = base(ELEMENT["ice"]); d.line([(9, 23), (22, 10)], fill=(220, 240, 255, 255), width=3); d.line([(8, 18), (14, 24)], fill=(120, 90, 60, 255), width=2); return im
+
+def empowering_presence():
+    im, d = base(ELEMENT["healing"]); d.polygon([(16, 5), (19, 13), (27, 13), (21, 18), (23, 26), (16, 21), (9, 26), (11, 18), (5, 13), (13, 13)], fill=(255, 240, 150, 255)); return im
+
+def muffle():
+    im, d = base(ELEMENT["sorcery"]); d.polygon([(8, 13), (13, 13), (19, 8), (19, 24), (13, 19), (8, 19)], fill=(220, 255, 230, 255)); d.line([(22, 11), (27, 21)], fill=(255, 90, 90, 255), width=2); return im
+
+def grapple():
+    im, d = base(ELEMENT["earth"]); d.line([(7, 25), (14, 18), (12, 14), (20, 8)], fill=(120, 200, 80, 255), width=2); d.arc((18, 5, 26, 13), 180, 90, fill=(200, 200, 200, 255), width=2); return im
+
+def transportation():
+    im, d = base(ELEMENT["sorcery"])
+    for i in range(6):
+        import math
+        a = math.radians(i * 60); x, y = 16 + 9 * math.cos(a), 16 + 9 * math.sin(a); d.rectangle((x - 2, y - 2, x + 2, y + 2), fill=(200, 200, 210, 255))
+    d.ellipse((13, 13, 19, 19), fill=(190, 120, 255, 255)); return im
+
+def ice_statue():
+    im, d = base(ELEMENT["ice"]); d.rectangle((10, 7, 22, 26), fill=(190, 230, 255, 200), outline=(255, 255, 255, 255)); d.ellipse((13, 9, 19, 15), fill=(120, 160, 200, 255)); return im
+
+def petrify():
+    im, d = base(ELEMENT["sorcery"]); d.ellipse((11, 6, 21, 15), fill=(150, 150, 150, 255)); d.rectangle((11, 15, 21, 26), fill=(130, 130, 130, 255)); return im
+
+def conjure_armor():
+    im, d = base(ELEMENT["sorcery"]); d.polygon([(9, 9), (13, 7), (16, 10), (19, 7), (23, 9), (22, 25), (10, 25)], fill=(170, 255, 220, 170), outline=(230, 255, 240, 255)); return im
+
 if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
     for f in (lightning_bolt, sixth_sense, shockwave, snowball, mine, mind_trick, blink, intimidate, glide, ironflesh,
               diamondflesh, greater_fireball, chain_lightning, paralysis, summon_iron_golem, lightning_ray, disintegration,
               transience, mind_control, metamorphosis, frost_barrier, wall_of_frost, thunderstorm, earthquake, celestial_smite,
-              slow_time, light, shadow_ward, ice_shroud, summon_spirit_wolf, summon_spirit_horse):
+              slow_time, light, shadow_ward, ice_shroud, summon_spirit_wolf, summon_spirit_horse, freezing_weapon,
+              empowering_presence, muffle, grapple, transportation, ice_statue, petrify, conjure_armor):
         f().save(OUT / f"{f.__name__}.png"); print("icon", f.__name__)

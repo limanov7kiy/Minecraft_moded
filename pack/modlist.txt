@@ -21,6 +21,7 @@ mr distanthorizons        # дальняя прорисовка
 
 ## Магия
 mr electroblobs-wizardry-redux
+cf spell-forge-for-electroblobs-wizardry-redux  # дополнение Redux (поток 1); Wizardry Golems и Necromancer's Delight — только 1.12.2
 mr irons-spells-n-spellbooks
 mr ars-nouveau
 mr botania

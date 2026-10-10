@@ -518,7 +518,7 @@ hash = "a75d5d611e58e3c80bbf0244f82a8a8351c4e8c4aa0f3a1c56da5343aa6d5ae5"
 
 [[files]]
 file = "kubejs/server_scripts/missing_mod_refs.js"
-hash = "fa0d6a50410530c1e2013aededae3f2b35ddc3b16ed440273c26a3b99bc0ca1f"
+hash = "790cc6a816187b6c7e74321d26034b71b4be23636f8effba9e2ea8e8e5be6b93"
 
 [[files]]
 file = "kubejs/server_scripts/space_rockets.js"
@@ -530,7 +530,7 @@ hash = "56a5eae4fbd7007e550db9c67b4b9d41a480b57a32300c9a97e89ee3c32cb368"
 
 [[files]]
 file = "modlist.txt"
-hash = "4f1bd103b7c3e70f49ce63721fae2ab0dc807d3a642df8c411b76b91d18e7904"
+hash = "a804c52e3e3ace2c2cc10a40564c52e7122840a42d7e3d9ada236f8812fa2ce1"
 
 [[files]]
 file = "mods/ad-astra-giselle-addon.pw.toml"
@@ -1145,6 +1145,11 @@ hash = "0be4976227df8e261fd362889bf8e85b93e224d1b1c3cd2a11b73a9de3b64083"
 metafile = true
 
 [[files]]
+file = "mods/spell-forge-for-electroblobs-wizardry-redux.pw.toml"
+hash = "fa4b474dc9dab003f2b920356c5c25c7009a17daa22577af2c1c2f566f268d7b"
+metafile = true
+
+[[files]]
 file = "mods/structure-gel-api.pw.toml"
 hash = "0a1893b4abfd0e7243095240b329552c082dd3fa7874b43e9b43c94812875472"
 metafile = true
@@ -1210,8 +1215,8 @@ hash = "1dc6ca31c7b6912c494caa2a4f5f9f7250af50fbeb9ce9141ae9b741f9861987"
 metafile = true
 
 [[files]]
-file = "mods/wizardry-restored-0.3.0.jar"
-hash = "370f5d29dd5148cdfaad692aac7a397ca9a901957b7d29bb096c2e8b353024a6"
+file = "mods/wizardry-restored-0.4.0.jar"
+hash = "846604e68e41e3df6c76843084b13497c5cc0181139e147c0af0618f0f4674e1"
 
 [[files]]
 file = "mods/xaeros-minimap.pw.toml"
