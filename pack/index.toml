@@ -117,6 +117,42 @@ file = "kubejs/data/ad_astra/tags/items/heat_resistant_armor.json"
 hash = "e6a37ab8d7346bae209fce92b1078f8701a4835b103d898847d45b47aa416d35"
 
 [[files]]
+file = "kubejs/data/aether_redux/recipes/genesis_dark_gummy_swet.json"
+hash = "61c01488bd1bc9113ef1a64e626a0ba9dbbe7d4178d4d8767c0e9cb3d8cdf4a2"
+
+[[files]]
+file = "kubejs/data/aether_treasure_reforging/recipes/neptune_upgrade_smithing_template.json"
+hash = "61c01488bd1bc9113ef1a64e626a0ba9dbbe7d4178d4d8767c0e9cb3d8cdf4a2"
+
+[[files]]
+file = "kubejs/data/aether_treasure_reforging/recipes/phoenix_upgrade_smithing_template.json"
+hash = "61c01488bd1bc9113ef1a64e626a0ba9dbbe7d4178d4d8767c0e9cb3d8cdf4a2"
+
+[[files]]
+file = "kubejs/data/aether_treasure_reforging/recipes/valkyrie_upgrade_smithing_template.json"
+hash = "61c01488bd1bc9113ef1a64e626a0ba9dbbe7d4178d4d8767c0e9cb3d8cdf4a2"
+
+[[files]]
+file = "kubejs/data/ancient_aether/recipes/ancient_rune.json"
+hash = "61c01488bd1bc9113ef1a64e626a0ba9dbbe7d4178d4d8767c0e9cb3d8cdf4a2"
+
+[[files]]
+file = "kubejs/data/arks/powers/human/thought.json"
+hash = "273e114088fab7cbdc0a45b60688cf892890a4bae627345e62d7cf3e782ad05e"
+
+[[files]]
+file = "kubejs/data/arks/powers/sarkaz/thought.json"
+hash = "273e114088fab7cbdc0a45b60688cf892890a4bae627345e62d7cf3e782ad05e"
+
+[[files]]
+file = "kubejs/data/arks/powers/sarkaz_nephesh/thought.json"
+hash = "273e114088fab7cbdc0a45b60688cf892890a4bae627345e62d7cf3e782ad05e"
+
+[[files]]
+file = "kubejs/data/cataclysm/recipes/stonecutting/azure_seastone_brick_stair_from_stonecutting.json"
+hash = "61c01488bd1bc9113ef1a64e626a0ba9dbbe7d4178d4d8767c0e9cb3d8cdf4a2"
+
+[[files]]
 file = "kubejs/data/creatingspace/creatingspace/rocket_accessible_dimension/earth_orbit.json"
 hash = "20e08ea6abd176fadd92c274970c2ce424da728ee929fd6101e3c6a0b4e03a98"
 
@@ -417,6 +453,58 @@ file = "kubejs/data/northstar/tags/items/insulating.json"
 hash = "499f8812cc452e9a3355a5cb38223a94573e60ae39bc8fc8f976a001c81f0850"
 
 [[files]]
+file = "kubejs/data/northstar/worldgen/biome/lunar_asurine_caves.json"
+hash = "a05bd11de24f6f548136b03377dd3d9a6788a2ed3b5ffb8e80b0814a0c5de519"
+
+[[files]]
+file = "kubejs/data/northstar/worldgen/biome/lunar_cooled_lava_cave.json"
+hash = "6c9961a0de70d1839b44b97b558b005774f5a64bb359a0eb8880d4c2f1008646"
+
+[[files]]
+file = "kubejs/data/northstar/worldgen/biome/lunar_crater_fields.json"
+hash = "c8d38fe30a464e39f2a254863e3698ccf1a23eaaa3e256d85d2890952d8c4643"
+
+[[files]]
+file = "kubejs/data/northstar/worldgen/biome/lunar_glowstone_cavern.json"
+hash = "c79fce16941bb80c2c739afa71866c218e9f35e66fd38c3b7d6e9949fa6f9129"
+
+[[files]]
+file = "kubejs/data/northstar/worldgen/biome/lunar_hills.json"
+hash = "3e4b79122c2f0ddb708ead3ec5b28888991262b128a372cde603d441457efb75"
+
+[[files]]
+file = "kubejs/data/northstar/worldgen/biome/lunar_ice_caves.json"
+hash = "14a157ee83d826c6653d30afa89b928c2d2870b9f0e0d7f5e92aec55e078a80a"
+
+[[files]]
+file = "kubejs/data/northstar/worldgen/biome/lunar_plains.json"
+hash = "d26e7005e3a83b5c3dd72e2b92b1567e04e64b54fb3a816efb3091ae0f5a3c33"
+
+[[files]]
+file = "kubejs/data/northstar_structures/tags/worldgen/biome/crater_moon_biomes.json"
+hash = "2899ee509953b9c02f3f40ce9f5d50796ebae5bb58391ba7dcfd9a3c652ce7f5"
+
+[[files]]
+file = "kubejs/data/northstar_structures/worldgen/structure/old_huge_crater.json"
+hash = "d70efe1742e042005eebc9b8953b180751361b389e7707b4d99da30bfadbc621"
+
+[[files]]
+file = "kubejs/data/northstar_structures/worldgen/structure/old_large_crater.json"
+hash = "b1e821398554b41cd617c251c1f1c349583709f63c6942613e79d07ee2410a49"
+
+[[files]]
+file = "kubejs/data/northstar_structures/worldgen/structure/old_medium_crater.json"
+hash = "6c29192ba73a61745491b2fd0a2370ad8ca01725b74c60218fbfe70272cdfa6f"
+
+[[files]]
+file = "kubejs/data/northstar_structures/worldgen/structure/old_small_crater.json"
+hash = "133759e34b7fe4947028331120afea1641f0f8299618776401f3c394c4074496"
+
+[[files]]
+file = "kubejs/data/northstar_structures/worldgen/structure/south_pole_aitken_basin.json"
+hash = "88fe83d6f47486f23745e3b3594c05667a7feedabfdb486d8f3590bb013bd3ab"
+
+[[files]]
 file = "kubejs/data/superbwarfare/forge/biome_modifier/deepslate_galena_ore_biome_modifier.json"
 hash = "a75d5d611e58e3c80bbf0244f82a8a8351c4e8c4aa0f3a1c56da5343aa6d5ae5"
 
@@ -431,6 +519,10 @@ hash = "a75d5d611e58e3c80bbf0244f82a8a8351c4e8c4aa0f3a1c56da5343aa6d5ae5"
 [[files]]
 file = "kubejs/data/superbwarfare/forge/biome_modifier/silver_ore_biome_modifier.json"
 hash = "a75d5d611e58e3c80bbf0244f82a8a8351c4e8c4aa0f3a1c56da5343aa6d5ae5"
+
+[[files]]
+file = "kubejs/server_scripts/missing_mod_refs.js"
+hash = "790cc6a816187b6c7e74321d26034b71b4be23636f8effba9e2ea8e8e5be6b93"
 
 [[files]]
 file = "kubejs/server_scripts/space_rockets.js"
@@ -658,6 +750,11 @@ metafile = true
 [[files]]
 file = "mods/create-deco.pw.toml"
 hash = "87be52b8aaa9864eab1ec2df8c862cd01a084989b07c4cdbfaa21c57a9a778a6"
+metafile = true
+
+[[files]]
+file = "mods/create-northstar-structures.pw.toml"
+hash = "37d2bc29ed552a81c6111a8bc18088964b4fcb07eb23d3a0d2caa7e920fb7f07"
 metafile = true
 
 [[files]]
@@ -919,8 +1016,8 @@ hash = "c25495262a852dc02886ec8c4b695f30e53264a2e3d881dd36ee9de16a1ef499"
 metafile = true
 
 [[files]]
-file = "mods/mm-compat-0.1.0.jar"
-hash = "2b98dabf47949f9fd555aeb552e89fa0b2af2a78a0ff2416db62da348690484e"
+file = "mods/mm-compat-0.2.0.jar"
+hash = "516266266e79f5f6b03d01fed4328868a7a8b8addb958e2af8f08a3d659da5c6"
 
 [[files]]
 file = "mods/modernfix.pw.toml"

@@ -1,0 +1,20 @@
+{
+  "type": "northstar_structures:chunked_aitken_basin",
+  "biomes": "#northstar_structures:crater_moon_biomes",
+  "spawn_overrides": {},
+  "step": "top_layer_modification",
+  "terrain_adaptation": "none",
+  "radius": 2400,
+  "cell_spacing_chunks": 5000,
+  "salt": 48291573,
+  "floor_y": -55,
+  "edge_y": 200,
+  "flat_radius": 48,
+  "rim_width": 520,
+  "rim_height": 0,
+  "floor_block": "ad_astra:moon_sand",
+  "rim_block": "ad_astra:moon_sand",
+  "fill_block": "ad_astra:moon_stone",
+  "config_group": "huge",
+  "config_key": "south_pole_aitken"
+}

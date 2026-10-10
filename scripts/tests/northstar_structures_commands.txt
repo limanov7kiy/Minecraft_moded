@@ -1,0 +1,9 @@
+# Кратеры Northstar Structures (patches/northstar_structures_fix.py): на Луне Ad Astra и на Луне Northstar
+execute in ad_astra:moon run forceload add -64 -64 64 64
+#sleep 20
+execute in ad_astra:moon run locate structure northstar_structures:small_crater
+execute in ad_astra:moon run locate structure northstar_structures:old_large_crater
+execute in northstar:moon run forceload add -32 -32 32 32
+#sleep 20
+execute in northstar:moon run locate structure northstar_structures:small_crater
+execute in northstar:moon run locate biome northstar:lunar_ice_caves

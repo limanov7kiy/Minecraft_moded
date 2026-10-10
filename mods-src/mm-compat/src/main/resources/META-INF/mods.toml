@@ -8,7 +8,7 @@ version = "${mod_version}"
 displayName = "Minecraft_moded Compat"
 authors = "Minecraft_moded"
 description = '''
-Связки модов сборки Minecraft_moded, которые нельзя сделать данными: кислород скафандров Northstar и Creating Space в мирах Ad Astra.
+Связки и исправления модов сборки Minecraft_moded, которые нельзя сделать данными: кислород скафандров Northstar и Creating Space в мирах Ad Astra, категория лучей Cataclysm Spellbooks, недостающий атрибут рас Arknights.
 '''
 
 [[dependencies.${mod_id}]]

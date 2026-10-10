@@ -78,12 +78,17 @@
 Файлы: `patches/`, `mods-src/mm-compat/`, `pack/kubejs/`, `docs/compat.md`.
 1. ~~Lycanites Mobs: недостающий `lycanitesmobs.refmap.json`~~ — **сделано** (`patches/lycanites-refmap`,
    коммит `b8f38e7`); осталось проверить клиентский `LightTextureMixin` в потоке 5.
-2. Legendary Survival Overhaul × Serene Seasons: проверить связку температуры с сезонами, при надобности патч.
-3. Create: Northstar — Structures: следить за совместимой версией или сделать свой патч на `moon_*_blob`.
-4. Шум в логах (рецепты для отсутствующих модов, `laser_beam has no attributes`, атрибут `thought_load_limit`).
+2. ~~Legendary Survival Overhaul × Serene Seasons~~ — **проверено**: связка встроена в LSO и работает
+   (лето +8, зима −9.5 к температуре мира), патч не нужен (`scripts/tests/seasontemp.js`, compat.md п. 11).
+3. ~~Create: Northstar — Structures~~ — **сделано**: совместимой версии нет, патч
+   `patches/northstar_structures_fix.py` (биомы под Redux 0.6, кратеры и на Луне Ad Astra), мод возвращён.
+4. ~~Шум в логах~~ — **сделано** (compat.md п. 9): теги с отсутствующими ссылками больше не теряются,
+   рецепты для отсутствующих модов отключены, лучи Cataclysm Spellbooks и `thought_load_limit` — в `mm-compat` 0.2.0.
+   Попутно: `.gitignore` прятал `pack/kubejs/data/*/worldgen` — без них чистая копия не создавала мир (п. 12).
 5. Задачи совместимости, пришедшие из потока 3.
-6. (из потока 2) По желанию: Zombie Have Ears 1.1.2 (зомби слышат голосовой чат) — в `mods.toml` нет поля
-   `mandatory`, Forge 47 его не грузит. Можно перепаковать jar с исправленным `mods.toml` в `patches/`.
+6. (из потока 2) Zombie Have Ears 1.1.2 (зомби слышат голосовой чат) — в `mods.toml` нет поля `mandatory`,
+   Forge 47 его не грузит. Поток 4 отложил из-за лицензии ARR; по CLAUDE.md «Назначение и лицензии» это больше
+   не препятствие — можно перепаковать jar с исправленным `mods.toml` в `patches/` (авторство указать).
 7. (из ревью PR #2) **Arknights Weapon 1.5.6 удваивает здоровье всех мобов.** `net.mcreator.arknightsweaopn.procedures.RiseProcedure`
    на каждом `EntityJoinLevelEvent` ставит любому не-игроку `max_health` базой = текущий максимум × 2. Событие
    приходит и при загрузке чанка, поэтому сохранённые мобы удваиваются при каждой подгрузке. Проверено бисекцией
