@@ -83,4 +83,4 @@ Distant Horizons, Yes Steve Model, AzureLib-рендер, клиентские �
 
 ### Отложено (решение за пользователем)
 - Порт Galacticraft Legacy на 1.20.1 — фактически переписывание (см. `docs/compat.md`). Нужен отдельный
-  чат и проверка лицензии; пока космос закрыт связкой Ad Astra + Northstar + Creating Space.
+  чат (лицензия не препятствует — CLAUDE.md «Назначение и лицензии»); пока космос закрыт связкой Ad Astra + Northstar + Creating Space.
