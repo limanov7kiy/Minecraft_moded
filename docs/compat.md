@@ -112,6 +112,16 @@ Xaero's Minimap & World Map — Waystones Compatibility, Jade Addons, Legendary 
   (предметов `mekmm:*_factory` нет) — некритично.
 - Almost Unified: новые моды не дают предметов в объединяемые теги.
 
+Пачка 6 — моды с крупными зависимостями (одобрено пользователем): Integrated Mowzie's Mobs (+ Quark, Supplementaries,
+Amendments, Integrated API, Integrated Patches), Botanical Machinery Extra (+ Applied Energistics 2),
+More Backpack Upgrades (+ Refined Storage). Сервер — `Done`, новый мир создаётся, ошибок от новых модов в логе нет.
+- Не объявлены как зависимости на Modrinth (найдены запуском), добавлены вручную: **Refined Storage** (More Backpack
+  Upgrades), **GuideME** `[20.1.7, 20.2)` (AE2), **Moonlight Lib** (Supplementaries, Amendments), **Zeta** `[1.0-28, 2.0)` (Quark).
+- Almost Unified: Quark кладёт `quark:charcoal_block` в `forge:storage_blocks/charcoal` вместе с `mekanism:block_charcoal` —
+  по приоритету остаётся блок Mekanism. `hardrefs.py`: по имени на блок Quark ссылается только его собственный рецепт
+  распаковки (у Mekanism есть свой) — конфиг менять не нужно. AE2 (истинный кварц, флюикс) и Supplementaries (пепел)
+  дают только новые материалы.
+
 ## Объединение дублей (Almost Unified)
 Один ресурс — один предмет: `pack/config/almostunified/unify.json`. Приоритет модов:
 minecraft → kubejs → create → mekanism → createaddition → ad_astra → northstar. Например, вся сталь

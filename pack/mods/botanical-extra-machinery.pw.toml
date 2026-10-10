@@ -1,0 +1,13 @@
+name = "Botanical Machinery Extra"
+filename = "botanicalextramachinery-1.20.1-1.1.2.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/tPTR9GcJ/versions/pYjPYgqi/botanicalextramachinery-1.20.1-1.1.2.jar"
+hash-format = "sha512"
+hash = "b8e44d0e0aa8650b4d8cd2292cbd5fe5838df301bb89609fd1957b7ebce7cd1a3a755b2a73046f4470ce3425581ff101d14d1533408f6263bc3b8f491e9a1bbc"
+
+[update]
+[update.modrinth]
+mod-id = "tPTR9GcJ"
+version = "pYjPYgqi"

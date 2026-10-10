@@ -76,9 +76,9 @@
   Create: Eureka! отложен (это датапак).
 - [x] Пачка 5 — техника и удобство (Mekanism, рюкзаки, Waystones × Xaero, Jade, LSO): 9 модов, сервер до `Done`.
   More Backpack Upgrades отложен (обязательно требует Refined Storage).
-- **Ждут решения пользователя** (тянут крупные моды, которых не было в согласованном списке):
-  Integrated Mowzie's Mobs → Quark + Supplementaries + Amendments; Botanical Machinery Extra → Applied Energistics 2;
-  More Backpack Upgrades → Refined Storage.
+- [x] Пачка 6 — моды с крупными зависимостями (одобрено пользователем): Integrated Mowzie's Mobs (+ Quark, Supplementaries,
+  Amendments, Integrated API/Patches), Botanical Machinery Extra (+ Applied Energistics 2), More Backpack Upgrades
+  (+ Refined Storage). Сервер до `Done`, новый мир создаётся.
 - Для Bumblezone и Mahou Tsukai подходящих дополнений под 1.20.1 Forge нет (Mahou Tsukai Combat требует Better Combat).
 
 ### Поток 4 — Совместимость и патчи

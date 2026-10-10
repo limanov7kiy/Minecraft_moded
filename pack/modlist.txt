@@ -98,6 +98,10 @@ mr playeranimator         # нужна Iron's Spells
 mr irons-lib              # Iron's Spells: >=1.20.1-2, <1.20.1-3
 mr caelus                 # нужна Origins (apoli)
 cf cupboard               # нужна Loot Integrations (>=1.20.1-1.5)
+mr refined-storage         # нужен More Backpack Upgrades (не объявлен на Modrinth)
+mr guideme                 # нужна Applied Energistics 2 (>=20.1.7, <20.2)
+mr moonlight               # нужна Supplementaries и Amendments
+mr zeta                    # нужна Quark (>=1.0-28, <2.0)
 mr ldlib                  # нужна Originium Arts
 
 ## Дополнения и связки — волна 1
@@ -169,7 +173,7 @@ mr create-alexs-caves-compat
 cf lycanite-delight               # Lycanites × Farmer's Delight
 cf lycanites-kin
 mr mowzies-cataclysm              # Mowzie's × Cataclysm
-# mr integrated-mowzies-mobs       # ОТЛОЖЕН: обязательно тянет Quark + Supplementaries + Amendments — ждёт решения пользователя
+mr integrated-mowzies-mobs         # структуры Mowzie's; тянет Quark + Supplementaries + Amendments (одобрено пользователем)
 cf gtbcs-geomancy-plus            # Iron's Spells × Mowzie's
 cf alexs-delight                  # Alex's Mobs × Farmer's Delight
 mr alexs-mobs-interaction
@@ -187,7 +191,7 @@ mr ars-artifice
 # mr alshanexs-familiars         # ОТКЛЮЧЕН: собран под старую Iron's Spells (NoClassDefFoundError SimpleAttributeCurio)
 cf irons-recipe-additions
 mr botanical-machinery
-# mr botanical-extra-machinery    # ОТЛОЖЕН: обязательно тянет Applied Energistics 2 — ждёт решения пользователя
+mr botanical-extra-machinery      # тянет Applied Energistics 2 (одобрено пользователем)
 mr extrabotany
 cf mechanical-botania-revived     # мана Botania → вращение Create
 mr occult-engineering             # Occultism × Create
@@ -215,7 +219,7 @@ mr mekanism-covers
 mr mekanism-curios
 mr just-enough-mekanism-multiblocks   # клиент
 mr sophisticated-backpacks-create-integration
-# mr more-backpack-upgrades        # ОТЛОЖЕН: обязательно требует Refined Storage — ждёт решения пользователя
+mr more-backpack-upgrades         # требует Refined Storage (одобрено пользователем)
 mr gravestone-x-curios-api-compat     # сервер
 mr xaeros-minimap-world-map-waystones-compatibility-forge
 mr jade-addons-forge

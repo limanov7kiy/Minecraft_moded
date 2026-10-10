@@ -438,7 +438,7 @@ hash = "56a5eae4fbd7007e550db9c67b4b9d41a480b57a32300c9a97e89ee3c32cb368"
 
 [[files]]
 file = "modlist.txt"
-hash = "c6bd09164d698ee1ff12099f84598eb481d2d96a77dc0b2bf740049ac1f75de9"
+hash = "46010684655c2e0276a43311c113a2d141c795ae0a4e19bf5968387d724959d4"
 
 [[files]]
 file = "mods/ad-astra-giselle-addon.pw.toml"
@@ -448,6 +448,11 @@ metafile = true
 [[files]]
 file = "mods/ad-astra.pw.toml"
 hash = "d94f5fd662671e6f6f4bda5d89234aded7461a8a90d9f9fe3d5b8a7f17c25b54"
+metafile = true
+
+[[files]]
+file = "mods/ae2.pw.toml"
+hash = "4f94db9eeb714f81d02e125e2021e55c7ca6c6ef8423bf6488dd51ebdfdf6fc5"
 metafile = true
 
 [[files]]
@@ -528,6 +533,11 @@ metafile = true
 [[files]]
 file = "mods/almostunified.pw.toml"
 hash = "bc9bc4dc5e09b5213fb158a83d63d5def7bb016c3cef65405f8f2f6c0c62b158"
+metafile = true
+
+[[files]]
+file = "mods/amendments.pw.toml"
+hash = "5922845f6c9bb57548eca500857ebd2268bffe3799373b7306c2bdfb706d5f95"
 metafile = true
 
 [[files]]
@@ -693,6 +703,11 @@ metafile = true
 [[files]]
 file = "mods/botania.pw.toml"
 hash = "ff2aa5045d98d0303e288dd37a1613c6376d8cfe2c829219e6e7283fb86008bb"
+metafile = true
+
+[[files]]
+file = "mods/botanical-extra-machinery.pw.toml"
+hash = "a46738f1816f131ea0ccab845f112b7aee7120884e4ad5f580b2619eba32f310"
 metafile = true
 
 [[files]]
@@ -960,8 +975,28 @@ hash = "60f2793e8461de7c88164a93af59b119f8376b3c8e9a5b8f6b3a801009fafda1"
 metafile = true
 
 [[files]]
+file = "mods/guideme.pw.toml"
+hash = "7cbc557e23729a2ab1a0dfa8832359edb640a9c4b2f1919e7c43cd5c7ccfdf3c"
+metafile = true
+
+[[files]]
 file = "mods/immediatelyfast.pw.toml"
 hash = "835bd8b05a05ce6c0981ddc37c49e4c476aa0414cc2a5321fd9f8994193b6feb"
+metafile = true
+
+[[files]]
+file = "mods/integrated-api.pw.toml"
+hash = "c87345354a1fd47ec0db4b237963f6187db45683af928120975376635069b612"
+metafile = true
+
+[[files]]
+file = "mods/integrated-mowzies-mobs.pw.toml"
+hash = "0a119f78c5b29f5aff5491604657a2e38c147dea0cde36971fb3f80b1b7fab9c"
+metafile = true
+
+[[files]]
+file = "mods/integrated-patches.pw.toml"
+hash = "921d0fd3f3773dfde043805c8d86b769eda621cacf7328d99fccb3f835cf302e"
 metafile = true
 
 [[files]]
@@ -1178,6 +1213,16 @@ hash = "11a52fe3ca031baf3f9425b0ac98bc79c8818bc261ee8f59ee7d322193902658"
 metafile = true
 
 [[files]]
+file = "mods/moonlight.pw.toml"
+hash = "8043a9a320a20b01ea686fca806fc3844f9a76aa56e804fe36764c6d12acf9f9"
+metafile = true
+
+[[files]]
+file = "mods/more-backpack-upgrades.pw.toml"
+hash = "6c989a8361f6c1dd0590b5e2b00fb07ce24ef7efcc14c06d0d7f7e32b78b5edd"
+metafile = true
+
+[[files]]
 file = "mods/mowzies-cataclysm.pw.toml"
 hash = "ea8b8c09541160788f82d028df77d70900cc023fcb4729048beee8d9c0f6b1b4"
 metafile = true
@@ -1250,6 +1295,16 @@ metafile = true
 [[files]]
 file = "mods/precise-manufacturing.pw.toml"
 hash = "0a3948be149a027161d4b932d486370b3a5be582845a9881853319e1390ca0a6"
+metafile = true
+
+[[files]]
+file = "mods/quark.pw.toml"
+hash = "8df897c0f7831e919aa528c3c1e5239f39439c123d99761230ab2357132bad98"
+metafile = true
+
+[[files]]
+file = "mods/refined-storage.pw.toml"
+hash = "d83c43aa5cd92ee3427f79fcf1d4e4ecf763972aa4a9ea6eac87d865c2fe955f"
 metafile = true
 
 [[files]]
@@ -1345,6 +1400,11 @@ metafile = true
 [[files]]
 file = "mods/superb-warfare.pw.toml"
 hash = "7187c4c816949a5f7b7fb5aa5c19ef5613da8607892b226aa65fcae60a752d72"
+metafile = true
+
+[[files]]
+file = "mods/supplementaries.pw.toml"
+hash = "168b3ee3fa2fe18f712c593d9d90e8b3a8a6a10564376af98bcc6f9719506641"
 metafile = true
 
 [[files]]
@@ -1484,4 +1544,9 @@ metafile = true
 [[files]]
 file = "mods/yes-steve-model.pw.toml"
 hash = "6008940c3cab0fcf660f78fa5ad81a2ad6ca382f913e8cdd546086cab0dba19a"
+metafile = true
+
+[[files]]
+file = "mods/zeta.pw.toml"
+hash = "b43f507cffbcc7178b184fa63b2d74fc6b2b8103c4d299ec5633ccf1f5abdafb"
 metafile = true
