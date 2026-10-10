@@ -14,14 +14,25 @@ name="$(toml name)"; ver="$(toml version)"; mc="$(toml minecraft)"; forge="$(tom
 rev="$(git -C "$root" rev-parse --short HEAD 2>/dev/null || echo local)"
 base="$name-$ver+$rev"
 
+# моды кэшируются в <папка>/.server-mods: повторный экспорт качает только изменившиеся
+python3 "$root/scripts/fetch-mods.py" server "$out/.server-mods" | grep -v '^got' || true
+
 # --- клиент ---
+# Часть модов CurseForge запрещает стороннее скачивание: packwiz просит положить их в свой кэш
+# import вручную. Все такие моды у нас both — подкладываем их из уже скачанных серверных.
+case "$(uname)" in Darwin) cache="$HOME/Library/Caches" ;; *) cache="${XDG_CACHE_HOME:-$HOME/.cache}" ;; esac
+mkdir -p "$cache/packwiz/cache/import"
+for f in $(grep -L '^url' "$root"/pack/mods/*.pw.toml); do
+  fn="$(sed -n 's/^filename = "\(.*\)"/\1/p' "$f")"
+  [ -f "$out/.server-mods/$fn" ] && cp "$out/.server-mods/$fn" "$cache/packwiz/cache/import/"
+done
+rm -f "$out/$base.mrpack"
 (cd "$root/pack" && "$PACKWIZ" refresh >/dev/null && "$PACKWIZ" modrinth export -o "$out/$base.mrpack" | tail -1)
+[ -f "$out/$base.mrpack" ] || { echo "mrpack не собран: см. вывод packwiz modrinth export"; exit 1; }
 
 # --- сервер ---
 stage="$out/$base-server"
 rm -rf "$stage" && mkdir -p "$stage"
-# моды кэшируются в <папка>/.server-mods: повторный экспорт качает только изменившиеся
-python3 "$root/scripts/fetch-mods.py" server "$out/.server-mods" | grep -v '^got' || true
 cp -r "$out/.server-mods" "$stage/mods"
 for d in config kubejs; do [ -d "$root/pack/$d" ] && cp -r "$root/pack/$d" "$stage/"; done
 curl -sSLo "$stage/forge-installer.jar" \
