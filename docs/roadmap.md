@@ -15,16 +15,13 @@
 | Объединение дублей (Almost Unified), проверка жёстких ссылок | `pack/config/almostunified/`, `scripts/hardrefs.py` |
 | Одна Солнечная система: планеты Ad Astra, ракеты Northstar/Creating Space, реальная гравитация, руды на всех планетах | `patches/space_unify.py`, `patches/ore_crossgen.py` |
 | Кислород скафандров Northstar/CS в системе Ad Astra | `mods-src/mm-compat` |
-| Wizardry Restored 0.2.0: 15 из 61 недостающего заклинания | `mods-src/wizardry-restored`, `docs/wizardry-port.md` |
+| Wizardry Restored 0.3.0: 31 из 61 недостающего заклинания, тест применения в мире `castcheck.js` (31/31) | `mods-src/wizardry-restored`, `docs/wizardry-port.md` |
+| Lycanites Mobs: недостающий refmap миксинов (сделано в основном чате до разделения) | `patches/lycanites-refmap`, `docs/compat.md` |
 | Серверные тесты: гравитация, маршруты, ракеты, кислород, руды, заклинания | `scripts/tests/` |
 
-## В работе (основной чат «Сборка для сетевой игры Minecraft», ещё не запушено)
-- Wizardry Restored **0.3.0**: ещё 16 заклинаний (переводы, звуки, иконки), серверный тест применения
-  `castcheck.js` (чинится вызов `moveTo`/`setYRot` у FakePlayer).
-- Последняя просьба пользователя там — **мод голосового чата**. Переносим в поток 2.
-
-Основному чату: доделать 0.3.0, прогнать тест, обновить `docs/wizardry-port.md`,
-закоммитить и **запушить**, после чего он закрывается. Новые чаты начинают с этого коммита.
+## В работе
+- Поток 1 (Wizardry Restored): 0.3.0 готов и запушен (`a655627`, тесты `spellcheck.js` + `castcheck.js`: 31/31).
+  Дальше — этап 2: оставшиеся заклинания на механиках Redux; затем этап 3 (новые сущности/блоки).
 
 ## Потоки (по чату на каждый)
 
@@ -65,7 +62,8 @@
 
 ### Поток 4 — Совместимость и патчи
 Файлы: `patches/`, `mods-src/mm-compat/`, `pack/kubejs/`, `docs/compat.md`.
-1. Lycanites Mobs: собрать недостающий `lycanitesmobs.refmap.json` (миксины `/reload` и освещение).
+1. ~~Lycanites Mobs: недостающий `lycanitesmobs.refmap.json`~~ — **сделано** (`patches/lycanites-refmap`,
+   коммит `b8f38e7`); осталось проверить клиентский `LightTextureMixin` в потоке 5.
 2. Legendary Survival Overhaul × Serene Seasons: проверить связку температуры с сезонами, при надобности патч.
 3. Create: Northstar — Structures: следить за совместимой версией или сделать свой патч на `moon_*_blob`.
 4. Шум в логах (рецепты для отсутствующих модов, `laser_beam has no attributes`, атрибут `thought_load_limit`).
