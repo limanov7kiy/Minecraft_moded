@@ -47,7 +47,7 @@ mr create-stuff-additions
 mr ad-astra
 mr northstar-redux          # порт Create: Northstar под Create 6 (оригинал несовместим)
 mr mekanism-x-create-northstar
-# mr create-northstar-structures  # ОТКЛЮЧЕН: несовместим с Northstar Redux 0.6+, роняет генерацию мира
+mr create-northstar-structures  # биомы Луны под Redux 0.6+ и кратеры на Луне Ad Astra: patches/northstar_structures_fix.py
 mr creating-space
 mr valkyrien-skies
 mr eureka
