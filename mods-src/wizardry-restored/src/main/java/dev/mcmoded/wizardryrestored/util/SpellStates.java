@@ -40,8 +40,8 @@ public final class SpellStates {
     public static final String FREEZING_WEAPON_FROST = "freezing_weapon_frost";
     public static final String MUFFLE_UNTIL = "muffle_until";
     public static final String EMPOWER_UNTIL = "empower_until";
-    public static final String MARK = "transport_mark";
     public static final String SHIELD_UNTIL = "shield_until";
+    public static final String GRAPPLE_UNTIL = "grapple_until";
     public static final float MARK_SACRIFICE_BONUS = 0.6f;
     public static final float SHADOW_WARD_FRACTION = 0.5f;
     /// Видимость приглушённого заклинателя: дальше — мобы его не замечают.
@@ -97,6 +97,17 @@ public final class SpellStates {
             float reflected = event.getAmount() * SHADOW_WARD_FRACTION;
             event.setAmount(event.getAmount() - reflected);
             attacker.hurt(MagicDamageSource.causeDirectMagicDamage(victim, EBDamageSources.MAGIC), reflected);
+        }
+        // Кольцо псионика: подконтрольное существо может подчинить и того, кого бьёт
+        if (active(attacker, MIND_CONTROL_UNTIL) && victim instanceof net.minecraft.world.entity.Mob vm && !active(vm, MIND_CONTROL_UNTIL)
+                && !vm.getType().is(net.minecraftforge.common.Tags.EntityTypes.BOSSES) && vm.getMaxHealth() <= 60
+                && victim.level().random.nextFloat() < 0.2f) {
+            Player controller = victim.level().getPlayerByUUID(data(attacker).getUUID(MIND_CONTROLLER));
+            if (controller != null && Artifacts.has(controller, com.binaris.wizardry.setup.registries.EBItems.RING_MIND_CONTROL)) {
+                data(vm).putLong(MIND_CONTROL_UNTIL, data(attacker).getLong(MIND_CONTROL_UNTIL));
+                data(vm).putUUID(MIND_CONTROLLER, controller.getUUID());
+                vm.setTarget(null);
+            }
         }
         // Морозное оружие: удар в ближнем бою замораживает цель
         if (event.getSource().getDirectEntity() == attacker && active(attacker, FREEZING_WEAPON_UNTIL)) {

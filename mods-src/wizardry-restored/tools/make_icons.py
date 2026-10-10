@@ -291,6 +291,18 @@ def entity_phoenix():
     for x, y in ((9, 12), (13, 12)): px[x, y] = px[x + 1, y] = (255, 255, 230, 255)
     return im
 
+def block_transportation_stone(top=False):
+    import random
+    rnd = random.Random(11 if top else 12); im = Image.new("RGBA", (16, 16)); px = im.load()
+    for y in range(16):
+        for x in range(16):
+            v = rnd.randint(105, 135); px[x, y] = (v, v, v + 6, 255)
+    d = ImageDraw.Draw(im)
+    if top: d.ellipse((6, 6, 9, 9), fill=(190, 120, 255, 255))
+    else:
+        d.line([(8, 6), (8, 13)], fill=(180, 110, 255, 255)); d.line([(6, 9), (10, 9)], fill=(180, 110, 255, 255))
+    return im
+
 if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
     for f in (lightning_bolt, sixth_sense, shockwave, snowball, mine, mind_trick, blink, intimidate, glide, ironflesh,
@@ -306,3 +318,6 @@ if __name__ == "__main__":
     effect_mark_sacrifice().save(eff / "mark_sacrifice.png"); print("effect mark_sacrifice")
     ent = OUT.parent / "entity"; ent.mkdir(parents=True, exist_ok=True)
     entity_phoenix().save(ent / "phoenix.png"); print("entity phoenix")
+    blk = OUT.parent / "block"; blk.mkdir(parents=True, exist_ok=True)
+    block_transportation_stone().save(blk / "transportation_stone.png")
+    block_transportation_stone(True).save(blk / "transportation_stone_top.png"); print("block transportation_stone")
