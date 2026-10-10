@@ -1078,6 +1078,11 @@ hash = "0be4976227df8e261fd362889bf8e85b93e224d1b1c3cd2a11b73a9de3b64083"
 metafile = true
 
 [[files]]
+file = "mods/spell-forge-for-electroblobs-wizardry-redux.pw.toml"
+hash = "fa4b474dc9dab003f2b920356c5c25c7009a17daa22577af2c1c2f566f268d7b"
+metafile = true
+
+[[files]]
 file = "mods/structure-gel-api.pw.toml"
 hash = "0a1893b4abfd0e7243095240b329552c082dd3fa7874b43e9b43c94812875472"
 metafile = true

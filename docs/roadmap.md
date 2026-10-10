@@ -35,12 +35,13 @@
 
 ### Поток 1 — Wizardry Restored (заклинания)
 Файлы: `mods-src/wizardry-restored/`, `docs/wizardry-port.md`, `scripts/tests/spellcheck.js`, `castcheck.js`.
-1. Оставшиеся заклинания (≈30): этап 2 — на механиках Redux; этап 3 — новые сущности и блоки
-   (phoenix, storm elemental, black hole, ice statue, ice wraith, forest of thorns…).
+1. Оставшиеся 23 заклинания — этап 3, новые сущности и блоки (phoenix, storm elemental, black hole,
+   ice wraith, forest of thorns…); список и точка остановки — `docs/wizardry-port.md`. Этап 2 сделан (0.4.0).
 2. Этап 4: предметы-артефакты (`ring_spirit_animal`, `transportation_stone`, `snare`, `thorns`…).
 3. ~~Вернуть на выделенный сервер `SENSIBLE`-заклинания Redux~~ — **сделано** в 0.4.0 (копии под
    `wizardry_restored:*`, проверены `castcheck.js`).
-4. Проверить дополнения Redux с CurseForge: Spell Forge, Wizardry Golems, Necromancer's Delight.
+4. ~~Проверить дополнения Redux с CurseForge~~ — **сделано**: Spell Forge 1.1.0 в сборке (сервер ОК,
+   162 заклинания); Wizardry Golems и Necromancer's Delight — только 1.12.2.
 
 ### Поток 2 — Мультиплеер: голосовой чат, раздача сборки, хостинг
 Файлы: `pack/modlist.txt` (раздел «Удобство и мультиплеер»), `docs/hosting.md`, новые `scripts/export-*`.
