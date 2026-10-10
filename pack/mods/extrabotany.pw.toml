@@ -1,0 +1,13 @@
+name = "Extrabotany"
+filename = "extrabotany-forge-1.20.1-1.9.2.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/zG0IqeQj/versions/cX16qAh2/extrabotany-forge-1.20.1-1.9.2.jar"
+hash-format = "sha512"
+hash = "95f1239f36bcfb6ac4f9a146ec18f0093f37fff75760036edacf52deea000123fd3818f862b69a47f975e0a44c65b0d5e4bce3524751ae56244ac65ad0a97d3c"
+
+[update]
+[update.modrinth]
+mod-id = "zG0IqeQj"
+version = "cX16qAh2"

@@ -438,7 +438,7 @@ hash = "56a5eae4fbd7007e550db9c67b4b9d41a480b57a32300c9a97e89ee3c32cb368"
 
 [[files]]
 file = "modlist.txt"
-hash = "e25b18b14dfa37add63526de9a44f1c7a167405a0d28d93a2a688c2ec274807e"
+hash = "58e3b4a7150840bad34f5d4e2af75d531e1ea3ab1cbdfb29a289fd2fa8a23072"
 
 [[files]]
 file = "mods/ad-astra-giselle-addon.pw.toml"
@@ -536,6 +536,11 @@ hash = "26c567a9fc1371ac0a9466fb8030eb2630d5fb382863387511b41b2cca185872"
 metafile = true
 
 [[files]]
+file = "mods/animus.pw.toml"
+hash = "905e1d82a36fb0443920d08f16835b96b0cdc0b27969bc5d06c8de57f8645adf"
+metafile = true
+
+[[files]]
 file = "mods/appleskin.pw.toml"
 hash = "793693a85f3c87d4e899ee0c58deabc53690bf5a70f17343f28fd5063ce8a1e1"
 metafile = true
@@ -576,8 +581,28 @@ hash = "4bf55aa51f09c03d194781a280d0676394c897a4334f0ae3eab358e0851e39d9"
 metafile = true
 
 [[files]]
+file = "mods/ars-artifice.pw.toml"
+hash = "14c5ad8a417c1f54f7f3e13578b57520250b3c6bd4113eb015874ed27b2ed636"
+metafile = true
+
+[[files]]
+file = "mods/ars-controle.pw.toml"
+hash = "2d43c7363b72c275f0cd7213da8d0afd7964ae9af5e9c51008895f481f894b8f"
+metafile = true
+
+[[files]]
 file = "mods/ars-creo.pw.toml"
 hash = "37674bd20bdb8a375ecd0fdcefd50b7c4b10134aeb0f6a5413293841e39af8f3"
+metafile = true
+
+[[files]]
+file = "mods/ars-elemental.pw.toml"
+hash = "75f86a754e146de4246da9efa839bab8a0becd9d637567bafd2d02ca813a7f48"
+metafile = true
+
+[[files]]
+file = "mods/ars-instrumentum.pw.toml"
+hash = "a21b070c85af000dd4385876cfda648205de70079f7c9bd8bd2b66e4b4b1d83c"
 metafile = true
 
 [[files]]
@@ -588,6 +613,11 @@ metafile = true
 [[files]]
 file = "mods/ars-ocultas.pw.toml"
 hash = "51bfe542fb8fc6d691f464e079b78a811f18c268bbf52751a0c33aa1db722948"
+metafile = true
+
+[[files]]
+file = "mods/ars-technica.pw.toml"
+hash = "f74d674d172fb27b93f1738f092a2d6b2d4cecc578656f9357886b8e13fecc35"
 metafile = true
 
 [[files]]
@@ -648,6 +678,11 @@ metafile = true
 [[files]]
 file = "mods/botania.pw.toml"
 hash = "ff2aa5045d98d0303e288dd37a1613c6376d8cfe2c829219e6e7283fb86008bb"
+metafile = true
+
+[[files]]
+file = "mods/botanical-machinery.pw.toml"
+hash = "91b5d4c4cd34cb30aed655eb88b23623ce40fb9609b0ff1338c1dc6b03b908d6"
 metafile = true
 
 [[files]]
@@ -826,6 +861,16 @@ hash = "5d93867ed1644c938145786a38b328786bb323cbcaff06bbe9f759c5157c91bf"
 metafile = true
 
 [[files]]
+file = "mods/event-wrapper.pw.toml"
+hash = "93df4fc981e1b12768733a1e19a277c96d0ef635cd368bc6d82d3817ffb23de5"
+metafile = true
+
+[[files]]
+file = "mods/extrabotany.pw.toml"
+hash = "aa6dd39469608b2eb82239bebcd36f96f5d7dcecfbbb976417c26c066e86a55e"
+metafile = true
+
+[[files]]
 file = "mods/farmers-cutting-blue-skies.pw.toml"
 hash = "2fec4fcfef413d13cca9a1914691ed24a1db22c5c173bbdd4836f77934e07430"
 metafile = true
@@ -882,6 +927,11 @@ metafile = true
 [[files]]
 file = "mods/irons-lib.pw.toml"
 hash = "a6bc0ad82e90e1b04dfcb5bc5be5a285ae40a1c00344b8d3e54c4bfe1aeed5f0"
+metafile = true
+
+[[files]]
+file = "mods/irons-recipe-additions.pw.toml"
+hash = "c1216d57eefb7b9b85b880009a19df3eafd6e48694f442dc0ebfe94e4f2db74f"
 metafile = true
 
 [[files]]
@@ -994,6 +1044,11 @@ hash = "c01e4f873d0c5deb69686ad4583b8c052408256f3641a4d6c277b865fc341634"
 metafile = true
 
 [[files]]
+file = "mods/mechanical-botania-revived.pw.toml"
+hash = "a1a7dcbc1913c7be438639e53df2561e53f48594c375f8b2e49bd04f7550256e"
+metafile = true
+
+[[files]]
 file = "mods/mekanism-ad-astra-ores.pw.toml"
 hash = "d9fe7e82f9fb2e85886b98fae5dfd96d819c33fcf1a51fe9eb76f3696dee327b"
 metafile = true
@@ -1065,6 +1120,16 @@ metafile = true
 [[files]]
 file = "mods/northstar-redux.pw.toml"
 hash = "dd53bf68dcaa13977d4df6412a1290960d04c97a0515d363b87034b5dea54e23"
+metafile = true
+
+[[files]]
+file = "mods/occult-engineering.pw.toml"
+hash = "06405716a547d5312c3eb1483b905b81bbcf2451e04e7a3d2bb2fe1a83b03419"
+metafile = true
+
+[[files]]
+file = "mods/occultism-ritual-satchel.pw.toml"
+hash = "8e59c2867ef626da53e1bb98186ce32a670d12966e7b92f8a868af818308c88b"
 metafile = true
 
 [[files]]
@@ -1235,6 +1300,11 @@ metafile = true
 [[files]]
 file = "mods/tome-of-blood-rebirth.pw.toml"
 hash = "aed0a4dd5c3af6f1c2825d9e77319f5c9d49fc2be82f44e7eb5e7c614be06834"
+metafile = true
+
+[[files]]
+file = "mods/too-many-glyphs.pw.toml"
+hash = "e43574704d93b276e187589628a23ef9ff60a4080ec44341fc13207098165f21"
 metafile = true
 
 [[files]]

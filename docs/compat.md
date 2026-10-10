@@ -80,6 +80,19 @@ Loot Integrations: Cataclysm (+ Loot Integrations). Сервер — `Done`.
 - Integrated Mowzie's Mobs не добавлен: обязательные зависимости Quark, Supplementaries, Amendments.
 - В логе только `gtbcs_geomancy_plus:chests/test` (тестовая таблица добычи автора) — некритично. Almost Unified — без изменений.
 
+Пачка 3 — магия: Ars Elemental, Too Many Glyphs, Ars Technica (Ars × Create), Ars Instrumentum, Ars Controle,
+Ars Artifice, Iron's Recipe Additions, Botanical Machinery, ExtraBotany (+ Event Wrapper), Create: Mechanical Botania,
+Create: Occult Engineering, Occultism Ritual Satchel, Animus (Blood Magic). Сервер — `Done`.
+- T.O Magic 'n Extras 6.3.0 — `NoClassDefFoundError: cataclysm/items/Dungeon_Eye/DungeonEyeItem` (класс убран в
+  Cataclysm 3.31). Отключён; откатывать Cataclysm нельзя — на неё завязаны другие связки.
+- Alshanex's Familiars 1.1.2 — `NoClassDefFoundError: ironsspellbooks/item/curios/SimpleAttributeCurio` (старый API
+  Iron's Spells). Отключён.
+- Botanical Machinery Extra не добавлен: обязательная зависимость Applied Energistics 2.
+- В логе: книга Patchouli `ars_controle` не загружается (у Ars Nouveau 4.12 своя документация) и тег
+  `hexcasting:dusts/amethyst` от Ars Technica (Hexcasting нет) — некритично.
+- Almost Unified: Occult Engineering даёт `forge:dusts/zinc` и `forge:dusts/brass` — единственный поставщик, объединять
+  не с чем. Изменений не нужно.
+
 ## Объединение дублей (Almost Unified)
 Один ресурс — один предмет: `pack/config/almostunified/unify.json`. Приоритет модов:
 minecraft → kubejs → create → mekanism → createaddition → ad_astra → northstar. Например, вся сталь

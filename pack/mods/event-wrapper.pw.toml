@@ -1,0 +1,13 @@
+name = "Event Wrapper"
+filename = "eventwrapper-forge-1.20.1-1.1.4.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/k7JPYdTv/versions/dnWW4euS/eventwrapper-forge-1.20.1-1.1.4.jar"
+hash-format = "sha512"
+hash = "166367b562a3d602c3f915169a618ffb9f511f081728b9ebdfb1cbfd2c7bffdbe39266885b9a3e05ff993b03665629dde4367dc0f9b9d31788a9576cadda6ce9"
+
+[update]
+[update.modrinth]
+mod-id = "k7JPYdTv"
+version = "dnWW4euS"

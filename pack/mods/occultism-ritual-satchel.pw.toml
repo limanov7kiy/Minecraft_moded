@@ -1,0 +1,13 @@
+name = "Occultism Ritual Satchel"
+filename = "Occultism-Ritual-Satchel-1.0.2.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/4coY8PBv/versions/jSCsAKpm/Occultism-Ritual-Satchel-1.0.2.jar"
+hash-format = "sha512"
+hash = "639ef97109036be8044d56f7ee2f6c3a5932146185eb41d6820335f0b64eceb985062a6799196b8a41d07496fc76a48489e862f2684057bffa5185f8d174f719"
+
+[update]
+[update.modrinth]
+mod-id = "4coY8PBv"
+version = "jSCsAKpm"

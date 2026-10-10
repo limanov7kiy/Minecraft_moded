@@ -1,0 +1,13 @@
+name = "Botanical Machinery"
+filename = "BotanicalMachinery-1.20.1-3.0.10.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/CTJzhcfH/versions/nWd5gpH8/BotanicalMachinery-1.20.1-3.0.10.jar"
+hash-format = "sha512"
+hash = "0880c2b54aff0569e32d6ee970f4b58fd0e8a54ff9301e5f5398d5da6e4816eb18f201c334b94315b3762ba318b746d4cbdbee8f59307987ccf88e53f571fde4"
+
+[update]
+[update.modrinth]
+mod-id = "CTJzhcfH"
+version = "nWd5gpH8"

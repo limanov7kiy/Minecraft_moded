@@ -175,3 +175,20 @@ mr alexs-mobs-interaction
 cf alexs-mobs-capsid-fix
 mr cinematic-cataclysm
 cf loot-integrations-cataclysm
+# Пачка 3: магия
+cf ars-elemental                  # 4 стихийные школы Ars Nouveau
+cf too-many-glyphs
+cf ars-technica                   # Ars Nouveau × Create
+cf ars-instrumentum
+mr ars-controle
+mr ars-artifice
+# cf to-tweaks-irons-spells       # ОТКЛЮЧЕН: собран под Cataclysm <3.31 (NoClassDefFoundError DungeonEyeItem)
+# mr alshanexs-familiars         # ОТКЛЮЧЕН: собран под старую Iron's Spells (NoClassDefFoundError SimpleAttributeCurio)
+cf irons-recipe-additions
+mr botanical-machinery
+# mr botanical-extra-machinery    # ОТЛОЖЕН: обязательно тянет Applied Energistics 2 — ждёт решения пользователя
+mr extrabotany
+cf mechanical-botania-revived     # мана Botania → вращение Create
+mr occult-engineering             # Occultism × Create
+mr occultism-ritual-satchel
+mr animus                         # Blood Magic

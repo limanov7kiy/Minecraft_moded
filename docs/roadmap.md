@@ -69,7 +69,9 @@
   сервер до `Done`. CBC: Nuclear отключён (несовместим с Create Big Cannons 5.11.4).
 - [x] Пачка 2 — мобы и боссы (Lycanites, Mowzie's, Alex's Mobs, Cataclysm): 9 модов + библиотеки, сервер до `Done`.
   Integrated Mowzie's Mobs отложен: обязательно тянет Quark + Supplementaries + Amendments — решает пользователь.
-- [ ] Пачка 3 — магия (Ars Nouveau, Iron's Spells, Botania, Occultism, Blood Magic)
+- [x] Пачка 3 — магия (Ars Nouveau, Iron's Spells, Botania, Occultism, Blood Magic): 13 модов, сервер до `Done`.
+  Отключены T.O Magic 'n Extras и Alshanex's Familiars (собраны под старые Cataclysm / Iron's Spells);
+  Botanical Machinery Extra отложен (обязательно тянет Applied Energistics 2).
 - [ ] Пачка 4 — оружие, Valkyrien Skies, Arknights
 - [ ] Пачка 5 — техника и удобство (Mekanism, рюкзаки, Waystones × Xaero, Jade, LSO)
 - Для Bumblezone и Mahou Tsukai подходящих дополнений под 1.20.1 Forge нет (Mahou Tsukai Combat требует Better Combat).
@@ -83,6 +85,10 @@
 5. Задачи совместимости, пришедшие из потока 3.
    - (поток 3) CBC: Nuclear (Create Big Cannons × Alex's Caves) собран под старую CBC: `NoSuchMethodError
      CBCBuilderTransformersImpl.safeNbt()` — отключён. Вернуть, если выйдет совместимая версия.
+   - (поток 3) T.O Magic 'n Extras 6.3.0 (последняя) обращается к `cataclysm.items.Dungeon_Eye.DungeonEyeItem`, которого
+     нет в Cataclysm 3.31 — мод не грузится, отключён. Следить за обновлением.
+   - (поток 3) Alshanex's Familiars 1.1.2 (единственная версия под 1.20.1) обращается к
+     `ironsspellbooks.item.curios.SimpleAttributeCurio`, которого нет в Iron's Spells 3.16 — отключён.
 
 ### Поток 5 — Проверка клиента
 Серверный тест клиент не покрывает. Запуск клиента (Xvfb в облаке или у игрока): Oculus + Embeddium,
