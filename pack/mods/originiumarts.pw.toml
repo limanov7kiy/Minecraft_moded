@@ -1,0 +1,13 @@
+name = "OriginiumArts"
+filename = "ognmarts-0.1.6-beta.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/ps36yEsA/versions/Et3NtGmY/ognmarts-0.1.6-beta.jar"
+hash-format = "sha512"
+hash = "79ef0dd5038f31c02548aab191d840ad887f0e3c8dc5c4a1a106666d81d9803fb23aa67df68797e69c1c9de8acf7f2c1111c5f4fafc88be2fcd62966d5a69559"
+
+[update]
+[update.modrinth]
+mod-id = "ps36yEsA"
+version = "Et3NtGmY"

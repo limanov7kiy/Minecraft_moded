@@ -1,0 +1,13 @@
+name = "Arknights origins races"
+filename = "arknights_races-1.5.3-1.20.1-forge.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/Ml3N4KXO/versions/eDbvNnDW/arknights_races-1.5.3-1.20.1-forge.jar"
+hash-format = "sha512"
+hash = "114d4cc6b8017a90e0fd32089d3e1e5461e6bf13df00459be5aa5a4f0dd2d6a7387ed2c63150903498f72ce50270d605685824006e1355d624fd38fbb2f5eed4"
+
+[update]
+[update.modrinth]
+mod-id = "Ml3N4KXO"
+version = "eDbvNnDW"

@@ -1,0 +1,97 @@
+# Источник истины для сборки. Формат: <источник> <slug>  # заметка
+# mr = Modrinth, cf = CurseForge. Зависимости packwiz ставит сам.
+# Добавить всё: ../scripts/add-mods.sh
+
+## Оптимизация
+mr modernfix
+mr ferrite-core
+mr memoryleakfix
+mr canary                 # порт Lithium (сервер+клиент)
+mr ai-improvements        # сервер
+mr async-locator          # сервер
+mr clumps
+mr saturn
+mr spark                  # профайлер лагов
+mr embeddium              # клиент
+mr oculus                 # клиент, шейдеры
+mr entityculling          # клиент
+mr immediatelyfast        # клиент
+mr smooth-boot-reloaded
+mr distanthorizons        # дальняя прорисовка
+
+## Магия
+mr electroblobs-wizardry-redux
+mr irons-spells-n-spellbooks
+mr ars-nouveau
+mr botania
+mr occultism
+mr blood-magic
+mr mahou-tsukai
+
+## Оружие
+mr timeless-and-classics-zero
+mr superb-warfare
+mr create-big-cannons
+
+## Мобы и боссы
+mr lycanites-mobs
+mr alexs-mobs
+mr mowzies-mobs
+mr l_enders-cataclysm
+
+## Ракеты, космос, техника
+mr create
+mr createaddition
+mr create-stuff-additions
+mr ad-astra
+mr northstar-redux          # порт Create: Northstar под Create 6 (оригинал несовместим)
+mr mekanism-x-create-northstar
+# mr create-northstar-structures  # ОТКЛЮЧЕН: несовместим с Northstar Redux 0.6+, роняет генерацию мира
+mr creating-space
+mr valkyrien-skies
+mr eureka
+mr mekanism
+mr mekanism-generators
+
+## Arknights
+mr caerula-arbor
+mr bobs-originium-dream
+mr originiumarts
+mr endfield-industry
+mr contigency-contract-lite
+mr arknights-races
+mr arknights-skills
+mr arknightsfurniture
+mr arknights-furs
+mr origins-forge
+mr arknights-origins-originium-arts
+
+## Измерения
+mr aether
+mr blue-skies
+mr the-undergarden
+mr deeperdarker
+mr alexs-caves
+mr the-bumblezone
+mr dimensional-dungeons
+cf the-twilight-forest
+
+## Реализм (умеренный)
+mr legendary-survival-overhaul
+mr serene-seasons
+
+## Удобство и мультиплеер
+mr jei
+mr jade
+mr appleskin
+mr waystones
+mr sophisticated-backpacks
+mr gravestone-mod
+mr xaeros-minimap         # клиент
+mr xaeros-world-map       # клиент
+
+## Библиотеки, не объявленные в зависимостях на Modrinth (найдены тестовым запуском сервера)
+mr playeranimator         # нужна Iron's Spells
+mr irons-lib              # Iron's Spells: >=1.20.1-2, <1.20.1-3
+mr caelus                 # нужна Origins (apoli)
+mr ldlib                  # нужна Originium Arts

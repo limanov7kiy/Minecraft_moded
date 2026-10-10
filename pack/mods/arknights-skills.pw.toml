@@ -1,0 +1,13 @@
+name = "Arknights skills"
+filename = "arknights_skills-1.1.1-1.20.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/ovCaUop0/versions/nl9NH1bw/arknights_skills-1.1.1-1.20.1.jar"
+hash-format = "sha512"
+hash = "3dc0247adec1eb6fb158b82774348698ea2a6eb790c27efc03b15097617fc1adfeef72f7f3a2e32b489649dba2ede5f4e6619576bfb6c01d1823f8c3405878bc"
+
+[update]
+[update.modrinth]
+mod-id = "ovCaUop0"
+version = "nl9NH1bw"

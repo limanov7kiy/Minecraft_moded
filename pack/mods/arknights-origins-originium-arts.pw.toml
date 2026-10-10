@@ -1,0 +1,13 @@
+name = "Arknights origins originium arts"
+filename = "arknights_originiumarts-1.0.2-1.20.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/qLBNVpiv/versions/WNJeWipJ/arknights_originiumarts-1.0.2-1.20.1.jar"
+hash-format = "sha512"
+hash = "11c06c7e0b9e51a5dbb28955332a138c9a8f77a4d254f2f85b13e1eceacf5348837f56e080bf25acfc3a57ca39ed458558f45f50b1eba2d153c0ddf0ef85b20c"
+
+[update]
+[update.modrinth]
+mod-id = "qLBNVpiv"
+version = "WNJeWipJ"

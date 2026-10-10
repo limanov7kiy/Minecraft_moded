@@ -24,3 +24,6 @@ whitelist.json
 # OS
 .DS_Store
 Thumbs.db
+
+# Тестовые серверы
+test-server/

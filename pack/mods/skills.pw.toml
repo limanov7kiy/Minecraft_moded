@@ -1,0 +1,13 @@
+name = "Pufferfish's Skills"
+filename = "puffish_skills-0.19.2-1.20-forge.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/hqQqvaa4/versions/zfbPzmtb/puffish_skills-0.19.2-1.20-forge.jar"
+hash-format = "sha512"
+hash = "5e9392f66663d197b1a2c938b64f19ba2c66e593ffe514838ffb64700bd2cffaf29935c3d2f07855b3b6a9f1cc7c939031f666164f029670daca421750cbe4a6"
+
+[update]
+[update.modrinth]
+mod-id = "hqQqvaa4"
+version = "zfbPzmtb"

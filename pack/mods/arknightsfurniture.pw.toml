@@ -1,0 +1,13 @@
+name = "ArknightsFurniture"
+filename = "arknights_furniture-1.20.1-1.0.4.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/twrsixFr/versions/vV48bLQu/arknights_furniture-1.20.1-1.0.4.jar"
+hash-format = "sha512"
+hash = "008c10625107af18fb345b2bbe0439db70f3efa606bb33ca285c8f05027fe62f82dc5e36f850af6e845f75e45ef85d635eb38bec13b5eeff5132a38860383b18"
+
+[update]
+[update.modrinth]
+mod-id = "twrsixFr"
+version = "vV48bLQu"

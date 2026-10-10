@@ -1,0 +1,13 @@
+name = "The Bumblezone - NeoForge/Forge"
+filename = "the_bumblezone-7.14.0+1.20.1-forge.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/38tpSycf/versions/E2D8A2nP/the_bumblezone-7.14.0%2B1.20.1-forge.jar"
+hash-format = "sha512"
+hash = "6f5c9be9641031d39d0792ccc37f428b9193725ca07d3e7b6c6559d5956aa1d6fc887d25232d42e18f29829f0348dd00094903d675b4dc9527214c58562207d6"
+
+[update]
+[update.modrinth]
+mod-id = "38tpSycf"
+version = "E2D8A2nP"

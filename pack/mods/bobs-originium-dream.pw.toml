@@ -1,0 +1,13 @@
+name = "BOB's Originium dream"
+filename = "bobsoriginiumdream-1.1.1-forge-1.20.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/A2l0YkuP/versions/PzN6MPrN/bobsoriginiumdream-1.1.1-forge-1.20.1.jar"
+hash-format = "sha512"
+hash = "05b96097441d5d4dcd60709a664bbae13d9ec031be42e881ee1dc25b388eb4b2169a023b9b6dbb885b61d2bf45e28b4737ee9b41337cf0709fff5533a6436ad1"
+
+[update]
+[update.modrinth]
+mod-id = "A2l0YkuP"
+version = "PzN6MPrN"

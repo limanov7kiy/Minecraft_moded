@@ -1,0 +1,13 @@
+name = "Endfield Industry"
+filename = "arknights_endfield-1.0.3-1.20.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/gbz2TvaL/versions/haCuXgme/arknights_endfield-1.0.3-1.20.1.jar"
+hash-format = "sha512"
+hash = "1ca197a32efd5186eac55a5ac3673f26f2f7546113f6808d3ae7ac6cde16a823bcf4f39fafa4e8e94925a20deb531b16a98c4d73c661d7105e365800a5051765"
+
+[update]
+[update.modrinth]
+mod-id = "gbz2TvaL"
+version = "haCuXgme"

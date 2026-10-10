@@ -1,0 +1,13 @@
+name = "Electroblob's Wizardry Redux"
+filename = "electroblobs-wizardry-redux-0.8.9-forge.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/s5qOekOc/versions/rmt0hS0N/electroblobs-wizardry-redux-0.8.9-forge.jar"
+hash-format = "sha512"
+hash = "423b06a4cb6cefb192a15fd953f640b1a976b327925baf0c4a3998690381809f166df85c3d0fde825dcd6d719a3b7968631196c226d7f797b3b7a3f2d9e2a0e5"
+
+[update]
+[update.modrinth]
+mod-id = "s5qOekOc"
+version = "rmt0hS0N"
