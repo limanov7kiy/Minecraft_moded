@@ -1,5 +1,122 @@
 {
-  "spell.lightning_bolt": { "sounds": [ { "name": "minecraft:item.trident.thunder", "type": "event" } ] },
-  "spell.sixth_sense": { "sounds": [ { "name": "minecraft:block.amethyst_block.resonate", "type": "event" } ] },
-  "spell.shockwave": { "sounds": [ { "name": "minecraft:entity.generic.explode", "type": "event" } ] }
+  "spell.lightning_bolt": {
+    "sounds": [
+      {
+        "name": "minecraft:item.trident.thunder",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.sixth_sense": {
+    "sounds": [
+      {
+        "name": "minecraft:block.amethyst_block.resonate",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.shockwave": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.generic.explode",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.snowball": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.snowball.throw",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.mine": {
+    "sounds": [
+      {
+        "name": "minecraft:block.stone.break",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.mind_trick": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.illusioner.cast_spell",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.blink": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.enderman.teleport",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.intimidate": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.ravager.roar",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.glide": {
+    "sounds": [
+      {
+        "name": "minecraft:item.elytra.flying",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.ironflesh": {
+    "sounds": [
+      {
+        "name": "minecraft:block.anvil.place",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.diamondflesh": {
+    "sounds": [
+      {
+        "name": "minecraft:block.amethyst_block.chime",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.greater_fireball": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.ghast.shoot",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.chain_lightning": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.lightning_bolt.impact",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.paralysis": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.lightning_bolt.thunder",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.summon_iron_golem": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.iron_golem.repair",
+        "type": "event"
+      }
+    ]
+  }
 }

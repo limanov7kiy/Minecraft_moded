@@ -1041,8 +1041,8 @@ hash = "1dc6ca31c7b6912c494caa2a4f5f9f7250af50fbeb9ce9141ae9b741f9861987"
 metafile = true
 
 [[files]]
-file = "mods/wizardry-restored-0.1.0.jar"
-hash = "a0c5a76ff18a8a617c9936f4d3cb7398074a81b7d8f524069e2377fda497d963"
+file = "mods/wizardry-restored-0.2.0.jar"
+hash = "82eea45111128a897d47f87f4dc27e4068232285c09a8bd11bfd42280b15b3ce"
 
 [[files]]
 file = "mods/xaeros-minimap.pw.toml"

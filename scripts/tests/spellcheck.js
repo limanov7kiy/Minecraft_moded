@@ -4,7 +4,7 @@ ServerEvents.loaded(event => {
   const RM = Java.loadClass('net.minecraftforge.registries.RegistryManager')
   const reg = RM.ACTIVE.getRegistry(new RL('ebwizardry', 'spells'))
   console.info(`SPELLCHECK total spells: ${reg.getKeys().size()}`)
-  for (let id of ['lightning_bolt', 'sixth_sense', 'shockwave', 'ebwizardry:fireball', 'ebwizardry:arc']) {
+  for (let id of ['lightning_bolt', 'sixth_sense', 'shockwave', 'snowball', 'mine', 'mind_trick', 'blink', 'intimidate', 'glide', 'ironflesh', 'diamondflesh', 'greater_fireball', 'chain_lightning', 'paralysis', 'summon_iron_golem', 'ebwizardry:fireball']) {
     let rl = id.includes(':') ? new RL(id) : new RL('wizardry_restored', id)
     let s = reg.getValue(rl)
     if (s == null) { console.error(`SPELLCHECK MISSING ${id}`); continue }
