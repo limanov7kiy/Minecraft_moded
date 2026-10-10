@@ -21,13 +21,12 @@
    клиентскому классу `GeoObjectRenderer` из AzureLib. Это чисто визуальный мод (шерсть/уши origins),
    поэтому `origin-furs-unofficial-forge-port` и `arknights-furs` вручную помечены
    `side = "client"` (AzureLib остаётся на обеих сторонах — он нужен Cataclysm Spellbooks на сервере). **После `packwiz update` проверить, что пометка не слетела.**
-4. Lycanites Mobs: предупреждение `Mixin apply failed lycanitesmobs.mixins.json:StructureAccessor`
-   (не находит поле `settings` в `Structure`). Причина: в jar `lycanitesmobs-1.20.1` нет
-   `lycanitesmobs.refmap.json`, хотя конфиг миксинов на него ссылается, — миксины к ванильным классам
-   (`StructureAccessor`, `ReloadCommandMixin`, клиентский `LightTextureMixin`) в настоящей игре не
-   применяются. `StructureAccessor` кодом не используется (сервер не падает); теряются перезагрузка
-   JSON Lycanites по `/reload` и, вероятно, эффект освещения на клиенте. Патч на будущее: собрать
-   refmap (LGPL-3.0 позволяет распространять изменённый jar) и сообщить автору.
+4. Lycanites Mobs 0.1.0-alpha: в jar нет `lycanitesmobs.refmap.json`, хотя конфиг миксинов на него ссылается —
+   миксины к ванильным классам (`StructureAccessor`, `ReloadCommandMixin`, клиентский `LightTextureMixin`) в
+   настоящей игре не применялись (`/reload` не перечитывал данные Lycanites, на клиенте ломался эффект освещения).
+   **Патч:** `patches/lycanites-refmap` — маленькая библиотека (GAMELIBRARY) с этим refmap (имена → SRG из
+   маппингов 1.20.1), сам мод (120 МБ) не трогаем. Проверено: предупреждение `Mixin apply failed` исчезло,
+   миксины применяются. Когда автор выпустит исправленный jar — убрать `pack/mods/lycanites-refmap-fix-*.jar`.
 5. Create: Northstar - Structures 1.0.0 ссылается на `northstar:moon_*_blob`, которых нет в
    Northstar Redux 0.6+ (автор сам пишет: «not compatible with Northstar 0.6.0 yet») — генерация мира
    падает с `Unbound values in registry ... placed_feature`. Отключён; вернуть, когда выйдет совместимая версия.

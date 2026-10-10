@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+FMLModType: GAMELIBRARY
+Automatic-Module-Name: lycanites.refmap.fix
+Implementation-Title: Lycanites Mobs refmap fix (Minecraft_moded)
+Implementation-Version: 1.0.0
+

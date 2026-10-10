@@ -860,6 +860,10 @@ hash = "330aa017e665a1b7bfe2ffc69f2809c5a06626a770127287dc9c2b6ad42bfba3"
 metafile = true
 
 [[files]]
+file = "mods/lycanites-refmap-fix-1.0.0.jar"
+hash = "24c5a32d14352004833bca6c25037dd4b08728fa063000a4b19fb35c14531c30"
+
+[[files]]
 file = "mods/mahou-tsukai.pw.toml"
 hash = "c01e4f873d0c5deb69686ad4583b8c052408256f3641a4d6c277b865fc341634"
 metafile = true

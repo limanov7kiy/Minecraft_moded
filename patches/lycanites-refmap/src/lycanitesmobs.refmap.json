@@ -1,0 +1,28 @@
+{
+  "mappings": {
+    "com/lycanitesmobs/core/mixin/StructureAccessor": {
+      "settings": "f_226555_:Lnet/minecraft/world/level/levelgen/structure/Structure$StructureSettings;"
+    },
+    "com/lycanitesmobs/core/mixin/ReloadCommandMixin": {
+      "reloadPacks": "m_138235_(Ljava/util/Collection;Lnet/minecraft/commands/CommandSourceStack;)V"
+    },
+    "com/lycanitesmobs/core/mixin/LightTextureMixin": {
+      "updateLightTexture": "m_109881_(F)V",
+      "Lnet/minecraft/client/renderer/texture/DynamicTexture;upload()V": "Lnet/minecraft/client/renderer/texture/DynamicTexture;m_117985_()V"
+    }
+  },
+  "data": {
+    "searge": {
+      "com/lycanitesmobs/core/mixin/StructureAccessor": {
+        "settings": "f_226555_:Lnet/minecraft/world/level/levelgen/structure/Structure$StructureSettings;"
+      },
+      "com/lycanitesmobs/core/mixin/ReloadCommandMixin": {
+        "reloadPacks": "m_138235_(Ljava/util/Collection;Lnet/minecraft/commands/CommandSourceStack;)V"
+      },
+      "com/lycanitesmobs/core/mixin/LightTextureMixin": {
+        "updateLightTexture": "m_109881_(F)V",
+        "Lnet/minecraft/client/renderer/texture/DynamicTexture;upload()V": "Lnet/minecraft/client/renderer/texture/DynamicTexture;m_117985_()V"
+      }
+    }
+  }
+}

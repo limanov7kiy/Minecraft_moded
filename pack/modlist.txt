@@ -34,7 +34,7 @@ mr superb-warfare
 mr create-big-cannons
 
 ## Мобы и боссы
-mr lycanites-mobs
+mr lycanites-mobs          # + pack/mods/lycanites-refmap-fix (patches/lycanites-refmap): недостающий refmap миксинов
 mr alexs-mobs
 mr mowzies-mobs
 mr l_enders-cataclysm

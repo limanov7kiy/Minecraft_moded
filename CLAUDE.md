@@ -35,6 +35,9 @@
   - `mods-src/mm-compat` — кодовые связки сборки (кислород скафандров Northstar/Creating Space в Ad Astra).
     Ad Astra в зависимостях — по Modrinth version id Forge-сборки (номер версии у Forge и Fabric одинаковый).
   - `patches/gaboulibs-shim` — замена удалённой библиотеки для Serene Seasons Plus.
+  - `patches/lycanites-refmap` — недостающий refmap миксинов Lycanites Mobs (без пересборки 120-МБ jar).
+  - Тесты на сервере: `scripts/tests/*.js` (через `EXTRA_SERVER_SCRIPTS`), `castcheck.js` кастует все заклинания
+    Wizardry Restored фейковым игроком и проверяет результат в мире.
   - `patches/space_unify.py`, `patches/ore_crossgen.py` — одна Солнечная система (см. docs/compat.md).
 - Объединение дублей: Almost Unified (`pack/config/almostunified/`), перед изменениями проверять
   `scripts/hardrefs.py`.
