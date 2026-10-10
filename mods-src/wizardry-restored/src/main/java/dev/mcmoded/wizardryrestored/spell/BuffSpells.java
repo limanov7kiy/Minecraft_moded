@@ -42,6 +42,34 @@ public final class BuffSpells {
                         .build());
     }
 
+    /// Неуязвимость духа: заклинатель невидим и неуязвим, но сам почти не может наносить урон и ломать блоки.
+    public static Spell transience() {
+        return new BuffSpell(0.9f, 0.9f, 1.0f, () -> MobEffects.DAMAGE_RESISTANCE, () -> MobEffects.INVISIBILITY,
+                () -> MobEffects.WEAKNESS, () -> MobEffects.DIG_SLOWDOWN).assignProperties(
+                SpellProperties.builder()
+                        .assignBaseProperties(SpellTiers.ADVANCED, Elements.HEALING, SpellTypes.BUFF, SpellAction.POINT_UP, 50, 15, 100)
+                        .add(BuffSpell.getEffectDurationProperty(MobEffects.DAMAGE_RESISTANCE), 400)
+                        .add(BuffSpell.getEffectStrengthProperty(MobEffects.DAMAGE_RESISTANCE), 4)
+                        .add(BuffSpell.getEffectDurationProperty(MobEffects.INVISIBILITY), 400)
+                        .add(BuffSpell.getEffectStrengthProperty(MobEffects.INVISIBILITY), 0)
+                        .add(BuffSpell.getEffectDurationProperty(MobEffects.WEAKNESS), 400)
+                        .add(BuffSpell.getEffectStrengthProperty(MobEffects.WEAKNESS), 9)
+                        .add(BuffSpell.getEffectDurationProperty(MobEffects.DIG_SLOWDOWN), 400)
+                        .add(BuffSpell.getEffectStrengthProperty(MobEffects.DIG_SLOWDOWN), 4)
+                        .build());
+    }
+
+    /// Призрачный волк-спутник: остаётся, пока его не убьют.
+    public static Spell summonSpiritWolf() {
+        return new MinionSpell<>((level) -> new net.minecraft.world.entity.animal.Wolf(EntityType.WOLF, level)).assignProperties(
+                SpellProperties.builder()
+                        .assignBaseProperties(SpellTiers.APPRENTICE, Elements.EARTH, SpellTypes.MINION, SpellAction.SUMMON, 25, 0, 100)
+                        .add(DefaultProperties.MINION_COUNT, 1)
+                        .add(DefaultProperties.MINION_LIFETIME, -1)
+                        .add(DefaultProperties.SUMMON_RADIUS, 2)
+                        .build());
+    }
+
     /// Призыв железного голема-помощника на 30 секунд.
     public static Spell summonIronGolem() {
         return new MinionSpell<>((level) -> new IronGolem(EntityType.IRON_GOLEM, level)).assignProperties(

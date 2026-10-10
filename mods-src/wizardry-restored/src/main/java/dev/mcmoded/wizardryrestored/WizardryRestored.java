@@ -33,8 +33,27 @@ public class WizardryRestored {
     public static final RegistryObject<Spell> PARALYSIS = SPELLS.register("paralysis", Paralysis::new);
     public static final RegistryObject<Spell> SUMMON_IRON_GOLEM = SPELLS.register("summon_iron_golem", BuffSpells::summonIronGolem);
 
+    public static final RegistryObject<Spell> LIGHTNING_RAY = SPELLS.register("lightning_ray", LightningRay::new);
+    public static final RegistryObject<Spell> DISINTEGRATION = SPELLS.register("disintegration", Disintegration::new);
+    public static final RegistryObject<Spell> TRANSIENCE = SPELLS.register("transience", BuffSpells::transience);
+    public static final RegistryObject<Spell> MIND_CONTROL = SPELLS.register("mind_control", MindControl::new);
+    public static final RegistryObject<Spell> METAMORPHOSIS = SPELLS.register("metamorphosis", Metamorphosis::new);
+    public static final RegistryObject<Spell> FROST_BARRIER = SPELLS.register("frost_barrier", FrostBarrier::new);
+    public static final RegistryObject<Spell> WALL_OF_FROST = SPELLS.register("wall_of_frost", WallOfFrost::new);
+    public static final RegistryObject<Spell> THUNDERSTORM = SPELLS.register("thunderstorm", Thunderstorm::new);
+    public static final RegistryObject<Spell> EARTHQUAKE = SPELLS.register("earthquake", Earthquake::new);
+    public static final RegistryObject<Spell> CELESTIAL_SMITE = SPELLS.register("celestial_smite", CelestialSmite::new);
+    public static final RegistryObject<Spell> SLOW_TIME = SPELLS.register("slow_time", SlowTime::new);
+    public static final RegistryObject<Spell> LIGHT = SPELLS.register("light", Light::new);
+    public static final RegistryObject<Spell> SHADOW_WARD = SPELLS.register("shadow_ward", ShadowWard::new);
+    public static final RegistryObject<Spell> ICE_SHROUD = SPELLS.register("ice_shroud", IceShroud::new);
+    public static final RegistryObject<Spell> SUMMON_SPIRIT_WOLF = SPELLS.register("summon_spirit_wolf", BuffSpells::summonSpiritWolf);
+    public static final RegistryObject<Spell> SUMMON_SPIRIT_HORSE = SPELLS.register("summon_spirit_horse", SummonSpiritHorse::new);
+
     public WizardryRestored() {
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
         SPELLS.register(modBus);
+        net.minecraftforge.common.MinecraftForge.EVENT_BUS.register(dev.mcmoded.wizardryrestored.util.TempBlocks.class);
+        net.minecraftforge.common.MinecraftForge.EVENT_BUS.register(dev.mcmoded.wizardryrestored.util.SpellStates.class);
     }
 }

@@ -34,6 +34,7 @@ public class Blink extends Spell {
         if (ctx.world() instanceof ServerLevel server) {
             server.sendParticles(ParticleTypes.PORTAL, caster.getX(), caster.getY() + 1, caster.getZ(), 30, 0.3, 0.6, 0.3, 0.2);
             if (caster.isPassenger()) caster.stopRiding();
+            caster.setPos(safe.x, safe.y, safe.z);        // сервер — сразу; клиенту — пакет телепорта ниже
             caster.teleportTo(safe.x, safe.y, safe.z);
             caster.fallDistance = 0;
             server.sendParticles(ParticleTypes.PORTAL, safe.x, safe.y + 1, safe.z, 30, 0.3, 0.6, 0.3, 0.2);

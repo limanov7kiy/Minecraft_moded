@@ -88,8 +88,72 @@ def summon_iron_golem():
     d.rectangle((11, 8, 21, 16), fill=(200, 200, 200, 255)); d.rectangle((9, 16, 23, 26), fill=(170, 170, 170, 255))
     d.point((14, 11), fill=(200, 30, 30, 255)); d.point((18, 11), fill=(200, 30, 30, 255)); return im
 
+def _ray(color, inner):
+    im, d = base(color); d.line([(6, 26), (26, 6)], fill=inner + (255,), width=3); d.line([(6, 26), (26, 6)], fill=(255, 255, 255, 255), width=1); return im
+
+def lightning_ray(): return _ray(ELEMENT["lightning"], (120, 220, 255))
+def disintegration(): return _ray(ELEMENT["fire"], (255, 120, 20))
+
+def transience():
+    im, d = base(ELEMENT["healing"]); d.ellipse((10, 6, 22, 18), outline=(255, 255, 255, 150), width=2); d.rectangle((11, 17, 21, 27), outline=(255, 255, 255, 150), width=2); return im
+
+def mind_control():
+    im, d = base(ELEMENT["necromancy"]); d.ellipse((9, 9, 23, 23), outline=(255, 255, 255, 255), width=2); d.ellipse((14, 14, 18, 18), fill=(200, 60, 255, 255)); return im
+
+def metamorphosis():
+    im, d = base(ELEMENT["necromancy"]); d.arc((7, 7, 25, 25), 30, 330, fill=(240, 220, 255, 255), width=2); d.polygon([(24, 10), (27, 16), (21, 15)], fill=(240, 220, 255, 255)); return im
+
+def frost_barrier():
+    im, d = base(ELEMENT["ice"])
+    for x in (8, 14, 20): d.rectangle((x, 9, x + 5, 24), fill=(200, 235, 255, 255), outline=(120, 180, 230, 255))
+    return im
+
+def wall_of_frost():
+    im, d = base(ELEMENT["ice"])
+    for y in (8, 14, 20): d.rectangle((8, y, 24, y + 5), fill=(220, 245, 255, 255), outline=(120, 180, 230, 255))
+    return im
+
+def thunderstorm():
+    im, d = base(ELEMENT["lightning"]); d.ellipse((6, 6, 26, 15), fill=(150, 160, 180, 255))
+    for x in (10, 17, 23): d.line([(x, 15), (x - 3, 21), (x, 21), (x - 3, 27)], fill=(255, 255, 160, 255), width=1)
+    return im
+
+def earthquake():
+    im, d = base(ELEMENT["earth"]); d.line([(6, 18), (11, 14), (15, 20), (20, 13), (26, 18)], fill=(240, 220, 170, 255), width=2); return im
+
+def celestial_smite():
+    im, d = base(ELEMENT["healing"]); d.rectangle((14, 4, 18, 26), fill=(255, 250, 200, 255)); d.ellipse((9, 22, 23, 28), fill=(255, 240, 150, 255)); return im
+
+def slow_time():
+    im, d = base(ELEMENT["sorcery"]); d.ellipse((7, 7, 25, 25), outline=(230, 255, 240, 255), width=2)
+    d.line([(16, 16), (16, 9)], fill=(230, 255, 240, 255), width=2); d.line([(16, 16), (21, 18)], fill=(230, 255, 240, 255), width=2); return im
+
+def light():
+    im, d = base(ELEMENT["sorcery"]); d.ellipse((11, 11, 21, 21), fill=(255, 255, 220, 255))
+    for a in range(0, 360, 45):
+        import math
+        x, y = 16 + 10 * math.cos(math.radians(a)), 16 + 10 * math.sin(math.radians(a))
+        d.point((x, y), fill=(255, 255, 200, 255))
+    return im
+
+def shadow_ward():
+    im, d = base(ELEMENT["necromancy"]); d.polygon([(16, 6), (25, 10), (23, 22), (16, 27), (9, 22), (7, 10)], fill=(25, 15, 35, 255), outline=(170, 90, 230, 255)); return im
+
+def ice_shroud():
+    im, d = base(ELEMENT["ice"])
+    for r in (6, 10): d.ellipse((16 - r, 16 - r, 16 + r, 16 + r), outline=(230, 250, 255, 255), width=1)
+    d.line([(16, 8), (16, 24)], fill=(255, 255, 255, 255)); d.line([(8, 16), (24, 16)], fill=(255, 255, 255, 255)); return im
+
+def summon_spirit_wolf():
+    im, d = base(ELEMENT["earth"]); d.polygon([(9, 22), (12, 10), (15, 15), (17, 15), (20, 10), (23, 22), (16, 26)], fill=(200, 230, 255, 200)); return im
+
+def summon_spirit_horse():
+    im, d = base(ELEMENT["earth"]); d.polygon([(10, 26), (12, 12), (18, 7), (23, 9), (20, 14), (18, 26)], fill=(200, 230, 255, 200)); return im
+
 if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
     for f in (lightning_bolt, sixth_sense, shockwave, snowball, mine, mind_trick, blink, intimidate, glide, ironflesh,
-              diamondflesh, greater_fireball, chain_lightning, paralysis, summon_iron_golem):
+              diamondflesh, greater_fireball, chain_lightning, paralysis, summon_iron_golem, lightning_ray, disintegration,
+              transience, mind_control, metamorphosis, frost_barrier, wall_of_frost, thunderstorm, earthquake, celestial_smite,
+              slow_time, light, shadow_ward, ice_shroud, summon_spirit_wolf, summon_spirit_horse):
         f().save(OUT / f"{f.__name__}.png"); print("icon", f.__name__)

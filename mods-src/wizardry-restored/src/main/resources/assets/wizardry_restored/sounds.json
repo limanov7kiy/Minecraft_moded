@@ -118,5 +118,133 @@
         "type": "event"
       }
     ]
+  },
+  "spell.lightning_ray": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.lightning_bolt.impact",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.disintegration": {
+    "sounds": [
+      {
+        "name": "minecraft:item.firecharge.use",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.transience": {
+    "sounds": [
+      {
+        "name": "minecraft:block.beacon.power_select",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.mind_control": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.evoker.prepare_wololo",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.metamorphosis": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.zombie_villager.converted",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.frost_barrier": {
+    "sounds": [
+      {
+        "name": "minecraft:block.glass.place",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.wall_of_frost": {
+    "sounds": [
+      {
+        "name": "minecraft:block.powder_snow.place",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.thunderstorm": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.lightning_bolt.thunder",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.earthquake": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.ravager.stunned",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.celestial_smite": {
+    "sounds": [
+      {
+        "name": "minecraft:block.beacon.activate",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.slow_time": {
+    "sounds": [
+      {
+        "name": "minecraft:block.respawn_anchor.deplete",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.light": {
+    "sounds": [
+      {
+        "name": "minecraft:block.amethyst_cluster.place",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.shadow_ward": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.warden.heartbeat",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.ice_shroud": {
+    "sounds": [
+      {
+        "name": "minecraft:block.powder_snow.step",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.summon_spirit_wolf": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.wolf.howl",
+        "type": "event"
+      }
+    ]
+  },
+  "spell.summon_spirit_horse": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.horse.ambient",
+        "type": "event"
+      }
+    ]
   }
 }
