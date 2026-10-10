@@ -47,7 +47,7 @@ public class Earthquake extends Spell {
         for (LivingEntity t : EntityUtil.getLivingWithinRadius(radius, caster.getX(), caster.getY(), caster.getZ(), server)) {
             if (t == caster || !t.onGround() || !AllyDesignation.isValidTarget(caster, t)) continue;
             t.hurt(MagicDamageSource.causeDirectMagicDamage(caster, EBDamageSources.FORCE), DAMAGE * ctx.modifiers().get(SpellModifiers.POTENCY));
-            t.setDeltaMovement(t.getDeltaMovement().add(0, 0.9, 0));
+            if (!dev.mcmoded.wizardryrestored.util.Artifacts.anchored(t)) t.setDeltaMovement(t.getDeltaMovement().add(0, 0.9, 0));
             t.hurtMarked = true;
             t.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100, 2));
         }

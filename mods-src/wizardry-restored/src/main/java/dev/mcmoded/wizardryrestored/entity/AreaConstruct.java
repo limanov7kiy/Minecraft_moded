@@ -45,6 +45,7 @@ public abstract class AreaConstruct extends MagicConstructEntity {
     }
 
     protected static void push(Entity e, Vec3 velocity) {
+        if (dev.mcmoded.wizardryrestored.util.Artifacts.anchored(e)) return;
         e.setDeltaMovement(velocity);
         e.hurtMarked = true;
         if (e instanceof ServerPlayer p) p.connection.send(new ClientboundSetEntityMotionPacket(e));

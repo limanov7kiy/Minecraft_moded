@@ -25,6 +25,25 @@ public class LightningHammerEntity extends AreaConstruct {
         this.noPhysics = false;
     }
 
+    /// Кольцо Талека (`ring_hammer`): упавший молот можно подобрать (и потом метнуть правым кликом).
+    @Override
+    public net.minecraft.world.InteractionResult interact(net.minecraft.world.entity.player.Player player, net.minecraft.world.InteractionHand hand) {
+        if (!landed || !dev.mcmoded.wizardryrestored.util.Artifacts.has(player, com.binaris.wizardry.setup.registries.EBItems.RING_HAMMER))
+            return net.minecraft.world.InteractionResult.PASS;
+        if (!level().isClientSide) {
+            var stack = new net.minecraft.world.item.ItemStack(com.binaris.wizardry.setup.registries.EBItems.LIGHTNING_HAMMER.get());
+            stack.getOrCreateTag().putLong(dev.mcmoded.wizardryrestored.util.Artifacts.HAMMER_EXPIRES, level().getGameTime() + Math.max(20, getLifetime() - tickCount));
+            if (!player.addItem(stack)) player.drop(stack, false);
+            discard();
+        }
+        return net.minecraft.world.InteractionResult.sidedSuccess(level().isClientSide);
+    }
+
+    @Override
+    public boolean isPickable() {
+        return !isRemoved();
+    }
+
     public boolean hasLanded() {
         return landed;
     }

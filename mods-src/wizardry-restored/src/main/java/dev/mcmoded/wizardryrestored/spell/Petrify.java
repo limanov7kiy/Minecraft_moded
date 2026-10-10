@@ -34,7 +34,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
-/// Окаменение: цель превращается в «камень» на 45 секунд — парализована, почти неуязвима, покрыта каменной пылью.
+/// Окаменение: существо на 45 секунд становится каменной статуей (`StatueEntity`; разбить статую — убить его).
+/// Игрока — парализует и делает почти неуязвимым на то же время.
 public class Petrify extends Spell {
     @Override
     public boolean cast(PlayerCastContext ctx) {
@@ -44,6 +45,13 @@ public class Petrify extends Spell {
                 || target.getType().is(net.minecraftforge.common.Tags.EntityTypes.BOSSES)) return false;
         if (ctx.world() instanceof ServerLevel server) {
             int duration = (int) (property(DefaultProperties.EFFECT_DURATION) * ctx.modifiers().get(SpellModifiers.DURATION));
+            if (target instanceof Mob mob && dev.mcmoded.wizardryrestored.entity.StatueEntity.petrify(mob, false, duration) != null) {
+                server.sendParticles(new net.minecraft.core.particles.BlockParticleOption(ParticleTypes.BLOCK, Blocks.STONE.defaultBlockState()),
+                        target.getX(), target.getY() + target.getBbHeight() / 2, target.getZ(), 60, 0.3, 0.6, 0.3, 0.1);
+                this.playSound(ctx.world(), ctx.caster(), ctx.castingTicks(), -1);
+                return true;
+            }
+            // Игроков (их нельзя убрать из мира) — прежним способом: паралич и почти неуязвимость
             target.addEffect(new MobEffectInstance(com.binaris.wizardry.setup.registries.EBMobEffects.PARALYSIS.get(), duration, 0));
             target.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, duration, 3));
             target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, duration, 6));
