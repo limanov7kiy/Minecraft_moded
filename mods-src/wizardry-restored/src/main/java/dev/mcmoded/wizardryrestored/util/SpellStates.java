@@ -14,6 +14,8 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -39,6 +41,8 @@ public final class SpellStates {
     public static final String MUFFLE_UNTIL = "muffle_until";
     public static final String EMPOWER_UNTIL = "empower_until";
     public static final String MARK = "transport_mark";
+    public static final String SHIELD_UNTIL = "shield_until";
+    public static final float MARK_SACRIFICE_BONUS = 0.6f;
     public static final float SHADOW_WARD_FRACTION = 0.5f;
     /// Видимость приглушённого заклинателя: дальше — мобы его не замечают.
     public static final double MUFFLE_DETECT_RANGE = 6.0;
@@ -58,9 +62,35 @@ public final class SpellStates {
         return d.contains(key) && d.getLong(key) > e.level().getGameTime();
     }
 
+    /// Щит: снаряды и магия, прилетающие спереди, не проходят.
+    @SubscribeEvent
+    public static void onAttack(LivingAttackEvent event) {
+        LivingEntity victim = event.getEntity();
+        if (victim.level().isClientSide || !active(victim, SHIELD_UNTIL)) return;
+        var source = event.getSource();
+        boolean projectile = source.getDirectEntity() instanceof Projectile;
+        if (!projectile && !isMagic(source)) return;
+        var from = source.getSourcePosition();
+        if (from == null || from.subtract(victim.getEyePosition()).dot(victim.getLookAngle()) <= 0) return;
+        event.setCanceled(true);
+        if (source.getDirectEntity() instanceof Projectile p) p.discard();
+        victim.level().playSound(null, victim.getX(), victim.getY(), victim.getZ(), net.minecraft.sounds.SoundEvents.SHIELD_BLOCK,
+                victim.getSoundSource(), 0.7f, 1.3f);
+    }
+
+    static boolean isMagic(net.minecraft.world.damagesource.DamageSource source) {
+        return source instanceof MagicDamageSource || source.is(net.minecraft.tags.DamageTypeTags.WITCH_RESISTANT_TO);
+    }
+
     @SubscribeEvent
     public static void onHurt(LivingHurtEvent event) {
         LivingEntity victim = event.getEntity();
+        // Метка жертвы: первая магическая атака усилена и снимает метку
+        var mark = victim.getEffect(dev.mcmoded.wizardryrestored.WizardryRestored.MARK_SACRIFICE_EFFECT.get());
+        if (mark != null && !victim.level().isClientSide && isMagic(event.getSource())) {
+            event.setAmount(event.getAmount() * (1 + MARK_SACRIFICE_BONUS * (mark.getAmplifier() + 1)));
+            victim.removeEffect(dev.mcmoded.wizardryrestored.WizardryRestored.MARK_SACRIFICE_EFFECT.get());
+        }
         if (victim.level().isClientSide || !(event.getSource().getEntity() instanceof LivingEntity attacker) || attacker == victim) return;
         // Теневой заслон: половина урона возвращается нападающему
         if (active(victim, SHADOW_WARD_UNTIL)) {

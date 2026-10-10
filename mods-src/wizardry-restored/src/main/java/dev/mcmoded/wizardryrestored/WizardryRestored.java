@@ -16,6 +16,11 @@ public class WizardryRestored {
     public static final String MOD_ID = "wizardry_restored";
 
     public static final DeferredRegister<Spell> SPELLS = DeferredRegister.create(EBRegistries.SPELL, MOD_ID);
+    public static final DeferredRegister<net.minecraft.world.effect.MobEffect> EFFECTS =
+            DeferredRegister.create(net.minecraftforge.registries.ForgeRegistries.MOB_EFFECTS, MOD_ID);
+    public static final RegistryObject<net.minecraft.world.effect.MobEffect> MARK_SACRIFICE_EFFECT = EFFECTS.register("mark_sacrifice",
+            () -> new net.minecraft.world.effect.MobEffect(net.minecraft.world.effect.MobEffectCategory.HARMFUL, 0xE8C34A) {
+            });
 
     public static final RegistryObject<Spell> LIGHTNING_BOLT = SPELLS.register("lightning_bolt", LightningBolt::new);
     public static final RegistryObject<Spell> SIXTH_SENSE = SPELLS.register("sixth_sense", SixthSense::new);
@@ -57,6 +62,30 @@ public class WizardryRestored {
     public static final RegistryObject<Spell> TRANSPORTATION = SPELLS.register("transportation", Transportation::new);
     public static final RegistryObject<Spell> ICE_STATUE = SPELLS.register("ice_statue", IceStatue::new);
     public static final RegistryObject<Spell> PETRIFY = SPELLS.register("petrify", Petrify::new);
+    // Этап 3: новые сущности (0.5.0)
+    public static final RegistryObject<Spell> FORCEFIELD = SPELLS.register("forcefield", Constructs::forcefield);
+    public static final RegistryObject<Spell> RADIANT_TOTEM = SPELLS.register("radiant_totem", Constructs::radiantTotem);
+    public static final RegistryObject<Spell> WITHERING_TOTEM = SPELLS.register("withering_totem", Constructs::witheringTotem);
+    public static final RegistryObject<Spell> BLACK_HOLE = SPELLS.register("black_hole", Constructs::blackHole);
+    public static final RegistryObject<Spell> STORMCLOUD = SPELLS.register("stormcloud", Stormcloud::new);
+    public static final RegistryObject<Spell> DECOY = SPELLS.register("decoy", Decoy::new);
+    public static final RegistryObject<Spell> SUMMON_ICE_WRAITH = SPELLS.register("summon_ice_wraith", Constructs::summonIceWraith);
+    public static final RegistryObject<Spell> SUMMON_SHADOW_WRAITH = SPELLS.register("summon_shadow_wraith", Constructs::summonShadowWraith);
+    public static final RegistryObject<Spell> SUMMON_STORM_ELEMENTAL = SPELLS.register("summon_storm_elemental", Constructs::summonStormElemental);
+    public static final RegistryObject<Spell> SHIELD = SPELLS.register("shield", Shield::new);
+    public static final RegistryObject<Spell> LIGHTNING_WEB = SPELLS.register("lightning_web", LightningWeb::new);
+    public static final RegistryObject<Spell> IMBUE_WEAPON = SPELLS.register("imbue_weapon", ImbueWeapon::new);
+    public static final RegistryObject<Spell> MARK_SACRIFICE = SPELLS.register("mark_sacrifice", MarkSacrifice::new);
+    public static final RegistryObject<Spell> MIRAGE = SPELLS.register("mirage", Mirage::new);
+    public static final RegistryObject<Spell> SNARE = SPELLS.register("snare", Constructs::snare);
+    public static final RegistryObject<Spell> FOREST_OF_THORNS = SPELLS.register("forest_of_thorns", Thrown.ForestOfThorns::new);
+    public static final RegistryObject<Spell> LIGHTNING_DISC = SPELLS.register("lightning_disc", Thrown.LightningDisc::new);
+    public static final RegistryObject<Spell> LIGHTNING_HAMMER = SPELLS.register("lightning_hammer", Thrown.LightningHammer::new);
+    public static final RegistryObject<Spell> CLAIRVOYANCE = SPELLS.register("clairvoyance", Clairvoyance::new);
+    public static final RegistryObject<Spell> DIVINATION = SPELLS.register("divination", Divination::new);
+    public static final RegistryObject<Spell> SUMMON_PHOENIX = SPELLS.register("summon_phoenix", Constructs::summonPhoenix);
+    public static final RegistryObject<Spell> RESURRECTION = SPELLS.register("resurrection", Resurrection::new);
+    public static final RegistryObject<Spell> POSSESSION = SPELLS.register("possession", Possession::new);
     // «Тестовые» заклинания Redux, которые он убирает на выделенном сервере
     public static final RegistryObject<Spell> LIGHTNING_PULSE = SPELLS.register("lightning_pulse", ReduxTestSpells::lightningPulse);
     public static final RegistryObject<Spell> SUMMON_ICE_GIANT = SPELLS.register("summon_ice_giant", ReduxTestSpells::summonIceGiant);
@@ -66,6 +95,12 @@ public class WizardryRestored {
     public WizardryRestored() {
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
         SPELLS.register(modBus);
+        EFFECTS.register(modBus);
+        dev.mcmoded.wizardryrestored.entity.ModEntities.ENTITY_TYPES.register(modBus);
+        modBus.addListener(dev.mcmoded.wizardryrestored.entity.ModEntities::onAttributes);
+        net.minecraftforge.common.MinecraftForge.EVENT_BUS.register(dev.mcmoded.wizardryrestored.entity.DecoyEntity.class);
+        net.minecraftforge.common.MinecraftForge.EVENT_BUS.register(Clairvoyance.class);
+        net.minecraftforge.common.MinecraftForge.EVENT_BUS.register(Possession.class);
         net.minecraftforge.common.MinecraftForge.EVENT_BUS.register(dev.mcmoded.wizardryrestored.util.TempBlocks.class);
         net.minecraftforge.common.MinecraftForge.EVENT_BUS.register(dev.mcmoded.wizardryrestored.util.SpellStates.class);
     }
