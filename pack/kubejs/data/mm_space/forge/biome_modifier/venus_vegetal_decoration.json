@@ -1,0 +1,18 @@
+{
+  "type": "forge:add_features",
+  "biomes": [
+    "ad_astra:venus_wastelands",
+    "ad_astra:infernal_venus_barrens"
+  ],
+  "features": [
+    "northstar:huge_bloom_fungus_surface",
+    "northstar:huge_spike_fungus_surface",
+    "northstar:huge_plate_fungus",
+    "northstar:huge_tower_fungus",
+    "northstar:bloom_fungus",
+    "northstar:plate_fungus",
+    "northstar:spike_fungus",
+    "northstar:tower_fungus"
+  ],
+  "step": "vegetal_decoration"
+}

@@ -1,0 +1,19 @@
+{
+  "type": "forge:add_features",
+  "biomes": [
+    "ad_astra:venus_wastelands",
+    "ad_astra:infernal_venus_barrens"
+  ],
+  "features": [
+    "mm_space:venus/northstar_deep_stone_layer",
+    "mm_space:venus/northstar_stone_layer",
+    "mm_space:venus/northstar_venus_ore_copper",
+    "mm_space:venus/northstar_venus_ore_glowstone",
+    "mm_space:venus/northstar_venus_ore_iron",
+    "mm_space:venus/northstar_venus_ore_quartz",
+    "mm_space:venus/northstar_venus_ore_redstone",
+    "mm_space:venus/northstar_venus_ore_titanium",
+    "mm_space:venus/northstar_venus_ore_zinc"
+  ],
+  "step": "underground_ores"
+}

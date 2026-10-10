@@ -1,0 +1,12 @@
+{
+  "average_temperature": -270.0,
+  "dimension": "ad_astra:venus_orbit",
+  "dimension_below": "ad_astra:venus",
+  "gravity": 0.0,
+  "heat_gradient": 0.0,
+  "is_orbit": true,
+  "name": "orbit",
+  "planet": "northstar:venus",
+  "temperature": -270.0,
+  "wind_multiplier": 0.0
+}

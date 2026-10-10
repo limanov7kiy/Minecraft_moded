@@ -1,0 +1,7 @@
+{
+  "adjacentDimensions": {},
+  "arrivalHeight": 200,
+  "gravity": 1.6,
+  "orbitedBody": "minecraft:overworld",
+  "distanceToOrbitingBody": 400
+}

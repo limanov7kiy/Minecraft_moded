@@ -1,0 +1,26 @@
+{
+  "average_temperature": [
+    -200.0,
+    434.0
+  ],
+  "dimension": "ad_astra:mercury",
+  "dimension_above": "ad_astra:mercury_orbit",
+  "heat_gradient": 2.0,
+  "heat_intercept": 100.0,
+  "name": "surface",
+  "planet": "northstar:mercury",
+  "sun_multiplier": {
+    "type": "northstar:arithmetic",
+    "a": {
+      "type": "northstar:light",
+      "mode": "sky_darken",
+      "normalize": true
+    },
+    "b": 8.0,
+    "mode": "mul"
+  },
+  "temperature": {
+    "type": "northstar:internal/mercury_temperature"
+  },
+  "wind_multiplier": 0.0
+}

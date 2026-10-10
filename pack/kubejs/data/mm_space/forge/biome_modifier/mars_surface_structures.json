@@ -1,0 +1,12 @@
+{
+  "type": "forge:add_features",
+  "biomes": [
+    "ad_astra:martian_canyon_creek",
+    "ad_astra:martian_polar_caps",
+    "ad_astra:martian_wastelands"
+  ],
+  "features": [
+    "northstar:mars_gravel_pile"
+  ],
+  "step": "surface_structures"
+}

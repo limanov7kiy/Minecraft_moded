@@ -1,0 +1,23 @@
+{
+  "type": "forge:add_features",
+  "biomes": [
+    "ad_astra:mercury_deltas"
+  ],
+  "features": [
+    "mm_space:mercury/northstar_deep_stone_layer",
+    "mm_space:mercury/northstar_stone_layer",
+    "mm_space:mercury/northstar_mercury_ore_copper",
+    "mm_space:mercury/northstar_mercury_ore_diamond",
+    "mm_space:mercury/northstar_mercury_ore_glowstone",
+    "mm_space:mercury/northstar_mercury_ore_gold",
+    "mm_space:mercury/northstar_mercury_ore_lapis",
+    "mm_space:mercury/northstar_mercury_ore_redstone",
+    "mm_space:mercury/northstar_mercury_ore_redstone_large",
+    "mm_space:mercury/northstar_mercury_ore_titanium",
+    "mm_space:mercury/northstar_mercury_ore_tungsten",
+    "mm_space:mercury/northstar_mercury_ore_tungsten_buried",
+    "mm_space:mercury/northstar_mercury_ore_tungsten_small",
+    "mm_space:mercury/northstar_mercury_ore_zinc"
+  ],
+  "step": "underground_ores"
+}

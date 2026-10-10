@@ -1,0 +1,20 @@
+{
+  "average_temperature": -183.0,
+  "dimension": "ad_astra:moon",
+  "heat_gradient": 0.0,
+  "longitude_offset": 135.0,
+  "name": "surface",
+  "planet": "northstar:the_moon",
+  "sun_multiplier": {
+    "type": "northstar:arithmetic",
+    "a": {
+      "type": "northstar:light",
+      "mode": "sky_darken",
+      "normalize": true
+    },
+    "b": 1.5,
+    "mode": "mul"
+  },
+  "temperature": -183.0,
+  "wind_multiplier": 0.0
+}

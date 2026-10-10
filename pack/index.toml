@@ -25,12 +25,336 @@ file = "config/sereneseasonsplus-common.toml"
 hash = "ae0213dfbc7561b527d00565ad849c32e096914967590c1aaf85c4133195c885"
 
 [[files]]
+file = "kubejs/data/ad_astra/creatingspace/rocket_accessible_dimension/earth_orbit.json"
+hash = "f342b19c914771a194d54834d594351a8b998210061d7fe3f024c5925dfa4f70"
+
+[[files]]
+file = "kubejs/data/ad_astra/creatingspace/rocket_accessible_dimension/mars.json"
+hash = "13262e7eedbdbc354c59624c942413addffabf0e44e5aae4e27064a0294b7187"
+
+[[files]]
+file = "kubejs/data/ad_astra/creatingspace/rocket_accessible_dimension/mars_orbit.json"
+hash = "85c14918b68653ed9258ce3d3e9cf4c4290b2437209708bb27acd91e94e8a093"
+
+[[files]]
+file = "kubejs/data/ad_astra/creatingspace/rocket_accessible_dimension/moon.json"
+hash = "11ec0ec51ca36baf20d2d3844db05cdba6185cdfbc14027f1de94f566eaaa788"
+
+[[files]]
+file = "kubejs/data/ad_astra/creatingspace/rocket_accessible_dimension/moon_orbit.json"
+hash = "0c4ff9e2017d1b1d72b737e63e607626e704a933a773d405aabe20c09028f3a8"
+
+[[files]]
+file = "kubejs/data/ad_astra/creatingspace/rocket_accessible_dimension/venus.json"
+hash = "743757f3ff8db7a906aa77a8619a5ec36995493f088141a14c497df6c7e53ccd"
+
+[[files]]
+file = "kubejs/data/ad_astra/tags/items/freeze_resistant_armor.json"
+hash = "1c25bd10bae42be8bdf900f5c5b80e41dbeca7b1fe1faa8c98ac1a46ebdc0809"
+
+[[files]]
+file = "kubejs/data/ad_astra/tags/items/heat_resistant_armor.json"
+hash = "e6a37ab8d7346bae209fce92b1078f8701a4835b103d898847d45b47aa416d35"
+
+[[files]]
+file = "kubejs/data/ad_astra/tags/items/oxygen_supplying_armor.json"
+hash = "1c25bd10bae42be8bdf900f5c5b80e41dbeca7b1fe1faa8c98ac1a46ebdc0809"
+
+[[files]]
+file = "kubejs/data/creatingspace/creatingspace/rocket_accessible_dimension/earth_orbit.json"
+hash = "20e08ea6abd176fadd92c274970c2ce424da728ee929fd6101e3c6a0b4e03a98"
+
+[[files]]
+file = "kubejs/data/creatingspace/creatingspace/rocket_accessible_dimension/mars.json"
+hash = "2de1107e43902b48d5e1122d27ec5a761ccf6a003ef6610a2d7c98eaed827673"
+
+[[files]]
+file = "kubejs/data/creatingspace/creatingspace/rocket_accessible_dimension/mars_orbit.json"
+hash = "cd768858707134fea7f23da1dae0c0b9bcde05f26aa760d3ad99a2329926336f"
+
+[[files]]
+file = "kubejs/data/creatingspace/creatingspace/rocket_accessible_dimension/moon_orbit.json"
+hash = "6845a70fa07caf9834d9099bd29e101287bbb2a0c8558bb52ba009385f9dd5ff"
+
+[[files]]
+file = "kubejs/data/creatingspace/creatingspace/rocket_accessible_dimension/the_moon.json"
+hash = "8112f26d69bd40c25dd1a89cd7089a2f9a81ddcf49de3202d43f8b3a8c083588"
+
+[[files]]
+file = "kubejs/data/creatingspace/creatingspace/rocket_accessible_dimension/venus.json"
+hash = "5623b9dfc19c8c2c33475572fc36184f538a986fc151dd20c7d02036535a83ca"
+
+[[files]]
 file = "kubejs/data/irons_spellbooks/loot_tables/chests/catacombs/crypt_loot.json"
 hash = "0598b727e7ed2370ee43e948969698068785ed8d1e040ed3c7c8d3ca2bc94dfe"
 
 [[files]]
 file = "kubejs/data/irons_spellbooks/loot_tables/chests/citadel/citadel_tomes.json"
 hash = "2786b834de51e30e359168272b7f307289d8f9ef846d39ff9e809da310e3b6b0"
+
+[[files]]
+file = "kubejs/data/minecraft/creatingspace/rocket_accessible_dimension/overworld.json"
+hash = "9d8b81df3ae9b4497894fee34dd753d0438d28317ca9683a80b6712c5cfcea08"
+
+[[files]]
+file = "kubejs/data/mm_space/forge/biome_modifier/mars_surface_structures.json"
+hash = "71d3c64adffc4a991eac26f7b8ae1be8e4b06167d1f5d3018e099a7d81ab5a2b"
+
+[[files]]
+file = "kubejs/data/mm_space/forge/biome_modifier/mars_underground_ores.json"
+hash = "78d452cee4def280f348d04d182e4926ca1501a7159bdc77dd843df8c137d8c6"
+
+[[files]]
+file = "kubejs/data/mm_space/forge/biome_modifier/mercury_underground_ores.json"
+hash = "7809cc543183f476b4f83cf57a737a9c040034979dd6d702d024bd50e006cd75"
+
+[[files]]
+file = "kubejs/data/mm_space/forge/biome_modifier/moon_local_modifications.json"
+hash = "42bb67de1952af3fbdefe9589c4d5c4006264ebaddec46d0365b47030bfe676b"
+
+[[files]]
+file = "kubejs/data/mm_space/forge/biome_modifier/moon_underground_ores.json"
+hash = "3525893c4ac8cbac1b907d53d9f75ac7cb7974ac765c830b3a61f0576dac6ac5"
+
+[[files]]
+file = "kubejs/data/mm_space/forge/biome_modifier/venus_surface_structures.json"
+hash = "d7ca5f807aa358299f9ee3808379357ffd907df298bc0282f47d10f65ee1e15a"
+
+[[files]]
+file = "kubejs/data/mm_space/forge/biome_modifier/venus_underground_ores.json"
+hash = "ef1730a6051ebb7a0e5ec41c779040bb4841e71eb6652cc2d0e1bab3f8234bf4"
+
+[[files]]
+file = "kubejs/data/mm_space/forge/biome_modifier/venus_vegetal_decoration.json"
+hash = "30f2a42ec56ec13b3d2dcfea6a3c57e7ce02be86c14e1a2ee6d069f29c9f1896"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/mars/northstar_deep_stone_layer.json"
+hash = "7878e0ad1637276503f2301e383cbd0c1babfe90925a922776ed74f65a3a8c83"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/mars/northstar_mars_ore_copper.json"
+hash = "615dbcb5ef0ace179cf935cbeb51256fc611b5abd7448dc27b550444a8d54207"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/mars/northstar_mars_ore_copper_large.json"
+hash = "9c1b1e75a3cbb3c6f9592abc83d7e10c0d77b0a746951782acd5b7e7c953a591"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/mars/northstar_mars_ore_gold.json"
+hash = "dbf8cffb462422d8c5bdf358c7ec2d87ff25684370481b761c0ed6d20a58c0b9"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/mars/northstar_mars_ore_quartz.json"
+hash = "36656d287d6346fb44be8f45c6ddcb859b9370bb79b1f11a5addd8cfcdbf733c"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/mars/northstar_mars_ore_redstone.json"
+hash = "be301017214788aa4e0492f42d94e9cafc69132c0ae9b78fb7f0d4e30b7a1297"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/mars/northstar_mars_ore_titanium.json"
+hash = "ae2dc2a3c00a06eedbc1f0f84f2f8273a3b8f4ecb4f9b7be8d5edc79073d9543"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/mars/northstar_mars_ore_zinc.json"
+hash = "9ec6254fb43ca29126bab75268940f13c02d58a9e8bd5864fae593a83fdcba5d"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/mars/northstar_stone_layer.json"
+hash = "3cb7496f9c02f74a3379d3a7050fd45a15c9f5292af07b217ce8636df652ead8"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/mercury/northstar_deep_stone_layer.json"
+hash = "3f50639754c9c204501f1d58388b873c942d859d68043d6ed270d6196adce5d1"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/mercury/northstar_mercury_ore_copper.json"
+hash = "bd142ca444840e5ded38ebf3b87717919d22df0cec450d2d90f28f8e4bae9a77"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/mercury/northstar_mercury_ore_diamond.json"
+hash = "9b0cb9e3232a4da5f5ec0156607a77567c3b158ccf6fd2c18fe5c8ca24c5ce51"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/mercury/northstar_mercury_ore_glowstone.json"
+hash = "c1cc236be95171d321f0f81b375ba4b61a66335385ac93c30deb6fe06da5505b"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/mercury/northstar_mercury_ore_gold.json"
+hash = "3a7026becea8df2afa7862b0cd0b1d01e85cffda110f7311a56c295a16dbfa20"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/mercury/northstar_mercury_ore_lapis.json"
+hash = "0a28498d62b4453b9e3f1618bb3c80c6a605b9027b190fe4dd6322d35698ae80"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/mercury/northstar_mercury_ore_redstone.json"
+hash = "cd071d0d808b90956876e6b80ac0d2795f166cff02f5d885e07ee167fa76f55f"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/mercury/northstar_mercury_ore_redstone_large.json"
+hash = "e10d3836b730da1b11b2bbbfc8966cf64c5f2667bc1a9ad90cda174ab5802f5b"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/mercury/northstar_mercury_ore_titanium.json"
+hash = "037ce4b0d5739d32d8ca36f4faaff9ea3afcfeab6a0ba6983ef8c07ff42db601"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/mercury/northstar_mercury_ore_tungsten.json"
+hash = "4ca470ecd2392caad9bd64855f10bd6e7094ab2c14fc528dbe5e8a706d7aceb2"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/mercury/northstar_mercury_ore_tungsten_buried.json"
+hash = "66158b377623905bd6cffa4bb49e15720160fe549180483b965957b904444ff2"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/mercury/northstar_mercury_ore_tungsten_small.json"
+hash = "0a6658d42fb74499febf6765a1ffacfeaadcf57aa4d0f9ac78ab5bee5ca46cb0"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/mercury/northstar_mercury_ore_zinc.json"
+hash = "e39a06472680d764caf23e6fc72df283cf4269a99945b3a0813fa63d6471b08b"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/mercury/northstar_stone_layer.json"
+hash = "ef5b6e90c37a74011f4838234f211b9b3cb882d27f8923d08baad4e72ea96d2a"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/moon/creatingspace_moon_aluminum_ore.json"
+hash = "6e6d0032bf01caf303fcc53bb0fcd1b7c4e44e086e07f42c40c589a5a70103fd"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/moon/creatingspace_moon_cobalt_ore.json"
+hash = "ea77600ea37cc04ca0bac7c8d178d1aed092e20d6cbc554e93ede2fcbf3be35a"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/moon/creatingspace_moon_nickel_ore.json"
+hash = "99ff4a5309c70c726c8c838d5233011613b97e610eda88cec6d8bcb1340f75f0"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/moon/northstar_deep_stone_layer.json"
+hash = "3734d300a03e921e2529f8623dfccd329da71b6bc0a8c04f4e148649935a9285"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/moon/northstar_moon_ore_copper.json"
+hash = "00c86775fa77fb49b58df9da5bd9d1c91d96999232f6e06aba8bf79785145582"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/moon/northstar_moon_ore_diamond.json"
+hash = "cf3648867f9f7d8d2c4e673b2a7f900901c979b497f3c4bf2e6e796e59846f81"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/moon/northstar_moon_ore_glowstone.json"
+hash = "c18d75f68167a85dbb876ad41e4c50d4fdc15ac8f641a1c516b93c34b85dd18b"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/moon/northstar_moon_ore_gold.json"
+hash = "9a17bbaffbf8671ff79dae51744dfea8bf8a5373676d3118ead4f94799a048e9"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/moon/northstar_moon_ore_lapis.json"
+hash = "ddb0c31fb3726862494fdc8308f376a13b55d5770ade2fab3ac2637b447043c1"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/moon/northstar_moon_ore_redstone.json"
+hash = "796e9848a28e3ef511676c86c2039477065e23a08d722a90c391bcd45e7c2f3f"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/moon/northstar_moon_ore_titanium.json"
+hash = "3e1c533bc64992f2062737c16f431dbdeac04f2b32a6f3f0bf76a52c85cda1c3"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/moon/northstar_moon_ore_zinc.json"
+hash = "4160d0b6072b8f9d38bd2d0a8e92759c8e7d9a27af6837aa3d78dec71b779e1d"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/moon/northstar_moon_ore_zinc_large.json"
+hash = "d4f520b7d172d23762d973cb37415b3192421274e64a4ba6ed6949e8db3fd0cd"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/moon/northstar_stone_layer.json"
+hash = "519aa989c39bed32492926ce35c63057eab301880ac561cea2ae6ee4df5836db"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/venus/northstar_deep_stone_layer.json"
+hash = "d875c038e1140bde547462df552111e42d329ff06feeafce6a8004fc2bb5f3c3"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/venus/northstar_stone_layer.json"
+hash = "b9d8d0e25aa8ca4c46a4984c9d900d2070dbd5b35b30c466421fe674965b573b"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/venus/northstar_venus_ore_copper.json"
+hash = "6e17592af71c0a7d2a94a88a564204716ebd5c5dbb7602709072c2f1e1bb58c1"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/venus/northstar_venus_ore_glowstone.json"
+hash = "d8bf0183f5249e4749755dcf360453515070c2d3017bf761da15b1c5e957d84f"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/venus/northstar_venus_ore_iron.json"
+hash = "e898c347f5f410febbbcb3fb6d3b6ac6aeadb67de72370c92490a558d2cbed53"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/venus/northstar_venus_ore_quartz.json"
+hash = "125e30831e2764ae87027d9f20ee7452b90313a72a0f0b816c04916860e0c8f0"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/venus/northstar_venus_ore_redstone.json"
+hash = "d89d2ef09cf2b1461c449d80cfd4ec8f594c80a969736a5bc6bccfdf9d74e0b8"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/venus/northstar_venus_ore_titanium.json"
+hash = "7640722b7d126730934a8713a474a06282b2f749c35ffc1b72b199d43830621a"
+
+[[files]]
+file = "kubejs/data/mm_space/worldgen/placed_feature/venus/northstar_venus_ore_zinc.json"
+hash = "e7a29134879090f12acfda913ce8597fc5d4fb06347c0342fc97fae1c2e51126"
+
+[[files]]
+file = "kubejs/data/northstar/northstar/planet_dimension/earth.json"
+hash = "d2470eac6ae8582edab23453b84b1481d70b292f90e4c81a2d8c8c7152e295de"
+
+[[files]]
+file = "kubejs/data/northstar/northstar/planet_dimension/earth_orbit.json"
+hash = "919ff52a70195cc7be842acac3d91e675166ac40f0bc2f85f7613d883894e6c1"
+
+[[files]]
+file = "kubejs/data/northstar/northstar/planet_dimension/mars.json"
+hash = "6a642b53a29e1362640798c986b5501806a18562d8c867b169e0371dcf38215d"
+
+[[files]]
+file = "kubejs/data/northstar/northstar/planet_dimension/mars_orbit.json"
+hash = "8f4d5ac20a2f211e925e47c640f027e51fb357436b4d14ffff281fd92398d2b4"
+
+[[files]]
+file = "kubejs/data/northstar/northstar/planet_dimension/mercury.json"
+hash = "2c400ad70cd719a0820e6ffdd968a3016800ecf10ab4321f7ece67282c698bfc"
+
+[[files]]
+file = "kubejs/data/northstar/northstar/planet_dimension/mercury_orbit.json"
+hash = "3c6b2bcda807aa48e9e1cc8408f22d981d1cc1109d7b4780a9288f35b648ec40"
+
+[[files]]
+file = "kubejs/data/northstar/northstar/planet_dimension/moon.json"
+hash = "b8d5c8d5939c869077fe4610924fce628971fe3564ea03fa003ca2ef199dab7e"
+
+[[files]]
+file = "kubejs/data/northstar/northstar/planet_dimension/venus.json"
+hash = "74800d02434e5e0bd7048d2587fc384d8f59498222ca09aa8e088556ed27d8f5"
+
+[[files]]
+file = "kubejs/data/northstar/northstar/planet_dimension/venus_orbit.json"
+hash = "8a64898cb84129e9cb4d81527e1c92287213a1e6acec38e0896d367dedb393db"
+
+[[files]]
+file = "kubejs/data/northstar/tags/items/heat_resistant.json"
+hash = "cb430f32e6bc0b4dd9d0c1a17af53831d0bfff1ea10eac45b5defbdef7297de1"
+
+[[files]]
+file = "kubejs/data/northstar/tags/items/insulating.json"
+hash = "499f8812cc452e9a3355a5cb38223a94573e60ae39bc8fc8f976a001c81f0850"
 
 [[files]]
 file = "kubejs/data/superbwarfare/forge/biome_modifier/deepslate_galena_ore_biome_modifier.json"

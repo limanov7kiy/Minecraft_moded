@@ -1,0 +1,23 @@
+{
+  "type": "forge:add_features",
+  "biomes": [
+    "ad_astra:lunar_wastelands"
+  ],
+  "features": [
+    "mm_space:moon/northstar_deep_stone_layer",
+    "mm_space:moon/northstar_stone_layer",
+    "mm_space:moon/northstar_moon_ore_copper",
+    "mm_space:moon/northstar_moon_ore_diamond",
+    "mm_space:moon/northstar_moon_ore_glowstone",
+    "mm_space:moon/northstar_moon_ore_gold",
+    "mm_space:moon/northstar_moon_ore_lapis",
+    "mm_space:moon/northstar_moon_ore_redstone",
+    "mm_space:moon/northstar_moon_ore_titanium",
+    "mm_space:moon/northstar_moon_ore_zinc",
+    "mm_space:moon/northstar_moon_ore_zinc_large",
+    "mm_space:moon/creatingspace_moon_aluminum_ore",
+    "mm_space:moon/creatingspace_moon_cobalt_ore",
+    "mm_space:moon/creatingspace_moon_nickel_ore"
+  ],
+  "step": "underground_ores"
+}

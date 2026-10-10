@@ -1,0 +1,12 @@
+// Тест: куда ведут маршруты Northstar и Creating Space (должно быть в измерения ad_astra)
+ServerEvents.loaded(event => {
+  const RL = Java.loadClass('net.minecraft.resources.ResourceLocation')
+  const ResourceKey = Java.loadClass('net.minecraft.resources.ResourceKey')
+  const access = event.server.registryAccess()
+  let ns = access.registry(ResourceKey.createRegistryKey(new RL('northstar', 'planet_dimension'))).orElse(null)
+  if (ns == null) console.error('ROUTECHECK northstar registry missing')
+  else ns.keySet().forEach(k => console.info(`ROUTECHECK northstar ${k} -> ${String(ns.get(k)).match(/dimensionId=ResourceKey\[[^/]+\/ ([^\]]+)/)[1]}`))
+  let cs = access.registry(ResourceKey.createRegistryKey(new RL('creatingspace', 'rocket_accessible_dimension'))).orElse(null)
+  if (cs == null) console.error('ROUTECHECK creatingspace registry missing')
+  else cs.keySet().forEach(k => console.info(`ROUTECHECK creatingspace ${k} -> ${cs.get(k).adjacentDimensions().keySet()}`))
+})

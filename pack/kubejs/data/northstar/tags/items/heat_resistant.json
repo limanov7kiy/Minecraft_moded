@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#ad_astra:netherite_space_suit_items",
+      "required": false
+    },
+    {
+      "id": "creatingspace:advanced_spacesuit_helmet",
+      "required": false
+    },
+    {
+      "id": "creatingspace:netherite_oxygen_backtank",
+      "required": false
+    },
+    {
+      "id": "creatingspace:advanced_spacesuit_leggings",
+      "required": false
+    },
+    {
+      "id": "creatingspace:advanced_spacesuit_boots",
+      "required": false
+    }
+  ]
+}

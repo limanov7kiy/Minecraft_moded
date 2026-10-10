@@ -1,0 +1,20 @@
+{
+  "type": "forge:add_features",
+  "biomes": [
+    "ad_astra:martian_canyon_creek",
+    "ad_astra:martian_polar_caps",
+    "ad_astra:martian_wastelands"
+  ],
+  "features": [
+    "mm_space:mars/northstar_deep_stone_layer",
+    "mm_space:mars/northstar_stone_layer",
+    "mm_space:mars/northstar_mars_ore_copper",
+    "mm_space:mars/northstar_mars_ore_copper_large",
+    "mm_space:mars/northstar_mars_ore_gold",
+    "mm_space:mars/northstar_mars_ore_quartz",
+    "mm_space:mars/northstar_mars_ore_redstone",
+    "mm_space:mars/northstar_mars_ore_titanium",
+    "mm_space:mars/northstar_mars_ore_zinc"
+  ],
+  "step": "underground_ores"
+}

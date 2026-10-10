@@ -1,0 +1,41 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#ad_astra:space_suit_items",
+      "required": false
+    },
+    {
+      "id": "creatingspace:basic_spacesuit_helmet",
+      "required": false
+    },
+    {
+      "id": "creatingspace:copper_oxygen_backtank",
+      "required": false
+    },
+    {
+      "id": "creatingspace:basic_spacesuit_leggings",
+      "required": false
+    },
+    {
+      "id": "creatingspace:basic_spacesuit_boots",
+      "required": false
+    },
+    {
+      "id": "creatingspace:advanced_spacesuit_helmet",
+      "required": false
+    },
+    {
+      "id": "creatingspace:netherite_oxygen_backtank",
+      "required": false
+    },
+    {
+      "id": "creatingspace:advanced_spacesuit_leggings",
+      "required": false
+    },
+    {
+      "id": "creatingspace:advanced_spacesuit_boots",
+      "required": false
+    }
+  ]
+}
