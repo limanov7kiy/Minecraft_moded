@@ -1,0 +1,12 @@
+{
+  "average_temperature": -270.0,
+  "dimension": "ad_astra:moon_orbit",
+  "dimension_below": "ad_astra:moon",
+  "gravity": 0.0,
+  "heat_gradient": 0.0,
+  "is_orbit": true,
+  "name": "orbit",
+  "planet": "northstar:the_moon",
+  "temperature": -270.0,
+  "wind_multiplier": 0.0
+}

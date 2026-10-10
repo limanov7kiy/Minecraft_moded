@@ -1,0 +1,14 @@
+{
+  "adjacentDimensions": {
+    "ad_astra:earth_orbit": {
+      "deltaV": 20000
+    },
+    "ad_astra:glacio": {
+      "deltaV": 1200
+    }
+  },
+  "arrivalHeight": 64,
+  "gravity": 0,
+  "orbitedBody": "ad_astra:glacio",
+  "distanceToOrbitingBody": 100
+}

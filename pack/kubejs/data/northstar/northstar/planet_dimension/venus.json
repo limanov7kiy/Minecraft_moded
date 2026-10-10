@@ -2,6 +2,7 @@
   "average_temperature": 464.0,
   "dimension": "ad_astra:venus",
   "dimension_above": "ad_astra:venus_orbit",
+  "gravity": 8.87,
   "heat_gradient": 5.0,
   "heat_intercept": 250.0,
   "name": "surface",

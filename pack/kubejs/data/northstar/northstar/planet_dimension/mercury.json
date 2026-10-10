@@ -5,6 +5,7 @@
   ],
   "dimension": "ad_astra:mercury",
   "dimension_above": "ad_astra:mercury_orbit",
+  "gravity": 3.7,
   "heat_gradient": 2.0,
   "heat_intercept": 100.0,
   "name": "surface",

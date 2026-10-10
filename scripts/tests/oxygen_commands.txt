@@ -1,0 +1,19 @@
+# Проверка кислорода скафандров Northstar/Creating Space на Луне Ad Astra (mm_compat). Все мобы — внутри чанка 0,0 (только он загружен).
+execute in ad_astra:moon run forceload add 0 0
+#sleep 15
+execute in ad_astra:moon run fill 0 200 0 4 200 4 minecraft:stone
+execute in ad_astra:moon run summon pillager 1 201 3 {NoAI:1b,PersistenceRequired:1b,Tags:["ns"],ArmorItems:[{id:"northstar:iron_space_suit_boots",Count:1b},{id:"northstar:iron_space_suit_leggings",Count:1b},{id:"northstar:iron_space_suit_chestpiece",Count:1b,tag:{Oxygen:100}},{id:"northstar:iron_space_suit_helmet",Count:1b}]}
+execute in ad_astra:moon run summon pillager 3 201 0 {NoAI:1b,PersistenceRequired:1b,Tags:["cs"],ArmorItems:[{id:"creatingspace:basic_spacesuit_boots",Count:1b},{id:"creatingspace:basic_spacesuit_leggings",Count:1b},{id:"creatingspace:copper_oxygen_backtank",Count:1b,tag:{Oxygen:100.0f}},{id:"creatingspace:basic_spacesuit_helmet",Count:1b}]}
+execute in ad_astra:moon run summon pillager 1 201 1 {NoAI:1b,PersistenceRequired:1b,Tags:["low"],ArmorItems:[{id:"northstar:iron_space_suit_boots",Count:1b},{id:"northstar:iron_space_suit_leggings",Count:1b},{id:"northstar:iron_space_suit_chestpiece",Count:1b,tag:{Oxygen:5}},{id:"northstar:iron_space_suit_helmet",Count:1b}]}
+execute in ad_astra:moon run summon pillager 3 201 3 {NoAI:1b,PersistenceRequired:1b,Tags:["bare"]}
+#sleep 8
+data get entity @e[tag=low,limit=1] Health
+data get entity @e[tag=low,limit=1] ArmorItems[2].tag.Oxygen
+#sleep 12
+data get entity @e[tag=ns,limit=1] Health
+data get entity @e[tag=ns,limit=1] ArmorItems[2].tag.Oxygen
+data get entity @e[tag=cs,limit=1] Health
+data get entity @e[tag=cs,limit=1] ArmorItems[2].tag.Oxygen
+data get entity @e[tag=low,limit=1] Health
+data get entity @e[tag=bare,limit=1] Health
+data get entity @e[tag=low,limit=1] ArmorItems[2].tag.Oxygen

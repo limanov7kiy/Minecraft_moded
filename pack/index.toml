@@ -25,8 +25,20 @@ file = "config/sereneseasonsplus-common.toml"
 hash = "ae0213dfbc7561b527d00565ad849c32e096914967590c1aaf85c4133195c885"
 
 [[files]]
+file = "kubejs/client_scripts/space_rockets.js"
+hash = "c5f3ef1a27991ac16c6f99ff138572a82654f52f514605e7a423b3c9adfb0eac"
+
+[[files]]
 file = "kubejs/data/ad_astra/creatingspace/rocket_accessible_dimension/earth_orbit.json"
-hash = "f342b19c914771a194d54834d594351a8b998210061d7fe3f024c5925dfa4f70"
+hash = "7ec00a861c3989fff503d88aad810565905340014aa56e3bb084a57378dc46fb"
+
+[[files]]
+file = "kubejs/data/ad_astra/creatingspace/rocket_accessible_dimension/glacio.json"
+hash = "a2f9c1cdc0653195e5664c0ecfc4d0da10980802556a9331544e0696bbb03455"
+
+[[files]]
+file = "kubejs/data/ad_astra/creatingspace/rocket_accessible_dimension/glacio_orbit.json"
+hash = "d3c9c3216aae0efeaacdff04064121dd99c8b5caecd8ea11f99075988b0f31a8"
 
 [[files]]
 file = "kubejs/data/ad_astra/creatingspace/rocket_accessible_dimension/mars.json"
@@ -35,6 +47,14 @@ hash = "13262e7eedbdbc354c59624c942413addffabf0e44e5aae4e27064a0294b7187"
 [[files]]
 file = "kubejs/data/ad_astra/creatingspace/rocket_accessible_dimension/mars_orbit.json"
 hash = "85c14918b68653ed9258ce3d3e9cf4c4290b2437209708bb27acd91e94e8a093"
+
+[[files]]
+file = "kubejs/data/ad_astra/creatingspace/rocket_accessible_dimension/mercury.json"
+hash = "b7d1e85730b06c4162bd6dcad4119db943a0f27148c8df36734a5423c298fbef"
+
+[[files]]
+file = "kubejs/data/ad_astra/creatingspace/rocket_accessible_dimension/mercury_orbit.json"
+hash = "05b030f4bf6d4ac33119283eb6d2bdd3c9add5213917b4966843dc2f47028318"
 
 [[files]]
 file = "kubejs/data/ad_astra/creatingspace/rocket_accessible_dimension/moon.json"
@@ -46,7 +66,43 @@ hash = "0c4ff9e2017d1b1d72b737e63e607626e704a933a773d405aabe20c09028f3a8"
 
 [[files]]
 file = "kubejs/data/ad_astra/creatingspace/rocket_accessible_dimension/venus.json"
-hash = "743757f3ff8db7a906aa77a8619a5ec36995493f088141a14c497df6c7e53ccd"
+hash = "63c2eb53a593de9de411b2742b1f912e90959b546ce7d4c17846798622be572f"
+
+[[files]]
+file = "kubejs/data/ad_astra/planets/earth_orbit.json"
+hash = "fb58e5c57eb5ce960b2e6b7f1da70013da9bf669af00eb610359e04ffd518f71"
+
+[[files]]
+file = "kubejs/data/ad_astra/planets/mars.json"
+hash = "c3b37e6208cef468d35332f64fec8c9077b93ace610d4e0f75113b19ed823be4"
+
+[[files]]
+file = "kubejs/data/ad_astra/planets/mars_orbit.json"
+hash = "2eb0a6628eaed8d7ada13f885a9de8a7f5ea6f759d6a57c3d27e4ad8847773e8"
+
+[[files]]
+file = "kubejs/data/ad_astra/planets/mercury.json"
+hash = "649eccff6fd0b9b7efceaf4aaab996df61304b7e1cd838bdab13aa480027218b"
+
+[[files]]
+file = "kubejs/data/ad_astra/planets/mercury_orbit.json"
+hash = "b04f68fdc21fe8905f37286b1a83258fe92899f5fefc3aeadaaf48595b08307b"
+
+[[files]]
+file = "kubejs/data/ad_astra/planets/moon.json"
+hash = "66c1cbbc6d1cf18e77562e8fb8469aeac671fddad6b8b06b640ba08332e7b942"
+
+[[files]]
+file = "kubejs/data/ad_astra/planets/moon_orbit.json"
+hash = "41e4e291680e59b812eedf4472f3a4d1bf67139f89a7590b36e51f6868ba6027"
+
+[[files]]
+file = "kubejs/data/ad_astra/planets/venus.json"
+hash = "74530e50ba2de9208efe03dca5d5a80a87b9fdd4d1a339c918a37acc1524220d"
+
+[[files]]
+file = "kubejs/data/ad_astra/planets/venus_orbit.json"
+hash = "185f28d9e303b52f18fdd9a26c91ae26061a777014334dca1ad78c664a8958f8"
 
 [[files]]
 file = "kubejs/data/ad_astra/tags/items/freeze_resistant_armor.json"
@@ -55,10 +111,6 @@ hash = "1c25bd10bae42be8bdf900f5c5b80e41dbeca7b1fe1faa8c98ac1a46ebdc0809"
 [[files]]
 file = "kubejs/data/ad_astra/tags/items/heat_resistant_armor.json"
 hash = "e6a37ab8d7346bae209fce92b1078f8701a4835b103d898847d45b47aa416d35"
-
-[[files]]
-file = "kubejs/data/ad_astra/tags/items/oxygen_supplying_armor.json"
-hash = "1c25bd10bae42be8bdf900f5c5b80e41dbeca7b1fe1faa8c98ac1a46ebdc0809"
 
 [[files]]
 file = "kubejs/data/creatingspace/creatingspace/rocket_accessible_dimension/earth_orbit.json"
@@ -322,7 +374,7 @@ hash = "919ff52a70195cc7be842acac3d91e675166ac40f0bc2f85f7613d883894e6c1"
 
 [[files]]
 file = "kubejs/data/northstar/northstar/planet_dimension/mars.json"
-hash = "6a642b53a29e1362640798c986b5501806a18562d8c867b169e0371dcf38215d"
+hash = "31f1c346a2dc36fd5b7d266793bff47067f658167991ce98d9b515f36c4e27c0"
 
 [[files]]
 file = "kubejs/data/northstar/northstar/planet_dimension/mars_orbit.json"
@@ -330,7 +382,7 @@ hash = "8f4d5ac20a2f211e925e47c640f027e51fb357436b4d14ffff281fd92398d2b4"
 
 [[files]]
 file = "kubejs/data/northstar/northstar/planet_dimension/mercury.json"
-hash = "2c400ad70cd719a0820e6ffdd968a3016800ecf10ab4321f7ece67282c698bfc"
+hash = "a842a70160780429fa949287eab26177e7e57b9d0f4d6d3711073611d3c9ad44"
 
 [[files]]
 file = "kubejs/data/northstar/northstar/planet_dimension/mercury_orbit.json"
@@ -338,11 +390,15 @@ hash = "3c6b2bcda807aa48e9e1cc8408f22d981d1cc1109d7b4780a9288f35b648ec40"
 
 [[files]]
 file = "kubejs/data/northstar/northstar/planet_dimension/moon.json"
-hash = "b8d5c8d5939c869077fe4610924fce628971fe3564ea03fa003ca2ef199dab7e"
+hash = "85f03e68c87c6f55e248c97afa4aa341802c060fced1240ec6cfa2c2c706ae95"
+
+[[files]]
+file = "kubejs/data/northstar/northstar/planet_dimension/moon_orbit.json"
+hash = "dfb27f9a23566e2563cd3f2f92f9590a685da941ae4b36e1a2df7cdf048e015f"
 
 [[files]]
 file = "kubejs/data/northstar/northstar/planet_dimension/venus.json"
-hash = "74800d02434e5e0bd7048d2587fc384d8f59498222ca09aa8e088556ed27d8f5"
+hash = "d7450a5999e2775d28e1aae605e6605ed8568cd1607f0f517b1103c9219919f9"
 
 [[files]]
 file = "kubejs/data/northstar/northstar/planet_dimension/venus_orbit.json"
@@ -371,6 +427,14 @@ hash = "a75d5d611e58e3c80bbf0244f82a8a8351c4e8c4aa0f3a1c56da5343aa6d5ae5"
 [[files]]
 file = "kubejs/data/superbwarfare/forge/biome_modifier/silver_ore_biome_modifier.json"
 hash = "a75d5d611e58e3c80bbf0244f82a8a8351c4e8c4aa0f3a1c56da5343aa6d5ae5"
+
+[[files]]
+file = "kubejs/server_scripts/space_rockets.js"
+hash = "d35a677aabcb95f98027c73562f8fe5c4ccf01c5996ae81107ca840a0cbf1397"
+
+[[files]]
+file = "kubejs/startup_scripts/space_rockets_list.js"
+hash = "56a5eae4fbd7007e550db9c67b4b9d41a480b57a32300c9a97e89ee3c32cb368"
 
 [[files]]
 file = "modlist.txt"
@@ -839,6 +903,10 @@ metafile = true
 file = "mods/mezzconfig.pw.toml"
 hash = "c25495262a852dc02886ec8c4b695f30e53264a2e3d881dd36ee9de16a1ef499"
 metafile = true
+
+[[files]]
+file = "mods/mm-compat-0.1.0.jar"
+hash = "2b98dabf47949f9fd555aeb552e89fa0b2af2a78a0ff2416db62da348690484e"
 
 [[files]]
 file = "mods/modernfix.pw.toml"

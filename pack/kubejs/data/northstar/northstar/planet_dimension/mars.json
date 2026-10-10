@@ -2,6 +2,7 @@
   "average_temperature": -100.0,
   "dimension": "ad_astra:mars",
   "dimension_above": "ad_astra:mars_orbit",
+  "gravity": 3.71,
   "heat_gradient": 0.05,
   "heat_intercept": 50.0,
   "name": "surface",

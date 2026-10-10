@@ -1,0 +1,14 @@
+{
+  "adjacentDimensions": {
+    "ad_astra:earth_orbit": {
+      "deltaV": 6500
+    },
+    "ad_astra:mercury": {
+      "deltaV": 1500
+    }
+  },
+  "arrivalHeight": 64,
+  "gravity": 0,
+  "orbitedBody": "ad_astra:mercury",
+  "distanceToOrbitingBody": 100
+}

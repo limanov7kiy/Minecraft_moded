@@ -1,6 +1,7 @@
 {
   "average_temperature": -183.0,
   "dimension": "ad_astra:moon",
+  "gravity": 1.6,
   "heat_gradient": 0.0,
   "longitude_offset": 135.0,
   "name": "surface",
@@ -16,5 +17,6 @@
     "mode": "mul"
   },
   "temperature": -183.0,
-  "wind_multiplier": 0.0
+  "wind_multiplier": 0.0,
+  "dimension_above": "ad_astra:moon_orbit"
 }

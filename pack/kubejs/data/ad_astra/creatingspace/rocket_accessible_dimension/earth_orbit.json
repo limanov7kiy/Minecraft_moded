@@ -11,6 +11,12 @@
     },
     "ad_astra:venus": {
       "deltaV": 2200
+    },
+    "ad_astra:mercury_orbit": {
+      "deltaV": 6500
+    },
+    "ad_astra:glacio_orbit": {
+      "deltaV": 20000
     }
   },
   "arrivalHeight": 64,

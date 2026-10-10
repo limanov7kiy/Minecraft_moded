@@ -32,7 +32,10 @@
   - `mods-src/wizardry-restored` — недостающие заклинания Electroblob's Wizardry поверх Redux
     (план и опись — `docs/wizardry-port.md`; код оригинала не копировать — лицензия Electroblob).
     Сборка: `cd mods-src/wizardry-restored && ./gradlew build`, затем `cp build/libs/*.jar ../../pack/mods/`.
+  - `mods-src/mm-compat` — кодовые связки сборки (кислород скафандров Northstar/Creating Space в Ad Astra).
+    Ad Astra в зависимостях — по Modrinth version id Forge-сборки (номер версии у Forge и Fabric одинаковый).
   - `patches/gaboulibs-shim` — замена удалённой библиотеки для Serene Seasons Plus.
+  - `patches/space_unify.py`, `patches/ore_crossgen.py` — одна Солнечная система (см. docs/compat.md).
 - Объединение дублей: Almost Unified (`pack/config/almostunified/`), перед изменениями проверять
   `scripts/hardrefs.py`.
 - Пользователь хочет: для каждого мода — все дополнения и моды-связки; где совместимость плохая —

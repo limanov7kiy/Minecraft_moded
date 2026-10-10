@@ -1,0 +1,26 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+license = "MIT"
+
+[[mods]]
+modId = "${mod_id}"
+version = "${mod_version}"
+displayName = "Minecraft_moded Compat"
+authors = "Minecraft_moded"
+description = '''
+Связки модов сборки Minecraft_moded, которые нельзя сделать данными: кислород скафандров Northstar и Creating Space в мирах Ad Astra.
+'''
+
+[[dependencies.${mod_id}]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "ad_astra"
+mandatory = true
+versionRange = "[1.15,)"
+ordering = "AFTER"
+side = "BOTH"
