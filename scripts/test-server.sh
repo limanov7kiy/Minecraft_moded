@@ -41,4 +41,6 @@ while kill -0 $pid 2>/dev/null; do
   sleep 5
 done
 wait $pid || true; exec 3>&-
+# битый мод-файл — Forge пишет предупреждение и стартует сервер БЕЗ модов, поэтому это провал
+if grep -q 'Mods loaded with [0-9]* warnings' logs/latest.log; then grep 'is not a valid mod file\|ServerModLoader' logs/latest.log; echo "SERVER FAILED: mod loading warnings"; exit 1; fi
 if grep -q 'Done (' logs/latest.log; then echo "SERVER OK: $(grep -o 'Done ([^)]*)' logs/latest.log)"; else echo "SERVER FAILED"; exit 1; fi

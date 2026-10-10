@@ -1,0 +1,13 @@
+name = "VC Admin - Voice Chat Moderation Tool"
+filename = "vcadmin_1_20_1-1.jar"
+side = "server"
+
+[download]
+url = "https://cdn.modrinth.com/data/uJJBRPID/versions/PeFx02pr/vcadmin_1_20_1-1.jar"
+hash-format = "sha512"
+hash = "992c9cb8390e60d3e058faeb4c6e41288ba1b397200375522ae10029d3a63fb9b67a41255ffe089eaef3cbf8ac81e6311ab5545bf870734ce388c0000528c742"
+
+[update]
+[update.modrinth]
+mod-id = "uJJBRPID"
+version = "PeFx02pr"

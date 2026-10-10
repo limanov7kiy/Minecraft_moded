@@ -55,6 +55,42 @@
 10. После падения загрузки сторонние потоки держат JVM живой, сервер «висит» без вывода.
    `test-server.sh` теперь это распознаёт.
 
+11. **Битый мод-файл выключает все моды.** Zombie Have Ears 1.1.2 (дополнение к голосовому чату) объявляет
+   зависимость без поля `mandatory` (формат NeoForge) — Forge 47 пишет «not a valid mod file», «Mods loaded
+   with 1 warnings» и запускает сервер **без единого мода** (а `Done` в логе есть). Мод убран;
+   `test-server.sh` теперь считает предупреждения загрузки модов провалом.
+12. **`.gitignore` прятал данные worldgen.** Шаблон `world*/` (для папки мира) совпадал и с
+   `pack/kubejs/data/*/worldgen/` — сгенерированные `patches/ore_crossgen.py` размещения `mm_space:*` не
+   попадали в git, и на чистой копии сервер падал: `Unbound values in registry … placed_feature: [mm_space:…]`.
+   Шаблон заякорен (`/world*/`), данные перегенерированы и закоммичены.
+
+## Голосовой чат (Simple Voice Chat 2.6.24)
+Состав (раздел «Удобство и мультиплеер» в `pack/modlist.txt`):
+| Мод | Сторона | Что даёт |
+|---|---|---|
+| Simple Voice Chat | both | голос по близости, группы; сервер слушает **UDP 24454** |
+| Simple Radio (+ Lexiconfig) | both | рации, радио, микрофоны/динамики; связки с Create, Valkyrien Skies, Curios, Vibrative Voice включились сами |
+| Sound Physics Remastered | client | реверберация и заглушение звуков и голосов стенами |
+| Talking Heads, Let Them Talk, VoiceChatProfiles | client | анимация говорящего, приглушение музыки при речи, профили настроек |
+| Vibrative Voice | server | голос — вибрация для скалк-сенсоров/Хранителя |
+| VC Admin, SimpleVoiceChat Broadcast | server | модерация групп и вещание на всех для OP |
+
+Нет под Forge 1.20.1 (только Fabric/Quilt, проверено на Modrinth и CurseForge): Voice Chat Interaction,
+Audio Player, Enhanced Groups. Не взяты: связки с модами, которых нет в сборке (CPM, Figura, Plasmo Voice).
+Серверные моды проверены на отсутствие своих сетевых каналов — клиенту без них подключаться можно.
+Sound Physics на Modrinth помечен `client_only_server_optional` — packwiz ставит `both`, исправлено на `client`.
+Тест: SVC загрузил 3 плагина (vibrativevoice, simplevoicechat_broadcast, simpleradio), `Voice chat server
+started at port 24454`. Конфиг сервера — `pack/config/voicechat/voicechat-server.properties` (по умолчанию;
+`voice_host` — для туннеля playit.gg, см. `docs/hosting.md`).
+
+## Экспорт сборки
+`scripts/export-pack.sh` → `dist/`: `.mrpack` (packwiz modrinth export; моды `side=server` в индексе с
+`env.client=unsupported`, Twilight Forest с CurseForge и свои jar — в `overrides/`) и `*-server.zip`
+(моды both+server, config, kubejs, установщик Forge, `start.sh`/`start.bat`). Серверный пакет проверен:
+распаковка → `start.sh` ставит Forge, просит EULA → `Done (114 s)`, голосовой сервер поднят.
+Клиентский `.mrpack` в лаунчере пока не проверен (поток 5). `pack/modlist.txt` исключён из раздачи
+(`pack/.packwizignore`).
+
 ## Объединение дублей (Almost Unified)
 Один ресурс — один предмет: `pack/config/almostunified/unify.json`. Приоритет модов:
 minecraft → kubejs → create → mekanism → createaddition → ad_astra → northstar. Например, вся сталь

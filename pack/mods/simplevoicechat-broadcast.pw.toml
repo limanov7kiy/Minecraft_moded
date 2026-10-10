@@ -1,0 +1,13 @@
+name = "SimpleVoiceChat Broadcast"
+filename = "simplevoicechat_broadcast-mc1.20.1-1.0.1.jar"
+side = "server"
+
+[download]
+url = "https://cdn.modrinth.com/data/qUhSghSQ/versions/HWPDESRr/simplevoicechat_broadcast-mc1.20.1-1.0.1.jar"
+hash-format = "sha512"
+hash = "546dee068afcfe444f57a121cb04ece45500d461507313fd6ccfb883e1a3cd10820c90a1a6c501ef98872cb568e5e9cf725394d77217452592cdedfb4794e19a"
+
+[update]
+[update.modrinth]
+mod-id = "qUhSghSQ"
+version = "HWPDESRr"
