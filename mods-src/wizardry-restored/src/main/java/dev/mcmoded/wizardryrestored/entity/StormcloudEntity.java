@@ -44,6 +44,14 @@ public class StormcloudEntity extends AreaConstruct {
 
         if (tickCount % 10 != 0) return;
         var spell = WizardryRestored.STORMCLOUD.get();
+        // Кольцо Локензена: туча идёт к ближайшему врагу и живёт дольше с каждым ударом
+        boolean ring = dev.mcmoded.wizardryrestored.util.Artifacts.has(getCaster(), com.binaris.wizardry.setup.registries.EBItems.RING_STORMCLOUD);
+        if (ring) level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(10, REACH_DOWN, 10), e -> e.isAlive() && !isFriend(e))
+                .stream().min(java.util.Comparator.comparingDouble(e -> e.position().subtract(position()).horizontalDistanceSqr()))
+                .ifPresent(e -> {
+                    Vec3 to = e.position().subtract(position()).multiply(1, 0, 1);
+                    if (to.lengthSqr() > 0.25) drift = to.normalize().scale(Math.max(0.08, drift.length()));
+                });
         ServerLevel server = (ServerLevel) level();
         AABB column = new AABB(getX() - r, getY() - REACH_DOWN, getZ() - r, getX() + r, getY() + 1, getZ() + r);
         for (LivingEntity e : level().getEntitiesOfClass(LivingEntity.class, column, LivingEntity::isAlive)) {
@@ -55,6 +63,7 @@ public class StormcloudEntity extends AreaConstruct {
                 server.sendParticles(ParticleTypes.ELECTRIC_SPARK, p.x, p.y, p.z, 2, 0.05, 0.05, 0.05, 0);
             }
             server.playSound(null, e.getX(), e.getY(), e.getZ(), SoundEvents.LIGHTNING_BOLT_IMPACT, getSoundSource(), 0.5f, 1.6f);
+            if (ring) setLifetime(getLifetime() + 20);
         }
     }
 

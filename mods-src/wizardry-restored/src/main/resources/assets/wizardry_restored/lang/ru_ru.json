@@ -70,13 +70,12 @@
   "spell.wizardry_restored.grapple": "Захват",
   "spell.wizardry_restored.grapple.desc": "Магическая лоза притягивает существо к вам или вас — к блоку.",
   "spell.wizardry_restored.transportation": "Перемещение",
-  "spell.wizardry_restored.transportation.desc": "С Shift — запомнить место; обычное применение — вернуться туда (в том же измерении).",
+  "spell.wizardry_restored.transportation.desc": "Переносит к запомненному кругу из четырёх камней перемещения. Shift в центре круга — запомнить его.",
   "spell.wizardry_restored.ice_statue": "Ледяная статуя",
   "spell.wizardry_restored.ice_statue.desc": "Заключает цель в лёд на 20 секунд.",
   "spell.wizardry_restored.petrify": "Окаменение",
   "spell.wizardry_restored.petrify.desc": "Надолго превращает цель в камень. Не действует на боссов.",
-  "spell.wizardry_restored.transportation.marked": "Место запомнено",
-  "spell.wizardry_restored.transportation.other_dimension": "Запомненное место в другом измерении",
+  "spell.wizardry_restored.transportation.marked": "Круг камней запомнен (%s из %s)",
   "spell.wizardry_restored.lightning_pulse": "Импульс молнии",
   "spell.wizardry_restored.lightning_pulse.desc": "Заряжает землю вокруг молнией: ранит и отбрасывает существ рядом.",
   "spell.wizardry_restored.summon_ice_giant": "Призыв ледяного великана",
@@ -150,5 +149,9 @@
   "spell.wizardry_restored.possession": "Одержимость",
   "spell.wizardry_restored.possession.desc": "Вселяетесь в существо на 30 секунд: вы невидимы, а его тело повторяет ваши движения. Shift — выйти раньше.",
   "entity.wizardry_restored.phoenix": "Феникс",
-  "spell.wizardry_restored.resurrection.nobody": "Рядом нет погибших игроков"
+  "spell.wizardry_restored.resurrection.nobody": "Рядом нет погибших игроков",
+  "block.wizardry_restored.transportation_stone": "Камень перемещения",
+  "spell.wizardry_restored.transportation.selected": "Пункт %s: %s %s %s (%s)",
+  "spell.wizardry_restored.transportation.no_circle": "Встаньте в центр круга из четырёх камней перемещения (в двух блоках по сторонам света) и сотворите с Shift, чтобы запомнить его",
+  "spell.wizardry_restored.transportation.broken": "Тот круг камней разрушен и забыт"
 }

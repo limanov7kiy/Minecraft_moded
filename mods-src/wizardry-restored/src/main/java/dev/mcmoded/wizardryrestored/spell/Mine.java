@@ -36,7 +36,11 @@ public class Mine extends Spell {
 
         if (!ctx.world().isClientSide) {
             if (MinecraftForge.EVENT_BUS.post(new BlockEvent.BreakEvent(ctx.world(), pos, state, ctx.caster()))) return false;
-            ctx.world().destroyBlock(pos, true, ctx.caster());
+            // Лунный камень: блок всегда выпадает сам (как с шёлковым касанием)
+            if (dev.mcmoded.wizardryrestored.util.Artifacts.has(ctx.caster(), com.binaris.wizardry.setup.registries.EBItems.CHARM_SILK_TOUCH) && state.getBlock().asItem() != net.minecraft.world.item.Items.AIR) {
+                ctx.world().destroyBlock(pos, false, ctx.caster());
+                net.minecraft.world.level.block.Block.popResource(ctx.world(), pos, new net.minecraft.world.item.ItemStack(state.getBlock()));
+            } else ctx.world().destroyBlock(pos, true, ctx.caster());
         }
         this.playSound(ctx.world(), ctx.caster(), ctx.castingTicks(), -1);
         return true;
