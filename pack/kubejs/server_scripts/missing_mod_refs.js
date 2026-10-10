@@ -5,6 +5,17 @@
 // Список генерирует scripts/missing_tag_refs.py из лога сервера (не править руками).
 // Отключённые рецепты для отсутствующих модов — pack/kubejs/data/*/recipes (условие forge:false).
 const REFS = {
+  "entity_type": {
+    "traveloptics:aerial_collapse_dr": [
+      "cataclysm:ancient_ancient_remnant"
+    ],
+    "traveloptics:element_fire": [
+      "cataclysm:old_netherite_monstrosity"
+    ],
+    "traveloptics:spectral_blink_blacklist": [
+      "cataclysm:ancient_ancient_remnant"
+    ]
+  },
   "item": {
     "aether_redux:swet_jelly": [
       "aether_genesis:blue_swet_jelly",
@@ -62,6 +73,11 @@ const REFS = {
   }
 }
 
+
+ServerEvents.tags('entity_type', event => {
+  const tags = REFS['entity_type']
+  for (let tag in tags) event.remove(tag, tags[tag])
+})
 
 ServerEvents.tags('item', event => {
   const tags = REFS['item']

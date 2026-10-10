@@ -85,10 +85,16 @@
 4. ~~Шум в логах~~ — **сделано** (compat.md п. 9): теги с отсутствующими ссылками больше не теряются,
    рецепты для отсутствующих модов отключены, лучи Cataclysm Spellbooks и `thought_load_limit` — в `mm-compat` 0.2.0.
    Попутно: `.gitignore` прятал `pack/kubejs/data/*/worldgen` — без них чистая копия не создавала мир (п. 12).
-5. Задачи совместимости, пришедшие из потока 3.
-6. (из потока 2) Zombie Have Ears 1.1.2 (зомби слышат голосовой чат) — в `mods.toml` нет поля `mandatory`,
-   Forge 47 его не грузит. Поток 4 отложил из-за лицензии ARR; по CLAUDE.md «Назначение и лицензии» это больше
-   не препятствие — можно перепаковать jar с исправленным `mods.toml` в `patches/` (авторство указать).
+5. ~~Задачи совместимости из потока 3~~ — **сделано** (compat.md п. 13–15):
+   - ~~Superb Warfare × Valkyrien Skies~~ — Superb VS не нужен (SBW 0.8.9+ умеет сам); исправлен блок попадания
+     по кораблю (`mm-compat` 0.3.0), тест `vshitcheck.js`.
+   - ~~CBC: Nuclear~~, ~~Alshanex's Familiars~~, ~~T.O Magic 'n Extras~~ — порты `patches/jar-ports` в `pack/mods/*-mmport.jar`
+     (+ Apothic Attributes и Placebo для T.O). Потоку 3: строки `# mr cbc-nuclear`, `# mr alshanexs-familiars`,
+     `# cf to-tweaks-irons-spells` оставить отключёнными — в сборке порты.
+   - ~~Create: Eureka!~~ — это сборка (134 мода, только конфиги), не датапак: переносить нечего.
+   Инструменты для следующих случаев: `scripts/linkcheck` (что не связывается), `scripts/jarport` + `mods-src/jar-ports`.
+6. ~~(из потока 2) Zombie Have Ears 1.1.2~~ — **сделано**: `patches/zombie-have-ears/build.sh` (исправленный `mods.toml`,
+   авторство SKALKMine указано) → `pack/mods/zombiehaveears-1.1.2-forgefix.jar`, проверен с Simple Voice Chat.
 7. (из ревью PR #2) **Arknights Weapon 1.5.6 удваивает здоровье всех мобов.** `net.mcreator.arknightsweaopn.procedures.RiseProcedure`
    на каждом `EntityJoinLevelEvent` ставит любому не-игроку `max_health` базой = текущий максимум × 2. Событие
    приходит и при загрузке чанка, поэтому сохранённые мобы удваиваются при каждой подгрузке. Проверено бисекцией

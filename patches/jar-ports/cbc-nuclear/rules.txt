@@ -1,0 +1,4 @@
+# CBC 5.11: Forge-реализация CBCBuilderTransformers.safeNbt() удалена — свой safeNbt
+scall rbasamoyai/createbigcannons/datagen/assets/CBCBuilderTransformers.safeNbt()Lcom/tterrag/registrate/util/nullness/NonNullUnaryOperator;   dev/mcmoded/port/cbcnukes/CbcNukesPort.safeNbt()Lcom/tterrag/registrate/util/nullness/NonNullUnaryOperator;
+# сила взрыва разделена на урон блокам и существам; размер ядерного взрыва считался от общей силы — берём блоки
+call rbasamoyai/createbigcannons/munitions/config/components/ExplosionPropertiesComponent.explosivePower()F   rbasamoyai/createbigcannons/munitions/config/components/ExplosionPropertiesComponent.blockDamagePower()F

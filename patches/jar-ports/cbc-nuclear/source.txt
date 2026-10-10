@@ -1,0 +1,5 @@
+# CBC: Nuclear 2.1.1 (snackpirate, MIT) — собран под Create Big Cannons 5.10; порт под CBC 5.11.4.
+url https://cdn.modrinth.com/data/uKD8yQTC/versions/TXfiD0CL/cbc_nukes-2.1.1.jar
+sha512 31770282083e22dc89420d9cbc0200f3aeb2136a09cc879f7e30487e18bf988f75e7654ee71c3a18fa9af45733c49439fcda9be306e50516b49ed7a244b91e50
+out cbc_nukes-2.1.1-mmport.jar
+shims dev/mcmoded/port/cbcnukes

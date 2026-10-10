@@ -522,7 +522,7 @@ hash = "a75d5d611e58e3c80bbf0244f82a8a8351c4e8c4aa0f3a1c56da5343aa6d5ae5"
 
 [[files]]
 file = "kubejs/server_scripts/missing_mod_refs.js"
-hash = "790cc6a816187b6c7e74321d26034b71b4be23636f8effba9e2ea8e8e5be6b93"
+hash = "2733cbc63dc7ee201e97a9d1194423def02d37497ed96e788921f3d1cf883d3a"
 
 [[files]]
 file = "kubejs/server_scripts/space_rockets.js"
@@ -585,6 +585,15 @@ metafile = true
 [[files]]
 file = "mods/almostunified.pw.toml"
 hash = "bc9bc4dc5e09b5213fb158a83d63d5def7bb016c3cef65405f8f2f6c0c62b158"
+metafile = true
+
+[[files]]
+file = "mods/alshanex_familiars-1.20.1_v1.1.2-mmport.jar"
+hash = "879e1c58998aace8967d4cba507f7cbbfa4f17da27d8494b1deef2e77f360857"
+
+[[files]]
+file = "mods/apothic-attributes.pw.toml"
+hash = "1dc9e1a184ade4918dad17ef20de026053c841bd5a50f122fb783bb3f9185b89"
 metafile = true
 
 [[files]]
@@ -716,6 +725,10 @@ metafile = true
 file = "mods/cataclysm-spellbooks.pw.toml"
 hash = "46d7e45a470ab4280c68c2d435214ee63a1c016c426d889d9deee049c6f39a08"
 metafile = true
+
+[[files]]
+file = "mods/cbc_nukes-2.1.1-mmport.jar"
+hash = "9cfaa0742987ac26b70b08a994b1b0f38abc41cf642baaf637f1d9179a0533f9"
 
 [[files]]
 file = "mods/citadel.pw.toml"
@@ -1017,7 +1030,7 @@ metafile = true
 
 [[files]]
 file = "mods/mm-compat-0.3.0.jar"
-hash = "c3c5b0274fe2ba0817d655ecd0a3474e48a9cda483edb21dbd80dde54fff4fcd"
+hash = "4e7aca425db5d7ad1caff4192856f18fe4ae02dbc8b886148231ef4a2baf05bf"
 
 [[files]]
 file = "mods/modernfix.pw.toml"
@@ -1077,6 +1090,11 @@ metafile = true
 [[files]]
 file = "mods/photon-editor.pw.toml"
 hash = "c12d18d3af61a3393a0d23293fada407c924e3d7bee52aee9fa8a8a3565cd624"
+metafile = true
+
+[[files]]
+file = "mods/placebo.pw.toml"
+hash = "969078b157cd783f7c38ac33407abc4f532c244c973d52810d559f02be06db90"
 metafile = true
 
 [[files]]
@@ -1235,6 +1253,10 @@ hash = "aed0a4dd5c3af6f1c2825d9e77319f5c9d49fc2be82f44e7eb5e7c614be06834"
 metafile = true
 
 [[files]]
+file = "mods/traveloptics-6.3.0-1.20.1-mmport.jar"
+hash = "a427563e66516bc5abed1d5243054e31ac2f338e8859b170403361b22cc096c5"
+
+[[files]]
 file = "mods/twilight-delight.pw.toml"
 hash = "6d80804f63e716e97af68933c07c3e3ffe7c1a4798ab5349c696b40e001f5504"
 metafile = true
@@ -1287,3 +1309,7 @@ metafile = true
 file = "mods/yes-steve-model.pw.toml"
 hash = "6008940c3cab0fcf660f78fa5ad81a2ad6ca382f913e8cdd546086cab0dba19a"
 metafile = true
+
+[[files]]
+file = "mods/zombiehaveears-1.1.2-forgefix.jar"
+hash = "9d6c1b79bffbd22944012a0fd7318753402515ad5b37c1d2562f55a687aecc6e"
