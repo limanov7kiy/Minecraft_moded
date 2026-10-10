@@ -1,0 +1,9 @@
+# Попадания Superb Warfare по кораблям VS (vshitcheck.js)
+forceload add -16 -16 16 16
+#sleep 10
+fill 0 200 0 2 200 2 minecraft:iron_block
+vshit assemble
+#sleep 1
+vshit trace
+#sleep 5
+vshit trace

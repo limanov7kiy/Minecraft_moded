@@ -1016,8 +1016,8 @@ hash = "c25495262a852dc02886ec8c4b695f30e53264a2e3d881dd36ee9de16a1ef499"
 metafile = true
 
 [[files]]
-file = "mods/mm-compat-0.2.0.jar"
-hash = "516266266e79f5f6b03d01fed4328868a7a8b8addb958e2af8f08a3d659da5c6"
+file = "mods/mm-compat-0.3.0.jar"
+hash = "c3c5b0274fe2ba0817d655ecd0a3474e48a9cda483edb21dbd80dde54fff4fcd"
 
 [[files]]
 file = "mods/modernfix.pw.toml"
