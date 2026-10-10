@@ -71,6 +71,15 @@ public final class DungeonCommands {
         return start.getPieces().size();
     }
 
+    /** Ближайший естественный данж (синхронно; ванильный /locate в сборке асинхронный из-за Async Locator). */
+    @javax.annotation.Nullable
+    public static BlockPos findNearest(ServerLevel level, BlockPos from, int radiusChunks) {
+        var holder = level.registryAccess().registryOrThrow(Registries.STRUCTURE).getHolder(MOON_DUNGEON);
+        if (holder.isEmpty()) return null;
+        var found = level.getChunkSource().getGenerator().findNearestMapStructure(level, net.minecraft.core.HolderSet.direct(holder.get()), from, radiusChunks, false);
+        return found == null ? null : found.getFirst();
+    }
+
     private DungeonCommands() {
     }
 }

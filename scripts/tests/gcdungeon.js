@@ -1,73 +1,81 @@
 // Тест Galacticraft Revival (mods-src/galacticraft-revival): лунный данж GC на Луне Ad Astra.
-// Ставит данж командой мода, проверяет призыватель босса и запертый сундук сокровищ, призывает и убивает
-// скелета-босса, ждёт конца анимации смерти (200 тиков) и проверяет: сундук наполнен и содержит схему,
-// выпал ключ T1, ключ открывает сундук. Вывод: GCTEST <проверка> OK|FAIL <подробности>.
-// Нужен сервер, живущий ~40 с после Done (TEST_COMMANDS=scripts/tests/gcdungeon_commands.txt).
+// Ставит данж командой мода, проверяет призыватель босса и запертый сундук сокровищ, призывает скелета-босса
+// у призывателя (тот должен «подхватить» босса), убивает его, ждёт конца анимации смерти (200 тиков) и проверяет:
+// сундук наполнен и содержит схему, выпал ключ T1, чужой предмет сундук не открывает, ключ — открывает.
+// Вывод: GCTEST <проверка> OK|FAIL <подробности>. Нужен сервер, живущий ~40 с после Done
+// (TEST_COMMANDS=<абсолютный путь>/scripts/tests/gcdungeon_commands.txt). Наши классы — только через их
+// собственные методы (Rhino не видит унаследованные SRG-имена), ванильные — как обычно.
 let gc = null
-ServerEvents.tick(event => {
-  const server = event.server
-  const t = server.tickCount
-  if (t != 100 && t != 400) return
-  if (!Platform.isLoaded('gcrevival')) return
-  const report = (id, ok, info) => console.info(`GCTEST ${id} ${ok ? 'OK' : 'FAIL'} ${info}`)
-  const Cmd = Java.loadClass('dev.mcmoded.gcrevival.DungeonCommands')
-  const Reg = Java.loadClass('dev.mcmoded.gcrevival.ModRegistry')
-  const level = server.getLevel('ad_astra:moon')
+const gcReport = (id, ok, info) => console.info(`GCTEST ${id} ${ok ? 'OK' : 'FAIL'} ${info}`)
 
-  if (t == 100) {
-    const n = server.runCommandSilent('execute in ad_astra:moon run gcrevival place_dungeon 0 64 0')
-    const sp = Cmd.lastBossSpawner, chestPos = Cmd.lastTreasureChest
-    report('place', sp != null && chestPos != null, `result=${n} spawner=${sp} chest=${chestPos}`)
-    if (sp == null || chestPos == null) return
-    const spawner = level.getBlockEntity(sp)
-    report('spawner', spawner != null && String(spawner.bossType) == 'entity.gcrevival.skeleton_boss' && String(spawner.getChestPos()) == String(chestPos),
-      `be=${spawner} boss=${spawner ? spawner.bossType : '-'} chestPos=${spawner ? spawner.getChestPos() : '-'}`)
-    const floor = String(level.getBlockState(sp.below()).getBlock().getDescriptionId())
-    report('bricks', floor == 'block.gcrevival.moon_dungeon_brick', `floor=${floor}`)
-    const chest = level.getBlockEntity(chestPos)
-    report('chest_locked', chest != null && chest.isLocked(), `chest=${chest}`)
-    const loc = server.runCommandSilent('execute in ad_astra:moon run locate structure gcrevival:moon_dungeon')
-    report('locate', loc > 0, `locate result=${loc}`)
-
-    // чанки комнаты босса и сокровищницы должны тикать, иначе смерть босса не доиграет
-    server.runCommandSilent(`execute in ad_astra:moon run forceload add ${sp.getX()} ${sp.getZ()}`)
-    server.runCommandSilent(`execute in ad_astra:moon run forceload add ${chestPos.getX()} ${chestPos.getZ()}`)
-    const boss = Reg.SKELETON_BOSS.get().create(level)
-    boss.setPos(sp.getX() + 0.5, sp.getY() + 1, sp.getZ() + 0.5)
-    boss.finalizeSpawn(level, level.getCurrentDifficultyAt(sp), Java.loadClass('net.minecraft.world.entity.MobSpawnType').SPAWNER, null, null)
-    level.addFreshEntity(boss)
-    boss.onBossSpawned(spawner)
-    report('boss_spawn', boss.isAlive() && boss.getMaxHealth() == 150, `hp=${boss.getHealth()}/${boss.getMaxHealth()} weapon=${boss.getMainHandItem()}`)
-    boss.kill()
-    gc = { sp: sp, chestPos: chestPos, spawner: spawner }
-    return
+function gcPlace(server, level, moon) {
+  const n = moon('gcrevival place_dungeon 0 64 0')
+  const cmds = Java.loadClass('dev.mcmoded.gcrevival.DungeonCommands')
+  const sp = cmds.lastBossSpawner, chestPos = cmds.lastTreasureChest
+  gcReport('place', sp != null && chestPos != null, `result=${n} spawner=${sp} chest=${chestPos}`)
+  if (sp == null || chestPos == null) return null
+  const spawner = level.getBlockEntity(sp)
+  gcReport('spawner', spawner != null && String(spawner.bossType) == 'entity.gcrevival.skeleton_boss' && String(spawner.getChestPos()) == String(chestPos),
+    `be=${spawner} boss=${spawner ? spawner.bossType : '-'} chestPos=${spawner ? spawner.getChestPos() : '-'}`)
+  const floor = String(level.getBlockState(sp.below()).getBlock().getDescriptionId())
+  gcReport('bricks', floor == 'block.gcrevival.moon_dungeon_brick', `floor=${floor}`)
+  const chest = level.getBlockEntity(chestPos)
+  gcReport('chest_locked', chest != null && chest.isLocked(), `chest=${chest} contents=${chest ? chest.describeContents() : '-'}`)
+  // ванильный /locate в сборке асинхронный (Async Locator) — ищем напрямую
+  const loc = cmds.findNearest(level, new (Java.loadClass('net.minecraft.core.BlockPos'))(1000, 64, 1000), 100)
+  gcReport('locate', loc != null, `natural dungeon near (1000, 1000): ${loc}`)
+  if (loc != null) {
+    // пол входной комнаты (y=25) в центре стартового чанка — после генерации чанка там должен быть кирпич данжа
+    const bp = new (Java.loadClass('net.minecraft.core.BlockPos'))(((loc.getX() >> 4) << 4) + 2, 25, ((loc.getZ() >> 4) << 4) + 2)
+    level.getChunk(bp)
+    const b = String(level.getBlockState(bp).getBlock().getDescriptionId())
+    gcReport('natural_gen', b == 'block.gcrevival.moon_dungeon_brick', `block at ${bp}: ${b}`)
   }
+  // чанки комнаты босса и сокровищницы должны тикать, иначе смерть босса не доиграет
+  moon(`forceload add ${sp.getX()} ${sp.getZ()}`)
+  moon(`forceload add ${chestPos.getX()} ${chestPos.getZ()}`)
+  moon(`summon gcrevival:skeleton_boss ${sp.getX() + 0.5} ${sp.getY() + 1} ${sp.getZ() + 0.5}`)
+  return { sp: sp, chestPos: chestPos, spawner: spawner }
+}
 
-  if (gc == null) return
+function gcKill(moon) {
+  const boss = gc.spawner.boss
+  gcReport('boss_spawn', boss != null && String(boss.describe()).startsWith('150.0/150.0/1 bow'), `spawned=${gc.spawner.spawned} boss=${boss ? boss.describe() : '-'}`)
+  moon('kill @e[type=gcrevival:skeleton_boss]')
+}
+
+function gcCheck(level) {
   const chest = level.getBlockEntity(gc.chestPos)
-  let items = 0, schematic = false
-  for (let i = 0; i < chest.getContainerSize(); i++) {
-    const st = chest.getItem(i)
-    if (!st.isEmpty()) { items++; if (String(st.getItem().getDescriptionId()).startsWith('item.gcrevival.schematic')) schematic = true }
-  }
-  report('treasure', chest.isLocked() && schematic && items >= 3, `locked=${chest.isLocked()} stacks=${items} schematic=${schematic}`)
-  report('boss_defeated', gc.spawner.isBossDefeated, `defeated=${gc.spawner.isBossDefeated}`)
+  const c = String(chest.describeContents()).split('/')
+  gcReport('treasure', chest.isLocked() && c[1] == 'true' && Number(c[0]) >= 3, `locked=${chest.isLocked()} stacks=${c[0]} schematic=${c[1]}`)
+  gcReport('boss_defeated', gc.spawner.isBossDefeated && gc.spawner.boss == null, `defeated=${gc.spawner.isBossDefeated}`)
   const keys = level.getEntitiesOfClass(Java.loadClass('net.minecraft.world.entity.item.ItemEntity'),
     Java.loadClass('net.minecraft.world.phys.AABB').ofSize(gc.sp.getCenter(), 40, 20, 40))
     .stream().filter(e => String(e.getItem().getItem().getDescriptionId()) == 'item.gcrevival.key_t1').count()
-  report('key_drop', keys == 1, `keys=${keys}`)
+  gcReport('key_drop', keys == 1, `keys=${keys}`)
 
-  const Fake = Java.loadClass('net.minecraftforge.common.util.FakePlayerFactory')
-  const Hand = Java.loadClass('net.minecraft.world.InteractionHand')
-  const Hit = Java.loadClass('net.minecraft.world.phys.BlockHitResult')
-  const Dir = Java.loadClass('net.minecraft.core.Direction')
-  const fake = Fake.getMinecraft(level)
+  const fake = Java.loadClass('net.minecraftforge.common.util.FakePlayerFactory').getMinecraft(level)
+  const hand = Java.loadClass('net.minecraft.world.InteractionHand').MAIN_HAND
+  const hitType = Java.loadClass('net.minecraft.world.phys.BlockHitResult')
+  const up = Java.loadClass('net.minecraft.core.Direction').UP
   fake.setPos(gc.chestPos.getX() + 0.5, gc.chestPos.getY() + 1, gc.chestPos.getZ() + 0.5)
-  const hit = new Hit(gc.chestPos.getCenter(), Dir.UP, gc.chestPos, false)
-  fake.setItemInHand(Hand.MAIN_HAND, Item.of('minecraft:stick'))
-  level.getBlockState(gc.chestPos).use(level, fake, Hand.MAIN_HAND, hit)
-  report('wrong_key', chest.isLocked(), `locked=${chest.isLocked()}`)
-  fake.setItemInHand(Hand.MAIN_HAND, Item.of('gcrevival:key_t1'))
-  level.getBlockState(gc.chestPos).use(level, fake, Hand.MAIN_HAND, hit)
-  report('unlock', !chest.isLocked() && fake.getMainHandItem().isEmpty(), `locked=${chest.isLocked()} hand=${fake.getMainHandItem()}`)
+  const hit = new hitType(gc.chestPos.getCenter(), up, gc.chestPos, false)
+  fake.setItemInHand(hand, Item.of('minecraft:stick'))
+  level.getBlockState(gc.chestPos).use(level, fake, hand, hit)
+  gcReport('wrong_key', chest.isLocked(), `locked=${chest.isLocked()}`)
+  fake.setItemInHand(hand, Item.of('gcrevival:key_t1'))
+  level.getBlockState(gc.chestPos).use(level, fake, hand, hit)
+  gcReport('unlock', !chest.isLocked() && fake.getMainHandItem().isEmpty(), `locked=${chest.isLocked()} hand=${fake.getMainHandItem()}`)
+}
+
+ServerEvents.tick(event => {
+  const server = event.server
+  const t = server.tickCount
+  if (t != 100 && t != 140 && t != 420) return
+  if (!Platform.isLoaded('gcrevival')) return
+  const level = server.getLevel('ad_astra:moon')
+  const moon = (cmd) => server.runCommandSilent('execute in ad_astra:moon run ' + cmd)
+  if (t == 100) gc = gcPlace(server, level, moon)
+  else if (gc != null && t == 140) gcKill(moon)
+  else if (gc != null) gcCheck(level)
 })

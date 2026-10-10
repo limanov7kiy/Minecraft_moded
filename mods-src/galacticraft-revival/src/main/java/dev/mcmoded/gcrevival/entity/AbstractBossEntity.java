@@ -140,6 +140,11 @@ public abstract class AbstractBossEntity extends Monster {
         super.aiStep();
     }
 
+    /** Для серверного теста: «здоровье/максимум/оружие». */
+    public String describe() {
+        return this.getHealth() + "/" + this.getMaxHealth() + "/" + this.getMainHandItem();
+    }
+
     public void onBossSpawned(DungeonSpawnerBlockEntity spawner) {
         this.spawner = spawner;
     }

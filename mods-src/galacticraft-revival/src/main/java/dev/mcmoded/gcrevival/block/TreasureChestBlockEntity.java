@@ -58,6 +58,19 @@ public class TreasureChestBlockEntity extends RandomizableContainerBlockEntity {
         }
     }
 
+    /** Для серверного теста: «стопок/есть ли схема» (Rhino не видит унаследованные SRG-методы в наших классах). */
+    public String describeContents() {
+        int stacks = 0;
+        boolean schematic = false;
+        for (ItemStack stack : this.items) {
+            if (!stack.isEmpty()) {
+                stacks++;
+                schematic |= stack.getItem() instanceof dev.mcmoded.gcrevival.item.SchematicItem;
+            }
+        }
+        return stacks + "/" + schematic;
+    }
+
     @Override
     public int getContainerSize() {
         return 27;
