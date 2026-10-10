@@ -438,7 +438,7 @@ hash = "56a5eae4fbd7007e550db9c67b4b9d41a480b57a32300c9a97e89ee3c32cb368"
 
 [[files]]
 file = "modlist.txt"
-hash = "f5752039ce480f1d154542aff79e5b7986f1607483b7046f01f95bab9ed71d6a"
+hash = "c6bd09164d698ee1ff12099f84598eb481d2d96a77dc0b2bf740049ac1f75de9"
 
 [[files]]
 file = "mods/ad-astra-giselle-addon.pw.toml"
@@ -1333,6 +1333,11 @@ hash = "0be4976227df8e261fd362889bf8e85b93e224d1b1c3cd2a11b73a9de3b64083"
 metafile = true
 
 [[files]]
+file = "mods/spell-forge-for-electroblobs-wizardry-redux.pw.toml"
+hash = "fa4b474dc9dab003f2b920356c5c25c7009a17daa22577af2c1c2f566f268d7b"
+metafile = true
+
+[[files]]
 file = "mods/structure-gel-api.pw.toml"
 hash = "0a1893b4abfd0e7243095240b329552c082dd3fa7874b43e9b43c94812875472"
 metafile = true
@@ -1453,8 +1458,8 @@ hash = "1dc6ca31c7b6912c494caa2a4f5f9f7250af50fbeb9ce9141ae9b741f9861987"
 metafile = true
 
 [[files]]
-file = "mods/wizardry-restored-0.3.0.jar"
-hash = "370f5d29dd5148cdfaad692aac7a397ca9a901957b7d29bb096c2e8b353024a6"
+file = "mods/wizardry-restored-0.4.0.jar"
+hash = "846604e68e41e3df6c76843084b13497c5cc0181139e147c0af0618f0f4674e1"
 
 [[files]]
 file = "mods/xaeros-minimap-world-map-waystones-compatibility-forge.pw.toml"

@@ -50,6 +50,19 @@ public class WizardryRestored {
     public static final RegistryObject<Spell> SUMMON_SPIRIT_WOLF = SPELLS.register("summon_spirit_wolf", BuffSpells::summonSpiritWolf);
     public static final RegistryObject<Spell> SUMMON_SPIRIT_HORSE = SPELLS.register("summon_spirit_horse", SummonSpiritHorse::new);
 
+    public static final RegistryObject<Spell> FREEZING_WEAPON = SPELLS.register("freezing_weapon", FreezingWeapon::new);
+    public static final RegistryObject<Spell> EMPOWERING_PRESENCE = SPELLS.register("empowering_presence", EmpoweringPresence::new);
+    public static final RegistryObject<Spell> MUFFLE = SPELLS.register("muffle", Muffle::new);
+    public static final RegistryObject<Spell> GRAPPLE = SPELLS.register("grapple", Grapple::new);
+    public static final RegistryObject<Spell> TRANSPORTATION = SPELLS.register("transportation", Transportation::new);
+    public static final RegistryObject<Spell> ICE_STATUE = SPELLS.register("ice_statue", IceStatue::new);
+    public static final RegistryObject<Spell> PETRIFY = SPELLS.register("petrify", Petrify::new);
+    // «Тестовые» заклинания Redux, которые он убирает на выделенном сервере
+    public static final RegistryObject<Spell> LIGHTNING_PULSE = SPELLS.register("lightning_pulse", ReduxTestSpells::lightningPulse);
+    public static final RegistryObject<Spell> SUMMON_ICE_GIANT = SPELLS.register("summon_ice_giant", ReduxTestSpells::summonIceGiant);
+    public static final RegistryObject<Spell> CONJURE_ARMOR = SPELLS.register("conjure_armor", ReduxTestSpells::conjureArmor);
+    public static final RegistryObject<Spell> SILVERFISH_SWARM = SPELLS.register("silverfish_swarm", ReduxTestSpells::silverfishSwarm);
+
     public WizardryRestored() {
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
         SPELLS.register(modBus);

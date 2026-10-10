@@ -65,11 +65,12 @@ ojospocos, block_surprise, player_hand, wizard_hand). Вернуть — пос�
 (`festive_*`).
 
 ## Дополнения
-На Modrinth дополнений для Redux пока нет; на CurseForge есть Spell Forge for Electroblob's Wizardry:
-Redux, Wizardry Golems, Wizardry — Necromancer's Delight (проверить совместимость с 0.8.9).
-Аддоны оригинала 1.12.2 (Ancient Spellcraft и др.) на 1.20.1 не существуют.
+На Modrinth дополнений для Redux пока нет. С CurseForge в сборке **Spell Forge for Electroblob's Wizardry:
+Redux 1.1.0** (`cf spell-forge-for-electroblobs-wizardry-redux`, сторона both): сервер стартует, в реестре
+162 заклинания (было 151), castcheck 42/42. Wizardry Golems и Wizardry — Necromancer's Delight выпущены
+только для 1.12.2, на 1.20.1 их нет. Аддоны оригинала 1.12.2 (Ancient Spellcraft и др.) на 1.20.1 тоже не существуют.
 
-## Сделано (Wizardry Restored 0.3.0 — 31 из 61)
+## Сделано (Wizardry Restored 0.4.0 — 38 из 61 + 4 «тестовых» Redux)
 | Заклинание | Уровень, стихия | Как сделано |
 |---|---|---|
 | lightning_bolt | advanced, молния | ванильная молния в точку взгляда (нужно открытое небо) |
@@ -102,13 +103,40 @@ Redux, Wizardry Golems, Wizardry — Necromancer's Delight (проверить �
 | ice_shroud | advanced, лёд | 30 с: напавшие получают обморожение Redux |
 | summon_spirit_wolf | apprentice, земля | волк-миньон (механика Redux), пока не убьют |
 | summon_spirit_horse | advanced, земля | осёдланный быстрый конь, исчезает через 30 с без всадника, без дропа |
+| freezing_weapon | advanced, лёд | 45 с: удары в ближнем бою накладывают обморожение Redux (вместо «первого оружия на хотбаре») |
+| empowering_presence | apprentice, исцеление | заклинатель и союзники: +15% к атрибуту Redux `cast.potency` на 45 с |
+| muffle | novice, колдовство | 30 с: мобы дальше 6 блоков не берут заклинателя в цель |
+| grapple | apprentice, земля | мгновенный рывок: существо — к заклинателю, или заклинатель — к блоку (без сущности-лозы) |
+| transportation | advanced, колдовство | Shift — запомнить точку, обычное — вернуться (то же измерение); круг камней перемещения — этап 4 |
+| ice_statue | apprentice, лёд | паралич + обморожение Redux + ледяная оболочка (временные блоки) на 20 с |
+| petrify | advanced, колдовство | паралич + Сопротивление IV + замедление на 45 с, не на боссов (без каменной статуи) |
+| lightning_pulse, summon_ice_giant, conjure_armor, silverfish_swarm | — | классы Redux под нашим именем без метки SENSIBLE — работают на выделенном сервере (Redux свои удаляет) |
 
 Временные блоки (лёд, свет) убираются по таймеру и при остановке сервера (`util/TempBlocks`); длительные
 состояния (заслон, покров, контроль, конь) хранятся в Forge-NBT существа и переживают перезапуск (`util/SpellStates`).
 
 **Проверено в мире** (`scripts/tests/castcheck.js`): все 31 заклинание кастуются фейковым игроком Forge на
 сервере, результат проверяется (поставлен лёд/свет, призваны существа, урон и эффекты на зомби, превращение
-коровы, телепорт и т.д.) — 31/31 OK. Звук и графику на клиенте — проверить игроку.
+коровы, телепорт и т.д.) — 42/42 OK (0.4.0). Звук и графику на клиенте — проверить игроку.
+
+## Точка остановки (для нового чата потока 1)
+- Состояние: **0.4.0**, jar `pack/mods/wizardry-restored-0.4.0.jar`; тесты `spellcheck.js` (42 в реестре) и
+  `castcheck.js` (42/42) — запуск: `TEST_COMMANDS=<файл с «#sleep 40»> EXTRA_SERVER_SCRIPTS=<папка с копиями
+  scripts/tests/spellcheck.js и castcheck.js> scripts/test-server.sh <папка вне репо>`.
+- Сборка: `cd mods-src/wizardry-restored && ./gradlew build` (JDK 17 качает foojay), иконки —
+  `python3 tools/make_icons.py`, версия — `gradle.properties`; старый jar в `pack/mods/` удалить, новый
+  положить, `packwiz refresh` в `pack/`.
+- Особенности теста: фейковый игрок не добавлен в мир (поиск сущностей вокруг его не находит — заклинателя
+  обрабатывать отдельно); телепорт ему делать через `setPos` + `teleportTo`; состояния мода — в Forge-NBT
+  (`String(e.nbt)`), а не `persistentData` KubeJS; углы — `fake.yRot = …`.
+- **Следующий шаг — этап 3** (новые сущности/блоки), осталось 23 заклинания:
+  snare, shield, forcefield, radiant_totem, withering_totem, decoy, mirage, black_hole, stormcloud,
+  lightning_disc, lightning_web, lightning_hammer, forest_of_thorns, summon_ice_wraith, summon_shadow_wraith,
+  summon_storm_elemental, summon_phoenix, resurrection, possession, clairvoyance, divination, imbue_weapon,
+  mark_sacrifice. Начать с простых сущностей-конструкций (forcefield, decoy, totems, black_hole, stormcloud):
+  регистрировать `EntityType` в `WizardryRestored` (DeferredRegister ENTITY_TYPES), рендер — клиентский класс
+  (`Dist.CLIENT`), модели упрощённые (fal недоступен — ассеты рисовать скриптами или из ванильных частей).
+  Заменить упрощения 0.4.0 (grapple без лозы, petrify без статуи, transportation без камней) — этап 3/4.
 
 ## План
 1. Каркас дополнения + первые заклинания без новых сущностей/блоков (вертикальный срез, проверка на сервере).
