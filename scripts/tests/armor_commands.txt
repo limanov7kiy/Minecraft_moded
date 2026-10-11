@@ -1,0 +1,10 @@
+# Формулы брони/защиты (pack/config/attributeslib.cfg): зомби (броня 2) в полном алмазе (20) с «Защитой IV» ×4 (16 очков)
+# получает удар 10 (mob_attack). Броня Apothic: 10/(10+22) → 3.125; защита ваниль 0.36 → 1.125 → здоровье 18.875.
+# (С защитой Apothic по умолчанию было бы 0.6 → 1.875 → 18.125; полностью ваниль — 20 - 10*0.288*0.36 ≈ 18.96.)
+forceload add 0 0
+#sleep 5
+summon zombie 0 120 0 {NoAI:1b,NoGravity:1b,PersistenceRequired:1b,Tags:["armortest"],ArmorItems:[{id:"minecraft:diamond_boots",Count:1b,tag:{Enchantments:[{id:"minecraft:protection",lvl:4s}]}},{id:"minecraft:diamond_leggings",Count:1b,tag:{Enchantments:[{id:"minecraft:protection",lvl:4s}]}},{id:"minecraft:diamond_chestplate",Count:1b,tag:{Enchantments:[{id:"minecraft:protection",lvl:4s}]}},{id:"minecraft:diamond_helmet",Count:1b,tag:{Enchantments:[{id:"minecraft:protection",lvl:4s}]}}]}
+#sleep 2
+damage @e[tag=armortest,limit=1] 10 minecraft:mob_attack
+#sleep 1
+data get entity @e[tag=armortest,limit=1] Health

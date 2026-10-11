@@ -17,6 +17,10 @@ file = "config/almostunified/unify.json"
 hash = "f51b0cd5c833b65997901eba8cd168b9cd5b533b36f377b3362ee5dc6e51a3e6"
 
 [[files]]
+file = "config/attributeslib.cfg"
+hash = "2e2c36ee619e886c53f36d0123f931adc4d41fa7805ae1648f40613ac20edfd4"
+
+[[files]]
 file = "config/canary.properties"
 hash = "8b34973d33381c95c7bb176234d5ed927110c5b81c0c0d82b5ebbf06dea97b81"
 
