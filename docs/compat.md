@@ -21,6 +21,7 @@
    клиентскому классу `GeoObjectRenderer` из AzureLib. Это чисто визуальный мод (шерсть/уши origins),
    поэтому `origin-furs-unofficial-forge-port` и `arknights-furs` вручную помечены
    `side = "client"` (AzureLib остаётся на обеих сторонах — он нужен Cataclysm Spellbooks на сервере). **После `packwiz update` проверить, что пометка не слетела.**
+   **Поток 5:** оба мода **убраны** — Origin Furs собран под AzureLib 2.x, а в сборке AzureLib 3.1 (см. «Проверка клиента», п. К3).
 4. Lycanites Mobs 0.1.0-alpha: в jar нет `lycanitesmobs.refmap.json`, хотя конфиг миксинов на него ссылается —
    миксины к ванильным классам (`StructureAccessor`, `ReloadCommandMixin`, клиентский `LightTextureMixin`) в
    настоящей игре не применялись (`/reload` не перечитывал данные Lycanites, на клиенте ломался эффект освещения).
@@ -218,7 +219,7 @@ More Backpack Upgrades (+ Refined Storage). Сервер — `Done`, новый 
 | Simple Voice Chat | both | голос по близости, группы; сервер слушает **UDP 24454** |
 | Simple Radio (+ Lexiconfig) | both | рации, радио, микрофоны/динамики; связки с Create, Valkyrien Skies, Curios, Vibrative Voice включились сами |
 | Sound Physics Remastered | client | реверберация и заглушение звуков и голосов стенами |
-| Talking Heads, Let Them Talk, VoiceChatProfiles | client | анимация говорящего, приглушение музыки при речи, профили настроек |
+| Talking Heads, Let Them Talk | client | анимация говорящего, приглушение музыки при речи (VoiceChatProfiles убран — К2 «Проверки клиента») |
 | Vibrative Voice | server | голос — вибрация для скалк-сенсоров/Хранителя |
 | VC Admin, SimpleVoiceChat Broadcast | server | модерация групп и вещание на всех для OP |
 
@@ -294,8 +295,72 @@ Northstar/CS выживает на Луне, воздух тратится ~1/с
 Ванильный `/locate` в сборке асинхронный (Async Locator) — результат команды всегда 0, ответ приходит позже.
 План и ход работ — `docs/galacticraft.md`.
 
+## Проверка клиента (поток 5, 2026-10-11)
+Клиент запускался в облаке: `scripts/test-client.sh` — Forge через portablemc, моды из `.mrpack` так же, как
+ставит Prism (только `env.client != unsupported` + `overrides/`), Xvfb + Mesa llvmpipe (OpenGL 4.5), без звука.
+Тестовый сервер — `scripts/test-server.sh`, затем вход с клиента. Скриншоты — `docs/client-check/`.
+Стороны: в `.mrpack` 7 серверных модов помечены `env.client = unsupported`, 11 клиентских — `env.server =
+unsupported`; в серверном zip клиентских нет. Совпадает с `side` в `pack/mods/*.pw.toml`.
+
+Найдено (до исправлений клиент **не доходил до меню** ни разу):
+- К1. **ImmediatelyFast 1.2.7+1.20.2 × Oculus 1.8.0** — Oculus 1.8 переименовал пакеты Iris
+  (`net.coderbot.iris` → `net.irisshaders.iris`), IF не находит `ImmediateState` и вызывает `System.exit(-1)`:
+  игра закрывается сразу после создания окна **без краш-репорта** (найдено агентом `scripts/clienttest/ExitTrace.java`).
+  **Исправлено:** IF обновлён до 1.5.5+1.20.4-forge (знает оба пакета; mods.toml: minecraft [1.20,1.20.4], forge [46,)).
+  `packwiz update` сам его не обновляет («inconsistent between latest version number and newest release date») —
+  при обновлениях не откатывать на 1.2.7.
+- К2. **VoiceChatProfiles 1.0.1 (1.20.1 Forge)** — диапазон `voicechat [2.6.0,)` против версии
+  `1.20.1-2.6.24` (по Maven 1 < 2: «Missing mandatory dependencies»), а после правки диапазона — вылет на первом
+  тике меню: `NoSuchMethodError KeyMapping.consumeClick()` — jar не перемаплен в SRG (имена Mojang).
+  Исправленной версии нет. **Убран** из сборки (клиентская мелочь, в `modlist.txt` закомментирован).
+- К3. **Origin Furs (`origin_visuals` 1.0.5) × AzureLib 3.1** — миксины Origin Furs используют старый API
+  (`mod.azure.azurelib.model.GeoModel`, `cache.object.GeoBone`, `core.animation.*`, `renderer.GeoObjectRenderer`),
+  которого нет в AzureLib 3.1.x; а Cataclysm Spellbooks 1.2.9 требует новый API (`AzAnimator`, `AzArmorRenderer`…),
+  которого нет в 3.0.27. Ни одна версия AzureLib (проверены 3.0.27, 3.1.0/3/4/6/10/20) не подходит обоим.
+  Миксин падает → «broken mod state» → вылет. **Убраны** Origin Furs и Arknights Furs (обе только клиентские,
+  на сервер и реестры не влияют). Вернуть можно портом (задача потоку 4): переходник старого API AzureLib
+  внутри jar Origin Furs (`scripts/jarport`) или собрать Origin Furs под AzureLib 3.
+- К4. **Cataclysm Spellbooks 1.2.9 × L_Ender's Cataclysm 3.31 — БЛОКЕР, не исправлено.** Вылет клиента при
+  регистрации рендереров: `NoClassDefFoundError .../client/render/entity/Ancient_Remnant_Rework_Renderer`.
+  `scripts/linkcheck` даёт 9 несвязанных ссылок, часть серверные: частицы `RingParticle$RingData`,
+  `StormParticle$OrbData`, `LightTrailParticle$OrbData`, `TrackLightningParticle$OrbData` (в 3.31 — record'ы
+  `Options/*`), конструктор `Wither_Missile_Entity(EntityType, LivingEntity, DDDDDD F, Level)`,
+  `CMDamageTypes.causeLaserDamage(Entity, LivingEntity)`, `Ancient_Remnant_Layer(<Ancient_Remnant_Rework_Renderer>)`.
+  Сервер стартует (рендеры не грузятся), но заклинания с этими ссылками упадут при касте. Те же переименования
+  частиц уже описаны в правилах порта Traveloptics (`patches/jar-ports/traveloptics/rules.txt`) — нужен такой же
+  порт (поток 4). Пока его нет, **клиент со сборкой не запускается**; для проверки остального Spellbooks убирали
+  локально с обеих сторон.
+- К5. **Serene Seasons Plus сбрасывал конфиг сборки.** Новая версия при первом запуске переносит
+  `sereneseasonsplus-common.toml` в `.bak` и пишет умолчания, если в `config/` нет маркера
+  `.sereneseasonsplus-descriptive-config-reset.done` — на сервере и на клиенте выключалось накопление снега
+  (`enableSeasonalSnowAccumulation`, п. 8), игроку показывалось окно «config was reset». **Исправлено:** маркер
+  лежит в `pack/config/` (попадает и в `.mrpack`, и в серверный zip).
+- К6. **Lycanites `LightTextureMixin` на клиенте не применяется**: «@Shadow field lightTexture was not located…
+  Using refmap lycanitesmobs.refmap.json». В refmap из `patches/lycanites-refmap` нет записи поля; нужно добавить
+  в маппинги `com/lycanitesmobs/core/mixin/LightTextureMixin` строку
+  `"lightTexture": "f_109870_:Lnet/minecraft/client/renderer/texture/DynamicTexture;"` (SRG-имя проверено по
+  `client-1.20.1-…-srg.jar`). Не вылет — эффект затемнения от страха не работает. Задача потоку 4.
+- К7. **Yes Steve Model под ВМ:** «YSM client cannot run under a virtual machine» (экран предупреждений Forge),
+  затем выгружает свою `libysm-core.so`, и её поток роняет JVM нативным SIGSEGV (`__call_tls_dtors`) при входе
+  в мир. Особенность облака — на настоящем ПК так быть не должно; для теста YSM убирали с обеих сторон.
+  Игрокам — пункт в `docs/client-checklist.md`.
+- К8. Остальное при входе в мир (не вылеты): Distant Horizons пишет «Unable to get a complete buffer for a
+  received payload» (LOD с сервера при сильной задержке тиков); Arknights Weapon — «Missing textures in model
+  arknights_weapon:<оружие>#inventory» (11 шт., в `models/item/*.json` текстура без пространства имён →
+  `minecraft:item/…`; предметы рисует GeckoLib, в руке/инвентаре проверить глазами); 3 пластинки — «Palette mask …
+  amendments:block/music_discs» (Amendments не нашёл маску под чужие пластинки, только вид на проигрывателе).
+- К9. **Нагрузка:** с 5 ГБ кучи клиент в мире занят на 94 % (F3) — игрокам ставить 6–8 ГБ (`docs/friends.md`).
+  Вход идёт долго: рецепты и синхронизация данных на медленном ПК занимают десятки секунд, а сервер ждёт ответ
+  на keep-alive не дольше 15 с — на облачном CPU первый вход кончился «Timed out», второй прошёл.
+  Если у игрока со слабым ПК повторяется — сообщить (можно поставить мод, увеличивающий таймаут).
+
+Проверено в мире (llvmpipe, 2 FPS): вход без «mismatched mod channel» и рассинхрона реестров, выбор Origin и
+Originium Arts, HUD (LSO, миникарта Xaero, Jade), рендер Evolved Skeleton Boss (Galacticraft Revival) с полосой
+здоровья босса, феникс Wizardry Restored. Миксины портов `*-mmport.jar` (T.O Magic, Familiars, CBC: Nuclear,
+Arknights Weapon) применяются без ошибок. Микрофон, звук, шейдеры на GPU, детали рендера — `docs/client-checklist.md`.
+
 ## Открытые вопросы
-- Серверный тест не проверяет клиент (рендер, шейдеры Oculus + Embeddium): нужен запуск клиента у игрока.
+- Клиент в облаке проверяется `scripts/test-client.sh` (без GPU и звука); шейдеры, микрофон и macOS — только у игрока (`docs/client-checklist.md`).
 
 ## Порт Galacticraft (если решим делать)
 Galacticraft Legacy (1.12.2) → 1.20.1 — это фактически переписывание: между версиями сменились

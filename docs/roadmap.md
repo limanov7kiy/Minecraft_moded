@@ -126,21 +126,37 @@
    `mobhealth_commands.txt`: оригинал 20→40→80, порт 20→20. Оригинал из PR #2 убран при слиянии, в сборке порт.
 8. ~~Apothic Attributes и формулы брони~~ — **решено**: броня по Apothic, защита-зачарование по ванилле
    (`pack/config/attributeslib.cfg`, расчёт — compat.md п. 14, тест `scripts/tests/armor_commands.txt`).
+9. **(из потока 5, БЛОКЕР клиента) Cataclysm Spellbooks 1.2.9 × Cataclysm 3.31** — порт как у T.O Magic:
+   9 несвязанных ссылок (частицы `*Data` → `Options/*`, `Wither_Missile_Entity`, `CMDamageTypes.causeLaserDamage`,
+   `Ancient_Remnant_Rework_Renderer`/`Ancient_Remnant_Layer`), список — compat.md К4. Без порта клиент со сборкой
+   **вылетает при запуске**. Проверка: `scripts/test-client.sh` доходит до `CLIENT OK`.
+10. (из потока 5) Lycanites refmap: добавить поле `lightTexture` → `f_109870_` (compat.md К6), клиентский
+    `LightTextureMixin` сейчас не применяется.
+11. (из потока 5) Origin Furs × AzureLib 3.1 (compat.md К3): Origin Furs и Arknights Furs убраны; вернуть —
+    переходник старого API AzureLib (`GeoModel`, `GeoBone`, `GeoObjectRenderer`, `core.animation.*`) в jar
+    Origin Furs. Если сложно — потоку 3 решить, нужны ли они.
 
 ### Поток 5 — Проверка клиента
-Серверный тест клиент не покрывает. Запуск клиента (Xvfb в облаке или у игрока): Oculus + Embeddium,
-Distant Horizons, Yes Steve Model, AzureLib-рендер, клиентские моды Arknights furs. Найденное — в
-`docs/compat.md`; правки модов — через поток 3/4. Начинать после потоков 2–3, когда набор модов устоится.
-- (из потока 1) Wizardry Restored 0.6.0: сервер проверен, клиент — нет. Посмотреть рендер новых сущностей
-  (тотемы, чёрная дыра, силок, шипы, молот — модели из ванильных блоков; двойник/мираж — скин владельца; феникс —
-  своя текстура; статуи — модель существа текстурой камня/льда; лоза — линия до крюка), частицы силового поля/тучи/диска, иконки заклинаний и эффекта «Метка жертвы», звуки Redux.
-- (из потока 2) Импорт `dist/*.mrpack` в Prism Launcher и Modrinth App (серверные моды не должны ставиться),
-  голосовой чат клиент↔сервер (микрофон, группы, рации Simple Radio), Sound Physics вместе с Oculus;
-  порт аддонов: своя пластинка/козий рог (`/audioplayer`), загрузка через браузер.
+Клиент в облаке: `scripts/test-client.sh <папка>` (Forge через portablemc, моды из `.mrpack` как у Prism,
+Xvfb + Mesa llvmpipe, агент `scripts/clienttest/ExitTrace.java` ловит «тихие» `System.exit`), установщик
+`scripts/mrpack-install.py`. Чек-лист для игрока — `docs/client-checklist.md`, скриншоты — `docs/client-check/`,
+находки — compat.md «Проверка клиента» (К1–К9). Сделано 2026-10-11:
+- **Было: клиент не запускался вообще** — 4 независимых вылета до главного меню.
+- Исправлено в сборке: ImmediatelyFast 1.2.7 → 1.5.5 (с Oculus 1.8 закрывал игру без краш-репорта, К1);
+  убраны VoiceChatProfiles (битый jar, К2), Origin Furs и Arknights Furs (AzureLib 2.x против 3.1, К3);
+  маркер Serene Seasons Plus в `pack/config/` (мод сбрасывал конфиг сборки на сервере и клиенте, К5).
+  Стороны в `.mrpack`/серверном zip совпадают с `side` — править не пришлось.
+- **Осталось (блокер):** Cataclysm Spellbooks 1.2.9 роняет клиент (К4) — порт потоку 4, задача 9. До него
+  друзья играть не смогут.
+- Проверено с убранным локально Spellbooks (и YSM — он не работает под ВМ, К7): главное меню (старт 272 с на
+  llvmpipe), вход на тестовый сервер без рассинхрона реестров и «mismatched mod channel», выбор Origin, HUD,
+  рендер скелета-босса Galacticraft с полосой здоровья, феникс Wizardry; миксины портов `*-mmport.jar` применяются;
+  Lycanites `LightTextureMixin` — нет (К6, задача 10 потока 4).
+- Не проверено в облаке и почему: шейдеры Oculus, Distant Horizons, YSM (нет GPU, 2 FPS, ВМ), детали рендера
+  сущностей Wizardry/GC, микрофон, рации, Sound Physics, `/audioplayer` (нет звука), импорт в Prism/Modrinth App
+  (нет GUI-лаунчера; установщик повторяет его правила), macOS → `docs/client-checklist.md`.
+- Следующий шаг: после порта Spellbooks — `scripts/test-client.sh` до `CLIENT OK`, затем раздать чек-лист игрокам.
 
-- (из потока Galacticraft) Galacticraft Revival 0.1.0 (в сборке): рендер скелета-босса (модель GC5),
-  модель сундука сокровищ (Legacy, UV под 1.12 — может быть перевёрнута), потухший факел, полоса здоровья босса,
-  захват и бросок игрока боссом, звуки босса.
 ## Интеграция (ревью PR, поток «Ревью и интеграция», ветка `claude/confident-hypatia-2zqr1t`)
 Цикл 1 — 2026-10-10:
 - **PR #1, поток 2** (голосовой чат, экспорт, UDP): проверен и **влит** (`013bf69`). `add-mods.sh` пусто,

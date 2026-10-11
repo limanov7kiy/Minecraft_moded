@@ -64,7 +64,7 @@ mr contigency-contract-lite
 mr arknights-races
 mr arknights-skills
 mr arknightsfurniture
-mr arknights-furs
+# mr arknights-furs      # ОТКЛЮЧЁН (поток 5): тянет Origin Furs, тот собран под AzureLib 2.x, а в сборке 3.1 (нужен Cataclysm Spellbooks) — клиент не стартует. Вернуть после порта (compat.md п. «Проверка клиента»)
 mr origins-forge
 mr arknights-origins-originium-arts
 
@@ -99,7 +99,7 @@ mr simple-radio             # both: рации и радио через SVC; с�
 mr sound-physics-remastered # client: эхо и заглушение звука, в т.ч. голосов
 mr talkingheads             # client: голова говорящего игрока покачивается
 mr let-them-talk            # client: приглушает музыку и другие звуки, пока кто-то говорит
-mr voicechatprofiles        # client: профили настроек голосового чата
+# mr voicechatprofiles      # ОТКЛЮЧЁН (поток 5): jar 1.0.1 под 1.20.1 Forge не перемаплен в SRG — вылет клиента на первом тике
 mr vibrative-voice          # server: голос — вибрация для скалк-сенсоров и Хранителя
 mr vc-admin-voice-chat-moderation-tool # server: OP заходят в запароленные группы (модерация)
 mr simplevoicechat-broadcast # server: OP вещает на всех (группа "broadcast")

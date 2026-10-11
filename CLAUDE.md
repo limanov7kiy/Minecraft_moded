@@ -39,6 +39,8 @@
   путь передаётся через `PACKWIZ=`).
 - `scripts/test-server.sh <папка вне репо>` — ставит Forge-сервер, качает серверные моды, запускает до `Done`.
   После каждого изменения набора модов прогоняй его и записывай находки в `docs/compat.md`.
+- `scripts/test-client.sh <папка вне репо>` — клиент из `dist/*.mrpack` под Xvfb + llvmpipe до главного меню
+  (`CLIENT OK`); вход на сервер и что смотреть глазами — `docs/client-checklist.md`, находки — compat.md «Проверка клиента».
 - `scripts/export-pack.sh` — раздача: `dist/*.mrpack` (клиент) и `dist/*-server.zip` (сервер); инструкция для друзей — `docs/friends.md`.
 - Сторону мода (`side` в `pack/mods/*.pw.toml`) packwiz берёт с Modrinth; если она неверна — поправь вручную.
 - Свои моды и патчи: `mods-src/` (Gradle, ModDevGradle legacyforge + Parchment, как у Redux) и `patches/`.

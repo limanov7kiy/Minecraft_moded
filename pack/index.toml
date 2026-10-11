@@ -1,6 +1,10 @@
 hash-format = "sha256"
 
 [[files]]
+file = "config/.sereneseasonsplus-descriptive-config-reset.done"
+hash = "f1ceb92d0b8b72485894a12f2e434f475a127d59cae046ee5843be6318f6745e"
+
+[[files]]
 file = "config/almostunified/debug.json"
 hash = "3e03a291b5310a6b94a45aff63e4731baa643701c42a968ed716483ccd1d5a37"
 
@@ -675,11 +679,6 @@ hash = "4e81241ba2da06f425efc5e09fb6b38470125c1581c39e1310c5843a0b96ec76"
 metafile = true
 
 [[files]]
-file = "mods/arknights-furs.pw.toml"
-hash = "96f2b06db17bd9ee36932e48867ba82bd20279c1cafa7633f98c69e0308a5df8"
-metafile = true
-
-[[files]]
 file = "mods/arknights-origins-originium-arts.pw.toml"
 hash = "553f04d8e9fa446874e0e3a50c86b8b77c12e9e6626c360d50e2d10b77315c5b"
 metafile = true
@@ -1107,7 +1106,7 @@ metafile = true
 
 [[files]]
 file = "mods/immediatelyfast.pw.toml"
-hash = "835bd8b05a05ce6c0981ddc37c49e4c476aa0414cc2a5321fd9f8994193b6feb"
+hash = "1a9564ded8e9cd1f843f9de7fc87ffbf73033aab51494205458b0e58cc0ab194"
 metafile = true
 
 [[files]]
@@ -1399,11 +1398,6 @@ hash = "f83b253ca6a8e6f2f847952704da0e1fb00e65cbb10b7c9cb15d1a1780618da0"
 metafile = true
 
 [[files]]
-file = "mods/origin-furs-unofficial-forge-port.pw.toml"
-hash = "d15a0ed20ca3f03850e8e04f6223d494162e38e78f82d69f85dcce85fe41d427"
-metafile = true
-
-[[files]]
 file = "mods/originiumarts.pw.toml"
 hash = "c56c0977bb9a67d8df7f4ad23b35d76227dbb254238d4d279aa245d7dfb0438f"
 metafile = true
@@ -1690,11 +1684,6 @@ metafile = true
 [[files]]
 file = "mods/voicechat-addons-forge-1.0.1.jar"
 hash = "600250aa1bf74927cc12cef52bbececd134d699cbfab251b0727dcccf465f7f4"
-
-[[files]]
-file = "mods/voicechatprofiles.pw.toml"
-hash = "e331574ff5d923951f0161c627de1f5c14b45cc70727309977c3737d021f1e91"
-metafile = true
 
 [[files]]
 file = "mods/vs-tournament-reforged.pw.toml"
