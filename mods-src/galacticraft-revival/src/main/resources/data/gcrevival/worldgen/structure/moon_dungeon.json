@@ -1,0 +1,19 @@
+{
+  "type": "gcrevival:moon_dungeon",
+  "biomes": "#gcrevival:has_structure/moon_dungeon",
+  "spawn_overrides": {},
+  "step": "underground_structures",
+  "terrain_adaptation": "none",
+  "dungeon_configuration": {
+    "brickBlock": {
+      "Name": "gcrevival:moon_dungeon_brick"
+    },
+    "yPosition": 25,
+    "hallwayLengthMin": 8,
+    "hallwayLengthMax": 16,
+    "hallwayHeight": 5,
+    "roomHeight": 6,
+    "bossRoom": "gcrevival:moon_dungeon_boss_room",
+    "treasureRoom": "gcrevival:moon_dungeon_treasure_room"
+  }
+}

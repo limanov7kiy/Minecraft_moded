@@ -852,6 +852,10 @@ file = "mods/gaboulibs-shim-1.0.0.jar"
 hash = "88593902bf6f6c8e5dc8595bfc54aec61f4a9210ca846e7a997b70d7b34c8799"
 
 [[files]]
+file = "mods/galacticraft-revival-0.1.0.jar"
+hash = "0e144039175ad18a37e925cce6e9ea53ed8a4a5a7ecec0555c5902c99f062c83"
+
+[[files]]
 file = "mods/geckolib.pw.toml"
 hash = "7ffae05c3b8101588b231db8116c34b36a77a0c6e6d7e6af867ae1c5b47e4d10"
 metafile = true

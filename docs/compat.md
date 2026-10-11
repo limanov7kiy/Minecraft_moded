@@ -157,6 +157,13 @@ JEI). Двигатели и баки Ad Astra оставлены — из них
 Northstar/CS выживает на Луне, воздух тратится ~1/с; при 5 ед. воздуха — через 5 с удушье и гибель),
 `spacecheck.js` (руды на планетах).
 
+## Galacticraft Revival (свой мод, порт GC)
+`pack/mods/galacticraft-revival-0.1.0.jar` из `mods-src/galacticraft-revival`, сторона both, зависит только от Ad Astra.
+Лунный данж GC с боссом в `ad_astra:moon`; мобы данжа в тегах кислорода/температуры Ad Astra и Northstar.
+Проверено на полной сборке в новом мире (2026-10-10): `Done`, `scripts/tests/gcdungeon.js` 12/12, castcheck 69/69.
+Ванильный `/locate` в сборке асинхронный (Async Locator) — результат команды всегда 0, ответ приходит позже.
+План и ход работ — `docs/galacticraft.md`.
+
 ## Открытые вопросы
 - Серверный тест не проверяет клиент (рендер, шейдеры Oculus + Embeddium): нужен запуск клиента у игрока.
 
