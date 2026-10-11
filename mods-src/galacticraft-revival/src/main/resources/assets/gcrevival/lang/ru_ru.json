@@ -1,0 +1,23 @@
+{
+  "itemGroup.gcrevival": "Galacticraft Revival",
+  "block.gcrevival.moon_dungeon_brick": "Кирпич лунного данжа",
+  "block.gcrevival.unlit_wall_torch": "Потухший факел",
+  "block.gcrevival.boss_spawner": "Призыватель босса",
+  "block.gcrevival.treasure_chest_t1": "Сундук сокровищ",
+  "container.gcrevival.treasure_chest": "Сундук сокровищ, уровень %s",
+  "item.gcrevival.key_t1": "Ключ данжа, уровень 1",
+  "item.gcrevival.key.tooltip": "Открывает сундук сокровищ уровня %s",
+  "item.gcrevival.schematic_rocket_t2": "Схема: ракета 2-го уровня",
+  "item.gcrevival.schematic_rocket_t2.tooltip": "Открывает детали ракет для полётов дальше Луны",
+  "item.gcrevival.schematic_buggy": "Схема: луноход",
+  "item.gcrevival.schematic_buggy.tooltip": "Открывает луноход",
+  "entity.gcrevival.skeleton_boss": "Эволюционировавший скелет-босс",
+  "entity.gcrevival.evolved_zombie": "Эволюционировавший зомби",
+  "entity.gcrevival.evolved_skeleton": "Эволюционировавший скелет",
+  "entity.gcrevival.evolved_spider": "Эволюционировавший паук",
+  "entity.gcrevival.evolved_creeper": "Эволюционировавший крипер",
+  "gui.gcrevival.skeleton_boss.despawn": "Босс исчез: не покидайте комнату во время боя! Войдите снова, чтобы он появился.",
+  "gui.gcrevival.treasure_chest.locked": "Заперто: нужен ключ данжа уровня %s",
+  "gui.gcrevival.treasure_chest.unlocked": "Сундук сокровищ открыт",
+  "subtitles.gcrevival.skeleton_boss.laugh": "Скелет-босс смеётся"
+}

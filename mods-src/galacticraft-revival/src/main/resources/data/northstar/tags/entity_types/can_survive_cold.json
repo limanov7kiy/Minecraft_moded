@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "gcrevival:skeleton_boss",
+    "gcrevival:evolved_zombie",
+    "gcrevival:evolved_skeleton",
+    "gcrevival:evolved_spider",
+    "gcrevival:evolved_creeper"
+  ]
+}

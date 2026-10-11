@@ -49,6 +49,7 @@ mr northstar-redux          # порт Create: Northstar под Create 6 (ори
 mr mekanism-x-create-northstar
 mr create-northstar-structures  # биомы Луны под Redux 0.6+ и кратеры на Луне Ad Astra: patches/northstar_structures_fix.py
 mr creating-space
+# свой мод (both): pack/mods/galacticraft-revival-*.jar из mods-src/galacticraft-revival — порт GC: лунный данж с боссом, ключи, схемы (docs/galacticraft.md)
 mr valkyrien-skies
 mr eureka
 mr mekanism

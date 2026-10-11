@@ -1,0 +1,28 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+license = "MIT (Galacticraft 5 code, Team Galacticraft); Galacticraft Legacy parts — see META-INF/GALACTICRAFT-*"
+
+[[mods]]
+modId = "${mod_id}"
+version = "${mod_version}"
+displayName = "Galacticraft Revival (private port)"
+authors = "Minecraft_moded; original Galacticraft by micdoodle8, radfast, fishtaco567 and Team Galacticraft"
+credits = "Код и ассеты перенесены из Galacticraft Legacy (micdoodle8, radfast, Team Galacticraft) и Galacticraft 5 (Team Galacticraft). Неофициальный порт для частной сборки, не публикуется."
+description = '''
+Приключенческая часть Galacticraft поверх Ad Astra: данжи с боссами, ключи, сундуки сокровищ и схемы.
+Планеты, кислород и гравитация — Ad Astra / Northstar.
+'''
+
+[[dependencies.${mod_id}]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "ad_astra"
+mandatory = true
+versionRange = "[1.15,)"
+ordering = "AFTER"
+side = "BOTH"

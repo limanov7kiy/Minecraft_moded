@@ -3,6 +3,7 @@
 # останавливает. Лог: <папка>/logs/latest.log. Использование: test-server.sh <папка> [таймаут_сек]
 # TEST_COMMANDS=<файл> — команды консоли, которые выполнить после запуска (строка «#sleep N» — пауза).
 # EXTRA_SERVER_SCRIPTS=<папка> — тестовые KubeJS-скрипты (например scripts/tests), только для этого запуска.
+# EXTRA_MODS=<папка> — дополнительные jar (свой мод до включения в сборку), только для этого запуска.
 set -eu
 dir="$1"; tmo="${2:-900}"
 root="$(cd "$(dirname "$0")/.." && pwd)"
@@ -13,6 +14,7 @@ if [ ! -f run.sh ]; then
   java -jar forge-installer.jar --installServer >/dev/null
 fi
 python3 "$root/scripts/fetch-mods.py" server mods | grep -v '^got' || true
+[ -n "${EXTRA_MODS:-}" ] && cp "$EXTRA_MODS"/*.jar mods/
 # конфиги сборки поверх сгенерированных
 for d in config kubejs; do [ -d "$root/pack/$d" ] && mkdir -p "$d" && cp -r "$root/pack/$d/." "$d/"; done
 [ -n "${EXTRA_SERVER_SCRIPTS:-}" ] && mkdir -p kubejs/server_scripts && cp "$EXTRA_SERVER_SCRIPTS"/*.js kubejs/server_scripts/

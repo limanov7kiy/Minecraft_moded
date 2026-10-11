@@ -1,0 +1,22 @@
+{
+  "entity.skeleton_boss.laugh": {
+    "sounds": [
+      "gcrevival:entity/skeleton_boss/laugh"
+    ]
+  },
+  "entity.skeleton_boss.death": {
+    "sounds": [
+      "gcrevival:entity/skeleton_boss/death"
+    ]
+  },
+  "entity.skeleton_boss.ooh": {
+    "sounds": [
+      "gcrevival:entity/skeleton_boss/ooh"
+    ]
+  },
+  "entity.skeleton_boss.ouch": {
+    "sounds": [
+      "gcrevival:entity/skeleton_boss/ouch"
+    ]
+  }
+}

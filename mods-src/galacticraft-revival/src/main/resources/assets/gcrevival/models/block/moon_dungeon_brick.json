@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "gcrevival:block/moon_dungeon_brick"
+  }
+}
