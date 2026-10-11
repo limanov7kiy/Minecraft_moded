@@ -5,6 +5,14 @@
 // Список генерирует scripts/missing_tag_refs.py из лога сервера (не править руками).
 // Отключённые рецепты для отсутствующих модов — pack/kubejs/data/*/recipes (условие forge:false).
 const REFS = {
+  "block": {
+    "minecraft:needs_iron_tool": [
+      "cbc_at:heavy_autocannon_barrel_cast_mould",
+      "cbc_at:heavy_autocannon_breech_cast_mould",
+      "cbc_at:heavy_autocannon_qfbreech_cast_mould",
+      "cbc_at:heavy_autocannon_recoil_spring_cast_mould"
+    ]
+  },
   "entity_type": {
     "traveloptics:aerial_collapse_dr": [
       "cataclysm:ancient_ancient_remnant"
@@ -21,6 +29,12 @@ const REFS = {
       "aether_genesis:blue_swet_jelly",
       "aether_genesis:dark_swet_jelly",
       "aether_genesis:golden_swet_jelly"
+    ],
+    "create_new_age:nuclear/energy_28800": [
+      "create_new_age:nuclear_fuel"
+    ],
+    "create_new_age:nuclear/fuel": [
+      "create_new_age:nuclear_fuel"
     ],
     "diet:sugars": [
       "twilightdelight:aurora_cake_slice",
@@ -64,6 +78,9 @@ const REFS = {
     ],
     "forge:nuggets/reinforced_copper": [
       "creatingspace:reinforced_copper_nickel"
+    ],
+    "hexcasting:dusts/amethyst": [
+      "hexcasting:amethyst_dust"
     ]
   },
   "worldgen/biome": {
@@ -73,6 +90,11 @@ const REFS = {
   }
 }
 
+
+ServerEvents.tags('block', event => {
+  const tags = REFS['block']
+  for (let tag in tags) event.remove(tag, tags[tag])
+})
 
 ServerEvents.tags('entity_type', event => {
   const tags = REFS['entity_type']

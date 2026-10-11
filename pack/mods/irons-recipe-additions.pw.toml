@@ -1,0 +1,13 @@
+name = "Iron's Spells' Recipe Additions (Discontinued)"
+filename = "irons_recipe_additions-2.7-forge-1.20.1.jar"
+side = "both"
+
+[download]
+hash-format = "sha1"
+hash = "81c45402f5dad9ee9706b14092ccc7b74b1246f6"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 7186208
+project-id = 911386

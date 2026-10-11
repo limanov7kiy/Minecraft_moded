@@ -1,0 +1,13 @@
+name = "Legendary Survival Addon"
+filename = "legendarysurvivaladdon-1.3.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/K4J2GftO/versions/mCPGBIZm/legendarysurvivaladdon-1.3.1.jar"
+hash-format = "sha512"
+hash = "bf7b21f0b2da967d130a49318ca214045510654a87fda4ce3109c0bffd3f0b51c0528edf3d296c5347de3b4cbb2af5a3717e4481e55e1125c7df74c203b74d23"
+
+[update]
+[update.modrinth]
+mod-id = "K4J2GftO"
+version = "mCPGBIZm"

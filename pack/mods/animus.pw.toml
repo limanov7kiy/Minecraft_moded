@@ -1,0 +1,13 @@
+name = "Animus"
+filename = "animus-1.20.1-3.0.35.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/tL9SPLdV/versions/ga9mWei4/animus-1.20.1-3.0.35.jar"
+hash-format = "sha512"
+hash = "ca3b6aeef5117ea0271e9a1e4788244e31d39e5a0560c6adbbd778c563c563c603517c40c7d8419b45ae8905511975f7d4df3a4ad0af64bd5c6f7c961aedd01d"
+
+[update]
+[update.modrinth]
+mod-id = "tL9SPLdV"
+version = "ga9mWei4"

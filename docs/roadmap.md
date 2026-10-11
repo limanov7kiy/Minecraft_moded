@@ -81,6 +81,25 @@
 4. (из потока Galacticraft) Проверить `beyond-oxygen` (GPL, 1.20.1 Forge) — герметизация отсеков кораблей
    Valkyrien Skies; нужна ли связка с кислородом Ad Astra.
 
+Ход работы (ветка `claude/determined-goodall-fs240t`, список согласован с пользователем; моды — `pack/modlist.txt`,
+раздел «волна 2»):
+- [x] Пачка 1 — измерения (Aether, Twilight Forest, Blue Skies, Undergarden, Deeper and Darker, Alex's Caves): 20 модов,
+  сервер до `Done`. CBC: Nuclear отключён (несовместим с Create Big Cannons 5.11.4).
+- [x] Пачка 2 — мобы и боссы (Lycanites, Mowzie's, Alex's Mobs, Cataclysm): 9 модов + библиотеки, сервер до `Done`.
+  Integrated Mowzie's Mobs отложен: обязательно тянет Quark + Supplementaries + Amendments — решает пользователь.
+- [x] Пачка 3 — магия (Ars Nouveau, Iron's Spells, Botania, Occultism, Blood Magic): 13 модов, сервер до `Done`.
+  Отключены T.O Magic 'n Extras и Alshanex's Familiars (собраны под старые Cataclysm / Iron's Spells);
+  Botanical Machinery Extra отложен (обязательно тянет Applied Energistics 2).
+- [x] Пачка 4 — оружие, Valkyrien Skies, Arknights: 12 модов, сервер до `Done`. Отключены Superb VS и
+  SBW Vintage Vehicle Pack (несовместимые версии), VS Tournament заменён портом Tournament Reforged;
+  Create: Eureka! отложен (это датапак).
+- [x] Пачка 5 — техника и удобство (Mekanism, рюкзаки, Waystones × Xaero, Jade, LSO): 9 модов, сервер до `Done`.
+  More Backpack Upgrades отложен (обязательно требует Refined Storage).
+- [x] Пачка 6 — моды с крупными зависимостями (одобрено пользователем): Integrated Mowzie's Mobs (+ Quark, Supplementaries,
+  Amendments, Integrated API/Patches), Botanical Machinery Extra (+ Applied Energistics 2), More Backpack Upgrades
+  (+ Refined Storage). Сервер до `Done`, новый мир создаётся.
+- Для Bumblezone и Mahou Tsukai подходящих дополнений под 1.20.1 Forge нет (Mahou Tsukai Combat требует Better Combat).
+
 ### Поток 4 — Совместимость и патчи
 Файлы: `patches/`, `mods-src/mm-compat/`, `pack/kubejs/`, `docs/compat.md`.
 1. ~~Lycanites Mobs: недостающий `lycanitesmobs.refmap.json`~~ — **сделано** (`patches/lycanites-refmap`,
@@ -104,8 +123,7 @@
    авторство SKALKMine указано) → `pack/mods/zombiehaveears-1.1.2-forgefix.jar`, проверен с Simple Voice Chat.
 7. ~~(из ревью PR #2) Arknights Weapon 1.5.6 удваивает здоровье мобов~~ — **сделано**: порт без `RiseProcedure`
    (`patches/jar-ports/arknights-weapon` → `pack/mods/arknights_weapon-1.5.6-mmport.jar`), тест
-   `mobhealth_commands.txt`: оригинал 20→40→80, порт 20→20. **Потоку 3:** убрать `cf arknights-weapon` и
-   `pack/mods/arknights-weapon.pw.toml`, в сборке порт.
+   `mobhealth_commands.txt`: оригинал 20→40→80, порт 20→20. Оригинал из PR #2 убран при слиянии, в сборке порт.
 8. **Решение пользователя:** Apothic Attributes (нужен T.O Magic 'n Extras) переделывает формулы брони/защиты во всей
    игре. Оставить его баланс (как сейчас) или вернуть ванильные формулы в `pack/config/attributeslib.cfg`?
 

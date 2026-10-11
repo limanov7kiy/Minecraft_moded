@@ -1,0 +1,13 @@
+name = "[TaCZ] ArsArms - Ars Nouveau & Timeless and Classics Zero"
+filename = "ArsArms-1.20.1-3.0.4.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/AcZjW79x/versions/Q0RC9tEj/ArsArms-1.20.1-3.0.4.jar"
+hash-format = "sha512"
+hash = "951f082ddf3cb7f5d8432edd411f462de08566398ea07e9784f9ddfee5ad49af0165a2f61684a29d2296228354094320443558540d409179decfbaea9178e3de"
+
+[update]
+[update.modrinth]
+mod-id = "AcZjW79x"
+version = "Q0RC9tEj"

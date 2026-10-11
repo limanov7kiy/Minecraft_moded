@@ -1,0 +1,13 @@
+name = "Twilight Forest: The Lost Blocks"
+filename = "TF_Lost_Blocks-1.20.1-1.5.0.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/TyYh3b27/versions/GcmbYVPP/TF_Lost_Blocks-1.20.1-1.5.0.jar"
+hash-format = "sha512"
+hash = "edc012166796ff37a2e337965ab3e1bb6b065da99db350968c1df673aaf9e218e0b2407d21d3c4bc07b50b592a7f32e242b12f3dfcf05a0d893989a1596b89cf"
+
+[update]
+[update.modrinth]
+mod-id = "TyYh3b27"
+version = "GcmbYVPP"

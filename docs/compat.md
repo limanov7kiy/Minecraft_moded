@@ -140,6 +140,72 @@
 16. **Create: Eureka!** (CurseForge) — не датапак, а сборка из 134 модов (Forge 47.2.0, 2024) с одними конфигами;
    переносить нечего. Список модов — материал для потока 3.
 
+### Дополнения, волна 2 (поток 3)
+Пачка 1 — измерения: Ancient Aether, Aether's Delight, Protect Your Moa, Treasure Reforging, Enhanced Extinguishing,
+Aether Emissivity (клиент), Umbral Skies (TF × Aether), TF Dungeons & Villages, TF Lost Blocks, TF Bosses Resurrection,
+Twilight Cave Fix (сервер), Create Blue Skies Compat, Blue Skies Tweaks, Farmer's Cutting: Blue Skies,
+Blue Skies Gravestones Compat (сервер), Undergarden Delight, Deeper and Darker: Spellbooks, Deeper and Darker → Cataclysm,
+Dungeons and Villages: Deeper and Darker, Create: Alex's Caves Compat. Сервер — `Done`.
+- CBC: Nuclear 2.1.1 (и все прежние версии) — `NoSuchMethodError CBCBuilderTransformersImpl.safeNbt()` с
+  Create Big Cannons 5.11.4, мод не грузится. Отключён (задача в потоке 4).
+- Create: Alex's Caves Compat: часть рецептов и тегов для Create: New Age (его нет в сборке) не загружается — некритично.
+- При добавлении с CurseForge packwiz перезаписывает уже стоящие зависимости (Aether, Structure Gel) CF-метаданными —
+  такие изменения откатывать (`git checkout pack/mods/<мод>.pw.toml`).
+- Almost Unified: новые моды не дают предметов в объединяемые теги; изменений не нужно.
+
+Пачка 2 — мобы и боссы: Lycanite Delight, Lycanites Kin, Mowzie's Cataclysm, GTBC's Geomancy Plus (Iron's Spells ×
+Mowzie's, + GTBC's SpellLib), Alex's Delight, Alex's Mobs Interaction, Capsid Fix, Cinematic Cataclysm (+ FDLib),
+Loot Integrations: Cataclysm (+ Loot Integrations). Сервер — `Done`.
+- Loot Integrations требует **Cupboard** (`>=1.20.1-1.5`, только CurseForge), не объявленную в зависимостях — добавлена.
+  На Modrinth slug `cupboard` занят другим модом (Aesthetic Storage) — брать только `cf cupboard`.
+- Integrated Mowzie's Mobs не добавлен: обязательные зависимости Quark, Supplementaries, Amendments.
+- В логе только `gtbcs_geomancy_plus:chests/test` (тестовая таблица добычи автора) — некритично. Almost Unified — без изменений.
+
+Пачка 3 — магия: Ars Elemental, Too Many Glyphs, Ars Technica (Ars × Create), Ars Instrumentum, Ars Controle,
+Ars Artifice, Iron's Recipe Additions, Botanical Machinery, ExtraBotany (+ Event Wrapper), Create: Mechanical Botania,
+Create: Occult Engineering, Occultism Ritual Satchel, Animus (Blood Magic). Сервер — `Done`.
+- T.O Magic 'n Extras 6.3.0 — `NoClassDefFoundError: cataclysm/items/Dungeon_Eye/DungeonEyeItem` (класс убран в
+  Cataclysm 3.31). Отключён; откатывать Cataclysm нельзя — на неё завязаны другие связки.
+- Alshanex's Familiars 1.1.2 — `NoClassDefFoundError: ironsspellbooks/item/curios/SimpleAttributeCurio` (старый API
+  Iron's Spells). Отключён.
+- Botanical Machinery Extra не добавлен: обязательная зависимость Applied Energistics 2.
+- В логе: книга Patchouli `ars_controle` не загружается (у Ars Nouveau 4.12 своя документация) и тег
+  `hexcasting:dusts/amethyst` от Ars Technica (Hexcasting нет) — некритично.
+- Almost Unified: Occult Engineering даёт `forge:dusts/zinc` и `forge:dusts/brass` — единственный поставщик, объединять
+  не с чем. Изменений не нужно.
+
+Пачка 4 — оружие, VS, Arknights: TaCZ addon, Enchanted Arsenal, Create: Precise Manufacturing, ArsArms, IronsArms,
+Curios For Ammo Box, CBC: Advanced Technologies, Valkyrien Sails, VS Tournament Reforged, Gathering Torches Become Sunlight,
+Arknights Weapon, Sarkaz's Furnace Side Fables. Сервер — `Done`.
+- Arknights Weapon в оригинале удваивал здоровье всех мобов при каждой загрузке чанка — в сборке вместо него порт
+  потока 4 без `RiseProcedure` (п. 14); CBC: Nuclear, T.O Magic 'n Extras, Alshanex's Familiars — тоже порты (п. 14),
+  Superb VS не нужен (п. 15).
+- Superb VS 1.0.0-beta (связка Superb Warfare × VS) собрана под VS 2.3: с VS 2.4.11 падает загрузка Superb Warfare
+  (`MixinApplyError superbvs.mixins.json:ProjectileEntityMixin`, нет `ShipWorldCore`). Отключена, задача — поток 4.
+- VS Tournament 1.1.0-beta (2024) — `NoClassDefFoundError VSConfigClass` с VS 2.4. Заменён на **VS Tournament Reforged**.
+- SBW Vintage Vehicle Pack 0.2.1 требует ровно `superbwarfare 0.8.9` (у нас 0.8.9.2) и `snassets_particles`. Отключён.
+- Create: Eureka! — датапак, не мод; отложен (задача — поток 4).
+- CBC: Advanced Technologies: 4 таблицы добычи на несуществующие блоки литейных форм — некритично.
+- Almost Unified: новые моды не дают предметов в объединяемые теги.
+
+Пачка 5 — техника и удобство: Mekanism: More Machine, Mekanism Covers, Mekanism Curios, Just Enough Mekanism
+Multiblocks (клиент), Sophisticated Backpacks Create Integration, Gravestone x Curios API Compat (+ BaguetteLib; сервер),
+Xaero's Minimap & World Map — Waystones Compatibility, Jade Addons, Legendary Survival Addon (Create × LSO). Сервер — `Done`.
+- More Backpack Upgrades 1.0.2 требует Refined Storage (`Mod mobackup requires refinedstorage`) — не добавлен.
+- Mekanism: More Machine: 75 таблиц добычи на фабрики, которые регистрируются только с другими аддонами Mekanism
+  (предметов `mekmm:*_factory` нет) — некритично.
+- Almost Unified: новые моды не дают предметов в объединяемые теги.
+
+Пачка 6 — моды с крупными зависимостями (одобрено пользователем): Integrated Mowzie's Mobs (+ Quark, Supplementaries,
+Amendments, Integrated API, Integrated Patches), Botanical Machinery Extra (+ Applied Energistics 2),
+More Backpack Upgrades (+ Refined Storage). Сервер — `Done`, новый мир создаётся, ошибок от новых модов в логе нет.
+- Не объявлены как зависимости на Modrinth (найдены запуском), добавлены вручную: **Refined Storage** (More Backpack
+  Upgrades), **GuideME** `[20.1.7, 20.2)` (AE2), **Moonlight Lib** (Supplementaries, Amendments), **Zeta** `[1.0-28, 2.0)` (Quark).
+- Almost Unified: Quark кладёт `quark:charcoal_block` в `forge:storage_blocks/charcoal` вместе с `mekanism:block_charcoal` —
+  по приоритету остаётся блок Mekanism. `hardrefs.py`: по имени на блок Quark ссылается только его собственный рецепт
+  распаковки (у Mekanism есть свой) — конфиг менять не нужно. AE2 (истинный кварц, флюикс) и Supplementaries (пепел)
+  дают только новые материалы.
+
 ## Голосовой чат (Simple Voice Chat 2.6.24)
 Состав (раздел «Удобство и мультиплеер» в `pack/modlist.txt`):
 | Мод | Сторона | Что даёт |

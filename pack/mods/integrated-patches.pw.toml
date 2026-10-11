@@ -1,0 +1,13 @@
+name = "Integrated Patches"
+filename = "integrated_patches v1.2.0-1.20.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/Yysh5NsL/versions/pDRwkHsU/integrated_patches%20v1.2.0-1.20.1.jar"
+hash-format = "sha512"
+hash = "a1ca4201ea3d8a30fefc64583958a06421c02292b67bbd740138fe1eefaed5708ab22a796e1c6cce918d0baf868d9c5090192ab6e5a8f289549425e11952a0b4"
+
+[update]
+[update.modrinth]
+mod-id = "Yysh5NsL"
+version = "pDRwkHsU"

@@ -1,0 +1,13 @@
+name = "Ancient Aether"
+filename = "ancient_aether-0.9.10.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/6mVXdiOT/versions/Ff9RLXlv/ancient_aether-0.9.10.jar"
+hash-format = "sha512"
+hash = "71c5c2111ca350243f974443420b0776ee3404aca6809ca84c2b4ae9a92083dc2d01a942046e5e09314eef2e0fad61b23c33295b37a5b9291d0567aface7c027"
+
+[update]
+[update.modrinth]
+mod-id = "6mVXdiOT"
+version = "Ff9RLXlv"

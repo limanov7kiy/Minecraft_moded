@@ -1,0 +1,13 @@
+name = "More Backpack Upgrades"
+filename = "mobackup-1.0.2.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/OHP5u2V4/versions/1UUCogV1/mobackup-1.0.2.jar"
+hash-format = "sha512"
+hash = "70455aef1fa3452a584f1a5b89df63fb8467892973dd6a33f00e4002149e1de2c530151311de9252c62da5e923e7a79444d07eeeecb2bab6090dd6a8cb8631aa"
+
+[update]
+[update.modrinth]
+mod-id = "OHP5u2V4"
+version = "1UUCogV1"
