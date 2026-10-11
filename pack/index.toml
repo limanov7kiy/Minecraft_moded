@@ -848,9 +848,8 @@ hash = "14481081a9e233f4ba57df8a77ce028184818143eae1c73b60749ea482c912e9"
 metafile = true
 
 [[files]]
-file = "mods/cataclysm-spellbooks.pw.toml"
-hash = "46d7e45a470ab4280c68c2d435214ee63a1c016c426d889d9deee049c6f39a08"
-metafile = true
+file = "mods/cataclysm_spellbooks-1.2.9-1.20.1-mmport.jar"
+hash = "4dc1557481cda5e4e99fbdc35fa7262861a0106bfdffba65e0c87e4cdd803f8e"
 
 [[files]]
 file = "mods/cbc_nukes-2.1.1-mmport.jar"
@@ -1266,7 +1265,7 @@ metafile = true
 
 [[files]]
 file = "mods/lycanites-refmap-fix-1.0.0.jar"
-hash = "24c5a32d14352004833bca6c25037dd4b08728fa063000a4b19fb35c14531c30"
+hash = "7e718c9e80c5ac2933198f9349405406914af1b2ddc2495c2ea624a1817d2619"
 
 [[files]]
 file = "mods/mahou-tsukai.pw.toml"

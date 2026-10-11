@@ -127,7 +127,7 @@ mr ars-creo               # Ars Nouveau × Create
 mr ars-additions
 mr tome-of-blood-rebirth  # Ars Nouveau × Blood Magic
 mr mythicbotany           # Botania: руны, альфхейм
-mr cataclysm-spellbooks   # Iron's Spells × Cataclysm  (нужен azurelib на сервере)
+# mr cataclysm-spellbooks # ОТКЛЮЧЁН: собран под Cataclysm 3.1x (клиент падал на Ancient_Remnant_Rework_Renderer) → порт, см. «Порты» (нужен azurelib на сервере)
 # Ракеты, техника
 mr ad-astra-giselle-addon # Ad Astra × Mekanism/Create (кислород, энергия)
 mr create-ad-astra-recipes
@@ -246,7 +246,9 @@ mr legendary-survival-addon       # Create × Legendary Survival Overhaul
 # cbc-nuclear          → cbc_nukes-2.1.1-mmport.jar                (CBC 5.11: safeNbt, explosivePower)
 # alshanexs-familiars  → alshanex_familiars-1.20.1_v1.1.2-mmport.jar (Iron's Spells 3.16)
 # to-tweaks-irons-spells (T.O Magic 'n Extras, CurseForge) → traveloptics-6.3.0-1.20.1-mmport.jar (Cataclysm 3.31)
+# cataclysm-spellbooks → cataclysm_spellbooks-1.2.9-1.20.1-mmport.jar (Cataclysm 3.31: частицы, ракета, лазер, Остаток)
 # arknights-weapon (CurseForge) → arknights_weapon-1.5.6-mmport.jar (без RiseProcedure: удваивала здоровье мобов при каждой
 #   загрузке чанка). Оригинал у потока 3 закомментирован, его .pw.toml удалён.
 mr apothic-attributes     # обязательная зависимость T.O Magic 'n Extras (+ Placebo)
+mr azurelib               # обязательная зависимость Cataclysm: Spellbooks (раньше подтягивалась packwiz'ом)
 # zombie-have-ears (поток 2) → zombiehaveears-1.1.2-forgefix.jar (patches/zombie-have-ears, только mods.toml)
