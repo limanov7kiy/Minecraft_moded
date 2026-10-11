@@ -101,6 +101,9 @@
 - [x] Пачка 6 — моды с крупными зависимостями (одобрено пользователем): Integrated Mowzie's Mobs (+ Quark, Supplementaries,
   Amendments, Integrated API/Patches), Botanical Machinery Extra (+ Applied Energistics 2), More Backpack Upgrades
   (+ Refined Storage). Сервер до `Done`, новый мир создаётся.
+- [x] Mana and Artifice + Ars Magica: Legacy (решение владельца, ветка `claude/stream3-mana-artifice-ars-magica`): 6 модов добавлено,
+  MNAWitchcraft отключён (старый M&A); сервер до `Done`, castcheck 69/69. Для Ars Magica дополнений нет. Подробности — compat.md.
+  Потоку 4: проверить на клиенте клавиши/мана-HUD четырёх магических систем и дубли рецептов/предметов.
 - Для Bumblezone и Mahou Tsukai подходящих дополнений под 1.20.1 Forge нет (Mahou Tsukai Combat требует Better Combat).
 
 ### Поток 4 — Совместимость и патчи
