@@ -526,7 +526,7 @@ hash = "a75d5d611e58e3c80bbf0244f82a8a8351c4e8c4aa0f3a1c56da5343aa6d5ae5"
 
 [[files]]
 file = "kubejs/server_scripts/missing_mod_refs.js"
-hash = "2733cbc63dc7ee201e97a9d1194423def02d37497ed96e788921f3d1cf883d3a"
+hash = "98f946259767d1ecf5cd8f6f43192b0832b5d68b60d5f3273e48a7edc2847817"
 
 [[files]]
 file = "kubejs/server_scripts/space_rockets.js"
