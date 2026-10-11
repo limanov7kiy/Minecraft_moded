@@ -25,6 +25,14 @@ file = "config/sereneseasonsplus-common.toml"
 hash = "ae0213dfbc7561b527d00565ad849c32e096914967590c1aaf85c4133195c885"
 
 [[files]]
+file = "config/vcinteraction/vcinteraction.properties"
+hash = "cf5e599d8110f33b7483f43be29b6f2da325bf30d672b55e681ff7cfb6cdde99"
+
+[[files]]
+file = "config/voicechat/voicechat-server.properties"
+hash = "44e28ca45bf8648f18a9363105a7faa363d254ed8ace91ff523193b60786968d"
+
+[[files]]
 file = "kubejs/client_scripts/space_rockets.js"
 hash = "c5f3ef1a27991ac16c6f99ff138572a82654f52f514605e7a423b3c9adfb0eac"
 
@@ -111,6 +119,42 @@ hash = "1c25bd10bae42be8bdf900f5c5b80e41dbeca7b1fe1faa8c98ac1a46ebdc0809"
 [[files]]
 file = "kubejs/data/ad_astra/tags/items/heat_resistant_armor.json"
 hash = "e6a37ab8d7346bae209fce92b1078f8701a4835b103d898847d45b47aa416d35"
+
+[[files]]
+file = "kubejs/data/aether_redux/recipes/genesis_dark_gummy_swet.json"
+hash = "61c01488bd1bc9113ef1a64e626a0ba9dbbe7d4178d4d8767c0e9cb3d8cdf4a2"
+
+[[files]]
+file = "kubejs/data/aether_treasure_reforging/recipes/neptune_upgrade_smithing_template.json"
+hash = "61c01488bd1bc9113ef1a64e626a0ba9dbbe7d4178d4d8767c0e9cb3d8cdf4a2"
+
+[[files]]
+file = "kubejs/data/aether_treasure_reforging/recipes/phoenix_upgrade_smithing_template.json"
+hash = "61c01488bd1bc9113ef1a64e626a0ba9dbbe7d4178d4d8767c0e9cb3d8cdf4a2"
+
+[[files]]
+file = "kubejs/data/aether_treasure_reforging/recipes/valkyrie_upgrade_smithing_template.json"
+hash = "61c01488bd1bc9113ef1a64e626a0ba9dbbe7d4178d4d8767c0e9cb3d8cdf4a2"
+
+[[files]]
+file = "kubejs/data/ancient_aether/recipes/ancient_rune.json"
+hash = "61c01488bd1bc9113ef1a64e626a0ba9dbbe7d4178d4d8767c0e9cb3d8cdf4a2"
+
+[[files]]
+file = "kubejs/data/arks/powers/human/thought.json"
+hash = "273e114088fab7cbdc0a45b60688cf892890a4bae627345e62d7cf3e782ad05e"
+
+[[files]]
+file = "kubejs/data/arks/powers/sarkaz/thought.json"
+hash = "273e114088fab7cbdc0a45b60688cf892890a4bae627345e62d7cf3e782ad05e"
+
+[[files]]
+file = "kubejs/data/arks/powers/sarkaz_nephesh/thought.json"
+hash = "273e114088fab7cbdc0a45b60688cf892890a4bae627345e62d7cf3e782ad05e"
+
+[[files]]
+file = "kubejs/data/cataclysm/recipes/stonecutting/azure_seastone_brick_stair_from_stonecutting.json"
+hash = "61c01488bd1bc9113ef1a64e626a0ba9dbbe7d4178d4d8767c0e9cb3d8cdf4a2"
 
 [[files]]
 file = "kubejs/data/creatingspace/creatingspace/rocket_accessible_dimension/earth_orbit.json"
@@ -413,6 +457,58 @@ file = "kubejs/data/northstar/tags/items/insulating.json"
 hash = "499f8812cc452e9a3355a5cb38223a94573e60ae39bc8fc8f976a001c81f0850"
 
 [[files]]
+file = "kubejs/data/northstar/worldgen/biome/lunar_asurine_caves.json"
+hash = "a05bd11de24f6f548136b03377dd3d9a6788a2ed3b5ffb8e80b0814a0c5de519"
+
+[[files]]
+file = "kubejs/data/northstar/worldgen/biome/lunar_cooled_lava_cave.json"
+hash = "6c9961a0de70d1839b44b97b558b005774f5a64bb359a0eb8880d4c2f1008646"
+
+[[files]]
+file = "kubejs/data/northstar/worldgen/biome/lunar_crater_fields.json"
+hash = "c8d38fe30a464e39f2a254863e3698ccf1a23eaaa3e256d85d2890952d8c4643"
+
+[[files]]
+file = "kubejs/data/northstar/worldgen/biome/lunar_glowstone_cavern.json"
+hash = "c79fce16941bb80c2c739afa71866c218e9f35e66fd38c3b7d6e9949fa6f9129"
+
+[[files]]
+file = "kubejs/data/northstar/worldgen/biome/lunar_hills.json"
+hash = "3e4b79122c2f0ddb708ead3ec5b28888991262b128a372cde603d441457efb75"
+
+[[files]]
+file = "kubejs/data/northstar/worldgen/biome/lunar_ice_caves.json"
+hash = "14a157ee83d826c6653d30afa89b928c2d2870b9f0e0d7f5e92aec55e078a80a"
+
+[[files]]
+file = "kubejs/data/northstar/worldgen/biome/lunar_plains.json"
+hash = "d26e7005e3a83b5c3dd72e2b92b1567e04e64b54fb3a816efb3091ae0f5a3c33"
+
+[[files]]
+file = "kubejs/data/northstar_structures/tags/worldgen/biome/crater_moon_biomes.json"
+hash = "2899ee509953b9c02f3f40ce9f5d50796ebae5bb58391ba7dcfd9a3c652ce7f5"
+
+[[files]]
+file = "kubejs/data/northstar_structures/worldgen/structure/old_huge_crater.json"
+hash = "d70efe1742e042005eebc9b8953b180751361b389e7707b4d99da30bfadbc621"
+
+[[files]]
+file = "kubejs/data/northstar_structures/worldgen/structure/old_large_crater.json"
+hash = "b1e821398554b41cd617c251c1f1c349583709f63c6942613e79d07ee2410a49"
+
+[[files]]
+file = "kubejs/data/northstar_structures/worldgen/structure/old_medium_crater.json"
+hash = "6c29192ba73a61745491b2fd0a2370ad8ca01725b74c60218fbfe70272cdfa6f"
+
+[[files]]
+file = "kubejs/data/northstar_structures/worldgen/structure/old_small_crater.json"
+hash = "133759e34b7fe4947028331120afea1641f0f8299618776401f3c394c4074496"
+
+[[files]]
+file = "kubejs/data/northstar_structures/worldgen/structure/south_pole_aitken_basin.json"
+hash = "88fe83d6f47486f23745e3b3594c05667a7feedabfdb486d8f3590bb013bd3ab"
+
+[[files]]
 file = "kubejs/data/superbwarfare/forge/biome_modifier/deepslate_galena_ore_biome_modifier.json"
 hash = "a75d5d611e58e3c80bbf0244f82a8a8351c4e8c4aa0f3a1c56da5343aa6d5ae5"
 
@@ -429,16 +525,16 @@ file = "kubejs/data/superbwarfare/forge/biome_modifier/silver_ore_biome_modifier
 hash = "a75d5d611e58e3c80bbf0244f82a8a8351c4e8c4aa0f3a1c56da5343aa6d5ae5"
 
 [[files]]
+file = "kubejs/server_scripts/missing_mod_refs.js"
+hash = "2733cbc63dc7ee201e97a9d1194423def02d37497ed96e788921f3d1cf883d3a"
+
+[[files]]
 file = "kubejs/server_scripts/space_rockets.js"
 hash = "d35a677aabcb95f98027c73562f8fe5c4ccf01c5996ae81107ca840a0cbf1397"
 
 [[files]]
 file = "kubejs/startup_scripts/space_rockets_list.js"
 hash = "56a5eae4fbd7007e550db9c67b4b9d41a480b57a32300c9a97e89ee3c32cb368"
-
-[[files]]
-file = "modlist.txt"
-hash = "46010684655c2e0276a43311c113a2d141c795ae0a4e19bf5968387d724959d4"
 
 [[files]]
 file = "mods/ad-astra-giselle-addon.pw.toml"
@@ -448,6 +544,11 @@ metafile = true
 [[files]]
 file = "mods/ad-astra.pw.toml"
 hash = "d94f5fd662671e6f6f4bda5d89234aded7461a8a90d9f9fe3d5b8a7f17c25b54"
+metafile = true
+
+[[files]]
+file = "mods/admiral.pw.toml"
+hash = "a25d868d37c78985c604b897191bf5ded528f7ba58b55096779c0e5a1890a586"
 metafile = true
 
 [[files]]
@@ -536,6 +637,10 @@ hash = "bc9bc4dc5e09b5213fb158a83d63d5def7bb016c3cef65405f8f2f6c0c62b158"
 metafile = true
 
 [[files]]
+file = "mods/alshanex_familiars-1.20.1_v1.1.2-mmport.jar"
+hash = "879e1c58998aace8967d4cba507f7cbbfa4f17da27d8494b1deef2e77f360857"
+
+[[files]]
 file = "mods/amendments.pw.toml"
 hash = "5922845f6c9bb57548eca500857ebd2268bffe3799373b7306c2bdfb706d5f95"
 metafile = true
@@ -548,6 +653,11 @@ metafile = true
 [[files]]
 file = "mods/animus.pw.toml"
 hash = "905e1d82a36fb0443920d08f16835b96b0cdc0b27969bc5d06c8de57f8645adf"
+metafile = true
+
+[[files]]
+file = "mods/apothic-attributes.pw.toml"
+hash = "1dc9e1a184ade4918dad17ef20de026053c841bd5a50f122fb783bb3f9185b89"
 metafile = true
 
 [[files]]
@@ -581,9 +691,8 @@ hash = "5d153abacc6aebc94c81bf9eb99b6990d7420a494474432a8822bdc05e7f555d"
 metafile = true
 
 [[files]]
-file = "mods/arknights-weapon.pw.toml"
-hash = "dcae1ee7c78a7a3e89bb73713457090acf534f89b26b7d3caba529cca46e9330"
-metafile = true
+file = "mods/arknights_weapon-1.5.6-mmport.jar"
+hash = "5158102402fe4a55e849df1cf4262891d7648b2fef2a94a5da123470c1e1a1ed"
 
 [[files]]
 file = "mods/arknightsfurniture.pw.toml"
@@ -741,6 +850,10 @@ hash = "46d7e45a470ab4280c68c2d435214ee63a1c016c426d889d9deee049c6f39a08"
 metafile = true
 
 [[files]]
+file = "mods/cbc_nukes-2.1.1-mmport.jar"
+hash = "9cfaa0742987ac26b70b08a994b1b0f38abc41cf642baaf637f1d9179a0533f9"
+
+[[files]]
 file = "mods/cinematic-cataclysm.pw.toml"
 hash = "51a26b15b158cb016944b8ac19d3badc251ccde6ce58d8143e0a37524ea09ce7"
 metafile = true
@@ -793,6 +906,11 @@ metafile = true
 [[files]]
 file = "mods/create-deco.pw.toml"
 hash = "87be52b8aaa9864eab1ec2df8c862cd01a084989b07c4cdbfaa21c57a9a778a6"
+metafile = true
+
+[[files]]
+file = "mods/create-northstar-structures.pw.toml"
+hash = "37d2bc29ed552a81c6111a8bc18088964b4fcb07eb23d3a0d2caa7e920fb7f07"
 metafile = true
 
 [[files]]
@@ -938,6 +1056,10 @@ metafile = true
 [[files]]
 file = "mods/gaboulibs-shim-1.0.0.jar"
 hash = "88593902bf6f6c8e5dc8595bfc54aec61f4a9210ca846e7a997b70d7b34c8799"
+
+[[files]]
+file = "mods/galacticraft-revival-0.1.0.jar"
+hash = "0e144039175ad18a37e925cce6e9ea53ed8a4a5a7ecec0555c5902c99f062c83"
 
 [[files]]
 file = "mods/gathering-torches-become-sunlight.pw.toml"
@@ -1090,6 +1212,16 @@ hash = "ea4d77bb6c47075adc618d297723368fd8889d93381c5decdc637e51ceb551ae"
 metafile = true
 
 [[files]]
+file = "mods/let-them-talk.pw.toml"
+hash = "e39a8e9842af9b6cc500393308675263e45921c671f703fb6c6667221d0c03f6"
+metafile = true
+
+[[files]]
+file = "mods/lexiconfig.pw.toml"
+hash = "fe598f1df2bae9a68a16d3fcac3ae91b97a552f410a8c03dda36ca759eca2e8f"
+metafile = true
+
+[[files]]
 file = "mods/libx.pw.toml"
 hash = "5f92ea3a89a013d4a004e1a391ee00dad45715d46e002210a5692b87ef324815"
 metafile = true
@@ -1199,8 +1331,8 @@ hash = "c25495262a852dc02886ec8c4b695f30e53264a2e3d881dd36ee9de16a1ef499"
 metafile = true
 
 [[files]]
-file = "mods/mm-compat-0.1.0.jar"
-hash = "2b98dabf47949f9fd555aeb552e89fa0b2af2a78a0ff2416db62da348690484e"
+file = "mods/mm-compat-0.3.0.jar"
+hash = "4e7aca425db5d7ad1caff4192856f18fe4ae02dbc8b886148231ef4a2baf05bf"
 
 [[files]]
 file = "mods/modernfix.pw.toml"
@@ -1288,6 +1420,11 @@ hash = "c12d18d3af61a3393a0d23293fada407c924e3d7bee52aee9fa8a8a3565cd624"
 metafile = true
 
 [[files]]
+file = "mods/placebo.pw.toml"
+hash = "969078b157cd783f7c38ac33407abc4f532c244c973d52810d559f02be06db90"
+metafile = true
+
+[[files]]
 file = "mods/playeranimator.pw.toml"
 hash = "765987a78e5d8c782d0da2de99998b43b5907d6c41347d3804045ad109e4a586"
 metafile = true
@@ -1348,6 +1485,21 @@ hash = "23ef0c67ed600fb75d47161cdbe43b860837afe9d1f3012c44f3e7eb13bdd1e5"
 metafile = true
 
 [[files]]
+file = "mods/simple-radio.pw.toml"
+hash = "96f3f2fd9fab18ddfaf27d1ccd44e750d4c3e7f3d7b61980968aefd7d085c385"
+metafile = true
+
+[[files]]
+file = "mods/simple-voice-chat.pw.toml"
+hash = "3bd4e09190316b4c4901ba9fd822b891e2cf216eb645687458e3547ad13f93f0"
+metafile = true
+
+[[files]]
+file = "mods/simplevoicechat-broadcast.pw.toml"
+hash = "7a3cfb8251c4b86cb0cbdfa02ac9bcad640888eafacdec92a5e4032e4b04b412"
+metafile = true
+
+[[files]]
 file = "mods/skills-origins.pw.toml"
 hash = "5358a0bbce2c140e566079f88a1e8461373564ed81a3792f97e197a06934bbea"
 metafile = true
@@ -1383,6 +1535,11 @@ hash = "503a9d9b148aa94e7839d0024cccc918bdc321875037219aa35b370a51051db3"
 metafile = true
 
 [[files]]
+file = "mods/sound-physics-remastered.pw.toml"
+hash = "aa662713661e95a7fdd6bd4fc3bb8231a615dc144b7825fde504355dc0698a31"
+metafile = true
+
+[[files]]
 file = "mods/spark.pw.toml"
 hash = "0be4976227df8e261fd362889bf8e85b93e224d1b1c3cd2a11b73a9de3b64083"
 metafile = true
@@ -1415,6 +1572,11 @@ metafile = true
 [[files]]
 file = "mods/taczaddon.pw.toml"
 hash = "c12186b89fe15296adbf89150120d8a1c8854329e4812197a5708d4d66b90cff"
+metafile = true
+
+[[files]]
+file = "mods/talkingheads.pw.toml"
+hash = "67f56e9707da5a2c0cea05b07f73e05b05c2379ea4149643b9065ff66c319bc7"
 metafile = true
 
 [[files]]
@@ -1468,6 +1630,10 @@ hash = "e43574704d93b276e187589628a23ef9ff60a4080ec44341fc13207098165f21"
 metafile = true
 
 [[files]]
+file = "mods/traveloptics-6.3.0-1.20.1-mmport.jar"
+hash = "a427563e66516bc5abed1d5243054e31ac2f338e8859b170403361b22cc096c5"
+
+[[files]]
 file = "mods/tw-resurrection.pw.toml"
 hash = "9a0f645bd7f2b07104c33e779575a5f0bf1d729f87f06e7576e66725fdd608c0"
 metafile = true
@@ -1508,6 +1674,25 @@ hash = "380bacc16e7736fc791bfd34ab38684d69642a93b80da0543cd06b7cee8a36d0"
 metafile = true
 
 [[files]]
+file = "mods/vc-admin-voice-chat-moderation-tool.pw.toml"
+hash = "3661397a6d91392055620cb8ea08e1ab2973385683a2e5189246353299d43c9c"
+metafile = true
+
+[[files]]
+file = "mods/vibrative-voice.pw.toml"
+hash = "5194dedc1d09130cf3635ea8f32e8d95ce0615d08d9c60006ec94e512a01eb46"
+metafile = true
+
+[[files]]
+file = "mods/voicechat-addons-forge-1.0.1.jar"
+hash = "600250aa1bf74927cc12cef52bbececd134d699cbfab251b0727dcccf465f7f4"
+
+[[files]]
+file = "mods/voicechatprofiles.pw.toml"
+hash = "e331574ff5d923951f0161c627de1f5c14b45cc70727309977c3737d021f1e91"
+metafile = true
+
+[[files]]
 file = "mods/vs-tournament-reforged.pw.toml"
 hash = "abeada2b86ac6524853d2ece2b363565f19516ae679f58ce5fccd482e3793235"
 metafile = true
@@ -1518,8 +1703,8 @@ hash = "1dc6ca31c7b6912c494caa2a4f5f9f7250af50fbeb9ce9141ae9b741f9861987"
 metafile = true
 
 [[files]]
-file = "mods/wizardry-restored-0.5.0.jar"
-hash = "f63576dbfbad8190a5445e3f2f1afa7d042a7609d4e4d6873ad4d215029bb2b8"
+file = "mods/wizardry-restored-0.6.0.jar"
+hash = "fc133ac35936c75efa516a10513bfdbeb67ee30a1f27038e6b3aa3d283aa9653"
 
 [[files]]
 file = "mods/xaeros-minimap-world-map-waystones-compatibility-forge.pw.toml"
@@ -1550,3 +1735,7 @@ metafile = true
 file = "mods/zeta.pw.toml"
 hash = "b43f507cffbcc7178b184fa63b2d74fc6b2b8103c4d299ec5633ccf1f5abdafb"
 metafile = true
+
+[[files]]
+file = "mods/zombiehaveears-1.1.2-forgefix.jar"
+hash = "9d6c1b79bffbd22944012a0fd7318753402515ad5b37c1d2562f55a687aecc6e"

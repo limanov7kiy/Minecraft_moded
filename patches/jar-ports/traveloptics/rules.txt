@@ -1,0 +1,24 @@
+# Cataclysm 3.31: частицы *Data → record'ы Options (порядок полей проверен по байткоду 3.16/3.31)
+factory com/github/L_Ender/cataclysm/client/particle/CircleLightningParticle$CircleData(III)V   dev/mcmoded/port/traveloptics/TravelopticsPort.circle
+factory com/github/L_Ender/cataclysm/client/particle/RingParticle$RingData(FFIFFFFFZLcom/github/L_Ender/cataclysm/client/particle/RingParticle$EnumRingBehavior;)V   dev/mcmoded/port/traveloptics/TravelopticsPort.ring
+class com/github/L_Ender/cataclysm/client/particle/CircleLightningParticle$CircleData   com/github/L_Ender/cataclysm/client/particle/Options/CircleLightningParticleOptions
+class com/github/L_Ender/cataclysm/client/particle/RingParticle$RingData                com/github/L_Ender/cataclysm/client/particle/Options/RingParticleOptions
+class com/github/L_Ender/cataclysm/client/particle/Custom_Poof_Particle$PoofData        com/github/L_Ender/cataclysm/client/particle/Options/CustomPoofParticleOptions
+class com/github/L_Ender/cataclysm/client/particle/LightTrailParticle$OrbData           com/github/L_Ender/cataclysm/client/particle/Options/LightTrailParticleOptions
+class com/github/L_Ender/cataclysm/client/particle/LightningParticle$OrbData            com/github/L_Ender/cataclysm/client/particle/Options/LightningParticleOptions
+class com/github/L_Ender/cataclysm/client/particle/Lightning_Zap_Particle$ZapData       com/github/L_Ender/cataclysm/client/particle/Options/LightningZapParticleOptions
+class com/github/L_Ender/cataclysm/client/particle/Not_Spin_TrailParticle$NSTData       com/github/L_Ender/cataclysm/client/particle/Options/NotSpinTrailParticleOptions
+class com/github/L_Ender/cataclysm/client/particle/RoarParticle$RoarData                com/github/L_Ender/cataclysm/client/particle/Options/RoarParticleOptions
+class com/github/L_Ender/cataclysm/client/particle/StormParticle$OrbData                com/github/L_Ender/cataclysm/client/particle/Options/StormParticleOptions
+# переименованы, API тот же
+class com/github/L_Ender/cataclysm/entity/effect/Boltstrike_Entity      com/github/L_Ender/cataclysm/entity/effect/Bolt_strike_Entity
+class com/github/L_Ender/cataclysm/items/Dungeon_Eye/DungeonEyeItem     com/github/L_Ender/cataclysm/items/DungeonEyeItem
+class io/redspace/ironsspellbooks/entity/mobs/dead_king_boss/DeadKingAnimatedWarlockAttackGoal  io/redspace/ironsspellbooks/entity/mobs/dead_king_boss/goals/DeadKingAnimatedWarlockAttackGoal
+# конфиг Cataclysm: «Healing Multiplier» Харбингера стал «Life Steal», поджог лазерами убран (было true)
+field com/github/L_Ender/cataclysm/config/CMConfig.HarbingerHealingMultiplier  com/github/L_Ender/cataclysm/config/CMCommonConfig$Harbinger.LifeSteal
+field com/github/L_Ender/cataclysm/config/CMConfig.HarbingerLightFire          dev/mcmoded/port/traveloptics/TravelopticsPort.HARBINGER_LIGHT_FIRE
+# снаряды Cataclysm: направление лазера стало Vec3, конструктор ракеты (level, owner) убран
+factory com/github/L_Ender/cataclysm/entity/projectile/Laser_Beam_Entity(Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/entity/LivingEntity;DDDDDDFLnet/minecraft/world/level/Level;)V   dev/mcmoded/port/traveloptics/TravelopticsPort.laser
+factory com/github/L_Ender/cataclysm/entity/projectile/Wither_Homing_Missile_Entity(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;)V   dev/mcmoded/port/traveloptics/TravelopticsPort.witherMissile
+field com/github/L_Ender/cataclysm/init/ModParticle.SANDSTORM   dev/mcmoded/port/traveloptics/TravelopticsPort.SANDSTORM
+ownerinit com/github/L_Ender/cataclysm/entity/projectile/Wither_Homing_Missile_Entity   com/github/L_Ender/cataclysm/init/ModEntities.WITHER_HOMING_MISSILE

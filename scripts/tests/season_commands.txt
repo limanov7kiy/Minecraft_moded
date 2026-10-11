@@ -1,0 +1,15 @@
+# Сезоны Serene Seasons -> температура LSO (seasontemp.js). Первая /season set после запуска события не шлёт — ставим дважды.
+time set noon
+season set early_spring
+season set mid_summer
+#sleep 3
+seasontemp
+season set mid_autumn
+#sleep 3
+seasontemp
+season set mid_winter
+#sleep 3
+seasontemp
+season set mid_spring
+#sleep 3
+seasontemp

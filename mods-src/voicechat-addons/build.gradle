@@ -1,0 +1,88 @@
+plugins {
+    id 'java'
+    id 'net.neoforged.moddev.legacyforge' version '2.0.77'
+    id 'com.gradleup.shadow' version '8.3.6'
+}
+
+// Порт на Forge 1.20.1 аддонов Simple Voice Chat от Max Henkel (оригиналы — только Fabric):
+// Voice Chat Interaction, AudioPlayer, Enhanced Groups. См. README.md.
+group = 'de.maxhenkel'
+version = mod_version
+base { archivesName = 'voicechat-addons-forge' }
+
+legacyForge {
+    version = "${minecraft_version}-${forge_version}"
+    parchment {
+        minecraftVersion = parchment_minecraft
+        mappingsVersion = parchment_version
+    }
+    runs {
+        server { server() }
+    }
+    mods {
+        vcinteraction { sourceSet sourceSets.main }
+    }
+}
+
+mixin {
+    add sourceSets.main, 'audioplayer.refmap.json'
+    config 'audioplayer.mixins.json'
+}
+
+repositories {
+    maven { url = 'https://maven.maxhenkel.de/repository/public' }
+    exclusiveContent {
+        forRepository { maven { url = 'https://api.modrinth.com/maven' } }
+        filter { includeGroup 'maven.modrinth' }
+    }
+    mavenCentral()
+}
+
+configurations {
+    // библиотеки, которые переупаковываются внутрь jar (с переносом пакетов, как у оригиналов)
+    shade
+    implementation.extendsFrom shade
+}
+
+dependencies {
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
+    compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
+    compileOnly 'org.jetbrains:annotations:24.0.1'
+    compileOnly "de.maxhenkel.voicechat:voicechat-api:${voicechat_api_version}"
+    modImplementation "maven.modrinth:admiral:${admiral_version}"
+
+    shade "de.maxhenkel.configbuilder:configbuilder:${configbuilder_version}"
+    shade("com.googlecode.soundlibs:mp3spi:${mp3spi_version}") { exclude group: 'junit', module: 'junit' }
+    shade "org.microhttp:microhttp:${microhttp_version}"
+}
+
+processResources {
+    def props = [mod_version: mod_version, vcinteraction_version: vcinteraction_version,
+                 audioplayer_version: audioplayer_version, enhancedgroups_version: enhancedgroups_version]
+    inputs.properties props
+    filesMatching('META-INF/mods.toml') { expand props }
+}
+
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.release = 17 }
+
+// Итоговый jar: reobf-jar мода (имена SRG) + библиотеки с перенесёнными пакетами.
+// Своя задача, а не shadowJar: тот по умолчанию берёт ещё и dev-классы с мойанговскими именами.
+def modJar = tasks.register('modJar', com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar) {
+    dependsOn reobfJar
+    from(zipTree(reobfJar.archiveFile))
+    configurations = [project.configurations.shade]
+    archiveClassifier = ''
+    relocate 'de.maxhenkel.configbuilder', 'de.maxhenkel.vcaddons.configbuilder'
+    relocate 'javazoom', 'de.maxhenkel.audioplayer.javazoom'
+    relocate 'org.tritonus', 'de.maxhenkel.audioplayer.tritonus'
+    relocate 'org.microhttp', 'de.maxhenkel.audioplayer.microhttp'
+    exclude 'META-INF/maven/**', 'META-INF/LICENSE*', 'META-INF/NOTICE*', 'META-INF/INDEX.LIST'
+    // сервисы SPI из mp3spi заменены своими (уже с перенесёнными именами) — src/main/resources/META-INF/services
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest.attributes(['MixinConfigs': 'audioplayer.mixins.json'])
+}
+jar { archiveClassifier = 'dev' }
+reobfJar { archiveClassifier = 'reobf' }
+shadowJar { enabled = false }
+build.dependsOn modJar

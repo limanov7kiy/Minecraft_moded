@@ -23,6 +23,23 @@ public class BlackHoleEntity extends AreaConstruct {
         super(type, level);
     }
 
+    /// Пустотный опал (`charm_black_hole`): дыра поглощает блоки рядом с собой — если заклинатель носит его,
+    /// разрешён mobGriefing и защита территорий не против (`BlockEvent.BreakEvent` от имени заклинателя).
+    private void devourBlock(double r) {
+        LivingEntity caster = getCaster();
+        if (!(caster instanceof Player player) || !dev.mcmoded.wizardryrestored.util.Artifacts.has(player, com.binaris.wizardry.setup.registries.EBItems.CHARM_BLACK_HOLE)
+                || !net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(level(), player)) return;
+        double d = r / 2;
+        net.minecraft.core.BlockPos pos = net.minecraft.core.BlockPos.containing(center().add((random.nextDouble() * 2 - 1) * d, (random.nextDouble() * 2 - 1) * d, (random.nextDouble() * 2 - 1) * d));
+        var state = level().getBlockState(pos);
+        float hardness = state.getDestroySpeed(level(), pos);
+        if (state.isAir() || hardness < 0 || hardness >= 50 || state.hasBlockEntity() || !state.getFluidState().isEmpty()) return;
+        if (net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.event.level.BlockEvent.BreakEvent(level(), pos, state, player))) return;
+        level().removeBlock(pos, false);
+        ((net.minecraft.server.level.ServerLevel) level()).sendParticles(new net.minecraft.core.particles.BlockParticleOption(ParticleTypes.BLOCK, state),
+                pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 12, 0.3, 0.3, 0.3, 0.1);
+    }
+
     @Override
     public void tick() {
         super.tick();
@@ -40,6 +57,7 @@ public class BlackHoleEntity extends AreaConstruct {
             return;
         }
         if (tickCount % 40 == 1) playSound(SoundEvents.PORTAL_AMBIENT, 1.2f, 0.5f);
+        if (tickCount % 4 == 0) devourBlock(r);
 
         for (Entity e : level().getEntities(this, getBoundingBox().inflate(r))) {
             if (e instanceof com.binaris.wizardry.api.content.entity.construct.MagicConstructEntity

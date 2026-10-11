@@ -96,11 +96,15 @@ public class WizardryRestored {
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
         SPELLS.register(modBus);
         EFFECTS.register(modBus);
+        dev.mcmoded.wizardryrestored.block.ModBlocks.BLOCKS.register(modBus);
+        dev.mcmoded.wizardryrestored.block.ModBlocks.ITEMS.register(modBus);
+        modBus.addListener(dev.mcmoded.wizardryrestored.block.ModBlocks::onCreativeTab);
         dev.mcmoded.wizardryrestored.entity.ModEntities.ENTITY_TYPES.register(modBus);
         modBus.addListener(dev.mcmoded.wizardryrestored.entity.ModEntities::onAttributes);
         net.minecraftforge.common.MinecraftForge.EVENT_BUS.register(dev.mcmoded.wizardryrestored.entity.DecoyEntity.class);
         net.minecraftforge.common.MinecraftForge.EVENT_BUS.register(Clairvoyance.class);
         net.minecraftforge.common.MinecraftForge.EVENT_BUS.register(Possession.class);
+        net.minecraftforge.common.MinecraftForge.EVENT_BUS.register(dev.mcmoded.wizardryrestored.util.Artifacts.class);
         net.minecraftforge.common.MinecraftForge.EVENT_BUS.register(dev.mcmoded.wizardryrestored.util.TempBlocks.class);
         net.minecraftforge.common.MinecraftForge.EVENT_BUS.register(dev.mcmoded.wizardryrestored.util.SpellStates.class);
     }

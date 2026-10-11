@@ -1,0 +1,13 @@
+name = "Create: Northstar - Structures"
+filename = "northstar_structures-forge1.0.0.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/eqWqcloq/versions/SVrOiSaD/northstar_structures-forge1.0.0.jar"
+hash-format = "sha512"
+hash = "7923af03c38a5cd01f3c57aaa860a5af766b505b93d160f457336fb3b9a74412f669a0c68557235c3e5c312e159d58eed385322d7544bff5e06a353321e6d09d"
+
+[update]
+[update.modrinth]
+mod-id = "eqWqcloq"
+version = "SVrOiSaD"

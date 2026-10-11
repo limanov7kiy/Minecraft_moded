@@ -1,0 +1,6 @@
+# T.O Magic 'n Extras 6.3.0 (автор gametechbc, All Rights Reserved) — собран под L_Ender's Cataclysm 3.16;
+# порт под Cataclysm 3.31 и Iron's Spells 3.16.3. См. CLAUDE.md, «Назначение и лицензии».
+url https://edge.forgecdn.net/files/7424/522/traveloptics-6.3.0-1.20.1.jar
+sha1 e1a52c88a538e62a4b739ebcef81ab9cf5e19b20
+out traveloptics-6.3.0-1.20.1-mmport.jar
+shims dev/mcmoded/port/traveloptics

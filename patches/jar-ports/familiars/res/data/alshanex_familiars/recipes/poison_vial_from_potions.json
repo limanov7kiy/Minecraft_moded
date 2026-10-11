@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "type": "forge:partial_nbt", "item": "minecraft:potion", "nbt": "{Potion:\"minecraft:poison\"}" },
+    { "type": "forge:partial_nbt", "item": "minecraft:potion", "nbt": "{Potion:\"minecraft:poison\"}" },
+    { "item": "alshanex_familiars:spider_fang" }
+  ],
+  "result": { "item": "alshanex_familiars:poison_vial" }
+}

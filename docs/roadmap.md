@@ -20,10 +20,10 @@
 | Серверные тесты: гравитация, маршруты, ракеты, кислород, руды, заклинания | `scripts/tests/` |
 
 ## В работе
-- Поток 1 (Wizardry Restored): **0.5.0** — все 61 недостающее заклинание + 4 «тестовых» заклинания Redux;
-  этап 3 (новые сущности: конструкции, двойник, феникс, эффект метки) сделан, `castcheck.js` 65/65.
-  Дальше — этап 4 (артефакты Redux без эффекта, связанные с заклинаниями) и замена упрощений grapple/petrify/
-  transportation; план — в «Точке остановки» `docs/wizardry-port.md`.
+- Поток 1 (Wizardry Restored): **0.6.0** — все 61 недостающее заклинание + 4 «тестовых» Redux; этап 3
+  (сущности) и этап 4 (статуи petrify/ice_statue, лоза grapple, камни перемещения, 18 артефактов Redux)
+  сделаны, `castcheck.js` 69/69. Дальше — оригинальные ассеты и сверка параметров с оригиналом (лицензия
+  больше не мешает); план — «Точка остановки» в `docs/wizardry-port.md`.
 
 ## Потоки (по чату на каждый)
 
@@ -37,13 +37,13 @@
 ### Поток 1 — Wizardry Restored (заклинания)
 Файлы: `mods-src/wizardry-restored/`, `docs/wizardry-port.md`, `scripts/tests/spellcheck.js`, `castcheck.js`.
 1. ~~Оставшиеся 23 заклинания — этап 3~~ — **сделано** в 0.5.0 (все 61 есть, `castcheck.js` 65/65).
-2. Этап 4: артефакты Redux, связанные с заклинаниями (`ring_stormcloud`, `charm_black_hole`, `ring_hammer`,
-   `ring_interdiction`…), блок `transportation_stone`; замена упрощений (статуя для petrify/ice_statue, лоза
-   grapple). План — «Точка остановки» в `docs/wizardry-port.md`.
+2. ~~Этап 4: артефакты, камни перемещения, статуи, лоза~~ — **сделано** в 0.6.0.
 3. ~~Вернуть на выделенный сервер `SENSIBLE`-заклинания Redux~~ — **сделано** в 0.4.0 (копии под
    `wizardry_restored:*`, проверены `castcheck.js`).
 4. ~~Проверить дополнения Redux с CurseForge~~ — **сделано**: Spell Forge 1.1.0 в сборке (сервер ОК,
    162 заклинания); Wizardry Golems и Necromancer's Delight — только 1.12.2.
+5. Оригинальные ассеты Electroblob вместо самодельных (с указанием авторства), сверка параметров заклинаний
+   с оригиналом, доработка упрощённых possession/resurrection/decoy — см. `docs/wizardry-port.md`.
 
 ### Поток 2 — Мультиплеер: голосовой чат, раздача сборки, хостинг
 Файлы: `pack/modlist.txt` (раздел «Удобство и мультиплеер»), `docs/hosting.md`, новые `scripts/export-*`.
@@ -55,6 +55,21 @@
    — скрипт экспорта и короткая инструкция для друзей.
 3. Выбор хостинга с пользователем и проверка сервера в боевых условиях (RAM, флаги JVM, `spark`).
 
+Сделано (ветка `claude/lucid-babbage-8qj4no`):
+- [x] Голосовой чат: Simple Voice Chat + Simple Radio, Sound Physics Remastered, Talking Heads, Let Them Talk,
+  VoiceChatProfiles, Vibrative Voice, VC Admin, Broadcast; конфиг `pack/config/voicechat/`. Voice Chat
+  Interaction, Audio Player, Enhanced Groups — только Fabric. Подробности — `docs/compat.md`.
+- [x] UDP 24454 в `docs/hosting.md`: проброс, UDP-туннель playit.gg + `voice_host`, Tailscale, платный хостинг.
+- [x] `scripts/export-pack.sh` → `.mrpack` и `*-server.zip` (проверен запуском); инструкция — `docs/friends.md`.
+- [x] Попутно: `test-server.sh` ловит «Mods loaded with N warnings» (сервер без модов); `.gitignore` больше не
+  прячет `kubejs/data/*/worldgen/` — закоммичены размещения `mm_space` из `patches/ore_crossgen.py`.
+- [x] Порт на Forge Voice Chat Interaction, AudioPlayer, Enhanced Groups (Max Henkel, только Fabric) —
+  `mods-src/voicechat-addons`, тест `scripts/tests/voicecheck.js`. Voice Chat Interaction выключен в пользу
+  Vibrative Voice (родная Forge-сборка, связка с рациями), вернуть — `enabled=true` в его конфиге.
+- [~] Пункт 3: замер ресурсов (`spark`: 3 ГБ кучи без игроков, TPS 20) и сравнение вариантов — `docs/hosting.md`;
+  серверный пакет теперь `-Xmx10G` (5–8 игроков). Ждём решения пользователя, где хостить, и первую сессию с
+  игроками — тогда `spark profiler` под нагрузкой.
+
 ### Поток 3 — Дополнения, волна 2 (связки для каждого мода)
 Файлы: `pack/modlist.txt`, `pack/mods/*.pw.toml`, `pack/config/almostunified/`, `docs/compat.md`.
 1. Пройти каждый мод из `modlist.txt` и найти недостающие дополнения и связки (особенно: Lycanites,
@@ -63,6 +78,8 @@
 2. Для каждой новой пачки: тест сервера, Almost Unified (`scripts/hardrefs.py` перед изменением),
    запись в `docs/compat.md`.
 3. Где совместимость плохая — не чинить самому, а записать задачу в поток 4.
+4. (из потока Galacticraft) Проверить `beyond-oxygen` (GPL, 1.20.1 Forge) — герметизация отсеков кораблей
+   Valkyrien Skies; нужна ли связка с кислородом Ad Astra.
 
 Ход работы (ветка `claude/determined-goodall-fs240t`, список согласован с пользователем; моды — `pack/modlist.txt`,
 раздел «волна 2»):
@@ -87,32 +104,64 @@
 Файлы: `patches/`, `mods-src/mm-compat/`, `pack/kubejs/`, `docs/compat.md`.
 1. ~~Lycanites Mobs: недостающий `lycanitesmobs.refmap.json`~~ — **сделано** (`patches/lycanites-refmap`,
    коммит `b8f38e7`); осталось проверить клиентский `LightTextureMixin` в потоке 5.
-2. Legendary Survival Overhaul × Serene Seasons: проверить связку температуры с сезонами, при надобности патч.
-3. Create: Northstar — Structures: следить за совместимой версией или сделать свой патч на `moon_*_blob`.
-4. Шум в логах (рецепты для отсутствующих модов, `laser_beam has no attributes`, атрибут `thought_load_limit`).
-5. Задачи совместимости, пришедшие из потока 3.
-   - (поток 3) CBC: Nuclear (Create Big Cannons × Alex's Caves) собран под старую CBC: `NoSuchMethodError
-     CBCBuilderTransformersImpl.safeNbt()` — отключён. Вернуть, если выйдет совместимая версия.
-   - (поток 3) T.O Magic 'n Extras 6.3.0 (последняя) обращается к `cataclysm.items.Dungeon_Eye.DungeonEyeItem`, которого
-     нет в Cataclysm 3.31 — мод не грузится, отключён. Следить за обновлением.
-   - (поток 3) Alshanex's Familiars 1.1.2 (единственная версия под 1.20.1) обращается к
-     `ironsspellbooks.item.curios.SimpleAttributeCurio`, которого нет в Iron's Spells 3.16 — отключён.
-   - (поток 3) **Superb Warfare × Valkyrien Skies: попадания по кораблям.** Связка Superb VS 1.0.0-beta собрана под VS 2.3;
-     с VS 2.4.11 её миксин `ProjectileEntityMixin` не применяется (`ClassMetadataNotFoundException
-     org.valkyrienskies.core.apigame.world.ShipWorldCore`) и роняет загрузку Superb Warfare. Отключена. Без неё пули
-     Superb Warfare не попадают по блокам кораблей VS. Нужен свой патч (миксин на трассировку снаряда с учётом кораблей
-     через API VS 2.4) или обновление Superb VS.
-   - (поток 3) Create: Eureka! (CurseForge) — датапак `.zip`, а не мод. В сборке нет загрузки глобальных датапаков
-     (`fetch-mods.py` берёт только `mods/`). Решить: подключить загрузчик датапаков или развернуть его в `pack/kubejs/data/`.
+2. ~~Legendary Survival Overhaul × Serene Seasons~~ — **проверено**: связка встроена в LSO и работает
+   (лето +8, зима −9.5 к температуре мира), патч не нужен (`scripts/tests/seasontemp.js`, compat.md п. 11).
+3. ~~Create: Northstar — Structures~~ — **сделано**: совместимой версии нет, патч
+   `patches/northstar_structures_fix.py` (биомы под Redux 0.6, кратеры и на Луне Ad Astra), мод возвращён.
+4. ~~Шум в логах~~ — **сделано** (compat.md п. 9): теги с отсутствующими ссылками больше не теряются,
+   рецепты для отсутствующих модов отключены, лучи Cataclysm Spellbooks и `thought_load_limit` — в `mm-compat` 0.2.0.
+   Попутно: `.gitignore` прятал `pack/kubejs/data/*/worldgen` — без них чистая копия не создавала мир (п. 12).
+5. ~~Задачи совместимости из потока 3~~ — **сделано** (compat.md п. 14–16):
+   - ~~Superb Warfare × Valkyrien Skies~~ — Superb VS не нужен (SBW 0.8.9+ умеет сам); исправлен блок попадания
+     по кораблю (`mm-compat` 0.3.0), тест `vshitcheck.js`.
+   - ~~CBC: Nuclear~~, ~~Alshanex's Familiars~~, ~~T.O Magic 'n Extras~~ — порты `patches/jar-ports` в `pack/mods/*-mmport.jar`
+     (+ Apothic Attributes и Placebo для T.O). Потоку 3: строки `# mr cbc-nuclear`, `# mr alshanexs-familiars`,
+     `# cf to-tweaks-irons-spells` оставить отключёнными — в сборке порты.
+   - ~~Create: Eureka!~~ — это сборка (134 мода, только конфиги), не датапак: переносить нечего.
+   Инструменты для следующих случаев: `scripts/linkcheck` (что не связывается), `scripts/jarport` + `mods-src/jar-ports`.
+6. ~~(из потока 2) Zombie Have Ears 1.1.2~~ — **сделано**: `patches/zombie-have-ears/build.sh` (исправленный `mods.toml`,
+   авторство SKALKMine указано) → `pack/mods/zombiehaveears-1.1.2-forgefix.jar`, проверен с Simple Voice Chat.
+7. ~~(из ревью PR #2) Arknights Weapon 1.5.6 удваивает здоровье мобов~~ — **сделано**: порт без `RiseProcedure`
+   (`patches/jar-ports/arknights-weapon` → `pack/mods/arknights_weapon-1.5.6-mmport.jar`), тест
+   `mobhealth_commands.txt`: оригинал 20→40→80, порт 20→20. Оригинал из PR #2 убран при слиянии, в сборке порт.
+8. **Решение пользователя:** Apothic Attributes (нужен T.O Magic 'n Extras) переделывает формулы брони/защиты во всей
+   игре. Оставить его баланс (как сейчас) или вернуть ванильные формулы в `pack/config/attributeslib.cfg`?
 
 ### Поток 5 — Проверка клиента
 Серверный тест клиент не покрывает. Запуск клиента (Xvfb в облаке или у игрока): Oculus + Embeddium,
 Distant Horizons, Yes Steve Model, AzureLib-рендер, клиентские моды Arknights furs. Найденное — в
 `docs/compat.md`; правки модов — через поток 3/4. Начинать после потоков 2–3, когда набор модов устоится.
-- (из потока 1) Wizardry Restored 0.5.0: сервер проверен, клиент — нет. Посмотреть рендер новых сущностей
+- (из потока 1) Wizardry Restored 0.6.0: сервер проверен, клиент — нет. Посмотреть рендер новых сущностей
   (тотемы, чёрная дыра, силок, шипы, молот — модели из ванильных блоков; двойник/мираж — скин владельца; феникс —
-  своя текстура), частицы силового поля/тучи/диска, иконки заклинаний и эффекта «Метка жертвы», звуки Redux.
+  своя текстура; статуи — модель существа текстурой камня/льда; лоза — линия до крюка), частицы силового поля/тучи/диска, иконки заклинаний и эффекта «Метка жертвы», звуки Redux.
+- (из потока 2) Импорт `dist/*.mrpack` в Prism Launcher и Modrinth App (серверные моды не должны ставиться),
+  голосовой чат клиент↔сервер (микрофон, группы, рации Simple Radio), Sound Physics вместе с Oculus;
+  порт аддонов: своя пластинка/козий рог (`/audioplayer`), загрузка через браузер.
+
+- (из потока Galacticraft) Galacticraft Revival 0.1.0 (в сборке): рендер скелета-босса (модель GC5),
+  модель сундука сокровищ (Legacy, UV под 1.12 — может быть перевёрнута), потухший факел, полоса здоровья босса,
+  захват и бросок игрока боссом, звуки босса.
+## Интеграция (ревью PR, поток «Ревью и интеграция», ветка `claude/confident-hypatia-2zqr1t`)
+Цикл 1 — 2026-10-10:
+- **PR #1, поток 2** (голосовой чат, экспорт, UDP): проверен и **влит** (`013bf69`). `add-mods.sh` пусто,
+  `packwiz refresh` без изменений, стороны совпадают с Modrinth. Тест в новом мире вместе с Wizardry 0.6.0:
+  `Done`, без «Mods loaded with N warnings», голосовой сервер на 24454, castcheck 69/69, гравитация/маршруты/
+  руды/кислород как раньше. Поправка интегратора: `export-pack.sh` подкладывает packwiz-у jar CurseForge с
+  запретом стороннего скачивания (иначе после PR #2 `.mrpack` не собирается) и падает, если `.mrpack` не создан.
+- **PR #2, поток 3** (дополнения, волна 2; черновик): **заблокирован** — Arknights Weapon удваивает здоровье
+  мобов (задача 7 потока 4), отсюда 5 провалов castcheck (урон есть, но порог «< 20 HP»). Тесты сервера — по
+  пачкам 1–4; пачки 5–6 (Quark, Supplementaries, AE2, Refined Storage…) — только стороны, полный тест — когда
+  выйдет из черновика. При слиянии с PR #1 в `docs/compat.md` убрать дубль пункта про `.gitignore`.
+Цикл 2 — 2026-10-10 (пользователь разрешил сливать готовые PR без подтверждения):
+- **PR #5** (интеграция, цикл 1) — влит.
+- **PR #3, поток 4** (Northstar Structures, сезоны × LSO, шум в логе) — проверен и **влит**. Конфликт с интегратором
+  разобран merge'ем в ветке PR; `northstar_structures_fix.py` воспроизводит данные байт в байт; тест в новом мире:
+  castcheck 69/69, NOISECHECK/SEASONTEMP/кратеры как в отчёте потока, 0 `Couldn't load tag`.
+- **PR #4, Galacticraft** — в работе (этап 1, срез «данж Луны»), не сливается; `pack/` не трогает, конфликтов нет.
+- **PR #2, поток 3** — по-прежнему заблокирован Arknights Weapon (задача 7 потока 4).
+- Заметка для тестов: тестовый мир хранит состояние модов между запусками — для `castcheck.js` и проверок
+  здоровья мобов удалять `<папка>/world` перед запуском.
 
 ### Отложено (решение за пользователем)
-- Порт Galacticraft Legacy на 1.20.1 — фактически переписывание (см. `docs/compat.md`). Нужен отдельный
-  чат (лицензия не препятствует — CLAUDE.md «Назначение и лицензии»); пока космос закрыт связкой Ad Astra + Northstar + Creating Space.
+- Galacticraft — **в работе отдельным потоком** (0.1.0 «лунный данж с боссом» в сборке) (ветка `claude/determined-sagan-51u10p`): свой мод поверх Ad Astra
+  с портом недостающего из GC Legacy/GC5 (данжи, боссы, схемы, астероиды). План и точка остановки — `docs/galacticraft.md`.

@@ -12,8 +12,8 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
-/// Силовое поле: сфера вокруг места сотворения. Чужие снаряды внутри рассыпаются, враги выталкиваются наружу;
-/// заклинатель и союзники ходят и стреляют сквозь неё свободно.
+/// Силовое поле: сфера вокруг места сотворения. Снаряды внутри рассыпаются, враги выталкиваются наружу;
+/// заклинатель и союзники ходят сквозь неё свободно, а стрелять сквозь неё — с Кольцом защитника.
 public class ForcefieldEntity extends AreaConstruct {
     public ForcefieldEntity(EntityType<? extends ForcefieldEntity> type, Level level) {
         super(type, level);
@@ -44,9 +44,12 @@ public class ForcefieldEntity extends AreaConstruct {
             return;
         }
 
+        // Без Кольца защитника поле задерживает любые снаряды, с ним — свои и союзные пропускает
+        boolean defender = dev.mcmoded.wizardryrestored.util.Artifacts.has(getCaster(), com.binaris.wizardry.setup.registries.EBItems.RING_DEFENDER);
+        boolean interdiction = dev.mcmoded.wizardryrestored.util.Artifacts.has(getCaster(), com.binaris.wizardry.setup.registries.EBItems.RING_INTERDICTION);
         for (Projectile p : level().getEntitiesOfClass(Projectile.class, getBoundingBox().inflate(r))) {
             Entity owner = p.getOwner();
-            if (p.position().distanceToSqr(c) > r * r || (owner != null && isFriend(owner))) continue;
+            if (p.position().distanceToSqr(c) > r * r || (defender && owner != null && isFriend(owner))) continue;
             ((ServerLevel) level()).sendParticles(ParticleTypes.ENCHANTED_HIT, p.getX(), p.getY(), p.getZ(), 8, 0.2, 0.2, 0.2, 0.1);
             level().playSound(null, p.getX(), p.getY(), p.getZ(), SoundEvents.SHIELD_BLOCK, getSoundSource(), 0.6f, 1.4f);
             p.discard();
@@ -57,6 +60,8 @@ public class ForcefieldEntity extends AreaConstruct {
             Vec3 away = e.position().subtract(c).multiply(1, 0, 1);
             if (away.lengthSqr() < 1.0e-4) away = new Vec3(1, 0, 0);
             push(e, away.normalize().scale(0.6).add(0, 0.2, 0));
+            // Кольцо запрета: поле ещё и ранит
+            if (interdiction && tickCount % 10 == 0) e.hurt(damage(com.binaris.wizardry.setup.registries.EBDamageSources.FORCE), 2 * damageMultiplier);
         }
     }
 }

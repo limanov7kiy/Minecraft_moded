@@ -32,6 +32,9 @@ repositories {
 dependencies {
     // Ad Astra — только API событий кислорода; Northstar и Creating Space читаются через теги и NBT
     modCompileOnly "maven.modrinth:ad-astra:${ad_astra_version}"
+    // Superb Warfare — трассировка снарядов по кораблям VS (миксин SbwShipHitMixin); Kotlin — ради kotlin.Pair
+    modCompileOnly "maven.modrinth:superb-warfare:${superb_warfare_version}"
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib:1.9.23"
 }
 
 processResources {
@@ -39,5 +42,7 @@ processResources {
     inputs.properties props
     filesMatching('META-INF/mods.toml') { expand props }
 }
+
+jar { manifest.attributes('MixinConfigs': 'mm_compat.mixins.json') }
 
 tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.release = 17 }

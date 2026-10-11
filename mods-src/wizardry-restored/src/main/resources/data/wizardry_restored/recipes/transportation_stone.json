@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [" S ", "SCS", " S "],
+  "key": {
+    "S": { "item": "minecraft:stone_bricks" },
+    "C": { "item": "ebwizardry:magic_crystal" }
+  },
+  "result": { "item": "wizardry_restored:transportation_stone", "count": 4 }
+}

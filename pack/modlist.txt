@@ -47,8 +47,9 @@ mr create-stuff-additions
 mr ad-astra
 mr northstar-redux          # порт Create: Northstar под Create 6 (оригинал несовместим)
 mr mekanism-x-create-northstar
-# mr create-northstar-structures  # ОТКЛЮЧЕН: несовместим с Northstar Redux 0.6+, роняет генерацию мира
+mr create-northstar-structures  # биомы Луны под Redux 0.6+ и кратеры на Луне Ad Astra: patches/northstar_structures_fix.py
 mr creating-space
+# свой мод (both): pack/mods/galacticraft-revival-*.jar из mods-src/galacticraft-revival — порт GC: лунный данж с боссом, ключи, схемы (docs/galacticraft.md)
 mr valkyrien-skies
 mr eureka
 mr mekanism
@@ -92,6 +93,21 @@ mr xaeros-minimap         # клиент
 mr xaeros-world-map       # клиент
 mr yes-steve-model        # модели игроков (нативный код: Windows/Linux x64, macOS не поддерживается)
 mr almostunified          # объединение дублей: один предмет на ресурс (config/almostunified)
+# Голосовой чат (UDP 24454, см. docs/hosting.md; конфиг сервера — config/voicechat/)
+mr simple-voice-chat        # both: сам голосовой чат, группы
+mr simple-radio             # both: рации и радио через SVC; связки с Create и Valkyrien Skies
+mr sound-physics-remastered # client: эхо и заглушение звука, в т.ч. голосов
+mr talkingheads             # client: голова говорящего игрока покачивается
+mr let-them-talk            # client: приглушает музыку и другие звуки, пока кто-то говорит
+mr voicechatprofiles        # client: профили настроек голосового чата
+mr vibrative-voice          # server: голос — вибрация для скалк-сенсоров и Хранителя
+mr vc-admin-voice-chat-moderation-tool # server: OP заходят в запароленные группы (модерация)
+mr simplevoicechat-broadcast # server: OP вещает на всех (группа "broadcast")
+# Voice Chat Interaction, AudioPlayer, Enhanced Groups (Max Henkel) есть только под Fabric — свой порт на Forge:
+#   mods-src/voicechat-addons → pack/mods/voicechat-addons-forge-*.jar (both)
+mr admiral                  # both: библиотека команд Max Henkel, нужна порту AudioPlayer и Enhanced Groups
+# Zombie Have Ears 1.1.2 (server: зомби слышат голос) — mods.toml в формате NeoForge, Forge 47 его не грузил: перепакован
+#   patches/zombie-have-ears/build.sh → pack/mods/zombiehaveears-1.1.2-forgefix.jar
 
 ## Библиотеки, не объявленные в зависимостях на Modrinth (найдены тестовым запуском сервера)
 mr playeranimator         # нужна Iron's Spells
@@ -211,7 +227,7 @@ mr valkyrien-sails
 mr vs-tournament-reforged         # порт VS Tournament под VS 2.4 (оригинал vs-tournament падает: VSConfigClass)
 # cf create-eureka                # ОТЛОЖЕН: это датапак (.zip), а не мод — в сборке нет загрузки датапаков (задача потоку 4)
 cf gathering-torches-become-sunlight
-cf arknights-weapon
+# cf arknights-weapon            # ЗАМЕНЁН портом: arknights_weapon-1.5.6-mmport.jar (оригинал удваивал здоровье мобов) — см. ниже
 cf sarkazs-furnace-side-fables
 # Пачка 5: техника и удобство
 mr mekanismmoremachine            # Mekanism: больше машин и фабрик
@@ -224,3 +240,13 @@ mr gravestone-x-curios-api-compat     # сервер
 mr xaeros-minimap-world-map-waystones-compatibility-forge
 mr jade-addons-forge
 mr legendary-survival-addon       # Create × Legendary Survival Overhaul
+
+## Порты чужих jar под наши версии зависимостей (patches/jar-ports, собраны в pack/mods/*-mmport.jar)
+# Сами моды выбраны потоком 3 (у него строки `# mr ...` ОТКЛЮЧЕНЫ — так и оставить: в сборке порт, а не оригинал).
+# cbc-nuclear          → cbc_nukes-2.1.1-mmport.jar                (CBC 5.11: safeNbt, explosivePower)
+# alshanexs-familiars  → alshanex_familiars-1.20.1_v1.1.2-mmport.jar (Iron's Spells 3.16)
+# to-tweaks-irons-spells (T.O Magic 'n Extras, CurseForge) → traveloptics-6.3.0-1.20.1-mmport.jar (Cataclysm 3.31)
+# arknights-weapon (CurseForge) → arknights_weapon-1.5.6-mmport.jar (без RiseProcedure: удваивала здоровье мобов при каждой
+#   загрузке чанка). Оригинал у потока 3 закомментирован, его .pw.toml удалён.
+mr apothic-attributes     # обязательная зависимость T.O Magic 'n Extras (+ Placebo)
+# zombie-have-ears (поток 2) → zombiehaveears-1.1.2-forgefix.jar (patches/zombie-have-ears, только mods.toml)
