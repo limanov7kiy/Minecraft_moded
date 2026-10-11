@@ -1,0 +1,8 @@
+# Origin Furs 1.0.5 × AzureLib 3.1: весь старый API берётся из встроенной копии AzureLib 2.0.39 (embed.txt),
+# своя копия не пересекается с AzureLib 3.1 (ни классами, ни каналом сети, ни @Mod).
+# Сервисы платформы AzureLib 2 (ServiceLoader → NeoForge-реализации с сетевым каналом azurelib:main, который уже
+# занят AzureLib 3.1) → заглушки-прокси: события рендера не шлём, сеть не нужна (мод только клиентский).
+scall mod/azure/azurelib/platform/Services.load(Ljava/lang/Class;)Ljava/lang/Object;   dev/mcmoded/port/originfurs/OriginFursPort.service(Ljava/lang/Class;)Ljava/lang/Object;
+# AzureLib.initialize() у мода — только загрузчик моделей/анимаций geo/ (клиент)
+scall mod/azure/azurelib/AzureLib.initialize()V   dev/mcmoded/port/originfurs/OriginFursPort.initialize()V
+prefix mod/azure/azurelib/   dev/mcmoded/port/originfurs/azl/
