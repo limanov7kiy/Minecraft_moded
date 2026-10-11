@@ -1,0 +1,36 @@
+// Классы-переходники для портов чужих jar (scripts/jarport, patches/jar-ports). Это не мод: классы
+// вписываются в порт каждого мода (jarPort.sh), здесь только компилируются под SRG-имена.
+plugins {
+    id 'java'
+    id 'net.neoforged.moddev.legacyforge' version '2.0.77'
+}
+
+group = 'dev.mcmoded'
+version = '1'
+base { archivesName = 'jar-ports' }
+
+legacyForge {
+    version = "${minecraft_version}-${forge_version}"
+    parchment {
+        minecraftVersion = parchment_minecraft
+        mappingsVersion = parchment_version
+    }
+}
+
+repositories {
+    exclusiveContent {
+        forRepository { maven { url = 'https://api.modrinth.com/maven' } }
+        filter { includeGroup 'maven.modrinth' }
+    }
+    maven { url = 'https://maven.tterrag.com/'; content { includeGroup 'com.tterrag.registrate' } }
+}
+
+dependencies {
+    modCompileOnly "maven.modrinth:irons-spells-n-spellbooks:${irons_version}"
+    modCompileOnly "maven.modrinth:l_enders-cataclysm:${cataclysm_version}"
+    modCompileOnly "maven.modrinth:curios:${curios_version}"
+    modCompileOnly "maven.modrinth:create:${create_version}"
+    compileOnly "com.tterrag.registrate:Registrate:MC1.20-1.3.3"
+}
+
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.release = 17 }

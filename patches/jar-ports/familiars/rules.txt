@@ -1,0 +1,29 @@
+# Iron's Spells 3.16: удалённые классы → переходники mods-src/jar-ports (dev.mcmoded.port.familiars)
+class io/redspace/ironsspellbooks/item/curios/SimpleAttributeCurio                          dev/mcmoded/port/familiars/SimpleAttributeCurio
+class io/redspace/ironsspellbooks/entity/mobs/goals/OwnerGetter                             dev/mcmoded/port/familiars/OwnerGetter
+class io/redspace/ironsspellbooks/player/KeyState                                           dev/mcmoded/port/familiars/KeyState
+class io/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronRecipe          dev/mcmoded/port/familiars/AlchemistCauldronRecipe
+class io/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronRecipeRegistry  dev/mcmoded/port/familiars/AlchemistCauldronRecipeRegistry
+# переименован, конструктор (MagicData) тот же
+class io/redspace/ironsspellbooks/network/ClientboundSyncMana                               io/redspace/ironsspellbooks/network/SyncManaPacket
+
+# цели питомцев: OwnerGetter → Supplier<Entity> (OwnerGetter-переходник наследует Supplier, мост — ниже)
+call  io/redspace/ironsspellbooks/entity/mobs/goals/GenericFollowOwnerGoal.<init>(Lnet/minecraft/world/entity/PathfinderMob;Lio/redspace/ironsspellbooks/entity/mobs/goals/OwnerGetter;DFFZF)V  io/redspace/ironsspellbooks/entity/mobs/goals/GenericFollowOwnerGoal.<init>(Lnet/minecraft/world/entity/PathfinderMob;Ljava/util/function/Supplier;DFFZF)V
+call  io/redspace/ironsspellbooks/entity/mobs/goals/GenericCopyOwnerTargetGoal.<init>(Lnet/minecraft/world/entity/PathfinderMob;Lio/redspace/ironsspellbooks/entity/mobs/goals/OwnerGetter;)V    io/redspace/ironsspellbooks/entity/mobs/goals/GenericCopyOwnerTargetGoal.<init>(Lnet/minecraft/world/entity/PathfinderMob;Ljava/util/function/Supplier;)V
+call  io/redspace/ironsspellbooks/entity/mobs/goals/GenericOwnerHurtByTargetGoal.<init>(Lnet/minecraft/world/entity/Mob;Lio/redspace/ironsspellbooks/entity/mobs/goals/OwnerGetter;)V  io/redspace/ironsspellbooks/entity/mobs/goals/GenericOwnerHurtByTargetGoal.<init>(Lnet/minecraft/world/entity/Mob;Ljava/util/function/Supplier;)V
+call  io/redspace/ironsspellbooks/entity/mobs/goals/GenericOwnerHurtTargetGoal.<init>(Lnet/minecraft/world/entity/Mob;Lio/redspace/ironsspellbooks/entity/mobs/goals/OwnerGetter;)V    io/redspace/ironsspellbooks/entity/mobs/goals/GenericOwnerHurtTargetGoal.<init>(Lnet/minecraft/world/entity/Mob;Ljava/util/function/Supplier;)V
+bridge get()Lnet/minecraft/world/entity/LivingEntity;   ()Ljava/lang/Object;
+# владелец призыва: Iron's спрашивает getSummoner()Entity — отвечают методы Familiars
+bridge getSummoner()Lnet/minecraft/world/entity/LivingEntity;   ()Lnet/minecraft/world/entity/Entity;
+scall io/redspace/ironsspellbooks/entity/mobs/MagicSummon.getSummoner()Lnet/minecraft/world/entity/LivingEntity;   dev/mcmoded/port/familiars/FamiliarsPort.summoner(Lio/redspace/ironsspellbooks/entity/mobs/IMagicSummon;)Lnet/minecraft/world/entity/LivingEntity;
+# таймеры призыва убраны
+scall net/alshanex/alshanex_familiars/entity/ShadowEntity.onRemovedHelper(Lnet/minecraft/world/entity/Entity;Lio/redspace/ironsspellbooks/effect/SummonTimer;)V        dev/mcmoded/port/familiars/FamiliarsPort.onRemovedHelper(Lio/redspace/ironsspellbooks/entity/mobs/IMagicSummon;Lnet/minecraft/world/entity/Entity;Ljava/lang/Object;)V
+scall net/alshanex/alshanex_familiars/entity/misc/BlueBirdEntity.onRemovedHelper(Lnet/minecraft/world/entity/Entity;Lio/redspace/ironsspellbooks/effect/SummonTimer;)V  dev/mcmoded/port/familiars/FamiliarsPort.onRemovedHelper(Lio/redspace/ironsspellbooks/entity/mobs/IMagicSummon;Lnet/minecraft/world/entity/Entity;Ljava/lang/Object;)V
+field io/redspace/ironsspellbooks/registries/MobEffectRegistry.RAISE_DEAD_TIMER    dev/mcmoded/port/familiars/FamiliarsPort.RAISE_DEAD_TIMER
+class io/redspace/ironsspellbooks/effect/SummonTimer   java/lang/Object
+# прочие изменения API
+call  io/redspace/ironsspellbooks/api/util/Utils.shouldHealEntity(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/LivingEntity;)Z   io/redspace/ironsspellbooks/api/util/Utils.shouldHealEntity(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;)Z
+scall io/redspace/ironsspellbooks/capabilities/magic/SyncedSpellData.saveNBTData(Lnet/minecraft/nbt/CompoundTag;)V   dev/mcmoded/port/familiars/FamiliarsPort.saveNBTData(Lio/redspace/ironsspellbooks/capabilities/magic/SyncedSpellData;Lnet/minecraft/nbt/CompoundTag;)V
+scall io/redspace/ironsspellbooks/capabilities/magic/SyncedSpellData.loadNBTData(Lnet/minecraft/nbt/CompoundTag;)V   dev/mcmoded/port/familiars/FamiliarsPort.loadNBTData(Lio/redspace/ironsspellbooks/capabilities/magic/SyncedSpellData;Lnet/minecraft/nbt/CompoundTag;)V
+scall io/redspace/ironsspellbooks/effect/OakskinEffect.getReductionAmount(I)F   dev/mcmoded/port/familiars/FamiliarsPort.oakskinReduction(I)F
+field io/redspace/ironsspellbooks/registries/ParticleRegistry.FIREFLY_PARTICLE   dev/mcmoded/port/familiars/FamiliarsPort.FIREFLY_PARTICLE

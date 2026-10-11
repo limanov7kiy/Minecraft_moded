@@ -91,8 +91,54 @@
    (`Unbound values ... mm_space:*`). Правило сделано корневым (`/world*/`), данные добавлены.
 13. **Битый мод-файл выключает все моды.** Zombie Have Ears 1.1.2 (дополнение к голосовому чату) объявляет
    зависимость без поля `mandatory` (формат NeoForge) — Forge 47 пишет «not a valid mod file», «Mods loaded
-   with 1 warnings» и запускает сервер **без единого мода** (а `Done` в логе есть). Мод убран;
+   with 1 warnings» и запускает сервер **без единого мода** (а `Done` в логе есть). Исправлено перепаковкой (п. 14);
    `test-server.sh` теперь считает предупреждения загрузки модов провалом.
+
+14. **Порты чужих jar под наши версии зависимостей** (поток 4, по задачам потока 3; правка ARR-модов разрешена —
+   см. CLAUDE.md, «Назначение и лицензии»; авторство указано в `source.txt` и переходниках).
+   Инструменты: `scripts/linkcheck/linkcheck.sh <jar> <тестовый сервер>` — без запуска показывает, какие классы,
+   методы и поля других модов jar использует, а их нет (в т.ч. в лямбдах и унаследованных методах; классы
+   клиента и методы, которые Forge добавляет в классы Minecraft, на сервере не проверить). `scripts/jarport/JarPort.java`
+   — переписывает ссылки в байткоде по правилам (`class`, `field`, `factory`, `call`/`scall`, `bridge`, `ownerinit`)
+   и добавляет классы-переходники из `mods-src/jar-ports`. Сборка порта: `patches/jar-ports/build.sh <мод> <сервер>`
+   → `pack/mods/*-mmport.jar` (оригинал качается по ссылке с проверкой хеша).
+   - **CBC: Nuclear 2.1.1** (MIT): `CBCBuilderTransformers.safeNbt()` в CBC 5.11 есть, а его Forge-реализацию удалили —
+     возвращён тег `create:safe_nbt` (как в CBC 1.20); `explosivePower()` разделён на урон блокам/существам —
+     размер ядерного взрыва считается от урона блокам.
+   - **Alshanex's Familiars 1.20.1_v1.1.2** (ARR, под Iron's Spells ~3.4): переходники `SimpleAttributeCurio`,
+     `KeyState`, `OwnerGetter` (теперь `Supplier<Entity>` с мостом), владелец призыва `getSummoner()` — мост к
+     `Entity`, таймеры призыва убраны, `SyncedSpellData` с `HolderLookup`, Oakskin — прежняя формула. Рецепт котла
+     алхимика (Iron's 3.16 варит только жидкости) заменён крафтом: 2 зелья яда + клык паука → флакон яда.
+   - **T.O Magic 'n Extras 6.3.0** (ARR, под Cataclysm 3.16): частицы `*Data` → record'ы `Options` (у `CircleLightning`
+     размер 0.1 как у Cataclysm, у `Ring` цвет 0..1 → 0..255), `Boltstrike_Entity` → `Bolt_strike_Entity`,
+     `Dungeon_Eye.DungeonEyeItem` → `items.DungeonEyeItem`, лазер — направление `Vec3`, ракета Харбингера — тип +
+     владелец, `CMConfig.HarbingerHealingMultiplier` → `Harbinger.LifeSteal`, поджог лазерами — как было (true),
+     частица `SANDSTORM` (в 3.31 не регистрируется) → `minecraft:white_ash`. Требует Apothic Attributes + Placebo
+     (добавлены). Три тега T.O ссылаются на убранных существ Cataclysm — чистятся `missing_mod_refs.js`.
+   - **Zombie Have Ears 1.1.2** (поток 2, ARR): `mods.toml` в формате NeoForge → перепакован `patches/zombie-have-ears/build.sh`
+     (код не тронут, добавлен `pack.mcmeta`) → `pack/mods/zombiehaveears-1.1.2-forgefix.jar` (см. п. 13).
+     Проверено вместе с Simple Voice Chat 2.6.24: плагин регистрируется, моды грузятся.
+   Проверено (`scripts/tests/ports_commands.txt` + `portcheck.js`): сервер стартует, «разъярённый» Dead King и
+   питомцы Familiars (друид, некромант, бард) появляются и живут, ядерный снаряд ставится, предметы и рецепт-замена
+   на месте, ни одного NoSuchMethod/NoClassDef/AbstractMethod в логе. Клиентскую часть (частицы, клавиша KeyState,
+   рендер) — проверить в потоке 5.
+   - **Arknights_Weapon 1.5.6** (MCreator, AFL 3.0; задача из ревью PR #2): `RiseProcedure` на каждом
+     `EntityJoinLevelEvent` ставила не-игрокам базу `max_health` = текущий максимум × 2; событие приходит и при загрузке
+     чанка — здоровье росло вдвое при каждой подгрузке. Других вызовов у процедуры нет — отключена (`AkWeaponPort.noRise`).
+     Проверено `scripts/tests/mobhealth_commands.txt` (моб в чанке x=2000, выгрузка и загрузка чанка): оригинал — зомби
+     20→40→80, разбойник 24→48→96; порт — 20/24 и после перезагрузки.
+   - **Apothic Attributes** (зависимость T.O) меняет формулы брони и защиты во всей игре (`config/attributeslib.cfg`,
+     `combat_rules`): малая броня поглощает больше (зомби с бронёй 2 получает ×0.83 вместо ×0.98). Из-за этого в
+     `castcheck.js` поправлен порог метки жертвы (сама метка работает: урон ×1.6). Вернуть ванильные формулы —
+     решение пользователя (см. roadmap).
+15. **Superb Warfare × Valkyrien Skies.** Superb VS не нужен: Superb Warfare 0.8.9+ сам трассирует снаряды по
+   кораблям VS (`compat/valkyrienskies`), и с VS 2.4.11 это работает. Но в попадании по кораблю он ставит не блок
+   корабля (тот живёт на «верфи» VS), а точку вылета — снаряд останавливается правильно, а эффекты по блоку
+   (стекло, урон блоку, частицы) уходят в воздух. `mods-src/mm-compat` 0.3.0 (миксин `SbwShipHitMixin`) подставляет
+   блок корабля из ванильной трассировки VS. Проверено `scripts/tests/vshitcheck.js`: корабль 3×3 из железа на
+   высоте 200, луч через него — попадание в `iron_block` на верфи VS.
+16. **Create: Eureka!** (CurseForge) — не датапак, а сборка из 134 модов (Forge 47.2.0, 2024) с одними конфигами;
+   переносить нечего. Список модов — материал для потока 3.
 
 ## Голосовой чат (Simple Voice Chat 2.6.24)
 Состав (раздел «Удобство и мультиплеер» в `pack/modlist.txt`):

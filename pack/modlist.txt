@@ -106,7 +106,8 @@ mr simplevoicechat-broadcast # server: OP вещает на всех (групп
 # Voice Chat Interaction, AudioPlayer, Enhanced Groups (Max Henkel) есть только под Fabric — свой порт на Forge:
 #   mods-src/voicechat-addons → pack/mods/voicechat-addons-forge-*.jar (both)
 mr admiral                  # both: библиотека команд Max Henkel, нужна порту AudioPlayer и Enhanced Groups
-# Не подходит: Zombie Have Ears 1.1.2 — mods.toml без поля mandatory, Forge 47 из-за него не грузит ни один мод.
+# Zombie Have Ears 1.1.2 (server: зомби слышат голос) — mods.toml в формате NeoForge, Forge 47 его не грузил: перепакован
+#   patches/zombie-have-ears/build.sh → pack/mods/zombiehaveears-1.1.2-forgefix.jar
 
 ## Библиотеки, не объявленные в зависимостях на Modrinth (найдены тестовым запуском сервера)
 mr playeranimator         # нужна Iron's Spells
@@ -155,3 +156,13 @@ mr just-enough-effect-descriptions-jeed
 
 ## Инструменты патчей
 mr kubejs                 # патчи данных/рецептов/добычи: pack/kubejs/
+
+## Порты чужих jar под наши версии зависимостей (patches/jar-ports, собраны в pack/mods/*-mmport.jar)
+# Сами моды выбраны потоком 3 (у него строки `# mr ...` ОТКЛЮЧЕНЫ — так и оставить: в сборке порт, а не оригинал).
+# cbc-nuclear          → cbc_nukes-2.1.1-mmport.jar                (CBC 5.11: safeNbt, explosivePower)
+# alshanexs-familiars  → alshanex_familiars-1.20.1_v1.1.2-mmport.jar (Iron's Spells 3.16)
+# to-tweaks-irons-spells (T.O Magic 'n Extras, CurseForge) → traveloptics-6.3.0-1.20.1-mmport.jar (Cataclysm 3.31)
+# arknights-weapon (CurseForge) → arknights_weapon-1.5.6-mmport.jar (без RiseProcedure: удваивала здоровье мобов при каждой
+#   загрузке чанка). Потоку 3: строку `cf arknights-weapon` и pack/mods/arknights-weapon.pw.toml убрать — иначе мод дважды.
+mr apothic-attributes     # обязательная зависимость T.O Magic 'n Extras (+ Placebo)
+# zombie-have-ears (поток 2) → zombiehaveears-1.1.2-forgefix.jar (patches/zombie-have-ears, только mods.toml)

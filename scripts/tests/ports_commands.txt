@@ -1,0 +1,17 @@
+# Порты patches/jar-ports и моды-связки других потоков (запуск с EXTRA_MODS): моды грузятся, сущности
+# с переходниками создаются и живут, предметы и рецепты на месте (portcheck.js)
+forceload add -16 -16 16 16
+#sleep 10
+summon traveloptics:enraged_dead_king 4 120 4 {PersistenceRequired:1b}
+summon alshanex_familiars:druid_pet 6 120 6 {PersistenceRequired:1b}
+summon alshanex_familiars:necromancer_pet 7 120 7 {PersistenceRequired:1b}
+summon alshanex_familiars:bard_pet 8 120 8 {PersistenceRequired:1b}
+#sleep 10
+execute if entity @e[type=traveloptics:enraged_dead_king] run say PORTCHECK enraged_dead_king ok
+execute if entity @e[type=alshanex_familiars:druid_pet] run say PORTCHECK druid_pet ok
+execute if entity @e[type=alshanex_familiars:necromancer_pet] run say PORTCHECK necromancer_pet ok
+execute if entity @e[type=alshanex_familiars:bard_pet] run say PORTCHECK bard_pet ok
+setblock 0 120 0 cbc_nukes:nuke_shell
+execute if block 0 120 0 cbc_nukes:nuke_shell run say PORTCHECK nuke_shell ok
+kill @e[type=alshanex_familiars:druid_pet]
+#sleep 3
