@@ -1368,11 +1368,6 @@ hash = "0a48579ca8d4575a0c2cadbee30a2f396591e86f1dabad4e41b5125c2c70dbef"
 metafile = true
 
 [[files]]
-file = "mods/mnawitchcraft.pw.toml"
-hash = "c86bf42ec0b66384273963f8d0ea8040908b5bf5e5fc072bd4529ebd959ac54a"
-metafile = true
-
-[[files]]
 file = "mods/modernfix.pw.toml"
 hash = "a9aeaaedd47d724add417a08520589504fc7d56a5c0580db41d7b448ac3623d5"
 metafile = true
