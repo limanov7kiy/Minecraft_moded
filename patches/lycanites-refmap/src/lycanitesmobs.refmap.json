@@ -8,8 +8,7 @@
     },
     "com/lycanitesmobs/core/mixin/LightTextureMixin": {
       "updateLightTexture": "m_109881_(F)V",
-      "Lnet/minecraft/client/renderer/texture/DynamicTexture;upload()V": "Lnet/minecraft/client/renderer/texture/DynamicTexture;m_117985_()V",
-      "lightTexture": "f_109870_:Lnet/minecraft/client/renderer/texture/DynamicTexture;"
+      "Lnet/minecraft/client/renderer/texture/DynamicTexture;upload()V": "Lnet/minecraft/client/renderer/texture/DynamicTexture;m_117985_()V"
     }
   },
   "data": {
@@ -22,8 +21,7 @@
       },
       "com/lycanitesmobs/core/mixin/LightTextureMixin": {
         "updateLightTexture": "m_109881_(F)V",
-        "Lnet/minecraft/client/renderer/texture/DynamicTexture;upload()V": "Lnet/minecraft/client/renderer/texture/DynamicTexture;m_117985_()V",
-        "lightTexture": "f_109870_:Lnet/minecraft/client/renderer/texture/DynamicTexture;"
+        "Lnet/minecraft/client/renderer/texture/DynamicTexture;upload()V": "Lnet/minecraft/client/renderer/texture/DynamicTexture;m_117985_()V"
       }
     }
   }

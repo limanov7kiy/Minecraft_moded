@@ -1265,7 +1265,7 @@ metafile = true
 
 [[files]]
 file = "mods/lycanites-refmap-fix-1.0.0.jar"
-hash = "7e718c9e80c5ac2933198f9349405406914af1b2ddc2495c2ea624a1817d2619"
+hash = "24c5a32d14352004833bca6c25037dd4b08728fa063000a4b19fb35c14531c30"
 
 [[files]]
 file = "mods/mahou-tsukai.pw.toml"
@@ -1333,8 +1333,8 @@ hash = "c25495262a852dc02886ec8c4b695f30e53264a2e3d881dd36ee9de16a1ef499"
 metafile = true
 
 [[files]]
-file = "mods/mm-compat-0.3.0.jar"
-hash = "4e7aca425db5d7ad1caff4192856f18fe4ae02dbc8b886148231ef4a2baf05bf"
+file = "mods/mm-compat-0.4.0.jar"
+hash = "6abff6bc8f5b0794c56c452fe6c809ec8943ae2d04d5397f2e46044385a3a464"
 
 [[files]]
 file = "mods/modernfix.pw.toml"
