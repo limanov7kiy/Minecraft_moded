@@ -1,0 +1,92 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+license = "All Rights Reserved (Max Henkel); неофициальный порт на Forge для частной сборки Minecraft_moded"
+
+[[mods]]
+modId = "vcinteraction"
+version = "${vcinteraction_version}-forge-${mod_version}"
+displayName = "Voice Chat Interaction (Forge port)"
+authors = "Max Henkel (оригинал); порт на Forge — Minecraft_moded"
+logoFile = "icon.png"
+description = '''
+Голос из Simple Voice Chat — вибрация: скалк-сенсоры и Хранитель его слышат.
+Оригинал: https://github.com/henkelmax/voicechat-interaction (Fabric).
+'''
+
+[[mods]]
+modId = "audioplayer"
+version = "${audioplayer_version}-forge-${mod_version}"
+displayName = "AudioPlayer (Forge port)"
+authors = "Max Henkel (оригинал); порт на Forge — Minecraft_moded"
+logoFile = "icon.png"
+description = '''
+Свои звуки на пластинках, козьих рогах, нотных блоках и головах через Simple Voice Chat.
+Оригинал: https://github.com/henkelmax/audio-player (Fabric).
+'''
+
+[[mods]]
+modId = "enhancedgroups"
+version = "${enhancedgroups_version}-forge-${mod_version}"
+displayName = "Simple Voice Chat Enhanced Groups (Forge port)"
+authors = "Max Henkel (оригинал); порт на Forge — Minecraft_moded"
+logoFile = "icon.png"
+description = '''
+Мгновенные, постоянные и автоматические группы голосового чата.
+Оригинал: https://github.com/henkelmax/enhanced-groups (Fabric).
+'''
+
+[[dependencies.vcinteraction]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.vcinteraction]]
+modId = "voicechat"
+mandatory = true
+versionRange = "[1.20.1-2.5.0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.audioplayer]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.audioplayer]]
+modId = "voicechat"
+mandatory = true
+versionRange = "[1.20.1-2.5.0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.enhancedgroups]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.enhancedgroups]]
+modId = "voicechat"
+mandatory = true
+versionRange = "[1.20.1-2.5.0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.audioplayer]]
+modId = "admiral"
+mandatory = true
+versionRange = "[0.4.5,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.enhancedgroups]]
+modId = "admiral"
+mandatory = true
+versionRange = "[0.4.5,)"
+ordering = "AFTER"
+side = "BOTH"

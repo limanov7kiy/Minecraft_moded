@@ -63,7 +63,12 @@
 - [x] `scripts/export-pack.sh` → `.mrpack` и `*-server.zip` (проверен запуском); инструкция — `docs/friends.md`.
 - [x] Попутно: `test-server.sh` ловит «Mods loaded with N warnings» (сервер без модов); `.gitignore` больше не
   прячет `kubejs/data/*/worldgen/` — закоммичены размещения `mm_space` из `patches/ore_crossgen.py`.
-- [ ] Пункт 3 (хостинг с пользователем, боевая проверка) — открыт.
+- [x] Порт на Forge Voice Chat Interaction, AudioPlayer, Enhanced Groups (Max Henkel, только Fabric) —
+  `mods-src/voicechat-addons`, тест `scripts/tests/voicecheck.js`. Voice Chat Interaction выключен в пользу
+  Vibrative Voice (родная Forge-сборка, связка с рациями), вернуть — `enabled=true` в его конфиге.
+- [~] Пункт 3: замер ресурсов (`spark`: 3 ГБ кучи без игроков, TPS 20) и сравнение вариантов — `docs/hosting.md`;
+  серверный пакет теперь `-Xmx10G` (5–8 игроков). Ждём решения пользователя, где хостить, и первую сессию с
+  игроками — тогда `spark profiler` под нагрузкой.
 
 ### Поток 3 — Дополнения, волна 2 (связки для каждого мода)
 Файлы: `pack/modlist.txt`, `pack/mods/*.pw.toml`, `pack/config/almostunified/`, `docs/compat.md`.
@@ -106,7 +111,8 @@ Distant Horizons, Yes Steve Model, AzureLib-рендер, клиентские �
   (тотемы, чёрная дыра, силок, шипы, молот — модели из ванильных блоков; двойник/мираж — скин владельца; феникс —
   своя текстура; статуи — модель существа текстурой камня/льда; лоза — линия до крюка), частицы силового поля/тучи/диска, иконки заклинаний и эффекта «Метка жертвы», звуки Redux.
 - (из потока 2) Импорт `dist/*.mrpack` в Prism Launcher и Modrinth App (серверные моды не должны ставиться),
-  голосовой чат клиент↔сервер (микрофон, группы, рации Simple Radio), Sound Physics вместе с Oculus.
+  голосовой чат клиент↔сервер (микрофон, группы, рации Simple Radio), Sound Physics вместе с Oculus;
+  порт аддонов: своя пластинка/козий рог (`/audioplayer`), загрузка через браузер.
 
 - (из потока Galacticraft) Galacticraft Revival 0.1.0 (в сборке): рендер скелета-босса (модель GC5),
   модель сундука сокровищ (Legacy, UV под 1.12 — может быть перевёрнута), потухший факел, полоса здоровья босса,
