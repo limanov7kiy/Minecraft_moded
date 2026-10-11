@@ -1,0 +1,2 @@
+# RiseProcedure удваивала max_health всех мобов при каждом появлении в мире (в т.ч. загрузке чанка) — отключено
+scall net/mcreator/arknightsweaopn/procedures/RiseProcedure.execute(Lnet/minecraftforge/eventbus/api/Event;Lnet/minecraft/world/entity/Entity;)V   dev/mcmoded/port/akweapon/AkWeaponPort.noRise(Lnet/minecraftforge/eventbus/api/Event;Lnet/minecraft/world/entity/Entity;)V

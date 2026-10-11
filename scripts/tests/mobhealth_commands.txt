@@ -1,0 +1,15 @@
+# Здоровье мобов не растёт при перезагрузке чанка (порт Arknights_Weapon, patches/jar-ports/arknights-weapon).
+# Чанк далеко от спавна: forceload add → моб → forceload remove (выгрузка) → forceload add (загрузка).
+forceload add 2000 2000
+#sleep 10
+summon zombie 2000 100 2000 {NoAI:1b,PersistenceRequired:1b,Tags:["hp"],ArmorItems:[{},{},{},{id:"minecraft:leather_helmet",Count:1b}]}
+summon pillager 2001 100 2000 {NoAI:1b,PersistenceRequired:1b,Tags:["hp"]}
+#sleep 2
+attribute @e[type=zombie,tag=hp,limit=1] minecraft:generic.max_health base get
+attribute @e[type=pillager,tag=hp,limit=1] minecraft:generic.max_health base get
+forceload remove 2000 2000
+#sleep 30
+forceload add 2000 2000
+#sleep 15
+attribute @e[type=zombie,tag=hp,limit=1] minecraft:generic.max_health base get
+attribute @e[type=pillager,tag=hp,limit=1] minecraft:generic.max_health base get

@@ -95,12 +95,12 @@
    Инструменты для следующих случаев: `scripts/linkcheck` (что не связывается), `scripts/jarport` + `mods-src/jar-ports`.
 6. ~~(из потока 2) Zombie Have Ears 1.1.2~~ — **сделано**: `patches/zombie-have-ears/build.sh` (исправленный `mods.toml`,
    авторство SKALKMine указано) → `pack/mods/zombiehaveears-1.1.2-forgefix.jar`, проверен с Simple Voice Chat.
-7. (из ревью PR #2) **Arknights Weapon 1.5.6 удваивает здоровье всех мобов.** `net.mcreator.arknightsweaopn.procedures.RiseProcedure`
-   на каждом `EntityJoinLevelEvent` ставит любому не-игроку `max_health` базой = текущий максимум × 2. Событие
-   приходит и при загрузке чанка, поэтому сохранённые мобы удваиваются при каждой подгрузке. Проверено бисекцией
-   пачки 4 потока 3 (без мода — зомби 20/разбойник 24, с ним — 40/48). Патч: перепаковать jar без подписки
-   этого обработчика (или миксин, отменяющий `execute`) в `patches/`, проверить тестом: summon zombie → `max_health` 20,
-   после `/forceload` выгрузки-загрузки чанка — всё ещё 20. До патча мод в сборку не берём.
+7. ~~(из ревью PR #2) Arknights Weapon 1.5.6 удваивает здоровье мобов~~ — **сделано**: порт без `RiseProcedure`
+   (`patches/jar-ports/arknights-weapon` → `pack/mods/arknights_weapon-1.5.6-mmport.jar`), тест
+   `mobhealth_commands.txt`: оригинал 20→40→80, порт 20→20. **Потоку 3:** убрать `cf arknights-weapon` и
+   `pack/mods/arknights-weapon.pw.toml`, в сборке порт.
+8. **Решение пользователя:** Apothic Attributes (нужен T.O Magic 'n Extras) переделывает формулы брони/защиты во всей
+   игре. Оставить его баланс (как сейчас) или вернуть ванильные формулы в `pack/config/attributeslib.cfg`?
 
 ### Поток 5 — Проверка клиента
 Серверный тест клиент не покрывает. Запуск клиента (Xvfb в облаке или у игрока): Oculus + Embeddium,

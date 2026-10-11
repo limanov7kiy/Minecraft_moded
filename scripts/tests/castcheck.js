@@ -135,7 +135,8 @@ ServerEvents.tick(event => {
   report('imbue_weapon', r && String(fake.getMainHandItem().getEnchantmentTags()).includes('sharpness'), `cast=${r} ench=${fake.getMainHandItem().getEnchantmentTags()}`)
   fake.setItemInHand(Hand.MAIN_HAND, Item.of('minecraft:air'))
   clear(); a = mob(0.5, 3.5); place(10); r = cast('mark_sacrifice'); let marked = effId(a, 'mark_sacrifice'); cast('lightning_ray')
-  report('mark_sacrifice', r && marked && a.getHealth() < 16 && !effId(a, 'mark_sacrifice'), `cast=${r} marked=${marked} hp=${a.getHealth()}`)
+  // луч бьёт на 3: без метки зомби (броня 2) остаётся с 17.5 (формула брони Apothic Attributes), с меткой ×1.6 — 16
+  report('mark_sacrifice', r && marked && a.getHealth() < 17 && !effId(a, 'mark_sacrifice'), `cast=${r} marked=${marked} hp=${a.getHealth()}`)
   clear(); fake.removeAllEffects(); place(0); r = cast('mirage'); let img = near('wizardry_restored:decoy', 8)
   report('mirage', r && img.length == 1 && String(img[0].nbt).includes('mirage:1b') && fake.hasEffect(Eff.INVISIBILITY), `cast=${r} n=${img.length}`)
   clear(); place(30); r = cast('snare'); let sn = one('wizardry_restored:snare')

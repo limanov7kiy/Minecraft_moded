@@ -627,6 +627,10 @@ hash = "5d153abacc6aebc94c81bf9eb99b6990d7420a494474432a8822bdc05e7f555d"
 metafile = true
 
 [[files]]
+file = "mods/arknights_weapon-1.5.6-mmport.jar"
+hash = "5158102402fe4a55e849df1cf4262891d7648b2fef2a94a5da123470c1e1a1ed"
+
+[[files]]
 file = "mods/arknightsfurniture.pw.toml"
 hash = "2a654e039efa33e70dc9fb704b28bee6fab94b156d5e6c1dc8ea585becb221a3"
 metafile = true

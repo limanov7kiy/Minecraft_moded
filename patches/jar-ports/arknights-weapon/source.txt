@@ -1,0 +1,5 @@
+# Arknights_Weapon 1.5.6 (MCreator, Academic Free License 3.0, CurseForge 1315198) — поток 3, пачка 4.
+url https://edge.forgecdn.net/files/7267/892/arknights_weapon-1.5.6.jar
+sha1 b11d993f7fa2f38d8ea810705b7a5c4acc2a248f
+out arknights_weapon-1.5.6-mmport.jar
+shims dev/mcmoded/port/akweapon
