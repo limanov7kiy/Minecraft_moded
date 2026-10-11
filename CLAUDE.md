@@ -49,6 +49,8 @@
   - `mods-src/mm-compat` — кодовые связки и исправления сборки (кислород скафандров Northstar/Creating Space в Ad Astra,
     категория лучей Cataclysm Spellbooks, недостающий атрибут рас Arknights).
     Ad Astra в зависимостях — по Modrinth version id Forge-сборки (номер версии у Forge и Fabric одинаковый).
+  - `mods-src/voicechat-addons` — порт на Forge аддонов Simple Voice Chat от Max Henkel (Voice Chat Interaction,
+    AudioPlayer, Enhanced Groups; оригиналы только Fabric). Сборка: `./gradlew build`, в `pack/mods/` — jar без `-reobf`.
   - `patches/gaboulibs-shim` — замена удалённой библиотеки для Serene Seasons Plus.
   - `patches/lycanites-refmap` — недостающий refmap миксинов Lycanites Mobs (без пересборки 120-МБ jar).
   - Тесты на сервере: `scripts/tests/*.js` (через `EXTRA_SERVER_SCRIPTS`), `castcheck.js` кастует все заклинания

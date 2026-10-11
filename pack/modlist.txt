@@ -103,7 +103,9 @@ mr voicechatprofiles        # client: профили настроек голос
 mr vibrative-voice          # server: голос — вибрация для скалк-сенсоров и Хранителя
 mr vc-admin-voice-chat-moderation-tool # server: OP заходят в запароленные группы (модерация)
 mr simplevoicechat-broadcast # server: OP вещает на всех (группа "broadcast")
-# Нет под Forge 1.20.1 (только Fabric): Voice Chat Interaction, Audio Player, Enhanced Groups.
+# Voice Chat Interaction, AudioPlayer, Enhanced Groups (Max Henkel) есть только под Fabric — свой порт на Forge:
+#   mods-src/voicechat-addons → pack/mods/voicechat-addons-forge-*.jar (both)
+mr admiral                  # both: библиотека команд Max Henkel, нужна порту AudioPlayer и Enhanced Groups
 # Не подходит: Zombie Have Ears 1.1.2 — mods.toml без поля mandatory, Forge 47 из-за него не грузит ни один мод.
 
 ## Библиотеки, не объявленные в зависимостях на Modrinth (найдены тестовым запуском сервера)

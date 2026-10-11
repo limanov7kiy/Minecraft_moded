@@ -1,0 +1,13 @@
+name = "Admiral"
+filename = "admiral-forge-0.4.10+1.20.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/ugdtgQ7E/versions/nHTfObN2/admiral-forge-0.4.10%2B1.20.1.jar"
+hash-format = "sha512"
+hash = "7f05f313407421e808c10cbce850725eb389e5637a8a9f50068a13ecb87393313b74fe168f50208ac08b82c0b75fd6bfb72136a2da16d402f7a954689fe35267"
+
+[update]
+[update.modrinth]
+mod-id = "ugdtgQ7E"
+version = "nHTfObN2"

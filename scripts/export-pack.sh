@@ -38,7 +38,7 @@ for d in config kubejs; do [ -d "$root/pack/$d" ] && cp -r "$root/pack/$d" "$sta
 curl -sSLo "$stage/forge-installer.jar" \
   "https://maven.minecraftforge.net/net/minecraftforge/forge/$mc-$forge/forge-$mc-$forge-installer.jar"
 echo "-Xms4G
--Xmx8G" > "$stage/user_jvm_args.txt"
+-Xmx10G" > "$stage/user_jvm_args.txt"
 printf 'motd=%s\nmax-players=10\nview-distance=10\nsimulation-distance=8\nallow-flight=true\n' "$name" > "$stage/server.properties"
 cat > "$stage/start.sh" <<'EOF'
 #!/usr/bin/env sh

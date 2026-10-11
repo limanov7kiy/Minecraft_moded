@@ -25,6 +25,10 @@ file = "config/sereneseasonsplus-common.toml"
 hash = "ae0213dfbc7561b527d00565ad849c32e096914967590c1aaf85c4133195c885"
 
 [[files]]
+file = "config/vcinteraction/vcinteraction.properties"
+hash = "cf5e599d8110f33b7483f43be29b6f2da325bf30d672b55e681ff7cfb6cdde99"
+
+[[files]]
 file = "config/voicechat/voicechat-server.properties"
 hash = "44e28ca45bf8648f18a9363105a7faa363d254ed8ace91ff523193b60786968d"
 
@@ -540,6 +544,11 @@ metafile = true
 [[files]]
 file = "mods/ad-astra.pw.toml"
 hash = "d94f5fd662671e6f6f4bda5d89234aded7461a8a90d9f9fe3d5b8a7f17c25b54"
+metafile = true
+
+[[files]]
+file = "mods/admiral.pw.toml"
+hash = "a25d868d37c78985c604b897191bf5ded528f7ba58b55096779c0e5a1890a586"
 metafile = true
 
 [[files]]
@@ -1257,6 +1266,10 @@ metafile = true
 file = "mods/vibrative-voice.pw.toml"
 hash = "5194dedc1d09130cf3635ea8f32e8d95ce0615d08d9c60006ec94e512a01eb46"
 metafile = true
+
+[[files]]
+file = "mods/voicechat-addons-forge-1.0.1.jar"
+hash = "600250aa1bf74927cc12cef52bbececd134d699cbfab251b0727dcccf465f7f4"
 
 [[files]]
 file = "mods/voicechatprofiles.pw.toml"
