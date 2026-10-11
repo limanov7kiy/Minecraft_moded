@@ -1,0 +1,13 @@
+name = "MNAOverpowered"
+filename = "mnaoverpowered-1.20.1-0.11.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/qJT4GBnW/versions/yxLoouAg/mnaoverpowered-1.20.1-0.11.1.jar"
+hash-format = "sha512"
+hash = "675d9c079af83458c6ada26bb787ae7cbef1892b5e2e26da0f957fc33eaab640663f37d56ce0660d5c1e03fbf33ff73c609573b6b6f80d3ba888963a86501444"
+
+[update]
+[update.modrinth]
+mod-id = "qJT4GBnW"
+version = "yxLoouAg"

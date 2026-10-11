@@ -1,0 +1,13 @@
+name = "MNAWitchcraft"
+filename = "mnaw-1.20.1-forge-0.2.1-alpha.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/Qf9MEXt3/versions/lPFp6VAO/mnaw-1.20.1-forge-0.2.1-alpha.jar"
+hash-format = "sha512"
+hash = "3d12b4f0e57ea4741f6b7642ea0a54b1293d358416e8195d8ac36088acf6acf54cbca01b1b7cfdbf27c78536b1059f77c54242c241cb82202244ef772228998f"
+
+[update]
+[update.modrinth]
+mod-id = "Qf9MEXt3"
+version = "lPFp6VAO"
