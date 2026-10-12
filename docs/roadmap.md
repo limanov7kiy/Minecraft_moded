@@ -137,9 +137,9 @@
    тест в мире `scripts/tests/sbcastcheck.js` 10/10, клиент со всей сборкой — `CLIENT OK`.
 10. ~~(из потока 5) Lycanites refmap: поле `lightTexture`~~ — **сделано иначе**: refmap к `@Shadow`-полям не применяется,
     затемнение от страха перенесено в `mm-compat` 0.4.0 (`LycanitesFearLightMixin`, compat.md К6).
-11. (из потока 5) Origin Furs × AzureLib 3.1 (compat.md К3): Origin Furs и Arknights Furs убраны; вернуть —
-    переходник старого API AzureLib (`GeoModel`, `GeoBone`, `GeoObjectRenderer`, `core.animation.*`) в jar
-    Origin Furs. Если сложно — потоку 3 решить, нужны ли они.
+11. ~~(из потока 5) Origin Furs × AzureLib 3.1 (compat.md К3)~~ — **сделано** (поток 4b): Origin Furs и Arknights Furs
+    возвращены; порт `patches/jar-ports/origin-furs` встраивает старый API AzureLib 2.0.39 в jar Origin Furs
+    (`pack/mods/origin_visuals-1.0.5-mmport-client.jar`, только клиент), сервер `Done`, `CLIENT OK`.
 
 ### Поток 5 — Проверка клиента
 Клиент в облаке: `scripts/test-client.sh <папка>` (Forge через portablemc, моды из `.mrpack` как у Prism,
@@ -203,7 +203,7 @@ Xvfb + Mesa llvmpipe, агент `scripts/clienttest/ExitTrace.java` ловит 
 | Задача | Поток (сеанс) | Модель — почему | Статус |
 |---|---|---|---|
 | Поток 4, задачи 9–10: порт Cataclysm Spellbooks 1.2.9 × Cataclysm 3.31 (К4, **блокер клиента**) + refmap Lycanites `lightTexture` (К6), до `CLIENT OK` | Поток 4 · Spellbooks (session_019V8WPE7gTHCrhB3kUX3W4M) | opus — порт jar с переходниками и отладка вылета клиента, риск сломать сборку | в работе |
-| Поток 4, задача 11: Origin Furs / Arknights Furs × AzureLib 3.1 (К3) — оценка, порт или вопрос владельцу | Поток 4b · Origin Furs (session_01S19ePL8u9HoLhUJ1ck9Jb8) | opus — переходник чужого API рендера, многошаговый порт | в работе (параллельно, своя папка в `patches/jar-ports`) |
+| Поток 4, задача 11: Origin Furs / Arknights Furs × AzureLib 3.1 (К3) — оценка, порт или вопрос владельцу | Поток 4b · Origin Furs (session_01S19ePL8u9HoLhUJ1ck9Jb8) | opus — переходник чужого API рендера, многошаговый порт | сделано (порт `patches/jar-ports/origin-furs`), PR |
 | PR #11 (поток 5) → затем PR задач 9–10 → PR задачи 11 | Ревью и интеграция (session_01VfvQ6JaX74GK5NGjWZnWoi) | opus — уже ведёт интеграцию, знает тесты | передано |
 | После порта: раздать `docs/client-checklist.md` игрокам (шейдеры, DH, YSM, звук, Prism/Modrinth App) | владелец | — | ждёт `CLIENT OK` |
 | Поток 2, п. 3: исследование хостингов (цены под наши требования, свои jar/SFTP, Forge 47.4.26, UDP 24454 для голосового чата, оплата) → таблица и рекомендация в `docs/hosting.md`, затем вопрос владельцу (В1) | Поток 2 · Хостинг (session_011uQdyPF3w7opk8J86p7SvH) | sonnet — веб-исследование и документация, без риска для сборки | PR #13 (игроки в РФ, оплата в ₽; рекомендация — Millida, запасной — российский VPS) → ревью; вопрос В1 у владельца |

@@ -44,7 +44,8 @@
 - `scripts/export-pack.sh` — раздача: `dist/*.mrpack` (клиент) и `dist/*-server.zip` (сервер); инструкция для друзей — `docs/friends.md`.
 - Сторону мода (`side` в `pack/mods/*.pw.toml`) packwiz берёт с Modrinth; если она неверна — поправь вручную.
 - Свои моды и патчи: `mods-src/` (Gradle, ModDevGradle legacyforge + Parchment, как у Redux) и `patches/`.
-  Готовые jar кладутся в `pack/mods/*.jar` и раздаются вместе со сборкой; `fetch-mods.py` их копирует.
+  Готовые jar кладутся в `pack/mods/*.jar` и раздаются вместе со сборкой; `fetch-mods.py` их копирует
+  (`*-client.jar` — только клиенту, на сервер не кладётся).
   - `mods-src/wizardry-restored` — недостающие заклинания Electroblob's Wizardry поверх Redux
     (план и опись — `docs/wizardry-port.md`; код и ассеты оригинала 1.12.2 переносить можно — см. «Назначение и лицензии»).
     Сборка: `cd mods-src/wizardry-restored && ./gradlew build`, затем `cp build/libs/*.jar ../../pack/mods/`.
@@ -64,7 +65,8 @@
     выбрасывается целиком) → `pack/kubejs/server_scripts/missing_mod_refs.js`.
   - Мод собран под другую версию зависимости: `scripts/linkcheck/linkcheck.sh` (что не связывается) → порт
     `patches/jar-ports/<мод>` (правила для `scripts/jarport/JarPort.java` + переходники `mods-src/jar-ports`),
-    сборка `patches/jar-ports/build.sh <мод> <тестовый сервер>` → `pack/mods/*-mmport.jar`.
+    сборка `patches/jar-ports/build.sh <мод> <тестовый сервер>` → `pack/mods/*-mmport.jar`. Если старого API в новой
+    версии нет целиком — встроить копию старой библиотеки (`embed` + `prefix`, пример `patches/jar-ports/origin-furs`).
   - `patches/zombie-have-ears/build.sh` — Zombie Have Ears с `mods.toml` в формате Forge.
   - `scripts/test-server.sh`: `EXTRA_MODS=<папка>` — лишние jar только на этот запуск.
 - Объединение дублей: Almost Unified (`pack/config/almostunified/`), перед изменениями проверять
