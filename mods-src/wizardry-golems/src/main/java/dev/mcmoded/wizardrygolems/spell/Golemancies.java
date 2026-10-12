@@ -121,7 +121,8 @@ public final class Golemancies {
 
     private static Spell golemancy(String fallback, int fallbackCount, Element element,
                                    java.util.function.Function<CastContext, List<Summon>> plan) {
-        Golemancy spell = new Golemancy(new net.minecraft.resources.ResourceLocation(fallback), plan);
+        Golemancy spell = new Golemancy(new net.minecraft.resources.ResourceLocation(fallback), plan)
+                .element(element.getLocation().getPath());
         return spell.assignProperties(SpellProperties.builder()
                 .assignBaseProperties(SpellTiers.ADVANCED, element, SpellTypes.MINION, SpellAction.SUMMON, 50, 30, 260)
                 .add(DefaultProperties.MINION_COUNT, fallbackCount)

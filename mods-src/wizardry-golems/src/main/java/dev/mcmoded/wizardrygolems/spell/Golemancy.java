@@ -39,6 +39,16 @@ public class Golemancy extends MinionSpell<GolemBase> {
     /// Множитель времени жизни от артефактов (оригинал — `getLifeTimeModifiers`, например кольцо огненной големантии ×2).
     private java.util.function.ToDoubleFunction<CastContext> lifetimeFactor = ctx -> 1;
 
+    /// Стихия големантии (earth/fire/ice/lightning/healing) — метка на призванном големе для эффектов артефактов
+    /// (в оригинале — интерфейсы `IEarthGolem`, `IFireGolem`… на классах миньонов).
+    private String element = "";
+    public static final String ELEMENT_TAG = "wizardrygolems_element";
+
+    public Golemancy element(String element) {
+        this.element = element;
+        return this;
+    }
+
     public Golemancy lifetimeFactor(java.util.function.ToDoubleFunction<CastContext> factor) {
         this.lifetimeFactor = factor;
         return this;
@@ -79,6 +89,7 @@ public class Golemancy extends MinionSpell<GolemBase> {
                 * lifetimeFactor.applyAsDouble(ctx));
         if (PermanentGolem.claim(ctx.caster(), golem)) lifetime = -1; // Ring of the Golemancer: без срока жизни
         setLifetime(golem, lifetime);
+        golem.getPersistentData().putString(ELEMENT_TAG, element);
         if (summon.type().getPath().equals("furnace")) golem.setFuel(1600); // как в оригинале: печному — запас топлива
         data.setShouldFollowOwner(this.shouldFollowOwner);
         data.setShouldDeleteGoals(this.shouldDeleteBaseGoals);
