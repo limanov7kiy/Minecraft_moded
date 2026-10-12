@@ -9,6 +9,8 @@ from pathlib import Path
 NS = "wizardrygolems"
 # миньон оригинала -> наш голем-тип, где имена расходятся
 RENAMED = {"straw": "strawthorns"}
+# предметы, переименованные в оригинале позже, чем обновлён перевод
+ITEM_RENAMED = {"charm_frost_cloak": "body_frost_cloak"}
 
 
 def convert_key(k):
@@ -16,9 +18,9 @@ def convert_key(k):
     if m := re.fullmatch(rf"spell\.{NS}:(.+)", k):
         return f"spell.{NS}.{m[1]}"
     if m := re.fullmatch(rf"item\.{NS}:([a-z_]+)\.name", k):
-        return f"item.{NS}.{m[1]}"
+        return f"item.{NS}.{ITEM_RENAMED.get(m[1], m[1])}"
     if m := re.fullmatch(rf"item\.{NS}:([a-z_]+)\.(.+)", k):
-        return f"item.{NS}.{m[1]}.{m[2]}"
+        return f"item.{NS}.{ITEM_RENAMED.get(m[1], m[1])}.{m[2]}"
     if m := re.fullmatch(rf"tile\.{NS}:([a-z_]+)\.name", k):
         return f"block.{NS}.{m[1]}"
     # миньоны-големы -> имена голем-типов Extra Golems (`entity.<ns>.golem.<id>`)

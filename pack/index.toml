@@ -1805,8 +1805,8 @@ hash = "1dc6ca31c7b6912c494caa2a4f5f9f7250af50fbeb9ce9141ae9b741f9861987"
 metafile = true
 
 [[files]]
-file = "mods/wizardry-golems-0.1.0.jar"
-hash = "01a99ac6a72190d84f4bf0af4bf6eb31ff6a81adba37b654c3035c05c0f81a21"
+file = "mods/wizardry-golems-0.2.0.jar"
+hash = "1a3c12cf33620e7fe03933b86f7436b6baf1edd13887564735081850f7354407"
 
 [[files]]
 file = "mods/wizardry-restored-0.6.0.jar"
