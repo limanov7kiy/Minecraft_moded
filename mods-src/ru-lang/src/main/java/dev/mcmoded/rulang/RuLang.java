@@ -44,8 +44,11 @@ public class RuLang {
     public RuLang() {
         // самопроверка словаря литералов (виден в логе клиента); миксин на LiteralContents переводит китайские Component.literal
         net.minecraftforge.fml.DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-            String t = Literals.translate("源石虫汉堡");
-            LOGGER.info("ru_lang: словарь литералов {} строк; самопроверка \"源石虫汉堡\" -> \"{}\"", Literals.size(), t);
+            String direct = Literals.translate("可用于召唤鲍勃");
+            // через Component.literal — проходит LiteralContents, т.е. работает ли миксин
+            String viaMixin = Component.literal("可用于召唤鲍勃").getString();
+            LOGGER.info("ru_lang: словарь литералов {} строк; самопроверка: словарь -> \"{}\"; Component.literal (миксин) -> \"{}\" [{}]",
+                    Literals.size(), direct, viaMixin, viaMixin.equals(direct) && !viaMixin.equals("可用于召唤鲍勃") ? "OK" : "МИКСИН НЕ ПРИМЕНИЛСЯ");
         });
     }
 }
