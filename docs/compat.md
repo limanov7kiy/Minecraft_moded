@@ -347,7 +347,11 @@ unsupported`; в серверном zip клиентских нет. Совпа�
   возвращён как есть. Проверено: linkcheck — 31 «несвязанная» ссылка, все на клиентские классы Minecraft (на сервере
   их нет, мод клиентский), ссылок на `mod/azure` не осталось; сервер до `Done`; `CLIENT OK`, в логе ни ошибок
   встроенной AzureLib, ни провалов миксинов Origin Furs. Предупреждение Forge `Unable to find registry with key
-  origin_visuals:furs` (ObjectHolder, не фатально) — особенность самого мода.
+  origin_visuals:furs` (ObjectHolder, не фатально) — особенность самого мода. Рендер шерсти в облаке не проверен:
+  клиент (без YSM) зашёл на сервер, раса Vulpo выдана `/origin set`, но мир не догрузился — JEI на старте строит
+  поисковый индекс по подсказкам всех предметов (больше часа на 4 CPU; с `tooltipSearchMode = DISABLED` — 3 мин), а
+  сервер рядом с клиентом упал по ServerHangWatchdog (тик 60 с, нехватка CPU, не порт). Рендер проверяет игрок —
+  пункт в `docs/client-checklist.md`.
 - К4. ~~**Cataclysm Spellbooks 1.2.9 × L_Ender's Cataclysm 3.31 — БЛОКЕР**~~ — **решено портом** (поток 4, п. 14):
   вылет клиента при регистрации рендереров (`NoClassDefFoundError .../Ancient_Remnant_Rework_Renderer`) и 9 несвязанных
   ссылок (частицы `*Data`, ракета Иссушителя, урон лазером, рендер и сон Древнего Остатка). В сборке
