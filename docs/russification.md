@@ -7,6 +7,10 @@
   Patchouli-книги, Modonomicon, Ponder, квесты внутри jar.
 - `scripts/lang_packs_cover.py <папка jar> <pack.zip>...` — сколько недостающих строк закрывает каждый русификатор.
 - `scripts/font_audit.py <папка jar>` — кастомные шрифты и кириллица.
+- `scripts/lang_validate.py lang <ru_ru.json|папка пака> <папка jar>` — валидатор перевода строк (JSON, ключи есть в `en_us`, плейсхолдеры
+  `%s/%1$s/{0}/$(..)` по составу, §-коды, пустые и «нерусские» значения); `lang_validate.py book <en_us книги> <ru_ru книги>` —
+  те же файлы, теги `$(..)` и служебные поля Patchouli совпадают. Код возврата 1 при ошибках. Проверен на `wizardry-restored` (0 ошибок)
+  и на паке RTF+ (находит реальные расхождения версий).
 - Полная таблица по модам — `docs/russification-audit.md` (генерируется скриптами).
   Набор для аудита: `python3 scripts/fetch-mods.py client <папка вне репо>` (242 jar = клиент + наши jar из `pack/mods/`).
 
