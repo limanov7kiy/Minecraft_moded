@@ -228,7 +228,8 @@ compatible»* — 1.20.1 принимает только `pack_format` 15, а у
 | **Alex's Mobs Interaction** `amiwiki` | Patchouli, сырой текст + `book.json` в `data/` | **переведена** (54 файла) + название/описание/подзаголовок через `pack/kubejs/data/alexsmobsinteraction/patchouli_books/amiwiki/book.json` |
 | **Dimensional Dungeons** `guide_book` | Patchouli; в jar `ru_ru`-папка книги неполная; **lang лежал как `ru_RU.json`** (1.20.1 читает только `ru_ru.json` → русского мода не было вообще) | `lang/ru_ru.json` (копия + 51 ключ), полная `ru_ru/` книги (58 строк + 3 файла patch_notes), `book.json` через kubejs |
 | **Ars Magica Legacy** `arcane_compendium` | текст в lang-ключах (русские), сырых строк 26 | переведены |
-| Аддоны Ars (Tome of Blood, Ars Ocultas, Ars Instrumentum, Ars Creo), Bob's Originium `bobbook`, ExtraBotany `exguide` | сырой текст в файлах | переведены (53 строки; bobbook — с китайского; exguide — тестовая запись) |
+| Аддоны Ars (Tome of Blood, Ars Ocultas, Ars Instrumentum, Ars Creo), ExtraBotany `exguide` | сырой текст в файлах | переведены (47 строк; exguide — тестовая запись) |
+| **Bob's Originium Dream** `bobbook` («鲍勃精选指南») | книга целиком **на китайском** уже в `en_us` (39 строк) + название/описание в `data/…/book.json` | переведена с китайского целиком (41 единица) + `book.json` через `pack/kubejs/data/bobsoriginiumdream/patchouli_books/bobbook/book.json` |
 | Superb Warfare `manual` | lang-ключи; «не переведены» только 3 названия техники (LAV-150 Commando, A-10A Thunderbolt II, AH-6 Little Bird) — имена собственные | переводить нечего |
 
 **Названия MnA.** Родной `ru_ru.json` мода — машинный перевод с мусором («Путинка воздуха», «Советский староста», «Персональный по вызову»,
@@ -244,6 +245,9 @@ Dimensional Dungeons (исправлено); у Mahou Tsukai есть и `ru_ru.
 сырым текстом (`extract`/`apply`/`check`: теги `$(..)`, `#плейсхолдеры#`, кириллица). Единицы перевода лежат в `scripts/books/*_data/` (`units_en.json`, `units_ru.json`):
 правка перевода = правка `units_ru.json` + `build`/`apply` + `scripts/build-ru-pack.sh`. `lang_validate.py book` — 0 ошибок для Animus, AMI, Dimensional Dungeons,
 Ars Magica Legacy, аддонов Ars. Названия предметов в тексте книг берутся из `ru_ru.json` мода, поэтому при смене названия книгу надо пересобрать.
+
+**Caerula Arbor** `caerula_illustration`: в `en_us` книги **429 китайских строк** (≈11,6 тыс. знаков сырого текста) — аудит считал книгу «закрытой паками»; наличие русского из RTF+/MPLOC (в репозитории лежит только MPLOC — в нём Caerula нет) надо проверить в игре; если английская/китайская — перевод делается тем же `patchouli_units.py` (он умеет CJK).
+**Баг инструмента (исправлен):** первая версия `patchouli_units.py` пропускала строки без латинских букв, из-за чего bobbook была переведена на 6 из 39 строк; проверка по jar-ам (`CJK` в ключах text/title/name/description): китайский в `en_us` только у bobbook и Caerula Arbor.
 
 **Остаток:** книги, которые закрывают сторонние паки (Blood Magic — 206 тыс. знаков, Botania — 22 тыс., Iron's `iss_guide_book`, Caerula Arbor, Twilight Delight) —
 проверять в игре, наличие русского зависит от версии пака. Приёмка глазами (открыть кодекс MnA, Анимус, AMI Wiki, гайд Dimensional Dungeons) — см. `docs/client-checklist.md`.
