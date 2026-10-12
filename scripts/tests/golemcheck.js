@@ -84,8 +84,10 @@ ServerEvents.tick(event => {
   const all = at(134, -2, 8).filter(e => String(e.getType()) == 'golems:golem')
   const typed = all.filter(e => String(e.nbt).includes('Golem:"wizardrygolems:')).length
   report('custom_types', typed == 11, `golems=${all.length} typed=${typed}`)
-  const be = level.getBlockEntity(new BlockPos(60, 200, 6))
-  report('living_snow', be != null && String(level.getBlockState(new BlockPos(60, 200, 6)).getBlock().getDescriptionId()).includes('living_snow'), `be=${be}`)
+  // «дикий» Living Snow ночью рядом с зомби призывает снежного голема и становится обычным снегом
+  const snowBlock = String(level.getBlockState(new BlockPos(60, 200, 6)).getBlock().getDescriptionId())
+  const snowGolems = at(60.5, 6.5, 10).filter(e => String(e.nbt).includes('Golem:"wizardrygolems:snow"')).length
+  report('living_snow', snowBlock == 'block.minecraft.snow' && snowGolems >= 1, `block=${snowBlock} snow_golems=${snowGolems}`)
   // добыча: 300 бросков эпической выборки Redux — среди них должны быть артефакты wizardrygolems
   const RL = Java.loadClass('net.minecraft.resources.ResourceLocation')
   const Params = Java.loadClass('net.minecraft.world.level.storage.loot.LootParams$Builder')

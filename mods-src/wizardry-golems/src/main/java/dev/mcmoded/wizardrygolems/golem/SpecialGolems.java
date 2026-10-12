@@ -99,7 +99,8 @@ public final class SpecialGolems {
     private static void shockAura(GolemBase golem) {
         double r = golem.isBaby() ? 2 : 1;
         for (LivingEntity t : golem.level().getEntitiesOfClass(LivingEntity.class, golem.getBoundingBox().inflate(r))) {
-            if (t == golem || !AllyDesignation.isValidTarget(golem, t)) continue;
+            // другие големы Extra Golems — не цель (у призванных без хозяина AllyDesignation их не исключает)
+            if (t == golem || t instanceof GolemBase || !AllyDesignation.isValidTarget(golem, t)) continue;
             MagicDamageSource.causeMagicDamage(golem, t, 4, EBDamageSources.SHOCK);
             Vec3 d = t.position().subtract(golem.position()).multiply(1, 0, 1);
             if (d.lengthSqr() > 1e-4) {
