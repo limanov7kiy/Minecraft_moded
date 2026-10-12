@@ -27,4 +27,6 @@ processResources {
     into('resourcepacks/russian-moded') { from "${rootDir}/../../pack/resourcepacks-src/russian-moded" }
 }
 
+jar { manifest.attributes('MixinConfigs': 'ru_lang.mixins.json') }
+
 tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.release = 17 }

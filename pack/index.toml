@@ -863,6 +863,11 @@ hash = "e5f435bb7800ef71cd96b21536a84d68d6fb133f3074a219e6aafe3365dcaa5b"
 metafile = true
 
 [[files]]
+file = "mods/bosses-of-mass-destruction-forge.pw.toml"
+hash = "a748351943c09e8cb6e90e56b7419c9420d76072c822a2c8c7b0f7f6f636648c"
+metafile = true
+
+[[files]]
 file = "mods/botania.pw.toml"
 hash = "ff2aa5045d98d0303e288dd37a1613c6376d8cfe2c829219e6e7283fb86008bb"
 metafile = true
@@ -914,6 +919,11 @@ file = "mods/cbc_nukes-2.1.1-mmport.jar"
 hash = "9cfaa0742987ac26b70b08a994b1b0f38abc41cf642baaf637f1d9179a0533f9"
 
 [[files]]
+file = "mods/cerbons-api.pw.toml"
+hash = "b04f3690005952fb2f0d93b742a00d4b25547cbb4e2975aaca89fb0af58a9539"
+metafile = true
+
+[[files]]
 file = "mods/cinematic-cataclysm.pw.toml"
 hash = "51a26b15b158cb016944b8ac19d3badc251ccde6ce58d8143e0a37524ea09ce7"
 metafile = true
@@ -921,6 +931,11 @@ metafile = true
 [[files]]
 file = "mods/citadel.pw.toml"
 hash = "c7ac7f84731a0ca1fefb3491c3f65c2767afd4be207e094fcb65c4cea99c9549"
+metafile = true
+
+[[files]]
+file = "mods/cloth-config.pw.toml"
+hash = "e3dd03e7fec88831974857e2cdded54dd5c5bdcaa3f6d6248c2800e82db4dd41"
 metafile = true
 
 [[files]]
@@ -1573,7 +1588,7 @@ metafile = true
 
 [[files]]
 file = "mods/ru-lang-1.0.0-client.jar"
-hash = "c24bb64765398a8271313e5f3b588c70c249b1c2d1e92d194a7b357c920fb33f"
+hash = "54c67dbe38dbaf72c525c2824200b122b508771bf66b1e29afaa5c9b28269e78"
 
 [[files]]
 file = "mods/sarkazs_furnace_side_fables-0.2.3-forge-1.20.1.jar"
@@ -1865,7 +1880,7 @@ hash = "dac71a33fe4eb0aa6f0bbfd5a2c857406239f1842c5bb33b00b142c2809f557d"
 
 [[files]]
 file = "resourcepacks/mploc-mods-v43.zip"
-hash = "12f629a0986e312a44c8c924d27de706b04da749f6cf40eabbfa2145af30a2fd"
+hash = "fcc4a8050864c73aa3a011a7cdd8d031eea7639f7ab925c672ca3ba0d684cf3c"
 
 [[files]]
 file = "resourcepacks/rtf-extension.pw.toml"

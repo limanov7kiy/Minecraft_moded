@@ -258,6 +258,15 @@ Ars Magica Legacy, аддонов Ars. Названия предметов в т
 нужен патч book.json, например kubejs-override как у AMI), `Model loader 'neoforge:composite' not found` (модели NeoForge-сборок), `mna:models/block/eldrin/pylon_ring.json`.
 Тест `test-client.sh` на 16 ГБ: два параллельных запуска клиента убивает OOM (код 137) — перед повтором убедиться, что прошлый JVM завершён.
 
+### Китайские литералы в коде/NBT («Талон Боба», 2026-10-12)
+Часть текстов модов (Bob's Originium Dream, Superb Warfare, Torches Become Sunlight, Extra Botany, Caerula Arbor, Sarkaz…) зашита в код как `Component.literal("…")`
+(и в NBT/лут), а не в lang — поэтому lang-аудит их не видел (`scripts/cjk_nonlang_audit.py`: ≈ 880 строк в классах 13 jar + NBT/JSON). Патчить jar нельзя (40–75 МБ, публичный репозиторий):
+вместо этого клиентский мод `ru-lang` содержит миксин на `LiteralContents` (единая точка всех `Component.literal`, в т.ч. сообщений сервера и NBT-lore) и словарь
+`mods-src/ru-lang/src/main/resources/assets/ru_lang/literals_ru.json` (**953 строки**: «китайская строка → русская»). Подстановка — только по точному совпадению и только для строк с иероглифами/каной
+(быстрая проверка символов, словарь грузится один раз в HashMap). Самопроверка пишется в лог клиента: `ru_lang: словарь литералов 953 строк; … Component.literal (миксин) -> "…" [OK]`.
+Пайплайн: `scripts/cjk_literals_harvest.py` (сбор строк из .class/NBT/data-JSON → пачки) → перевод Haiku → `scripts/literals_build.py` (проверка §-кодов/плейсхолдеров/иероглифов) → `scripts/build-ru-pack.sh`.
+Не покрыто: текст, рисуемый напрямую `font.draw(String)`, и книги Patchouli (Поток 11), NBT-структуры с сигнатурами (таблички) — только если строка идёт через Component.
+
 ## Вопросы владельцу
 
 1. **Не блокирует.** Принять MPLOC (ИИ-перевод) и RTF+ базой, а остальное доводить своим паком сверху? Рекомендация: да.
