@@ -420,7 +420,7 @@ Arknights Weapon) применяются без ошибок. Микрофон, 
   Вход реальным клиентом (`/register`, `/login`, заморозка до входа) не проверялся.
 
 ## Заброшенные города — The Lost Cities (поток 6, 2026-10-12)
-- Мод `the-lost-cities` 1.20-7.5.7 (both), профиль в `pack/defaultconfigs/lostcities-server.toml` → `rarecities` (≈ 6 % городских чанков вместо 37 % у `default`).
+- Мод `the-lost-cities` 1.20-7.5.7 (both), профиль в `pack/defaultconfigs/lostcities-server.toml` → `rarecities` (≈ 6 % городских чанков вместо 37 % у `default`) — **частота выбрана владельцем (В10, вариант «а»), действует для нового мира**.
   Ключи конфига — в таблице `[profiles]`, иначе Forge «исправляет» их на пустые и города не включаются. `defaultconfigs/` теперь копируют
   `test-server.sh` и `export-pack.sh`. Тест `scripts/tests/lostcities.js` (`LCCHECK OK`), подробности и выбор — `docs/lost-cities.md`.
 - Не связано с мод-конфликтами: в логе `NoClassDefFoundError mcjty/theoneprobe` — от Ars Magica Legacy (необязательная связка с TOP), не от Lost Cities.
