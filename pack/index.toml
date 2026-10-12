@@ -1055,6 +1055,10 @@ hash = "aa6dd39469608b2eb82239bebcd36f96f5d7dcecfbbb976417c26c066e86a55e"
 metafile = true
 
 [[files]]
+file = "mods/extragolems-20.1.0.2.jar"
+hash = "9cf8b4b8fbb8ce4de87893f38a50ef10b73905bdf0f703d72917b0b8fbcb2aa0"
+
+[[files]]
 file = "mods/factions-and-curiosities.pw.toml"
 hash = "cf1a0474ae05fe512d822a758c5a093c959da23c53c1c2e3459461b6b0657d06"
 metafile = true
@@ -1746,6 +1750,10 @@ metafile = true
 file = "mods/waystones.pw.toml"
 hash = "1dc6ca31c7b6912c494caa2a4f5f9f7250af50fbeb9ce9141ae9b741f9861987"
 metafile = true
+
+[[files]]
+file = "mods/wizardry-golems-0.1.0.jar"
+hash = "01a99ac6a72190d84f4bf0af4bf6eb31ff6a81adba37b654c3035c05c0f81a21"
 
 [[files]]
 file = "mods/wizardry-restored-0.6.0.jar"
