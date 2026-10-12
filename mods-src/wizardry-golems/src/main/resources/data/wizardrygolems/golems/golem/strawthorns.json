@@ -1,0 +1,19 @@
+{
+  "attributes": {
+    "health": 20.0,
+    "attack": 4.0,
+    "speed": 0.35,
+    "armor": 0.0,
+    "knockback_resistance": 0.0,
+    "immune": [],
+    "weak": [
+      "minecraft:in_fire",
+      "minecraft:on_fire"
+    ],
+    "swim_ability": "swim",
+    "sound": "minecraft:grass"
+  },
+  "hidden": true,
+  "model": "wizardrygolems:strawthorns",
+  "brain": "golems:empty"
+}

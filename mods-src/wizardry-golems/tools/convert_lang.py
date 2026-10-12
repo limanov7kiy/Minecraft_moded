@@ -7,6 +7,8 @@ import json, re, sys
 from pathlib import Path
 
 NS = "wizardrygolems"
+# миньон оригинала -> наш голем-тип, где имена расходятся
+RENAMED = {"straw": "strawthorns"}
 
 
 def convert_key(k):
@@ -21,7 +23,7 @@ def convert_key(k):
         return f"block.{NS}.{m[1]}"
     # миньоны-големы -> имена голем-типов Extra Golems (`entity.<ns>.golem.<id>`)
     if m := re.fullmatch(rf"entity\.{NS}:golem_([a-z_]+)_minion\.name", k):
-        return f"entity.{NS}.golem.{m[1]}"
+        return f"entity.{NS}.golem.{RENAMED.get(m[1], m[1])}"
     return None
 
 

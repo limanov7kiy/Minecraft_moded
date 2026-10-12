@@ -1,0 +1,21 @@
+{
+  "attributes": {
+    "health": 10.0,
+    "attack": 2.5,
+    "speed": 0.28,
+    "armor": 0.0,
+    "knockback_resistance": 0.0,
+    "immune": [
+      "minecraft:freeze"
+    ],
+    "weak": [
+      "minecraft:in_fire",
+      "minecraft:on_fire"
+    ],
+    "swim_ability": "swim",
+    "sound": "minecraft:snow"
+  },
+  "hidden": true,
+  "model": "wizardrygolems:snow",
+  "brain": "golems:empty"
+}
