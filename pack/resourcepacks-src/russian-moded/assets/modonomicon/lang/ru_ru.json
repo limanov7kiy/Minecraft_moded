@@ -1,3 +1,7 @@
 {
-  "book.modonomicon.demo.other.root.intro.text": "Корень"
+  "advancements.modonomicon.root.description": "Книга всех книг!",
+  "advancements.modonomicon.root.title": "Modonomicon",
+  "book.modonomicon.demo.other.root.intro.text": "Корень",
+  "itemGroup.modonomicon": "Modonomicon",
+  "modonomicon.gui.hover.book_link_locked_info": "Сначала откройте эту запись, чтобы перейти по ссылке!"
 }

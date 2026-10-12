@@ -187,6 +187,7 @@ Xvfb + Mesa llvmpipe, агент `scripts/clienttest/ExitTrace.java` ловит 
 JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.txt`/`add-mods.sh`), остаток **12 011 строк** +
 ≈ 478 тыс. знаков книг; `pack/options.txt` — `lang:ru_ru` и порядок паков (`preserve`). `test-client.sh` не прогонялся.
 - [x] Этап 2 (строки): 11 485 строк переведены (`pack/resourcepacks-src/russian-moded` → `pack/resourcepacks/russian-moded.zip`, последним в `options.txt`), ветка `claude/russification-2`. Книги — по отзывам друзей (Ars Nouveau и Animus первыми).
+- [x] Заброшенные города (по просьбе владельца, 2026-10-12): The Lost Cities, профиль `rarecities`, `docs/lost-cities.md`.
 - [ ] Прогнать `scripts/test-client.sh` и убедиться, что язык/паки подхватываются; строка в `docs/friends.md`.
 
 ## Интеграция (ревью PR, поток «Ревью и интеграция», ветка `claude/confident-hypatia-2zqr1t`)
@@ -295,6 +296,15 @@ JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.t
 
 Тест владельца (Prism, офлайн-аккаунт, ссылка packwiz): установка 387/387, «Missing libraries» решено онлайн-запуском (friends.md, PR #24),
 главное меню без ошибок, одиночный мир создан, Origins и русский интерфейс работают.
+
+### Поток 8 — Производительность
+Файлы: `docs/performance.md`, `mods-src/mm-perf/`, `pack/config/{modernfix-mixins.properties,DistantHorizons.toml,jei/,sound_physics_remastered/}`, `pack/options.txt` (только строки графики).
+Сделано (ветка `claude/perf-stream8`, подробности и замеры — `docs/performance.md`):
+- [x] Причины: «вход ~3 мин» — запуск JEI на потоке отрисовки при каждом входе в мир (3,5 мин в стенде); создание мира — спавн-чанки (167 из 263 с) и генерация Distant Horizons.
+- [x] ModernFix `remove_spawn_chunks` + `dynamic_resources`, DH (радиус 64, без генерации), JEI без поиска по подсказкам, мод `mm-perf` (JEI без рецептов чар точила/наковальни),
+  Sound Physics, пресет графики `options.txt`, Let Me Despawn / FastFurnace / FastWorkbench; сервер до `Done` (58 с). Результат: создание мира 263 → 75–88 с, JEI 3,5 → 1,6 мин, меню 273–301 → 216–228 с.
+- [x] `friends.md` — «Если тормозит» (Xmx, JVM-флаги, видеокарта, spark); Xmx/JVM через packwiz/.mrpack задать нельзя — только инструкцией.
+- [ ] Решения владельца: JEI остаток (плагин Iron's Spells ~30 с; EMI вместо JEI?), железо владельца, `dynamic_resources` — визуальная проверка моделей; список «в отчёт» (Async Particles, BadOptimizations…) — в `docs/performance.md`.
 
 ### Поток 9 — Боссы (таблица и огромные боссы)
 Файлы: `scripts/boss_table.py`, `scripts/boss_info.py`, `scripts/tests/bossdump.js`, `iafcheck.js`, `docs/bosses.md`/`csv`.

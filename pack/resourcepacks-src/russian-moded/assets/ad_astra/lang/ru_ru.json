@@ -1,4 +1,5 @@
 {
+  "advancements.ad_astra.ad_astra.title": "Ad Astra",
   "config.ad_astra.deshTierEnergyCapacity": "Ёмкость энергии уровня Desh",
   "config.ad_astra.deshTierFluidCapacity": "Макс. ёмкость жидкости уровня Desh",
   "config.ad_astra.deshTierMaxEnergyInOut": "Макс. вход/выход энергии уровня Desh",
@@ -11,6 +12,7 @@
   "config.ad_astra.steelTierEnergyCapacity": "Ёмкость энергии уровня стали",
   "config.ad_astra.steelTierFluidCapacity": "Макс. ёмкость жидкости уровня стали",
   "config.ad_astra.steelTierMaxEnergyInOut": "Макс. вход/выход энергии уровня стали",
+  "itemGroup.ad_astra.main": "Ad Astra",
   "painting.ad_astra.alpha_centauri.title": "Альфа Центавра",
   "painting.ad_astra.earth.title": "Земля",
   "painting.ad_astra.glacio.title": "Глацио",

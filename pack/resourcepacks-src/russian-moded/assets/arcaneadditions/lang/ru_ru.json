@@ -47,6 +47,7 @@
   "arcaneadditions:rituals/bind_familiar.failed": "Ваш фамильяр не смог появиться в мире.",
   "arcaneadditions:rituals/bind_familiar.invalid_familiar": "Нельзя связать фамильяра такого типа.",
   "arcaneadditions:rituals/bind_familiar.no_crystal": "Этот ритуал не сработает без заполненного кристалла пленения",
+  "arcaneadditions:rituals/bind_familiar.no_phylactery": "Нет заполненного кристаллического амулета — ритуал невозможен",
   "arcaneadditions:rituals/bind_familiar.success": "Вы связали фамильяра типа %s.",
   "arcaneadditions:rituals/train_familiar": "Ритуал внушения",
   "arcaneadditions:shapes/familiar": "Фамильяр",

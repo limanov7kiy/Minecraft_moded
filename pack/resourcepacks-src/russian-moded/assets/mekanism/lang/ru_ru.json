@@ -1,6 +1,8 @@
 {
   "advancements.mekanism.advanced_qio_drive.title": "Высокоплотное хранилище",
+  "advancements.mekanism.root.title": "Mekanism",
   "constants.mekanism.debug_title": "Отладка Mekanism",
+  "constants.mekanism.mod_name": "Mekanism",
   "death.attack.mekanism.laser.player": "%1$s сгорел, пытаясь сбежать от %2$s.",
   "energy.mekanism.forge": "Энергия Forge",
   "energy.mekanism.joules": "Джоуль",

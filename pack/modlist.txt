@@ -18,6 +18,9 @@ mr entityculling          # клиент
 mr immediatelyfast        # клиент
 mr smooth-boot-reloaded
 mr distanthorizons        # дальняя прорисовка
+mr lmd                    # Let Me Despawn (сервер): мобы с предметами/именами тоже деспавнятся — меньше мобов в мире (поток 8)
+mr fastfurnace            # сервер: кэш рецептов печей (поток 8)
+mr fastworkbench          # сервер: кэш рецептов верстака (поток 8)
 
 ## Магия
 mr electroblobs-wizardry-redux
@@ -284,3 +287,8 @@ rp rtf-extension                  # RTF+: переводы + книги Patchoul
 rp rtf                            # RTF: Ad Astra, Twilight Delight и др. (MIT)
 rp russian-delight                # дополнения Farmer's Delight (MIT)
 #patched just-some-translations-to-russian  # Xaero's World Map, Sodium/Embeddium (MIT); pack_format 34 → 15, так же
+
+## Заброшенные города (поток 6, docs/lost-cities.md)
+mr the-lost-cities                # The Lost Cities (McJty, MIT): города в обычном Overworld; профиль — pack/defaultconfigs/lostcities-server.toml
+
+#jar ru-lang                      # наш клиентский мод (mods-src/ru-lang): всегда включённый верхний ресурспак russian-moded; пересобирать scripts/build-ru-pack.sh после правок переводов

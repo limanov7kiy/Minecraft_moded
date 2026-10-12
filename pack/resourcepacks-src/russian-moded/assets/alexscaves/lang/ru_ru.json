@@ -1,5 +1,5 @@
 {
-  "advancements.alexscaves.root.title": "Пещеры Алекса",
+  "advancements.alexscaves.root.title": "Alex's Caves",
   "alexscaves.sound.subtitle.licowitch_cast_hex": "Ликовитч накладывает порчу",
   "alexscaves.sound.subtitle.licowitch_cast_peppermint": "Ликовитч кидает мятные конфеты",
   "alexscaves.sound.subtitle.licowitch_cast_summon": "Ликовитч призывает монстра",
@@ -7,5 +7,5 @@
   "alexscaves.sound.subtitle.licowitch_death": "Ликовитч плачет",
   "alexscaves.sound.subtitle.licowitch_hurt": "Ликовитч кряхтит",
   "alexscaves.sound.subtitle.licowitch_idle": "Ликовитч хихикает",
-  "itemGroup.alexscaves": "Пещеры Алекса"
+  "itemGroup.alexscaves": "Alex's Caves"
 }

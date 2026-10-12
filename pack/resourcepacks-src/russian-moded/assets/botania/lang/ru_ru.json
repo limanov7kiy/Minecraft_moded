@@ -8,5 +8,6 @@
   "botaniamisc.speedrun_category.blessing": "Благословение%%",
   "botaniamisc.speedrun_category.gaia_i": "Победить Стража Геи I",
   "botaniamisc.speedrun_category.gaia_ii": "Победить Стража Геи II",
-  "botaniamisc.speedrun_category.obtain_dreamwood": "Получить древесину сновидений"
+  "botaniamisc.speedrun_category.obtain_dreamwood": "Получить древесину сновидений",
+  "itemGroup.botania": "Botania"
 }

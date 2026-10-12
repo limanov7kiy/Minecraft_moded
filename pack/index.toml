@@ -5,6 +5,10 @@ file = "config/.sereneseasonsplus-descriptive-config-reset.done"
 hash = "f1ceb92d0b8b72485894a12f2e434f475a127d59cae046ee5843be6318f6745e"
 
 [[files]]
+file = "config/DistantHorizons.toml"
+hash = "77155a1e8e79c1c932654c28d6c004325a296da837d768800cfd1733e349150e"
+
+[[files]]
 file = "config/almostunified/debug.json"
 hash = "3e03a291b5310a6b94a45aff63e4731baa643701c42a968ed716483ccd1d5a37"
 
@@ -33,6 +37,14 @@ file = "config/iceandfire-common.toml"
 hash = "4e686e3616fc1885ce4380e95fe8c9d32be13536693da638e27b091372c0777b"
 
 [[files]]
+file = "config/jei/client/default/jei-client.ini"
+hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
+
+[[files]]
+file = "config/modernfix-mixins.properties"
+hash = "bc2e8a7a2f7a70796a6e2e97f3410275be73879cf576b463bcd3e429a5922a9f"
+
+[[files]]
 file = "config/sereneseasonsplus-common.toml"
 hash = "ae0213dfbc7561b527d00565ad849c32e096914967590c1aaf85c4133195c885"
 
@@ -41,12 +53,20 @@ file = "config/solsauthlogin-common.toml"
 hash = "03774e9720dbb20d1054caf5ef3830e4f58bb3854035a3ad9b43d24a5aa76e08"
 
 [[files]]
+file = "config/sound_physics_remastered/soundphysics.properties"
+hash = "81511081d13eaf2cfcd6ae5fc95973e44bf7912543573ced691a218cceafd531"
+
+[[files]]
 file = "config/vcinteraction/vcinteraction.properties"
 hash = "cf5e599d8110f33b7483f43be29b6f2da325bf30d672b55e681ff7cfb6cdde99"
 
 [[files]]
 file = "config/voicechat/voicechat-server.properties"
 hash = "44e28ca45bf8648f18a9363105a7faa363d254ed8ace91ff523193b60786968d"
+
+[[files]]
+file = "defaultconfigs/lostcities-server.toml"
+hash = "cd8919cee8c45c4b5e243fa0fb03e4a08f12094ed5c0dd053814fff0f6d7e85d"
 
 [[files]]
 file = "kubejs/client_scripts/space_rockets.js"
@@ -642,6 +662,11 @@ file = "mods/alexsdelight-1.5.jar"
 hash = "439da92c904959e805c2237ebda9e96db60870dd3b58b4b402547d494fa0057a"
 
 [[files]]
+file = "mods/almanac.pw.toml"
+hash = "f3c12f6320ce830c9f8f846e82c461239c14bc57a8d41940caf7bead656295f0"
+metafile = true
+
+[[files]]
 file = "mods/almostunified.pw.toml"
 hash = "bc9bc4dc5e09b5213fb158a83d63d5def7bb016c3cef65405f8f2f6c0c62b158"
 metafile = true
@@ -1074,6 +1099,16 @@ hash = "c83385838fbf5cdd40684e5f6d4b7bcc2126de4abca229a60b7063e57a5a4615"
 metafile = true
 
 [[files]]
+file = "mods/fastfurnace.pw.toml"
+hash = "372aabbdc69fe63317c017cd8a323e6b8f52ebf070780a3a135be9f67555b8d4"
+metafile = true
+
+[[files]]
+file = "mods/fastworkbench.pw.toml"
+hash = "4720520cedd7c02806b67f67d7e1cf4d610d7dcb65971c21b52d1d2754ab0fad"
+metafile = true
+
+[[files]]
 file = "mods/fdlib.pw.toml"
 hash = "34320e557d3321623f5b68cf86a370d04b71adb7d01648ea259c37c653041f1c"
 metafile = true
@@ -1275,6 +1310,11 @@ hash = "f3b6b7cd660a91a34a4e18010c9eaacaeb7ff306cadfee14431fa25a15b041ec"
 metafile = true
 
 [[files]]
+file = "mods/lmd.pw.toml"
+hash = "d171acd90da5df8212928557ec535d47d82a1daccc6b8e279af8941c5925d46a"
+metafile = true
+
+[[files]]
 file = "mods/lootintegrations-1.20.1-4.7.jar"
 hash = "88dc2701f90c04a4fa343be11ea0c21cbda1d675cba514f201946dcd8eae17ea"
 
@@ -1376,6 +1416,10 @@ metafile = true
 [[files]]
 file = "mods/mm-compat-0.5.0.jar"
 hash = "10136eb69537c3a2c9c5d81c7d57a700281ddf419d5f79b8aba09c82d2289da8"
+
+[[files]]
+file = "mods/mm-perf-0.1.0-client.jar"
+hash = "d7ca544e6d60bc2f18057f55712d985b3faf219404ad267f3c756ff59e232eb7"
 
 [[files]]
 file = "mods/mnaoverpowered.pw.toml"
@@ -1514,6 +1558,10 @@ metafile = true
 file = "mods/rpl.pw.toml"
 hash = "93128d85ae0b3be9c8248b09f3a63ed88c746568480cc7e9a8e2a9b4bd13477c"
 metafile = true
+
+[[files]]
+file = "mods/ru-lang-1.0.0-client.jar"
+hash = "a527c659c8d141da558512e5567fb4ce89e6321c2d6c54d54a6e1d074065d6f9"
 
 [[files]]
 file = "mods/sarkazs_furnace_side_fables-0.2.3-forge-1.20.1.jar"
@@ -1658,6 +1706,11 @@ hash = "8063598c8c2e76eedf5782e6896a27d00140dea6e45e029c23c4c25020949319"
 metafile = true
 
 [[files]]
+file = "mods/the-lost-cities.pw.toml"
+hash = "71097e23679b74087641cba67eafb161a1d238cb866a01b4af49caf648d0919c"
+metafile = true
+
+[[files]]
 file = "mods/the-twilight-forest-dungeons-villages.pw.toml"
 hash = "a55e61bc7aa046b21d20715d107226a7a4746b67665057d3fa135942db236cdf"
 metafile = true
@@ -1795,7 +1848,7 @@ hash = "9d6c1b79bffbd22944012a0fd7318753402515ad5b37c1d2562f55a687aecc6e"
 
 [[files]]
 file = "options.txt"
-hash = "6d642afbd6dc2b555ef672d0db5313dac2a0f3cba9f3c40f131801d8ec5a4a4c"
+hash = "30592669b3f027dfee48c70d86674c12589c3dc3731f0fce13a623c1608bcca1"
 preserve = true
 
 [[files]]
@@ -1820,7 +1873,3 @@ metafile = true
 file = "resourcepacks/russian-delight.pw.toml"
 hash = "afcd7b135787e17fd9e33692c615af916202e9ea9f5a3ad34a075fc466de0bb8"
 metafile = true
-
-[[files]]
-file = "resourcepacks/russian-moded.zip"
-hash = "591f3905ae7e806ac5849888582e58055d9fe3b8f8f3fe2cb49b0881d35955c6"
