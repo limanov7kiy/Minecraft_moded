@@ -1,0 +1,11 @@
+{
+  "command.occultengineering.brain.not_dynamic": "Сущность создана, но у неё нет динамического мозга",
+  "command.occultengineering.brain.not_for_this": "Динамический мозг с id $1 найден, но он не предназначен для этой сущности",
+  "command.occultengineering.brain.not_found": "Динамический мозг с id $1 не найден",
+  "command.occultengineering.multiblock.failure": "Не удалось установить мультиблок",
+  "command.occultengineering.multiblock.not_found": "Мультиблок с id $1 не найден",
+  "command.occultengineering.multiblock.success": "Мультиблок успешно установлен",
+  "command.occultengineering.no_permission": "У вас нет прав на выполнение этой команды",
+  "key.categories.occultengineering.keys": "Оккультная инженерия",
+  "key.occultengineering.toggle_combined_goggles": "Переключить потусторонние инженерные очки"
+}

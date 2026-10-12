@@ -275,8 +275,8 @@ mr just-enough-beacons-reforged # клиент: что даёт маяк
 mr jea                        # поиск достижений в JEI (both)
 
 ## Русификация (поток 6; rp = ресурспак с Modrinth, сторона client; порядок включения — pack/options.txt, docs/russification.md)
-rp mploc_mods                     # MPLOC: ИИ-переводы сотен модов, CC-BY-SA, нижний слой
+#patched mploc_mods              # MPLOC: ИИ-переводы сотен модов, CC-BY-SA (автор MPLOC), нижний слой; pack_format 88 → 15 через scripts/patch-rp-format.py (иначе 1.20.1 выкидывает пак)
 rp rtf-extension                  # RTF+: переводы + книги Patchouli/Tinkers/Oritech, AGPL, выше MPLOC
 rp rtf                            # RTF: Ad Astra, Twilight Delight и др. (MIT)
 rp russian-delight                # дополнения Farmer's Delight (MIT)
-rp just-some-translations-to-russian  # Xaero's World Map, Sodium/Embeddium (MIT)
+#patched just-some-translations-to-russian  # Xaero's World Map, Sodium/Embeddium (MIT); pack_format 34 → 15, так же

@@ -1788,18 +1788,16 @@ hash = "9d6c1b79bffbd22944012a0fd7318753402515ad5b37c1d2562f55a687aecc6e"
 
 [[files]]
 file = "options.txt"
-hash = "ca3418aa25484cb6e5499cc6274e6cee9bac6e07a207020a38316da1c8ec60d4"
+hash = "6d642afbd6dc2b555ef672d0db5313dac2a0f3cba9f3c40f131801d8ec5a4a4c"
 preserve = true
 
 [[files]]
-file = "resourcepacks/just-some-translations-to-russian.pw.toml"
-hash = "50329b309ea430421280d6bb56bf3f12b04806334b8ab1f5a02c2b21cabf9368"
-metafile = true
+file = "resourcepacks/just-some-translations.zip"
+hash = "dac71a33fe4eb0aa6f0bbfd5a2c857406239f1842c5bb33b00b142c2809f557d"
 
 [[files]]
-file = "resourcepacks/mploc_mods.pw.toml"
-hash = "b84119e88dedd080e2d3dfe353e04e3bb650b74a63733cc4b28a066007dcf57a"
-metafile = true
+file = "resourcepacks/mploc-mods-v43.zip"
+hash = "12f629a0986e312a44c8c924d27de706b04da749f6cf40eabbfa2145af30a2fd"
 
 [[files]]
 file = "resourcepacks/rtf-extension.pw.toml"
@@ -1815,3 +1813,7 @@ metafile = true
 file = "resourcepacks/russian-delight.pw.toml"
 hash = "afcd7b135787e17fd9e33692c615af916202e9ea9f5a3ad34a075fc466de0bb8"
 metafile = true
+
+[[files]]
+file = "resourcepacks/russian-moded.zip"
+hash = "a7011bf5c3452bfa8cf1a7f9196f4aeb37291732556d515e23c13cdc374a5798"

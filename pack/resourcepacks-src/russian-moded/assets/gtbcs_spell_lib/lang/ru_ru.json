@@ -1,0 +1,12 @@
+{
+  "attribute.gtbcs_spell_lib.damage_taken": "Получаемый урон",
+  "attribute.gtbcs_spell_lib.elemental_permeability": "Элементальная проницаемость",
+  "attribute.gtbcs_spell_lib.healing_received": "Получаемое исцеление",
+  "attribute.gtbcs_spell_lib.summon_health": "Здоровье призыва",
+  "item.gtbcs_spell_lib.painting_spell_lib": "Картина",
+  "item.gtbcs_spell_lib.treasure_pouch": "Мешочек с сокровищами",
+  "item.gtbcs_spell_lib.treasure_pouch.more": "+%s ещё",
+  "item.gtbcs_spell_lib.treasure_pouch.open": "[ПКМ, чтобы открыть]",
+  "tooltip.gtbcs_spell_lib.painting.author": "Автор: %s",
+  "tooltip.gtbcs_spell_lib.painting.size": "%s × %s блоков"
+}

@@ -1,0 +1,15 @@
+{
+  "block.legendarysurvivaladdon.cooler": "Охладитель",
+  "block.legendarysurvivaladdon.fan": "Охлаждающий вентилятор",
+  "block.legendarysurvivaladdon.heater": "Нагреватель",
+  "item.legendarysurvivaladdon.cooler": "Блок охладителя",
+  "item.legendarysurvivaladdon.heater": "Блок нагревателя",
+  "key.legendarysurvivaladdon.toggle_cooling": "Переключить охлаждение",
+  "key.legendarysurvivaladdon.toggle_heating": "Переключить нагрев",
+  "message.legendarysurvivaladdon.insufficient_power": "Недостаточно вращательной мощности!",
+  "message.legendarysurvivaladdon.overheating": "Предупреждение: обнаружен перегрев!",
+  "status.legendarysurvivaladdon.active": "Активен",
+  "status.legendarysurvivaladdon.inactive": "Неактивен",
+  "tooltip.legendarysurvivaladdon.cooler": "Создаёт охлаждающий эффект в радиусе 30 блоков.",
+  "tooltip.legendarysurvivaladdon.heater": "Создаёт тепло в радиусе 30 блоков."
+}

@@ -1,0 +1,19 @@
+{
+  "commands.refinedstorage.network.autocrafting.cancel.multiple": "Отменено задач: %d.",
+  "commands.refinedstorage.network.autocrafting.cancel.single": "Отменено задач: %d.",
+  "commands.refinedstorage.network.autocrafting.get.error.not_found": "Задача не найдена.",
+  "commands.refinedstorage.network.get.error.not_found": "Сеть не найдена.",
+  "commands.refinedstorage.network.list.autocrafting_tasks": "задач: %s",
+  "commands.refinedstorage.network.list.energy_usage": "Потребление энергии: %s",
+  "commands.refinedstorage.network.list.nodes": "узлов: %s",
+  "commands.refinedstorage.network.list.pos": "Сеть в X: %d, Y: %d, Z: %d",
+  "commands.refinedstorage.network.list.tick_times": "Среднее время тика: %s мс. Средний TPS: %s",
+  "gui.refinedstorage.jei.transfer.autocrafting_available": "Автокрафт доступен",
+  "gui.refinedstorage.jei.transfer.request_autocrafting": "CTRL + ЛКМ, чтобы запросить автокрафт",
+  "gui.refinedstorage.jei.transfer.request_autocrafting_mac": "CMD + ЛКМ, чтобы запросить автокрафт",
+  "item.refinedstorage.cover": "Крышка",
+  "item.refinedstorage.hollow_cover": "Полая крышка",
+  "misc.refinedstorage.fluidmode": "Жидкости",
+  "sidebutton.refinedstorage.grid.search_box_mode.4": "Синхронизация с JEI (двусторонняя)",
+  "sidebutton.refinedstorage.grid.search_box_mode.5": "Синхронизация с JEI (двусторонняя, с автовыбором)"
+}

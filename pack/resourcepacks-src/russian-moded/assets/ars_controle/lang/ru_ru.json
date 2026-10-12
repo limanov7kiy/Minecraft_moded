@@ -1,0 +1,17 @@
+{
+  "ars_controle.remote.error.different_dimension": "Цель не может быть в другом измерении.",
+  "ars_controle.remote.error.invalid_dimension": "Цель находится в недопустимом измерении.",
+  "ars_controle.remote.error.invalid_target": "Цель недопустима.",
+  "ars_controle.remote.error.no_target": "В пульте не сохранена цель.",
+  "ars_controle.remote.set_target": "Цель пульта установлена: %s в %s.",
+  "ars_controle.target.get.block": "Целевой блок: %s в %s.",
+  "ars_controle.target.get.entity": "Целевая сущность: %s в %s.",
+  "ars_controle.target.get.none": "Цель не найдена.",
+  "ars_controle.target.set.block": "Цель установлена: блок на %s в %s.",
+  "ars_controle.target.set.entity": "Цель установлена: %s в %s.",
+  "ars_controle.target.set.none": "Цель сброшена.",
+  "ars_controle.target.set.self": "Цель установлена на вас.",
+  "block.ars_controle.warping_spell_prism": "Искажающая призма заклинаний",
+  "item.ars_controle.remote": "Пульт",
+  "item.ars_controle.remote.with_target": "Пульт (%s)"
+}
