@@ -30,6 +30,7 @@ dependencies {
     modCompileOnly "maven.modrinth:l_enders-cataclysm:${cataclysm_version}"
     modCompileOnly "maven.modrinth:curios:${curios_version}"
     modCompileOnly "maven.modrinth:create:${create_version}"
+    modCompileOnly "maven.modrinth:mana-and-artifice:${mna_version}"
     compileOnly "com.tterrag.registrate:Registrate:MC1.20-1.3.3"
 }
 

@@ -26,7 +26,9 @@ import java.util.zip.*;
  *           name(OLDDESC)R, добавить мост name(NEWDESC)R2, который его вызывает (аргументы приводятся).
  *   ownerinit old/Projectile  type/Registry.FIELD            — снаряд потерял конструктор (Level, LivingEntity):
  *           `super(level, owner)` → `super(FIELD.get(), level); setOwner(owner)` (FIELD — RegistryObject типа).
- * Порядок применения: factory → ownerinit → call/scall → field → bridge → class.
+ *   prefix  old/pkg/                  new/pkg/              — все типы пакета (и подпакетов): перенос встроенной
+ *           копии библиотеки в свой пакет (файлы классов переименовываются тоже), см. source.txt `embed`.
+ * Порядок применения: factory → ownerinit → call/scall → field → bridge → class/prefix.
  *
  * Использование: java -cp asm.jar:asm-tree.jar:asm-commons.jar JarPort.java <in.jar> <out.jar> <rules.txt>
  *                [папка или jar с переходниками и ресурсами, добавляемыми в результат...]
@@ -43,6 +45,7 @@ public class JarPort {
     static final List<Bridge> bridges = new ArrayList<>();
     static final List<OwnerInit> ownerInits = new ArrayList<>();
     static final Map<String, Integer> used = new TreeMap<>();
+    static final Map<String, String> prefixes = new LinkedHashMap<>();
     static SimpleRemapper remapper;
 
     static String[] member(String s) {   // owner.name(desc) → {owner, name, desc}
@@ -58,6 +61,7 @@ public class JarPort {
             switch (p[0]) {
                 case "class" -> classes.put(p[1], p[2]);
                 case "field" -> fields.put(p[1], p[2]);
+                case "prefix" -> prefixes.put(p[1], p[2]);
                 case "factory" -> {
                     int i = p[1].indexOf('('), d = p[2].lastIndexOf('.');
                     factories.add(new Factory(p[1].substring(0, i), p[1].substring(i), p[2].substring(0, d), p[2].substring(d + 1)));
@@ -77,7 +81,14 @@ public class JarPort {
                 default -> throw new IllegalArgumentException("неизвестное правило: " + line);
             }
         }
-        remapper = new SimpleRemapper(classes);
+        remapper = new SimpleRemapper(classes) {
+            @Override public String map(String key) {
+                String v = super.map(key);
+                if (v != null || key.indexOf('.') >= 0) return v;   // ключи членов («owner.name») не трогаем
+                for (var e : prefixes.entrySet()) if (key.startsWith(e.getKey())) return e.getValue() + key.substring(e.getKey().length());
+                return null;
+            }
+        };
 
         try (ZipInputStream in = new ZipInputStream(Files.newInputStream(Path.of(a[0])));
              ZipOutputStream out = new ZipOutputStream(Files.newOutputStream(Path.of(a[1])))) {
@@ -221,6 +232,10 @@ public class JarPort {
     }
 
     static void put(ZipOutputStream out, Set<String> written, String name, byte[] b) throws IOException {
+        if (name.endsWith(".class")) {   // перенесённый класс — и файл под новым именем
+            String to = remapper.map(name.substring(0, name.length() - 6));
+            if (to != null) name = to + ".class";
+        }
         if (!written.add(name)) return;   // первым пишется оригинал; переходники не перекрывают классы мода
         ZipEntry e = new ZipEntry(name);
         e.setTime(0);
