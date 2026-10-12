@@ -418,3 +418,18 @@ Galacticraft Legacy (1.12.2) → 1.20.1 — это фактически пере
 система блоков (flattening), рендер, сеть, генерация мира и capabilities. Объём — десятки тысяч строк.
 Лицензия не препятствует: сборка частная и некоммерческая (CLAUDE.md «Назначение и лицензии») —
 код и ассеты Galacticraft Legacy можно переносить с указанием авторства, не публикуя результат.
+
+## Моды CurseForge с запретом сторонней загрузки → jar в репозитории (2026-10-12)
+packwiz-installer не может скачать мод без `url` в `.pw.toml` (CurseForge запрещает стороннее скачивание), поэтому
+у друзей установка по ссылке падала. Jar этих модов теперь лежат в `pack/mods/` и раздаются по raw-ссылке GitHub;
+`.pw.toml` удалены, строки в `modlist.txt` помечены `#jar`. Если правообладатель попросит — jar убираем.
+- На Modrinth переведён только **GTBC's SpellLib/API** (GameTechBC).
+- Остальные 23 мода на Modrinth под 1.20.1 Forge не найдены. Авторы по `mods.toml`: Alex's Delight (NCP Bails),
+  Capsid Fix (k1sak1), Ars Elemental (Alexthw), Ars Instrumentum, Ars Technica и Iron's Recipe Additions (MCreator),
+  Blue Skies Tweaks (Leclowndu93150), Create Blue Skies Compat (celsiusqc), Cupboard и Loot Integrations
+  (+ Cataclysm) (Someaddon), Deeper and Darker to Cataclysm (armya), Gathering Torches Become Sunlight (free fish и др.),
+  GTBC's Geomancy Plus (GameTechBC), Lycanite Delight (MythicModder), Lycanites Kin, Create: Mechanical Botania
+  (Micaxs), Sarkaz's Furnace Side Fables (Zhi_Xu), Spell Forge for Wizardry Redux (ZettaSword), The Twilight Forest
+  (Benimatic, Tamaized и др.), Too Many Glyphs (DerringersMods), Twilight Forest Bosses Resurrection (DimasStudio),
+  Umbral Skies (Drullkus).
+- Размеры: все меньше 100 МБ; самые большие — Gathering Torches Become Sunlight (76 МБ) и The Twilight Forest (23 МБ).
