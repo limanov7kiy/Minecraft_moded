@@ -43,5 +43,6 @@ public class NecromancersDelight {
         modBus.addListener(NdBombs::onCreativeTab);
         modBus.addListener(dev.mcmoded.necromancersdelight.item.NdItems::onCreativeTab);
         net.minecraftforge.common.MinecraftForge.EVENT_BUS.register(dev.mcmoded.necromancersdelight.item.NdArtifacts.class);
+        net.minecraftforge.common.MinecraftForge.EVENT_BUS.register(dev.mcmoded.necromancersdelight.item.NdLoot.class);
     }
 }

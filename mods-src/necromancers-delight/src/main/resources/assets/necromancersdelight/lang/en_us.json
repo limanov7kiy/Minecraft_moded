@@ -83,5 +83,6 @@
   "spell.necromancersdelight.carcinize.no_crystal": "You need a Crystal to cast this spell.",
   "item.necromancersdelight.amulet_leech_crystal": "Leech Crystal Amulet",
   "item.necromancersdelight.amulet_leech_crystal.desc": "The Summon Elemental Leech spell always summons a leech of this amulet's element. Can be bound to an element at the Arcane Workbench using a crystal",
-  "item.necromancersdelight.amulet_leech_crystal.desc2": "Bound element: %s"
+  "item.necromancersdelight.amulet_leech_crystal.desc2": "Bound element: %s",
+  "block.necromancersdelight.temporary_glowshroom": "Glowshroom"
 }
