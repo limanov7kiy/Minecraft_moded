@@ -12,9 +12,10 @@ import json, pathlib, re, sys, collections
 KEYS = {'name', 'text', 'title', 'heading', 'description', 'subtitle', 'tooltip', 'header', 'caption'}
 TAG = re.compile(r'\$\([^)]*\)|#\w+#|%[sd]|\{\d\}')
 CYR = re.compile('[А-Яа-яЁё]')
+CJK = re.compile('[\u4e00-\u9fff\u3040-\u30ff\uac00-\ud7af]')
 
 def translatable(k, v):
-    return k in KEYS and isinstance(v, str) and not re.fullmatch(r'#\S*', v) and re.search('[A-Za-z]{2}', v) \
+    return k in KEYS and isinstance(v, str) and not re.fullmatch(r'#\S*', v) and re.search('[A-Za-z]{2}|[\u4e00-\u9fff\u3040-\u30ff\uac00-\ud7af]', v) \
         and not re.fullmatch(r'[a-z0-9_]+(\.[a-z0-9_]+)+', v)
 
 def walk(o, path, out):
@@ -53,7 +54,7 @@ def check(uen, uru):
         if t is None: err.append('%s: нет перевода' % k); continue
         if collections.Counter(TAG.findall(v)) != collections.Counter(TAG.findall(t)):
             err.append('%s: теги %s != %s' % (k, sorted(TAG.findall(v)), sorted(TAG.findall(t))))
-        if re.search('[A-Za-z]{4,}', TAG.sub('', v)) and not CYR.search(t): err.append('%s: нет кириллицы' % k)
+        if (re.search('[A-Za-z]{4,}', TAG.sub('', v)) or CJK.search(v)) and not CYR.search(t): err.append('%s: нет кириллицы' % k)
     return err
 
 if __name__ == '__main__':
