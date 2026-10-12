@@ -1,0 +1,16 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Капуцин",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/dart_effects.png"
+      ],
+      "text": "Дротики капуцинов можно пропитать эффектами зелий: щёлкните правой кнопкой мыши зельем. Применяется только первый эффект зелья",
+      "title": "Эффекты дротиков"
+    }
+  ],
+  "sortnum": 1
+}

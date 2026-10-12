@@ -1,0 +1,16 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Орёл",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/bird_bombing.png"
+      ],
+      "text": "Управляемый орёл может подхватывать взрывчатку; чтобы сбросить её, нажмите клавишу «красться»",
+      "title": "Птичья бомбардировка"
+    }
+  ],
+  "sortnum": 1
+}

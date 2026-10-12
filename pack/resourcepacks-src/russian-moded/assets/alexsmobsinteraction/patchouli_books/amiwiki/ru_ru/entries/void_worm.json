@@ -1,0 +1,22 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Червь пустоты",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/dimensional_lodestone.png"
+      ],
+      "text": "Если пространственный резак в основной руке, а компас с магнитным камнем во второй, можно прорезать портал к магнитному камню ценой компаса",
+      "title": "Пространственный магнитный камень"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "alexsmobs:dimensional_carver",
+      "text": "Пространственный резак можно ускорить эффектом спешки",
+      "title": "Быстрая резьба"
+    }
+  ],
+  "sortnum": 1
+}

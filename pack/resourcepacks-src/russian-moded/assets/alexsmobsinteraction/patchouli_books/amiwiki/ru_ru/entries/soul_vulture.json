@@ -1,0 +1,16 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Стервятник душ",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/soul_steal.png"
+      ],
+      "text": "Атакуя моба, стервятник душ при любых условиях повышает уровень его души",
+      "title": "Кража души"
+    }
+  ],
+  "sortnum": 1
+}

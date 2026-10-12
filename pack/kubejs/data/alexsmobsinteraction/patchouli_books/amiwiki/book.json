@@ -1,0 +1,10 @@
+{
+  "book_texture": "alexsmobsinteraction:textures/gui/ami_gui_book.png",
+  "creative_tab": "alexsmobs:alexsmobs",
+  "landing_text": "Добро пожаловать во вселенную взаимодействия!",
+  "model": "alexsmobsinteraction:ami_book",
+  "name": "          Вики AMI",
+  "nameplate_color": "e3cccc",
+  "subtitle": "Бастион взаимодействия",
+  "use_resource_pack": true
+}
