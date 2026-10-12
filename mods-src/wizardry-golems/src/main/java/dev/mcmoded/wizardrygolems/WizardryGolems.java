@@ -28,6 +28,7 @@ public class WizardryGolems {
         SPELLS.register(modBus);
         dev.mcmoded.wizardrygolems.block.GolemBlocks.BLOCKS.register(modBus);
         dev.mcmoded.wizardrygolems.block.GolemBlocks.TILES.register(modBus);
+        dev.mcmoded.wizardrygolems.block.GolemBlocks.FEATURES.register(modBus);
         dev.mcmoded.wizardrygolems.item.GolemItems.ITEMS.register(modBus);
         modBus.addListener(dev.mcmoded.wizardrygolems.item.GolemItems::onCreativeTab);
         net.minecraftforge.common.MinecraftForge.EVENT_BUS.register(dev.mcmoded.wizardrygolems.golem.SpecialGolems.class);

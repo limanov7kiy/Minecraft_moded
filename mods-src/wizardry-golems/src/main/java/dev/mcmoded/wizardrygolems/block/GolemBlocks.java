@@ -18,6 +18,10 @@ public final class GolemBlocks {
 
     public static final RegistryObject<Block> LIVING_SNOW = BLOCKS.register("living_snow",
             () -> new LivingSnow(BlockBehaviour.Properties.copy(Blocks.SNOW)));
+    public static final DeferredRegister<net.minecraft.world.level.levelgen.feature.Feature<?>> FEATURES =
+            DeferredRegister.create(ForgeRegistries.FEATURES, WizardryGolems.MOD_ID);
+    public static final RegistryObject<LivingSnowFeature> LIVING_SNOW_FEATURE = FEATURES.register("living_snow",
+            () -> new LivingSnowFeature(net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration.CODEC));
     @SuppressWarnings("DataFlowIssue")
     public static final RegistryObject<BlockEntityType<LivingSnow.Tile>> LIVING_SNOW_TILE = TILES.register("living_snow",
             () -> BlockEntityType.Builder.of(LivingSnow.Tile::new, LIVING_SNOW.get()).build(null));

@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#forge:is_snowy",
+  "features": "wizardrygolems:living_snow",
+  "step": "top_layer_modification"
+}
