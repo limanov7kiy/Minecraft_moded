@@ -26,5 +26,6 @@ public class WizardryGolems {
     public WizardryGolems() {
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
         SPELLS.register(modBus);
+        net.minecraftforge.common.MinecraftForge.EVENT_BUS.register(dev.mcmoded.wizardrygolems.golem.SpecialGolems.class);
     }
 }
