@@ -64,7 +64,9 @@ mr contigency-contract-lite
 mr arknights-races
 mr arknights-skills
 mr arknightsfurniture
-# mr arknights-furs      # ОТКЛЮЧЁН (поток 5): тянет Origin Furs, тот собран под AzureLib 2.x, а в сборке 3.1 (нужен Cataclysm Spellbooks) — клиент не стартует. Вернуть после порта (compat.md п. «Проверка клиента»)
+mr arknights-furs
+# свой порт (client): pack/mods/origin_visuals-1.0.5-mmport-client.jar — Origin Furs (зависимость Arknights Furs) под
+#   AzureLib 3.1 со встроенным старым API AzureLib 2.0.39 (patches/jar-ports/origin-furs, compat.md К3)
 mr origins-forge
 mr arknights-origins-originium-arts
 
