@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class LycanitesFearLightMixin {
     @Shadow(remap = false) @Final private DynamicTexture f_109870_;
 
-    @Inject(method = "m_109881_", remap = false,
+    @Inject(method = "m_109881_", remap = false, require = 1,   // в конфиге defaultRequire 0 — пусть неудача будет видна в логе
         at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/texture/DynamicTexture;m_117985_()V", remap = false))
     private void mm_compat$dimLightForFear(float partialTick, CallbackInfo ci) {
         float blockDim = FearVisualHandler.getBlockDimFactor();

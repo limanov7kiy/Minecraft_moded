@@ -366,6 +366,28 @@ Originium Arts, HUD (LSO, миникарта Xaero, Jade), рендер Evolved 
 здоровья босса, феникс Wizardry Restored. Миксины портов `*-mmport.jar` (T.O Magic, Familiars, CBC: Nuclear,
 Arknights Weapon) применяются без ошибок. Микрофон, звук, шейдеры на GPU, детали рендера — `docs/client-checklist.md`.
 
+## Mana and Artifice и Ars Magica: Legacy (поток 3, 2026-10-11)
+Решение владельца: добавить оба мода и дополнения. Оба есть под 1.20.1 Forge, side=both (обязательны и на клиенте, и на сервере).
+
+| Мод | Версия | Источник | Зависимости | Итог |
+|---|---|---|---|---|
+| Mana and Artifice (Mithion/Rhodes) | 3.1.11 | Modrinth `mana-and-artifice` | GeckoLib, Curios — уже в сборке; Lootr, Lucent — необязательные, не ставили | добавлен |
+| Ars Magica: Legacy | 1.20.1-1.5.0 | Modrinth `ars-magica-legacy` | GeckoLib, Patchouli — в сборке; JEI, Curios, Jade — необязательные, есть | добавлен |
+| ArcaneAdditions | forge-1.10.0 | Modrinth | M&A, GeckoLib, Curios | добавлен |
+| Factions And Curiosities | 1.3.1 | Modrinth | M&A, Curios | добавлен |
+| MNAOverpowered | 1.20.1-0.11.1 | Modrinth | M&A | добавлен (QoL-твики) |
+| Dragon Magic And Relics | 3.2.14 | Modrinth (All Rights Reserved, см. CLAUDE.md) | M&A | добавлен |
+| MNAWitchcraft | 0.2.1-alpha | Modrinth | M&A | **отключён**: собран под старый M&A, `NoClassDefFoundError com.mna.items.ritual.ItemPlayerCharm`, сервер не стартует |
+
+- Дополнений к Ars Magica: Legacy под 1.20.1 не найдено (Modrinth, поиск по CurseForge) — у мода только API для аддонов.
+- Не взяты: `ctov-mana-and-artifice-compatibility` (в сборке нет CTOV), `mana-and-artifice-villages` (только 1.18.2).
+- Сервер: новый мир, `Done (90.7s)`, без «Mods loaded with N warnings», castcheck 69/69. Из новых модов в логе только
+  `TOPCompat` AML (нет The One Probe — необязателен) и «M&A -> Failed to query auras from the server» (при старте, не мешает).
+- Almost Unified не менялся: у Ars Magica свои камни (chimerite, moonstone, sunstone, topaz, vinteum), металлов нет, у M&A тегов `forge:ores/*` нет.
+  Возможный пересечение `forge:gems/topaz` с другими модами — не проверялось.
+- **Не проверено (задача потоку 4):** конфликты клавиш и интерфейса маны на клиенте (у M&A, Ars Magica, Iron's Spells,
+  Ars Nouveau, Wizardry — у каждого своя система маны; общей нет), рецепты и дубли предметов, генерация мира/структур M&A рядом с остальными.
+
 ## Открытые вопросы
 - Клиент в облаке проверяется `scripts/test-client.sh` (без GPU и звука); шейдеры, микрофон и macOS — только у игрока (`docs/client-checklist.md`).
 
