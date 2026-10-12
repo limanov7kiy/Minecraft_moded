@@ -14,6 +14,7 @@
   "item.sophisticatedcore.storage.tooltip.fluid": "%s мБ %s",
   "item.sophisticatedcore.storage.tooltip.linked_storage_endpoint": "Конечная точка связанного хранилища: %s",
   "item.sophisticatedcore.storage.tooltip.linked_storage_group": "Группа связанных хранилищ: %s",
+  "itemGroup.sophisticatedcore": "Sophisticated Core",
   "tooltip.sophisticatedcore.linked_storage.primary": "Основное связанное",
   "tooltip.sophisticatedcore.linked_storage.secondary": "Связано"
 }

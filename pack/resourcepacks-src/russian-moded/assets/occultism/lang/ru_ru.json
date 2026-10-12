@@ -1,4 +1,5 @@
 {
+  "advancements.occultism.root.title": "Occultism",
   "block.occultism.chalk_glyph_gold": "Золотой мел с глифом",
   "book.occultism.dictionary_of_spirits.crafting_rituals.craft_dimensional_mineshaft.description.text": "Измерительная шахта выбрасывает предметы, которые не может сохранить, поэтому важно регулярно её опустошать — вручную, воронками или с помощью духа-транспортировщика. Духов в лампах можно **вставлять** сверху, а все остальные стороны используются для **извлечения** предметов.\n",
   "book.occultism.dictionary_of_spirits.crafting_rituals.craft_dimensional_mineshaft.spotlight.text": "В измерительной шахте живёт [#](ad03fc)Джинн[#](), который открывает стабильный проход в необитаемое измерение, идеально подходящее для добычи. Портал слишком мал, чтобы переносить людей, но другие духи могут использовать его, чтобы войти в шахтное измерение и принести ресурсы.\n",
@@ -190,6 +191,7 @@
   "item.occultism.ritual_dummy.summon_wild_otherworld_bird.tooltip": "Призывает фамильяра-дрикуинга, которого может приручить любой, а не только призыватель.",
   "item.occultism.ritual_dummy.summon_wild_parrot": "Ритуал: призвать дикого попугая",
   "item.occultism.ritual_dummy.summon_wild_parrot.tooltip": "Призывает попугая, которого может приручить любой, а не только призыватель.",
+  "itemGroup.occultism": "Occultism",
   "multiblock.occultism.possess_afrit": "Повелевающее заклинание Абраса",
   "multiblock.occultism.summon_wild_afrit": "Открытое заклинание Абраса",
   "ritual.occultism.book_not_bound": "§lНесвязанная книга призыва§r. Чтобы начать ритуал, нужно скрафтить эту книгу со словарём духов, чтобы связать её с духом.",

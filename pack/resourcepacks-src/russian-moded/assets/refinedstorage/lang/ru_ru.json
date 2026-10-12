@@ -13,6 +13,7 @@
   "gui.refinedstorage.jei.transfer.request_autocrafting_mac": "CMD + ЛКМ, чтобы запросить автокрафт",
   "item.refinedstorage.cover": "Крышка",
   "item.refinedstorage.hollow_cover": "Полая крышка",
+  "itemGroup.refinedstorage": "Refined Storage",
   "misc.refinedstorage.fluidmode": "Жидкости",
   "sidebutton.refinedstorage.grid.search_box_mode.4": "Синхронизация с JEI (двусторонняя)",
   "sidebutton.refinedstorage.grid.search_box_mode.5": "Синхронизация с JEI (двусторонняя, с автовыбором)"

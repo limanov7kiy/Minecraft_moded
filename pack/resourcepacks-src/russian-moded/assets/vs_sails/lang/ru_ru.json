@@ -47,6 +47,7 @@
   "block.vs_sails.wind_flag": "Флаг ветра",
   "block.vs_sails.yellow_magma_sail": "Жёлтый магматический парус",
   "block.vs_sails.yellow_wind_flag": "Жёлтый флаг ветра",
+  "category.sails_main": "Valkyrien Sails",
   "item.vs_sails.wind_flag.jolly_roger": "Весёлый Роджер",
   "item.vs_sails.wind_flag.rainbow": "Радуга"
 }

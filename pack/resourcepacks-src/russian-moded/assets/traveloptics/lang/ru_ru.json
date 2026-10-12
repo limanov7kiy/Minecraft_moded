@@ -1,4 +1,7 @@
 {
+  "advancements.traveloptics.root.title": "T.O Magic 'n Extras",
+  "item_group.traveloptics.traveloptics": "T.O Magic 'n Extras Items",
+  "item_group.traveloptics.traveloptics_wip": "T.O Magic 'n Extras W.I.P",
   "subtitles.eldritch_abyssamorph": "Потусторонний абиссаморф",
   "subtitles.traveloptics_ost": "Саундтрек Traveloptics"
 }

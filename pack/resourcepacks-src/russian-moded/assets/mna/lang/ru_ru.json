@@ -397,6 +397,7 @@
   "item.mna_rune_marking_pair.adjust_lower": "Настройте нижние границы области.",
   "item.mna_rune_marking_pair.adjust_upper": "Настройте верхние границы области.",
   "item.mna_rune_marking_pair.no_area_no_gui": "У этой пары не задана область.  Сначала щёлкните правой кнопкой по блоку, чтобы задать область.",
+  "itemGroup.mna.items": "Mana and Artifice",
   "key.cast-any-slot": "Применить заклинание из слота заклинаний, пояса или спины Curios",
   "key.cast-back-slot": "Применить заклинание из слота спины Curios",
   "key.cast-belt-slot": "Применить заклинание из слота пояса Curios",

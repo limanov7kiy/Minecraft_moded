@@ -85,6 +85,7 @@
   "distanthorizons.config.enum.EDhApiRenderingEngine.AUTO": "Авто",
   "distanthorizons.general.unsupportedMcVersion": "Блокировка версии",
   "distanthorizons.general.unsupportedMcVersion.@tooltip": "DH не поддерживает изменение этой опции в данной версии Minecraft. \nЛюбые значения из конфигурационного файла или заданные через API будут проигнорированы.",
+  "distanthorizons.title": "Distant Horizons",
   "distanthorizons.updater.updateAvailable": "§lДоступно новое обновление!",
   "distanthorizons.updater.updateConfirmation": "§fОбновить с %s§f до %s§f?"
 }

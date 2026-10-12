@@ -20,6 +20,7 @@
   "item.northstar_structures.example_item": "Пример предмета",
   "item.northstar_structures.moon_compass": "Лунный компас",
   "item.northstar_structures.moon_compass.bound": "Лунный компас — %s",
+  "itemGroup.northstar_structures": "Northstar Structures",
   "moon_compass.northstar_structures.bound": "Цель установлена: X:%s Z:%s",
   "moon_compass.northstar_structures.category.crater": "Кратер",
   "moon_compass.northstar_structures.category.dungeon": "Подземелье",

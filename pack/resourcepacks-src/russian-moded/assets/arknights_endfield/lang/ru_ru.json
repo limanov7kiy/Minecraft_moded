@@ -141,7 +141,7 @@
   "blockEntity.shredding_unit": "Модуль дробления",
   "blockEntity.supply_terminal": "Терминал снабжения",
   "blockEntity.thermal_bank": "Тепловой банк",
-  "category.endfield": "Индустрия Endfield",
+  "category.endfield": "Endfield Industry",
   "commands.endfield.cap": "Лимит хранения установлен на %s",
   "commands.endfield.cap.negative": "§cВведено отрицательное значение!",
   "commands.endfield.deposit": "Предметы уже помещены: %s",

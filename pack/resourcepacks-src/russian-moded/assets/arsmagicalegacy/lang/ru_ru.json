@@ -704,6 +704,7 @@
   "item.minecraft.tipped_arrow.effect.legendary_mana": "Стрела легендарной маны",
   "item.minecraft.tipped_arrow.effect.lesser_mana": "Стрела малой маны",
   "item.minecraft.tipped_arrow.effect.standard_mana": "Стрела обычной маны",
+  "itemGroup.arsmagicalegacy.main": "Ars Magica: Legacy",
   "itemGroup.arsmagicalegacy.prefab_spells": "Ars Magica: Legacy — Готовые заклинания",
   "key.arsmagicalegacy.configure_spell": "Настроить заклинание",
   "key.arsmagicalegacy.next_shape_group": "Следующая группа форм",

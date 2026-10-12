@@ -35,6 +35,7 @@
   "item.ars_elemental.manipulation_caster_tome": "Фолиант манипуляции для заклинателя",
   "item.ars_elemental.summon_bangle": "Браслет призывателя",
   "item.ars_elemental.thread_summon": "Призыв",
+  "itemGroup.ars_elemental": "Ars Elemental",
   "tooltip.ars_elemental.bags": "Можно открыть через %s, находясь на панели быстрого доступа или в слоте Curios.",
   "tooltip.ars_elemental.focus_anima": "Призванные существа поднимаются после смерти один раз в более мощной форме. Эти восставшие повторяют ваши самонаводящиеся заклинания и исцеляют вас, когда убивают врага.",
   "tooltip.ars_elemental.focus_boost": "Усиливает и удешевляет глифы школы %s.",

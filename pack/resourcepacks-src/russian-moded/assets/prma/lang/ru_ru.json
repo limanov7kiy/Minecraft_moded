@@ -132,5 +132,9 @@
   "item.prma.small_iron_medium_gunpowder_cartridge_transition": "Незавершённый малый железный патрон (средний порох)",
   "item.prma.small_iron_transition": "Незавершённая малая железная гильза",
   "item.prma.strong_aluminum_alloy_ingot": "Слиток прочного алюминиевого сплава",
-  "itemGroup.prma_materials_tab": "Материалы точного производства"
+  "itemGroup.prma_blueprints_tab": "Precise Manufacturing Blueprints",
+  "itemGroup.prma_casts_tab": "Precise Manufacturing Casts",
+  "itemGroup.prma_components_tab": "Precise Manufacturing Components",
+  "itemGroup.prma_materials_tab": "Precise Manufacturing Materials",
+  "itemGroup.prma_tab": "Precise Manufacturing"
 }

@@ -17,3 +17,8 @@ cannon — пушка, shell — снаряд, barrel — ствол, firing rat
 Имена собственные (Create, Botania, Mekanism и т.п.), названия модов, `Iron's Spells`, `Ars Nouveau` — не переводить.
 Arknights: оставлять транслит-имена операторов, Originium — Оригиниум, Operator — оператор, Infected — заражённый, Oripathy — орипатия.
 
+
+**Названия модов не переводить (решение владельца 2026-10-12).** Название мода (displayName в mods.toml: Create, Botania, Blood Magic, Alex's Caves…)
+остаётся английским везде: вкладки творческого режима (`itemGroup.*`), заголовки экранов/книг/достижений-корней, `menu_title`. Допустим перевод хвоста
+(«Cataclysm: Предметы»). Предметы, блоки, существа и описания переводим. Для рас/классов/подклассов Arknights (Origins) и навыков Puffish по решению владельца
+переводятся только описания, названия — английские (`scripts/lang_keep_en_names.py`). Автоматически: `scripts/lang_keep_en_modnames.py`; проверка — `lang_validate.py lang`.

@@ -1,5 +1,7 @@
 {
+  "advancements.alexsmobs.root.title": "Alex's Mobs",
   "alexsmobs.sound.subtitle.music_disc.wormboss": "Червь-босс",
   "alexsmobs.sound.subtitle.roadrunner_hurt": "Дорожный бегун пищит",
-  "block.alexsmobs.platypus_egg": "Яйцо утконоса"
+  "block.alexsmobs.platypus_egg": "Яйцо утконоса",
+  "itemGroup.alexsmobs": "Alex's Mobs"
 }
