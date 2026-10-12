@@ -1,0 +1,6 @@
+{
+  "name": "guide.animus.category.items",
+  "description": "Артефакты и инструменты, помогающие на тёмном пути. От целительных осколков до связующих ключей.",
+  "icon": "animus:fragment_healing",
+  "sortnum": 3
+}
