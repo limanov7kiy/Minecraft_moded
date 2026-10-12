@@ -1760,3 +1760,33 @@ metafile = true
 [[files]]
 file = "mods/zombiehaveears-1.1.2-forgefix.jar"
 hash = "9d6c1b79bffbd22944012a0fd7318753402515ad5b37c1d2562f55a687aecc6e"
+
+[[files]]
+file = "options.txt"
+hash = "ca3418aa25484cb6e5499cc6274e6cee9bac6e07a207020a38316da1c8ec60d4"
+preserve = true
+
+[[files]]
+file = "resourcepacks/just-some-translations-to-russian.pw.toml"
+hash = "50329b309ea430421280d6bb56bf3f12b04806334b8ab1f5a02c2b21cabf9368"
+metafile = true
+
+[[files]]
+file = "resourcepacks/mploc_mods.pw.toml"
+hash = "b84119e88dedd080e2d3dfe353e04e3bb650b74a63733cc4b28a066007dcf57a"
+metafile = true
+
+[[files]]
+file = "resourcepacks/rtf-extension.pw.toml"
+hash = "8b547208a0a882127858dae3936457fc8508a358a1bf7141f138298899c28b1b"
+metafile = true
+
+[[files]]
+file = "resourcepacks/rtf.pw.toml"
+hash = "96d3840b4485a0ff7c215418d8c2f6648c4e1cc39ff483cfb1e030e669bf936a"
+metafile = true
+
+[[files]]
+file = "resourcepacks/russian-delight.pw.toml"
+hash = "afcd7b135787e17fd9e33692c615af916202e9ea9f5a3ad34a075fc466de0bb8"
+metafile = true

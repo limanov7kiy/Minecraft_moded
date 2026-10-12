@@ -1,0 +1,13 @@
+name = "Russian Delight"
+filename = "russian-delight-1.0.zip"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/nqTcTbgz/versions/kUR154yX/Russian%20Delight%201.0.zip"
+hash-format = "sha512"
+hash = "fa76c378c18419d9d2aa2c3b2d6770e30d4d01d8ad009e0559db997a4fb74d1e4ea79c82a3699955571489e60583ee816f80a264c7ec8dcc5b6a128279f6d835"
+
+[update]
+[update.modrinth]
+mod-id = "nqTcTbgz"
+version = "kUR154yX"
