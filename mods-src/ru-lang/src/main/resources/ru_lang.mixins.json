@@ -1,0 +1,1 @@
+{ "required": false, "minVersion": "0.8", "package": "dev.mcmoded.rulang.mixin", "compatibilityLevel": "JAVA_17", "client": ["LiteralContentsMixin"], "injectors": { "defaultRequire": 0 } }

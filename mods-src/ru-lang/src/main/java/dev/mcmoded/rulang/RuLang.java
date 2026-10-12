@@ -11,6 +11,9 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 
+import com.mojang.logging.LogUtils;
+import org.slf4j.Logger;
+
 import java.nio.file.Path;
 
 /**
@@ -20,6 +23,7 @@ import java.nio.file.Path;
 @Mod(RuLang.MOD_ID)
 public class RuLang {
     public static final String MOD_ID = "ru_lang";
+    public static final Logger LOGGER = LogUtils.getLogger();
     private static final String PACK_ID = "mod_resources_ru_lang";
 
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -37,5 +41,11 @@ public class RuLang {
         }
     }
 
-    public RuLang() {}
+    public RuLang() {
+        // самопроверка словаря литералов (виден в логе клиента); миксин на LiteralContents переводит китайские Component.literal
+        net.minecraftforge.fml.DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+            String t = Literals.translate("源石虫汉堡");
+            LOGGER.info("ru_lang: словарь литералов {} строк; самопроверка \"源石虫汉堡\" -> \"{}\"", Literals.size(), t);
+        });
+    }
 }
