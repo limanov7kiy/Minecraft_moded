@@ -501,20 +501,23 @@ Mass Destruction Forge 1.1.2. Cataclysm/Mowzie's/Lycanites не дублирую
   OpenGL llvmpipe, предел 16384; у RTX 2060 предел 32768). Меню запустилось. Без Ice and Fire на этом стенде не сравнивали;
   если у игрока на слабой видеокарте будут «розовые» текстуры — это первое подозрение.
 
-### Bosses of Mass Destruction — отложен (поток 9, 2026-10-12)
-Владелец ответил «оба» (Ice and Fire + Bosses of Mass Destruction). Ice and Fire в сборке (раздел выше); BoMD **не добавлен**:
+### Bosses of Mass Destruction + Cerbon's API (поток 9, 2026-10-12, решение владельца В12 «а»)
+Владелец ответил «оба», затем «а»: вернуть Cerbon's API и добавить BoMD, с регрессионной проверкой спавна; если у владельца
+спавн мобов снова пропадёт — **сразу убрать оба мода** (`mr cerbons-api`, `mr bosses-of-mass-destruction-forge` и Cloth Config,
+если его больше никто не использует).
 - BoMD Forge 1.1.2 жёстко требует **Cerbon's API ≥ 1.1.0** (`ModLoadingException: requires cerbons_api 1.1.0 or above`) и Cloth Config 11.x.
-  Cerbon's API поток 10 только что убрал (см. «Убраны Just Enough Beacons и Cerbon's API»): общие, не клиентские миксины коллизий
-  (`AABB.intersects`, `Shapes.create`, `VoxelShape.collide`, `Entity.getBoundingBox/setPosRaw`) работают и на сервере.
-- С Cerbon's API (side=both) + Cloth Config на этой сборке `test-server.sh` дал `SERVER OK` (Done за 29 с), ошибок мода в логе нет.
-  Клиент с BoMD не гоняли: решение «возвращать ли Cerbon's API» — за владельцем/координатором.
-- Замеры (конфиг `bosses_of_mass_destruction.json5`, подтверждены `bossdump.js`): Ночной лич 300 HP / урон ракеты 9 / броня 0;
-  Обсидилит 300 / 16 / 14 (хитбокс 4.4×2); Перчатка незера 250 / 16 / 8 (4×5); Цветок пустоты 350 / 12 / 4 (10×8, огромный).
-  В пределах Cataclysm-боссов (400–600 HP) — отдельного баланса не требуют.
-- Русификация: у мода `ru_ru` 98.7 %, не хватает 2 строк экрана конфига ("General" → «Общие», "Table of Elevation radius" →
-  «Радиус стола возвышения»). Арены: `lich_tower` (Overworld), `gauntlet_arena` (Незер), `obsidilith_arena` (Край), Цветок пустоты — пещера.
-- Если решат добавлять: `mr bosses-of-mass-destruction-forge` + `mr cerbons-api` (side both) + 2 строки русификации + описания в
-  `scripts/boss_info.py` (где/как: арены и блоки призыва — см. выше; числа брать из `bossdump.js`).
+  Cerbon's API поток 10 убирал из-за общих (не клиентских) миксинов коллизий (`AABB.intersects`, `Shapes.create`, `VoxelShape.collide`,
+  `Entity.getBoundingBox/setPosRaw`); теперь возвращён со стороной **both** (на сервере он обязателен для BoMD).
+- **Регрессия спавна** (`scripts/tests/spawncheck.js`, свежий мир, сид 12345): с Cerbon's API + BoMD + Cloth Config числа в пределах шума относительно базы —
+  summon cow/zombie/iceandfire:troll/alexsmobs:crow OK, яйцо овцы OK; места естественного спавна: зомби 62/200 (база 50), тролль 54/200 (база 47),
+  корова 200/200 (база 200); ошибок 0. Просадки нет. Тест проверяет место для моба (`checkSpawnRules` + `noCollision`), а не сам цикл
+  `NaturalSpawner` (на сервере без игроков он не работает) — жалобу «не спавнятся мобы» в игре это не исключает, поэтому условие выше остаётся.
+- `test-server.sh` — `SERVER OK` (Done за 91 с на свежем мире с генерацией). Параметры боссов в конфиге `bosses_of_mass_destruction.json5`
+  (замеры `bossdump.js`): Ночной лич 300 HP / ракета 9 / броня 0; Обсидилит 300 / 16 / 14 (4.4×2); Перчатка незера 250 / 16 / 8 (4×5);
+  Цветок пустоты 350 / 12 / 4 (10×8). В пределах Cataclysm-боссов (400–600 HP), отдельный баланс не нужен; конфиг оставлен по умолчанию.
+- Арены: `lich_tower` (Overworld), `gauntlet_arena` (Незер), `obsidilith_arena` (Край), Цветок пустоты — в пещере (блок-призыватель).
+  Лич включает «вечную ночь» на время боя (`eternalNighttime`), кометы и ракеты с замедлением рвут блоки (`comet.explosionStrength` 4).
+- Русификация: у мода `ru_ru` 98.7 %, недостающие 2 строки экрана конфига — в `pack/resourcepacks-src/russian-moded/assets/bosses_of_mass_destruction/`.
 - **Регрессионный тест спавна** `scripts/tests/spawncheck.js` (`EXTRA_SERVER_SCRIPTS`, поток 9): `/summon` ванильных и модовых мобов, яйцо
   призыва фейковым игроком Forge, доля допустимых мест для естественного спавна (`SpawnPlacements.checkSpawnRules` +
   `level.noCollision` — то, что ломают миксины коллизий) на тёмной и освещённой площадке. Настоящий `NaturalSpawner` на сервере без
