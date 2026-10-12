@@ -1,0 +1,33 @@
+# Distant Horizons — умолчания сборки для среднего ПК (поток 8, docs/performance.md).
+# Заданы только отличающиеся ключи, остальное мод дописывает сам. Все строки меняются в игре:
+# Настройки → кнопка Distant Horizons (рядом с ползунком FOV).
+
+[client]
+	# Автообновление DH выключено: версия DH должна совпадать у сервера и всех клиентов.
+	[client.advanced.autoUpdater]
+		enableAutoUpdater = false
+		enableSilentUpdates = false
+
+	[client.advanced.graphics]
+		# SSAO и сглаживание DH заметно грузят видеокарту
+		enableSsao = false
+		enableAntiAliasing = false
+
+		[client.advanced.graphics.quality]
+			# Радиус LOD в чанках (по умолчанию в этой версии DH — 256: слишком много для среднего ПК)
+			lodChunkRenderDistanceRadius = 64
+
+[common]
+	[common.worldGenerator]
+		# Не генерировать далёкую местность самим DH: в сборке ~240 модов с генерацией мира
+		# (Twilight Forest, Terrablender-биомы, Aether, AE2-измерение…) режим FEATURES её сильно
+		# замедляет, в логе DH предупреждает о «неизвестном генераторе чанков». LOD строятся
+		# из чанков, которые вы реально загружали (ходили рядом) — по мере исследования мира.
+		# Хотите дальнюю местность «из воздуха» — верните generatorPlan = "SURFACE_ONLY" (дешевле всего).
+		generatorPlan = "DISABLED"
+		chunkGeneratorMode = "PRE_EXISTING_ONLY"
+
+	[common.multiThreading]
+		numberOfThreads = 2
+		# потоки DH работают не постоянно, а ~половину времени — игре остаётся процессор
+		threadRunTimeRatio = "0.5"

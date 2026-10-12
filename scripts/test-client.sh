@@ -6,6 +6,8 @@
 #   .mrpack по умолчанию — свежий dist/*.mrpack (scripts/export-pack.sh).
 #   CLIENT_KEEP=1      — не закрывать клиент после меню (дальше: вход на сервер руками, см. ниже).
 #   CLIENT_XMX=5G      — куча клиента (вместе с тестовым сервером на 15 ГБ: клиент 5G, сервер 6G + swap).
+#   CLIENT_GAME_ARGS="--quickPlaySingleplayer perf1" — сразу создать/открыть одиночный мир (замер, docs/performance.md);
+#   CLIENT_JVM_EXTRA="-Dfoo=bar" — доп. аргументы JVM (до основных).
 #   CLIENT_ARGS="-s 127.0.0.1" — сразу подключиться к серверу (экран предупреждений Forge это сбрасывает).
 # Вход на сервер руками: DISPLAY=:99 xdotool mousemove 170 217 click 1 (Multiplayer), затем
 #   «Direct Connection» (800 767), ctrl+a, адрес, «Join Server» (800 578). Скриншот: DISPLAY=:99 import -window root x.png
@@ -30,7 +32,7 @@ mkdir -p agent
 java="$(find "$dir/.mc/jvm" -path '*bin/java' -type f | head -1)"
 cat > javawrap.sh <<EOF
 #!/bin/sh
-"$java" -Djava.security.manager=allow -javaagent:$dir/agent/exittrace.jar -XX:ErrorFile=$dir/hs_err_%p.log "\$@"
+"$java" -Djava.security.manager=allow -javaagent:$dir/agent/exittrace.jar -XX:ErrorFile=$dir/hs_err_%p.log \${CLIENT_JVM_EXTRA:-} "\$@" ${CLIENT_GAME_ARGS:-}
 echo "\$?" > $dir/java-exit.txt
 EOF
 chmod +x javawrap.sh

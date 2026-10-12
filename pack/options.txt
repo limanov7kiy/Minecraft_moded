@@ -1,2 +1,11 @@
 lang:ru_ru
 resourcePacks:["vanilla","mod_resources","file/just-some-translations.zip","file/russian-delight-1.0.zip","file/rtf-2.8.4.zip","file/mploc-mods-v43.zip","file/rtf-extension-2.7.0.zip"]
+renderDistance:10
+simulationDistance:6
+particles:1
+renderClouds:"fast"
+ao:1
+biomeBlendRadius:1
+entityShadows:false
+entityDistanceScaling:0.75
+mipmapLevels:2
