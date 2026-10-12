@@ -454,6 +454,10 @@ JEI и Redux — только `modCompileOnly`; сервер без JEI загр
   Just Enough Professions 3.0.1 (client; Modrinth даёт `client_only_server_optional`, packwiz ставил both — поправлено),
   Just Enough Beacons 1.2.0 (client; файл «Forge-1.20.4», но на 1.20.1 регистрируется и работает) + Cerbon's API 1.1.0 (client,
   зависимость), Just Enough Advancements 5.0.1 (both). Все четыре зарегистрировали JEI-плагины без ошибок.
+- **Убраны Just Enough Beacons и Cerbon's API** (поток 10, 2026-10-12): JEBeacons для 1.20.1 есть только в сборке «1.20.4»
+  и требует Cerbon's API; у того общие (не клиентские) миксины коллизий — AABB.intersects, Shapes.create, VoxelShape.collide,
+  Entity.getBoundingBox/setPosRaw. Сторона client в сборке не спасает: в одиночном мире они работают на встроенном сервере.
+  Причастность к жалобе «перестали спавниться мобы» не доказана (у владельца починилось само), но риск > пользы.
 - `test-client.sh` без входа в мир плагины JEI не проверяет (они стартуют после синхронизации рецептов). Для проверки
   клиент подключали к тестовому серверу: вместе нужно ~10 ГБ — в облаке пришлось включить своп 8 ГБ, сервер `-Xmx4G`,
   клиент `-Xmx5G` (с 5+6 ГБ без свопа клиент убивал OOM, код 137); YSM убрать на обеих сторонах.
