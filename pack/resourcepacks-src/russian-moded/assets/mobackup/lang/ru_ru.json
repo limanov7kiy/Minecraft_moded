@@ -1,0 +1,12 @@
+{
+  "creativetab.mobackup_tab": "Улучшения рюкзаков+",
+  "item.mobackup.dimensional_deposit_upgrade": "Измерительное улучшение выгрузки",
+  "item.mobackup.dimensional_deposit_upgrade.tooltip": "Shift + ПКМ по контейнеру, чтобы переложить предметы из рюкзака в сеть RS или обычный контейнер",
+  "item.mobackup.dimensional_magnet_upgrade": "Измерительное улучшение магнита",
+  "item.mobackup.dimensional_magnet_upgrade.tooltip": "Втягивает предметы из радиуса прямо в связанную сеть RS",
+  "item.mobackup.dimensional_pickup_upgrade": "Измерительное улучшение подбора",
+  "item.mobackup.dimensional_pickup_upgrade.tooltip": "Подобранные предметы сразу попадают в связанную сеть RS",
+  "misc.refinedstorage.network_card.linked": "Связано с контроллером RS",
+  "misc.refinedstorage.network_card.not_found": "Сеть RS не найдена или недоступна",
+  "misc.refinedstorage.network_card.tooltip": "Связано в (%1$s, %2$s, %3$s) в %4$s"
+}

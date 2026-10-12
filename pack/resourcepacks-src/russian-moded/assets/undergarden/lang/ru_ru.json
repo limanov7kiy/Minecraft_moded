@@ -1,0 +1,21 @@
+{
+  "advancement.undergarden.cloggrum_battleaxe.desc": "Получите боевой топор из клогграма от Забытого, который его несёт.",
+  "advancement.undergarden.cloggrum_battleaxe.title": "Холодные мёртвые руки",
+  "biome.undergarden.frosty_smogstem_forest": "Морозный лес смогового стебля",
+  "block.undergarden.blue_mogmoss_rug": "Синий коврик из могмосса",
+  "entity.undergarden.forgotten": "Забытый",
+  "entity.undergarden.smog_mog": "С'Мог",
+  "item.undergarden.ancient_chestplate": "Древний нагрудник",
+  "item.undergarden.ancient_helmet": "Древний шлем",
+  "item.undergarden.ancient_leggings": "Древние поножи",
+  "item.undergarden.blue_mogmoss": "Синий могмосс",
+  "item.undergarden.forgotten_spawn_egg": "Яйцо призыва Забытого",
+  "item.undergarden.slop_bowl": "Миска помоев",
+  "item.undergarden.smog_mog_spawn_egg": "Яйцо призыва С'Мога",
+  "subtitles.entity.forgotten.ambient": "Забытый бормочет",
+  "subtitles.entity.forgotten.death": "Забытый умирает",
+  "subtitles.entity.forgotten.hurt": "Забытому больно",
+  "subtitles.entity.smog_mog.ambient": "С'Мог пищит",
+  "subtitles.entity.smog_mog.death": "С'Мог умирает",
+  "subtitles.entity.smog_mog.hurt": "С'Могу больно"
+}

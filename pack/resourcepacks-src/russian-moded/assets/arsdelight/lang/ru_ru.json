@@ -1,0 +1,12 @@
+{
+  "block.arsdelight.flashpine_crate": "Ящик флэшпайна",
+  "block.arsdelight.flashpine_jelly": "Флэшпайновое желе",
+  "block.arsdelight.flashpine_pie": "Пирог с флэшпайном",
+  "effect.arsdelight.lightning_curse": "Проклятие молнии",
+  "effect.arsdelight.lightning_curse.description": "Накладывает на цели ваших заклинаний притяжение молнии",
+  "item.arsdelight.flashing_bark": "Мерцающая кора",
+  "item.arsdelight.flashpine_hornbeer": "Флэшпайновое рогатое пиво",
+  "item.arsdelight.flashpine_pie_slice": "Кусок пирога с флэшпайном",
+  "item.arsdelight.flashpine_tea": "Флэшпайновый чай",
+  "item.arsdelight.neutralized_flashpine_jam": "Нейтрализованный флэшпайновый джем"
+}

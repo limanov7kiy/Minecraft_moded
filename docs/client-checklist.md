@@ -68,5 +68,32 @@
       проигрывателе слышат все рядом; то же с козьим рогом. Загрузка через браузер (ссылка из чата).
 - [ ] Talking Heads: голова говорящего покачивается; Let Them Talk: музыка тише, когда кто-то говорит.
 
-## 8. Итог
+## 8. JEI: рецепты и использование (R — рецепт, U — использование)
+Подробности и таблица покрытия — `docs/jei.md`. В мире откройте инвентарь, наведите курсор на предмет в списке JEI:
+**R** — как скрафтить, **U** — где используется, **A** — добавить в закладки, **Shift+A** — закладки отдельно
+(правый край экрана), `?` — поиск по моду (`@create`). Все пункты — «открылось, рецепт виден, ничего не вылетело»:
+- [ ] Create (+ Steam 'n' Rails, Create Additions, Big Cannons, Creating Space, Northstar): дробилка, смешивание,
+      прессование, сборочная линия (sequenced assembly), «Спаутинг/Haunting»; предмет из аддона (напр. рельса Steam 'n' Rails).
+- [ ] Mekanism (+ Generators, Tools, Additions, mekmm): обогащение, плавка в инфузер, химический окислитель; Just Enough Mekanism
+      Multiblocks — страница мультиблоков.
+- [ ] Ars Nouveau (+ Elemental, Technica, Additions…): стол зачарования (Enchanting Apparatus), письменный стол глифов,
+      Imbuement chamber; любой глиф (U — что из него делается).
+- [ ] Ars Magica: Legacy — алтарь/заклинания; Mana and Artifice (mna) — Eldrin-алтарь, Manaweaving, ритуалы.
+- [ ] Botania (+ Mythic Botany, ExtraBotany): лепестковый аптекарь, руны, чародейский котёл, Orechid; книга Lexica — отдельно (Patchouli).
+- [ ] Occultism: ритуалы (Pentacle), дробилка духов, пробирка; Blood Magic: алтарь, Alchemy Array, Hellfire Forge; Animus.
+- [ ] Iron's Spells: Scroll Forge, Alchemist Cauldron, Inscription Table, Arcane Anvil (улучшение/слияние).
+- [ ] Ad Astra: NASA Workbench (ракета), Compressor, Alloy furnace, Cryo freezer, Oxygen loader, Refinery;
+      Northstar / Creating Space: ракетные детали, топливо, химсинтез.
+- [ ] Electroblob's Wizardry Redux: Arcane Workbench (обычный крафт с рецептом в сетке), **Imbuement Altar** — в JEI
+      пока не отображается (см. `docs/jei.md`, «Пробелы»); Wizardry Restored: Transportation Stone.
+- [ ] Cataclysm: Weapon Fusion Anvil, Amethyst Bless; Lycanites: JEI-плагина нет (мобы/дроп — через JER, `U` на предмете).
+- [ ] Farmer's Delight (+ аддоны Delight): Cooking Pot, доска (cutting); Aether (+ Redux, Deep Aether): Altar, Freezer, Incubator.
+- [ ] Прочее: Twilight Forest, Blue Skies, Alex's Caves/Mobs, Sophisticated Backpacks (улучшения), AE2, Refined Storage, TaCZ.
+- [ ] Дополнения: **JEBr** (кнопка «разведение» на мобе/яйце спавна), **JEP** (рабочие места жителей — «Professions»),
+      **JEA** (поиск достижений), **Just Enough Beacons** (маяк в списке рецептов блока), **JER** (дроп мобов, генерация руд, торговля),
+      **JEED** (эффекты зелий), **Jade** (подсказка наведения).
+- [ ] Закладки (A) переживают перезаход; история поиска — стрелка вверх в строке поиска JEI.
+- [ ] Консоль: в `logs/latest.log` нет строк `[jei]` с уровнем ERROR ("Recipe registration failed", "Failed to register").
+
+## 9. Итог
 Напишите хосту: ОС, видеокарта, сколько памяти дали, какие пункты прошли, какие нет (+ файлы из начала).

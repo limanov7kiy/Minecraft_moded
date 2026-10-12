@@ -1,0 +1,18 @@
+{
+  "tag.c.bronze_nuggets": "Бронзовые самородки",
+  "tag.c.cast_iron_ingots": "Чугунные слитки",
+  "tag.c.cast_iron_nuggets": "Чугунные самородки",
+  "tag.c.nethersteel_ingots": "Слитки нетерской стали",
+  "tag.c.nethersteel_nuggets": "Самородки нетерской стали",
+  "tag.c.nuggets.steel": "Стальные самородки (формат Forge)",
+  "tag.c.steel_nuggets": "Стальные самородки",
+  "tag.createbigcannons.block_bronze": "Бронзовые блоки",
+  "tag.createbigcannons.block_cast_iron": "Блоки чугуна",
+  "tag.createbigcannons.block_nethersteel": "Блоки нетерской стали",
+  "tag.createbigcannons.ingot_bronze": "Бронзовые слитки",
+  "tag.createbigcannons.ingot_cast_iron": "Чугунные слитки",
+  "tag.createbigcannons.ingot_nethersteel": "Слитки нетерской стали",
+  "tag.createbigcannons.nugget_bronze": "Бронзовые самородки",
+  "tag.createbigcannons.nugget_cast_iron": "Чугунные самородки",
+  "tag.createbigcannons.nugget_nethersteel": "Самородки нетерской стали"
+}

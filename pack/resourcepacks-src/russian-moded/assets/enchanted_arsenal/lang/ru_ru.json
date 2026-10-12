@@ -1,0 +1,22 @@
+{
+  "enchantment.enchanted_arsenal.armour_peircing.desc": "Наносит урон броне цели; уровень определяет величину урона, наносимого броне",
+  "enchantment.enchanted_arsenal.armour_piercing": "Бронебойность",
+  "enchantment.enchanted_arsenal.curse_of_overpressuring": "Проклятие перенапряжения",
+  "enchantment.enchanted_arsenal.curse_of_overpressuring.desc": "Оружие иногда выбрасывает облако газа (временно ослепляет владельца) при выстреле",
+  "enchantment.enchanted_arsenal.curse_of_overrecoiling": "Проклятие перегрузки отдачей",
+  "enchantment.enchanted_arsenal.curse_of_overrecoiling.desc": "Дополнительный толчок иногда оставляет владельца без дыхания (временно замедляет его) при выстреле",
+  "enchantment.enchanted_arsenal.enflamed": "Тлеющие гильзы",
+  "enchantment.enchanted_arsenal.enflamed.desc": "Атакованные враги на короткое время загораются",
+  "enchantment.enchanted_arsenal.hollow_point": "Полая пуля",
+  "enchantment.enchanted_arsenal.hollow_point.desc": "Имеет шанс нанести дополнительный полсердца урона; с ростом уровня шанс дополнительного урона увеличивается",
+  "enchantment.enchanted_arsenal.illuminating": "Озаряющий",
+  "enchantment.enchanted_arsenal.illuminating.desc": "Атакованные враги на короткое время начинают светиться",
+  "enchantment.enchanted_arsenal.juggernaught": "Джаггернаут",
+  "enchantment.enchanted_arsenal.juggernaught.desc": "Делает игрока устойчивее, но замедляет его",
+  "enchantment.enchanted_arsenal.lightweight": "Облегчение",
+  "enchantment.enchanted_arsenal.lightweight.desc": "Ускоряет игрока",
+  "enchantment.enchanted_arsenal.poison_tipped": "Отравленный наконечник",
+  "enchantment.enchanted_arsenal.poison_tipped.desc": "Атакованные враги на короткое время отравляются",
+  "enchantment.enchanted_arsenal.shell_shock": "Контузия",
+  "enchantment.enchanted_arsenal.shell_shock.desc": "Цели на короткое время теряют чёткость зрения"
+}
