@@ -214,6 +214,28 @@ compatible»* — 1.20.1 принимает только `pack_format` 15, а у
 пересобирать `scripts/build-ru-pack.sh`** (собирает jar мода и обновляет индекс packwiz). Аудит итогового разрешения: `lang_audit.py cjk` — найдено 88 значений с CJK и 3 543 видимых-только-в-zh_cn ключей
 (из них 144 реально видимых игроку переведены; остальное — настройки/теги, в игре не показываются).
 
+## 8. Перевод книг (поток 11, 2026-10-12)
+
+Повод — отзыв владельца: «не перевелась книга кодекс мага из Mana and Artifice». Книги переводятся по отзывам, по одной.
+
+| Книга | Формат | Знаков | Статус |
+|---|---|---:|---|
+| **Mana and Artifice** — Кодекс (`assets/mna/guide/`) | **свой JSON-формат мода** (не Patchouli), не в паках; мод читает `guide/en_us.json`, затем поверх `guide/<язык>.json` из любого ресурспака | ≈ 246 тыс. (516 записей, 1249 единиц) | **переведена** → `assets/mna/guide/ru_ru.json` |
+| **Animus** `codex_animus` | Patchouli, текст в файлах `en_us`; lang-ключи (названия записей) закрыты MPLOC | ≈ 86 тыс. (506 единиц, 96 файлов) | **переведена** → `animus/patchouli_books/codex_animus/ru_ru/` |
+| **Ars Nouveau** `worn_notebook` | Patchouli, **весь текст в lang-ключах** (131 тыс. знаков в таблице выше — это структура файлов), `ru_ru.json` мода уже закрывает книгу | 2 тыс. | не хватало 18 ключей новой версии (Сброс, Перемотка, Реле красного камня, нити…) — добавлены в `ars_nouveau/lang/ru_ru.json` |
+
+Инструменты (`scripts/books/`): `mna_guide.py` — разложить кодекс MnA на единицы (`extract`), собрать `ru_ru.json` (`build`), проверить
+структуру/цвета/переводы строк (`check`); `patchouli_units.py` — то же для Patchouli-книг с сырым текстом (`extract`/`apply`/`check`: теги `$(..)`,
+`#плейсхолдеры#`, кириллица); переведённые единицы лежат в `scripts/books/mna_guide_data/` и `scripts/books/animus_data/` (правка перевода =
+правка `units_ru.json` + `build`/`apply`). Дополнительно `lang_validate.py book` — 0 ошибок для Animus. Названия предметов в тексте берутся из
+уже принятых в игре переводов (`ru_ru.json` мода, MPLOC), поэтому странные имена вроде «Путинка воздуха» (Air Pinch в `mna/lang/ru_ru.json`)
+в книге совпадают с игрой — править их надо в lang-файле, затем пересобрать книгу.
+
+**Остаток непереведённых книг ≈ 212 тыс. знаков** (было 478): Ars Magica Legacy `arcane_compendium` 85,7 тыс., аддоны Ars (Elemental, Additions, Tome of Blood,
+Instrumentum, Too Many Glyphs, Technica/Delight/Ocultas/Creo/Artifice) ≈ 74 тыс. (часть — в lang-ключах, как у Ars Nouveau; проверять сначала `lang`-покрытие),
+Alex's Mobs Interaction 25,3 тыс., Superb Warfare 14,7 тыс., Extra Botany `exguide` + Bob's Originium 12,6 тыс. Порядок — по отзывам.
+Приёмка глазами (открыть кодекс MnA/Анимус в игре) — см. `docs/client-checklist.md`.
+
 ## Вопросы владельцу
 
 1. **Не блокирует.** Принять MPLOC (ИИ-перевод) и RTF+ базой, а остальное доводить своим паком сверху? Рекомендация: да.

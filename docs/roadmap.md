@@ -188,6 +188,12 @@ JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.t
 - [x] Заброшенные города (по просьбе владельца, 2026-10-12): The Lost Cities, профиль `rarecities`, `docs/lost-cities.md`.
 - [ ] Прогнать `scripts/test-client.sh` и убедиться, что язык/паки подхватываются; строка в `docs/friends.md`.
 
+### Поток 11 — Перевод книг (ветка `claude/translate-books`, от `claude/abandoned-cities`)
+- [x] Кодекс **Mana and Artifice** (свой JSON `assets/mna/guide`, ≈ 246 тыс. знаков) — `ru_ru.json` в паке.
+- [x] **Animus** `codex_animus` (≈ 86 тыс.) — `ru_ru/` книги; **Ars Nouveau** — 18 недостающих ключей (книга уже русская через lang).
+- [ ] Остальное из `docs/russification.md` §8 (≈ 212 тыс. знаков): Ars Magica Legacy, аддоны Ars, AMI, Superb Warfare… — по отзывам.
+- PR в интегратор — после слияния #31 (пак внутри мода `ru-lang`).
+
 ## Интеграция (ревью PR, поток «Ревью и интеграция», ветка `claude/confident-hypatia-2zqr1t`)
 Цикл 1 — 2026-10-10:
 - **PR #1, поток 2** (голосовой чат, экспорт, UDP): проверен и **влит** (`013bf69`). `add-mods.sh` пусто,
