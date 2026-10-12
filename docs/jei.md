@@ -90,7 +90,7 @@ OK (свой плагин): ae2, aether, aether_redux, alexs_caves_delight, alex
 ## Пробелы и решения
 | Что | Статус | Решение |
 |---|---|---|
-| **Electroblob's Wizardry Redux**: Imbuement Altar (`ebwizardry:imbuement_altar`, 120 рецептов) | плагина нет, JEI-аддона нет (Modrinth/CurseForge искали: «wizardry jei», «electroblob jei») | **следующая задача** (ниже) |
+| **Electroblob's Wizardry Redux**: Imbuement Altar (`ebwizardry:imbuement_altar`, 120 рецептов) | плагина нет, JEI-аддона нет (Modrinth/CurseForge искали: «wizardry jei», «electroblob jei») | **сделано**: mm-compat 0.5.0, клиентский JEI-плагин (ниже) |
 | Arcane Workbench Redux | рецепты — обычный `crafting_shaped`, видны в JEI как крафт 3×3 (без пометки «верстак») | оставлено |
 | Lycanites Mobs | JEI-плагина нет; рецептов в data нет (оружие/души/алтари — кодом) | дроп мобов — через JER; плагин не пишем |
 | Wizardry Restored (наш мод) | единственный рецепт — обычный крафт (`transportation_stone`) | плагин не нужен |
@@ -100,11 +100,11 @@ OK (свой плагин): ae2, aether, aether_redux, alexs_caves_delight, alex
 | **mekmm** (Mekanism More Machines): NPE в `registerItemReplicator` (`customRecipeMap` = null) | собственная ошибка мода | рецепты Replicator-а не в JEI |
 | JER: «Exception caught when registering villager» (`turnToQuill`, trader=null) | один тип торговли | безвредно |
 
-### Следующая задача: JEI-категория Imbuement Altar
-Оценка: **~0,5 дня**. Новый класс-плагин в `mods-src/mm-compat` (сторона client; `compileOnly` JEI API 15.x, `@JeiPlugin`):
-категория «центр + 4 приёмника → результат» (формат рецепта: `center`, `receptacles[]`, `result`), регистрация
-`RecipeType` по типу рецепта Redux, каталист — блок `ebwizardry:imbuement_altar`. ~150 строк + проверка на клиенте.
-Эффект: 120 рецептов Imbuement Altar (броня боевых магов/чернокнижников и др.). Перед стартом — согласовать с координатором.
+### Сделано: JEI-категория Imbuement Altar (mm-compat 0.5.0)
+`mods-src/mm-compat/.../jei/MmJeiPlugin` + `ImbuementAltarCategory`: центр + 4 приёмника → результат, каталист — алтарь.
+JEI и Redux — только `modCompileOnly`; JEI в рантайме необязателен (класс грузит только JEI), сервер без JEI стартует.
+Проверено: сервер `Done` без JEI; клиент вошёл на сервер, категория `mm_compat:imbuement_altar` зарегистрирована, ошибок плагина нет.
+Рецепт с розыгрышем `fix_ruined_spell_book` (нет приёмников) показывается без них.
 
 ## Что смотреть глазами
 Чек-лист: `docs/client-checklist.md`, раздел 8 «JEI».
