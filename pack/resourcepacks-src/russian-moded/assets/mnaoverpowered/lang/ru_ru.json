@@ -1,0 +1,14 @@
+{
+  "commands.locate.wellspring.info": "[%s, ~, %s] (сила=%.2f)",
+  "construct.mnaoverpowered:batch_provide_materia": "Пакетная подача материи",
+  "gui.mna.parameter.provide_materia.point.batch": "Каким алхимическим устройствам конструкт должен подавать материю? (подаётся с помощью Книги Меток)",
+  "mnaop.codex.query.sneak": "Присядьте и нажмите ПКМ, чтобы посмотреть",
+  "mnaop.codex.query.view": "ПКМ, чтобы посмотреть",
+  "mnaop.constructs.feedback.batch_provide_materia.sub_task": "Запуск задачи №%d (цель: %s)...",
+  "mnaop.constructs.feedback.batch_provide_materia.summary": "Загружено задач: %d из меток: %d.",
+  "mnaop.magichem.ae2.place_holder.tooltip": "Поддерживает использование стеклянной бутылки как заполнителя входа",
+  "mnaop.ritual.msg.forget_relic.fail": "Что... за... реликвия?",
+  "mnaoverpowered:rituals/create_wellspring": "Ритуал создания родника",
+  "mnaoverpowered:rituals/destroy_wellspring": "Ритуал уничтожения родника",
+  "mnaoverpowered:rituals/magichem/forget_relic": "Ритуал сброса реликвии"
+}
