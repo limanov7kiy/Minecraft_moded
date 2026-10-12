@@ -1371,8 +1371,8 @@ hash = "c25495262a852dc02886ec8c4b695f30e53264a2e3d881dd36ee9de16a1ef499"
 metafile = true
 
 [[files]]
-file = "mods/mm-compat-0.4.0.jar"
-hash = "211fc96abb12c0adb44b75650dd034c244c1fc65c311d1b52fce13eace46ac25"
+file = "mods/mm-compat-0.5.0.jar"
+hash = "10136eb69537c3a2c9c5d81c7d57a700281ddf419d5f79b8aba09c82d2289da8"
 
 [[files]]
 file = "mods/mnaoverpowered.pw.toml"
