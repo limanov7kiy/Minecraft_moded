@@ -500,3 +500,13 @@ Mass Destruction Forge 1.1.2. Cataclysm/Mowzie's/Lycanites не дублирую
 - ⚠ **Атлас текстур**: в логе клиента `Requested atlas size 32768x16384 exceeds maximum of 16384x16384` (программный
   OpenGL llvmpipe, предел 16384; у RTX 2060 предел 32768). Меню запустилось. Без Ice and Fire на этом стенде не сравнивали;
   если у игрока на слабой видеокарте будут «розовые» текстуры — это первое подозрение.
+
+## Wizardry Golems — порт 1.12.2 (поток 12, 2026-10-12)
+Мод `mods-src/wizardry-golems` 0.1.0 (оригинал WinDanesz, GPL-3.0) + Extra Golems 20.1.0.2 (skyjay1, zlib; CF без
+стороннего скачивания → jar в `pack/mods/`). Заклинания Golemancy призывают `golems:golem` нужного типа и делают его
+миньоном Redux (`MinionData`: владелец, время жизни, следование) — своих классов-сущностей нет.
+- Сервер: стартует (Done 104 с), `scripts/tests/golemcheck.js` — 6/6 OK: earth 3× clay, fire 2× nether_brick, ice 2× ice,
+  lightning 5× маленьких `wizardrygolems:thunderstone`, healing 1× gold; через 200 тиков миньоны живы.
+- Маленький голем Extra Golems получает половину здоровья типа (thunderstone: 25 → ~10; в оригинале у «ребёнка» 12).
+- При первом запуске Extra Golems дописывает недостающие ключи `golems-common.toml` (WARN, безвредно).
+- Свои голем-типы — `data/wizardrygolems/golems/golem/*.json` с `"hidden": true` и без `blocks`: руками не строятся.
