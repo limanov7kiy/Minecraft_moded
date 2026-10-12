@@ -1,0 +1,17 @@
+{
+  "name": "Мятный чай",
+  "icon": "tomeofblood:mint_tea",
+  "category": "ars_nouveau:tomeofblood",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "tomeofblood:mint_tea",
+      "text": "$(o)Слегка токсичен...$() $(br2)Даёт эффект зелья $(9)Безмятежность$(), который даёт 10%% бонусной крови при самопожертвовании в Кровавом алтаре. $(br2) $(o) С шансом 5%% становится токсичным$()"
+    },
+    {
+      "type": "ars_nouveau:crafting_alchemy_table",
+      "recipe": "tomeofblood:alchemytable/mint_tea"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "name": "源石虫培育指南",
+  "icon": "bobsoriginiumdream:oriwormskin",
+  "category": "bobsoriginiumdream:oricreature",
+  "read_by_default": false,
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "源石虫",
+      "item": "bobsoriginiumdream:oriwormskin",
+      "scale": 1.2,
+      "text": "最普通的源石虫，可以去平原或者河流附近找到"
+    },
+    {
+      "type": "spotlight",
+      "title": "高能源石虫",
+      "item": "bobsoriginiumdream:oriexplosionbag",
+      "scale": 1.2,
+      "text": "在沙漠和恶地可以找到，死后会产生爆炸，需要格外注意，用源石小刀可以切除来避免爆炸"
+    },
+    {
+      "type": "spotlight",
+      "title": "高能源石虫α",
+      "item": "bobsoriginiumdream:hugeoriexplosionbag",
+      "scale": 1.2,
+      "text": "在源石荒芜之地可以找到，也会产生爆炸"
+    },
+    {
+      "type": "spotlight",
+      "title": "高能源石虫",
+      "item": "bobsoriginiumdream:chomperleaf",
+      "scale": 1.2,
+      "text": "Появляется в джунглях с малым шансом, пожирает всех существ. Съеденный зомби всегда оставляет железо, съеденный эндермен — жемчуг. $(br)После поедания $(#ff0000)Червя из мерзкой воды ориджиниума$() её рвёт, и она оставляет рвоту."
+    },
+    {
+      "type": "spotlight",
+      "title": "恶水源石虫",
+      "item": "bobsoriginiumdream:darkwatershell",
+      "scale": 1.2,
+      "text": "Появляется у крышки люка в Канале обжорства (gluttonywaterway). Крышку можно выкопать киркой и забрать с собой, чтобы Мухоловка могла съесть Червя из мерзкой воды ориджиниума."
+    },
+    {
+      "type": "spotlight",
+      "title": "恶尘源石虫",
+      "item": "bobsoriginiumdream:evilskin",
+      "scale": 1.2,
+      "text": "在源石荒芜之地生成，死后会留下感染恶液，对上面的生物造成源石伤害，并增加感染指数"
+    },
+    {
+      "type": "spotlight",
+      "title": "酸液源石虫α",
+      "item": "bobsoriginiumdream:sourcoreb",
+      "scale": 1.2,
+      "text": "Появляется в бесплодных землях ориджиниума. $(br)При поедании: $(#ff0000)атаки сильно разъедают броню$(), будьте предельно осторожны."
+    },
+    {
+      "type": "spotlight",
+      "title": "冰爆源石虫",
+      "item": "bobsoriginiumdream:oriiceskin",
+      "scale": 1.2,
+      "text": "在雪地地形可以找到，阿尔法同理"
+    }
+  ]
+}

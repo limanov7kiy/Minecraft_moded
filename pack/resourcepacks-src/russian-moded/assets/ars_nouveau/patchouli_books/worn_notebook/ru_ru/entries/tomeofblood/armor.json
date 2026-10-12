@@ -1,0 +1,20 @@
+{
+  "name": "Доспех еретика",
+  "icon": "tomeofblood:living_mage_robes",
+  "category": "ars_nouveau:tomeofblood",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Доспех еретика — улучшение Живой брони из Blood Magic. Он объединяет способности Живой брони Blood Magic и Магической брони Ars Nouveau. $(br2) Ему доступны и магические перки, и улучшения Живой брони."
+    },
+    {
+      "type": "patchouli:image",
+      "border": true,
+      "images": [
+        "tomeofblood:textures/gui/heretic_thread_diagram.png"
+      ],
+      "text": "Кроме того, на нагруднике доступны очки улучшений Живой брони!"
+    }
+  ]
+}
