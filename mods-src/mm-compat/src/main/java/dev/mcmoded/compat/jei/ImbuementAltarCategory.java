@@ -60,8 +60,11 @@ public class ImbuementAltarCategory implements IRecipeCategory<ImbuementAltarRec
     public void setRecipe(IRecipeLayoutBuilder builder, ImbuementAltarRecipe recipe, IFocusGroup focuses) {
         // крест: приёмники сверху, снизу, слева, справа от центра
         int[][] pos = {{27, 1}, {27, 49}, {3, 25}, {51, 25}};
-        builder.addSlot(RecipeIngredientRole.INPUT, 27, 25).addIngredients(recipe.getCenterIngredient());
+        // у рецептов с розыгрышем (fix_ruined_spell_book) приёмников/центра может не быть
+        Ingredient center = recipe.getCenterIngredient();
+        builder.addSlot(RecipeIngredientRole.INPUT, 27, 25).addIngredients(center != null ? center : Ingredient.EMPTY);
         List<Ingredient> rec = recipe.getReceptacleIngredients();
+        if (rec == null) rec = List.of();
         for (int i = 0; i < rec.size() && i < pos.length; i++) {
             builder.addSlot(RecipeIngredientRole.INPUT, pos[i][0], pos[i][1]).addIngredients(rec.get(i));
         }
