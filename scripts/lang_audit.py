@@ -160,5 +160,52 @@ def main():
         print(out)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and not (len(sys.argv) > 1 and sys.argv[1] == "cjk"):
     main()
+
+
+# ---------- проверка итогового разрешения (python3 lang_audit.py cjk <jar-папка> --packs a.zip ... [--pack-src <наш пак>] [--out файл.json]) ----------
+# Что увидит игрок с ru_ru: значение из слоёв (родной ru мода < ресурспаки по порядку < наш пак), иначе английское (en_us) — как делает Minecraft.
+# Выводит значения с CJK (иероглифы/кана/хангыль) и ключи, которых нет ни в ru, ни в en_us, но есть в zh_cn (показываются сырым ключом).
+CJK = re.compile(r"[぀-ヿ㐀-䶿一-鿿가-힯]")
+
+
+def cjk_main():
+    import argparse
+    ap = argparse.ArgumentParser(prog="lang_audit.py cjk")
+    ap.add_argument("jars"); ap.add_argument("--packs", nargs="*", default=[]); ap.add_argument("--pack-src"); ap.add_argument("--out")
+    a = ap.parse_args(sys.argv[2:])
+    sys.path.insert(0, str(pathlib.Path(__file__).parent))
+    from lang_packs_cover import read_langs
+    en, ru, zh, where = {}, {}, {}, {}
+    for j in sorted(pathlib.Path(a.jars).glob("*.jar")):
+        try:
+            z = zipfile.ZipFile(j)
+        except zipfile.BadZipFile:
+            continue
+        for (ns, c), d in read_langs(z).items():
+            if c == "en_us":
+                en.update(d); where.update({k: ns for k in d})
+            elif c == "ru_ru": ru.update(d)
+            elif c == "zh_cn": zh.update(d); [where.setdefault(k, ns) for k in d]
+    for p in a.packs:
+        for (ns, c), d in read_langs(zipfile.ZipFile(p)).items():
+            if c == "ru_ru": ru.update(d)
+    if a.pack_src:
+        for f in pathlib.Path(a.pack_src).glob("assets/*/lang/ru_ru.json"):
+            ru.update(json.loads(f.read_text("utf-8")))
+    bad = {}
+    for k in set(en) | set(ru) | set(zh):
+        v = ru.get(k, en.get(k))
+        if v is None:
+            if k in zh: bad[k] = {"ns": where.get(k), "zh": zh[k], "problem": "только zh_cn"}
+        elif CJK.search(v):
+            bad[k] = {"ns": where.get(k), "value": v, "en": en.get(k), "problem": "CJK в итоговом значении"}
+    per = collections.Counter(v["ns"] for v in bad.values())
+    print(f"найдено {len(bad)} ключей с CJK/только zh_cn; по модам: {per.most_common(15)}")
+    if a.out:
+        pathlib.Path(a.out).write_text(json.dumps(bad, ensure_ascii=False, indent=1))
+
+
+if __name__ == "__main__" and len(sys.argv) > 1 and sys.argv[1] == "cjk":
+    cjk_main()

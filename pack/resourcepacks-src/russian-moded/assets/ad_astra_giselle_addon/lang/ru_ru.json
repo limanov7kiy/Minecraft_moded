@@ -1,4 +1,5 @@
 {
+  "config.ad_astra_giselle_addon.compats.mekanism": "Mekanism",
   "config.ad_astra_giselle_addon.items.oxygen_chargers": "Канистры кислорода (обычные)",
   "config.ad_astra_giselle_addon.items.oxygen_chargers_distribution_interval": "Интервал раздачи [тики]",
   "creative_oxygen.ad_astra_giselle_addon.empty": "Пусто",

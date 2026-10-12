@@ -1,0 +1,19 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+license = "MIT"
+
+[[mods]]
+modId = "${mod_id}"
+version = "${mod_version}"
+displayName = "Russian Lang (Minecraft_moded)"
+authors = "Minecraft_moded"
+description = '''
+Подключает русский ресурспак сборки (недостающие переводы, названия модов остаются английскими) как всегда включённый и самый верхний — не зависит от options.txt игрока. Только клиент.
+'''
+
+[[dependencies.${mod_id}]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "CLIENT"

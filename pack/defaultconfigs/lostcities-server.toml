@@ -1,0 +1,5 @@
+# Профиль The Lost Cities для НОВОГО мира (Forge копирует defaultconfigs/ в serverconfig/ мира при создании).
+# На уже созданном мире не действует. Подробности и профили — docs/lost-cities.md.
+[profiles]
+	selectedProfile = "rarecities"
+	selectedCustomJson = ""

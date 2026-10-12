@@ -6,6 +6,7 @@
 import collections, json, pathlib, re, sys, zipfile
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 from lang_audit import LANG_RE, load_json, has_letters  # noqa: E402
+from lang_modnames import collect_names, classify  # noqa: E402
 
 PH = re.compile(r"%(?:\d+\$)?[-#+0]*\d*(?:\.\d+)?[a-zA-Z%]|\{[^{}]*\}|\\n|\$\([^)]*\)")
 CYR = re.compile(r"[А-Яа-яЁё]")
@@ -15,8 +16,15 @@ def ph(s):  # %1$s == %s по составу (порядок слов в рус�
     return collections.Counter(re.sub(r"%\d+\$", "%", x) for x in PH.findall(s))
 
 
+WRONG_TERMS = re.compile(r"ори(?:г|дж)и?ни?ум", re.I)  # Originium — «ориджиниум» (решение владельца 2026-10-12)
+
+
 def check(en, ru, label, errs, warns):
     for k, v in ru.items():
+        if WRONG_TERMS.search(v) and not re.search(r"ориджиниум", v, re.I):
+            warns.append(f"{label}: термин «ориджиниум», а не «оригиниум» {k}")
+        elif re.search(r"оригиниум|оригинум|ориджинум", v, re.I):
+            warns.append(f"{label}: термин «ориджиниум», а не «оригиниум» {k}")
         if k not in en:
             warns.append(f"{label}: лишний ключ {k}"); continue
         if not v.strip() and en[k].strip():
@@ -32,12 +40,13 @@ def check(en, ru, label, errs, warns):
 
 
 def cmd_lang(ru_path, jars):
-    en = collections.defaultdict(dict)
+    en = collections.defaultdict(dict); names = {}
     for j in pathlib.Path(jars).glob("*.jar"):
         try:
             z = zipfile.ZipFile(j)
         except zipfile.BadZipFile:
             continue
+        collect_names(z, names)
         for n in z.namelist():
             m = LANG_RE.match(n)
             if m and m.group(2).lower() == "en_us" and m.group(3) == "json":
@@ -63,6 +72,9 @@ def cmd_lang(ru_path, jars):
         if ns not in en:
             warns.append(f"{ns}: нет en_us в jar"); continue
         check(en[ns], ru, ns, errs, warns)
+        for k, v in ru.items():  # названия модов не переводим (решение владельца 2026-10-12)
+            if k in en[ns] and classify(k, en[ns][k], names) == "exact" and v != en[ns][k]:
+                errs.append(f"{ns}: название мода переведено {k}: en={en[ns][k]!r} ru={v!r}")
     print(f"файлов {len(files)}, ключей {total}, ошибок {len(errs)}, предупреждений {len(warns)}")
     for e in errs[:200]: print("ERR ", e)
     for w in warns[:100]: print("warn", w)

@@ -65,6 +65,10 @@ file = "config/voicechat/voicechat-server.properties"
 hash = "44e28ca45bf8648f18a9363105a7faa363d254ed8ace91ff523193b60786968d"
 
 [[files]]
+file = "defaultconfigs/lostcities-server.toml"
+hash = "cd8919cee8c45c4b5e243fa0fb03e4a08f12094ed5c0dd053814fff0f6d7e85d"
+
+[[files]]
 file = "kubejs/client_scripts/space_rockets.js"
 hash = "c5f3ef1a27991ac16c6f99ff138572a82654f52f514605e7a423b3c9adfb0eac"
 
@@ -1567,6 +1571,10 @@ hash = "93128d85ae0b3be9c8248b09f3a63ed88c746568480cc7e9a8e2a9b4bd13477c"
 metafile = true
 
 [[files]]
+file = "mods/ru-lang-1.0.0-client.jar"
+hash = "035766597827d506ddcfc6a831082bb49cb273a6711f434ef5145046d6abb4d7"
+
+[[files]]
 file = "mods/sarkazs_furnace_side_fables-0.2.3-forge-1.20.1.jar"
 hash = "a2dd286bd8602067f1c7e3f34bf410d1f7de8fd51262f329775396852c27310d"
 
@@ -1709,6 +1717,11 @@ hash = "8063598c8c2e76eedf5782e6896a27d00140dea6e45e029c23c4c25020949319"
 metafile = true
 
 [[files]]
+file = "mods/the-lost-cities.pw.toml"
+hash = "71097e23679b74087641cba67eafb161a1d238cb866a01b4af49caf648d0919c"
+metafile = true
+
+[[files]]
 file = "mods/the-twilight-forest-dungeons-villages.pw.toml"
 hash = "a55e61bc7aa046b21d20715d107226a7a4746b67665057d3fa135942db236cdf"
 metafile = true
@@ -1842,7 +1855,7 @@ hash = "9d6c1b79bffbd22944012a0fd7318753402515ad5b37c1d2562f55a687aecc6e"
 
 [[files]]
 file = "options.txt"
-hash = "7c3b7c40bb0f3b1395bf12b24142a6ea96d271babd8cfed959e4f72f791193bc"
+hash = "30592669b3f027dfee48c70d86674c12589c3dc3731f0fce13a623c1608bcca1"
 preserve = true
 
 [[files]]
@@ -1867,7 +1880,3 @@ metafile = true
 file = "resourcepacks/russian-delight.pw.toml"
 hash = "afcd7b135787e17fd9e33692c615af916202e9ea9f5a3ad34a075fc466de0bb8"
 metafile = true
-
-[[files]]
-file = "resourcepacks/russian-moded.zip"
-hash = "47482b85fa5dba3976433c16c5ad84048778db7769369937453028c0106c8b55"

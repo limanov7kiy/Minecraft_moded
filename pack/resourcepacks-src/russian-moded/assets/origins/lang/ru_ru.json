@@ -1,5 +1,5 @@
 {
-  "category.origins": "Происхождения",
+  "category.origins": "Origins",
   "commands.origin.get.result": "%s имеет следующее %s: %s (%s)",
   "commands.origin.layer_not_found": "Неизвестный слой: %s",
   "commands.origin.random.all": "Происхождение случайно назначено %1$s целям в %2$s слоях",

@@ -1,7 +1,9 @@
 {
   "fluid.murky_water": "Мутная вода",
   "item.mahoutsukai.murky_bucket": "Ведро мутной воды",
-  "itemGroup.MahouTsukai": "Махо Цукай",
+  "itemGroup.MahouTsukai": "Mahou Tsukai",
+  "itemGroup.mahoutsukai": "Mahou Tsukai",
+  "itemGroup.mahoutsukai.creative": "Mahou Tsukai",
   "mahoukodokuusage": "/mahoukodoku имя_игрока значение_kodoku",
   "mahoutsukai.config.alarm_action_bar_messages.comment": "Сообщения отправляются в панель действий, а не в окно чата",
   "mahoutsukai.config.alarm_action_bar_messages.name": "Сообщения отправляются в панель действий",
