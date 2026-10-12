@@ -399,7 +399,7 @@ Arknights Weapon) применяются без ошибок. Микрофон, 
 | Factions And Curiosities | 1.3.1 | Modrinth | M&A, Curios | добавлен |
 | MNAOverpowered | 1.20.1-0.11.1 | Modrinth | M&A | добавлен (QoL-твики) |
 | Dragon Magic And Relics | 3.2.14 | Modrinth (All Rights Reserved, см. CLAUDE.md) | M&A | добавлен |
-| MNAWitchcraft | 0.2.1-alpha | Modrinth | M&A | **отключён**: собран под старый M&A, `NoClassDefFoundError com.mna.items.ritual.ItemPlayerCharm`, сервер не стартует |
+| MNAWitchcraft | 0.2.1-alpha | Modrinth | M&A | **порт** (В4, поток 4b): собран под M&A 3.0.x (`NoClassDefFoundError com.mna.items.ritual.ItemPlayerCharm`). `patches/jar-ports/mnawitchcraft` → `pack/mods/mnaw-…-mmport.jar`: в M&A 3.1.11 классы `ItemPlayerCharm`/`ItemPractitionersPatch`/`ItemStaff` → `PlayerCharm`/`PractitionersPatch`/`MagicStaff`, `ItemStaff.getSpell` → `SpellRecipe.fromNBT(getSpellCompound)` (`MnawPort`). linkcheck: к M&A всё связывается; остались 12 ссылок на Mystical Alchemy — необязательная зависимость (под 1.20.1 Forge её нет), код сработает только с ней. Сервер до `Done`; в игре не проверялся |
 
 - Дополнений к Ars Magica: Legacy под 1.20.1 не найдено (Modrinth, поиск по CurseForge) — у мода только API для аддонов.
 - Не взяты: `ctov-mana-and-artifice-compatibility` (в сборке нет CTOV), `mana-and-artifice-villages` (только 1.18.2).
