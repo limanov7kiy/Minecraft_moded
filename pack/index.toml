@@ -5,6 +5,10 @@ file = "config/.sereneseasonsplus-descriptive-config-reset.done"
 hash = "f1ceb92d0b8b72485894a12f2e434f475a127d59cae046ee5843be6318f6745e"
 
 [[files]]
+file = "config/DistantHorizons.toml"
+hash = "77155a1e8e79c1c932654c28d6c004325a296da837d768800cfd1733e349150e"
+
+[[files]]
 file = "config/almostunified/debug.json"
 hash = "3e03a291b5310a6b94a45aff63e4731baa643701c42a968ed716483ccd1d5a37"
 
@@ -29,12 +33,24 @@ file = "config/canary.properties"
 hash = "8b34973d33381c95c7bb176234d5ed927110c5b81c0c0d82b5ebbf06dea97b81"
 
 [[files]]
+file = "config/jei/client/default/jei-client.ini"
+hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
+
+[[files]]
+file = "config/modernfix-mixins.properties"
+hash = "bc2e8a7a2f7a70796a6e2e97f3410275be73879cf576b463bcd3e429a5922a9f"
+
+[[files]]
 file = "config/sereneseasonsplus-common.toml"
 hash = "ae0213dfbc7561b527d00565ad849c32e096914967590c1aaf85c4133195c885"
 
 [[files]]
 file = "config/solsauthlogin-common.toml"
 hash = "03774e9720dbb20d1054caf5ef3830e4f58bb3854035a3ad9b43d24a5aa76e08"
+
+[[files]]
+file = "config/sound_physics_remastered/soundphysics.properties"
+hash = "81511081d13eaf2cfcd6ae5fc95973e44bf7912543573ced691a218cceafd531"
 
 [[files]]
 file = "config/vcinteraction/vcinteraction.properties"
@@ -1370,6 +1386,10 @@ file = "mods/mm-compat-0.4.0.jar"
 hash = "211fc96abb12c0adb44b75650dd034c244c1fc65c311d1b52fce13eace46ac25"
 
 [[files]]
+file = "mods/mm-perf-0.1.0-client.jar"
+hash = "d7ca544e6d60bc2f18057f55712d985b3faf219404ad267f3c756ff59e232eb7"
+
+[[files]]
 file = "mods/mnaoverpowered.pw.toml"
 hash = "0a48579ca8d4575a0c2cadbee30a2f396591e86f1dabad4e41b5125c2c70dbef"
 metafile = true
@@ -1780,3 +1800,7 @@ metafile = true
 [[files]]
 file = "mods/zombiehaveears-1.1.2-forgefix.jar"
 hash = "9d6c1b79bffbd22944012a0fd7318753402515ad5b37c1d2562f55a687aecc6e"
+
+[[files]]
+file = "options.txt"
+hash = "a5c5083ac629ed4f03ea86f758af46f53b99009a80bb2cc5af4d9c8583fd66b8"
