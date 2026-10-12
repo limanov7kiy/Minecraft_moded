@@ -23,11 +23,20 @@ public class NecromancersDelight {
 
     public static final RegistryObject<Spell> STINK_BOMB = SPELLS.register("stink_bomb", NdSpells::stinkBomb);
     public static final RegistryObject<Spell> FROST_BOMB = SPELLS.register("frost_bomb", NdSpells::frostBomb);
+    public static final RegistryObject<Spell> CORRODE = SPELLS.register("corrode", dev.mcmoded.necromancersdelight.spell.Corrode::new);
+    public static final RegistryObject<Spell> GLOWSHROOM = SPELLS.register("glowshroom", dev.mcmoded.necromancersdelight.spell.Glowshroom::new);
+
+    public static final DeferredRegister<net.minecraft.world.level.block.Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MOD_ID);
+    public static final RegistryObject<net.minecraft.world.level.block.Block> TEMP_GLOWSHROOM = BLOCKS.register("temporary_glowshroom",
+            () -> new dev.mcmoded.necromancersdelight.block.TempGlowshroom(net.minecraft.world.level.block.state.BlockBehaviour.Properties
+                    .copy(net.minecraft.world.level.block.Blocks.BROWN_MUSHROOM).lightLevel(s -> 15).noLootTable().noCollission().instabreak()));
 
     public NecromancersDelight() {
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
         NdBombs.init();
         SPELLS.register(modBus);
+        BLOCKS.register(modBus);
+        dev.mcmoded.necromancersdelight.effect.NdEffects.EFFECTS.register(modBus);
         ITEMS.register(modBus);
         ENTITIES.register(modBus);
         modBus.addListener(NdBombs::onCreativeTab);
