@@ -132,12 +132,11 @@
    `mobhealth_commands.txt`: оригинал 20→40→80, порт 20→20. Оригинал из PR #2 убран при слиянии, в сборке порт.
 8. ~~Apothic Attributes и формулы брони~~ — **решено**: броня по Apothic, защита-зачарование по ванилле
    (`pack/config/attributeslib.cfg`, расчёт — compat.md п. 14, тест `scripts/tests/armor_commands.txt`).
-9. **(из потока 5, БЛОКЕР клиента) Cataclysm Spellbooks 1.2.9 × Cataclysm 3.31** — порт как у T.O Magic:
-   9 несвязанных ссылок (частицы `*Data` → `Options/*`, `Wither_Missile_Entity`, `CMDamageTypes.causeLaserDamage`,
-   `Ancient_Remnant_Rework_Renderer`/`Ancient_Remnant_Layer`), список — compat.md К4. Без порта клиент со сборкой
-   **вылетает при запуске**. Проверка: `scripts/test-client.sh` доходит до `CLIENT OK`.
-10. (из потока 5) Lycanites refmap: добавить поле `lightTexture` → `f_109870_` (compat.md К6), клиентский
-    `LightTextureMixin` сейчас не применяется.
+9. ~~**(из потока 5, БЛОКЕР клиента) Cataclysm Spellbooks 1.2.9 × Cataclysm 3.31**~~ — **сделано**: порт
+   `patches/jar-ports/cataclysm-spellbooks` → `pack/mods/cataclysm_spellbooks-1.2.9-1.20.1-mmport.jar` (compat.md п. 14, К4),
+   тест в мире `scripts/tests/sbcastcheck.js` 10/10, клиент со всей сборкой — `CLIENT OK`.
+10. ~~(из потока 5) Lycanites refmap: поле `lightTexture`~~ — **сделано иначе**: refmap к `@Shadow`-полям не применяется,
+    затемнение от страха перенесено в `mm-compat` 0.4.0 (`LycanitesFearLightMixin`, compat.md К6).
 11. (из потока 5) Origin Furs × AzureLib 3.1 (compat.md К3): Origin Furs и Arknights Furs убраны; вернуть —
     переходник старого API AzureLib (`GeoModel`, `GeoBone`, `GeoObjectRenderer`, `core.animation.*`) в jar
     Origin Furs. Если сложно — потоку 3 решить, нужны ли они.
@@ -152,8 +151,7 @@ Xvfb + Mesa llvmpipe, агент `scripts/clienttest/ExitTrace.java` ловит 
   убраны VoiceChatProfiles (битый jar, К2), Origin Furs и Arknights Furs (AzureLib 2.x против 3.1, К3);
   маркер Serene Seasons Plus в `pack/config/` (мод сбрасывал конфиг сборки на сервере и клиенте, К5).
   Стороны в `.mrpack`/серверном zip совпадают с `side` — править не пришлось.
-- **Осталось (блокер):** Cataclysm Spellbooks 1.2.9 роняет клиент (К4) — порт потоку 4, задача 9. До него
-  друзья играть не смогут.
+- ~~**Осталось (блокер):** Cataclysm Spellbooks 1.2.9 роняет клиент (К4)~~ — порт сделан потоком 4 (задача 9).
 - Проверено с убранным локально Spellbooks (и YSM — он не работает под ВМ, К7): главное меню (старт 272 с на
   llvmpipe), вход на тестовый сервер без рассинхрона реестров и «mismatched mod channel», выбор Origin, HUD,
   рендер скелета-босса Galacticraft с полосой здоровья, феникс Wizardry; миксины портов `*-mmport.jar` применяются;

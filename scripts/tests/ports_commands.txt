@@ -15,3 +15,5 @@ setblock 0 120 0 cbc_nukes:nuke_shell
 execute if block 0 120 0 cbc_nukes:nuke_shell run say PORTCHECK nuke_shell ok
 kill @e[type=alshanex_familiars:druid_pet]
 #sleep 3
+# sbcastcheck.js (порт Cataclysm: Spellbooks) проверяет результат на 280-м тике (облачный сервер в начале ~5 TPS) — не останавливать сервер раньше
+#sleep 30
