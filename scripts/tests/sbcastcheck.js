@@ -46,4 +46,7 @@ ServerEvents.tick(event => {
     `phantoms=${ph.length} sleep=${ph.length ? ph[0].isSleep() : '-'} necklace=${ph.length ? ph[0].getNecklace() : '-'} state=${ph.length ? ph[0].getAttackState() : '-'}`)
   const zb = sbAll(e => e.getTags().contains('sbcheck'))
   report('effects', zb.length > 0 && zb[0].getActiveEffects().size() >= 2, `zombie=${zb.length} effects=${zb.length ? zb[0].getActiveEffects().size() : '-'}`)
+  // убрать площадку и существ: над 0,0 проверяют и другие тесты (vshitcheck трассирует сверху вниз)
+  server.runCommandSilent('kill @e[type=!minecraft:player,x=-16,y=228,z=-16,dx=32,dy=20,dz=32]')
+  server.runCommandSilent('fill -16 229 -16 16 229 16 minecraft:air')
 })
