@@ -2,7 +2,10 @@ package dev.mcmoded.rulang;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.packs.PackType;
+import net.minecraft.server.packs.FilePackResources;
 import net.minecraft.server.packs.PathPackResources;
+import net.minecraft.world.flag.FeatureFlagSet;
+import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
 import net.minecraftforge.api.distmarker.Dist;
@@ -14,6 +17,7 @@ import net.minecraftforge.fml.common.Mod;
 import com.mojang.logging.LogUtils;
 import org.slf4j.Logger;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
@@ -24,20 +28,41 @@ import java.nio.file.Path;
 public class RuLang {
     public static final String MOD_ID = "ru_lang";
     public static final Logger LOGGER = LogUtils.getLogger();
-    private static final String PACK_ID = "mod_resources_ru_lang";
+
+    /** Русификационные ресурспаки сборки в порядке возрастания приоритета (id начинается с номера: репозиторий паков сортирует по id). */
+    private static final String[][] PACKS = {
+            {"ru_lang_1_just_some_translations", "just-some-translations.zip"},
+            {"ru_lang_2_russian_delight", "russian-delight-1.0.zip"},
+            {"ru_lang_3_rtf", "rtf-2.8.4.zip"},
+            {"ru_lang_4_mploc", "mploc-mods-v43.zip"},
+            {"ru_lang_5_rtf_extension", "rtf-extension-2.7.0.zip"},
+    };
+    private static final int PACK_FORMAT = 15;
 
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientEvents {
         @SubscribeEvent
         public static void addPack(AddPackFindersEvent event) {
             if (event.getPackType() != PackType.CLIENT_RESOURCES) return;
+            // Все русские паки сборки — обязательные и закреплённые сверху, независимо от options.txt игрока (иначе у кого-то
+            // они не включены или Minecraft отбрасывает их как «несовместимые» по pack_format). Приоритет по id (сортировка репозитория):
+            // чужие паки < наш пак (ru_lang_9_moded) — он всегда последний.
+            Path dir = FMLPaths.GAMEDIR.get().resolve("resourcepacks");
+            for (String[] p : PACKS) {
+                Path f = dir.resolve(p[1]);
+                if (!Files.isRegularFile(f)) continue;
+                Pack pack = make(p[0], "Русификация: " + p[1], name -> new FilePackResources(name, f.toFile(), false));
+                event.addRepositorySource(consumer -> consumer.accept(pack));
+            }
             Path root = ModList.get().getModFileById(MOD_ID).getFile().findResource("resourcepacks/russian-moded");
-            Pack.ResourcesSupplier supplier = name -> new PathPackResources(name, root, true);
-            Pack.Info info = Pack.readPackInfo(PACK_ID, supplier);
-            if (info == null) return;
-            Pack pack = Pack.create(PACK_ID, Component.literal("Русификация сборки (всегда включена)"), true, supplier, info,
-                    PackType.CLIENT_RESOURCES, Pack.Position.TOP, true, PackSource.BUILT_IN);
-            event.addRepositorySource(consumer -> consumer.accept(pack));
+            Pack ours = make("ru_lang_9_moded", "Русификация сборки (всегда включена)", name -> new PathPackResources(name, root, true));
+            event.addRepositorySource(consumer -> consumer.accept(ours));
+        }
+
+        private static Pack make(String id, String title, Pack.ResourcesSupplier supplier) {
+            // формат подставляем свой (15), не читая pack.mcmeta: у MPLOC он 88, у JustSomeTranslations 34 — иначе пак «несовместим»
+            Pack.Info info = new Pack.Info(Component.literal(title), PACK_FORMAT, FeatureFlagSet.of());
+            return Pack.create(id, Component.literal(title), true, supplier, info, PackType.CLIENT_RESOURCES, Pack.Position.TOP, true, PackSource.BUILT_IN);
         }
     }
 

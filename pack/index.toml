@@ -1557,7 +1557,7 @@ metafile = true
 
 [[files]]
 file = "mods/ru-lang-1.0.0-client.jar"
-hash = "7c0394a4892ed4af856e13dfef3d29484e2ed47057d7ecc6bd1563eb9c4dd702"
+hash = "3c5d7645febd4ced20c7f007cd7a204531f4b264aa328bf084b72e57d86e1093"
 
 [[files]]
 file = "mods/sarkazs_furnace_side_fables-0.2.3-forge-1.20.1.jar"
@@ -1840,7 +1840,7 @@ hash = "9d6c1b79bffbd22944012a0fd7318753402515ad5b37c1d2562f55a687aecc6e"
 
 [[files]]
 file = "options.txt"
-hash = "30592669b3f027dfee48c70d86674c12589c3dc3731f0fce13a623c1608bcca1"
+hash = "7020fe01b14baea337167ab290e318a56a03b1e350dd51ab611ec8052e8d1735"
 preserve = true
 
 [[files]]
