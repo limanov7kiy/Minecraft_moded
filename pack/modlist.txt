@@ -39,6 +39,7 @@ mr lycanites-mobs          # + pack/mods/lycanites-refmap-fix (patches/lycanites
 mr alexs-mobs
 mr mowzies-mobs
 mr l_enders-cataclysm
+mr ice-and-fire-dragons    # both: Ice and Fire CE 2.1.13 — драконы (огненный/ледяной/молниевый), гидра, сирены и др.; зависимость Citadel (поток 9)
 
 ## Ракеты, космос, техника
 mr create

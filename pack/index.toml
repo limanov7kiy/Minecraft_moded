@@ -29,6 +29,10 @@ file = "config/canary.properties"
 hash = "8b34973d33381c95c7bb176234d5ed927110c5b81c0c0d82b5ebbf06dea97b81"
 
 [[files]]
+file = "config/iceandfire-common.toml"
+hash = "4e686e3616fc1885ce4380e95fe8c9d32be13536693da638e27b091372c0777b"
+
+[[files]]
 file = "config/sereneseasonsplus-common.toml"
 hash = "ae0213dfbc7561b527d00565ad849c32e096914967590c1aaf85c4133195c885"
 
@@ -1118,6 +1122,11 @@ hash = "7cbc557e23729a2ab1a0dfa8832359edb640a9c4b2f1919e7c43cd5c7ccfdf3c"
 metafile = true
 
 [[files]]
+file = "mods/ice-and-fire-dragons.pw.toml"
+hash = "3e8cbae6a944592a6485b8c5e62b0794fe950ba8a6b155302d08f4205b9ad9b3"
+metafile = true
+
+[[files]]
 file = "mods/immediatelyfast.pw.toml"
 hash = "1a9564ded8e9cd1f843f9de7fc87ffbf73033aab51494205458b0e58cc0ab194"
 metafile = true
@@ -1806,4 +1815,4 @@ metafile = true
 
 [[files]]
 file = "resourcepacks/russian-moded.zip"
-hash = "a7011bf5c3452bfa8cf1a7f9196f4aeb37291732556d515e23c13cdc374a5798"
+hash = "591f3905ae7e806ac5849888582e58055d9fe3b8f8f3fe2cb49b0881d35955c6"
