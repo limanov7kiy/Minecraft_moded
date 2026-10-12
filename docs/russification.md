@@ -248,6 +248,12 @@ Ars Magica Legacy, аддонов Ars. Названия предметов в т
 **Остаток:** Superb Warfare (3 ключа); книги, которые закрывают сторонние паки (Blood Magic — 206 тыс. знаков, Botania — 22 тыс., Iron's `iss_guide_book`, Caerula Arbor, Twilight Delight) —
 проверять в игре, наличие русского зависит от версии пака. Приёмка глазами (открыть кодекс MnA, Анимус, AMI Wiki, гайд Dimensional Dungeons) — см. `docs/client-checklist.md`.
 
+**Проверка клиента** (`scripts/test-client.sh`, сборка с кодексом MnA, Animus, AMI, Dimensional Dungeons и пересобранным `ru-lang`; 2026-10-12): до главного меню дошёл
+(`Game took 573 seconds`), интерфейс русский, `mod_resources_ru_lang` в списке паков; ошибок Patchouli/кодекса по нашим книгам в логе нет. Книги в мире не открывались
+(глазами — по `docs/client-checklist.md`). Не наши находки в логе: Patchouli-книга `ars_controle` падает (`use_resource_pack: false`, поведение удалено в 1.20 —
+нужен патч book.json, например kubejs-override как у AMI), `Model loader 'neoforge:composite' not found` (модели NeoForge-сборок), `mna:models/block/eldrin/pylon_ring.json`.
+Тест `test-client.sh` на 16 ГБ: два параллельных запуска клиента убивает OOM (код 137) — перед повтором убедиться, что прошлый JVM завершён.
+
 ## Вопросы владельцу
 
 1. **Не блокирует.** Принять MPLOC (ИИ-перевод) и RTF+ базой, а остальное доводить своим паком сверху? Рекомендация: да.
