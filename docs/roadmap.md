@@ -39,6 +39,8 @@
   не правим руками — пересоздаём `packwiz refresh`.
 - После изменения набора модов — `scripts/test-server.sh`, находки — в `docs/compat.md`.
 - В конце — отметка о сделанном в этом файле (раздел потока).
+- Добавил мод с боссами — обнови `docs/bosses.md`/`docs/bosses.csv` в том же PR: прогон `scripts/tests/bossdump.js` на
+  тестовом сервере + `scripts/boss_table.py --mods <папка jar> --dump <latest.log>`; описание нового босса — в `scripts/boss_info.py`.
 
 ### Поток 1 — Wizardry Restored (заклинания)
 Файлы: `mods-src/wizardry-restored/`, `docs/wizardry-port.md`, `scripts/tests/spellcheck.js`, `castcheck.js`.
