@@ -215,3 +215,80 @@ Redux 1.1.0** (`cf spell-forge-for-electroblobs-wizardry-redux`, сторона 
 2. Заклинания на существующих механиках Redux (лучи, снаряды, призывы, баффы).
 3. ~~Заклинания, требующие новых сущностей/блоков~~ — **сделано** в 0.5.0.
 4. ~~Предметы-артефакты, связанные с ними~~ — **сделано** в 0.6.0 (кроме трёх, см. выше).
+
+## Порт дополнений 1.12.2: Wizardry Golems и Necromancer's Delight (поток 12)
+Решение владельца: портировать «потихоньку» (низкий приоритет, малыми порциями).
+
+### Источники и авторство
+| Дополнение | Автор | Исходники | Лицензия | Зависимости в 1.12.2 |
+|---|---|---|---|---|
+| Wizardry Golems 1.3.3 | WinDanesz (идеи — HatBot) | https://github.com/WinDanesz/WizardryGolems (ветка `1.12.2`, `c68f2d9`) | GPL-3.0 | EBWizardry, WizardryUtils, **Extra Golems** (skyjay1), Baubles |
+| Wizardry — Necromancer's Delight | WinDanesz | https://github.com/WinDanesz/WizardryNecromancersDelight (`0e52462`) | GPL-3.0 | EBWizardry, WizardryUtils, **Fish's Undead Rising** (Fish, `mod_lavacow`) |
+| Extra Golems 20.1.0.2 (1.20.1 Forge) | skyjay1 / MMD | https://github.com/MinecraftModDevelopmentMods/Extra-Golems (`dev-1.20.1`), CF 233300 файл 5206477 | zlib | — |
+| Fish's Undead Rising | Fish | исходников нет; CF 321139, версии 1.12.2 (1.6.x) и **1.16.5 (2.4.1)**, под 1.20.1 нет | ARR; условия: «декомпилировать и менять можно приватно, не перевыкладывать» | — |
+
+Оба дополнения — GPL-3.0: код и ассеты переносим свободно (сохраняем GPL для портов и шапку «© WinDanesz»).
+FUR — ARR с явным запретом выкладывать изменённое; по решению владельца (CLAUDE.md «Назначение и лицензии») это
+не причина отказываться, но это самый рискованный кусок — при претензии Fish убираем первым.
+
+### Где делаем: отдельные моды
+`mods-src/wizardry-golems` и `mods-src/necromancers-delight` (каркас — копия wizardry-restored: ModDevGradle legacyforge
++ Parchment, Redux 0.8.9 `compileOnly`). Почему не пакеты в wizardry-restored: у каждого своя жёсткая зависимость
+(Extra Golems / порт FUR), которая не нужна Restored; их можно выключить/убрать (в т.ч. по лицензии) не трогая
+Restored; namespace сохраняем оригинальный (`wizardrygolems`, `necromancersdelight`) — ассеты и lang ложатся как есть.
+
+### Опись: Wizardry Golems
+- **Заклинания (5):** Earth / Fire / Ice / Lightning Golemancy, Radiant (healing) Golemancy — все `minion`, advanced,
+  стоимость 50, перезарядка 260, жизнь 600 т.; на мастер-палочке стихии — «старший» голем (Obsidian / Flame / Winter /
+  Maelstrom/Spark / Gold).
+- **Миньоны (31):** обычные голем-типы Extra Golems (clay, terracotta, concrete, obsidian, oak log, leaves, hay/straw,
+  melon, sandstone, magma, nether brick, furnace, glowstone, mushroom, prismarine, tnt, bookshelf, gold, coal, bone,
+  crafting, ice) + свои (thunderstone, lodestone, spark, maelstrom, flame, permafrost, packed ice, snow, winter;
+  11 своих текстур). Кастующие (ISpellCaster): Flame, Winter, Spark, Lodestone, Maelstrom, Gold (лечит хозяина).
+- **Артефакты (36):** кольца/амулеты/шармы/пояс/голова/плащ — меняют состав призыва (Ancient Emperor → терракотовая армия,
+  Charcoal → 2 печных голема и т.п.), эффекты на смерти голема (землетрясение, молния, взрыв, снейры, ледяные сигилы),
+  ауры около голема, «Ring of the Golemancer» (вечный голем).
+- **Блоки (2):** Living Snow (+ TE, призывает снежных големов; генерация в мире), Permafrost (временный).
+- **Предметы:** книга/свиток Golemancy, Bottle of Living Snow; книжные полки Redux (bookshelf items).
+- **Лут:** инъекция `chests/dungeon_additions` в сундуки; лут снежного голема. **Звуки:** 2. **Lang:** en, **ru**, zh.
+- **Конфиг:** места инъекции лута, измерения Living Snow.
+
+### Опись: Necromancer's Delight
+- **Заклинания (20):** bound_bone_sword, bound_frozen_dagger, bound_spectral_dagger, bound_vespa_shield (предметы FUR),
+  holy_hand_grenade, ghost_bomb, wail_of_the_banshee (снаряды FUR), summon_vespa, conjure_banshee, conjure_mycosis,
+  summon_salamander (мобы FUR), summon_mana_leech, summon_elemental_leech (свои миньоны на модели паразита FUR),
+  stink_bomb, frost_bomb (свои снаряды), glowshroom (свой временный блок + блок FUR), corrode, trial_of_mushrooms
+  (грибы FUR), carcinize (сундук → мимик FUR).
+- **Артефакты (15):** Malice/Necromantic Ward, Amulet of Tenacity/Vigour, Bone Bag, Malevolent Ushabti (мумия FUR),
+  Book of Witchcraft, Cursed Scarab, Crown of Pests, Ring of Hatred (Forsaken FUR), Frigidbone Ring, Fallen Legion's
+  Ring (Unburied FUR), Ring of the Nameless, Thornbelt, Leechlink, Spell-Sapping Venom, Leech Crystal Amulet.
+- **Эффекты (2):** Poisonous Spore, Locusts. **Сущности свои (5):** stink/frost bomb, mana/elemental leech, vespa minion.
+- **Зависимость от FUR:** мобы Vespa, Banshee, Mycosis (ZombieMushroom), Salamander, Forsaken, Mummy, Unburied,
+  Parasite, Bone Worm, Weta, Mimic; снаряды Holy Grenade, Ghost Bomb, Sonic Bomb, Cactus Thorn; предметы Frozen Dagger,
+  Bone Sword, Spectral Dagger, Vespa Shield, Glowshroom/Cordyceps/Veil Shroom; эффекты FUR (Corroded и др.).
+  **≈16 из 20 заклинаний и ≈5 артефактов без FUR не работают.**
+
+### Что уже есть / маппинг API
+| 1.12.2 | 1.20.1 / Redux 0.8.9 / EG 20.1 |
+|---|---|
+| `EntityXxxGolemMinion extends GolemBase implements ISummonedCreature` (31 класс) | один `GolemBase.create(level, "golems:<тип>")` + `MinionSpell`/`MinionData` Redux (как наш железный голем в wizardry-restored); свои голем-типы — JSON `data/wizardrygolems/golems/golem/*.json` + модели/текстуры; кастующие — свой `Behavior` (реестр `BEHAVIOR_SERIALIZER` EG) |
+| WizardryUtils `SpellDynamicMinion`, `ItemArtefact`+Baubles | `MinionSpell` с подменой фабрики по артефактам/палочке; артефакты — `ArtifactItem`+эффект Redux (как 18 артефактов Restored 0.6.0), Curios вместо Baubles |
+| `SpellDynamicConjuration` | `ConjureItemSpell` Redux (`ConjureData` на любой предмет) |
+| `SpellProjectile`/`SpellThrowable` | `ProjectileSpell` Redux |
+| `spells/*.json` 1.12 | `data/<ns>/spells/*.json` Redux (формат как в Restored) |
+| loot inject по конфигу | Forge global loot modifier |
+| WorldGen Living Snow | `placed_feature` + biome modifier (только снежные биомы) |
+
+В Redux/Restored аналогов этих заклинаний нет (проверено по реестру 162 заклинаний).
+
+### Этапы
+1. **Golems-1:** каркас мода, зависимость Extra Golems 20.1.0.2 в `pack/` (`both`), 5 заклинаний на обычных типах EG,
+   lang (en + оригинальный ru), castcheck-тест. ~1–2 порции.
+2. **Golems-2:** 11 своих голем-типов (JSON + текстуры оригинала), кастующие голем-behavior'ы. ~2 порции.
+3. **Golems-3:** 36 артефактов, Living Snow/Permafrost, лут, JEI (своих типов рецептов нет — не нужен), test-client. ~2–3 порции.
+4. **ND-1:** то, что не требует FUR: stink/frost bomb, corrode (свой эффект), glowshroom (свой блок), mana/elemental
+   leech (своя простая модель), эффекты Poisonous Spore / Locusts, артефакты без FUR. ~2 порции.
+5. **ND-2:** порт нужного подмножества FUR (11 мобов + 4 снаряда + 5 предметов + эффекты) с декомпиляции jar 1.16.5
+   2.4.1 (API ближе к 1.20.1) — самый большой кусок (~4–6 порций: на каждого моба сущность, AI, модель, рендер,
+   анимации, звуки, лут). Затем оставшиеся 16 заклинаний и 5 артефактов. Альтернатива — подставить похожих мобов,
+   уже имеющихся в сборке (вопрос владельцу, см. отчёт).
