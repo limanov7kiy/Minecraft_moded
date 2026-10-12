@@ -1,16 +1,17 @@
 // Тест: The Lost Cities генерирует города в обычном Overworld по профилю из defaultconfigs (docs/lost-cities.md).
-// Считает долю «городских» чанков в сетке ±3000 блоков (по API Lost Cities), генерирует до 40 таких чанков
+// Считает долю «городских» чанков в сетке ±1500 блоков (шаг 8 чанков) (по API Lost Cities), генерирует до 12 таких чанков
 // (level.getChunk — полная генерация) и замеряет время; в городском чанке считает характерные блоки зданий.
 ServerEvents.loaded(event => {
   const LC = Java.loadClass('mcjty.lostcities.LostCities')
   const level = event.server.overworld()
   const info = LC.lostCitiesImp.getLostInfo(level)
   let total = 0, city = 0, hits = []
-  for (let cx = -190; cx <= 190; cx += 4) for (let cz = -190; cz <= 190; cz += 4) {
+  let tg = Date.now()
+  for (let cx = -96; cx <= 96; cx += 8) for (let cz = -96; cz <= 96; cz += 8) {
     total++
-    if (info.getChunkInfo(cx, cz).isCity()) { city++; if (hits.length < 40 && (cx + cz) % 3 == 0) hits.push([cx, cz]) }
+    if (info.getChunkInfo(cx, cz).isCity()) { city++; if (hits.length < 12) hits.push([cx, cz]) }
   }
-  console.info(`LCCHECK profile-grid: ${city}/${total} city chunks (${(100 * city / total).toFixed(1)}%)`)
+  console.info(`LCCHECK profile-grid: ${city}/${total} city chunks (${(100 * city / total).toFixed(1)}%), ${Date.now() - tg} ms for ${total} samples`)
   let t0 = Date.now(), blocks = 0, buildings = {}
   for (let h of hits) {
     let chunk = level.getChunk(h[0], h[1])
