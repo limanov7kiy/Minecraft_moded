@@ -1,0 +1,13 @@
+name = "Russian Translations and Fixes | Переводы модификаций на русский"
+filename = "rtf-2.8.4.zip"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/qcfGSnrv/versions/YSxTAlVL/RTF_v.2.8.4_1.20.x.zip"
+hash-format = "sha512"
+hash = "9389876b0232b55df0bca2875c4dc2a352dfdc5d7c3917fb7f5fe97e09dde29597d512712ccb4aeb861f3e9f4d198b09cccfcacc25651a09930f5dc6d7813f94"
+
+[update]
+[update.modrinth]
+mod-id = "qcfGSnrv"
+version = "YSxTAlVL"

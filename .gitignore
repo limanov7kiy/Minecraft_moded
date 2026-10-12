@@ -28,3 +28,4 @@ Thumbs.db
 # Тестовые серверы
 test-server/
 dist/
+__pycache__/
