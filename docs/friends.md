@@ -2,12 +2,12 @@
 
 Нужен лицензионный Minecraft Java Edition и ~8 ГБ свободной оперативки на ПК.
 
-Сборка и файлы из неё — только для нашей компании: никуда не выкладывать и не пересылать посторонним
-(в ней есть переделанные чужие моды, их нельзя распространять публично).
+Сборка некоммерческая, для нашей компании. В ней есть переделанные чужие моды (авторство — в `docs/`):
+не продавать и не выкладывать на Modrinth/CurseForge.
 
 ## 1. Поставить сборку (один раз)
-Ставится только из файла `.mrpack`. Инструкции с packwiz-installer и ссылкой на GitHub не подходят: репозиторий
-приватный, и GitHub отвечает 404 («Failed to download pack.toml»).
+Проще всего — из файла `.mrpack` (ниже). Вариант с автообновлением через packwiz-installer — в README;
+ссылка там ведёт на ветку `claude/affectionate-davinci-4gddoh` (с `main` будет 404 «Failed to download pack.toml»).
 
 1. Скачать **Prism Launcher** — https://prismlauncher.org (или Modrinth App — https://modrinth.com/app).
 2. Войти в аккаунт Microsoft: *Prism → Аккаунты → Добавить Microsoft*.

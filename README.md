@@ -9,10 +9,21 @@
 - Где поднимать сервер: [docs/hosting.md](docs/hosting.md)
 
 ## Установка для игроков
-Репозиторий **приватный** (в сборке переделанные чужие моды — см. CLAUDE.md), поэтому ссылки вида
-`raw.githubusercontent.com/...` и packwiz-installer у игроков не работают (GitHub отдаёт 404).
-Сборка раздаётся файлом: хост собирает `scripts/export-pack.sh` → `dist/*.mrpack` и лично передаёт друзьям;
-игрок импортирует его в Prism Launcher / Modrinth App. Пошагово — [docs/friends.md](docs/friends.md).
+Основной способ — файл `.mrpack` (импорт в Prism Launcher / Modrinth App), пошагово — [docs/friends.md](docs/friends.md).
+Хост собирает его `scripts/export-pack.sh` → `dist/*.mrpack` и передаёт друзьям.
+
+Альтернатива с автообновлением при каждом запуске — packwiz-installer (работает, пока репозиторий публичный):
+1. Prism: создать экземпляр Minecraft 1.20.1 + Forge 47.4.26, памяти 8 ГБ.
+2. Скачать [packwiz-installer-bootstrap.jar](https://github.com/packwiz/packwiz-installer-bootstrap/releases)
+   в папку `.minecraft` экземпляра.
+3. Настройки экземпляра → «Пользовательские команды» → «Команда перед запуском»:
+   ```
+   "$INST_JAVA" -jar packwiz-installer-bootstrap.jar https://raw.githubusercontent.com/limanov7kiy/Minecraft_moded/refs/heads/claude/affectionate-davinci-4gddoh/pack/pack.toml
+   ```
+   Ветки `main` нет — сборка живёт в `claude/affectionate-davinci-4gddoh`, отсюда `refs/heads/...` в ссылке
+   (со ссылкой на `main` будет 404 «Failed to download pack.toml»).
+   Около 24 модов CurseForge запрещают стороннее скачивание — при первом запуске установщик попросит скачать
+   их вручную по показанным ссылкам. С `.mrpack` этого шага нет.
 
 ## Сервер
 `dist/*-server.zip` из того же `scripts/export-pack.sh` (моды both+server, конфиги, установщик Forge,
