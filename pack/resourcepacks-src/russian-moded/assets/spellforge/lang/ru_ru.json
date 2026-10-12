@@ -1,0 +1,13 @@
+{
+  "block.spellforge.spell_forge": "Кузница заклинаний",
+  "block.spellforge.spell_forge.desc": "Поместите внутрь спектральную пыль и фолиант выбранной стихии, чтобы создать заклинание.",
+  "container.spellforge.spell_forge": "Кузница заклинаний",
+  "gui.spellforge.element": "Спектральная пыль",
+  "gui.spellforge.forge": "Кузница",
+  "gui.spellforge.no_spells": "Нет заклинаний",
+  "gui.spellforge.output": "Результат",
+  "gui.spellforge.rarity": "Фолиант арканы",
+  "gui.spellforge.title": "Кузница заклинаний",
+  "item.spellforge.novice_tome": "Фолиант арканы",
+  "item.spellforge.tome.desc": "Можно поместить в Кузницу заклинаний, чтобы создать заклинания соответствующего уровня."
+}

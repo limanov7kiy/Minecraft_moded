@@ -1,0 +1,19 @@
+{
+  "creativetab.mek_x_star.name": "Mekanism x Create: предметы Northstar",
+  "description.mek_x_star.module_heat_resistive": "Делает ваш MekaSuit устойчивым к жаре на горячих планетах",
+  "description.mek_x_star.module_oxygen_tank": "Добавляет нагрудной броне кислородный бак, из которого можно дышать",
+  "description.mek_x_star.module_oxygen_tank_expansion": "Увеличивает ёмкость кислородного бака",
+  "description.mek_x_star.module_space_suit": "Превращает MekaSuit в скафандр",
+  "description.mek_x_star.module_space_suit_insulation": "Добавляет MekaSuit теплоизоляцию, чтобы вы не замёрзли",
+  "item.mek_x_star.crushed_wool": "Измельчённая шерсть",
+  "item.mek_x_star.durasteel": "Дюрастиль",
+  "item.mek_x_star.heat_insulation": "Термоизоляция",
+  "item.mek_x_star.incomplete_oxygen_tank_expansion": "Незавершённое расширение кислородного бака",
+  "item.mek_x_star.insulation": "Изоляция",
+  "item.mek_x_star.pressurized_durasteel": "Герметичный дюрастиль",
+  "module.mek_x_star.module_heat_resistive": "Модуль термостойкости",
+  "module.mek_x_star.module_oxygen_tank": "Модуль кислородного бака",
+  "module.mek_x_star.module_oxygen_tank_expansion": "Модуль расширения кислородного бака",
+  "module.mek_x_star.module_space_suit": "Модуль скафандра",
+  "module.mek_x_star.module_space_suit_insulation": "Модуль теплоизоляции скафандра"
+}

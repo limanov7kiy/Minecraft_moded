@@ -178,6 +178,26 @@ Arknights: оставлять транслит-имена операторов, 
 первое, что стоит проверить при приёмке: что клиент стартует с `options.txt`, паки подхватились и в главном меню русский язык.
 Версии MPLOC (pack_format 88) на 1.20.1 «несовместимость» не выдают благодаря `supported_formats`, но это не проверено в запущенном клиенте.
 
+## 7. Этап 2 — перевод строк (2026-10-12)
+
+Переведено **11 485 строк** (+382 имён собственных оставлены как есть) в 156 пространствах имён: 54 пачки, перевод — Haiku-агентами
+по `scripts/lang_residual.py` (пачки по ≤ 250 ключей) → `scripts/lang_merge.py` (проверка набора ключей и плейсхолдеров) →
+`pack/resourcepacks-src/russian-moded/assets/<ns>/lang/ru_ru.json` → `scripts/build-ru-pack.sh` → `pack/resourcepacks/russian-moded.zip`
+(в индексе packwiz; исходники исключены `.packwizignore`). Пак стоит **последним** в `options.txt` (наивысший приоритет).
+`lang_validate.py lang` по всему паку: 0 ошибок (302 предупреждения — «лишние» ключи из `.lang`-файлов, безвредны).
+После пересчёта остаётся ~377 строк — это названия/имена, совпадающие с английским. Книги и гайды не трогались (по решению владельца).
+Замечания: у мода `bobsoriginiumdream` (и ряда Arknights-модов) в `en_us.json` лежит китайский текст — переведён с китайского;
+качество Haiku выборочно проверено на `arsmagicalegacy` (литературно, без потери плейсхолдеров), полная вычитка глазами — на приёмке клиента.
+Повторить пересчёт: `python3 scripts/lang_residual.py <jar> <out> --packs <5 zip> --skip-done pack/resourcepacks-src/russian-moded/assets`.
+
+### Находка проверки клиента (`test-client.sh`)
+Первый прогон дал `CLIENT OK` (371 с, главное меню по-русски), но в логе: *«Removed resource pack file/mploc-mods-v43.zip from options because it is no longer
+compatible»* — 1.20.1 принимает только `pack_format` 15, а у MPLOC он 88 (`supported_formats` в 1.20.1 не работает), у JustSomeTranslations — 34.
+Оба пака отброшены, держались только RTF/RTF+/Russian Delight/наш пак. Исправлено: `scripts/patch-rp-format.py` делает копию с `pack_format: 15`
+(содержимое без изменений; MIT и CC-BY-SA это допускают с сохранением авторства: **MPLOC**, **JustSomeTranslations**) → `pack/resourcepacks/mploc-mods-v43.zip`
+и `just-some-translations.zip` (обычные файлы в индексе packwiz, исходные `.pw.toml` — в `pack/resourcepacks-src/upstream/`, в `modlist.txt` помечены `#patched`).
+При обновлении версии MPLOC — перегнать скрипт и поправить имя в `options.txt`.
+
 ## Вопросы владельцу
 
 1. **Не блокирует.** Принять MPLOC (ИИ-перевод) и RTF+ базой, а остальное доводить своим паком сверху? Рекомендация: да.

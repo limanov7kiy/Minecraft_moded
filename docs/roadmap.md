@@ -176,7 +176,7 @@ Xvfb + Mesa llvmpipe, агент `scripts/clienttest/ExitTrace.java` ловит 
 без паков не переведено 25 678 (64 % покрытие); добавлены 5 ресурспаков-русификаторов (MPLOC, RTF+, RTF, Russian Delight,
 JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.txt`/`add-mods.sh`), остаток **12 011 строк** +
 ≈ 478 тыс. знаков книг; `pack/options.txt` — `lang:ru_ru` и порядок паков (`preserve`). `test-client.sh` не прогонялся.
-- [ ] Этап 2 (после решения владельца): перевод остатка пачками (≈ 48 для строк, ≈ 40 для книг), свой пак сверху.
+- [x] Этап 2 (строки): 11 485 строк переведены (`pack/resourcepacks-src/russian-moded` → `pack/resourcepacks/russian-moded.zip`, последним в `options.txt`), ветка `claude/russification-2`. Книги — по отзывам друзей (Ars Nouveau и Animus первыми).
 - [ ] Прогнать `scripts/test-client.sh` и убедиться, что язык/паки подхватываются; строка в `docs/friends.md`.
 
 ## Интеграция (ревью PR, поток «Ревью и интеграция», ветка `claude/confident-hypatia-2zqr1t`)

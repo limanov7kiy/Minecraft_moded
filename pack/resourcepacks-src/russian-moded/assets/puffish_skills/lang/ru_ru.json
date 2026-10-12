@@ -1,0 +1,10 @@
+{
+  "command.puffish_skills.level.add.success.multiple": "Добавлено уровней: %s в категорию %s для игроков: %s",
+  "command.puffish_skills.level.add.success.single": "Добавлено уровней: %s в категорию %s для %s",
+  "command.puffish_skills.level.get.success": "%3$s имеет уровень %1$s в категории %2$s",
+  "command.puffish_skills.level.set.success.multiple": "Установлен уровень %s в категории %s для игроков: %s",
+  "command.puffish_skills.level.set.success.single": "Установлен уровень %s в категории %s для %s",
+  "command.puffish_skills.no_level": "Уровень не включён для категории с ID %s",
+  "text.puffish_skills.buy_point": "Купить очко",
+  "tooltip.puffish_skills.cost": "Стоимость: %s"
+}
