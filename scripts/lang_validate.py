@@ -16,8 +16,15 @@ def ph(s):  # %1$s == %s по составу (порядок слов в рус�
     return collections.Counter(re.sub(r"%\d+\$", "%", x) for x in PH.findall(s))
 
 
+WRONG_TERMS = re.compile(r"ори(?:г|дж)и?ни?ум", re.I)  # Originium — «ориджиниум» (решение владельца 2026-10-12)
+
+
 def check(en, ru, label, errs, warns):
     for k, v in ru.items():
+        if WRONG_TERMS.search(v) and not re.search(r"ориджиниум", v, re.I):
+            warns.append(f"{label}: термин «ориджиниум», а не «оригиниум» {k}")
+        elif re.search(r"оригиниум|оригинум|ориджинум", v, re.I):
+            warns.append(f"{label}: термин «ориджиниум», а не «оригиниум» {k}")
         if k not in en:
             warns.append(f"{label}: лишний ключ {k}"); continue
         if not v.strip() and en[k].strip():
