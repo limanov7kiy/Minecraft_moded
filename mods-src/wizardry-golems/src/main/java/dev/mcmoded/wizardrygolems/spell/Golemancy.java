@@ -36,6 +36,13 @@ public class Golemancy extends MinionSpell<GolemBase> {
     }
 
     private final Function<CastContext, List<Summon>> plan;
+    /// Множитель времени жизни от артефактов (оригинал — `getLifeTimeModifiers`, например кольцо огненной големантии ×2).
+    private java.util.function.ToDoubleFunction<CastContext> lifetimeFactor = ctx -> 1;
+
+    public Golemancy lifetimeFactor(java.util.function.ToDoubleFunction<CastContext> factor) {
+        this.lifetimeFactor = factor;
+        return this;
+    }
 
     /// @param fallback тип для каста без игрока (раздатчик, NPC) — Redux тогда спавнит `MINION_COUNT` таких.
     /// @param plan     состав призыва для игрока/моба (артефакты и палочка могут его менять).
@@ -68,7 +75,11 @@ public class Golemancy extends MinionSpell<GolemBase> {
         MinionData data = Services.OBJECT_DATA.getMinionData(golem);
         data.setSummoned(true);
         data.setOwnerUUID(ctx.caster().getUUID());
-        setLifetime(golem, (int) ctx.modifiers().get("ebwizardry.duration", this.property(DefaultProperties.MINION_LIFETIME)));
+        int lifetime = (int) (ctx.modifiers().get("ebwizardry.duration", this.property(DefaultProperties.MINION_LIFETIME))
+                * lifetimeFactor.applyAsDouble(ctx));
+        if (PermanentGolem.claim(ctx.caster(), golem)) lifetime = -1; // Ring of the Golemancer: без срока жизни
+        setLifetime(golem, lifetime);
+        if (summon.type().getPath().equals("furnace")) golem.setFuel(1600); // как в оригинале: печному — запас топлива
         data.setShouldFollowOwner(this.shouldFollowOwner);
         data.setShouldDeleteGoals(this.shouldDeleteBaseGoals);
         data.setSearchNearbyTargets(true);

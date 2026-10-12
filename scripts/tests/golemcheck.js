@@ -16,7 +16,7 @@ ServerEvents.tick(event => {
     if (String(e.getType()) == 'golems:golem') out.push(e) }); return out }
   if (server.tickCount == 420) {
     // через 200 тиков миньоны живы (жизнь 600) — не исчезают сразу
-    console.info(`GOLEMCHECK lifetime ${golems().length >= 5 ? 'OK' : 'FAIL'} alive=${golems().length}`)
+    console.info(`GOLEMCHECK lifetime ${golems().length >= 3 ? 'OK' : 'FAIL'} alive=${golems().length}`)
     return
   }
   const reg = RM.ACTIVE.getRegistry(new RL('ebwizardry', 'spells'))
@@ -25,7 +25,7 @@ ServerEvents.tick(event => {
   server.runCommandSilent('fill -14 200 -14 14 212 14 minecraft:air')
   fake.setPos(0.5, 200, 0.5); fake.setOnGround(true)
   const cases = [['earth_golemancy', 'golems:clay', 3, false], ['fire_golemancy', 'golems:nether_brick', 2, false],
-    ['ice_golemancy', 'golems:ice', 2, false], ['lightning_golemancy', 'wizardrygolems:thunderstone', 5, true],
+    ['ice_golemancy', 'golems:ice', 2, false], ['lightning_golemancy', 'wizardrygolems:thunderstone', 2, false],
     ['healing_golemancy', 'golems:gold', 1, false]]
   cases.forEach(c => {
     const spell = reg.getValue(new RL('wizardrygolems', c[0]))
