@@ -301,6 +301,10 @@ Restored; namespace сохраняем оригинальный (`wizardrygolems
 - **Сделано:** Golems-1 — мод `mods-src/wizardry-golems` 0.1.0 (5 заклинаний Golemancy, тип голема `thunderstone`,
   ассеты и en/ru/zh оригинала, `tools/convert_lang.py`), `pack/mods/wizardry-golems-0.1.0.jar` + Extra Golems 20.1.0.2 (`#jar`).
   ru_ru: `lang_validate` 0 ошибок.
-- **Не проверено:** серверный тест прерван по стопу координатора (лимиты). Следующий шаг — прогнать:
+- **Golems-1 проверен** (PR #38). **Golems-2/3 — 0.2.0** (ветка `claude/wizardry-golems-2`): свои големы, касты, 36
+  артефактов, лут, Living Snow; сервер 13/13 (docs/compat.md). Не перенесено: книга/свиток Golemancy (заклинания идут в
+  обычные книги Redux), мана бутылки Living Snow, интеграция Electric Scatter с Ancient Spellcraft (его нет в сборке).
+  Следующий этап — ND-1 (Necromancer's Delight без мобов FUR).
+- Прогон теста:
   `TEST_COMMANDS=<файл с «#sleep 45»> EXTRA_SERVER_SCRIPTS=<папка с копией scripts/tests/golemcheck.js> scripts/test-server.sh <папка вне репо>`,
   ждать строк `GOLEMCHECK ... OK` (5 заклинаний + lifetime); затем test-client, docs/compat.md.

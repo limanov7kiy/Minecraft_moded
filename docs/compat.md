@@ -517,3 +517,20 @@ Mass Destruction Forge 1.1.2. Cataclysm/Mowzie's/Lycanites не дублирую
 - При первом запуске Extra Golems дописывает недостающие ключи `golems-common.toml` (WARN, безвредно).
 - Клиент: CLIENT OK (меню за 450 с), ошибок по `wizardrygolems` в логе нет.
 - Свои голем-типы — `data/wizardrygolems/golems/golem/*.json` с `"hidden": true` и без `blocks`: руками не строятся.
+
+### Wizardry Golems 0.2.0 — этапы 2–3 (поток 12, 2026-10-12)
+- 10 своих голем-типов оригинала (flame, winter, spark, lodestone, maelstrom, packed_ice, permafrost, snow, concrete,
+  strawthorns) + thunderstone; особые способности — по типу голема (`golem/SpecialGolems`): каст заклинаний Redux/Restored
+  своей целью `GolemSpellGoal` (у `GolemBase` нет `ISpellCaster`, `AttackSpellGoal` Redux не подходит), аура тока,
+  магический удар Spark, лечение Gold (в оригинале условие события было перевёрнуто и лечение не срабатывало), след Permafrost.
+- 36 артефактов — `ArtifactChannel.createArtifact` Redux (Curios: ring/necklace/charm/head/body/belt; слоты head/body/belt
+  включаются нашим `data/curios/entities`). Состав призыва и время жизни по артефактам, эффекты на смерти/ударе/аурах
+  (`golem/GolemArtifacts`). Нет в Redux → аналоги: Empowerment → атрибут `CAST_POTENCY` (+15%), Ice Shroud → состояние
+  Wizardry Restored, снейры/землетрясение — сущность и заклинание Restored (без Restored эти два эффекта молчат).
+- Добыча: пул в `ebwizardry:subsets/{uncommon,rare,epic}_artifacts` (таблицу Redux не заменяем; шанс n/(N+n)).
+- Living Snow: блок + BlockEntity, бутылка (без маны оригинала — только перезарядка 30 с), генерация `#forge:is_snowy`.
+- Исправлено относительно 0.1.0: «Големантия грозы» без артефактов — 2 обычных Thunderstone (как в оригинале), 5 малых — с
+  Electric Scatter; аура Thunderstone не бьёт других големов Extra Golems.
+- Сервер: `golemcheck.js` 13/13 OK (5 заклинаний, время жизни, аура, каст огня, след, 11 типов, Living Snow, добыча
+  163/463 из эпической выборки, кольцо в слоте Curios фейкового игрока → 2 бетонных голема).
+- KubeJS/Rhino: `const` внутри блока `if`/`try` обработчика тика даёт «redeclaration» — в тестах только `let`.
