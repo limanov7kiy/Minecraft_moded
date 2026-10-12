@@ -273,3 +273,10 @@ mr justenoughbreeding         # клиент: разведение мобов (A
 mr just-enough-professions-jep  # рабочие места жителей в JEI
 mr just-enough-beacons-reforged # клиент: что даёт маяк
 mr jea                        # поиск достижений в JEI (both)
+
+## Русификация (поток 6; rp = ресурспак с Modrinth, сторона client; порядок включения — pack/options.txt, docs/russification.md)
+rp mploc_mods                     # MPLOC: ИИ-переводы сотен модов, CC-BY-SA, нижний слой
+rp rtf-extension                  # RTF+: переводы + книги Patchouli/Tinkers/Oritech, AGPL, выше MPLOC
+rp rtf                            # RTF: Ad Astra, Twilight Delight и др. (MIT)
+rp russian-delight                # дополнения Farmer's Delight (MIT)
+rp just-some-translations-to-russian  # Xaero's World Map, Sodium/Embeddium (MIT)

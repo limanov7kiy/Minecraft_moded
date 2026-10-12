@@ -6,8 +6,11 @@ PACKWIZ="${PACKWIZ:-packwiz}"
 fail=0
 while read -r src slug _; do
   case "$src" in ''|\#*) continue ;; esac
-  [ -f "mods/$slug.pw.toml" ] && continue
+  dir=mods; cmd="$src"
+  # rp = ресурспак с Modrinth (кладётся в resourcepacks/, side=client)
+  [ "$src" = rp ] && { dir=resourcepacks; cmd=mr; }
+  [ -f "$dir/$slug.pw.toml" ] && continue
   echo ">> $src $slug"
-  if ! "$PACKWIZ" "$src" add "$slug" -y </dev/null; then echo "!! FAILED: $slug"; fail=1; fi
+  if ! "$PACKWIZ" "$cmd" add "$slug" -y </dev/null; then echo "!! FAILED: $slug"; fail=1; fi
 done < modlist.txt
 exit $fail
