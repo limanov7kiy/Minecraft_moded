@@ -9,7 +9,7 @@
 """
 import json, pathlib, re, sys, collections
 
-KEYS = {'text', 'title', 'heading', 'description', 'subtitle', 'tooltip', 'header', 'caption'}
+KEYS = {'name', 'text', 'title', 'heading', 'description', 'subtitle', 'tooltip', 'header', 'caption'}
 TAG = re.compile(r'\$\([^)]*\)|#\w+#|%[sd]|\{\d\}')
 CYR = re.compile('[А-Яа-яЁё]')
 
