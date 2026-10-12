@@ -234,6 +234,7 @@
   "death.attack.mna_lightning": "%s был поражён электричеством",
   "death.attack.mna_lightning.item": "%s был поражён электричеством",
   "death.attack.mna_lightning.player": "%s был поражён электричеством от руки %s",
+  "death.attack.mna_shuriken.player": "%s не смог поймать сюрикен, брошенный %s",
   "death.attack.mna_wtfboom": "%s слишком сильно ударил кактус, а затем утонул, пытаясь плавать в лаве",
   "effect.mna.bulwark": "Бастион",
   "effect.mna.camouflage": "Маскировка",

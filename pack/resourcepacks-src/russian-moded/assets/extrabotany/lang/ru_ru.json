@@ -1,5 +1,7 @@
 {
   "advancement.extrabotany:hundred_block_pierce": "Бай Бу Чуань Ян",
+  "advancement.extrabotany:sekai_no_hakoniwa": "Мир в шкатулке",
+  "advancement.extrabotany:sekai_no_hakoniwa.desc": "Создайте Королевский сад",
   "block.extrabotany.blood_enchantress": "Кровавая чародейка",
   "block.extrabotany.blood_enchantress.reference": "Сделка, скованная кровью и тенью",
   "block.extrabotany.enchanter": "Зачарователь",
@@ -121,6 +123,7 @@
   "item.extrabotany.frost_ring": "Кольцо мороза",
   "item.extrabotany.jackie_chan_ring": "Кольцо Джеки Чана",
   "item.extrabotany.music_disc_gaia3": "Изувеченная музыкальная пластинка",
+  "item.extrabotany.music_disc_gaia3.desc": "Запретная граница",
   "item.extrabotany.parkour_ring": "Кольцо паркура",
   "item.extrabotany.pure_daisy_pendant": "Подвеска чистой ромашки",
   "item.extrabotany.spider_ring": "Кольцо паука",

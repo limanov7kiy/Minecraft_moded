@@ -10,10 +10,22 @@
   "tag.createbigcannons.block_bronze": "Бронзовые блоки",
   "tag.createbigcannons.block_cast_iron": "Блоки чугуна",
   "tag.createbigcannons.block_nethersteel": "Блоки нетерской стали",
+  "tag.createbigcannons.block_steel": "Стальной блок",
+  "tag.createbigcannons.ingot_brass": "Латунный слиток",
   "tag.createbigcannons.ingot_bronze": "Бронзовые слитки",
   "tag.createbigcannons.ingot_cast_iron": "Чугунные слитки",
+  "tag.createbigcannons.ingot_copper": "Медный слиток",
+  "tag.createbigcannons.ingot_iron": "Железный слиток",
   "tag.createbigcannons.ingot_nethersteel": "Слитки нетерской стали",
+  "tag.createbigcannons.ingot_steel": "Стальной слиток",
   "tag.createbigcannons.nugget_bronze": "Бронзовые самородки",
   "tag.createbigcannons.nugget_cast_iron": "Чугунные самородки",
-  "tag.createbigcannons.nugget_nethersteel": "Самородки нетерской стали"
+  "tag.createbigcannons.nugget_copper": "Медный самородок",
+  "tag.createbigcannons.nugget_iron": "Железный самородок",
+  "tag.createbigcannons.nugget_nethersteel": "Самородки нетерской стали",
+  "tag.createbigcannons.nugget_steel": "Стальной самородок",
+  "tag.createbigcannons.sheet_brass": "Латунный лист",
+  "tag.createbigcannons.sheet_copper": "Медный лист",
+  "tag.createbigcannons.sheet_iron": "Железный лист",
+  "tag.createbigcannons.sheet_steel": "Стальной лист"
 }

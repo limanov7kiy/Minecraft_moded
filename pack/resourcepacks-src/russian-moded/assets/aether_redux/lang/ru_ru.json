@@ -1,3 +1,19 @@
 {
-  "aether_redux.menu_title.redux": "The Aether: Redux"
+  "aether.pro_tips.line.aether_redux.wyndsprouts": "Можно посадить семена ветровых ростков, а когда они вырастут, собрать их дроп и испечь из него вкусные бейглы!",
+  "aether_redux.menu_title.blight": "Aether Redux - Земля Поветрия",
+  "aether_redux.menu_title.cloudcaps": "Aether Redux - Земля облачных колпаков",
+  "aether_redux.menu_title.dungeon": "Aether Redux - Подземелье",
+  "aether_redux.menu_title.gilded": "Aether Redux - Позолоченный лес",
+  "aether_redux.menu_title.redux": "The Aether: Redux",
+  "aether_redux.menu_title.skyfields": "Aether Redux - Небесные равнины",
+  "block.aether_redux.locked_sentrite_bricks": "Запертые сентритовые кирпичи",
+  "block.aether_redux.potted_luxweed": "Лакс-трава в горшке",
+  "block.aether_redux.potted_skysprouts": "Небесные ростки в горшке",
+  "block.aether_redux.potted_wyndsprouts": "Ветровые ростки в горшке",
+  "gui.aether_redux.infusion_tooltip": "Можно провести инфузию, нажав ПКМ по осколку занита",
+  "gui.aether_redux.shift_info": "Удерживайте [%s], чтобы получить больше информации...",
+  "item.aether_redux.slider_music_disc": "Музыкальная пластинка «Скользящий камень»",
+  "item.aether_redux.slider_music_disc.desc": "Эмиль ван Криекен — Месть лабиринта",
+  "lore.item.aether_redux.slider_music_disc": "Тяжёлая музыкальная пластинка. Она всё ещё проигрывает эхо жужжания. На ней выгравирована размытая надпись: «Labyrinth's Vengeance» by Emile van Krieken. Эти пластинки иногда выпадают, когда один Страж-камень убивает другой.",
+  "subtitles.aether_redux.item.accessory.equip_valkyrie_ring": "Кольцо валькирии: звяканье"
 }
