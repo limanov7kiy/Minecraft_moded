@@ -414,7 +414,7 @@ Arknights Weapon) применяются без ошибок. Микрофон, 
 - `online-mode=false`: тест-сервер (`test-server.sh`, новый мир) — `Done`, предупреждение «OFFLINE/INSECURE MODE» ожидаемо.
   Simple Voice Chat стартует, пишет «Running in offline mode — encryption is not secure» (шифрование голоса слабее, настройки не нужны).
 - Мод авторизации: **Sol's AuthLogin 1.20.1-1.3.1** (Modrinth `sols-authlogin`, side=server; лицензия ARR — см. «Назначение и лицензии»).
-  Отвергнуты: `auth` (это датапак с «кикам крашем»), `nedologin`/`authlogic` (нужны и на клиенте), `offlineauth` (требует TrueUUID).
+  Отвергнуты: `auth` (это датапак с «кик крашем клиента»), `nedologin`/`authlogic` (нужны и на клиенте), `offlineauth` (требует TrueUUID).
   Загрузился без ошибок, команды зарегистрированы. **Подвох**: по умолчанию `requireClientMod = true` — игроков без клиентского мода
   кикает; в `pack/config/solsauthlogin-common.toml` выставлено `false` (мод только на сервере; без клиентской части не работает лишь токен-автовход).
   Вход реальным клиентом (`/register`, `/login`, заморозка до входа) не проверялся.
