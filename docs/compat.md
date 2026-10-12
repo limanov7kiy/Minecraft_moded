@@ -442,3 +442,8 @@ packwiz-installer не может скачать мод без `url` в `.pw.tom
   (Benimatic, Tamaized и др.), Too Many Glyphs (DerringersMods), Twilight Forest Bosses Resurrection (DimasStudio),
   Umbral Skies (Drullkus).
 - Размеры: все меньше 100 МБ; самые большие — Gathering Torches Become Sunlight (76 МБ) и The Twilight Forest (23 МБ).
+
+### JEI: Imbuement Altar Redux (mm-compat 0.5.0, поток 7)
+Клиентский `@JeiPlugin` в mm-compat добавляет категорию Imbuement Altar (центр + 4 приёмника → результат, 120 рецептов) и каталист-алтарь.
+JEI и Redux — только `modCompileOnly`; сервер без JEI загружается (проверено `Done`). Клиент с входом на сервер: категория есть, ошибок нет.
+Первая сборка падала на рецепте `fix_ruined_spell_book` (`getReceptacleIngredients()` = null) — исправлено.
