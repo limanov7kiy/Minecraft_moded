@@ -419,6 +419,12 @@ Arknights Weapon) применяются без ошибок. Микрофон, 
   кикает; в `pack/config/solsauthlogin-common.toml` выставлено `false` (мод только на сервере; без клиентской части не работает лишь токен-автовход).
   Вход реальным клиентом (`/register`, `/login`, заморозка до входа) не проверялся.
 
+## Заброшенные города — The Lost Cities (поток 6, 2026-10-12)
+- Мод `the-lost-cities` 1.20-7.5.7 (both), профиль в `pack/defaultconfigs/lostcities-server.toml` → `rarecities` (≈ 6 % городских чанков вместо 37 % у `default`).
+  Ключи конфига — в таблице `[profiles]`, иначе Forge «исправляет» их на пустые и города не включаются. `defaultconfigs/` теперь копируют
+  `test-server.sh` и `export-pack.sh`. Тест `scripts/tests/lostcities.js` (`LCCHECK OK`), подробности и выбор — `docs/lost-cities.md`.
+- Не связано с мод-конфликтами: в логе `NoClassDefFoundError mcjty/theoneprobe` — от Ars Magica Legacy (необязательная связка с TOP), не от Lost Cities.
+
 ## Открытые вопросы
 - Клиент в облаке проверяется `scripts/test-client.sh` (без GPU и звука); шейдеры, микрофон и macOS — только у игрока (`docs/client-checklist.md`).
 
