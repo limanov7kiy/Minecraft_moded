@@ -190,6 +190,14 @@ Arknights: оставлять транслит-имена операторов, 
 качество Haiku выборочно проверено на `arsmagicalegacy` (литературно, без потери плейсхолдеров), полная вычитка глазами — на приёмке клиента.
 Повторить пересчёт: `python3 scripts/lang_residual.py <jar> <out> --packs <5 zip> --skip-done pack/resourcepacks-src/russian-moded/assets`.
 
+### Находка проверки клиента (`test-client.sh`)
+Первый прогон дал `CLIENT OK` (371 с, главное меню по-русски), но в логе: *«Removed resource pack file/mploc-mods-v43.zip from options because it is no longer
+compatible»* — 1.20.1 принимает только `pack_format` 15, а у MPLOC он 88 (`supported_formats` в 1.20.1 не работает), у JustSomeTranslations — 34.
+Оба пака отброшены, держались только RTF/RTF+/Russian Delight/наш пак. Исправлено: `scripts/patch-rp-format.py` делает копию с `pack_format: 15`
+(содержимое без изменений; MIT и CC-BY-SA это допускают с сохранением авторства: **MPLOC**, **JustSomeTranslations**) → `pack/resourcepacks/mploc-mods-v43.zip`
+и `just-some-translations.zip` (обычные файлы в индексе packwiz, исходные `.pw.toml` — в `pack/resourcepacks-src/upstream/`, в `modlist.txt` помечены `#patched`).
+При обновлении версии MPLOC — перегнать скрипт и поправить имя в `options.txt`.
+
 ## Вопросы владельцу
 
 1. **Не блокирует.** Принять MPLOC (ИИ-перевод) и RTF+ базой, а остальное доводить своим паком сверху? Рекомендация: да.
