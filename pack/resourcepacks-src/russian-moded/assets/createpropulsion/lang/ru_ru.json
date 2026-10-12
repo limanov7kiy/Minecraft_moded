@@ -23,5 +23,6 @@
   "item.createpropulsion.cloudfarer_music_disc": "Музыкальная пластинка",
   "item.createpropulsion.ion_thruster": "Ионный двигатель",
   "item.createpropulsion.redstone_helm": "Штурвал на редстоуне",
+  "itemGroup.createpropulsion.base": "Create: Propulsion",
   "sounds.createpropulsion.prop_loop": "Вращение пропеллера"
 }

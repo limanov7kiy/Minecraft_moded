@@ -2,5 +2,6 @@
   "attack.death.createaddition.barbed_wire": "%1$s пытался пересечь колючую проволоку",
   "attack.death.createaddition.barbed_wire.player": "%1$s пытался пересечь колючую проволоку, сражаясь с %2$s",
   "attack.death.createaddition.tesla_coil": "%1$s получил смертельный электрический разряд",
-  "attack.death.createaddition.tesla_coil.player": "%1$s получил смертельный электрический разряд, сражаясь с %2$s"
+  "attack.death.createaddition.tesla_coil.player": "%1$s получил смертельный электрический разряд, сражаясь с %2$s",
+  "itemGroup.createaddition.main": "Create Crafts & Additions"
 }

@@ -19,7 +19,7 @@
   "item.occultism_rs.ritual_satchel_t2": "Артизанская ритуальная сумка",
   "item.occultism_rs.ritual_satchel_t2.auto_tooltip": "Улучшенная ритуальная сумка, которая может поставить весь круг ритуала сразу.\nПКМ по любому блоку предпросмотра, чтобы поставить все блоки предпросмотра из сумки.\nShift+ПКМ, чтобы открыть сумку и добавить ингредиенты ритуала.\nПКМ по Золотой чаше, чтобы убрать круг ритуала и собрать ингредиенты.\nПредмет с прочностью используется, пока не останется 1 единица прочности, после чего эффект свечения пропадает.\n",
   "item.occultism_rs.ritual_satchel_t2.tooltip": "%s привязана к этой сумке.",
-  "itemGroup.occultism_rs_tab": "Ритуальная сумка Occultism",
+  "itemGroup.occultism_rs_tab": "Occultism Ritual Satchel",
   "ritual.occultism_rs.craft_ritual_satchel_t1.conditions": "Не все требования этого ритуала выполнены.",
   "ritual.occultism_rs.craft_ritual_satchel_t1.finished": "Ритуал успешно завершён: создание ученической ритуальной сумки.",
   "ritual.occultism_rs.craft_ritual_satchel_t1.interrupted": "Ритуал прерван: создание ученической ритуальной сумки.",

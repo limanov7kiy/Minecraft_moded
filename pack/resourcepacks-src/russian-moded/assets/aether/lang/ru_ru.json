@@ -3,6 +3,7 @@
   "advancement.aether.prevent_swet_spawning.desc": "Отпугните свитов, установив свитовое знамя",
   "aether.banned_item": "Ваш %s нельзя использовать в этой среде.",
   "aether.loot": "Добыча Эфира",
+  "aether.menu_title.the_aether": "The Aether",
   "config.aether.client.audio.blue_aercloud_bounce_sfx": "Заставляет синие эфирные облака издавать характерные колеблющиеся звуки при отскоке от них",
   "config.aether.client.audio.disable_aether_boss_music": "Отключает музыку боссов Эфира; работает, только если «Disables Aether music manager» выключено",
   "config.aether.client.gui.enable_hammer_cooldown_overlay": "Включает оверлей вверху экрана для перезарядки Молота Kingbdogz",
