@@ -169,6 +169,8 @@ def main():
         hp, dmg, armor = (r or {}).get("hp"), (r or {}).get("dmg"), (r or {}).get("armor")
         L = lyc.get(eid)
         src = "атрибут"
+        if "stats" in info:     # существо создаётся «малым» (драконы растут) — берём замер взрослого из тестов, см. notes
+            hp, dmg, armor = info["stats"]
         if L:                   # Lycanites задаёт характеристики в JSON при создании, атрибут по умолчанию — 20
             hp, dmg, armor, src = L.get("health"), L.get("damage"), L.get("armor"), "creatures/*.json"
         reward = info.get("reward", "")
