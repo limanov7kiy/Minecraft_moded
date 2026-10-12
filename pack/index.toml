@@ -873,11 +873,6 @@ file = "mods/cbc_nukes-2.1.1-mmport.jar"
 hash = "9cfaa0742987ac26b70b08a994b1b0f38abc41cf642baaf637f1d9179a0533f9"
 
 [[files]]
-file = "mods/cerbons-api.pw.toml"
-hash = "a1289bd6e91b9402c74f833a59cf830ac686b7051676df6385769f4159ff4058"
-metafile = true
-
-[[files]]
 file = "mods/cinematic-cataclysm.pw.toml"
 hash = "51a26b15b158cb016944b8ac19d3badc251ccde6ce58d8143e0a37524ea09ce7"
 metafile = true
@@ -1193,11 +1188,6 @@ metafile = true
 [[files]]
 file = "mods/jei.pw.toml"
 hash = "df724beef20c6a6458b6eced0a36d6ac72dffe00849676f80bdf328207f6d061"
-metafile = true
-
-[[files]]
-file = "mods/just-enough-beacons-reforged.pw.toml"
-hash = "31eee4d9d7f0cf328d2508badf0e76753cbcb49bc218d3db72658e68a9c11bee"
 metafile = true
 
 [[files]]

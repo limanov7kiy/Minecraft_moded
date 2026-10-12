@@ -8,8 +8,10 @@
 ## Что стоит
 JEI 15.62, **JER** (дроп мобов, руды, торговля), **JEED** (эффекты), **Just Enough Mekanism Multiblocks**, Jade (+аддоны, jade-vs),
 добавлено в этом потоке (`pack/modlist.txt`, раздел «JEI»): **Just Enough Breeding** (клиент — разведение мобов),
-**Just Enough Professions** (клиент — рабочие места жителей), **Just Enough Beacons** (клиент, + Cerbon's API),
-**Just Enough Advancements** (both — поиск достижений).
+**Just Enough Professions** (клиент — рабочие места жителей), **Just Enough Advancements** (both — поиск достижений).
+Just Enough Beacons (+ Cerbon's API) убран (поток 10): под 1.20.1 есть только сборка «1.20.4», ей нужен Cerbon's API, а его
+общие миксины коллизий (AABB.intersects, Shapes.create, VoxelShape.collide, Entity.getBoundingBox) в одиночном мире работают на
+встроенном сервере; польза (подсказка «что даёт маяк») не стоит риска.
 
 ## Как проверить покрытие
 ```
