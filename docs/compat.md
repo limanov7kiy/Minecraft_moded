@@ -514,4 +514,4 @@ Mass Destruction Forge 1.1.2. Cataclysm/Mowzie's/Lycanites не дублирую
 - Русификация: у мода `ru_ru` 98.7 %, не хватает 2 строк экрана конфига ("General" → «Общие», "Table of Elevation radius" →
   «Радиус стола возвышения»). Арены: `lich_tower` (Overworld), `gauntlet_arena` (Незер), `obsidilith_arena` (Край), Цветок пустоты — пещера.
 - Если решат добавлять: `mr bosses-of-mass-destruction-forge` + `mr cerbons-api` (side both) + 2 строки русификации + описания в
-  `scripts/boss_info.py` (черновик в истории ветки claude/boss-ice-and-fire, коммит «Bosses of Mass Destruction + Cerbon's API»).
+  `scripts/boss_info.py` (где/как: арены и блоки призыва — см. выше; числа брать из `bossdump.js`).
