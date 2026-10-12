@@ -153,6 +153,10 @@ file = "kubejs/data/aether_treasure_reforging/recipes/valkyrie_upgrade_smithing_
 hash = "61c01488bd1bc9113ef1a64e626a0ba9dbbe7d4178d4d8767c0e9cb3d8cdf4a2"
 
 [[files]]
+file = "kubejs/data/alexsmobsinteraction/patchouli_books/amiwiki/book.json"
+hash = "3190cea8e6dbc4495746a90f9944c2308b6a3231dc366060b5f74ef84d4f7482"
+
+[[files]]
 file = "kubejs/data/ancient_aether/recipes/ancient_rune.json"
 hash = "61c01488bd1bc9113ef1a64e626a0ba9dbbe7d4178d4d8767c0e9cb3d8cdf4a2"
 
@@ -195,6 +199,10 @@ hash = "8112f26d69bd40c25dd1a89cd7089a2f9a81ddcf49de3202d43f8b3a8c083588"
 [[files]]
 file = "kubejs/data/creatingspace/creatingspace/rocket_accessible_dimension/venus.json"
 hash = "5623b9dfc19c8c2c33475572fc36184f538a986fc151dd20c7d02036535a83ca"
+
+[[files]]
+file = "kubejs/data/dimdungeons/patchouli_books/guide_book/book.json"
+hash = "e486eaa37e89f8a264d01785307e2f0379ec6b5efb5df0afd843047c5720b23d"
 
 [[files]]
 file = "kubejs/data/irons_spellbooks/loot_tables/chests/catacombs/crypt_loot.json"
@@ -1518,7 +1526,7 @@ metafile = true
 
 [[files]]
 file = "mods/ru-lang-1.0.0-client.jar"
-hash = "d5e4349b420db1a6c1ed81648c336f17be16425fd7f5b5119582545625cd44e0"
+hash = "88e7921148d20429392652eda66ca32466c330af523364d3de313ff22a326e76"
 
 [[files]]
 file = "mods/sarkazs_furnace_side_fables-0.2.3-forge-1.20.1.jar"
