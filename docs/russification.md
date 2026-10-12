@@ -216,25 +216,37 @@ compatible»* — 1.20.1 принимает только `pack_format` 15, а у
 
 ## 8. Перевод книг (поток 11, 2026-10-12)
 
-Повод — отзыв владельца: «не перевелась книга кодекс мага из Mana and Artifice». Книги переводятся по отзывам, по одной.
+Повод — отзыв владельца: «не перевелась книга кодекс мага из Mana and Artifice». Книги переводятся по отзывам. **Аудит выше (478 тыс. знаков) оказался завышен:**
+у большинства книг текст лежит не в файлах книги, а в lang-ключах (`i18n: true`), а те уже русские; считать надо «сырой» текст в файлах + непереведённые ключи
+(скрипт-прикидка: `scripts/books/patchouli_units.py extract` и сверка ключей с `ru_ru.json` мода и пака).
 
-| Книга | Формат | Знаков | Статус |
-|---|---|---:|---|
-| **Mana and Artifice** — Кодекс (`assets/mna/guide/`) | **свой JSON-формат мода** (не Patchouli), не в паках; мод читает `guide/en_us.json`, затем поверх `guide/<язык>.json` из любого ресурспака | ≈ 246 тыс. (516 записей, 1249 единиц) | **переведена** → `assets/mna/guide/ru_ru.json` |
-| **Animus** `codex_animus` | Patchouli, текст в файлах `en_us`; lang-ключи (названия записей) закрыты MPLOC | ≈ 86 тыс. (506 единиц, 96 файлов) | **переведена** → `animus/patchouli_books/codex_animus/ru_ru/` |
-| **Ars Nouveau** `worn_notebook` | Patchouli, **весь текст в lang-ключах** (131 тыс. знаков в таблице выше — это структура файлов), `ru_ru.json` мода уже закрывает книгу | 2 тыс. | не хватало 18 ключей новой версии (Сброс, Перемотка, Реле красного камня, нити…) — добавлены в `ars_nouveau/lang/ru_ru.json` |
+| Книга | Формат | Статус |
+|---|---|---|
+| **Mana and Artifice** — Кодекс (`assets/mna/guide/`) | свой JSON-формат мода (не Patchouli): мод читает `guide/en_us.json`, поверх — `guide/<язык>.json` из любого ресурспака | **переведена целиком** (516 записей, ≈ 246 тыс. знаков) → `assets/mna/guide/ru_ru.json` |
+| **Animus** `codex_animus` | Patchouli, текст в файлах; lang-ключи закрыты MPLOC | **переведена** (96 файлов, ≈ 86 тыс.) → `animus/…/ru_ru/` |
+| **Ars Nouveau** `worn_notebook` | текст весь в lang-ключах (131 тыс. в таблице §1 — структура JSON) | не хватало 18 ключей версии 4.12.7 — добавлены |
+| **Alex's Mobs Interaction** `amiwiki` | Patchouli, сырой текст + `book.json` в `data/` | **переведена** (54 файла) + название/описание/подзаголовок через `pack/kubejs/data/alexsmobsinteraction/patchouli_books/amiwiki/book.json` |
+| **Dimensional Dungeons** `guide_book` | Patchouli; в jar `ru_ru`-папка книги неполная; **lang лежал как `ru_RU.json`** (1.20.1 читает только `ru_ru.json` → русского мода не было вообще) | `lang/ru_ru.json` (копия + 51 ключ), полная `ru_ru/` книги (58 строк + 3 файла patch_notes), `book.json` через kubejs |
+| **Ars Magica Legacy** `arcane_compendium` | текст в lang-ключах (русские), сырых строк 26 | переведены |
+| Аддоны Ars (Tome of Blood, Ars Ocultas, Ars Instrumentum, Ars Creo), Bob's Originium `bobbook`, ExtraBotany `exguide` | сырой текст в файлах | переведены (53 строки; bobbook — с китайского; exguide — тестовая запись) |
+| Superb Warfare `manual` | lang-ключи, не хватает 3 (52 знака) | осталось |
 
-Инструменты (`scripts/books/`): `mna_guide.py` — разложить кодекс MnA на единицы (`extract`), собрать `ru_ru.json` (`build`), проверить
-структуру/цвета/переводы строк (`check`); `patchouli_units.py` — то же для Patchouli-книг с сырым текстом (`extract`/`apply`/`check`: теги `$(..)`,
-`#плейсхолдеры#`, кириллица); переведённые единицы лежат в `scripts/books/mna_guide_data/` и `scripts/books/animus_data/` (правка перевода =
-правка `units_ru.json` + `build`/`apply`). Дополнительно `lang_validate.py book` — 0 ошибок для Animus. Названия предметов в тексте берутся из
-уже принятых в игре переводов (`ru_ru.json` мода, MPLOC), поэтому странные имена вроде «Путинка воздуха» (Air Pinch в `mna/lang/ru_ru.json`)
-в книге совпадают с игрой — править их надо в lang-файле, затем пересобрать книгу.
+**Названия MnA.** Родной `ru_ru.json` мода — машинный перевод с мусором («Путинка воздуха», «Советский староста», «Персональный по вызову»,
+«Построить портал»…). Вычитаны все 1631 коротких названий (предметы, блоки, существа, эффекты, чары, заклинания, ритуалы, конструкты): 660 исправлено в
+`assets/mna/lang/ru_ru.json` пака (в основном серии деталей конструктов «материал + деталь», кристаллы химерита, амулеты, манаплетение, команды конструктов),
+кодекс пересобран под новые названия. **Сомнительные игры слов — смотреть в игре:** «Метла-сервис» (Broom Service), «Комплектный шик», «Всё, беру себе
+малус!», «Король тараканов» вместо Asmongold, «Древёнки» (мн. ч. Barkling), «Заклеймённый чернокнижник».
 
-**Остаток непереведённых книг ≈ 212 тыс. знаков** (было 478): Ars Magica Legacy `arcane_compendium` 85,7 тыс., аддоны Ars (Elemental, Additions, Tome of Blood,
-Instrumentum, Too Many Glyphs, Technica/Delight/Ocultas/Creo/Artifice) ≈ 74 тыс. (часть — в lang-ключах, как у Ars Nouveau; проверять сначала `lang`-покрытие),
-Alex's Mobs Interaction 25,3 тыс., Superb Warfare 14,7 тыс., Extra Botany `exguide` + Bob's Originium 12,6 тыс. Порядок — по отзывам.
-Приёмка глазами (открыть кодекс MnA/Анимус в игре) — см. `docs/client-checklist.md`.
+**Lang-файлы с неверным именем.** Проверены все jar (в т.ч. jar-in-jar) на `ru_RU.json`, `ru_ru.lang`, регистр в `lang/` и в папках книг: проблема только у
+Dimensional Dungeons (исправлено); у Mahou Tsukai есть и `ru_ru.lang`, и `ru_ru.json` (нормально); Lost Cities — только `en_US.lang` (английские, не наши).
+
+Инструменты (`scripts/books/`): `mna_guide.py` — кодекс MnA (`extract`/`build`/`check`: цвета, переводы строк, структура); `patchouli_units.py` — Patchouli-книги с
+сырым текстом (`extract`/`apply`/`check`: теги `$(..)`, `#плейсхолдеры#`, кириллица). Единицы перевода лежат в `scripts/books/*_data/` (`units_en.json`, `units_ru.json`):
+правка перевода = правка `units_ru.json` + `build`/`apply` + `scripts/build-ru-pack.sh`. `lang_validate.py book` — 0 ошибок для Animus, AMI, Dimensional Dungeons,
+Ars Magica Legacy, аддонов Ars. Названия предметов в тексте книг берутся из `ru_ru.json` мода, поэтому при смене названия книгу надо пересобрать.
+
+**Остаток:** Superb Warfare (3 ключа); книги, которые закрывают сторонние паки (Blood Magic — 206 тыс. знаков, Botania — 22 тыс., Iron's `iss_guide_book`, Caerula Arbor, Twilight Delight) —
+проверять в игре, наличие русского зависит от версии пака. Приёмка глазами (открыть кодекс MnA, Анимус, AMI Wiki, гайд Dimensional Dungeons) — см. `docs/client-checklist.md`.
 
 ## Вопросы владельцу
 
