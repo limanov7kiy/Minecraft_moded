@@ -30,5 +30,6 @@ public class WizardryGolems {
         modBus.addListener(dev.mcmoded.wizardrygolems.item.GolemItems::onCreativeTab);
         net.minecraftforge.common.MinecraftForge.EVENT_BUS.register(dev.mcmoded.wizardrygolems.golem.SpecialGolems.class);
         net.minecraftforge.common.MinecraftForge.EVENT_BUS.register(dev.mcmoded.wizardrygolems.golem.GolemArtifacts.class);
+        net.minecraftforge.common.MinecraftForge.EVENT_BUS.register(dev.mcmoded.wizardrygolems.item.GolemLoot.class);
     }
 }
