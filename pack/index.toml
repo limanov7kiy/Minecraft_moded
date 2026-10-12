@@ -1119,6 +1119,10 @@ hash = "902bac905b93271f02bd0951a22bac06a3da24f5c237fcaeb469e14a7679e508"
 metafile = true
 
 [[files]]
+file = "mods/fishs-undead-rising-port-0.1.0.jar"
+hash = "29a7768fad7d23cc32589d4f8973ed7c183d90ff4b02df9a663d045a75f0af62"
+
+[[files]]
 file = "mods/gaboulibs-shim-1.0.0.jar"
 hash = "88593902bf6f6c8e5dc8595bfc54aec61f4a9210ca846e7a997b70d7b34c8799"
 
@@ -1464,6 +1468,10 @@ metafile = true
 file = "mods/mythicbotany.pw.toml"
 hash = "5a73062be3919a4efa0f8386c8b9f08f0fbcccc035070a01949007beb5bdc83b"
 metafile = true
+
+[[files]]
+file = "mods/necromancers-delight-0.1.0.jar"
+hash = "3d5cae8bb057e28c570c4c75837f888b350c800289368d91ce9151f1fd9854ee"
 
 [[files]]
 file = "mods/northstar-redux.pw.toml"
