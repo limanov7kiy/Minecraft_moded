@@ -97,6 +97,16 @@ INFO = {
     "iceandfire:myrmex_queen": {"ru": "Королева мирмексов", "where": "Улей мирмексов (джунгли/пустыня)", "kind": "босс"},
     "iceandfire:gorgon": {"ru": "Горгона", "where": "Храм горгоны", "phases": "взгляд превращает в камень — нужно зеркало/слепота", "kind": "босс"},
     "iceandfire:troll": {"ru": "Тролль", "where": "горы, лес"},
+    # --- Bosses of Mass Destruction (поток 9). Здоровье/урон/броня — config/bosses_of_mass_destruction.json5 ---
+    "bosses_of_mass_destruction:lich": {"ru": "Ночной лич", "where": "Башня лича (структура lich_tower) — Overworld", "summon": "подняться в башню и активировать алтарь на вершине",
+        "phases": "кометы, ракеты с замедлением, призыв мертвецов; вечная ночь на время боя", "reward": "опыт; звезда души (если перед боем убито 50 нежитей)", "gear": "щит, лук, быстрое лечение",
+        "size": "большой", "notes": "Параметр eternalNighttime=true: ночь на время боя."},
+    "bosses_of_mass_destruction:void_blossom": {"ru": "Цветок пустоты", "where": "Пещеры Overworld (рядом с лилиями пустоты)", "summon": "блок «Призыватель цветка пустоты» в пещере",
+        "phases": "закапывание, шипы, споры, лепестковые клинки", "size": "огромный", "notes": "Хитбокс 10×8 блоков."},
+    "bosses_of_mass_destruction:gauntlet": {"ru": "Перчатка незера", "where": "Арена Перчатки (gauntlet_arena) — Незер", "summon": "арена из древнего резного чернита; подойти к ней",
+        "phases": "удары, лазеры, вращающийся удар", "reward": "древние обломки при смерти (spawnAncientDebrisOnDeath)", "size": "огромный"},
+    "bosses_of_mass_destruction:obsidilith": {"ru": "Обсидилит", "where": "Арена Обсидилита (obsidilith_arena) — Край", "summon": "обсидиановый алтарь на арене",
+        "phases": "руны, вспышки, наковальни, взрывы", "reward": "столб при смерти (spawnPillarOnDeath)", "size": "большой"},
     # --- Прочее (Arknights и свои) ---
     "gcrevival:skeleton_boss": {"ru": "Скелет-босс (Galacticraft Revival)", "where": "Лунный данж, Луна (Ad Astra)", "notes": "Из нашего порта Galacticraft Revival."},
     "botania:pink_wither": {"ru": "Розовый Иссушитель", "where": "Botania (Pink Wither)"},
