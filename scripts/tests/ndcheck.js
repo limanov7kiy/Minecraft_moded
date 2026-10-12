@@ -3,7 +3,7 @@
 ServerEvents.tick(event => {
   const server = event.server
   const t = server.tickCount
-  if (t != 200 && t != 240 && t != 300) return
+  if (t != 200 && t != 240 && t != 245 && t != 255 && t != 300 && t != 400) return
   const RL = Java.loadClass('net.minecraft.resources.ResourceLocation')
   const RM = Java.loadClass('net.minecraftforge.registries.RegistryManager')
   const NdFake = Java.loadClass('net.minecraftforge.common.util.FakePlayerFactory')
@@ -39,6 +39,17 @@ ServerEvents.tick(event => {
     aim(-290, 60); report('glowshroom_cast', cast('glowshroom') === true, '')
     return
   }
+  if (t == 245 || t == 255) {
+    // диагностика: где бомбы и куда смотрит фейковый игрок
+    level.getEntitiesOfClass(Entity, new AABB(-320, 0, -40, -170, 320, 40)).forEach(e => {
+      let ty = String(e.getType()); if (ty.startsWith('necromancersdelight:')) console.info(`NDDIAG t=${t} ${ty} pos=${e.getX().toFixed(2)},${e.getY().toFixed(2)},${e.getZ().toFixed(2)} v=${e.getDeltaMovement()}`) })
+    console.info(`NDDIAG fake pos=${fake.getX()},${fake.getY()},${fake.getZ()} look=${fake.getLookAngle()} eye=${fake.getEyeY()}`)
+    return
+  }
+  if (t == 400) {
+    let hs = mobsAt(-289.5, 3.5, 2); report('poisonous_spore', hs.length >= 1 && hasEff(hs[0], 'effect.minecraft.poison'), `husks=${hs.length}`)
+    return
+  }
   // t == 300
   let h = mobsAt(-199.5, 4.5, 4); report('stink_bomb', h.length == 1 && hasEff(h[0], 'effect.mod_lavacow.soiled'), `husks=${h.length} hp=${h.length ? h[0].getHealth() : '-'}`)
   h = mobsAt(-229.5, 4.5, 4); report('frost_bomb', h.length == 1 && hasEff(h[0], 'effect.ebwizardry.frost'), `husks=${h.length} hp=${h.length ? h[0].getHealth() : '-'}`)
@@ -50,14 +61,11 @@ ServerEvents.tick(event => {
   // Corroded: урон +10%
   // Rhino не видит SRG-имя hurt — урон командой /damage
   if (h.length == 1) { let before = h[0].getHealth(); server.runCommandSilent('execute positioned -259.5 200 4.5 run damage @e[type=minecraft:husk,distance=..1.5,limit=1] 4 minecraft:magic'); report('corroded_damage', Math.abs((before - h[0].getHealth()) - 4.4) < 0.05, `dmg=${before - h[0].getHealth()}`) }
-  // Poisonous Spore на фейковом игроке отравляет хаска рядом (раз в 19 т. — даём эффект и тикаем вручную)
-  server.runCommandSilent('summon minecraft:husk -289.5 200 1.5 {NoAI:1b,PersistenceRequired:1b}')
-  fake.setPos(-289.5, 200, 0.5)
+  // Poisonous Spore: стойка для брони с эффектом отравляет хаска рядом (проверка на t=400)
+  server.runCommandSilent('summon minecraft:husk -289.5 200 3.5 {NoAI:1b,PersistenceRequired:1b}')
+  server.runCommandSilent('summon minecraft:armor_stand -289.5 200 2.5 {PersistenceRequired:1b}')
+  server.runCommandSilent('effect give @e[type=minecraft:armor_stand,x=-290,y=200,z=2,distance=..2] necromancersdelight:poisonous_spore 60 0')
   let Eff = Java.loadClass('net.minecraft.world.effect.MobEffectInstance')
-  let spore = Java.loadClass('net.minecraftforge.registries.ForgeRegistries').MOB_EFFECTS.getValue(new RL('necromancersdelight', 'poisonous_spore'))
-  fake.addEffect(new Eff(spore, 200, 0))
-  for (let i = 0; i < 20; i++) { fake.tickCount = fake.tickCount + 1; spore.applyEffectTick(fake, 0) }
-  h = mobsAt(-289.5, 1.5, 2); report('poisonous_spore', h.length >= 1 && hasEff(h[0], 'effect.minecraft.poison'), `husks=${h.length}`)
   // Амулет стойкости в слоте Curios: замедление не накладывается
   try {
     let Curios = Java.loadClass('top.theillusivec4.curios.api.CuriosApi')
