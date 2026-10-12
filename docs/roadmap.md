@@ -170,6 +170,15 @@ Xvfb + Mesa llvmpipe, агент `scripts/clienttest/ExitTrace.java` ловит 
   (нет GUI-лаунчера; установщик повторяет его правила), macOS → `docs/client-checklist.md`.
 - Следующий шаг: после порта Spellbooks — `scripts/test-client.sh` до `CLIENT OK`, затем раздать чек-лист игрокам.
 
+### Поток 6 — Русификация
+Ветка `claude/russification`; документ — `docs/russification.md`, таблица по модам — `docs/russification-audit.md`.
+Этап 1 (2026-10-12) сделан: аудит (`scripts/lang_audit.py`, `lang_packs_cover.py`, `font_audit.py`) — 72 053 ключа,
+без паков не переведено 25 678 (64 % покрытие); добавлены 5 ресурспаков-русификаторов (MPLOC, RTF+, RTF, Russian Delight,
+JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.txt`/`add-mods.sh`), остаток **12 011 строк** +
+≈ 478 тыс. знаков книг; `pack/options.txt` — `lang:ru_ru` и порядок паков (`preserve`). `test-client.sh` не прогонялся.
+- [ ] Этап 2 (после решения владельца): перевод остатка пачками (≈ 48 для строк, ≈ 40 для книг), свой пак сверху.
+- [ ] Прогнать `scripts/test-client.sh` и убедиться, что язык/паки подхватываются; строка в `docs/friends.md`.
+
 ## Интеграция (ревью PR, поток «Ревью и интеграция», ветка `claude/confident-hypatia-2zqr1t`)
 Цикл 1 — 2026-10-10:
 - **PR #1, поток 2** (голосовой чат, экспорт, UDP): проверен и **влит** (`013bf69`). `add-mods.sh` пусто,
