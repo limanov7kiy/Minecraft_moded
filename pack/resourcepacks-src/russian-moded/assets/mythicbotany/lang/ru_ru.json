@@ -1,0 +1,9 @@
+{
+  "enchantment.mythicbotany.hammer_mobility.desc": "Увеличивает скорость атаки молота.",
+  "item.mythicbotany.inactive_alsteel_template": "Странный шаблон кузнечного дела",
+  "message.mythicbotany.alfheim_not_loaded": "Измерение Альфхейм не загружено. Попробуйте перезапустить игру или сервер.",
+  "tooltip.mythicbotany.alfsteel_template.applies_to": "Снаряжение из терраштейна",
+  "tooltip.mythicbotany.alfsteel_template.slot_base": "броня, оружие или инструмент из терраштейна",
+  "tooltip.mythicbotany.alfsteel_template.slot_description": "Добавить %s",
+  "tooltip.mythicbotany.alfsteel_template.upgrade": "Улучшение альфштейном"
+}

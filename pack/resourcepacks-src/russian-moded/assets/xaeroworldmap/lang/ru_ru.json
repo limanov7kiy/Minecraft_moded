@@ -1,0 +1,6 @@
+{
+  "gui.xaero_pac_add_claiming_anchor": "Добавить якорь захвата",
+  "gui.xaero_pac_remove_claiming_anchor": "Удалить якорь захвата",
+  "gui.xaero_pac_remove_claiming_anchor_confirm_line1": "Удалить следующий якорь захвата и все приваты только в его радиусе?",
+  "gui.xaero_pac_remove_claiming_anchor_confirm_line2": "Это действие нельзя отменить! Чанк якоря: %1$s"
+}
