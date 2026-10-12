@@ -3,7 +3,7 @@
 ServerEvents.tick(event => {
   const server = event.server
   const t = server.tickCount
-  if (t != 240 && t != 300) return
+  if (t != 200 && t != 240 && t != 300) return
   const RL = Java.loadClass('net.minecraft.resources.ResourceLocation')
   const RM = Java.loadClass('net.minecraftforge.registries.RegistryManager')
   const NdFake = Java.loadClass('net.minecraftforge.common.util.FakePlayerFactory')
@@ -22,9 +22,13 @@ ServerEvents.tick(event => {
   const hasEff = (e, id) => { let ok = false; e.getActiveEffects().forEach(i => { if (String(i.getEffect().getDescriptionId()) == id) ok = true }); return ok }
   // арены по X: -200 (вонючая), -230 (морозная), -260 (разъедание), -290 (светогриб, споры, амулет)
   const arenas = [-200, -230, -260, -290]
-  if (t == 240) {
+  if (t == 200) {
+    // чанки арен грузим заранее: в том же тике снаряды и луч не находят сущности
     server.runCommandSilent('forceload add -310 -20 -180 20')
     server.runCommandSilent('time set midnight')
+    return
+  }
+  if (t == 240) {
     arenas.forEach(x => { server.runCommandSilent(`fill ${x - 8} 199 -8 ${x + 8} 199 8 minecraft:stone`); server.runCommandSilent(`fill ${x - 8} 200 -8 ${x + 8} 210 8 minecraft:air`) })
     ;[-200, -230, -260].forEach(x => server.runCommandSilent(`summon minecraft:husk ${x}.5 200 4.5 {NoAI:1b,PersistenceRequired:1b}`))
     let aim = (x, pitch) => { fake.setPos(x + 0.5, 200, 0.5); fake.yRot = 0; fake.xRot = pitch; fake.yHeadRot = 0; fake.setOnGround(true) }
@@ -45,7 +49,7 @@ ServerEvents.tick(event => {
   report('glowshroom', shrooms == 1, `blocks=${shrooms}`)
   // Corroded: урон +10%
   // Rhino не видит SRG-имя hurt — урон командой /damage
-  if (h.length == 1) { let before = h[0].getHealth(); server.runCommandSilent(`damage ${h[0].getStringUUID()} 4 minecraft:magic`); report('corroded_damage', Math.abs((before - h[0].getHealth()) - 4.4) < 0.05, `dmg=${before - h[0].getHealth()}`) }
+  if (h.length == 1) { let before = h[0].getHealth(); server.runCommandSilent('execute positioned -259.5 200 4.5 run damage @e[type=minecraft:husk,distance=..1.5,limit=1] 4 minecraft:magic'); report('corroded_damage', Math.abs((before - h[0].getHealth()) - 4.4) < 0.05, `dmg=${before - h[0].getHealth()}`) }
   // Poisonous Spore на фейковом игроке отравляет хаска рядом (раз в 19 т. — даём эффект и тикаем вручную)
   server.runCommandSilent('summon minecraft:husk -289.5 200 1.5 {NoAI:1b,PersistenceRequired:1b}')
   fake.setPos(-289.5, 200, 0.5)
