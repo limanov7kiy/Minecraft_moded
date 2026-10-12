@@ -1,0 +1,13 @@
+name = "RTF Extension"
+filename = "rtf-extension-2.7.0.zip"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/IUa4fOEk/versions/Jc3ynK1l/%C2%A7eRTF%2B%20v.2.7.0%C2%A70_%C2%A78%C2%A70.zip"
+hash-format = "sha512"
+hash = "8a0ef134a4aafb1420be139259591a5bd7182f978fb1e1f8309186a03d982f5aafe02a3735d03197485e32f5748be8a622051cbda097202a7bf4ed939b4e7e10"
+
+[update]
+[update.modrinth]
+mod-id = "IUa4fOEk"
+version = "Jc3ynK1l"

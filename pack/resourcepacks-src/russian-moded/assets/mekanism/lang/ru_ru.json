@@ -1,0 +1,22 @@
+{
+  "advancements.mekanism.advanced_qio_drive.title": "Высокоплотное хранилище",
+  "constants.mekanism.debug_title": "Отладка Mekanism",
+  "death.attack.mekanism.laser.player": "%1$s сгорел, пытаясь сбежать от %2$s.",
+  "energy.mekanism.forge": "Энергия Forge",
+  "energy.mekanism.joules": "Джоуль",
+  "energy.mekanism.joules.plural": "Джоулей",
+  "generic.mekanism.mb": "%1$s мБ",
+  "generic.mekanism.per_mb": "%1$s/мБ",
+  "generic.mekanism.per_tick": "%1$s/т",
+  "generic.mekanism.stored.mb": "%1$s: %2$s мБ",
+  "network.mekanism.mb_per_tick": "%1$s мБ/т",
+  "network.mekanism.mb_stored": "%1$s (%2$s мБ)",
+  "robit_skin.mekanism.ace": "Флаг Ace",
+  "robit_skin.mekanism.agender": "Флаг агендеров",
+  "robit_skin.mekanism.aro": "Флаг ароэйс",
+  "robit_skin.mekanism.bi": "Флаг би",
+  "robit_skin.mekanism.enby": "Флаг небинарных",
+  "robit_skin.mekanism.genderfluid": "Флаг гендерфлюидных",
+  "robit_skin.mekanism.pan": "Флаг пан",
+  "tooltip.mekanism.jei.amount.with.capacity": "%1$s / %2$s мБ"
+}

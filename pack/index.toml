@@ -33,6 +33,10 @@ file = "config/canary.properties"
 hash = "8b34973d33381c95c7bb176234d5ed927110c5b81c0c0d82b5ebbf06dea97b81"
 
 [[files]]
+file = "config/iceandfire-common.toml"
+hash = "4e686e3616fc1885ce4380e95fe8c9d32be13536693da638e27b091372c0777b"
+
+[[files]]
 file = "config/jei/client/default/jei-client.ini"
 hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
 
@@ -1149,6 +1153,11 @@ hash = "7cbc557e23729a2ab1a0dfa8832359edb640a9c4b2f1919e7c43cd5c7ccfdf3c"
 metafile = true
 
 [[files]]
+file = "mods/ice-and-fire-dragons.pw.toml"
+hash = "3e8cbae6a944592a6485b8c5e62b0794fe950ba8a6b155302d08f4205b9ad9b3"
+metafile = true
+
+[[files]]
 file = "mods/immediatelyfast.pw.toml"
 hash = "1a9564ded8e9cd1f843f9de7fc87ffbf73033aab51494205458b0e58cc0ab194"
 metafile = true
@@ -1203,6 +1212,11 @@ hash = "5d03d20b037a8b7a4765ded0e25146fc970964be46401dff5f9b1059875084e8"
 metafile = true
 
 [[files]]
+file = "mods/jea.pw.toml"
+hash = "f94528a852c02941bd471c278f66f509373e7d19ce58412f8a0b1bce71699a7f"
+metafile = true
+
+[[files]]
 file = "mods/jei.pw.toml"
 hash = "df724beef20c6a6458b6eced0a36d6ac72dffe00849676f80bdf328207f6d061"
 metafile = true
@@ -1218,8 +1232,18 @@ hash = "15605633c96dd7f8a66442aa3fdfa98bb26bd0286804e13f72ef06bb593e49a4"
 metafile = true
 
 [[files]]
+file = "mods/just-enough-professions-jep.pw.toml"
+hash = "39b758976dbb1e357b8186a34a5f94033a2597aa7716e6e5790c8d8301448ea8"
+metafile = true
+
+[[files]]
 file = "mods/just-enough-resources-jer.pw.toml"
 hash = "02977d28acd2089c39dbe5b65fd08e78094fb650b4afc810f757cb5cea1fbda8"
+metafile = true
+
+[[files]]
+file = "mods/justenoughbreeding.pw.toml"
+hash = "24fb5c776d59ad27e3084e98dda0e9f6e0fc5dc1bf7e021a075bb5e5d92c953b"
 metafile = true
 
 [[files]]
@@ -1382,8 +1406,8 @@ hash = "c25495262a852dc02886ec8c4b695f30e53264a2e3d881dd36ee9de16a1ef499"
 metafile = true
 
 [[files]]
-file = "mods/mm-compat-0.4.0.jar"
-hash = "211fc96abb12c0adb44b75650dd034c244c1fc65c311d1b52fce13eace46ac25"
+file = "mods/mm-compat-0.5.0.jar"
+hash = "10136eb69537c3a2c9c5d81c7d57a700281ddf419d5f79b8aba09c82d2289da8"
 
 [[files]]
 file = "mods/mm-perf-0.1.0-client.jar"
@@ -1803,4 +1827,32 @@ hash = "9d6c1b79bffbd22944012a0fd7318753402515ad5b37c1d2562f55a687aecc6e"
 
 [[files]]
 file = "options.txt"
-hash = "a5c5083ac629ed4f03ea86f758af46f53b99009a80bb2cc5af4d9c8583fd66b8"
+hash = "7c3b7c40bb0f3b1395bf12b24142a6ea96d271babd8cfed959e4f72f791193bc"
+preserve = true
+
+[[files]]
+file = "resourcepacks/just-some-translations.zip"
+hash = "dac71a33fe4eb0aa6f0bbfd5a2c857406239f1842c5bb33b00b142c2809f557d"
+
+[[files]]
+file = "resourcepacks/mploc-mods-v43.zip"
+hash = "12f629a0986e312a44c8c924d27de706b04da749f6cf40eabbfa2145af30a2fd"
+
+[[files]]
+file = "resourcepacks/rtf-extension.pw.toml"
+hash = "8b547208a0a882127858dae3936457fc8508a358a1bf7141f138298899c28b1b"
+metafile = true
+
+[[files]]
+file = "resourcepacks/rtf.pw.toml"
+hash = "96d3840b4485a0ff7c215418d8c2f6648c4e1cc39ff483cfb1e030e669bf936a"
+metafile = true
+
+[[files]]
+file = "resourcepacks/russian-delight.pw.toml"
+hash = "afcd7b135787e17fd9e33692c615af916202e9ea9f5a3ad34a075fc466de0bb8"
+metafile = true
+
+[[files]]
+file = "resourcepacks/russian-moded.zip"
+hash = "591f3905ae7e806ac5849888582e58055d9fe3b8f8f3fe2cb49b0881d35955c6"

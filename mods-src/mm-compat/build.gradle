@@ -37,6 +37,10 @@ dependencies {
     compileOnly "org.jetbrains.kotlin:kotlin-stdlib:1.9.23"
     // Lycanites Mobs — только FearVisualHandler (его имена свои, не маппинги MC — remap не нужен)
     compileOnly "maven.modrinth:lycanites-mobs:${lycanites_version}"
+    // JEI — плагин категории Imbuement Altar (JEI в рантайме необязателен: класс плагина грузит только сам JEI)
+    modCompileOnly "maven.modrinth:jei:${jei_version}"
+    // Electroblob's Wizardry Redux — тип рецепта и класс ImbuementAltarRecipe
+    modCompileOnly "maven.modrinth:electroblobs-wizardry-redux:${redux_version}"
 }
 
 processResources {
