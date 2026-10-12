@@ -156,7 +156,7 @@
 - [x] Добавлены Just Enough Breeding, Professions, Beacons (+ Cerbon's API), Advancements; сервер `Done`, клиент `CLIENT OK` и вход в мир.
 - [x] KubeJS: `missing_mod_refs.js` правит только теги, `space_rockets.js` убирает рецепты ракет Ad Astra и прячет их из JEI — нужные рецепты не скрыты.
 - [x] Ошибки JEI в логе клиента (Blue Skies, mekmm, JER) — собственные баги модов, `docs/compat.md`.
-- [ ] Следующая задача: JEI-категория Imbuement Altar для Redux (~0,5 дня, mm-compat) — требует согласования.
+- [x] JEI-категория Imbuement Altar для Redux — mm-compat 0.5.0 (отдельный PR).
 
 ### Поток 5 — Проверка клиента
 Клиент в облаке: `scripts/test-client.sh <папка>` (Forge через portablemc, моды из `.mrpack` как у Prism,
