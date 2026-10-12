@@ -1,0 +1,13 @@
+name = "Arknights origin furs"
+filename = "arknights_furs-1.0.2-1.20.1.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/4IVqzWnc/versions/HwjXqexi/arknights_furs-1.0.2-1.20.1.jar"
+hash-format = "sha512"
+hash = "5fe2bb6469e32ead3563b76c0db0d4c4685b270324f575c1774b25db06e0358227cff95a58e5a20bbcc3be9c17a59d741b8a1b311f9b09ba253da3a439523620"
+
+[update]
+[update.modrinth]
+mod-id = "4IVqzWnc"
+version = "HwjXqexi"

@@ -684,6 +684,11 @@ hash = "4e81241ba2da06f425efc5e09fb6b38470125c1581c39e1310c5843a0b96ec76"
 metafile = true
 
 [[files]]
+file = "mods/arknights-furs.pw.toml"
+hash = "96f2b06db17bd9ee36932e48867ba82bd20279c1cafa7633f98c69e0308a5df8"
+metafile = true
+
+[[files]]
 file = "mods/arknights-origins-originium-arts.pw.toml"
 hash = "553f04d8e9fa446874e0e3a50c86b8b77c12e9e6626c360d50e2d10b77315c5b"
 metafile = true
@@ -1367,6 +1372,10 @@ hash = "0a48579ca8d4575a0c2cadbee30a2f396591e86f1dabad4e41b5125c2c70dbef"
 metafile = true
 
 [[files]]
+file = "mods/mnaw-1.20.1-forge-0.2.1-alpha-mmport.jar"
+hash = "adacedc3b41b66d6e7df86a248efb20d6d65ff8dec8ce1bd27c9381383bdeecb"
+
+[[files]]
 file = "mods/modernfix.pw.toml"
 hash = "a9aeaaedd47d724add417a08520589504fc7d56a5c0580db41d7b448ac3623d5"
 metafile = true
@@ -1425,6 +1434,10 @@ metafile = true
 file = "mods/oculus.pw.toml"
 hash = "f83b253ca6a8e6f2f847952704da0e1fb00e65cbb10b7c9cb15d1a1780618da0"
 metafile = true
+
+[[files]]
+file = "mods/origin_visuals-1.0.5-mmport-client.jar"
+hash = "ad1cc3d5b72eb659156ffb716ae5ba2085ed03bc064de2b4b212961c698c851b"
 
 [[files]]
 file = "mods/originiumarts.pw.toml"

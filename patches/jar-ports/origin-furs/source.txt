@@ -1,0 +1,8 @@
+# Origin Furs - Unofficial Forge Port 1.0.5 (автор pandaismyname1, MIT; оригинал Origin Furs — Fabric) —
+# собран под AzureLib 2.x, в сборке AzureLib 3.1 без старого API. Порт: старый API встраивается внутрь jar
+# (копия AzureLib 2.0.39, MIT, автор AzureDoom; LICENSE_AzureLib в jar) в пакет dev/mcmoded/port/originfurs/azl.
+url https://cdn.modrinth.com/data/ieRca4TX/versions/JtMO0hhV/origin_visuals-1.0.5.jar
+sha512 84730120f4931368bc871f8f14dc950c224715d19221db5c8342881f1f4abddbe3247846cfb1613b8c52cde4d79bf0ed2e660c993ab90903fcb64183c5eda268
+embed https://cdn.modrinth.com/data/7zlUOZvb/versions/IsRPr4JF/azurelib-neo-1.20.1-2.0.39.jar b21419714b8e3307b5c57bf31f2dc692feb5a72e11ff7185b7279d52ae5eaac52dac519472776a5710ef3be4f6980a8123ef395f716ee6aadf07f9599f1a4481
+out origin_visuals-1.0.5-mmport-client.jar
+shims dev/mcmoded/port/originfurs

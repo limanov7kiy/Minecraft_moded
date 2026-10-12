@@ -22,6 +22,8 @@
    поэтому `origin-furs-unofficial-forge-port` и `arknights-furs` вручную помечены
    `side = "client"` (AzureLib остаётся на обеих сторонах — он нужен Cataclysm Spellbooks на сервере). **После `packwiz update` проверить, что пометка не слетела.**
    **Поток 5:** оба мода **убраны** — Origin Furs собран под AzureLib 2.x, а в сборке AzureLib 3.1 (см. «Проверка клиента», п. К3).
+   **Поток 4b:** возвращены — Origin Furs портом `pack/mods/origin_visuals-1.0.5-mmport-client.jar` (К3); суффикс
+   `-client.jar` — `fetch-mods.py` не кладёт такой jar на сервер (замена пометки `side = "client"`).
 4. Lycanites Mobs 0.1.0-alpha: в jar нет `lycanitesmobs.refmap.json`, хотя конфиг миксинов на него ссылается —
    миксины к ванильным классам (`StructureAccessor`, `ReloadCommandMixin`, клиентский `LightTextureMixin`) в
    настоящей игре не применялись (`/reload` не перечитывал данные Lycanites, на клиенте ломался эффект освещения).
@@ -333,6 +335,23 @@ unsupported`; в серверном zip клиентских нет. Совпа�
   Миксин падает → «broken mod state» → вылет. **Убраны** Origin Furs и Arknights Furs (обе только клиентские,
   на сервер и реестры не влияют). Вернуть можно портом (задача потоку 4): переходник старого API AzureLib
   внутри jar Origin Furs (`scripts/jarport`) или собрать Origin Furs под AzureLib 3.
+  **Решено портом (поток 4b):** готовой версии под AzureLib 3.x нет (Modrinth: Origin Furs 1.0.5 от 2024-10,
+  Arknights Furs 1.0.2). В AzureLib 3.1 старого API нет целиком (GeoModel/GeoBone/GeoObjectRenderer/анимации заменены
+  Az*-рендером), поэтому не переходники, а **встроенная копия**: 195 классов AzureLib 2.0.39 (MIT, AzureDoom; транзитивное
+  замыкание от ссылок мода) переносятся в jar Origin Furs в пакет `dev/mcmoded/port/originfurs/azl` — новое правило
+  `prefix` в `scripts/jarport/JarPort.java` и строка `embed` в `patches/jar-ports/build.sh` (`patches/jar-ports/origin-furs`).
+  Поведение — как у AzureLib 2, с AzureLib 3.1 копия не пересекается. Платформенные сервисы AzureLib 2 (ServiceLoader →
+  NeoForge-классы; их сетевой канал `azurelib:main` занят AzureLib 3.1) заменены прокси `OriginFursPort`
+  (`mods-src/jar-ports`): события рендера не шлются, `AzureLib.initialize()` → только загрузчик `geo/`/`animations/`
+  встроенного кэша (на клиенте). Arknights Furs кода под AzureLib не содержит (только ресурсы `origin_visuals`) —
+  возвращён как есть. Проверено: linkcheck — 31 «несвязанная» ссылка, все на клиентские классы Minecraft (на сервере
+  их нет, мод клиентский), ссылок на `mod/azure` не осталось; сервер до `Done`; `CLIENT OK`, в логе ни ошибок
+  встроенной AzureLib, ни провалов миксинов Origin Furs. Предупреждение Forge `Unable to find registry with key
+  origin_visuals:furs` (ObjectHolder, не фатально) — особенность самого мода. Рендер шерсти в облаке не проверен:
+  клиент (без YSM) зашёл на сервер, раса Vulpo выдана `/origin set`, но мир не догрузился — JEI на старте строит
+  поисковый индекс по подсказкам всех предметов (больше часа на 4 CPU; с `tooltipSearchMode = DISABLED` — 3 мин), а
+  сервер рядом с клиентом упал по ServerHangWatchdog (тик 60 с, нехватка CPU, не порт). Рендер проверяет игрок —
+  пункт в `docs/client-checklist.md`.
 - К4. ~~**Cataclysm Spellbooks 1.2.9 × L_Ender's Cataclysm 3.31 — БЛОКЕР**~~ — **решено портом** (поток 4, п. 14):
   вылет клиента при регистрации рендереров (`NoClassDefFoundError .../Ancient_Remnant_Rework_Renderer`) и 9 несвязанных
   ссылок (частицы `*Data`, ракета Иссушителя, урон лазером, рендер и сон Древнего Остатка). В сборке
@@ -380,7 +399,7 @@ Arknights Weapon) применяются без ошибок. Микрофон, 
 | Factions And Curiosities | 1.3.1 | Modrinth | M&A, Curios | добавлен |
 | MNAOverpowered | 1.20.1-0.11.1 | Modrinth | M&A | добавлен (QoL-твики) |
 | Dragon Magic And Relics | 3.2.14 | Modrinth (All Rights Reserved, см. CLAUDE.md) | M&A | добавлен |
-| MNAWitchcraft | 0.2.1-alpha | Modrinth | M&A | **отключён**: собран под старый M&A, `NoClassDefFoundError com.mna.items.ritual.ItemPlayerCharm`, сервер не стартует |
+| MNAWitchcraft | 0.2.1-alpha | Modrinth | M&A | **порт** (В4, поток 4b): собран под M&A 3.0.x (`NoClassDefFoundError com.mna.items.ritual.ItemPlayerCharm`). `patches/jar-ports/mnawitchcraft` → `pack/mods/mnaw-…-mmport.jar`: в M&A 3.1.11 классы `ItemPlayerCharm`/`ItemPractitionersPatch`/`ItemStaff` → `PlayerCharm`/`PractitionersPatch`/`MagicStaff`, `ItemStaff.getSpell` → `SpellRecipe.fromNBT(getSpellCompound)` (`MnawPort`). linkcheck: к M&A всё связывается; остались 12 ссылок на Mystical Alchemy — необязательная зависимость (под 1.20.1 Forge её нет), код сработает только с ней. Сервер до `Done`; в игре не проверялся |
 
 - Дополнений к Ars Magica: Legacy под 1.20.1 не найдено (Modrinth, поиск по CurseForge) — у мода только API для аддонов.
 - Не взяты: `ctov-mana-and-artifice-compatibility` (в сборке нет CTOV), `mana-and-artifice-villages` (только 1.18.2).
