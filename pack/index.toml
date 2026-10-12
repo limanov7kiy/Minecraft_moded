@@ -638,6 +638,11 @@ file = "mods/alexsdelight-1.5.jar"
 hash = "439da92c904959e805c2237ebda9e96db60870dd3b58b4b402547d494fa0057a"
 
 [[files]]
+file = "mods/almanac.pw.toml"
+hash = "f3c12f6320ce830c9f8f846e82c461239c14bc57a8d41940caf7bead656295f0"
+metafile = true
+
+[[files]]
 file = "mods/almostunified.pw.toml"
 hash = "bc9bc4dc5e09b5213fb158a83d63d5def7bb016c3cef65405f8f2f6c0c62b158"
 metafile = true
@@ -1066,6 +1071,16 @@ hash = "c83385838fbf5cdd40684e5f6d4b7bcc2126de4abca229a60b7063e57a5a4615"
 metafile = true
 
 [[files]]
+file = "mods/fastfurnace.pw.toml"
+hash = "372aabbdc69fe63317c017cd8a323e6b8f52ebf070780a3a135be9f67555b8d4"
+metafile = true
+
+[[files]]
+file = "mods/fastworkbench.pw.toml"
+hash = "4720520cedd7c02806b67f67d7e1cf4d610d7dcb65971c21b52d1d2754ab0fad"
+metafile = true
+
+[[files]]
 file = "mods/fdlib.pw.toml"
 hash = "34320e557d3321623f5b68cf86a370d04b71adb7d01648ea259c37c653041f1c"
 metafile = true
@@ -1244,6 +1259,11 @@ metafile = true
 [[files]]
 file = "mods/lionfish-api.pw.toml"
 hash = "f3b6b7cd660a91a34a4e18010c9eaacaeb7ff306cadfee14431fa25a15b041ec"
+metafile = true
+
+[[files]]
+file = "mods/lmd.pw.toml"
+hash = "d171acd90da5df8212928557ec535d47d82a1daccc6b8e279af8941c5925d46a"
 metafile = true
 
 [[files]]

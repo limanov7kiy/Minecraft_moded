@@ -1,0 +1,9 @@
+renderDistance:10
+simulationDistance:6
+particles:1
+renderClouds:"fast"
+ao:1
+biomeBlendRadius:1
+entityShadows:false
+entityDistanceScaling:0.75
+mipmapLevels:2

@@ -18,6 +18,9 @@ mr entityculling          # клиент
 mr immediatelyfast        # клиент
 mr smooth-boot-reloaded
 mr distanthorizons        # дальняя прорисовка
+mr lmd                    # Let Me Despawn (сервер): мобы с предметами/именами тоже деспавнятся — меньше мобов в мире (поток 8)
+mr fastfurnace            # сервер: кэш рецептов печей (поток 8)
+mr fastworkbench          # сервер: кэш рецептов верстака (поток 8)
 
 ## Магия
 mr electroblobs-wizardry-redux
