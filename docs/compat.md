@@ -500,3 +500,18 @@ Mass Destruction Forge 1.1.2. Cataclysm/Mowzie's/Lycanites не дублирую
 - ⚠ **Атлас текстур**: в логе клиента `Requested atlas size 32768x16384 exceeds maximum of 16384x16384` (программный
   OpenGL llvmpipe, предел 16384; у RTX 2060 предел 32768). Меню запустилось. Без Ice and Fire на этом стенде не сравнивали;
   если у игрока на слабой видеокарте будут «розовые» текстуры — это первое подозрение.
+
+### Bosses of Mass Destruction — отложен (поток 9, 2026-10-12)
+Владелец ответил «оба» (Ice and Fire + Bosses of Mass Destruction). Ice and Fire в сборке (раздел выше); BoMD **не добавлен**:
+- BoMD Forge 1.1.2 жёстко требует **Cerbon's API ≥ 1.1.0** (`ModLoadingException: requires cerbons_api 1.1.0 or above`) и Cloth Config 11.x.
+  Cerbon's API поток 10 только что убрал (см. «Убраны Just Enough Beacons и Cerbon's API»): общие, не клиентские миксины коллизий
+  (`AABB.intersects`, `Shapes.create`, `VoxelShape.collide`, `Entity.getBoundingBox/setPosRaw`) работают и на сервере.
+- С Cerbon's API (side=both) + Cloth Config на этой сборке `test-server.sh` дал `SERVER OK` (Done за 29 с), ошибок мода в логе нет.
+  Клиент с BoMD не гоняли: решение «возвращать ли Cerbon's API» — за владельцем/координатором.
+- Замеры (конфиг `bosses_of_mass_destruction.json5`, подтверждены `bossdump.js`): Ночной лич 300 HP / урон ракеты 9 / броня 0;
+  Обсидилит 300 / 16 / 14 (хитбокс 4.4×2); Перчатка незера 250 / 16 / 8 (4×5); Цветок пустоты 350 / 12 / 4 (10×8, огромный).
+  В пределах Cataclysm-боссов (400–600 HP) — отдельного баланса не требуют.
+- Русификация: у мода `ru_ru` 98.7 %, не хватает 2 строк экрана конфига ("General" → «Общие», "Table of Elevation radius" →
+  «Радиус стола возвышения»). Арены: `lich_tower` (Overworld), `gauntlet_arena` (Незер), `obsidilith_arena` (Край), Цветок пустоты — пещера.
+- Если решат добавлять: `mr bosses-of-mass-destruction-forge` + `mr cerbons-api` (side both) + 2 строки русификации + описания в
+  `scripts/boss_info.py` (черновик в истории ветки claude/boss-ice-and-fire, коммит «Bosses of Mass Destruction + Cerbon's API»).
