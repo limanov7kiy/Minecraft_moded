@@ -292,3 +292,15 @@ Restored; namespace сохраняем оригинальный (`wizardrygolems
    2.4.1 (API ближе к 1.20.1) — самый большой кусок (~4–6 порций: на каждого моба сущность, AI, модель, рендер,
    анимации, звуки, лут). Затем оставшиеся 16 заклинаний и 5 артефактов. Альтернатива — подставить похожих мобов,
    уже имеющихся в сборке (вопрос владельцу, см. отчёт).
+
+### Решения и состояние (точка остановки потока 12)
+- **Владелец (2026-10-12), ответ на В13: «полный перенос»** — портируем ≈11 нужных мобов Fish's Undead Rising сами и
+  переносим Necromancer's Delight целиком. Порядок: Golems → ND без FUR → мобы FUR → остальное ND. Авторство Fish
+  (FUR), WinDanesz (ND, Golems), Electroblob сохраняем в файлах и `docs/`. Риск лицензии FUR принят владельцем
+  (по требованию правообладателя — убрать).
+- **Сделано:** Golems-1 — мод `mods-src/wizardry-golems` 0.1.0 (5 заклинаний Golemancy, тип голема `thunderstone`,
+  ассеты и en/ru/zh оригинала, `tools/convert_lang.py`), `pack/mods/wizardry-golems-0.1.0.jar` + Extra Golems 20.1.0.2 (`#jar`).
+  ru_ru: `lang_validate` 0 ошибок.
+- **Не проверено:** серверный тест прерван по стопу координатора (лимиты). Следующий шаг — прогнать:
+  `TEST_COMMANDS=<файл с «#sleep 45»> EXTRA_SERVER_SCRIPTS=<папка с копией scripts/tests/golemcheck.js> scripts/test-server.sh <папка вне репо>`,
+  ждать строк `GOLEMCHECK ... OK` (5 заклинаний + lifetime); затем test-client, docs/compat.md.
