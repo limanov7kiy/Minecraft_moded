@@ -237,6 +237,27 @@ public final class GolemArtifacts {
         }
     }
 
+    /// Bottle of Living Snow: ставит Living Snow со своим хозяином (оригинал — `ItemLivingSnowBottle`; там ещё
+    /// мана 500 за установку — в порте только перезарядка 30 с).
+    @SubscribeEvent
+    public static void onUse(net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock event) {
+        Player p = event.getEntity();
+        ItemStack stack = event.getItemStack();
+        if (stack.getItem() != GolemItems.CHARM_LIVING_SNOW.get() || p.getCooldowns().isOnCooldown(stack.getItem())) return;
+        BlockPos pos = event.getPos().relative(event.getFace() == null ? Direction.UP : event.getFace());
+        Level level = event.getLevel();
+        var snow = dev.mcmoded.wizardrygolems.block.GolemBlocks.LIVING_SNOW.get();
+        var state = snow.defaultBlockState().setValue(net.minecraft.world.level.block.SnowLayerBlock.LAYERS, 2);
+        if (!level.getBlockState(pos).canBeReplaced() || !state.canSurvive(level, pos)) return;
+        event.setCanceled(true);
+        event.setCancellationResult(net.minecraft.world.InteractionResult.SUCCESS);
+        if (level.isClientSide) return;
+        level.setBlock(pos, state, 3);
+        if (level.getBlockEntity(pos) instanceof dev.mcmoded.wizardrygolems.block.LivingSnow.Tile tile) tile.setOwner(p);
+        level.playSound(null, pos, SoundEvents.SNOW_PLACE, SoundSource.BLOCKS, 1, 1);
+        if (!p.isCreative()) p.getCooldowns().addCooldown(stack.getItem(), 600);
+    }
+
     /// Fire Elemental Heart: рядом со своим огненным големом и с огненной палочкой — сила заклинаний +15%
     /// (в оригинале — эффект Empowerment, в Redux его нет; используется атрибут CAST_POTENCY, как в Wizardry Restored).
     @SubscribeEvent

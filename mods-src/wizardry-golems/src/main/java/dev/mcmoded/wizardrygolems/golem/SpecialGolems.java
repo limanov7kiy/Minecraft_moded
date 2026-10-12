@@ -81,6 +81,13 @@ public final class SpecialGolems {
             golem.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 40, 0, false, false));
         }
         if (isType(golem, "thunderstone") && golem.tickCount % 40 == 0) shockAura(golem);
+        // Permafrost: оставляет след тающей мерзлоты (блок Permafrost Redux, тает через 5 с, как от заклинания)
+        if (isType(golem, "permafrost") && golem.onGround() && golem.level().isEmptyBlock(golem.blockPosition())
+                && golem.level().getBlockState(golem.blockPosition().below()).isFaceSturdy(golem.level(), golem.blockPosition().below(), net.minecraft.core.Direction.UP)) {
+            var block = com.binaris.wizardry.setup.registries.EBBlocks.PERMAFROST.get();
+            golem.level().setBlock(golem.blockPosition(), block.defaultBlockState(), 3);
+            golem.level().scheduleTick(golem.blockPosition(), block, 100);
+        }
         // Золотой голем лечит союзников (в оригинале задумано, но условие события было перевёрнуто — не срабатывало)
         if (isType(golem, "gold") && golem.getRandom().nextInt(100) == 0 && isMinion(golem)) {
             resolve(List.of("group_heal")).forEach(s -> s.cast(new EntityCastContext(golem.level(), golem,
