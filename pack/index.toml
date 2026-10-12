@@ -858,9 +858,8 @@ hash = "14481081a9e233f4ba57df8a77ce028184818143eae1c73b60749ea482c912e9"
 metafile = true
 
 [[files]]
-file = "mods/cataclysm-spellbooks.pw.toml"
-hash = "46d7e45a470ab4280c68c2d435214ee63a1c016c426d889d9deee049c6f39a08"
-metafile = true
+file = "mods/cataclysm_spellbooks-1.2.9-1.20.1-mmport.jar"
+hash = "4dc1557481cda5e4e99fbdc35fa7262861a0106bfdffba65e0c87e4cdd803f8e"
 
 [[files]]
 file = "mods/cbc_nukes-2.1.1-mmport.jar"
@@ -1359,8 +1358,8 @@ hash = "c25495262a852dc02886ec8c4b695f30e53264a2e3d881dd36ee9de16a1ef499"
 metafile = true
 
 [[files]]
-file = "mods/mm-compat-0.3.0.jar"
-hash = "4e7aca425db5d7ad1caff4192856f18fe4ae02dbc8b886148231ef4a2baf05bf"
+file = "mods/mm-compat-0.4.0.jar"
+hash = "211fc96abb12c0adb44b75650dd034c244c1fc65c311d1b52fce13eace46ac25"
 
 [[files]]
 file = "mods/mnaoverpowered.pw.toml"

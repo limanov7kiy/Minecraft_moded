@@ -4,5 +4,6 @@
   "package": "dev.mcmoded.compat.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": ["SbwShipHitMixin"],
+  "client": ["LycanitesFearLightMixin"],
   "injectors": { "defaultRequire": 0 }
 }

@@ -35,6 +35,8 @@ dependencies {
     // Superb Warfare — трассировка снарядов по кораблям VS (миксин SbwShipHitMixin); Kotlin — ради kotlin.Pair
     modCompileOnly "maven.modrinth:superb-warfare:${superb_warfare_version}"
     compileOnly "org.jetbrains.kotlin:kotlin-stdlib:1.9.23"
+    // Lycanites Mobs — только FearVisualHandler (его имена свои, не маппинги MC — remap не нужен)
+    compileOnly "maven.modrinth:lycanites-mobs:${lycanites_version}"
 }
 
 processResources {

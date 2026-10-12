@@ -1,0 +1,6 @@
+# Cataclysm: Spellbooks 1.2.9 (авторы Ace The Eldritch King & StarOcean, MIT) — собран под L_Ender's Cataclysm 3.1x;
+# порт под Cataclysm 3.31 (без него клиент падает на регистрации рендеров). См. CLAUDE.md, «Назначение и лицензии».
+url https://cdn.modrinth.com/data/3FEg0A8D/versions/e7VE8bSy/cataclysm_spellbooks-1.2.9-1.20.1-all.jar
+sha512 abeda81f433753de9ecb2f6b4653eabe78f8d5bbd242e9a2072e502cc964fd3639c59df3fc5adf753226c951cd7ad70c1217650a88c8ace687329c7065e920a9
+out cataclysm_spellbooks-1.2.9-1.20.1-mmport.jar
+shims dev/mcmoded/port/cataclysmspellbooks
