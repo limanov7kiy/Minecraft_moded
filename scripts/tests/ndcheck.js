@@ -27,7 +27,7 @@ ServerEvents.tick(event => {
     server.runCommandSilent('time set midnight')
     arenas.forEach(x => { server.runCommandSilent(`fill ${x - 8} 199 -8 ${x + 8} 199 8 minecraft:stone`); server.runCommandSilent(`fill ${x - 8} 200 -8 ${x + 8} 210 8 minecraft:air`) })
     ;[-200, -230, -260].forEach(x => server.runCommandSilent(`summon minecraft:husk ${x}.5 200 4.5 {NoAI:1b,PersistenceRequired:1b}`))
-    const aim = (x, pitch) => { fake.setPos(x + 0.5, 200, 0.5); fake.yRot = 0; fake.xRot = pitch; fake.yHeadRot = 0; fake.setOnGround(true) }
+    let aim = (x, pitch) => { fake.setPos(x + 0.5, 200, 0.5); fake.yRot = 0; fake.xRot = pitch; fake.yHeadRot = 0; fake.setOnGround(true) }
     aim(-200, 10); report('stink_bomb_cast', cast('stink_bomb') === true, '')
     aim(-230, 10); report('frost_bomb_cast', cast('frost_bomb') === true, '')
     aim(-260, 10); report('corrode_cast', cast('corrode') === true, '')
@@ -44,7 +44,8 @@ ServerEvents.tick(event => {
     if (String(level.getBlockState(new BlockPos(x, 200, z)).getBlock().getDescriptionId()).includes('temporary_glowshroom')) shrooms++
   report('glowshroom', shrooms == 1, `blocks=${shrooms}`)
   // Corroded: урон +10%
-  if (h.length == 1) { let before = h[0].getHealth(); h[0].hurt(level.damageSources().magic(), 4); report('corroded_damage', Math.abs((before - h[0].getHealth()) - 4.4) < 0.05, `dmg=${before - h[0].getHealth()}`) }
+  // Rhino не видит SRG-имя hurt — урон командой /damage
+  if (h.length == 1) { let before = h[0].getHealth(); server.runCommandSilent(`damage ${h[0].getStringUUID()} 4 minecraft:magic`); report('corroded_damage', Math.abs((before - h[0].getHealth()) - 4.4) < 0.05, `dmg=${before - h[0].getHealth()}`) }
   // Poisonous Spore на фейковом игроке отравляет хаска рядом (раз в 19 т. — даём эффект и тикаем вручную)
   server.runCommandSilent('summon minecraft:husk -289.5 200 1.5 {NoAI:1b,PersistenceRequired:1b}')
   fake.setPos(-289.5, 200, 0.5)
