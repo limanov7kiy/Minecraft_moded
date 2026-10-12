@@ -37,6 +37,10 @@ ServerEvents.tick(event => {
     aim(-260, 10); report('corrode_cast', cast('corrode') === true, '')
     // светогриб: луч в пол перед собой
     aim(-290, 60); report('glowshroom_cast', cast('glowshroom') === true, '')
+    // контроль: как в castcheck — у точки появления
+    server.runCommandSilent('fill -8 199 -8 8 199 8 minecraft:stone'); server.runCommandSilent('fill -8 200 -8 8 210 8 minecraft:air')
+    server.runCommandSilent('summon minecraft:husk 0.5 200 3.5 {NoAI:1b,PersistenceRequired:1b}')
+    aim(0, 10); report('corrode_cast_origin', cast('corrode') === true, `look=${fake.getLookAngle()}`)
     return
   }
   if (t == 245 || t == 255) {
