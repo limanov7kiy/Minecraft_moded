@@ -674,6 +674,11 @@ hash = "793693a85f3c87d4e899ee0c58deabc53690bf5a70f17343f28fd5063ce8a1e1"
 metafile = true
 
 [[files]]
+file = "mods/arcaneadditions.pw.toml"
+hash = "58583020bd8ba7ac39683bff089625f0a4693b7d5171b429f561cd06dc328beb"
+metafile = true
+
+[[files]]
 file = "mods/architectury-api.pw.toml"
 hash = "4e81241ba2da06f425efc5e09fb6b38470125c1581c39e1310c5843a0b96ec76"
 metafile = true
@@ -730,6 +735,11 @@ metafile = true
 [[files]]
 file = "mods/ars-instrumentum.pw.toml"
 hash = "a21b070c85af000dd4385876cfda648205de70079f7c9bd8bd2b66e4b4b1d83c"
+metafile = true
+
+[[files]]
+file = "mods/ars-magica-legacy.pw.toml"
+hash = "0d47e76f14a0750b3793d9fe6c9184c5040e1dfb623f849e45aeab20494fd7c5"
 metafile = true
 
 [[files]]
@@ -848,9 +858,8 @@ hash = "14481081a9e233f4ba57df8a77ce028184818143eae1c73b60749ea482c912e9"
 metafile = true
 
 [[files]]
-file = "mods/cataclysm-spellbooks.pw.toml"
-hash = "46d7e45a470ab4280c68c2d435214ee63a1c016c426d889d9deee049c6f39a08"
-metafile = true
+file = "mods/cataclysm_spellbooks-1.2.9-1.20.1-mmport.jar"
+hash = "4dc1557481cda5e4e99fbdc35fa7262861a0106bfdffba65e0c87e4cdd803f8e"
 
 [[files]]
 file = "mods/cbc_nukes-2.1.1-mmport.jar"
@@ -992,6 +1001,11 @@ hash = "084a056c8eca61bdfcb53d7a9ae05693e27ea856256d783cd7757612df125ee5"
 metafile = true
 
 [[files]]
+file = "mods/dragon-magic-and-relics.pw.toml"
+hash = "a539b089493cfabdd8556128bcbc4b4f4d21a0a341ee5c3cce111fea4240087d"
+metafile = true
+
+[[files]]
 file = "mods/dungeons-and-villages-deeper-and-darker.pw.toml"
 hash = "ad9eef6e3b8974f8b3bab3c9d27c809c0b91fa17e2c008d32c925e7da1a92c04"
 metafile = true
@@ -1034,6 +1048,11 @@ metafile = true
 [[files]]
 file = "mods/extrabotany.pw.toml"
 hash = "aa6dd39469608b2eb82239bebcd36f96f5d7dcecfbbb976417c26c066e86a55e"
+metafile = true
+
+[[files]]
+file = "mods/factions-and-curiosities.pw.toml"
+hash = "cf1a0474ae05fe512d822a758c5a093c959da23c53c1c2e3459461b6b0657d06"
 metafile = true
 
 [[files]]
@@ -1274,6 +1293,11 @@ hash = "c01e4f873d0c5deb69686ad4583b8c052408256f3641a4d6c277b865fc341634"
 metafile = true
 
 [[files]]
+file = "mods/mana-and-artifice.pw.toml"
+hash = "2bc8d879af82d7d67fac9df413924164d78fd6eb1e9a4fda13f80c211bd1b6ff"
+metafile = true
+
+[[files]]
 file = "mods/mechanical-botania-revived.pw.toml"
 hash = "a1a7dcbc1913c7be438639e53df2561e53f48594c375f8b2e49bd04f7550256e"
 metafile = true
@@ -1334,8 +1358,13 @@ hash = "c25495262a852dc02886ec8c4b695f30e53264a2e3d881dd36ee9de16a1ef499"
 metafile = true
 
 [[files]]
-file = "mods/mm-compat-0.3.0.jar"
-hash = "4e7aca425db5d7ad1caff4192856f18fe4ae02dbc8b886148231ef4a2baf05bf"
+file = "mods/mm-compat-0.4.0.jar"
+hash = "211fc96abb12c0adb44b75650dd034c244c1fc65c311d1b52fce13eace46ac25"
+
+[[files]]
+file = "mods/mnaoverpowered.pw.toml"
+hash = "0a48579ca8d4575a0c2cadbee30a2f396591e86f1dabad4e41b5125c2c70dbef"
+metafile = true
 
 [[files]]
 file = "mods/modernfix.pw.toml"

@@ -123,6 +123,19 @@
    питомцы Familiars (друид, некромант, бард) появляются и живут, ядерный снаряд ставится, предметы и рецепт-замена
    на месте, ни одного NoSuchMethod/NoClassDef/AbstractMethod в логе. Клиентскую часть (частицы, клавиша KeyState,
    рендер) — проверить в потоке 5.
+   - **Cataclysm: Spellbooks 1.2.9** (Ace The Eldritch King & StarOcean, MIT; под Cataclysm 3.1x; задача 9 из потока 5,
+     К4): частицы `RingData` → `RingParticleOptions` (цвет 0..1 → 0..255), `LightTrail`/`Storm`/`TrackLightning`
+     `OrbData` → `Options/*` (те же конструкторы), `Ancient_Remnant_Rework_Renderer` → `Ancient_Remnant_Renderer`
+     (слой и модель те же), ракета Иссушителя — направление `Vec3`, `causeLaserDamage(Entity, Entity)`,
+     `setSleep` Древнего Остатка (в 3.31 его нет: Остаток «спит», пока на нём нет ожерелья) → фантому из Thoth's
+     Witness ставится ожерелье. `azurelib` теперь отдельной строкой в modlist (раньше подтягивался packwiz'ом).
+     linkcheck чистый, кроме `Ancient_Remnant_Rework_Model.renderToBuffer` — унаследован от `HierarchicalModel`
+     (клиентского jar на сервере нет). Проверено `scripts/tests/sbcastcheck.js` (10/10): Gravitational Pull,
+     Thoth's Witness, Aerial Assault, Parting Shot, Cryopiercer, Scorched Earth, Laserbolt кастуются фейковым игроком
+     без исключений, залп Aerial Assault создаёт `cataclysm:wither_missile`, фантом Остатка призывается и не спит,
+     эффекты Cursed Frenzy и King's Wrath тикают; клиент со всей сборкой (вместе с магией из PR #15, 235 модов на
+     сервере) — до главного меню. Вход клиента на тестовый сервер с портом **не проверен**: сервер (6 ГБ) и клиент
+     (5 ГБ) вместе выбили лимит памяти контейнера — OOM убил обоих, swap от этого не спасает.
    - **Arknights_Weapon 1.5.6** (MCreator, AFL 3.0; задача из ревью PR #2): `RiseProcedure` на каждом
      `EntityJoinLevelEvent` ставила не-игрокам базу `max_health` = текущий максимум × 2; событие приходит и при загрузке
      чанка — здоровье росло вдвое при каждой подгрузке. Других вызовов у процедуры нет — отключена (`AkWeaponPort.noRise`).
@@ -320,26 +333,23 @@ unsupported`; в серверном zip клиентских нет. Совпа�
   Миксин падает → «broken mod state» → вылет. **Убраны** Origin Furs и Arknights Furs (обе только клиентские,
   на сервер и реестры не влияют). Вернуть можно портом (задача потоку 4): переходник старого API AzureLib
   внутри jar Origin Furs (`scripts/jarport`) или собрать Origin Furs под AzureLib 3.
-- К4. **Cataclysm Spellbooks 1.2.9 × L_Ender's Cataclysm 3.31 — БЛОКЕР, не исправлено.** Вылет клиента при
-  регистрации рендереров: `NoClassDefFoundError .../client/render/entity/Ancient_Remnant_Rework_Renderer`.
-  `scripts/linkcheck` даёт 9 несвязанных ссылок, часть серверные: частицы `RingParticle$RingData`,
-  `StormParticle$OrbData`, `LightTrailParticle$OrbData`, `TrackLightningParticle$OrbData` (в 3.31 — record'ы
-  `Options/*`), конструктор `Wither_Missile_Entity(EntityType, LivingEntity, DDDDDD F, Level)`,
-  `CMDamageTypes.causeLaserDamage(Entity, LivingEntity)`, `Ancient_Remnant_Layer(<Ancient_Remnant_Rework_Renderer>)`.
-  Сервер стартует (рендеры не грузятся), но заклинания с этими ссылками упадут при касте. Те же переименования
-  частиц уже описаны в правилах порта Traveloptics (`patches/jar-ports/traveloptics/rules.txt`) — нужен такой же
-  порт (поток 4). Пока его нет, **клиент со сборкой не запускается**; для проверки остального Spellbooks убирали
-  локально с обеих сторон.
+- К4. ~~**Cataclysm Spellbooks 1.2.9 × L_Ender's Cataclysm 3.31 — БЛОКЕР**~~ — **решено портом** (поток 4, п. 14):
+  вылет клиента при регистрации рендереров (`NoClassDefFoundError .../Ancient_Remnant_Rework_Renderer`) и 9 несвязанных
+  ссылок (частицы `*Data`, ракета Иссушителя, урон лазером, рендер и сон Древнего Остатка). В сборке
+  `cataclysm_spellbooks-1.2.9-1.20.1-mmport.jar`, клиент со всей сборкой доходит до главного меню.
 - К5. **Serene Seasons Plus сбрасывал конфиг сборки.** Новая версия при первом запуске переносит
   `sereneseasonsplus-common.toml` в `.bak` и пишет умолчания, если в `config/` нет маркера
   `.sereneseasonsplus-descriptive-config-reset.done` — на сервере и на клиенте выключалось накопление снега
   (`enableSeasonalSnowAccumulation`, п. 8), игроку показывалось окно «config was reset». **Исправлено:** маркер
   лежит в `pack/config/` (попадает и в `.mrpack`, и в серверный zip).
-- К6. **Lycanites `LightTextureMixin` на клиенте не применяется**: «@Shadow field lightTexture was not located…
-  Using refmap lycanitesmobs.refmap.json». В refmap из `patches/lycanites-refmap` нет записи поля; нужно добавить
-  в маппинги `com/lycanitesmobs/core/mixin/LightTextureMixin` строку
-  `"lightTexture": "f_109870_:Lnet/minecraft/client/renderer/texture/DynamicTexture;"` (SRG-имя проверено по
-  `client-1.20.1-…-srg.jar`). Не вылет — эффект затемнения от страха не работает. Задача потоку 4.
+- К6. ~~**Lycanites `LightTextureMixin` на клиенте не применяется**~~ — **решено** (поток 4): «@Shadow field lightTexture
+  was not located… Using refmap lycanitesmobs.refmap.json». Запись в refmap не помогает: Mixin ищет `@Shadow`-поля
+  только по имени в классе миксина и через переименователи окружения (в собранной игре их нет), refmap к ним не
+  применяется — поле в jar должно уже называться `f_109870_`. Чтобы не перепаковывать 120-МБ jar, логика затемнения
+  перенесена в `mods-src/mm-compat` (`LycanitesFearLightMixin`, SRG-имена заданы явно, вызывает их
+  `FearVisualHandler`; `require = 1` — неудача была бы видна в логе: на клиенте применяется без ошибок); миксин
+  Lycanites по-прежнему пишет это предупреждение — безвредно. Если Lycanites
+  исправят у себя — убрать наш миксин, иначе свет затемнится дважды.
 - К7. **Yes Steve Model под ВМ:** «YSM client cannot run under a virtual machine» (экран предупреждений Forge),
   затем выгружает свою `libysm-core.so`, и её поток роняет JVM нативным SIGSEGV (`__call_tls_dtors`) при входе
   в мир. Особенность облака — на настоящем ПК так быть не должно; для теста YSM убирали с обеих сторон.
@@ -358,6 +368,28 @@ unsupported`; в серверном zip клиентских нет. Совпа�
 Originium Arts, HUD (LSO, миникарта Xaero, Jade), рендер Evolved Skeleton Boss (Galacticraft Revival) с полосой
 здоровья босса, феникс Wizardry Restored. Миксины портов `*-mmport.jar` (T.O Magic, Familiars, CBC: Nuclear,
 Arknights Weapon) применяются без ошибок. Микрофон, звук, шейдеры на GPU, детали рендера — `docs/client-checklist.md`.
+
+## Mana and Artifice и Ars Magica: Legacy (поток 3, 2026-10-11)
+Решение владельца: добавить оба мода и дополнения. Оба есть под 1.20.1 Forge, side=both (обязательны и на клиенте, и на сервере).
+
+| Мод | Версия | Источник | Зависимости | Итог |
+|---|---|---|---|---|
+| Mana and Artifice (Mithion/Rhodes) | 3.1.11 | Modrinth `mana-and-artifice` | GeckoLib, Curios — уже в сборке; Lootr, Lucent — необязательные, не ставили | добавлен |
+| Ars Magica: Legacy | 1.20.1-1.5.0 | Modrinth `ars-magica-legacy` | GeckoLib, Patchouli — в сборке; JEI, Curios, Jade — необязательные, есть | добавлен |
+| ArcaneAdditions | forge-1.10.0 | Modrinth | M&A, GeckoLib, Curios | добавлен |
+| Factions And Curiosities | 1.3.1 | Modrinth | M&A, Curios | добавлен |
+| MNAOverpowered | 1.20.1-0.11.1 | Modrinth | M&A | добавлен (QoL-твики) |
+| Dragon Magic And Relics | 3.2.14 | Modrinth (All Rights Reserved, см. CLAUDE.md) | M&A | добавлен |
+| MNAWitchcraft | 0.2.1-alpha | Modrinth | M&A | **отключён**: собран под старый M&A, `NoClassDefFoundError com.mna.items.ritual.ItemPlayerCharm`, сервер не стартует |
+
+- Дополнений к Ars Magica: Legacy под 1.20.1 не найдено (Modrinth, поиск по CurseForge) — у мода только API для аддонов.
+- Не взяты: `ctov-mana-and-artifice-compatibility` (в сборке нет CTOV), `mana-and-artifice-villages` (только 1.18.2).
+- Сервер: новый мир, `Done (90.7s)`, без «Mods loaded with N warnings», castcheck 69/69. Из новых модов в логе только
+  `TOPCompat` AML (нет The One Probe — необязателен) и «M&A -> Failed to query auras from the server» (при старте, не мешает).
+- Almost Unified не менялся: у Ars Magica свои камни (chimerite, moonstone, sunstone, topaz, vinteum), металлов нет, у M&A тегов `forge:ores/*` нет.
+  Возможный пересечение `forge:gems/topaz` с другими модами — не проверялось.
+- **Не проверено (задача потоку 4):** конфликты клавиш и интерфейса маны на клиенте (у M&A, Ars Magica, Iron's Spells,
+  Ars Nouveau, Wizardry — у каждого своя система маны; общей нет), рецепты и дубли предметов, генерация мира/структур M&A рядом с остальными.
 
 ## Открытые вопросы
 - Клиент в облаке проверяется `scripts/test-client.sh` (без GPU и звука); шейдеры, микрофон и macOS — только у игрока (`docs/client-checklist.md`).

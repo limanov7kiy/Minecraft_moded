@@ -101,6 +101,9 @@
 - [x] Пачка 6 — моды с крупными зависимостями (одобрено пользователем): Integrated Mowzie's Mobs (+ Quark, Supplementaries,
   Amendments, Integrated API/Patches), Botanical Machinery Extra (+ Applied Energistics 2), More Backpack Upgrades
   (+ Refined Storage). Сервер до `Done`, новый мир создаётся.
+- [x] Mana and Artifice + Ars Magica: Legacy (решение владельца, ветка `claude/stream3-mana-artifice-ars-magica`): 6 модов добавлено,
+  MNAWitchcraft отключён (старый M&A); сервер до `Done`, castcheck 69/69. Для Ars Magica дополнений нет. Подробности — compat.md.
+  Потоку 4: проверить на клиенте клавиши/мана-HUD четырёх магических систем и дубли рецептов/предметов.
 - Для Bumblezone и Mahou Tsukai подходящих дополнений под 1.20.1 Forge нет (Mahou Tsukai Combat требует Better Combat).
 
 ### Поток 4 — Совместимость и патчи
@@ -129,12 +132,11 @@
    `mobhealth_commands.txt`: оригинал 20→40→80, порт 20→20. Оригинал из PR #2 убран при слиянии, в сборке порт.
 8. ~~Apothic Attributes и формулы брони~~ — **решено**: броня по Apothic, защита-зачарование по ванилле
    (`pack/config/attributeslib.cfg`, расчёт — compat.md п. 14, тест `scripts/tests/armor_commands.txt`).
-9. **(из потока 5, БЛОКЕР клиента) Cataclysm Spellbooks 1.2.9 × Cataclysm 3.31** — порт как у T.O Magic:
-   9 несвязанных ссылок (частицы `*Data` → `Options/*`, `Wither_Missile_Entity`, `CMDamageTypes.causeLaserDamage`,
-   `Ancient_Remnant_Rework_Renderer`/`Ancient_Remnant_Layer`), список — compat.md К4. Без порта клиент со сборкой
-   **вылетает при запуске**. Проверка: `scripts/test-client.sh` доходит до `CLIENT OK`.
-10. (из потока 5) Lycanites refmap: добавить поле `lightTexture` → `f_109870_` (compat.md К6), клиентский
-    `LightTextureMixin` сейчас не применяется.
+9. ~~**(из потока 5, БЛОКЕР клиента) Cataclysm Spellbooks 1.2.9 × Cataclysm 3.31**~~ — **сделано**: порт
+   `patches/jar-ports/cataclysm-spellbooks` → `pack/mods/cataclysm_spellbooks-1.2.9-1.20.1-mmport.jar` (compat.md п. 14, К4),
+   тест в мире `scripts/tests/sbcastcheck.js` 10/10, клиент со всей сборкой — `CLIENT OK`.
+10. ~~(из потока 5) Lycanites refmap: поле `lightTexture`~~ — **сделано иначе**: refmap к `@Shadow`-полям не применяется,
+    затемнение от страха перенесено в `mm-compat` 0.4.0 (`LycanitesFearLightMixin`, compat.md К6).
 11. (из потока 5) Origin Furs × AzureLib 3.1 (compat.md К3): Origin Furs и Arknights Furs убраны; вернуть —
     переходник старого API AzureLib (`GeoModel`, `GeoBone`, `GeoObjectRenderer`, `core.animation.*`) в jar
     Origin Furs. Если сложно — потоку 3 решить, нужны ли они.
@@ -149,8 +151,7 @@ Xvfb + Mesa llvmpipe, агент `scripts/clienttest/ExitTrace.java` ловит 
   убраны VoiceChatProfiles (битый jar, К2), Origin Furs и Arknights Furs (AzureLib 2.x против 3.1, К3);
   маркер Serene Seasons Plus в `pack/config/` (мод сбрасывал конфиг сборки на сервере и клиенте, К5).
   Стороны в `.mrpack`/серверном zip совпадают с `side` — править не пришлось.
-- **Осталось (блокер):** Cataclysm Spellbooks 1.2.9 роняет клиент (К4) — порт потоку 4, задача 9. До него
-  друзья играть не смогут.
+- ~~**Осталось (блокер):** Cataclysm Spellbooks 1.2.9 роняет клиент (К4)~~ — порт сделан потоком 4 (задача 9).
 - Проверено с убранным локально Spellbooks (и YSM — он не работает под ВМ, К7): главное меню (старт 272 с на
   llvmpipe), вход на тестовый сервер без рассинхрона реестров и «mismatched mod channel», выбор Origin, HUD,
   рендер скелета-босса Galacticraft с полосой здоровья, феникс Wizardry; миксины портов `*-mmport.jar` применяются;
@@ -207,3 +208,19 @@ Xvfb + Mesa llvmpipe, агент `scripts/clienttest/ExitTrace.java` ловит 
 | После порта: раздать `docs/client-checklist.md` игрокам (шейдеры, DH, YSM, звук, Prism/Modrinth App) | владелец | — | ждёт `CLIENT OK` |
 | Поток 2, п. 3: исследование хостингов (цены под наши требования, свои jar/SFTP, Forge 47.4.26, UDP 24454 для голосового чата, оплата) → таблица и рекомендация в `docs/hosting.md`, затем вопрос владельцу (В1) | Поток 2 · Хостинг (session_011uQdyPF3w7opk8J86p7SvH) | sonnet — веб-исследование и документация, без риска для сборки | PR #13 (игроки в РФ, оплата в ₽; рекомендация — Millida, запасной — российский VPS) → ревью; вопрос В1 у владельца |
 | Поток 1, п. 5 (оригинальные ассеты Wizardry), Galacticraft этап 2 | — | sonnet / opus соответственно, когда запустим | в очереди: после `CLIENT OK`, чтобы держать ≤ 3–4 рабочих потоков |
+
+Раунд 2 — 2026-10-11 (вечер):
+| Задача | Поток (сеанс) | Модель — почему | Статус |
+|---|---|---|---|
+| Mana and Artifice + Ars Magica: Legacy и их дополнения (решение владельца, «важно»); если нет под 1.20.1 Forge — вопрос владельцу о порте | Поток 3 · Магия (session_01NDk4w99jqw1tVgRhPtVTAA) | sonnet — типовое добавление модов + тест сервера; порт, если понадобится, — отдельной задачей opus | в работе |
+| PR #11, #12 | Ревью и интеграция | — | влиты (24e3b9b, b508c04) |
+| PR #13 (хостинги, РФ/₽) | Ревью и интеграция | — | на ревью; вопрос В1 у владельца |
+
+Лимиты Claude (указание владельца — следить и приостанавливать заранее). Координатор на каждой проверке смотрит
+`rate_limit_event` потоков (окна `five_hour` и `seven_day`):
+- `five_hour` ≥ 75% — новые потоки не запускаются, второстепенные не будятся;
+- `five_hour` ≥ 90% — всем потокам «WIP-коммит и стоп», будить после `resetsAt`;
+- `seven_day` ≥ 80% — сообщить владельцу.
+Порядок остановки: исследования и документация → второстепенные порты/моды → блокер клиента и ревью — последними.
+Потоки пушат WIP после каждого заметного шага. 2026-10-11 19:13 UTC окно `five_hour` упёрлось в 100% (оплата сверх лимита
+отключена), оба порта встали посреди шага; после сброса в 21:00 работа продолжена.

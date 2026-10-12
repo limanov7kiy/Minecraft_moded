@@ -1,0 +1,14 @@
+# Cataclysm 3.31: частицы *Data → record'ы Options (конструкторы совпадают, кроме RingData)
+factory com/github/L_Ender/cataclysm/client/particle/RingParticle$RingData(FFIFFFFFZLcom/github/L_Ender/cataclysm/client/particle/RingParticle$EnumRingBehavior;)V   dev/mcmoded/port/cataclysmspellbooks/CataclysmSpellbooksPort.ring
+class com/github/L_Ender/cataclysm/client/particle/RingParticle$RingData                com/github/L_Ender/cataclysm/client/particle/Options/RingParticleOptions
+class com/github/L_Ender/cataclysm/client/particle/LightTrailParticle$OrbData           com/github/L_Ender/cataclysm/client/particle/Options/LightTrailParticleOptions
+class com/github/L_Ender/cataclysm/client/particle/StormParticle$OrbData                com/github/L_Ender/cataclysm/client/particle/Options/StormParticleOptions
+class com/github/L_Ender/cataclysm/client/particle/TrackLightningParticle$OrbData       com/github/L_Ender/cataclysm/client/particle/Options/TrackLightningParticleOptions
+# рендерер Древнего Остатка: «Rework» стал основным (модель и слой те же)
+class com/github/L_Ender/cataclysm/client/render/entity/Ancient_Remnant_Rework_Renderer   com/github/L_Ender/cataclysm/client/render/entity/Ancient_Remnant_Renderer
+# ракета Иссушителя: направление стало Vec3
+factory com/github/L_Ender/cataclysm/entity/projectile/Wither_Missile_Entity(Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/entity/LivingEntity;DDDDDDFLnet/minecraft/world/level/Level;)V   dev/mcmoded/port/cataclysmspellbooks/CataclysmSpellbooksPort.witherMissile
+# урон лазером: второй аргумент стал Entity
+call com/github/L_Ender/cataclysm/util/CMDamageTypes.causeLaserDamage(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/damagesource/DamageSource;   com/github/L_Ender/cataclysm/util/CMDamageTypes.causeLaserDamage(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/damagesource/DamageSource;
+# сон Остатка теперь — ожерелье (Ancient_Remnant_Entity.setSleep убран)
+scall net/acetheeldritchking/cataclysm_spellbooks/entity/mobs/PhantomAncientRemnant.setSleep(Z)V   dev/mcmoded/port/cataclysmspellbooks/CataclysmSpellbooksPort.setSleep(Lcom/github/L_Ender/cataclysm/entity/InternalAnimationMonster/IABossMonsters/Ancient_Remnant/Ancient_Remnant_Entity;Z)V
