@@ -197,6 +197,10 @@ file = "kubejs/data/ars_controle/patchouli_books/ars_controle/book.json"
 hash = "8b2423d6fee437d0951e37358d3634a1e01d1caecfa630c20a4e4bc91ff6f194"
 
 [[files]]
+file = "kubejs/data/bobsoriginiumdream/patchouli_books/bobbook/book.json"
+hash = "62ea1e56998e44e4a9a12962991eb8d9c2cba6918192208cfbe6262a575d4f3e"
+
+[[files]]
 file = "kubejs/data/cataclysm/recipes/stonecutting/azure_seastone_brick_stair_from_stonecutting.json"
 hash = "61c01488bd1bc9113ef1a64e626a0ba9dbbe7d4178d4d8767c0e9cb3d8cdf4a2"
 
@@ -1569,7 +1573,7 @@ metafile = true
 
 [[files]]
 file = "mods/ru-lang-1.0.0-client.jar"
-hash = "2b1bf8cbe70de1ecdeae86eec3320739655b971640a26b4b9f146c1484110c5a"
+hash = "c24bb64765398a8271313e5f3b588c70c249b1c2d1e92d194a7b357c920fb33f"
 
 [[files]]
 file = "mods/sarkazs_furnace_side_fables-0.2.3-forge-1.20.1.jar"
