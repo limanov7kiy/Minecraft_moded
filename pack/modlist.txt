@@ -21,7 +21,7 @@ mr distanthorizons        # дальняя прорисовка
 
 ## Магия
 mr electroblobs-wizardry-redux
-cf spell-forge-for-electroblobs-wizardry-redux  # дополнение Redux (поток 1); Wizardry Golems и Necromancer's Delight — только 1.12.2
+#jar spell-forge-for-electroblobs-wizardry-redux  # дополнение Redux (поток 1); Wizardry Golems и Necromancer's Delight — только 1.12.2
 mr irons-spells-n-spellbooks
 mr ars-nouveau
 mr botania
@@ -78,7 +78,7 @@ mr deeperdarker
 mr alexs-caves
 mr the-bumblezone
 mr dimensional-dungeons
-cf the-twilight-forest
+#jar the-twilight-forest
 
 ## Реализм (умеренный)
 mr legendary-survival-overhaul
@@ -116,7 +116,7 @@ mr admiral                  # both: библиотека команд Max Henkel
 mr playeranimator         # нужна Iron's Spells
 mr irons-lib              # Iron's Spells: >=1.20.1-2, <1.20.1-3
 mr caelus                 # нужна Origins (apoli)
-cf cupboard               # нужна Loot Integrations (>=1.20.1-1.5)
+#jar cupboard               # нужна Loot Integrations (>=1.20.1-1.5)
 mr refined-storage         # нужен More Backpack Upgrades (не объявлен на Modrinth)
 mr guideme                 # нужна Applied Energistics 2 (>=20.1.7, <20.2)
 mr moonlight               # нужна Supplementaries и Amendments
@@ -173,46 +173,47 @@ mr aether-protect-your-moa
 mr aether-treasure-reforging
 mr aether-enhanced-extinguishing
 mr aether-emissivity              # клиент
-cf umbral-skies                   # Twilight Forest × Aether
+#jar umbral-skies                   # Twilight Forest × Aether
 mr the-twilight-forest-dungeons-villages
+mr gtbcs-spelllib             # библиотека для GTBC Geomancy Plus (было CurseForge, теперь Modrinth)
 mr twilight-forest-the-lost-blocks
-cf tw-resurrection                # повторный призыв боссов TF
+#jar tw-resurrection                # повторный призыв боссов TF
 mr twilight-forest-cave-fix       # сервер
-cf create-blue-skies-compat
-cf blue-skies-tweaks
+#jar create-blue-skies-compat
+#jar blue-skies-tweaks
 mr farmers-cutting-blue-skies
 mr blue-skies-gravestones-compat  # сервер
 mr undergarden-delight
 mr deeper-and-darker-spellbooks   # Iron's Spells × Deeper and Darker
-cf deeper-and-darker-to-cataclysm-progression
+#jar deeper-and-darker-to-cataclysm-progression
 mr dungeons-and-villages-deeper-and-darker
 # mr cbc-nuclear                  # ОТКЛЮЧЕН: собран под старую Create Big Cannons, с 5.11.4 падает (NoSuchMethodError CBCBuilderTransformersImpl.safeNbt)
 mr create-alexs-caves-compat
 # Пачка 2: мобы и боссы
-cf lycanite-delight               # Lycanites × Farmer's Delight
-cf lycanites-kin
+#jar lycanite-delight               # Lycanites × Farmer's Delight
+#jar lycanites-kin
 mr mowzies-cataclysm              # Mowzie's × Cataclysm
 mr integrated-mowzies-mobs         # структуры Mowzie's; тянет Quark + Supplementaries + Amendments (одобрено пользователем)
-cf gtbcs-geomancy-plus            # Iron's Spells × Mowzie's
-cf alexs-delight                  # Alex's Mobs × Farmer's Delight
+#jar gtbcs-geomancy-plus            # Iron's Spells × Mowzie's
+#jar alexs-delight                  # Alex's Mobs × Farmer's Delight
 mr alexs-mobs-interaction
-cf alexs-mobs-capsid-fix
+#jar alexs-mobs-capsid-fix
 mr cinematic-cataclysm
-cf loot-integrations-cataclysm
+#jar loot-integrations-cataclysm
 # Пачка 3: магия
-cf ars-elemental                  # 4 стихийные школы Ars Nouveau
-cf too-many-glyphs
-cf ars-technica                   # Ars Nouveau × Create
-cf ars-instrumentum
+#jar ars-elemental                  # 4 стихийные школы Ars Nouveau
+#jar too-many-glyphs
+#jar ars-technica                   # Ars Nouveau × Create
+#jar ars-instrumentum
 mr ars-controle
 mr ars-artifice
 # cf to-tweaks-irons-spells       # ОТКЛЮЧЕН: собран под Cataclysm <3.31 (NoClassDefFoundError DungeonEyeItem)
 # mr alshanexs-familiars         # ОТКЛЮЧЕН: собран под старую Iron's Spells (NoClassDefFoundError SimpleAttributeCurio)
-cf irons-recipe-additions
+#jar irons-recipe-additions
 mr botanical-machinery
 mr botanical-extra-machinery      # тянет Applied Energistics 2 (одобрено пользователем)
 mr extrabotany
-cf mechanical-botania-revived     # мана Botania → вращение Create
+#jar mechanical-botania-revived     # мана Botania → вращение Create
 mr occult-engineering             # Occultism × Create
 mr occultism-ritual-satchel
 mr animus                         # Blood Magic
@@ -229,9 +230,9 @@ mr create-big-cannons-advanced-technologies
 mr valkyrien-sails
 mr vs-tournament-reforged         # порт VS Tournament под VS 2.4 (оригинал vs-tournament падает: VSConfigClass)
 # cf create-eureka                # ОТЛОЖЕН: это датапак (.zip), а не мод — в сборке нет загрузки датапаков (задача потоку 4)
-cf gathering-torches-become-sunlight
+#jar gathering-torches-become-sunlight
 # cf arknights-weapon            # ЗАМЕНЁН портом: arknights_weapon-1.5.6-mmport.jar (оригинал удваивал здоровье мобов) — см. ниже
-cf sarkazs-furnace-side-fables
+#jar sarkazs-furnace-side-fables
 # Пачка 5: техника и удобство
 mr mekanismmoremachine            # Mekanism: больше машин и фабрик
 mr mekanism-covers
