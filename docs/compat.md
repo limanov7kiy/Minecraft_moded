@@ -515,3 +515,10 @@ Mass Destruction Forge 1.1.2. Cataclysm/Mowzie's/Lycanites не дублирую
   «Радиус стола возвышения»). Арены: `lich_tower` (Overworld), `gauntlet_arena` (Незер), `obsidilith_arena` (Край), Цветок пустоты — пещера.
 - Если решат добавлять: `mr bosses-of-mass-destruction-forge` + `mr cerbons-api` (side both) + 2 строки русификации + описания в
   `scripts/boss_info.py` (где/как: арены и блоки призыва — см. выше; числа брать из `bossdump.js`).
+- **Регрессионный тест спавна** `scripts/tests/spawncheck.js` (`EXTRA_SERVER_SCRIPTS`, поток 9): `/summon` ванильных и модовых мобов, яйцо
+  призыва фейковым игроком Forge, доля допустимых мест для естественного спавна (`SpawnPlacements.checkSpawnRules` +
+  `level.noCollision` — то, что ломают миксины коллизий) на тёмной и освещённой площадке. Настоящий `NaturalSpawner` на сервере без
+  игроков не работает (нужен ближайший игрок), поэтому проверяется место, а не сам цикл спавна.
+  **База (интегратор без Cerbon's API, 2026-10-12):** summon cow/zombie/iceandfire:troll/alexsmobs:crow — OK; яйцо овцы — OK (`CONSUME`);
+  места: зомби ночью на тёмной площадке 50/200, тролль 47/200 (остальное отсекает свет), корова на освещённой 200/200, ошибок 0.
+  После возврата Cerbon's API прогнать снова: заметное падение долей или ошибки — повод не возвращать.
