@@ -8,19 +8,15 @@
 - Почему 1.20.1: [docs/version-choice.md](docs/version-choice.md)
 - Где поднимать сервер: [docs/hosting.md](docs/hosting.md)
 
-## Установка для игроков (Prism Launcher)
-1. Создать инстанс: Minecraft 1.20.1, загрузчик Forge 47.4.26. Памяти выделить 8 ГБ.
-2. Скачать [packwiz-installer-bootstrap.jar](https://github.com/packwiz/packwiz-installer-bootstrap/releases)
-   и положить в папку `.minecraft` инстанса.
-3. В настройках инстанса → «Пользовательские команды» → «Команда перед запуском»:
-   ```
-   "$INST_JAVA" -jar packwiz-installer-bootstrap.jar https://raw.githubusercontent.com/limanov7kiy/Minecraft_moded/main/pack/pack.toml
-   ```
-   При каждом запуске сборка обновится сама. Ссылка заработает, когда сборка будет в ветке `main`
-   публичного репозитория.
+## Установка для игроков
+Репозиторий **приватный** (в сборке переделанные чужие моды — см. CLAUDE.md), поэтому ссылки вида
+`raw.githubusercontent.com/...` и packwiz-installer у игроков не работают (GitHub отдаёт 404).
+Сборка раздаётся файлом: хост собирает `scripts/export-pack.sh` → `dist/*.mrpack` и лично передаёт друзьям;
+игрок импортирует его в Prism Launcher / Modrinth App. Пошагово — [docs/friends.md](docs/friends.md).
 
 ## Сервер
-Тот же `pack.toml` с ключом `-s server` у packwiz-installer, либо `scripts/fetch-mods.py server <папка>/mods`.
+`dist/*-server.zip` из того же `scripts/export-pack.sh` (моды both+server, конфиги, установщик Forge,
+скрипты запуска), либо `scripts/fetch-mods.py server <папка>/mods`. Хостинг — [docs/hosting.md](docs/hosting.md).
 
 ## Claude Code
 Проект подключает плагин `universal-modder` через `.claude/settings.json`. Вручную:

@@ -6,6 +6,9 @@
 (в ней есть переделанные чужие моды, их нельзя распространять публично).
 
 ## 1. Поставить сборку (один раз)
+Ставится только из файла `.mrpack`. Инструкции с packwiz-installer и ссылкой на GitHub не подходят: репозиторий
+приватный, и GitHub отвечает 404 («Failed to download pack.toml»).
+
 1. Скачать **Prism Launcher** — https://prismlauncher.org (или Modrinth App — https://modrinth.com/app).
 2. Войти в аккаунт Microsoft: *Prism → Аккаунты → Добавить Microsoft*.
 3. Получить от хоста файл `Minecraft_moded-….mrpack`.
