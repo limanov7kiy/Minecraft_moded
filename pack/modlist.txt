@@ -283,3 +283,5 @@ rp russian-delight                # дополнения Farmer's Delight (MIT)
 
 ## Заброшенные города (поток 6, docs/lost-cities.md)
 mr the-lost-cities                # The Lost Cities (McJty, MIT): города в обычном Overworld; профиль — pack/defaultconfigs/lostcities-server.toml
+
+#jar ru-lang                      # наш клиентский мод (mods-src/ru-lang): всегда включённый верхний ресурспак russian-moded; пересобирать scripts/build-ru-pack.sh после правок переводов

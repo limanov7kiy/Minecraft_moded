@@ -1517,6 +1517,10 @@ hash = "93128d85ae0b3be9c8248b09f3a63ed88c746568480cc7e9a8e2a9b4bd13477c"
 metafile = true
 
 [[files]]
+file = "mods/ru-lang-1.0.0-client.jar"
+hash = "a08f0fad84ea0f51557398ed568444d48c1a93c3d0ca9d6a05e5704f668439e4"
+
+[[files]]
 file = "mods/sarkazs_furnace_side_fables-0.2.3-forge-1.20.1.jar"
 hash = "a2dd286bd8602067f1c7e3f34bf410d1f7de8fd51262f329775396852c27310d"
 
@@ -1797,7 +1801,7 @@ hash = "9d6c1b79bffbd22944012a0fd7318753402515ad5b37c1d2562f55a687aecc6e"
 
 [[files]]
 file = "options.txt"
-hash = "6d642afbd6dc2b555ef672d0db5313dac2a0f3cba9f3c40f131801d8ec5a4a4c"
+hash = "ca3418aa25484cb6e5499cc6274e6cee9bac6e07a207020a38316da1c8ec60d4"
 preserve = true
 
 [[files]]
@@ -1822,7 +1826,3 @@ metafile = true
 file = "resourcepacks/russian-delight.pw.toml"
 hash = "afcd7b135787e17fd9e33692c615af916202e9ea9f5a3ad34a075fc466de0bb8"
 metafile = true
-
-[[files]]
-file = "resourcepacks/russian-moded.zip"
-hash = "57025c2daf866e072ba9a8680c95eadd7c610a622b138526df50ce7d64dc1dda"
