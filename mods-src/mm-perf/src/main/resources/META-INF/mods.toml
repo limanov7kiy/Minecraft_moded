@@ -1,0 +1,19 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+license = "MIT"
+
+[[mods]]
+modId = "${mod_id}"
+version = "${mod_version}"
+displayName = "Minecraft_moded Perf"
+authors = "Minecraft_moded"
+description = '''
+Клиентские ускорения сборки Minecraft_moded (docs/performance.md): убирает самый тяжёлый шаг запуска JEI при входе в мир.
+'''
+
+[[dependencies.${mod_id}]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "CLIENT"

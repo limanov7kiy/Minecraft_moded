@@ -18,6 +18,9 @@ mr entityculling          # клиент
 mr immediatelyfast        # клиент
 mr smooth-boot-reloaded
 mr distanthorizons        # дальняя прорисовка
+mr lmd                    # Let Me Despawn (сервер): мобы с предметами/именами тоже деспавнятся — меньше мобов в мире (поток 8)
+mr fastfurnace            # сервер: кэш рецептов печей (поток 8)
+mr fastworkbench          # сервер: кэш рецептов верстака (поток 8)
 
 ## Магия
 mr electroblobs-wizardry-redux
@@ -39,6 +42,7 @@ mr lycanites-mobs          # + pack/mods/lycanites-refmap-fix (patches/lycanites
 mr alexs-mobs
 mr mowzies-mobs
 mr l_enders-cataclysm
+mr ice-and-fire-dragons    # both: Ice and Fire CE 2.1.13 — драконы (огненный/ледяной/молниевый), гидра, сирены и др.; зависимость Citadel (поток 9)
 
 ## Ракеты, космос, техника
 mr create
@@ -271,7 +275,8 @@ mr dragon-magic-and-relics           # дополнение M&A
 ## JEI: просмотр крафтов/использования (поток 7, docs/jei.md)
 mr justenoughbreeding         # клиент: разведение мобов (Alex's Mobs, Mowzie's, ванилла) в JEI
 mr just-enough-professions-jep  # рабочие места жителей в JEI
-mr just-enough-beacons-reforged # клиент: что даёт маяк
+#removed just-enough-beacons-reforged  # убран 2026-10-12 (поток 10): есть только сборка «1.20.4» и она требует Cerbon's API,
+#   чьи общие миксины коллизий (AABB/Shapes/VoxelShape/Entity) в одиночном мире работают на встроенном сервере — риск > пользы
 mr jea                        # поиск достижений в JEI (both)
 
 ## Русификация (поток 6; rp = ресурспак с Modrinth, сторона client; порядок включения — pack/options.txt, docs/russification.md)

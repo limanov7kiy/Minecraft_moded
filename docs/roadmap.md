@@ -39,6 +39,8 @@
   не правим руками — пересоздаём `packwiz refresh`.
 - После изменения набора модов — `scripts/test-server.sh`, находки — в `docs/compat.md`.
 - В конце — отметка о сделанном в этом файле (раздел потока).
+- Добавил мод с боссами — обнови `docs/bosses.md`/`docs/bosses.csv` в том же PR: прогон `scripts/tests/bossdump.js` на
+  тестовом сервере + `scripts/boss_table.py --mods <папка jar> --dump <latest.log>`; описание нового босса — в `scripts/boss_info.py`.
 
 ### Поток 1 — Wizardry Restored (заклинания)
 Файлы: `mods-src/wizardry-restored/`, `docs/wizardry-port.md`, `scripts/tests/spellcheck.js`, `castcheck.js`.
@@ -153,10 +155,10 @@
 ### Поток 7 — JEI (просмотр крафтов и использования)
 Файлы: `scripts/jei_audit.py`, `docs/jei.md`, `docs/client-checklist.md` (раздел 8), `pack/modlist.txt` (раздел «JEI»).
 - [x] Аудит: 242 jar — 65 модов со своим плагином + 30 аддонов, покрытых плагином основного мода; пробелы — в `docs/jei.md`.
-- [x] Добавлены Just Enough Breeding, Professions, Beacons (+ Cerbon's API), Advancements; сервер `Done`, клиент `CLIENT OK` и вход в мир.
+- [x] Добавлены Just Enough Breeding, Professions, Beacons (+ Cerbon's API; позже убраны потоком 10 — см. compat.md), Advancements; сервер `Done`, клиент `CLIENT OK` и вход в мир.
 - [x] KubeJS: `missing_mod_refs.js` правит только теги, `space_rockets.js` убирает рецепты ракет Ad Astra и прячет их из JEI — нужные рецепты не скрыты.
 - [x] Ошибки JEI в логе клиента (Blue Skies, mekmm, JER) — собственные баги модов, `docs/compat.md`.
-- [ ] Следующая задача: JEI-категория Imbuement Altar для Redux (~0,5 дня, mm-compat) — требует согласования.
+- [x] JEI-категория Imbuement Altar для Redux — mm-compat 0.5.0 (отдельный PR).
 
 ### Поток 5 — Проверка клиента
 Клиент в облаке: `scripts/test-client.sh <папка>` (Forge через portablemc, моды из `.mrpack` как у Prism,
@@ -302,3 +304,19 @@ JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.t
 
 Тест владельца (Prism, офлайн-аккаунт, ссылка packwiz): установка 387/387, «Missing libraries» решено онлайн-запуском (friends.md, PR #24),
 главное меню без ошибок, одиночный мир создан, Origins и русский интерфейс работают.
+
+### Поток 8 — Производительность
+Файлы: `docs/performance.md`, `mods-src/mm-perf/`, `pack/config/{modernfix-mixins.properties,DistantHorizons.toml,jei/,sound_physics_remastered/}`, `pack/options.txt` (только строки графики).
+Сделано (ветка `claude/perf-stream8`, подробности и замеры — `docs/performance.md`):
+- [x] Причины: «вход ~3 мин» — запуск JEI на потоке отрисовки при каждом входе в мир (3,5 мин в стенде); создание мира — спавн-чанки (167 из 263 с) и генерация Distant Horizons.
+- [x] ModernFix `remove_spawn_chunks` + `dynamic_resources`, DH (радиус 64, без генерации), JEI без поиска по подсказкам, мод `mm-perf` (JEI без рецептов чар точила/наковальни),
+  Sound Physics, пресет графики `options.txt`, Let Me Despawn / FastFurnace / FastWorkbench; сервер до `Done` (58 с). Результат: создание мира 263 → 75–88 с, JEI 3,5 → 1,6 мин, меню 273–301 → 216–228 с.
+- [x] `friends.md` — «Если тормозит» (Xmx, JVM-флаги, видеокарта, spark); Xmx/JVM через packwiz/.mrpack задать нельзя — только инструкцией.
+- [ ] Решения владельца: JEI остаток (плагин Iron's Spells ~30 с; EMI вместо JEI?), железо владельца, `dynamic_resources` — визуальная проверка моделей; список «в отчёт» (Async Particles, BadOptimizations…) — в `docs/performance.md`.
+
+### Поток 9 — Боссы (таблица и огромные боссы)
+Файлы: `scripts/boss_table.py`, `scripts/boss_info.py`, `scripts/tests/bossdump.js`, `iafcheck.js`, `docs/bosses.md`/`csv`.
+1. ~~Таблица боссов сборки~~ — **сделано** (PR #32): 212 записей, числа из живой сборки; правило ведения — в «Правилах для всех потоков».
+2. Новый мод с огромными боссами — **Ice and Fire CE 2.1.13** (по умолчанию; вопрос владельцу ушёл через «Связь», альтернатива —
+   Bosses of Mass Destruction): в сборке, сервер/клиент ОК, русификация, `docs/compat.md` («Ice and Fire CE»).
+3. Дальше: описать остальные боссы в `boss_info.py` (Arknights-моды), проверка драконов в игре (нагрузка на ноутбуке), JEI-плагин IaF.
