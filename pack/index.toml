@@ -869,6 +869,11 @@ file = "mods/cbc_nukes-2.1.1-mmport.jar"
 hash = "9cfaa0742987ac26b70b08a994b1b0f38abc41cf642baaf637f1d9179a0533f9"
 
 [[files]]
+file = "mods/cerbons-api.pw.toml"
+hash = "a1289bd6e91b9402c74f833a59cf830ac686b7051676df6385769f4159ff4058"
+metafile = true
+
+[[files]]
 file = "mods/cinematic-cataclysm.pw.toml"
 hash = "51a26b15b158cb016944b8ac19d3badc251ccde6ce58d8143e0a37524ea09ce7"
 metafile = true
@@ -1172,8 +1177,18 @@ hash = "5d03d20b037a8b7a4765ded0e25146fc970964be46401dff5f9b1059875084e8"
 metafile = true
 
 [[files]]
+file = "mods/jea.pw.toml"
+hash = "f94528a852c02941bd471c278f66f509373e7d19ce58412f8a0b1bce71699a7f"
+metafile = true
+
+[[files]]
 file = "mods/jei.pw.toml"
 hash = "df724beef20c6a6458b6eced0a36d6ac72dffe00849676f80bdf328207f6d061"
+metafile = true
+
+[[files]]
+file = "mods/just-enough-beacons-reforged.pw.toml"
+hash = "31eee4d9d7f0cf328d2508badf0e76753cbcb49bc218d3db72658e68a9c11bee"
 metafile = true
 
 [[files]]
@@ -1187,8 +1202,18 @@ hash = "15605633c96dd7f8a66442aa3fdfa98bb26bd0286804e13f72ef06bb593e49a4"
 metafile = true
 
 [[files]]
+file = "mods/just-enough-professions-jep.pw.toml"
+hash = "39b758976dbb1e357b8186a34a5f94033a2597aa7716e6e5790c8d8301448ea8"
+metafile = true
+
+[[files]]
 file = "mods/just-enough-resources-jer.pw.toml"
 hash = "02977d28acd2089c39dbe5b65fd08e78094fb650b4afc810f757cb5cea1fbda8"
+metafile = true
+
+[[files]]
+file = "mods/justenoughbreeding.pw.toml"
+hash = "24fb5c776d59ad27e3084e98dda0e9f6e0fc5dc1bf7e021a075bb5e5d92c953b"
 metafile = true
 
 [[files]]

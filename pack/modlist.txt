@@ -267,3 +267,9 @@ mr factions-and-curiosities          # дополнение M&A: новые фр
 #   (patches/jar-ports/mnawitchcraft; оригинал падал с NoClassDefFoundError com.mna.items.ritual.ItemPlayerCharm)
 mr mnaoverpowered                    # дополнение M&A: QoL-твики
 mr dragon-magic-and-relics           # дополнение M&A
+
+## JEI: просмотр крафтов/использования (поток 7, docs/jei.md)
+mr justenoughbreeding         # клиент: разведение мобов (Alex's Mobs, Mowzie's, ванилла) в JEI
+mr just-enough-professions-jep  # рабочие места жителей в JEI
+mr just-enough-beacons-reforged # клиент: что даёт маяк
+mr jea                        # поиск достижений в JEI (both)
