@@ -509,4 +509,5 @@ Mass Destruction Forge 1.1.2. Cataclysm/Mowzie's/Lycanites не дублирую
   lightning 5× маленьких `wizardrygolems:thunderstone`, healing 1× gold; через 200 тиков миньоны живы.
 - Маленький голем Extra Golems получает половину здоровья типа (thunderstone: 25 → ~10; в оригинале у «ребёнка» 12).
 - При первом запуске Extra Golems дописывает недостающие ключи `golems-common.toml` (WARN, безвредно).
+- Клиент: CLIENT OK (меню за 450 с), ошибок по `wizardrygolems` в логе нет.
 - Свои голем-типы — `data/wizardrygolems/golems/golem/*.json` с `"hidden": true` и без `blocks`: руками не строятся.
