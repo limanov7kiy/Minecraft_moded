@@ -173,6 +173,10 @@ file = "kubejs/data/arks/powers/sarkaz_nephesh/thought.json"
 hash = "273e114088fab7cbdc0a45b60688cf892890a4bae627345e62d7cf3e782ad05e"
 
 [[files]]
+file = "kubejs/data/ars_controle/patchouli_books/ars_controle/book.json"
+hash = "8b2423d6fee437d0951e37358d3634a1e01d1caecfa630c20a4e4bc91ff6f194"
+
+[[files]]
 file = "kubejs/data/cataclysm/recipes/stonecutting/azure_seastone_brick_stair_from_stonecutting.json"
 hash = "61c01488bd1bc9113ef1a64e626a0ba9dbbe7d4178d4d8767c0e9cb3d8cdf4a2"
 
@@ -1526,7 +1530,7 @@ metafile = true
 
 [[files]]
 file = "mods/ru-lang-1.0.0-client.jar"
-hash = "88e7921148d20429392652eda66ca32466c330af523364d3de313ff22a326e76"
+hash = "4fcdfa26cb7745e661098a7848d78e244000570c25616faa50261ebd8f1f1b49"
 
 [[files]]
 file = "mods/sarkazs_furnace_side_fables-0.2.3-forge-1.20.1.jar"
