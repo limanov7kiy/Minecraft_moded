@@ -525,4 +525,8 @@ Mass Destruction Forge 1.1.2. Cataclysm/Mowzie's/Lycanites не дублирую
   **База (интегратор без Cerbon's API, 2026-10-12):** summon cow/zombie/iceandfire:troll/alexsmobs:crow — OK; яйцо овцы — OK (`CONSUME`);
   места: зомби ночью на тёмной площадке 50/200, тролль 47/200 (остальное отсекает свет), корова на освещённой 200/200, ошибок 0.
   После возврата Cerbon's API прогнать снова: заметное падение долей или ошибки — повод не возвращать.
-- **Клиент с BoMD + Cerbon's API**: `test-client.sh` — `CLIENT OK` (442 с); ошибок BoMD/Cerbon's API/Cloth Config в логе клиента нет.
+- **Клиент с BoMD + Cerbon's API**: `test-client.sh` — `CLIENT OK` (442 с). Ошибок BoMD и Cloth Config в логе клиента нет. В логе есть
+  `NetworkDirection channel cerbons_api:packets already registered` в `FMLCommonSetupEvent` — но то же самое (повторная регистрация
+  в `FMLCommonSetupEvent`) на этом тестовом клиенте происходит у 44 модов сразу (Forge, Aether, Ad Astra, Alex's Mobs, Mowzie's, Ice and Fire…),
+  то есть это особенность стенда (событие, похоже, отправляется дважды), а не конкретного мода; на сервере таких ошибок нет. Выше замечание про
+  `Duplicate registration … iceandfire:hippogryph` — из той же серии.
