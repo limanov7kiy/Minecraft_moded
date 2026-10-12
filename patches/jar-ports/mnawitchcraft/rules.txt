@@ -1,0 +1,6 @@
+# Mana and Artifice 3.1.11: классы предметов без префикса Item (поведение то же)
+class com/mna/items/ritual/ItemPlayerCharm         com/mna/items/ritual/PlayerCharm
+class com/mna/items/ritual/ItemPractitionersPatch  com/mna/items/ritual/PractitionersPatch
+class com/mna/items/sorcery/ItemStaff              com/mna/items/sorcery/MagicStaff
+# ItemStaff.getSpell(stack, player) убран — заклинание посоха читается из его NBT (как делал старый метод)
+scall com/mna/items/sorcery/ItemStaff.getSpell(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)Lcom/mna/api/spells/base/ISpellDefinition;   dev/mcmoded/port/mnaw/MnawPort.getSpell(Lcom/mna/items/sorcery/MagicStaff;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)Lcom/mna/api/spells/base/ISpellDefinition;

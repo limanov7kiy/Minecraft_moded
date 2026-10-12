@@ -261,6 +261,7 @@ mr mana-and-artifice                 # 3.1.11 Forge 1.20.1; зависимост
 mr ars-magica-legacy                 # 1.20.1-1.5.0; зависимости GeckoLib, Patchouli уже в сборке; дополнений под 1.20.1 нет
 mr arcaneadditions                   # дополнение M&A: компоненты заклинаний, ритуалы
 mr factions-and-curiosities          # дополнение M&A: новые фракции
-# mr mnawitchcraft                 # ОТКЛЮЧЕН: alpha 0.2.1 собран под старый M&A (NoClassDefFoundError com.mna.items.ritual.ItemPlayerCharm в 3.1.11)
+# mr mnawitchcraft                 # ЗАМЕНЁН портом: pack/mods/mnaw-1.20.1-forge-0.2.1-alpha-mmport.jar (both) — M&A Witchcraft под M&A 3.1.11
+#   (patches/jar-ports/mnawitchcraft; оригинал падал с NoClassDefFoundError com.mna.items.ritual.ItemPlayerCharm)
 mr mnaoverpowered                    # дополнение M&A: QoL-твики
 mr dragon-magic-and-relics           # дополнение M&A
