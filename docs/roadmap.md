@@ -150,6 +150,14 @@
     возвращены; порт `patches/jar-ports/origin-furs` встраивает старый API AzureLib 2.0.39 в jar Origin Furs
     (`pack/mods/origin_visuals-1.0.5-mmport-client.jar`, только клиент), сервер `Done`, `CLIENT OK`.
 
+### Поток 7 — JEI (просмотр крафтов и использования)
+Файлы: `scripts/jei_audit.py`, `docs/jei.md`, `docs/client-checklist.md` (раздел 8), `pack/modlist.txt` (раздел «JEI»).
+- [x] Аудит: 242 jar — 65 модов со своим плагином + 30 аддонов, покрытых плагином основного мода; пробелы — в `docs/jei.md`.
+- [x] Добавлены Just Enough Breeding, Professions, Beacons (+ Cerbon's API), Advancements; сервер `Done`, клиент `CLIENT OK` и вход в мир.
+- [x] KubeJS: `missing_mod_refs.js` правит только теги, `space_rockets.js` убирает рецепты ракет Ad Astra и прячет их из JEI — нужные рецепты не скрыты.
+- [x] Ошибки JEI в логе клиента (Blue Skies, mekmm, JER) — собственные баги модов, `docs/compat.md`.
+- [ ] Следующая задача: JEI-категория Imbuement Altar для Redux (~0,5 дня, mm-compat) — требует согласования.
+
 ### Поток 5 — Проверка клиента
 Клиент в облаке: `scripts/test-client.sh <папка>` (Forge через portablemc, моды из `.mrpack` как у Prism,
 Xvfb + Mesa llvmpipe, агент `scripts/clienttest/ExitTrace.java` ловит «тихие» `System.exit`), установщик

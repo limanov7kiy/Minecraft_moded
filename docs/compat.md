@@ -442,3 +442,20 @@ packwiz-installer не может скачать мод без `url` в `.pw.tom
   (Benimatic, Tamaized и др.), Too Many Glyphs (DerringersMods), Twilight Forest Bosses Resurrection (DimasStudio),
   Umbral Skies (Drullkus).
 - Размеры: все меньше 100 МБ; самые большие — Gathering Torches Become Sunlight (76 МБ) и The Twilight Forest (23 МБ).
+
+## JEI: аддоны и проверка клиента в мире (поток 7, 2026-10-12)
+Подробности и таблица покрытия — `docs/jei.md`, скрипт — `scripts/jei_audit.py`.
+- Добавлены (серверный тест `Done` за 101 с; клиент `CLIENT OK`, вход на сервер): Just Enough Breeding 3.1.2 (client),
+  Just Enough Professions 3.0.1 (client; Modrinth даёт `client_only_server_optional`, packwiz ставил both — поправлено),
+  Just Enough Beacons 1.2.0 (client; файл «Forge-1.20.4», но на 1.20.1 регистрируется и работает) + Cerbon's API 1.1.0 (client,
+  зависимость), Just Enough Advancements 5.0.1 (both). Все четыре зарегистрировали JEI-плагины без ошибок.
+- `test-client.sh` без входа в мир плагины JEI не проверяет (они стартуют после синхронизации рецептов). Для проверки
+  клиент подключали к тестовому серверу: вместе нужно ~10 ГБ — в облаке пришлось включить своп 8 ГБ, сервер `-Xmx4G`,
+  клиент `-Xmx5G` (с 5+6 ГБ без свопа клиент убивал OOM, код 137); YSM убрать на обеих сторонах.
+- Ошибки JEI в логе клиента (все — собственные баги модов, сборку не ломают):
+  - **Blue Skies**: `SkiesJEIPlugin.registerRecipes` → «There is no recipe category registered for blue_skies:horizonite_forge_fuel»;
+    дальше по методу рецепты плагина не регистрируются.
+  - **mekmm**: `MoreMachineJEI` → NPE `TileEntityReplicator.customRecipeMap` = null (рецепты Replicator не в JEI).
+  - **JER**: «Exception caught when registering villager» (`turnToQuill`, trader = null) — безвредно.
+- `Unknown recipe category: …` (≈94 строк) — ванильная книга рецептов, к JEI не относится.
+- Пробел покрытия: Imbuement Altar Electroblob's Wizardry Redux (120 рецептов) — плагина нет; план — `docs/jei.md`.
