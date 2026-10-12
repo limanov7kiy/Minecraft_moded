@@ -533,4 +533,5 @@ Mass Destruction Forge 1.1.2. Cataclysm/Mowzie's/Lycanites не дублирую
   Electric Scatter; аура Thunderstone не бьёт других големов Extra Golems.
 - Сервер: `golemcheck.js` 13/13 OK (5 заклинаний, время жизни, аура, каст огня, след, 11 типов, Living Snow, добыча
   163/463 из эпической выборки, кольцо в слоте Curios фейкового игрока → 2 бетонных голема).
+- Клиент: CLIENT OK (418 с), ошибок по `wizardrygolems` нет.
 - KubeJS/Rhino: `const` внутри блока `if`/`try` обработчика тика даёт «redeclaration» — в тестах только `let`.
