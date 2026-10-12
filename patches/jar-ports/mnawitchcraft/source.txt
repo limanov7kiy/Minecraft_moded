@@ -1,0 +1,6 @@
+# M&A Witchcraft (MNAWitchcraft) 0.2.1-alpha (автор nivthefox, GPLv3) — аддон Mana and Artifice, собран под M&A 3.0.x;
+# порт под M&A 3.1.11 (классы предметов переименованы). Решение владельца В4.
+url https://cdn.modrinth.com/data/Qf9MEXt3/versions/lPFp6VAO/mnaw-1.20.1-forge-0.2.1-alpha.jar
+sha512 3d12b4f0e57ea4741f6b7642ea0a54b1293d358416e8195d8ac36088acf6acf54cbca01b1b7cfdbf27c78536b1059f77c54242c241cb82202244ef772228998f
+out mnaw-1.20.1-forge-0.2.1-alpha-mmport.jar
+shims dev/mcmoded/port/mnaw
