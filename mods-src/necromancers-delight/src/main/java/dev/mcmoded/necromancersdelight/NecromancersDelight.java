@@ -34,11 +34,14 @@ public class NecromancersDelight {
     public NecromancersDelight() {
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
         NdBombs.init();
+        dev.mcmoded.necromancersdelight.item.NdItems.init();
         SPELLS.register(modBus);
         BLOCKS.register(modBus);
         dev.mcmoded.necromancersdelight.effect.NdEffects.EFFECTS.register(modBus);
         ITEMS.register(modBus);
         ENTITIES.register(modBus);
         modBus.addListener(NdBombs::onCreativeTab);
+        modBus.addListener(dev.mcmoded.necromancersdelight.item.NdItems::onCreativeTab);
+        net.minecraftforge.common.MinecraftForge.EVENT_BUS.register(dev.mcmoded.necromancersdelight.item.NdArtifacts.class);
     }
 }
