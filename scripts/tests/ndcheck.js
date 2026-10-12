@@ -40,7 +40,20 @@ ServerEvents.tick(event => {
     // контроль: как в castcheck — у точки появления
     server.runCommandSilent('fill -8 199 -8 8 199 8 minecraft:stone'); server.runCommandSilent('fill -8 200 -8 8 210 8 minecraft:air')
     server.runCommandSilent('summon minecraft:husk 0.5 200 3.5 {NoAI:1b,PersistenceRequired:1b}')
-    aim(0, 10); report('corrode_cast_origin', cast('corrode') === true, `look=${fake.getLookAngle()}`)
+    aim(0, 10)
+    let FR = Java.loadClass('net.minecraftforge.registries.ForgeRegistries')
+    console.info(`NDDIAG corroded=${FR.MOB_EFFECTS.getValue(new RL('mod_lavacow', 'corroded'))} soiled=${FR.MOB_EFFECTS.getValue(new RL('mod_lavacow', 'soiled'))} bombtype=${FR.ENTITY_TYPES.getValue(new RL('necromancersdelight', 'stink_bomb'))}`)
+    let near0 = []; level.getEntitiesOfClass(Entity, new AABB(-3, 198, -3, 4, 204, 8)).forEach(e => near0.push(String(e.getType()) + '@' + e.getX().toFixed(1) + ',' + e.getY().toFixed(1) + ',' + e.getZ().toFixed(1)))
+    console.info(`NDDIAG near_origin=${near0.join(' ')}`)
+    let RT = Java.loadClass('com.binaris.wizardry.api.content.util.RayTracer')
+    let Vec3 = Java.loadClass('net.minecraft.world.phys.Vec3')
+    let o = new Vec3(0.5, 201.37, 0.5)
+    let hit = RT.rayTrace(level, fake, o, o.add(fake.getLookAngle().scale(6)), 0, false, Entity, RT.ignoreEntityFilter(fake))
+    console.info(`NDDIAG manual_ray=${hit.getType()} ${hit.getType() == 'ENTITY' ? hit.getEntity() : hit.getLocation()}`)
+    report('corrode_cast_origin', cast('corrode') === true, `look=${fake.getLookAngle()}`)
+    aim(0, 10); cast('stink_bomb')
+    let bombs = []; level.getEntitiesOfClass(Entity, new AABB(-5, 190, -5, 5, 210, 10)).forEach(e => bombs.push(String(e.getType())))
+    console.info(`NDDIAG after_bomb_cast=${bombs.join(' ')}`)
     return
   }
   if (t == 245 || t == 255) {
