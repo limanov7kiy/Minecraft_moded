@@ -1763,7 +1763,7 @@ hash = "9d6c1b79bffbd22944012a0fd7318753402515ad5b37c1d2562f55a687aecc6e"
 
 [[files]]
 file = "options.txt"
-hash = "ca3418aa25484cb6e5499cc6274e6cee9bac6e07a207020a38316da1c8ec60d4"
+hash = "6d642afbd6dc2b555ef672d0db5313dac2a0f3cba9f3c40f131801d8ec5a4a4c"
 preserve = true
 
 [[files]]
@@ -1790,3 +1790,7 @@ metafile = true
 file = "resourcepacks/russian-delight.pw.toml"
 hash = "afcd7b135787e17fd9e33692c615af916202e9ea9f5a3ad34a075fc466de0bb8"
 metafile = true
+
+[[files]]
+file = "resourcepacks/russian-moded.zip"
+hash = "a17768757e7e79a093f78e6178786526e58176405ba51b57ecd083ea41d30e9a"

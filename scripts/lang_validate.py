@@ -7,7 +7,7 @@ import collections, json, pathlib, re, sys, zipfile
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 from lang_audit import LANG_RE, load_json, has_letters  # noqa: E402
 
-PH = re.compile(r"%(?:\d+\$)?[-#+0,(]*\d*(?:\.\d+)?[a-zA-Z%]|\{[^{}]*\}|\\n|\$\([^)]*\)")
+PH = re.compile(r"%(?:\d+\$)?[-#+0]*\d*(?:\.\d+)?[a-zA-Z%]|\{[^{}]*\}|\\n|\$\([^)]*\)")
 CYR = re.compile(r"[А-Яа-яЁё]")
 
 
