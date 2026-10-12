@@ -6,14 +6,14 @@
 
 Учёт баланса (`docs/compat.md`): броня считается по Apothic (`a/(a+броня)`), защита-зачарование по ваниле — поздняя игра примерно вдвое тяжелее, чем рассчитывали авторы боссов; Arknights Weapon в оригинале удваивал здоровье мобов при загрузке чанка — в сборке порт без этого.
 
-Всего в таблице: **203**; без записи в `boss_info.py` (нужно описать): **144**.
+Всего в таблице: **212**; без записи в `boss_info.py` (нужно описать): **144**.
 
 ## aether
 
 | Босс | Где встретить | ❤ HP | Урон | Броня | Размер | Фазы / способности | Как призвать / найти | Награда | Экипировка | Тип | Заметки | Проверен в игре |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| **Дух Солнца** / Sun Spirit | Эфир, Золотое подземелье | 500 | ≈/не извлечено | 0 | большой (3.4×2.5) | огненные и ледяные атаки; ночь/день | — | aether:gold_dungeon_key, aether:sun_altar (из лута) | — | босс |  | нет |
 | **Королева валькирий** / Valkyrie Queen | Эфир, Серебряное подземелье | 500 | 13.5 | 0 | обычный (1.95×0.8) | — | — | aether:silver_dungeon_key, minecraft:golden_sword (из лута) | — | босс |  | нет |
+| **Дух Солнца** / Sun Spirit | Эфир, Золотое подземелье | 500 | ≈/не извлечено | 0 | большой (3.4×2.5) | огненные и ледяные атаки; ночь/день | — | aether:gold_dungeon_key, aether:sun_altar (из лута) | — | босс |  | нет |
 | **Слайдер** / Slider | Эфир, Бронзовое подземелье | 400 | ≈/не извлечено | 0 | большой (2.0×2.0) | — | — | aether:bronze_dungeon_key, aether:carved_stone (из лута) | — | босс |  | нет |
 
 ## alexscaves
@@ -55,8 +55,8 @@
 | Босс | Где встретить | ❤ HP | Урон | Броня | Размер | Фазы / способности | Как призвать / найти | Награда | Экипировка | Тип | Заметки | Проверен в игре |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | **Арахнарх** / Arachnarch | Blue Skies | 500 | 14 | 6 | большой (1.7×3.0) | — | — | — | — | босс |  | нет |
-| **Алхимик** / Alchemist | Blue Skies | 500 | 2 | 0 | обычный (2.0×0.6) | — | — | — | — | босс |  | нет |
 | **Звёздный крушитель** / Starlit Crusher | Blue Skies | 500 | 10 | 0 | большой (3.2×1.6) | — | — | — | — | босс |  | нет |
+| **Алхимик** / Alchemist | Blue Skies | 500 | 2 | 0 | обычный (2.0×0.6) | — | — | — | — | босс |  | нет |
 | **Призыватель** / Summoner | Blue Skies | 350 | 2 | 0 | обычный (2.0×0.6) | — | — | — | — | босс |  | нет |
 
 ## botania
@@ -71,12 +71,12 @@
 | Босс | Где встретить | ❤ HP | Урон | Броня | Размер | Фазы / способности | Как призвать / найти | Награда | Экипировка | Тип | Заметки | Проверен в игре |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | **Незеритовое чудовище** / Netherite Monstrosity | Незер, структура soul_black_smith | 600 | 25 | 12 | большой (5.75×3.0) | — | арена + Eye of Monstrous | cataclysm:infernal_forge, cataclysm:monstrous_horn, cataclysm:lava_power_cell, cataclysm:music_disc_netherite_monstrosity (из лута) | — | босс |  | нет |
-| **Игнис** / Ignis | Незер, структура burning_arena | 450 | 14 | 10 | большой (3.5×2.25) | две фазы | арена с Altar of Fire + Eye | cataclysm:ignitium_ingot, cataclysm:music_disc_ignis (из лута) | огнестойкость, незерит+ | босс |  | нет |
 | **Древний реликт** / Ancient Remnant | Пустыня, структура cursed_pyramid | 450 | 25 | 12 | огромный (5.0×4.35) | — | Eye of Desert | cataclysm:sandstorm_in_a_bottle, cataclysm:remnant_skull, cataclysm:ancient_metal_block, cataclysm:music_disc_ancient_remnant (из лута) | — | босс |  | нет |
+| **Игнис** / Ignis | Незер, структура burning_arena | 450 | 14 | 10 | большой (3.5×2.25) | две фазы | арена с Altar of Fire + Eye | cataclysm:ignitium_ingot, cataclysm:music_disc_ignis (из лута) | огнестойкость, незерит+ | босс |  | нет |
 | **Малединктус** / Maledictus | Мир, структура frosted_prison | 420 | 13 | 10 | большой (3.0×1.5) | — | Eye of Curse | cataclysm:music_disc_maledictus, cataclysm:cursium_ingot (из лута) | — | босс |  | нет |
 | **Левиафан** / The Leviathan | Океан, структура sunken_city | 400 | 15 | 10 | огромный (3.0×4.5) | — | Altar of Abyss + Eye of Abyss | cataclysm:tidal_claws, cataclysm:abyssal_egg, cataclysm:music_disc_the_leviathan (из лута) | — | босс |  | нет |
-| **Предвестник** / The Harbinger | Мир, структура ancient_factory | 390 | 9 | 12 | большой (3.75×1.6) | — | Eye of Mech | cataclysm:witherite_block, cataclysm:music_disc_the_harbinger (из лута) | — | босс |  | нет |
 | **Сцилла** / Scylla | Океан, структура acropolis | 390 | 18 | 12 | большой (3.0×1.4) | — | Eye of Storm | cataclysm:lacrima, cataclysm:music_disc_scylla, cataclysm:essence_of_the_storm (из лута) | — | босс |  | нет |
+| **Предвестник** / The Harbinger | Мир, структура ancient_factory | 390 | 9 | 12 | большой (3.75×1.6) | — | Eye of Mech | cataclysm:witherite_block, cataclysm:music_disc_the_harbinger (из лута) | — | босс |  | нет |
 | **Страж Края** / Ender Guardian | Край, структура ruined_citadel | 333 | 16 | 20 | большой (3.8×2.5) | — | Altar of Void + предмет Eye of … | cataclysm:gauntlet_of_guard, cataclysm:music_disc_ender_guardian (из лута) | — | босс |  | нет |
 
 ## deep_aether
@@ -102,6 +102,20 @@
 | Босс | Где встретить | ❤ HP | Урон | Броня | Размер | Фазы / способности | Как призвать / найти | Награда | Экипировка | Тип | Заметки | Проверен в игре |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | **Скелет-босс (Galacticraft Revival)** / Evolved Skeleton Boss | Лунный данж, Луна (Ad Astra) | 150 | 2 | 0 | большой (4.0×1.5) | — | — | — | — | босс | Из нашего порта Galacticraft Revival. | нет |
+
+## iceandfire
+
+| Босс | Где встретить | ❤ HP | Урон | Броня | Размер | Фазы / способности | Как призвать / найти | Награда | Экипировка | Тип | Заметки | Проверен в игре |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| **Огненный дракон** / Fire Dragon | Логова драконов в мире (горы/пустоши) | 500 | 18 | 21 | огромный (1.2×0.78) | дыхание огнём; пикирование; приручаемый — летающий скакун | яйцо дракона из логова; взрослые встречаются в небе у логова | — | алмаз/незерит, дальний бой, защита от огня | босс | Здоровье/урон/броня — взрослый (стадия 5, AgeTicks 3 000 000), у стадии 1 — 20 HP. «Dragon Health»/«Dragon Attack Damage» в config/iceandfire-common.toml. | нет |
+| **Ледяной дракон** / Ice Dragon | Логова драконов в заснеженных районах | 500 | 18 | 21 | огромный (1.2×0.78) | ледяное дыхание, замораживание | яйцо из логова | — | огнестойкость не нужна; тёплая броня, огонь по дракону | босс | Замер как у огненного: стадия 5. | нет |
+| **Молниевый дракон** / Lightning Dragon | Логова драконов (Lightning) | 500 | 18 | 21 | огромный (1.2×0.78) | дыхание молнией, цепной урон | яйцо из логова | — | громоотвод/диэлектрическая броня | босс | Замер как у огненного: стадия 5. | нет |
+| **Гидра (Ice and Fire)** / Hydra | Болота, логово гидры | 250 | 3 | 1 | большой (1.39×2.8) | много голов, отравляющее дыхание | — | — | — | босс |  | нет |
+| **Циклоп** / Cyclops | Пещеры циклопа / бродит по миру | 150 | 15 | 20 | огромный (7.4×1.95) | — | — | — | — | босс |  | нет |
+| **Королева мирмексов** / Myrmex Queen | Улей мирмексов (джунгли/пустыня) | 120 | 10.5 | 15 | большой (1.86×2.9) | — | — | — | — | босс |  | нет |
+| **Горгона** / Gorgon | Храм горгоны | 100 | 3 | 1 | обычный (1.99×0.8) | взгляд превращает в камень — нужно зеркало/слепота | — | — | — | босс |  | нет |
+| **Тролль** / Troll | горы, лес | 50 | 10 | 9 | большой (3.5×1.2) | — | — | — | — | сильный моб |  | нет |
+| **Морской змей** / Sea Serpent | Океан | 20 | 1 | 3 | огромный (0.5×0.5) | — | — | — | — | босс |  | нет |
 
 ## irons_spellbooks
 
@@ -164,8 +178,8 @@
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | **Гидра** / Hydra | Twilight Forest, Логово гидры (Огненное болото) | 360 | ≈/не извлечено | 0 | огромный (12.0×16.0) | три головы отращиваются заново | — | twilightforest:hydra_chop, twilightforest:fiery_blood, twilightforest:hydra_trophy (из лута) | — | босс |  | нет |
 | **Ур-Гаст** / Ur-Ghast | Twilight Forest, Тёмная башня (Тёмный лес) | 250 | ≈/не извлечено | 0 | огромный (18.0×14.0) | — | — | twilightforest:carminite, twilightforest:fiery_tears, twilightforest:ur_ghast_trophy (из лута) | — | босс |  | нет |
-| **Альфа-йети** / Alpha Yeti | Twilight Forest, Логово йети (Снежный лес) | 200 | 1 | 0 | большой (5.0×3.8) | — | — | twilightforest:alpha_yeti_fur, twilightforest:ice_bomb, twilightforest:alpha_yeti_trophy (из лута) | — | босс |  | нет |
 | **Снежная королева** / Snow Queen | Twilight Forest, Аврора-дворец (Ледник) | 200 | 7 | 0 | обычный (2.2×0.7) | ледяные кристаллы | — | twilightforest:triple_bow, twilightforest:seeker_bow, minecraft:packed_ice, minecraft:snowball, twilightforest:snow_queen_trophy (из лута) | — | босс |  | нет |
+| **Альфа-йети** / Alpha Yeti | Twilight Forest, Логово йети (Снежный лес) | 200 | 1 | 0 | большой (5.0×3.8) | — | — | twilightforest:alpha_yeti_fur, twilightforest:ice_bomb, twilightforest:alpha_yeti_trophy (из лута) | — | босс |  | нет |
 | **Нага** / Naga | Измерение Twilight Forest, Двор Наги | 120 | 5 | 0 | большой (3.0×2.0) | — | найти двор в Лесу сумерек | twilightforest:naga_scale, twilightforest:naga_trophy (из лута) | железо/алмаз | босс | Первый босс линейки TF. | нет |
 | **Миношрум** / Minoshroom | Twilight Forest, Лабиринт | 120 | 2 | 0 | обычный (2.5×1.49) | — | дойти до арены лабиринта | twilightforest:meef_stroganoff, twilightforest:minoshroom_trophy, twilightforest:diamond_minotaur_axe (из лута) | — | босс |  | нет |
 | **Лич** / Lich | Twilight Forest, Башня Лича | 100 | 3 | 0 | обычный (2.1×1.1) | клоны, телепорт, щит | подняться в башню | twilightforest:twilight_scepter, twilightforest:lifedrain_scepter, twilightforest:zombie_scepter, twilightforest:fortification_scepter, minecraft:golden_sword, minecraft:golden_helmet … (из лута) | — | босс |  | нет |
@@ -196,21 +210,21 @@
 | `arsmagicalegacy:arcane_guardian` (Arcane Guardian) | босс | 120 | 2 | 10 | обычный (2.25×0.9) | боссбар в классе |
 | `arsmagicalegacy:earth_guardian` (Earth Guardian) | босс | 120 | 2 | 10 | обычный (2.5×1.5) | боссбар в классе |
 | `arsmagicalegacy:water_guardian` (Water Guardian) | босс | 80 | 2 | 10 | обычный (1.5×1.0) | боссбар в классе |
-| `bobsoriginiumdream:evolutionnatureevolution` (进化的本质_进化形态) | босс | 1000 | 0 | 10 | огромный (5.0×5.0) | боссбар в классе; здоровье ≥ 150; тег bobsoriginiumdream:boss; тег forge:bosses; тег the_bumblezone:bosses |
 | `bobsoriginiumdream:evolutionnaturenewborn` (进化的本质_初生) | босс | 1000 | 0 | 5 | огромный (5.0×5.0) | боссбар в классе; здоровье ≥ 150; тег bobsoriginiumdream:boss; тег forge:bosses; тег the_bumblezone:bosses |
+| `bobsoriginiumdream:evolutionnatureevolution` (进化的本质_进化形态) | босс | 1000 | 0 | 10 | огромный (5.0×5.0) | боссбар в классе; здоровье ≥ 150; тег bobsoriginiumdream:boss; тег forge:bosses; тег the_bumblezone:bosses |
 | `bobsoriginiumdream:evolutionnatureperfect` (完美_进化的本质_完美) | босс | 1000 | 0 | 30 | огромный (5.0×5.0) | боссбар в классе; здоровье ≥ 150; тег bobsoriginiumdream:boss; тег forge:bosses; тег the_bumblezone:bosses |
 | `bobsoriginiumdream:bobcolossus` (鲍勃巨像) | сильный моб | 1000 | 36 | 8 | большой (4.6×3.0) | здоровье ≥ 150 |
 | `bobsoriginiumdream:roamhouse` (漫游小屋) | босс | 600 | 18 | 10 | большой (2.5×2.0) | боссбар в классе; здоровье ≥ 150; тег bobsoriginiumdream:boss; тег forge:bosses; тег the_bumblezone:bosses |
 | `bobsoriginiumdream:milan` (米兰) | босс | 600 | 15 | 10 | обычный (2.2×1.2) | боссбар в классе; здоровье ≥ 150; тег bobsoriginiumdream:boss; тег forge:bosses; тег the_bumblezone:bosses |
 | `bobsoriginiumdream:worldremains` (尘世遗骸) | босс | 600 | 25 | 30 | огромный (6.0×5.0) | боссбар в классе; здоровье ≥ 150 |
-| `bobsoriginiumdream:gluttonyfruit` (暴食之果-钳兽壳粉) | босс | 550 | 10 | 10.5 | огромный (4.4×4.4) | боссбар в классе; здоровье ≥ 150; тег bobsoriginiumdream:boss; тег forge:bosses; тег the_bumblezone:bosses |
 | `bobsoriginiumdream:losewaycolossus` (迷路的巨像) | босс | 550 | 20 | 18 | огромный (3.4×4.0) | боссбар в классе; здоровье ≥ 150; тег bobsoriginiumdream:boss; тег forge:bosses; тег the_bumblezone:bosses |
+| `bobsoriginiumdream:gluttonyfruit` (暴食之果-钳兽壳粉) | босс | 550 | 10 | 10.5 | огромный (4.4×4.4) | боссбар в классе; здоровье ≥ 150; тег bobsoriginiumdream:boss; тег forge:bosses; тег the_bumblezone:bosses |
 | `bobsoriginiumdream:shinybug` (斑斓虫) | босс | 500 | 10 | 0 | обычный (1.8×1.1) | боссбар в классе; здоровье ≥ 150; тег bobsoriginiumdream:boss; тег forge:bosses; тег the_bumblezone:bosses |
 | `bobsoriginiumdream:shinybugangry` (斑斓虫) | босс | 500 | 20 | 0 | обычный (1.8×0.6) | боссбар в классе; здоровье ≥ 150; тег bobsoriginiumdream:boss; тег forge:bosses; тег the_bumblezone:bosses |
 | `bobsoriginiumdream:pompeii` (庞贝) | босс | 350 | 3 | 5.5 | огромный (5.0×4.0) | боссбар в классе; здоровье ≥ 150; тег bobsoriginiumdream:boss; тег forge:bosses; тег the_bumblezone:bosses |
 | `bobsoriginiumdream:stonetones` (石之钳兽) | сильный моб | 300 | 40 | 20 | обычный (1.3×1.3) | здоровье ≥ 150 |
-| `bobsoriginiumdream:mephistoend` (梅菲斯特歌者) | босс | 200 | 8 | 4.5 | большой (2.0×3.0) | боссбар в классе; здоровье ≥ 150; тег bobsoriginiumdream:boss; тег forge:bosses; тег the_bumblezone:bosses |
 | `bobsoriginiumdream:mephisto` (梅菲斯特歌者) | босс | 200 | 6 | 5 | большой (2.0×3.0) | боссбар в классе; здоровье ≥ 150; тег bobsoriginiumdream:boss; тег forge:bosses; тег the_bumblezone:bosses |
+| `bobsoriginiumdream:mephistoend` (梅菲斯特歌者) | босс | 200 | 8 | 4.5 | большой (2.0×3.0) | боссбар в классе; здоровье ≥ 150; тег bobsoriginiumdream:boss; тег forge:bosses; тег the_bumblezone:bosses |
 | `bobsoriginiumdream:mephistosinger` (梅菲斯特歌者) | босс | 200 | 6 | 4.5 | большой (2.0×3.0) | боссбар в классе; здоровье ≥ 150; тег bobsoriginiumdream:boss; тег forge:bosses; тег the_bumblezone:bosses |
 | `bobsoriginiumdream:oribear` (狂躁异质北极熊) | сильный моб | 200 | 20 | 3 | обычный (2.0×1.0) | здоровье ≥ 150 |
 | `bobsoriginiumdream:orienderman` (假想敌:充能) | сильный моб | 200 | 15 | 3 | большой (3.3×0.9) | здоровье ≥ 150 |
@@ -224,31 +238,31 @@
 | `caerula_arbor:damage_tester` (Damage Tester) | сильный моб | 1000000 | 3 | 0 | обычный (1.8×0.6) | здоровье ≥ 150 |
 | `caerula_arbor:qunyou_wanted_isharmla` (Qunyou Wanted Isharmla) | босс | 625554 | 6593 | 24 | огромный (20.0×20.0) | боссбар в классе; здоровье ≥ 150 |
 | `caerula_arbor:mega_stonecutter` (Mega Oean Stonecutter) | босс | 1200 | 9 | 30 | большой (2.0×2.0) | боссбар в классе; здоровье ≥ 150; тег forge:bosses; тег the_bumblezone:bosses |
-| `caerula_arbor:oceanized_wardenis` (Wardenis the Seaborn) | босс | 825 | 50 | 10 | обычный (1.85×0.6) | боссбар в классе; здоровье ≥ 150; тег caerula_arbor:bossoffspring; тег forge:bosses; тег the_bumblezone:bosses |
 | `caerula_arbor:oceanized_warden` (Sculk Scope Watcher) | босс | 825 | 50 | 10 | большой (3.1×1.2) | боссбар в классе; здоровье ≥ 150; тег caerula_arbor:bossoffspring; тег forge:bosses; тег the_bumblezone:bosses |
+| `caerula_arbor:oceanized_wardenis` (Wardenis the Seaborn) | босс | 825 | 50 | 10 | обычный (1.85×0.6) | боссбар в классе; здоровье ≥ 150; тег caerula_arbor:bossoffspring; тег forge:bosses; тег the_bumblezone:bosses |
 | `caerula_arbor:al_1_s_helper` (Little Helper the Al-1s) | сильный моб | 799 | 256 | 5 | обычный (0.2×0.88) | здоровье ≥ 150 |
 | `caerula_arbor:little_helper` (Little Helper) | сильный моб | 799 | 256 | 5 | обычный (0.2×0.88) | здоровье ≥ 150 |
 | `caerula_arbor:izumik` (Izumik) | босс | 600 | 22 | 18 | огромный (9.0×3.3) | боссбар в классе; здоровье ≥ 150; тег caerula_arbor:bossoffspring; тег forge:bosses; тег the_bumblezone:bosses |
 | `caerula_arbor:bishop_fish` (Quintus) | босс | 560 | 7 | 8 | обычный (2.2×1.4) | боссбар в классе; здоровье ≥ 150; тег caerula_arbor:bossoffspring; тег forge:bosses; тег the_bumblezone:bosses |
 | `caerula_arbor:oceanized_wither` (Tranquil Sea Ethereality) | босс | 550 | 12 | 8 | большой (3.5×1.1) | боссбар в классе; здоровье ≥ 150; тег caerula_arbor:bossoffspring; тег forge:bosses; тег the_bumblezone:bosses |
-| `caerula_arbor:martus` (Martus) | босс | 500 | 2 | 30 | обычный (2.8×0.7) | боссбар в классе; здоровье ≥ 150; тег caerula_arbor:bossoffspring; тег forge:bosses; тег the_bumblezone:bosses |
 | `caerula_arbor:super_big_cat` (Super Big Cat) | босс | 500 | 16 | 10 | большой (4.0×3.5) | боссбар в классе; здоровье ≥ 150; тег caerula_arbor:bossoffspring; тег forge:bosses; тег the_bumblezone:bosses |
+| `caerula_arbor:martus` (Martus) | босс | 500 | 2 | 30 | обычный (2.8×0.7) | боссбар в классе; здоровье ≥ 150; тег caerula_arbor:bossoffspring; тег forge:bosses; тег the_bumblezone:bosses |
 | `caerula_arbor:aegir_mortar` (Aegir Mortar) | сильный моб | 500 | 15 | 20 | большой (4.0×3.0) | здоровье ≥ 150 |
 | `caerula_arbor:iberia_monstrosity` (Iberia Monstrosity) | сильный моб | 500 | 19 | 22 | большой (5.0×3.0) | здоровье ≥ 150 |
 | `caerula_arbor:complex_chitin_golem` (Complex Chitin Golem) | босс | 475 | 24 | 18 | большой (4.0×1.75) | здоровье ≥ 150; тег forge:bosses; тег the_bumblezone:bosses |
 | `caerula_arbor:runvolution` (Runvolution the Imaginary Enemy) | босс | 450 | 7 | 5 | большой (5.25×2.0) | боссбар в классе; здоровье ≥ 150; тег caerula_arbor:bossoffspring; тег forge:bosses; тег the_bumblezone:bosses |
 | `caerula_arbor:ulpians` (Ulpians) | сильный моб | 430 | 55 | 0 | обычный (1.8×0.6) | здоровье ≥ 150 |
 | `caerula_arbor:skadi_corrupted` (Skadi Corrupted) | босс | 405 | 15 | 9 | обычный (1.8×0.6) | боссбар в классе; здоровье ≥ 150; тег caerula_arbor:bossoffspring; тег forge:bosses; тег the_bumblezone:bosses |
+| `caerula_arbor:last_knight_and_horse` (The Last Knight) | босс | 400 | 20 | 24 | большой (4.0×1.2) | боссбар в классе; здоровье ≥ 150; тег forge:bosses; тег the_bumblezone:bosses |
 | `caerula_arbor:oceanized_witheria` (Witheria the Tranquility) | босс | 400 | 24 | 15 | обычный (2.5×0.7) | боссбар в классе; здоровье ≥ 150; тег caerula_arbor:bossoffspring; тег forge:bosses; тег the_bumblezone:bosses |
 | `caerula_arbor:the_last_knight` (The Tide-hunt Knight) | босс | 400 | 20 | 24 | большой (3.6×1.0) | боссбар в классе; здоровье ≥ 150; тег forge:bosses; тег the_bumblezone:bosses |
-| `caerula_arbor:last_knight_and_horse` (The Last Knight) | босс | 400 | 20 | 24 | большой (4.0×1.2) | боссбар в классе; здоровье ≥ 150; тег forge:bosses; тег the_bumblezone:bosses |
 | `caerula_arbor:oceanized_enderina` (Enderina the Peramble) | босс | 385 | 14 | 15 | обычный (1.95×0.75) | боссбар в классе; здоровье ≥ 150; тег caerula_arbor:bossoffspring; тег forge:bosses; тег the_bumblezone:bosses |
 | `caerula_arbor:thirster` (Thirster) | босс | 340 | 5 | 15 | обычный (1.75×1.5) | боссбар в классе; здоровье ≥ 150; тег caerula_arbor:bossoffspring; тег forge:bosses; тег the_bumblezone:bosses |
 | `caerula_arbor:isharmla` (Isharmla) | босс | 320 | 16 | 12 | обычный (1.8×0.6) | боссбар в классе; здоровье ≥ 150; тег caerula_arbor:bossoffspring; тег forge:bosses; тег the_bumblezone:bosses |
 | `caerula_arbor:tide_chimera` (Underdawn Chimera) | босс | 300 | 19 | 8 | большой (4.65×1.8) | боссбар в классе; здоровье ≥ 150; тег caerula_arbor:bossoffspring; тег forge:bosses; тег the_bumblezone:bosses |
 | `caerula_arbor:saint_carmen` (Saint Carmen) | сильный моб | 280 | 22 | 8 | обычный (1.8×0.6) | здоровье ≥ 150 |
-| `caerula_arbor:lingering_pathshaper` (Path Shaper) | босс | 270 | 10 | 9 | большой (4.0×1.8) | боссбар в классе; здоровье ≥ 150; тег caerula_arbor:bossoffspring; тег forge:bosses; тег the_bumblezone:bosses |
 | `caerula_arbor:flamarine_golem` (Flamarine Golem) | босс | 270 | 19 | 23 | обычный (2.75×1.0) | боссбар в классе; здоровье ≥ 150; тег forge:bosses; тег the_bumblezone:bosses |
+| `caerula_arbor:lingering_pathshaper` (Path Shaper) | босс | 270 | 10 | 9 | большой (4.0×1.8) | боссбар в классе; здоровье ≥ 150; тег caerula_arbor:bossoffspring; тег forge:bosses; тег the_bumblezone:bosses |
 | `caerula_arbor:skadi` (Skadi) | сильный моб | 270 | 38 | 5 | обычный (1.8×0.6) | здоровье ≥ 150 |
 | `caerula_arbor:super_slider` (Slider Fish) | босс | 250 | 24 | 20 | обычный (0.8×0.3) | боссбар в классе; здоровье ≥ 150; тег caerula_arbor:bossoffspring; тег forge:bosses; тег the_bumblezone:bosses |
 | `caerula_arbor:mega_chest` (Mega Chest) | босс | 240 | 23 | 17 | обычный (0.9×0.8) | боссбар в классе; здоровье ≥ 150; тег caerula_arbor:bossoffspring; тег forge:bosses; тег the_bumblezone:bosses |
@@ -264,8 +278,8 @@
 | `caerula_arbor:chitin_golem` (Chitin Golem) | босс | 185 | 15 | 16 | большой (4.0×1.75) | здоровье ≥ 150; тег forge:bosses; тег the_bumblezone:bosses |
 | `caerula_arbor:promoted_elder_guardian` (Allotropic Elder Guardian) | босс | 165 | 14 | 11 | большой (2.0×2.0) | боссбар в классе; здоровье ≥ 150; тег caerula_arbor:bossoffspring; тег forge:bosses; тег the_bumblezone:bosses |
 | `caerula_arbor:tide_bishop` (Tidelinked Bishop) | босс | 160 | 9 | 6 | обычный (2.2×1.1) | боссбар в классе; здоровье ≥ 150; тег caerula_arbor:bossoffspring; тег forge:bosses; тег the_bumblezone:bosses |
-| `caerula_arbor:route_shaper` (Path Shaper) | босс | 140 | 9 | 8 | большой (4.0×1.8) | боссбар в классе; тег caerula_arbor:bossoffspring; тег forge:bosses; тег the_bumblezone:bosses |
 | `caerula_arbor:endspeaker_2` (Endspeaker, Bloodlogged Nest) | босс | 140 | 9 | 6 | обычный (2.8×1.2) | боссбар в классе; тег caerula_arbor:bossoffspring; тег forge:bosses; тег the_bumblezone:bosses |
+| `caerula_arbor:route_shaper` (Path Shaper) | босс | 140 | 9 | 8 | большой (4.0×1.8) | боссбар в классе; тег caerula_arbor:bossoffspring; тег forge:bosses; тег the_bumblezone:bosses |
 | `caerula_arbor:compassion_prayer` (Compassion Prayer) | босс | 136 | 7 | 2 | обычный (1.8×0.6) | тег caerula_arbor:bossoffspring; тег forge:bosses; тег the_bumblezone:bosses |
 | `caerula_arbor:endspeaker_1` (Endspeaker, Static Spawn) | босс | 120 | 7 | 5 | обычный (1.5×0.75) | боссбар в классе; тег caerula_arbor:bossoffspring; тег forge:bosses; тег the_bumblezone:bosses |
 | `caerula_arbor:oceanized_brute` (Flame Valley Despot) | босс | 115 | 16 | 5 | обычный (2.0×0.6) | боссбар в классе; тег caerula_arbor:bossoffspring; тег forge:bosses; тег the_bumblezone:bosses |
@@ -298,10 +312,10 @@
 | `sarkazs_furnace_side_fables:banished_black_coffin` (Banished Black Coffin) | сильный моб | 150 | ≈/не извлечено | 10 | обычный (2.0×1.0) | здоровье ≥ 150 |
 | `torchesbecomesunlight:pursuer` ("Emperor's Blade", Pursuer) | босс | 400 | 16 | 10 | большой (3.5×1.0) | боссбар в классе; здоровье ≥ 150; тег forge:bosses; тег the_bumblezone:bosses |
 | `torchesbecomesunlight:gravestone` ("Gravestone") | босс | 380 | 8 | 10 | обычный (1.8×0.75) | боссбар в классе; здоровье ≥ 150; тег forge:bosses; тег the_bumblezone:bosses |
-| `torchesbecomesunlight:frost_nova` (FrostNova) | босс | 300 | 12 | 2 | обычный (2.0×0.5) | боссбар в классе; здоровье ≥ 150; тег forge:bosses; тег the_bumblezone:bosses |
-| `torchesbecomesunlight:rosmontis` (Rosmontis) | босс | 300 | 12 | 2 | обычный (1.6×0.45) | боссбар в классе; здоровье ≥ 150; тег forge:bosses; тег the_bumblezone:bosses |
 | `torchesbecomesunlight:patriot` (Patriot) | босс | 300 | 20 | 20 | большой (4.0×1.8) | боссбар в классе; здоровье ≥ 150; тег forge:bosses; тег the_bumblezone:bosses |
 | `torchesbecomesunlight:gun_knight_patriot` (Buldrokkas'tee, Holy Gun-Knight) | босс | 300 | 15 | 20 | большой (4.0×1.8) | боссбар в классе; здоровье ≥ 150; тег forge:bosses; тег the_bumblezone:bosses |
+| `torchesbecomesunlight:frost_nova` (FrostNova) | босс | 300 | 12 | 2 | обычный (2.0×0.5) | боссбар в классе; здоровье ≥ 150; тег forge:bosses; тег the_bumblezone:bosses |
+| `torchesbecomesunlight:rosmontis` (Rosmontis) | босс | 300 | 12 | 2 | обычный (1.6×0.45) | боссбар в классе; здоровье ≥ 150; тег forge:bosses; тег the_bumblezone:bosses |
 | `torchesbecomesunlight:crazelyseon_proxy` (Endless Resonance Kreson) | сильный моб | 300 | 15 | 20 | огромный (52.0×52.0) | здоровье ≥ 150 |
 | `torchesbecomesunlight:demons_blade` ("Demons Blade") | сильный моб | 300 | 18 | 16 | обычный (2.8×0.9) | здоровье ≥ 150 |
 | `torchesbecomesunlight:red` (Red) | босс | 280 | 12 | 16 | обычный (2.4×0.8) | боссбар в классе; здоровье ≥ 150; тег forge:bosses; тег the_bumblezone:bosses |
@@ -310,8 +324,8 @@
 | `torchesbecomesunlight:pathfinder_ballistarius` (Pathfinder Line Breaker) | сильный моб | 200 | 16 | 12 | большой (3.0×1.2) | здоровье ≥ 150 |
 | `torchesbecomesunlight:war_phantom` (War Phantom) | сильный моб | 180 | 12 | 8 | обычный (2.6×1.0) | здоровье ≥ 150 |
 | `torchesbecomesunlight:burdenbeast` (Burdenbeast) | сильный моб | 160 | 20 | 8 | большой (2.8×2.8) | здоровье ≥ 150 |
-| `traveloptics:the_nightwarden` (The Nightwarden) | босс | 600 | 18 | 10 | большой (3.5×1.6) | боссбар в классе; здоровье ≥ 150; тег forge:bosses; тег the_bumblezone:bosses |
 | `traveloptics:enraged_dead_king` (§c§lEnraged Dead King) | босс | 600 | 14 | 20 | большой (3.5×0.9) | боссбар в классе; здоровье ≥ 150; тег forge:bosses; тег the_bumblezone:bosses |
+| `traveloptics:the_nightwarden` (The Nightwarden) | босс | 600 | 18 | 10 | большой (3.5×1.6) | боссбар в классе; здоровье ≥ 150; тег forge:bosses; тег the_bumblezone:bosses |
 | `traveloptics:fading_mage` (Fading Mage) | сильный моб | 600 | 18 | 10 | обычный (2.4×0.8) | здоровье ≥ 150 |
 | `traveloptics:the_nightwarden_defeated` (The Nightwarden) | сильный моб | 600 | 18 | 10 | обычный (2.1×1.7) | здоровье ≥ 150 |
 | `traveloptics:summoned_atlatitan` (Summoned Atlatitan) | сильный моб | 400 | 8 | 0 | огромный (8.0×5.0) | здоровье ≥ 150 |
