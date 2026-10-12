@@ -229,7 +229,7 @@ compatible»* — 1.20.1 принимает только `pack_format` 15, а у
 | **Dimensional Dungeons** `guide_book` | Patchouli; в jar `ru_ru`-папка книги неполная; **lang лежал как `ru_RU.json`** (1.20.1 читает только `ru_ru.json` → русского мода не было вообще) | `lang/ru_ru.json` (копия + 51 ключ), полная `ru_ru/` книги (58 строк + 3 файла patch_notes), `book.json` через kubejs |
 | **Ars Magica Legacy** `arcane_compendium` | текст в lang-ключах (русские), сырых строк 26 | переведены |
 | Аддоны Ars (Tome of Blood, Ars Ocultas, Ars Instrumentum, Ars Creo), Bob's Originium `bobbook`, ExtraBotany `exguide` | сырой текст в файлах | переведены (53 строки; bobbook — с китайского; exguide — тестовая запись) |
-| Superb Warfare `manual` | lang-ключи, не хватает 3 (52 знака) | осталось |
+| Superb Warfare `manual` | lang-ключи; «не переведены» только 3 названия техники (LAV-150 Commando, A-10A Thunderbolt II, AH-6 Little Bird) — имена собственные | переводить нечего |
 
 **Названия MnA.** Родной `ru_ru.json` мода — машинный перевод с мусором («Путинка воздуха», «Советский староста», «Персональный по вызову»,
 «Построить портал»…). Вычитаны все 1631 коротких названий (предметы, блоки, существа, эффекты, чары, заклинания, ритуалы, конструкты): 660 исправлено в
@@ -245,7 +245,7 @@ Dimensional Dungeons (исправлено); у Mahou Tsukai есть и `ru_ru.
 правка перевода = правка `units_ru.json` + `build`/`apply` + `scripts/build-ru-pack.sh`. `lang_validate.py book` — 0 ошибок для Animus, AMI, Dimensional Dungeons,
 Ars Magica Legacy, аддонов Ars. Названия предметов в тексте книг берутся из `ru_ru.json` мода, поэтому при смене названия книгу надо пересобрать.
 
-**Остаток:** Superb Warfare (3 ключа); книги, которые закрывают сторонние паки (Blood Magic — 206 тыс. знаков, Botania — 22 тыс., Iron's `iss_guide_book`, Caerula Arbor, Twilight Delight) —
+**Остаток:** книги, которые закрывают сторонние паки (Blood Magic — 206 тыс. знаков, Botania — 22 тыс., Iron's `iss_guide_book`, Caerula Arbor, Twilight Delight) —
 проверять в игре, наличие русского зависит от версии пака. Приёмка глазами (открыть кодекс MnA, Анимус, AMI Wiki, гайд Dimensional Dungeons) — см. `docs/client-checklist.md`.
 
 **Проверка клиента** (`scripts/test-client.sh`, сборка с кодексом MnA, Animus, AMI, Dimensional Dungeons и пересобранным `ru-lang`; 2026-10-12): до главного меню дошёл
