@@ -16,7 +16,7 @@ fi
 python3 "$root/scripts/fetch-mods.py" server mods | grep -v '^got' || true
 [ -n "${EXTRA_MODS:-}" ] && cp "$EXTRA_MODS"/*.jar mods/
 # конфиги сборки поверх сгенерированных
-for d in config kubejs; do [ -d "$root/pack/$d" ] && mkdir -p "$d" && cp -r "$root/pack/$d/." "$d/"; done
+for d in config defaultconfigs kubejs; do [ -d "$root/pack/$d" ] && mkdir -p "$d" && cp -r "$root/pack/$d/." "$d/"; done
 [ -n "${EXTRA_SERVER_SCRIPTS:-}" ] && mkdir -p kubejs/server_scripts && cp "$EXTRA_SERVER_SCRIPTS"/*.js kubejs/server_scripts/
 echo eula=true > eula.txt
 [ -f server.properties ] || printf 'online-mode=false\nlevel-seed=12345\n' > server.properties

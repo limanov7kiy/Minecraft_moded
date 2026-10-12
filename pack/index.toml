@@ -45,6 +45,10 @@ file = "config/voicechat/voicechat-server.properties"
 hash = "44e28ca45bf8648f18a9363105a7faa363d254ed8ace91ff523193b60786968d"
 
 [[files]]
+file = "defaultconfigs/lostcities-server.toml"
+hash = "731e8cbd26925abf2052193cba6f863e7f0ebe8809a9b8348b328c8f55195054"
+
+[[files]]
 file = "kubejs/client_scripts/space_rockets.js"
 hash = "c5f3ef1a27991ac16c6f99ff138572a82654f52f514605e7a423b3c9adfb0eac"
 
@@ -1655,6 +1659,11 @@ hash = "8063598c8c2e76eedf5782e6896a27d00140dea6e45e029c23c4c25020949319"
 metafile = true
 
 [[files]]
+file = "mods/the-lost-cities.pw.toml"
+hash = "71097e23679b74087641cba67eafb161a1d238cb866a01b4af49caf648d0919c"
+metafile = true
+
+[[files]]
 file = "mods/the-twilight-forest-dungeons-villages.pw.toml"
 hash = "a55e61bc7aa046b21d20715d107226a7a4746b67665057d3fa135942db236cdf"
 metafile = true
@@ -1816,4 +1825,4 @@ metafile = true
 
 [[files]]
 file = "resourcepacks/russian-moded.zip"
-hash = "a7011bf5c3452bfa8cf1a7f9196f4aeb37291732556d515e23c13cdc374a5798"
+hash = "0e55974bcb5a583d8ae44d46805871b8384400126e9794063a2cfe57d83f0e5f"
