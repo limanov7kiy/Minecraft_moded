@@ -39,11 +39,15 @@ curl -sSLo "$stage/forge-installer.jar" \
   "https://maven.minecraftforge.net/net/minecraftforge/forge/$mc-$forge/forge-$mc-$forge-installer.jar"
 echo "-Xms4G
 -Xmx10G" > "$stage/user_jvm_args.txt"
-printf 'motd=%s\nmax-players=10\nview-distance=10\nsimulation-distance=8\nallow-flight=true\n' "$name" > "$stage/server.properties"
+# online-mode=false: игроки с офлайн-аккаунтов (защита ников — мод sols-authlogin, /register и /login).
+# Кладём как server.properties.default: start.sh/start.bat копируют его, только если server.properties ещё нет,
+# так что обновление пакета поверх сервера не затирает настройки хоста.
+printf 'motd=%s\nmax-players=10\nview-distance=10\nsimulation-distance=8\nallow-flight=true\nonline-mode=false\n' "$name" > "$stage/server.properties.default"
 cat > "$stage/start.sh" <<'EOF'
 #!/usr/bin/env sh
 # Первый запуск ставит Forge; дальше просто запускает сервер. ОЗУ — в user_jvm_args.txt.
 cd "$(dirname "$0")"
+[ -f server.properties ] || cp server.properties.default server.properties
 [ -f run.sh ] || java -jar forge-installer.jar --installServer || exit 1
 [ -f eula.txt ] || { echo "Прочитайте https://aka.ms/MinecraftEULA и создайте eula.txt со строкой eula=true"; exit 1; }
 exec sh ./run.sh nogui
@@ -52,6 +56,7 @@ cat > "$stage/start.bat" <<'EOF'
 @echo off
 rem Первый запуск ставит Forge; дальше просто запускает сервер. ОЗУ — в user_jvm_args.txt.
 cd /d "%~dp0"
+if not exist server.properties copy server.properties.default server.properties >nul
 if not exist run.bat java -jar forge-installer.jar --installServer || exit /b 1
 if not exist eula.txt (echo Read https://aka.ms/MinecraftEULA and create eula.txt with eula=true & pause & exit /b 1)
 call run.bat nogui

@@ -105,6 +105,7 @@ mr let-them-talk            # client: приглушает музыку и др�
 mr vibrative-voice          # server: голос — вибрация для скалк-сенсоров и Хранителя
 mr vc-admin-voice-chat-moderation-tool # server: OP заходят в запароленные группы (модерация)
 mr simplevoicechat-broadcast # server: OP вещает на всех (группа "broadcast")
+mr sols-authlogin         # server: пароль при входе (/register, /login) — офлайн-режим, защита ников; на клиенте не нужен
 # Voice Chat Interaction, AudioPlayer, Enhanced Groups (Max Henkel) есть только под Fabric — свой порт на Forge:
 #   mods-src/voicechat-addons → pack/mods/voicechat-addons-forge-*.jar (both)
 mr admiral                  # both: библиотека команд Max Henkel, нужна порту AudioPlayer и Enhanced Groups

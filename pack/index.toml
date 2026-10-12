@@ -1560,6 +1560,11 @@ hash = "daf32b14b2274f7aae1cfc76dabd879a4a7f249fa41d039afab48d1d038d6aed"
 metafile = true
 
 [[files]]
+file = "mods/sols-authlogin.pw.toml"
+hash = "26e885fe92dadd7d2569961859f1f9736c21e30c32204b7f8866b0d45aa80016"
+metafile = true
+
+[[files]]
 file = "mods/sophisticated-backpacks-create-integration.pw.toml"
 hash = "3e43a344f79222aad5e749be193bcf7900001e6fac5f980908f7a365848895cc"
 metafile = true
