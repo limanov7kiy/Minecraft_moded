@@ -188,6 +188,7 @@ JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.t
 ≈ 478 тыс. знаков книг; `pack/options.txt` — `lang:ru_ru` и порядок паков (`preserve`). `test-client.sh` не прогонялся.
 - [x] Этап 2 (строки): 11 485 строк переведены (`pack/resourcepacks-src/russian-moded` → `pack/resourcepacks/russian-moded.zip`, последним в `options.txt`), ветка `claude/russification-2`. Книги — по отзывам друзей (Ars Nouveau и Animus первыми).
 - [x] Заброшенные города (по просьбе владельца, 2026-10-12): The Lost Cities, профиль `rarecities`, `docs/lost-cities.md`.
+- [x] Китайские литералы кода/NBT (Талон Боба и др.): миксин LiteralContents + словарь 953 строки в `ru-lang`, `docs/russification.md`, `docs/compat.md`.
 - [ ] Прогнать `scripts/test-client.sh` и убедиться, что язык/паки подхватываются; строка в `docs/friends.md`.
 
 ## Интеграция (ревью PR, поток «Ревью и интеграция», ветка `claude/confident-hypatia-2zqr1t`)

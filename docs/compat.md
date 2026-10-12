@@ -425,6 +425,11 @@ Arknights Weapon) применяются без ошибок. Микрофон, 
   `test-server.sh` и `export-pack.sh`. Тест `scripts/tests/lostcities.js` (`LCCHECK OK`), подробности и выбор — `docs/lost-cities.md`.
 - Не связано с мод-конфликтами: в логе `NoClassDefFoundError mcjty/theoneprobe` — от Ars Magica Legacy (необязательная связка с TOP), не от Lost Cities.
 
+## Китайские литералы мод→Component.literal (поток 6, 2026-10-12)
+- Баг владельца «Талон Боба»: подсказки BOB's Originium Dream — китайские литералы в коде. Причина — не lang (аудит `cjk_nonlang_audit.py`: ≈ 880 строк в 13 jar).
+  Решение: миксин `LiteralContentsMixin` + словарь 953 строки в `ru-lang` (jar модов не патчим). Проверено: `test-client.sh` — `CLIENT OK`, в логе самопроверка `[OK]`;
+  миксин применился (ошибок `Mixin apply failed` от ru_lang нет; единственная — известная Lycanites К6).
+
 ## Открытые вопросы
 - Клиент в облаке проверяется `scripts/test-client.sh` (без GPU и звука); шейдеры, микрофон и macOS — только у игрока (`docs/client-checklist.md`).
 

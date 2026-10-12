@@ -1572,7 +1572,7 @@ metafile = true
 
 [[files]]
 file = "mods/ru-lang-1.0.0-client.jar"
-hash = "035766597827d506ddcfc6a831082bb49cb273a6711f434ef5145046d6abb4d7"
+hash = "fa6381f773fa38db437fd2f2be094a67186fffe6a4da8c1865e320229661a1e6"
 
 [[files]]
 file = "mods/sarkazs_furnace_side_fables-0.2.3-forge-1.20.1.jar"
@@ -1864,7 +1864,7 @@ hash = "dac71a33fe4eb0aa6f0bbfd5a2c857406239f1842c5bb33b00b142c2809f557d"
 
 [[files]]
 file = "resourcepacks/mploc-mods-v43.zip"
-hash = "12f629a0986e312a44c8c924d27de706b04da749f6cf40eabbfa2145af30a2fd"
+hash = "fcc4a8050864c73aa3a011a7cdd8d031eea7639f7ab925c672ca3ba0d684cf3c"
 
 [[files]]
 file = "resourcepacks/rtf-extension.pw.toml"
