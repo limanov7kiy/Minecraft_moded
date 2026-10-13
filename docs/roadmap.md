@@ -197,6 +197,7 @@ JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.t
 - [x] Проверка всех jar на lang с неверным регистром/форматом (`ru_RU.json`) — только Dimensional Dungeons.
 - [x] Superb Warfare — переводить нечего (3 имени техники).
 - [ ] Приёмка в игре (кодекс MnA, Анимус, AMI Wiki, Dimensional Dungeons). Остальное — по отзывам.
+- [x] **Caerula Arbor** `caerula_illustration` (429 китайских строк, ≈14 тыс. знаков) — переведена целиком (ветка `claude/translate-caerula`).
 - PR в интегратор — после слияния #31 (пак внутри мода `ru-lang`).
 
 ## Интеграция (ревью PR, поток «Ревью и интеграция», ветка `claude/confident-hypatia-2zqr1t`)
@@ -316,7 +317,7 @@ JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.t
 | JEI: аддоны, плагин Imbuement Altar | Поток 7 | sonnet | **влиты** (раунд 5) |
 | Производительность клиента | Поток 8 | sonnet | **влит #35**; дальше Поток 8 работал как «Ревью и интеграция (2)» |
 | Боссы: таблица `docs/bosses.md`, Ice and Fire CE (#34), Bosses of Mass Destruction + Cerbon's API (В12 «а») | Поток 9 (session_01WKtpNF9pEz1ZLSL76u21Qw) | sonnet — моды по образцу + тест спавна | **влиты #32, #34, #36**; сеанс архивирован |
-| Перевод книг: кодекс Mana and Artifice (+660 исправленных названий), Animus, AMI Wiki, Dimensional Dungeons, Ars и аддоны, bobbook | Поток 11 (session_01JahaRV9o4kKTT12dVPbUAf) | sonnet — перевод пачками + валидаторы | **влит #37**; Caerula Arbor (429 строк) — в очереди, после сброса лимита |
+| Перевод книг: кодекс Mana and Artifice (+660 исправленных названий), Animus, AMI Wiki, Dimensional Dungeons, Ars и аддоны, bobbook | Поток 11 (session_01JahaRV9o4kKTT12dVPbUAf) | sonnet — перевод пачками + валидаторы | **влит #37**; Caerula Arbor (429 строк) — переведена (PR из claude/translate-caerula) |
 | Порт Wizardry Golems 0.2.0 (Extra Golems) → Necromancer's Delight (В13 «полный перенос», включая мобов Fish's Undead Rising) | Поток 12 (session_01Bg28XprSLsi1MoAEr25m4F) | opus — порт кода 1.12.2, низкий приоритет | #38 готов (golemcheck 13/13, CLIENT OK), **отложен по лимиту**; ND-1 — WIP `claude/necromancers-delight`, точка остановки в `docs/wizardry-port.md` |
 | Атлас текстур > 16384² (на слабых GPU слетали русские паки) | Поток 13 (session_01MpjMThXiMwvDnXrMqqdZXL) | opus — диагностика рендера | **влит #41** (~290 → ~125 Мпкс); сеанс архивирован |
 | Ревью и слияние: #35, #31, #36, #39, #41, #37 | Ревью и интеграция (2) (session_01AtTBE2K9ovNYSKAU4EMyda) | sonnet — ревью по чек-листу | работает; при сильном росте контекста — замена свежим сеансом |

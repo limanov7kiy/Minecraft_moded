@@ -1,0 +1,20 @@
+{
+  "name": "Кузнечный шаблон морской пучины",
+  "icon": "caerula_arbor:ocean_trim_template",
+  "category": "caerula_arbor:mod_items",
+  "read_by_default": true,
+  "sortnum": 7,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Кузнечный шаблон морской пучины",
+      "item": "caerula_arbor:ocean_trim_template",
+      "scale": 1,
+      "text": "Таинственный кузнечный шаблон, с его помощью хитиновое снаряжение улучшают до композитного хитина.$(br)Его можно найти в подводных руинах или на затонувших кораблях.$(br)Также может встретиться в структурах мода: заснеженной лаборатории (abyssal_lab) или «Вихревой станции» (submarine)."
+    },
+    {
+      "type": "crafting",
+      "recipe": "caerula_arbor:copy_templates"
+    }
+  ]
+}

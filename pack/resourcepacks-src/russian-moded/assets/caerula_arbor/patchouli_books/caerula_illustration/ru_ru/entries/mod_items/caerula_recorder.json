@@ -1,0 +1,21 @@
+{
+  "name": "Глубокосиний регистратор",
+  "icon": "caerula_arbor:caerula_recorder",
+  "category": "caerula_arbor:mod_items",
+  "read_by_default": true,
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Глубокосиний регистратор",
+      "item": "caerula_arbor:caerula_recorder",
+      "scale": 1,
+      "text": "Позволяет просматривать огни игрока, рассудок, здоровье, целевую жизнь, реакцию отторжения, коллекционные предметы, эволюцию игрока и другие сведения, а также переключать часть настроек отображения мода."
+    },
+    {
+      "type": "crafting",
+      "recipe": "caerula_arbor:caerula_rec",
+      "recipe2": "caerula_arbor:block_to_item_rec"
+    }
+  ]
+}
