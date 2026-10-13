@@ -197,6 +197,7 @@ JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.t
 - [x] Проверка всех jar на lang с неверным регистром/форматом (`ru_RU.json`) — только Dimensional Dungeons.
 - [x] Superb Warfare — переводить нечего (3 имени техники).
 - [ ] Приёмка в игре (кодекс MnA, Анимус, AMI Wiki, Dimensional Dungeons). Остальное — по отзывам.
+- [x] **Caerula Arbor** `caerula_illustration` (429 китайских строк, ≈14 тыс. знаков) — переведена целиком (ветка `claude/translate-caerula`).
 - PR в интегратор — после слияния #31 (пак внутри мода `ru-lang`).
 
 ## Интеграция (ревью PR, поток «Ревью и интеграция», ветка `claude/confident-hypatia-2zqr1t`)
