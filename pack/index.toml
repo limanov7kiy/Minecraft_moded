@@ -69,6 +69,10 @@ file = "defaultconfigs/lostcities-server.toml"
 hash = "cd8919cee8c45c4b5e243fa0fb03e4a08f12094ed5c0dd053814fff0f6d7e85d"
 
 [[files]]
+file = "kubejs/assets/minecraft/atlases/blocks.json"
+hash = "52ca3fdfa8aee6d4819281a99ee4a0465225c878dfb723f6040582ede2153e6d"
+
+[[files]]
 file = "kubejs/client_scripts/space_rockets.js"
 hash = "c5f3ef1a27991ac16c6f99ff138572a82654f52f514605e7a423b3c9adfb0eac"
 

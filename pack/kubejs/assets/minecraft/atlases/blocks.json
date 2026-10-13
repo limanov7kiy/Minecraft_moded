@@ -1,0 +1,18 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:filter",
+      "pattern": {
+        "namespace": "lycanitesmobs|alexscaves|alexsmobs|cataclysm",
+        "path": "entity/.*"
+      }
+    },
+    {
+      "type": "minecraft:filter",
+      "pattern": {
+        "namespace": "iceandfire",
+        "path": "models/(?!ghost/ghost_chest$).*"
+      }
+    }
+  ]
+}

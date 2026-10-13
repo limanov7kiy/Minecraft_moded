@@ -323,3 +323,10 @@ JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.t
 3. **Bosses of Mass Destruction 1.1.2 + Cerbon's API** (решение владельца В12 «а», PR ветки `claude/boss-bmd`): в сборке, spawncheck без просадки,
    SERVER/CLIENT OK; условие — если у владельца спавн мобов снова пропадёт, убрать оба мода (см. compat.md).
 4. Дальше: описать остальные боссы в `boss_info.py` (Arknights-моды), проверка драконов в игре (нагрузка на ноутбуке), JEI-плагин IaF.
+
+### Поток 13 — Атлас текстур на GPU с пределом 16384
+- [x] Диагноз: «всеобщие» источники атласа блоков у Mana and Artifice (`entity`) и Blood Magic (`models`) тянут в атлас
+  мобов Lycanites/Ice and Fire/Alex's/Cataclysm (293 Мпкс > 16384²). Фильтр `pack/kubejs/assets/minecraft/atlases/blocks.json`:
+  ~125 Мпкс, атлас 16384×8192, `CLIENT OK` без отката паков (подробности — `docs/compat.md`).
+- [ ] Владельцу/друзьям: проверить в игре мобов Lycanites и драконов Ice and Fire (нет ли «missing»-текстур).
+
