@@ -1,0 +1,30 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Муравьи-листорезы",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/cockroach_chamber.png"
+      ],
+      "text": "В разрушенных камерах муравьёв-листорезов с высоким уровнем грибка могут оказаться тараканы",
+      "title": "Камера с тараканами"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "alexsmobs:leafcutter_ant_pupa",
+      "text": "Куколку муравья-листореза можно бросить как снаряд: на подходящей местности она создаст муравейник",
+      "title": "Метательная куколка"
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/ant_war.png"
+      ],
+      "text": "Появляются разновидности муравьёв, из-за чего колонии соперничают друг с другом",
+      "title": "Муравьиная война"
+    }
+  ],
+  "sortnum": 1
+}

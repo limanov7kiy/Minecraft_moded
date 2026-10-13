@@ -1,0 +1,16 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Многоножка",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/light_fear.png"
+      ],
+      "text": "Пещерные многоножки убегают от света в руках игрока, если их не атаковать (совместимо с Curios Lanterns)",
+      "title": "Боязнь света"
+    }
+  ],
+  "sortnum": 1
+}

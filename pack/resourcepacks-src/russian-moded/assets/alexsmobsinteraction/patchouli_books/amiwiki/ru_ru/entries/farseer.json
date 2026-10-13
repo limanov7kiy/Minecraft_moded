@@ -1,0 +1,20 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Прозиратель",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/farseer_altering.png"
+      ],
+      "text": "Прозиратели сбивают с толку выбранных игроков: перемешивают инвентарь и путают разум",
+      "title": "Влияние прозирателя"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Зачарование «Стабилизатор», которое можно найти в останках огромного червя, нейтрализует эффекты воздействия на разум от прозирателей, старших стражей и наблюдателей (ЕСЛИ ВКЛЮЧЁН ALEX'S CAVES)"
+    }
+  ],
+  "sortnum": 1
+}

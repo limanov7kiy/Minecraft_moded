@@ -1,0 +1,24 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Грифовая черепаха",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/snapping_dormancy.png"
+      ],
+      "text": "Днём грифовые черепахи впадают в спячку, если не идёт дождь и их не потревожили",
+      "title": "Черепашья спячка"
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/moss_propagation.png"
+      ],
+      "text": "Находясь в воде или под дождём, грифовые черепахи разводят мох; костная мука, применённая на черепаху, ускоряет рост мха",
+      "title": "Рост мха"
+    }
+  ],
+  "sortnum": 1
+}

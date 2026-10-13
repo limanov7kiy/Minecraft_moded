@@ -1,0 +1,22 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Слон",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "alexsmobs:acacia_blossom",
+      "text": "Клыкастые слоны агрессивны к игрокам без акациевых цветков в руках",
+      "title": "Клыкастая территориальность"
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/elephant_trample.png"
+      ],
+      "text": "Слон со всадником топчет существ ростом ниже 2 блоков",
+      "title": "Слоновий топот"
+    }
+  ],
+  "sortnum": 1
+}

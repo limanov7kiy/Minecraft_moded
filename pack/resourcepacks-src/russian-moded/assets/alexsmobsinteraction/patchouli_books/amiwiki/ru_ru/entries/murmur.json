@@ -1,0 +1,28 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Шёпот",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/murmur_regrow.png"
+      ],
+      "text": "Тело и голова Шёпота раздельны, и голова отрастает снова, пока тело не уничтожено",
+      "title": "Отрастание головы"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "alexsmobs:tendon_whip",
+      "text": "С новым зачарованием «Растяжное накопление», которое можно найти на заброшенных железных дорогах, сухожильный кнут при броске захватывает предметы и опыт для владельца",
+      "title": "Захват сухожилием"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "alexsmobs:unsettling_kimono",
+      "text": "Если надеть зловещее кимоно, железные и снежные големы будут нападать на вас",
+      "title": "Зловещая отдача"
+    }
+  ],
+  "sortnum": 1
+}

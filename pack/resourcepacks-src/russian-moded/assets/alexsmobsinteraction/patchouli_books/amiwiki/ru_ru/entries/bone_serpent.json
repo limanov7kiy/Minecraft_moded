@@ -1,0 +1,16 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Костяной змей",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/body_shielding.png"
+      ],
+      "text": "Теряя сегмент тела, костяной змей получает всего 1 единицу урона; голова получает обычный урон, когда достаточно сегментов уничтожено",
+      "title": "Защита телом"
+    }
+  ],
+  "sortnum": 1
+}

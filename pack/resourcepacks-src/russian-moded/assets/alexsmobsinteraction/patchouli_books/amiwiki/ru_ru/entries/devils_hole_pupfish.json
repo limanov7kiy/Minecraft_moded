@@ -1,0 +1,16 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Пещерная рыбка",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/devils_fishing_industry.png"
+      ],
+      "text": "Добавлены взаимодействия и обмен: пещерных рыбок можно выловить в их чанке и обменять у рыбаков",
+      "title": "Дьявольский рыбный промысел"
+    }
+  ],
+  "sortnum": 1
+}

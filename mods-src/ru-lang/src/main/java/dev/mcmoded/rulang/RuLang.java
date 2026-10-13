@@ -11,6 +11,9 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 
+import com.mojang.logging.LogUtils;
+import org.slf4j.Logger;
+
 import java.nio.file.Path;
 
 /**
@@ -20,6 +23,7 @@ import java.nio.file.Path;
 @Mod(RuLang.MOD_ID)
 public class RuLang {
     public static final String MOD_ID = "ru_lang";
+    public static final Logger LOGGER = LogUtils.getLogger();
     private static final String PACK_ID = "mod_resources_ru_lang";
 
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -37,5 +41,14 @@ public class RuLang {
         }
     }
 
-    public RuLang() {}
+    public RuLang() {
+        // самопроверка словаря литералов (виден в логе клиента); миксин на LiteralContents переводит китайские Component.literal
+        net.minecraftforge.fml.DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+            String direct = Literals.translate("可用于召唤鲍勃");
+            // через Component.literal — проходит LiteralContents, т.е. работает ли миксин
+            String viaMixin = Component.literal("可用于召唤鲍勃").getString();
+            LOGGER.info("ru_lang: словарь литералов {} строк; самопроверка: словарь -> \"{}\"; Component.literal (миксин) -> \"{}\" [{}]",
+                    Literals.size(), direct, viaMixin, viaMixin.equals(direct) && !viaMixin.equals("可用于召唤鲍勃") ? "OK" : "МИКСИН НЕ ПРИМЕНИЛСЯ");
+        });
+    }
 }

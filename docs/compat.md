@@ -425,6 +425,24 @@ Arknights Weapon) применяются без ошибок. Микрофон, 
   `test-server.sh` и `export-pack.sh`. Тест `scripts/tests/lostcities.js` (`LCCHECK OK`), подробности и выбор — `docs/lost-cities.md`.
 - Не связано с мод-конфликтами: в логе `NoClassDefFoundError mcjty/theoneprobe` — от Ars Magica Legacy (необязательная связка с TOP), не от Lost Cities.
 
+## Находки клиентского лога при проверке книг (поток 11, 2026-10-12)
+
+Клиент (`test-client.sh`, Forge 47.4.26) доходит до главного меню; в логе модельные ошибки, **не наши и не чинились**:
+- `Model loader 'neoforge:composite' not found` — 4 модели **Mekanism More Machines** (`mekmm-1.20.1-1.2.1`): `mekmm:models/block/factory/painting/active/{basic,advanced,elite,ultimate}.json`
+  (активное состояние фабрик покраски). Мод собран под NeoForge-загрузчик моделей (`neoforge:composite`), у Forge он называется `forge:composite`. Ожидаемо: пока фабрика
+  покраски работает (активное состояние), блок рисуется как «потерянная» модель — **фиолетово-чёрная текстура**; в простое — нормально. Лечится правкой JSON моделей
+  (`neoforge:composite` → `forge:composite`, ресурспак/jar-патч), чинить не стали.
+- `Failed to load model mna:models/block/eldrin/pylon_ring.json` (Mana and Artifice 3.1.11) — `pylon_ring.json` ссылается на `mna:models/block/obj/pylon/pylon_ring.obj`, а в jar лежит только
+  `pylon_ring_old.obj` (ошибка автора мода). Деталь «кольцо» пилона Элдрина не рисуется / рисуется как отсутствующая модель (фиолетово-чёрная). Обход — копия `pylon_ring_old.obj` под именем
+  `pylon_ring.obj` в нашем паке (не делали).
+- Patchouli-книга `ars_controle`: «use_resource_pack set to false» — у мода в jar только заглушка `book.json` (`extend: ars_nouveau:worn_notebook`) без содержимого; исправлено
+  kubejs-override `pack/kubejs/data/ars_controle/patchouli_books/ars_controle/book.json` (`use_resource_pack: true`, описание по-русски). Записей в книге у мода нет, переводить нечего.
+
+## Китайские литералы мод→Component.literal (поток 6, 2026-10-12)
+- Баг владельца «Талон Боба»: подсказки BOB's Originium Dream — китайские литералы в коде. Причина — не lang (аудит `cjk_nonlang_audit.py`: ≈ 880 строк в 13 jar).
+  Решение: миксин `LiteralContentsMixin` + словарь 953 строки в `ru-lang` (jar модов не патчим). Проверено: `test-client.sh` — `CLIENT OK`, в логе самопроверка `[OK]`;
+  миксин применился (ошибок `Mixin apply failed` от ru_lang нет; единственная — известная Lycanites К6).
+
 ## Открытые вопросы
 - Клиент в облаке проверяется `scripts/test-client.sh` (без GPU и звука); шейдеры, микрофон и macOS — только у игрока (`docs/client-checklist.md`).
 
@@ -503,9 +521,8 @@ Mass Destruction Forge 1.1.2. Cataclysm/Mowzie's/Lycanites не дублирую
   драконом на ноутбуке (i5-9/RTX 2060) пока нет — проверить в игре. «Dragons Despawn» оставлен `true` (иначе «SERIOUS lag»
   по описанию конфига).
 - **Боссы**: таблица обновлена (`docs/bosses.md`/`csv`).
-- ⚠ **Атлас текстур**: в логе клиента `Requested atlas size 32768x16384 exceeds maximum of 16384x16384` (программный
-  OpenGL llvmpipe, предел 16384; у RTX 2060 предел 32768). Меню запустилось. Без Ice and Fire на этом стенде не сравнивали;
-  если у игрока на слабой видеокарте будут «розовые» текстуры — это первое подозрение.
+- **Атлас текстур**: переполнение атласа блоков на видеокартах с пределом 16384 исправлено (поток 13) — см. раздел
+  «Атлас блоков не помещался в 16384×16384» ниже.
 
 ## Wizardry Golems — порт 1.12.2 (поток 12, 2026-10-12)
 Мод `mods-src/wizardry-golems` 0.1.0 (оригинал WinDanesz, GPL-3.0) + Extra Golems 20.1.0.2 (skyjay1, zlib; CF без
@@ -565,3 +582,42 @@ Mass Destruction Forge 1.1.2. Cataclysm/Mowzie's/Lycanites не дублирую
   в `FMLCommonSetupEvent`) на этом тестовом клиенте происходит у 44 модов сразу (Forge, Aether, Ad Astra, Alex's Mobs, Mowzie's, Ice and Fire…),
   то есть это особенность стенда (событие, похоже, отправляется дважды), а не конкретного мода; на сервере таких ошибок нет. Выше замечание про
   `Duplicate registration … iceandfire:hippogryph` — из той же серии.
+
+## Атлас блоков не помещался в 16384×16384 (поток 13, 2026-10-13)
+**Симптом** (облачный `test-client.sh`, Mesa llvmpipe, `GL_MAX_TEXTURE_SIZE` 16384 — как у встроенной графики Intel/AMD APU):
+первая загрузка ресурсов падает `Requested atlas size 32768x16384 exceeds maximum of 16384x16384` →
+`StitcherException: Unable to fit: superbwarfare:item/lod/bocek`; Minecraft откатывается и грузит ресурсы **без пользовательских
+паков** (два «Reloading ResourceManager», в `options.txt` остаётся `resourcePacks:[]`) — слетают MPLOC/RTF+/RTF Extension.
+С принудительными паками (ветка `claude/ru-force-packs`, не слита) вместо отката — краш «Stitching». На RTX 2060 (предел 32768) помещалось.
+
+**Причина** — не моды с огромными текстурами сами по себе, а два чужих `assets/minecraft/atlases/blocks.json`, источники которых
+не ограничены своим namespace (тип `directory` сканирует папку во **всех** модах):
+- Mana and Artifice (`mna`): `{"type":"directory","source":"entity"}` — в атлас блоков попадают **все** `textures/entity/**`
+  всех модов: Lycanites Mobs 85 Мпкс (728 спрайтов, почти все 1024²), Alex's Caves 11,5, Cataclysm 8,9, Alex's Mobs 7,2 …;
+- Blood Magic: `{"type":"directory","source":"models"}` — все `textures/models/**`: Ice and Fire 48,8 Мпкс (631 спрайт), Blood Magic 10 …
+
+Собственные текстуры предметов/блоков (Superb Warfare 23 Мпкс, Arknights Endfield 19, Arknights Furniture 18) переполнения не дают:
+блоки+предметы всей сборки ≈ 97 Мпкс. Свой jar у Lycanites/Ice and Fire атласов не объявляет.
+
+**Исправление** — `pack/kubejs/assets/minecraft/atlases/blocks.json` (ресурс KubeJS; его пак стоит выше `mod_resources`, источники
+атласа складываются по всем пакам снизу вверх, поэтому наш `minecraft:filter` срабатывает после `mna` и Blood Magic):
+- убрать `entity/**` у `lycanitesmobs`, `alexscaves`, `alexsmobs`, `cataclysm`;
+- убрать `models/**` у `iceandfire`, кроме `models/ghost/ghost_chest` (частица блока «Призрачный сундук»).
+Эти моды рисуют мобов своими `RenderType` по прямому пути к png, а не из атласа: проверено, что ни одна модель предмета/блока во
+всех jar не ссылается на их `entity/`/`models/` (кроме сундука), и что их код не берёт такие спрайты из атласа блоков.
+Свои `entity/`-текстуры у `mna` и `models/` у Blood Magic не тронуты (им они нужны). Jar не правились, качество текстур не менялось.
+
+**Замеры** (сумма площадей спрайтов по списку из лога + итоговый размер):
+| | спрайтов | площадь | от 16384² | атлас |
+|---|---|---|---|---|
+| до (без пользовательских паков, после отката) | 35 715 | 285,7 Мпкс | 106 % | не помещается (32768×16384) |
+| до (с паками, данные потока 6) | 35 721 | 293,5 Мпкс | 109 % | не помещается |
+| после | ~33 440 | ~125 Мпкс | ~47 % | `Created: 16384x8192x2 minecraft:textures/atlas/blocks.png-atlas` |
+
+**Проверка**: `test-client.sh` — `CLIENT OK`, в логе 0 строк `Unable to fit`/`StitcherException`/`exceeds maximum`, одна загрузка
+ресурсов со всеми паками (`ru_lang`, just-some-translations, russian-delight, RTF, MPLOC, RTF Extension), `options.txt` сохраняет их
+список, меню по-русски. Сервер не менялся (атласы — только клиент).
+Если в игре у мобов этих модов, у предметов Ice and Fire или в эффектах Alex's/Cataclysm появится фиолетово-чёрная «missing»-текстура —
+это первое подозрение: вернуть нужный путь, сузив регулярное выражение в фильтре.
+Запас: новые моды с большими текстурами в `block/`/`item/` или новые «всеобщие» `directory`-источники снова увеличат атлас — после
+добавления модов смотреть в логе клиента строку `Created: …blocks.png-atlas` (должно быть ≤ 16384×16384).

@@ -214,6 +214,59 @@ compatible»* — 1.20.1 принимает только `pack_format` 15, а у
 пересобирать `scripts/build-ru-pack.sh`** (собирает jar мода и обновляет индекс packwiz). Аудит итогового разрешения: `lang_audit.py cjk` — найдено 88 значений с CJK и 3 543 видимых-только-в-zh_cn ключей
 (из них 144 реально видимых игроку переведены; остальное — настройки/теги, в игре не показываются).
 
+## 8. Перевод книг (поток 11, 2026-10-12)
+
+Повод — отзыв владельца: «не перевелась книга кодекс мага из Mana and Artifice». Книги переводятся по отзывам. **Аудит выше (478 тыс. знаков) оказался завышен:**
+у большинства книг текст лежит не в файлах книги, а в lang-ключах (`i18n: true`), а те уже русские; считать надо «сырой» текст в файлах + непереведённые ключи
+(скрипт-прикидка: `scripts/books/patchouli_units.py extract` и сверка ключей с `ru_ru.json` мода и пака).
+
+| Книга | Формат | Статус |
+|---|---|---|
+| **Mana and Artifice** — Кодекс (`assets/mna/guide/`) | свой JSON-формат мода (не Patchouli): мод читает `guide/en_us.json`, поверх — `guide/<язык>.json` из любого ресурспака | **переведена целиком** (516 записей, ≈ 246 тыс. знаков) → `assets/mna/guide/ru_ru.json` |
+| **Animus** `codex_animus` | Patchouli, текст в файлах; lang-ключи закрыты MPLOC | **переведена** (96 файлов, ≈ 86 тыс.) → `animus/…/ru_ru/` |
+| **Ars Nouveau** `worn_notebook` | текст весь в lang-ключах (131 тыс. в таблице §1 — структура JSON) | не хватало 18 ключей версии 4.12.7 — добавлены |
+| **Alex's Mobs Interaction** `amiwiki` | Patchouli, сырой текст + `book.json` в `data/` | **переведена** (54 файла) + название/описание/подзаголовок через `pack/kubejs/data/alexsmobsinteraction/patchouli_books/amiwiki/book.json` |
+| **Dimensional Dungeons** `guide_book` | Patchouli; в jar `ru_ru`-папка книги неполная; **lang лежал как `ru_RU.json`** (1.20.1 читает только `ru_ru.json` → русского мода не было вообще) | `lang/ru_ru.json` (копия + 51 ключ), полная `ru_ru/` книги (58 строк + 3 файла patch_notes), `book.json` через kubejs |
+| **Ars Magica Legacy** `arcane_compendium` | текст в lang-ключах (русские), сырых строк 26 | переведены |
+| Аддоны Ars (Tome of Blood, Ars Ocultas, Ars Instrumentum, Ars Creo), ExtraBotany `exguide` | сырой текст в файлах | переведены (47 строк; exguide — тестовая запись) |
+| **Bob's Originium Dream** `bobbook` («鲍勃精选指南») | книга целиком **на китайском** уже в `en_us` (39 строк) + название/описание в `data/…/book.json` | переведена с китайского целиком (41 единица) + `book.json` через `pack/kubejs/data/bobsoriginiumdream/patchouli_books/bobbook/book.json` |
+| Superb Warfare `manual` | lang-ключи; «не переведены» только 3 названия техники (LAV-150 Commando, A-10A Thunderbolt II, AH-6 Little Bird) — имена собственные | переводить нечего |
+
+**Названия MnA.** Родной `ru_ru.json` мода — машинный перевод с мусором («Путинка воздуха», «Советский староста», «Персональный по вызову»,
+«Построить портал»…). Вычитаны все 1631 коротких названий (предметы, блоки, существа, эффекты, чары, заклинания, ритуалы, конструкты): 660 исправлено в
+`assets/mna/lang/ru_ru.json` пака (в основном серии деталей конструктов «материал + деталь», кристаллы химерита, амулеты, манаплетение, команды конструктов),
+кодекс пересобран под новые названия. **Сомнительные игры слов — смотреть в игре:** «Метла-сервис» (Broom Service), «Комплектный шик», «Всё, беру себе
+малус!», «Король тараканов» вместо Asmongold, «Древёнки» (мн. ч. Barkling), «Заклеймённый чернокнижник».
+
+**Lang-файлы с неверным именем.** Проверены все jar (в т.ч. jar-in-jar) на `ru_RU.json`, `ru_ru.lang`, регистр в `lang/` и в папках книг: проблема только у
+Dimensional Dungeons (исправлено); у Mahou Tsukai есть и `ru_ru.lang`, и `ru_ru.json` (нормально); Lost Cities — только `en_US.lang` (английские, не наши).
+
+Инструменты (`scripts/books/`): `mna_guide.py` — кодекс MnA (`extract`/`build`/`check`: цвета, переводы строк, структура); `patchouli_units.py` — Patchouli-книги с
+сырым текстом (`extract`/`apply`/`check`: теги `$(..)`, `#плейсхолдеры#`, кириллица). Единицы перевода лежат в `scripts/books/*_data/` (`units_en.json`, `units_ru.json`):
+правка перевода = правка `units_ru.json` + `build`/`apply` + `scripts/build-ru-pack.sh`. `lang_validate.py book` — 0 ошибок для Animus, AMI, Dimensional Dungeons,
+Ars Magica Legacy, аддонов Ars. Названия предметов в тексте книг берутся из `ru_ru.json` мода, поэтому при смене названия книгу надо пересобрать.
+
+**Caerula Arbor** `caerula_illustration`: в `en_us` книги **429 китайских строк** (≈11,6 тыс. знаков сырого текста) — аудит считал книгу «закрытой паками»; наличие русского из RTF+/MPLOC (в репозитории лежит только MPLOC — в нём Caerula нет) надо проверить в игре; если английская/китайская — перевод делается тем же `patchouli_units.py` (он умеет CJK).
+**Баг инструмента (исправлен):** первая версия `patchouli_units.py` пропускала строки без латинских букв, из-за чего bobbook была переведена на 6 из 39 строк; проверка по jar-ам (`CJK` в ключах text/title/name/description): китайский в `en_us` только у bobbook и Caerula Arbor.
+
+**Остаток:** книги, которые закрывают сторонние паки (Blood Magic — 206 тыс. знаков, Botania — 22 тыс., Iron's `iss_guide_book`, Caerula Arbor, Twilight Delight) —
+проверять в игре, наличие русского зависит от версии пака. Приёмка глазами (открыть кодекс MnA, Анимус, AMI Wiki, гайд Dimensional Dungeons) — см. `docs/client-checklist.md`.
+
+**Проверка клиента** (`scripts/test-client.sh`, сборка с кодексом MnA, Animus, AMI, Dimensional Dungeons и пересобранным `ru-lang`; 2026-10-12): до главного меню дошёл
+(`Game took 573 seconds`), интерфейс русский, `mod_resources_ru_lang` в списке паков; ошибок Patchouli/кодекса по нашим книгам в логе нет. Книги в мире не открывались
+(глазами — по `docs/client-checklist.md`). Не наши находки в логе: Patchouli-книга `ars_controle` падает (`use_resource_pack: false`, поведение удалено в 1.20 —
+нужен патч book.json, например kubejs-override как у AMI), `Model loader 'neoforge:composite' not found` (модели NeoForge-сборок), `mna:models/block/eldrin/pylon_ring.json`.
+Тест `test-client.sh` на 16 ГБ: два параллельных запуска клиента убивает OOM (код 137) — перед повтором убедиться, что прошлый JVM завершён.
+
+### Китайские литералы в коде/NBT («Талон Боба», 2026-10-12)
+Часть текстов модов (Bob's Originium Dream, Superb Warfare, Torches Become Sunlight, Extra Botany, Caerula Arbor, Sarkaz…) зашита в код как `Component.literal("…")`
+(и в NBT/лут), а не в lang — поэтому lang-аудит их не видел (`scripts/cjk_nonlang_audit.py`: ≈ 880 строк в классах 13 jar + NBT/JSON). Патчить jar нельзя (40–75 МБ, публичный репозиторий):
+вместо этого клиентский мод `ru-lang` содержит миксин на `LiteralContents` (единая точка всех `Component.literal`, в т.ч. сообщений сервера и NBT-lore) и словарь
+`mods-src/ru-lang/src/main/resources/assets/ru_lang/literals_ru.json` (**953 строки**: «китайская строка → русская»). Подстановка — только по точному совпадению и только для строк с иероглифами/каной
+(быстрая проверка символов, словарь грузится один раз в HashMap). Самопроверка пишется в лог клиента: `ru_lang: словарь литералов 953 строк; … Component.literal (миксин) -> "…" [OK]`.
+Пайплайн: `scripts/cjk_literals_harvest.py` (сбор строк из .class/NBT/data-JSON → пачки) → перевод Haiku → `scripts/literals_build.py` (проверка §-кодов/плейсхолдеров/иероглифов) → `scripts/build-ru-pack.sh`.
+Не покрыто: текст, рисуемый напрямую `font.draw(String)`, и книги Patchouli (Поток 11), NBT-структуры с сигнатурами (таблички) — только если строка идёт через Component.
+
 ## Вопросы владельцу
 
 1. **Не блокирует.** Принять MPLOC (ИИ-перевод) и RTF+ базой, а остальное доводить своим паком сверху? Рекомендация: да.

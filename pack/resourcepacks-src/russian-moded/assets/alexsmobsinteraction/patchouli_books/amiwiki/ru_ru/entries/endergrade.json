@@ -1,0 +1,22 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Эндерград",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/unavoidable.png"
+      ],
+      "text": "Эндерграды, включая их наездников, неуязвимы к бездне",
+      "title": "Над бездной"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "alexsmobs:chorus_on_a_stick",
+      "text": "Эндерграда можно ускорить удочкой с плодом хоруса",
+      "title": "Эндер-ускорение"
+    }
+  ],
+  "sortnum": 1
+}

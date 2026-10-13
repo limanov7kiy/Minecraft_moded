@@ -1,0 +1,22 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Вихрь",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/gusting.png"
+      ],
+      "text": "Способность вихрей поднимать игроков зависит от показателя их брони",
+      "title": "Порывы"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "alexsmobs:guster_eye",
+      "text": "Вводит новый эффект «Порыв». Он позволяет мобам сопротивляться вихрям и подъёму порывами, повышает скорость передвижения, а вокруг игроков появляются порывы",
+      "title": " "
+    }
+  ],
+  "sortnum": 1
+}

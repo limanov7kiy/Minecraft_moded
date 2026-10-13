@@ -1,0 +1,15 @@
+{
+  "name": "Числовой амулет маны",
+  "category": "ars_nouveau:equipment",
+  "icon": "ars_instrumentum:numeric_mana_charm",
+  "pages": [
+    {
+      "text": "Для мага, которому нужна каждая крупица данных: Числовой амулет маны добавляет числовой индикатор маны, пока надет в слоте амулета.",
+      "type": "patchouli:text"
+    },
+    {
+      "type": "ars_nouveau:apparatus_recipe",
+      "recipe": "ars_instrumentum:apparatus/numeric_mana_charm"
+    }
+  ]
+}

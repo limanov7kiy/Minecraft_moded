@@ -1,0 +1,62 @@
+{
+  "name": "Руководство по профилактике орипатии",
+  "icon": "bobsoriginiumdream:glasstubeblood",
+  "category": "bobsoriginiumdream:orishard",
+  "read_by_default": false,
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Орипатия",
+      "item": "bobsoriginiumdream:oriblock_core",
+      "scale": 1.2,
+      "text": "От урона ориджиниума растёт индекс орипатии: чем он выше, тем тяжелее болезнь. Урон от ориджиниумных существ повышает индекс на 1 пункт, а урон по площади от ядра ориджиниума сразу поднимает его до максимума. Пока ты заражён, каждый полученный удар наносит дополнительный урон; при значении брони выше 20 этот дополнительный урон не действует"
+    },
+    {
+      "type": "spotlight",
+      "title": "Извлечение эссенции",
+      "item": "bobsoriginiumdream:glasstube",
+      "scale": 1.2,
+      "text": "Сделай стеклянную трубку и шприц — с ними можно брать кровь у жителей и эссенцию у ориджиниумных червей для создания разных лекарств и катализаторов"
+    },
+    {
+      "type": "crafting",
+      "recipe": "bobsoriginiumdream:gglass_1",
+      "recipe2": "bobsoriginiumdream:glass_2"
+    },
+    {
+      "type": "spotlight",
+      "title": "Подавляющее орипатию лекарство",
+      "item": "bobsoriginiumdream:orisuppressionmedicalunstbility",
+      "scale": 1.2,
+      "text": "Возьми кровь жителя уже знакомыми стеклянной трубкой и шприцем — и сможешь приготовить лекарство, подавляющее орипатию"
+    },
+    {
+      "type": "image",
+      "title": "Крафт как на картинке",
+      "border": true,
+      "images": [
+        "bobsoriginiumdream:textures/gui/entries/blood.png"
+      ],
+      "text": "Сам не знаю, почему кровь жителей так помогает от орипатии"
+    },
+    {
+      "type": "spotlight",
+      "title": "Браслет против орипатии",
+      "item": "bobsoriginiumdream:oriring",
+      "scale": 1.2,
+      "text": "Этот браслет фиксирует твой индекс орипатии: например, если индекс колеблется между 100 и 150, он закрепит его на 125. Кроме того, даёт эффект, избавляющий от дополнительного урона из-за орипатии"
+    },
+    {
+      "type": "crafting",
+      "recipe": "bobsoriginiumdream:oriring_1"
+    },
+    {
+      "type": "spotlight",
+      "title": "Ориджиниумная защита",
+      "item": "bobsoriginiumdream:oriring",
+      "scale": 1.2,
+      "text": "Помимо браслета, от орипатии отлично защищает и зачарование «Ориджиниумная защита». Его можно найти во многих структурах — не забудь наложить его на нагрудник"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # План работ и разделение по чатам
 
-Состояние на 2026-10-12 (актуальная сводка — раздел «Координация», раунд 4). Связка **1.20.1 + Forge 47.4.26**, сборка — `pack/` (packwiz).
+Состояние на 2026-10-12 (актуальная сводка — раздел «Координация», раунд 6). Связка **1.20.1 + Forge 47.4.26**, сборка — `pack/` (packwiz).
 Ветка-интегратор — `claude/affectionate-davinci-4gddoh` (на GitHub она стоит веткой по умолчанию).
 Каждый чат-поток работает в **своей** ветке от неё и вливается обратно через PR.
 
@@ -188,7 +188,16 @@ JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.t
 ≈ 478 тыс. знаков книг; `pack/options.txt` — `lang:ru_ru` и порядок паков (`preserve`). `test-client.sh` не прогонялся.
 - [x] Этап 2 (строки): 11 485 строк переведены (`pack/resourcepacks-src/russian-moded` → `pack/resourcepacks/russian-moded.zip`, последним в `options.txt`), ветка `claude/russification-2`. Книги — по отзывам друзей (Ars Nouveau и Animus первыми).
 - [x] Заброшенные города (по просьбе владельца, 2026-10-12): The Lost Cities, профиль `rarecities`, `docs/lost-cities.md`.
+- [x] Китайские литералы кода/NBT (Талон Боба и др.): миксин LiteralContents + словарь 953 строки в `ru-lang`, `docs/russification.md`, `docs/compat.md`.
 - [ ] Прогнать `scripts/test-client.sh` и убедиться, что язык/паки подхватываются; строка в `docs/friends.md`.
+
+### Поток 11 — Перевод книг (ветка `claude/translate-books`, от `claude/abandoned-cities`)
+- [x] Кодекс **Mana and Artifice** (свой JSON `assets/mna/guide`, ≈ 246 тыс. знаков) + вычитка 660 названий MnA.
+- [x] **Animus**, **AMI Wiki**, **Dimensional Dungeons** (lang лежал как `ru_RU.json` — не грузился), **Ars Magica Legacy**, аддоны Ars, bobbook, exguide; Ars Nouveau (+18 ключей).
+- [x] Проверка всех jar на lang с неверным регистром/форматом (`ru_RU.json`) — только Dimensional Dungeons.
+- [x] Superb Warfare — переводить нечего (3 имени техники).
+- [ ] Приёмка в игре (кодекс MnA, Анимус, AMI Wiki, Dimensional Dungeons). Остальное — по отзывам.
+- PR в интегратор — после слияния #31 (пак внутри мода `ru-lang`).
 
 ## Интеграция (ревью PR, поток «Ревью и интеграция», ветка `claude/confident-hypatia-2zqr1t`)
 Цикл 1 — 2026-10-10:
@@ -224,9 +233,10 @@ JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.t
 - Galacticraft — **в работе отдельным потоком** (0.1.0 «лунный данж с боссом» в сборке) (ветка `claude/determined-sagan-51u10p`): свой мод поверх Ad Astra
   с портом недостающего из GC Legacy/GC5 (данжи, боссы, схемы, астероиды). План и точка остановки — `docs/galacticraft.md`.
 
-## Координация (поток «Координатор», session_015zoozt65pTMY4bR2XBFgb8)
+## Координация (поток «Координатор (2)», session_01TzhEBzXMNvkdaYhGJBCkDA; до 2026-10-12 22:10 — session_015zoozt65pTMY4bR2XBFgb8)
 Координатор раздаёт задачи потокам и выбирает модель; ревью и слияние — поток «Ревью и интеграция»;
-вопросы владельцу — только через «Связь с владельцем» (session_01TAw9QPkPRVtJZY37wFhBNv).
+вопросы владельцу — только через «Связь с владельцем (2)» (session_01Hncw6rYwbbT38frccVHWD8; прежняя session_01TAw9QPkPRVtJZY37wFhBNv архивирована).
+Правило владельца: при большом контексте сеанс заменяется свежим с коротким handoff и ссылками на `docs/`.
 
 Раунд 1 — 2026-10-11:
 | Задача | Поток (сеанс) | Модель — почему | Статус |
@@ -297,6 +307,31 @@ JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.t
 Тест владельца (Prism, офлайн-аккаунт, ссылка packwiz): установка 387/387, «Missing libraries» решено онлайн-запуском (friends.md, PR #24),
 главное меню без ошибок, одиночный мир создан, Origins и русский интерфейс работают.
 
+Раунд 6 — 2026-10-12 вечер → 2026-10-13 ночь (владелец спит; решения — по принятым правилам):
+| Задача | Поток (сеанс) | Модель — почему | Статус |
+|---|---|---|---|
+| Русификация: этап 2, мод `ru-lang` (русский пак всегда сверху), названия модов/Arknights английские; Lost Cities (В10 «а», `rarecities`) | Поток 6 (session_01QeeDTwLudyjkD12gbCa4Kp) | sonnet — строки, скрипты, конфиги | **влиты #27–#30, #31**; сеанс архивирован |
+| Китайские строки в коде модов («Талон Боба»): миксин `LiteralContents` в `ru-lang` + словарь 953 литералов, jar не патчены | Поток 6 | sonnet — по готовому плану, миксин маленький | **влит #39** |
+| Animus / «ключ разрешается в английский» | Поток 6 | — | закрыто без правок: из 72 тыс. ключей 742 английских — намеренные названия Arknights и имена собственные; Animus английский только при откате паков (см. Поток 13) |
+| JEI: аддоны, плагин Imbuement Altar | Поток 7 | sonnet | **влиты** (раунд 5) |
+| Производительность клиента | Поток 8 | sonnet | **влит #35**; дальше Поток 8 работал как «Ревью и интеграция (2)» |
+| Боссы: таблица `docs/bosses.md`, Ice and Fire CE (#34), Bosses of Mass Destruction + Cerbon's API (В12 «а») | Поток 9 (session_01WKtpNF9pEz1ZLSL76u21Qw) | sonnet — моды по образцу + тест спавна | **влиты #32, #34, #36**; сеанс архивирован |
+| Перевод книг: кодекс Mana and Artifice (+660 исправленных названий), Animus, AMI Wiki, Dimensional Dungeons, Ars и аддоны, bobbook | Поток 11 (session_01JahaRV9o4kKTT12dVPbUAf) | sonnet — перевод пачками + валидаторы | **влит #37**; Caerula Arbor (429 строк) — в очереди, после сброса лимита |
+| Порт Wizardry Golems 0.2.0 (Extra Golems) → Necromancer's Delight (В13 «полный перенос», включая мобов Fish's Undead Rising) | Поток 12 (session_01Bg28XprSLsi1MoAEr25m4F) | opus — порт кода 1.12.2, низкий приоритет | #38 готов (golemcheck 13/13, CLIENT OK), **отложен по лимиту**; ND-1 — WIP `claude/necromancers-delight`, точка остановки в `docs/wizardry-port.md` |
+| Атлас текстур > 16384² (на слабых GPU слетали русские паки) | Поток 13 (session_01MpjMThXiMwvDnXrMqqdZXL) | opus — диагностика рендера | **влит #41** (~290 → ~125 Мпкс); сеанс архивирован |
+| Ревью и слияние: #35, #31, #36, #39, #41, #37 | Ревью и интеграция (2) (session_01AtTBE2K9ovNYSKAU4EMyda) | sonnet — ревью по чек-листу | работает; при сильном росте контекста — замена свежим сеансом |
+
+Порядок слияния PR, которые все трогают jar `ru-lang` и `index.toml`: следующий автор подтягивает интегратор и пересобирает
+`scripts/build-ru-pack.sh` (бинарный jar — только пересборкой); повторный `test-client` не нужен, если влитое не пересекается с PR.
+Ветка `claude/ru-force-packs` (принудительное включение MPLOC/RTF+) не слита: до #41 при переполнении атласа давала краш вместо отката;
+после #41 — можно вернуться.
+
+Лимиты: 2026-10-13 00:00 UTC `seven_day` 75% (порог владельца на эту неделю), расход ночью ~2,5%/ч → режим «2 рабочих потока»
+(Ревью + Поток 13), Поток 12 остановлен с WIP, Поток 11 — после #37. Вопрос В14 владельцу: держать режим до сброса 17.10 06:00 UTC
+или поднять порог.
+Ждёт владельца (13.10): русские паки включены сразу; мобы Lycanites и драконы Ice and Fire без «missing»-текстур; книги
+(MnA, Animus, AMI, Dimensional Dungeons, bobbook) открываются по-русски; спавн мобов после BoMD; ModernFix-текстуры; В2 Millida; В14.
+
 ### Поток 8 — Производительность
 Файлы: `docs/performance.md`, `mods-src/mm-perf/`, `pack/config/{modernfix-mixins.properties,DistantHorizons.toml,jei/,sound_physics_remastered/}`, `pack/options.txt` (только строки графики).
 Сделано (ветка `claude/perf-stream8`, подробности и замеры — `docs/performance.md`):
@@ -314,3 +349,10 @@ JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.t
 3. **Bosses of Mass Destruction 1.1.2 + Cerbon's API** (решение владельца В12 «а», PR ветки `claude/boss-bmd`): в сборке, spawncheck без просадки,
    SERVER/CLIENT OK; условие — если у владельца спавн мобов снова пропадёт, убрать оба мода (см. compat.md).
 4. Дальше: описать остальные боссы в `boss_info.py` (Arknights-моды), проверка драконов в игре (нагрузка на ноутбуке), JEI-плагин IaF.
+
+### Поток 13 — Атлас текстур на GPU с пределом 16384
+- [x] Диагноз: «всеобщие» источники атласа блоков у Mana and Artifice (`entity`) и Blood Magic (`models`) тянут в атлас
+  мобов Lycanites/Ice and Fire/Alex's/Cataclysm (293 Мпкс > 16384²). Фильтр `pack/kubejs/assets/minecraft/atlases/blocks.json`:
+  ~125 Мпкс, атлас 16384×8192, `CLIENT OK` без отката паков (подробности — `docs/compat.md`).
+- [ ] Владельцу/друзьям: проверить в игре мобов Lycanites и драконов Ice and Fire (нет ли «missing»-текстур).
+

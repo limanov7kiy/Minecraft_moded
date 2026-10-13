@@ -1,0 +1,16 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Эму",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/ranged_aggro.png"
+      ],
+      "text": "Эму нападают на врагов с дальнобойным оружием в руках",
+      "title": "Агрессия к стрелкам"
+    }
+  ],
+  "sortnum": 1
+}

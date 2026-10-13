@@ -1,0 +1,19 @@
+{
+  "name": "item.ars_instrumentum.runic_storage_stone",
+  "category": "ars_nouveau:automation",
+  "icon": "ars_instrumentum:runic_storage_stone",
+  "pages": [
+    {
+      "text": "Щёлкните правой кнопкой настроенного Ретранслятора Источника любого типа Руническим камнем хранения, чтобы сохранить его настройки. Shift + правый клик по Ретранслятору Источника применяет сохранённые настройки. Для ретрансляторов-разделителей они ДОБАВЛЯЮТСЯ к уже заданным настройкам; настройки обычного ретранслятора перезаписываются. Чтобы очистить сохранённые настройки, скрафтите Рунический камень хранения.",
+      "type": "patchouli:text"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ars_instrumentum:runic_storage_stone"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ars_instrumentum:runic_storage_stone_alternate"
+    }
+  ]
+}

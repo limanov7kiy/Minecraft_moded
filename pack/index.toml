@@ -69,6 +69,10 @@ file = "defaultconfigs/lostcities-server.toml"
 hash = "cd8919cee8c45c4b5e243fa0fb03e4a08f12094ed5c0dd053814fff0f6d7e85d"
 
 [[files]]
+file = "kubejs/assets/minecraft/atlases/blocks.json"
+hash = "52ca3fdfa8aee6d4819281a99ee4a0465225c878dfb723f6040582ede2153e6d"
+
+[[files]]
 file = "kubejs/client_scripts/space_rockets.js"
 hash = "c5f3ef1a27991ac16c6f99ff138572a82654f52f514605e7a423b3c9adfb0eac"
 
@@ -173,6 +177,10 @@ file = "kubejs/data/aether_treasure_reforging/recipes/valkyrie_upgrade_smithing_
 hash = "61c01488bd1bc9113ef1a64e626a0ba9dbbe7d4178d4d8767c0e9cb3d8cdf4a2"
 
 [[files]]
+file = "kubejs/data/alexsmobsinteraction/patchouli_books/amiwiki/book.json"
+hash = "3190cea8e6dbc4495746a90f9944c2308b6a3231dc366060b5f74ef84d4f7482"
+
+[[files]]
 file = "kubejs/data/ancient_aether/recipes/ancient_rune.json"
 hash = "61c01488bd1bc9113ef1a64e626a0ba9dbbe7d4178d4d8767c0e9cb3d8cdf4a2"
 
@@ -187,6 +195,14 @@ hash = "273e114088fab7cbdc0a45b60688cf892890a4bae627345e62d7cf3e782ad05e"
 [[files]]
 file = "kubejs/data/arks/powers/sarkaz_nephesh/thought.json"
 hash = "273e114088fab7cbdc0a45b60688cf892890a4bae627345e62d7cf3e782ad05e"
+
+[[files]]
+file = "kubejs/data/ars_controle/patchouli_books/ars_controle/book.json"
+hash = "8b2423d6fee437d0951e37358d3634a1e01d1caecfa630c20a4e4bc91ff6f194"
+
+[[files]]
+file = "kubejs/data/bobsoriginiumdream/patchouli_books/bobbook/book.json"
+hash = "62ea1e56998e44e4a9a12962991eb8d9c2cba6918192208cfbe6262a575d4f3e"
 
 [[files]]
 file = "kubejs/data/cataclysm/recipes/stonecutting/azure_seastone_brick_stair_from_stonecutting.json"
@@ -215,6 +231,10 @@ hash = "8112f26d69bd40c25dd1a89cd7089a2f9a81ddcf49de3202d43f8b3a8c083588"
 [[files]]
 file = "kubejs/data/creatingspace/creatingspace/rocket_accessible_dimension/venus.json"
 hash = "5623b9dfc19c8c2c33475572fc36184f538a986fc151dd20c7d02036535a83ca"
+
+[[files]]
+file = "kubejs/data/dimdungeons/patchouli_books/guide_book/book.json"
+hash = "e486eaa37e89f8a264d01785307e2f0379ec6b5efb5df0afd843047c5720b23d"
 
 [[files]]
 file = "kubejs/data/irons_spellbooks/loot_tables/chests/catacombs/crypt_loot.json"
@@ -1576,7 +1596,7 @@ metafile = true
 
 [[files]]
 file = "mods/ru-lang-1.0.0-client.jar"
-hash = "035766597827d506ddcfc6a831082bb49cb273a6711f434ef5145046d6abb4d7"
+hash = "54c67dbe38dbaf72c525c2824200b122b508771bf66b1e29afaa5c9b28269e78"
 
 [[files]]
 file = "mods/sarkazs_furnace_side_fables-0.2.3-forge-1.20.1.jar"
@@ -1872,7 +1892,7 @@ hash = "dac71a33fe4eb0aa6f0bbfd5a2c857406239f1842c5bb33b00b142c2809f557d"
 
 [[files]]
 file = "resourcepacks/mploc-mods-v43.zip"
-hash = "12f629a0986e312a44c8c924d27de706b04da749f6cf40eabbfa2145af30a2fd"
+hash = "fcc4a8050864c73aa3a011a7cdd8d031eea7639f7ab925c672ca3ba0d684cf3c"
 
 [[files]]
 file = "resourcepacks/rtf-extension.pw.toml"

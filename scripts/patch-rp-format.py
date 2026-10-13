@@ -12,6 +12,10 @@ for arg in sys.argv[1:]:
     zin = zipfile.ZipFile(io.BytesIO(data)); out = root / "pack" / "resourcepacks" / m["filename"]
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as zout:
         for i in zin.infolist():
+            # рекламные картинки MPLOC (assets/minecraft/textures/item/*.png, до 2000x2000) попадают в атлас блоков и предметов:
+            # на видеокартах с лимитом текстуры 16384 (и в облачном test-client на llvmpipe) атлас не помещается — убираем их
+            if m["filename"].startswith("mploc") and i.filename.startswith("assets/minecraft/textures/"):
+                continue
             b = zin.read(i.filename)
             if i.filename == "pack.mcmeta":
                 j = json.loads(b.decode("utf-8-sig")); j["pack"]["pack_format"] = 15

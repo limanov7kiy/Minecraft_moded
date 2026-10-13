@@ -1,0 +1,19 @@
+{
+  "name": "Сущность поверженных врагов",
+  "category": "ars_nouveau:equipment",
+  "icon": "ars_instrumentum:fake_wilden_tribute",
+  "pages": [
+    {
+      "text": "Мудрый маг заметил, что может извлечь сущность поверженных врагов и наделить ею огромный кусок алмаза.",
+      "type": "patchouli:text"
+    },
+    {
+      "type": "ars_nouveau:imbuement_recipe",
+      "recipe": "ars_instrumentum:imbuement/imbuement_fake_wilden_tribute"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ars_instrumentum:archmage_spell_book_upgrade_alternate"
+    }
+  ]
+}

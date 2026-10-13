@@ -1,0 +1,16 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Сом",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/cat_venom.png"
+      ],
+      "text": "Получив урон, сом выпускает яд",
+      "title": "Сомий яд"
+    }
+  ],
+  "sortnum": 1
+}

@@ -1,0 +1,21 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Чайка",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/snatch_interaction.png"
+      ],
+      "text": "Чайки не будут красть еду, если у них мало здоровья или на игроке сомбреро",
+      "title": "Кража еды"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Чайки будут красть еду только из рук",
+      "title": "(НЕОБЯЗАТЕЛЬНО)"
+    }
+  ],
+  "sortnum": 1
+}

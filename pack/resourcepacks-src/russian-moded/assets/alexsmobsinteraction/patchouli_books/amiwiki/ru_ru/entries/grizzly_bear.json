@@ -1,0 +1,32 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Бурый медведь",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/honeyless_hunting.png"
+      ],
+      "text": "Если бурые медведи давно не ели мёд, они могут ломать контейнеры с едой",
+      "title": "Охота за мёдом"
+    },
+    {
+      "type": "patchouli:relations",
+      "entries": [
+        "alexsmobsinteraction:add_targets"
+      ],
+      "text": "Если это включено для бурого медведя, он также охотится на животных",
+      "title": " "
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/grizzly_brushed.png"
+      ],
+      "text": "Бурых медведей можно чистить щёткой ради шерсти",
+      "title": "Вычесывание медведя"
+    }
+  ],
+  "sortnum": 1
+}
