@@ -267,6 +267,17 @@ Ars Magica Legacy, аддонов Ars. Названия предметов в т
 Пайплайн: `scripts/cjk_literals_harvest.py` (сбор строк из .class/NBT/data-JSON → пачки) → перевод Haiku → `scripts/literals_build.py` (проверка §-кодов/плейсхолдеров/иероглифов) → `scripts/build-ru-pack.sh`.
 Не покрыто: текст, рисуемый напрямую `font.draw(String)`, и книги Patchouli (Поток 11), NBT-структуры с сигнатурами (таблички) — только если строка идёт через Component.
 
+## 8а. Подсказки загрузки мира (поток 16, 2026-10-13)
+
+Баг владельца: «Совет профессионала: You can plant Wynd Oats…». Подсказки показывает система «Pro Tips» Aether
+(`data/<ns>/tips/*.json`, поля `tip`/`title` — всегда `translate`-ключи, литералов нет). Просмотрены все 263 jar клиента:
+подсказки есть только у **Aether** (58, русские), **Aether: Redux** (15), **Deep Aether** (5). Без перевода были 21 строка
+(15 Redux + «цвет заголовка», 4 Deep Aether + заголовок `gui.deep_aether.pro_tip`) — добавлены в
+`assets/aether_redux/lang/ru_ru.json` и `assets/deep_aether/lang/ru_ru.json` пака `ru-lang`, без переопределения JSON.
+Старый ключ `…aether_redux.wyndsprouts` (от прежней версии Redux) остался в паке, но мод его не использует.
+Проверка: скрипт по jar (ключи tip/title из всех `*/tips/*.json` против ru_ru jar+пака) — после правки непереведённых нет;
+`lang_validate.py` — 0 ошибок.
+
 ## Вопросы владельцу
 
 1. **Не блокирует.** Принять MPLOC (ИИ-перевод) и RTF+ базой, а остальное доводить своим паком сверху? Рекомендация: да.
