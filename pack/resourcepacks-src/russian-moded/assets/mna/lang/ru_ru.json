@@ -399,10 +399,10 @@
   "item.mna_rune_marking_pair.adjust_upper": "Настройте верхние границы области.",
   "item.mna_rune_marking_pair.no_area_no_gui": "У этой пары не задана область.  Сначала щёлкните правой кнопкой по блоку, чтобы задать область.",
   "itemGroup.mna.items": "Mana and Artifice",
-  "key.cast-any-slot": "Применить заклинание из слота заклинаний, пояса или спины Curios",
-  "key.cast-back-slot": "Применить заклинание из слота спины Curios",
-  "key.cast-belt-slot": "Применить заклинание из слота пояса Curios",
-  "key.cast-hand-slot": "Применить заклинание из слота заклинаний Curios",
+  "key.cast-any-slot": "Заклинание: любой слот",
+  "key.cast-back-slot": "Заклинание: слот спины",
+  "key.cast-belt-slot": "Заклинание: слот пояса",
+  "key.cast-hand-slot": "Заклинание: слот Curios",
   "key.open-belt-pouch": "Открыть поясную сумку",
   "key.spellbookchord": "Комбинация книги заклинаний",
   "mna.commands.resetCodex.success": "Сброшены открытия кодекса у %s. Игроку нужно выйти и зайти снова, чтобы увидеть изменения.",
@@ -1096,5 +1096,7 @@
   "mna:tier_3/transcribe_spell.title": "Переписчик",
   "mna:tier_4/magic_level_60.title": "Волшебник",
   "mna:tier_4/craft_diamond_obsidian_construct.title": "Артефактор",
-  "mna:tier_4/craft_a_t4_spell.title": "Мастер-ткач заклинаний"
+  "mna:tier_4/craft_a_t4_spell.title": "Мастер-ткач заклинаний",
+  "key.gui-key-modifier": "Модификатор открытия GUI",
+  "key.spellbookopen": "Быстрый выбор заклинаний"
 }

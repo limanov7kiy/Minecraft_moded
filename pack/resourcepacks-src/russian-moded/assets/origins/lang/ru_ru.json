@@ -22,5 +22,6 @@
   "power.origins.phantomize.description": "Вы можете свободно переключаться между человеческим обликом и обликом фантома, но только когда вы достаточно сыты для спринта.",
   "power.origins.phantomize.name": "Облик фантома",
   "power.origins.velvet_paws.description": "Ваши шаги не создают вибраций, которые могли бы уловить ближайшие живые существа.",
-  "power.origins.velvet_paws.name": "Бархатные лапы"
+  "power.origins.velvet_paws.name": "Бархатные лапы",
+  "key.origins.secondary_active": "Активная сила (вторая)"
 }

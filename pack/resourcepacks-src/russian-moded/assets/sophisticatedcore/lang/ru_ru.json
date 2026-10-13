@@ -16,5 +16,8 @@
   "item.sophisticatedcore.storage.tooltip.linked_storage_group": "Группа связанных хранилищ: %s",
   "itemGroup.sophisticatedcore": "Sophisticated Core",
   "tooltip.sophisticatedcore.linked_storage.primary": "Основное связанное",
-  "tooltip.sophisticatedcore.linked_storage.secondary": "Связано"
+  "tooltip.sophisticatedcore.linked_storage.secondary": "Связано",
+  "key.sophisticatedcore.sort": "Сортировать хранилище",
+  "key.sophisticatedcore.transfer_to_inventory": "Перенести в инвентарь",
+  "key.sophisticatedcore.transfer_to_storage": "Перенести в хранилище"
 }

@@ -15,5 +15,18 @@
   "block.ars_nouveau.redstone_relay": "Реле красного камня",
   "item.ars_nouveau.thread_amethyst_golem": "Аметистовый голем",
   "item.ars_nouveau.thread_high_step": "Высокий шаг",
-  "item.ars_nouveau.thread_immolation": "Самосожжение"
+  "item.ars_nouveau.thread_immolation": "Самосожжение",
+  "key.ars_nouveau.next_slot": "Книга: следующий слот",
+  "key.ars_nouveau.previous_slot": "Книга: предыдущий слот",
+  "key.ars_nouveau.open_book": "Книга: открыть",
+  "key.ars_nouveau.qc1": "Быстрое заклинание 01",
+  "key.ars_nouveau.qc2": "Быстрое заклинание 02",
+  "key.ars_nouveau.qc3": "Быстрое заклинание 03",
+  "key.ars_nouveau.qc4": "Быстрое заклинание 04",
+  "key.ars_nouveau.qc5": "Быстрое заклинание 05",
+  "key.ars_nouveau.qc6": "Быстрое заклинание 06",
+  "key.ars_nouveau.qc7": "Быстрое заклинание 07",
+  "key.ars_nouveau.qc8": "Быстрое заклинание 08",
+  "key.ars_nouveau.qc9": "Быстрое заклинание 09",
+  "key.ars_nouveau.qc10": "Быстрое заклинание 10"
 }

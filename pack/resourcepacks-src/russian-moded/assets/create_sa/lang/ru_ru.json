@@ -1,3 +1,5 @@
 {
-  "item_group.create_sa.create_stuff_additions_tab": "Create Stuff 'N Additions"
+  "item_group.create_sa.create_stuff_additions_tab": "Create Stuff 'N Additions",
+  "key.create_sa.decrease_reach": "Уменьшить радиус дрона",
+  "key.create_sa.increase_reach": "Увеличить радиус дрона"
 }

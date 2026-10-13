@@ -4,5 +4,7 @@
   "item.iceandfire.raw_silver": "Необработанное серебро",
   "entity.iceandfire.lightning_dragon_charge": "Заряд драконьей молнии",
   "entity.iceandfire.amphithere_arrow": "Стрела амфитеры",
-  "bestiary_gui": "Бестиарий"
+  "bestiary_gui": "Бестиарий",
+  "key.dragon_change_view": "Камера дракона (3-е лицо)",
+  "key.dragon_down": "Слезть/снять малыша дракона"
 }

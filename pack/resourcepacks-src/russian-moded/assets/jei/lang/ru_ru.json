@@ -363,7 +363,7 @@
   "key.jei.nextRecipePage.description": "Показать следующую страницу рецептов в текущей категории.",
   "key.jei.nextSearch.context": "поле поиска JEI в фокусе",
   "key.jei.nextSearch.description": "Восстановить следующий текст поиска после перемещения назад по истории поиска.",
-  "key.jei.pauseRecipeCycling": "Остановить смену ингредиентов в рецептах",
+  "key.jei.pauseRecipeCycling": "Пауза смены ингредиентов",
   "key.jei.previousCategory.context": "открыт интерфейс",
   "key.jei.previousCategory.description": "Перейти к предыдущей категории рецептов.",
   "key.jei.previousPage.context": "открыт интерфейс",
@@ -372,7 +372,7 @@
   "key.jei.previousRecipePage.description": "Показать предыдущую страницу рецептов в текущей категории.",
   "key.jei.previousSearch.context": "поле поиска JEI в фокусе",
   "key.jei.previousSearch.description": "Восстановить предыдущий текст поиска.",
-  "key.jei.quickMove": "Быстрое перемещение призрачного предмета",
+  "key.jei.quickMove": "Быстрое перемещение призрака",
   "key.jei.quickMove.context": "наведение курсора на JEI",
   "key.jei.quickMove.description": "Переместить призрачный ингредиент под курсором в выбранный слот, если это поддерживается.",
   "key.jei.recipeBack.context": "открыт интерфейс",
@@ -404,5 +404,13 @@
   "key.jei.toggleWildcardHideIngredient.context": "наведение на ингредиент",
   "key.jei.toggleWildcardHideIngredient.description": "Скрыть или показать похожие варианты этого ингредиента.",
   "key.jei.transferRecipeBookmark.context": "наведение на закладку JEI",
-  "key.jei.transferRecipeBookmark.description": "Перенести один рецепт из этой закладки, если доступна передача рецептов."
+  "key.jei.transferRecipeBookmark.description": "Перенести один рецепт из этой закладки, если доступна передача рецептов.",
+  "jei.key.category.hover.config.button": "JEI (на кнопке настроек)",
+  "key.jei.toggleBookmarkOverlay": "Показать/скрыть закладки",
+  "key.jei.maxTransferRecipeBookmark": "Рецепт закладки (макс.)",
+  "key.jei.transferRecipeBookmark": "Рецепт закладки (один)",
+  "key.jei.copy.recipe.id": "Копировать ID рецепта",
+  "key.jei.toggleEditMode": "Режим скрытия ингредиентов",
+  "key.jei.toggleOverlay": "Показать/скрыть наложения",
+  "key.jei.toggleWildcardHideIngredient": "Скрыть ингредиент (шаблон)"
 }

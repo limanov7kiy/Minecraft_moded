@@ -45,5 +45,6 @@
   "tooltip.ars_elemental.focus_element_mana.fire": "Даёт Урон от заклинаний II, пока владелец горит или стоит в лаве.",
   "tooltip.ars_elemental.focus_element_mana.water": "Даёт Восстановление маны I, пока владелец мокрый; Восстановление маны II и Милость дельфина, пока он плывёт.",
   "tooltip.ars_elemental.focus_malus": "Ослабляет глифы других стихийных школ.",
-  "tooltip.siren_shards": "Получается, если отдать морской огурчик сирене."
+  "tooltip.siren_shards": "Получается, если отдать морской огурчик сирене.",
+  "key.ars_elemental.open_pouch": "Открыть мешочек безделушек"
 }

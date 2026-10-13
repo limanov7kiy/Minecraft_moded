@@ -9,6 +9,6 @@
   "item.ars_instrumentum.runic_storage_stone": "Рунический камень хранилища",
   "item.ars_instrumentum.scroll_of_save_starbuncle": "Свиток спасения звёздного жука",
   "item.ars_instrumentum.wizards_armarium": "Армариум волшебника",
-  "key.ars_nouveau.choose_armarium_slot": "(Армариум волшебника) Переключить HUD выбора",
-  "key.ars_nouveau.switch_armarium_slot": "Переключить Армариум волшебника"
+  "key.ars_nouveau.choose_armarium_slot": "Армариум: HUD выбора",
+  "key.ars_nouveau.switch_armarium_slot": "Переключить армариум"
 }

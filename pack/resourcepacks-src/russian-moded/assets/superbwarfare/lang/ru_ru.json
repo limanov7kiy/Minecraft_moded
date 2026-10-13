@@ -8,5 +8,7 @@
   "entity.superbwarfare.a_10a": "Штурмовик A-10 «Тандерболт II»",
   "superbwarfare.entry.vehicle.lav_150": "БМ LAV-150 «Коммандо»",
   "superbwarfare.entry.vehicle.ah_6": "Вертолёт AH-6 «Литл Бёрд»",
-  "superbwarfare.entry.vehicle.a_10a": "Штурмовик A-10A «Тандерболт II»"
+  "superbwarfare.entry.vehicle.a_10a": "Штурмовик A-10A «Тандерболт II»",
+  "key.superbwarfare.move_left": "Поворот / крен влево",
+  "key.superbwarfare.move_right": "Поворот / крен вправо"
 }

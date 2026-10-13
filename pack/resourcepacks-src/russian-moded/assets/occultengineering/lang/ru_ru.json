@@ -7,5 +7,5 @@
   "command.occultengineering.multiblock.success": "Мультиблок успешно установлен",
   "command.occultengineering.no_permission": "У вас нет прав на выполнение этой команды",
   "key.categories.occultengineering.keys": "Оккультная инженерия",
-  "key.occultengineering.toggle_combined_goggles": "Переключить потусторонние инженерные очки"
+  "key.occultengineering.toggle_combined_goggles": "Потусторонние очки инженера"
 }

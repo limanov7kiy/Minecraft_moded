@@ -2,5 +2,6 @@
   "options.particles.quark.attractor": "Притяжение",
   "options.particles.quark.attractor.tooltip": "Частицы притяжения, испускаемые обратной стороной кваркового магнита (синей).",
   "options.particles.quark.repulsor": "Отталкивание",
-  "options.particles.quark.repulsor.tooltip": "Частицы отталкивания, испускаемые лицевой стороной кваркового магнита (красной)."
+  "options.particles.quark.repulsor.tooltip": "Частицы отталкивания, испускаемые лицевой стороной кваркового магнита (красной).",
+  "quark.keybind.narrator_full_readout": "Полный вывод диктора"
 }

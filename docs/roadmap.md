@@ -313,6 +313,7 @@ JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.t
 |---|---|---|---|
 | Русификация: этап 2, мод `ru-lang` (русский пак всегда сверху), названия модов/Arknights английские; Lost Cities (В10 «а», `rarecities`) | Поток 6 (session_01QeeDTwLudyjkD12gbCa4Kp) | sonnet — строки, скрипты, конфиги | **влиты #27–#30, #31**; сеанс архивирован |
 | Подсказки загрузки мира по-английски (Aether Redux/Deep Aether, 21 строка) → ru_ru пака `ru-lang`; см. `docs/russification.md` §8а | Поток 16 | sonnet — разбор jar, lang | PR в `claude/affectionate-davinci-4gddoh` |
+| Длинные подписи клавиш уезжают за левый край на GUI x3+: префиксы зашиты в ключи Ars-модов; 100 строк сокращены в ru-lang (`scripts/lang_shorten_keys.py`), `docs/russification.md` §8б | Поток 17 | sonnet — разбор jar, lang | PR в `claude/affectionate-davinci-4gddoh` |
 | Китайские строки в коде модов («Талон Боба»): миксин `LiteralContents` в `ru-lang` + словарь 953 литералов, jar не патчены | Поток 6 | sonnet — по готовому плану, миксин маленький | **влит #39** |
 | Animus / «ключ разрешается в английский» | Поток 6 | — | закрыто без правок: из 72 тыс. ключей 742 английских — намеренные названия Arknights и имена собственные; Animus английский только при откате паков (см. Поток 13) |
 | JEI: аддоны, плагин Imbuement Altar | Поток 7 | sonnet | **влиты** (раунд 5) |

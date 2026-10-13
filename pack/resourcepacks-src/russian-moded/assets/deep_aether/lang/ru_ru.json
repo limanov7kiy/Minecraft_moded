@@ -9,5 +9,6 @@
   "aether.pro_tips.line.deep_aether.poison_squashes": "§bТыквы-сквоши становятся фиолетовыми, если бросить их в яд.",
   "aether.pro_tips.line.deep_aether.squashes": "§bПробовали ли вы зачаровывать тыквенные семена на алтаре?",
   "aether.pro_tips.line.deep_aether.sterling_aercloud": "§bСтерлинговые аэрооблака изредка встречаются у предела высоты строительства.",
-  "gui.deep_aether.pro_tip": "§bСовет профессионала:"
+  "gui.deep_aether.pro_tip": "§bСовет профессионала:",
+  "key.deep_aether.toggle_skyjade_transparency": "Прозрачность небесного камня"
 }
