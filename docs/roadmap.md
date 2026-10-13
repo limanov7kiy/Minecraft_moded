@@ -334,6 +334,26 @@ JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.t
 Ждёт владельца (13.10): русские паки включены сразу; мобы Lycanites и драконы Ice and Fire без «missing»-текстур; книги
 (MnA, Animus, AMI, Dimensional Dungeons, bobbook) открываются по-русски; спавн мобов после BoMD; ModernFix-текстуры; В2 Millida; В14.
 
+Раунд 7 — 2026-10-13 (день; владелец на связи; лимит: «2 потока», стоп на 85% недели):
+| Задача | Поток (сеанс) | Модель — почему | Статус |
+|---|---|---|---|
+| #38 Wizardry Golems 0.2.0 — довести и слить вместо остановленного Потока 12 | Ревью и интеграция (2) | sonnet — слияние + тесты по образцу | **влит**; Поток 12 архивирован (ND-1 — WIP `claude/necromancers-delight`) |
+| Книга Caerula Arbor (429 строк) | Поток 11 | sonnet — перевод пачками | **влит #43**; сеанс архивирован |
+| Битые модели: mekmm `neoforge:composite`, MnA `pylon_ring.obj` | Поток 14 (session_01GMirfF4NSv9aGz89BvsGpA) | sonnet — замена ассетов через KubeJS | **влит #44**; сеанс архивирован |
+| Катаклизмы (В15): Weather2 + CoroUtil, Natural Disasters!, свой мод «Оберег» `mods-src/disaster-ward`; постройки ломаются (уточнение владельца) | Поток 15 (session_016FK9FaQRGFk4kHRNy6PKCJ) | sonnet — моды + маленький мод по образцу | **влит #45** |
+| WorldEdit (В18) — перенос построек на сервер, только OP | Поток 15 | sonnet | **влит #46**; сеанс архивирован |
+
+Решения владельца: В14 — 2 потока до сброса; В15 — катаклизмы (вариант 1 + на усмотрение 3/4, дубли убрать, оберег только из креатива, постройки ломаются);
+В16 — OreSpawn: поставить ремейк Chaos Persists (1.20.1), сравнить с оригиналом 1.7.10 и доделать недостающее;
+В17 — перенос построек: WorldEdit; В18 — «Да, добавляй».
+
+Очередь после сброса лимита (17.10 06:00 UTC):
+- OreSpawn: Chaos Persists в тестовую сборку → совместимость/дубли (Ice and Fire, Lycanites, Mowzie's) → список недостающего из 1.7.10 → выбор владельца → порт отдельным модом (opus).
+- Necromancer's Delight ND-1: с WIP `claude/necromancers-delight` (точка остановки — `docs/wizardry-port.md`), свежий сеанс opus.
+- Оберег: единый радиус для Weather2 (у него 128) и Natural Disasters! (64); бедствие, прилетевшее снаружи, не ломает блоки в зоне.
+- Ветка `claude/ru-force-packs` (после #41 атлас помещается) — оценить.
+- Extreme Natural Disasters (вулканы) / This Tsunami — только по запросу владельца.
+
 ### Поток 8 — Производительность
 Файлы: `docs/performance.md`, `mods-src/mm-perf/`, `pack/config/{modernfix-mixins.properties,DistantHorizons.toml,jei/,sound_physics_remastered/}`, `pack/options.txt` (только строки графики).
 Сделано (ветка `claude/perf-stream8`, подробности и замеры — `docs/performance.md`):
