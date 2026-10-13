@@ -430,11 +430,15 @@ Arknights Weapon) применяются без ошибок. Микрофон, 
 Клиент (`test-client.sh`, Forge 47.4.26) доходит до главного меню; в логе модельные ошибки, **не наши и не чинились**:
 - `Model loader 'neoforge:composite' not found` — 4 модели **Mekanism More Machines** (`mekmm-1.20.1-1.2.1`): `mekmm:models/block/factory/painting/active/{basic,advanced,elite,ultimate}.json`
   (активное состояние фабрик покраски). Мод собран под NeoForge-загрузчик моделей (`neoforge:composite`), у Forge он называется `forge:composite`. Ожидаемо: пока фабрика
-  покраски работает (активное состояние), блок рисуется как «потерянная» модель — **фиолетово-чёрная текстура**; в простое — нормально. Лечится правкой JSON моделей
-  (`neoforge:composite` → `forge:composite`, ресурспак/jar-патч), чинить не стали.
+  покраски работает (активное состояние), блок рисуется как «потерянная» модель — **фиолетово-чёрная текстура**; в простое — нормально.
+  **Исправлено (поток 14):** в jar это единственные 4 модели с `neoforge:composite`; их копии с `"loader": "forge:composite"` (части те же) лежат в
+  `pack/kubejs/assets/mekmm/models/block/factory/painting/active/*.json` и перекрывают модели мода. Автор мода — Mekanism More Machines (jar не менялся).
 - `Failed to load model mna:models/block/eldrin/pylon_ring.json` (Mana and Artifice 3.1.11) — `pylon_ring.json` ссылается на `mna:models/block/obj/pylon/pylon_ring.obj`, а в jar лежит только
   `pylon_ring_old.obj` (ошибка автора мода). Деталь «кольцо» пилона Элдрина не рисуется / рисуется как отсутствующая модель (фиолетово-чёрная). Обход — копия `pylon_ring_old.obj` под именем
-  `pylon_ring.obj` в нашем паке (не делали).
+  `pylon_ring.obj` в нашем паке.
+  **Исправлено (поток 14):** `pack/kubejs/assets/mna/models/block/obj/pylon/pylon_ring.obj` — копия `pylon_ring_old.obj` (его `mtllib pylon_ring.mtl` в jar есть;
+  иных «ring»-моделей нет). Автор — Mana and Artifice (авторство модели сохранено, файл не менялся).
+  Проверка: `test-client.sh` — `CLIENT OK`, в `logs/latest.log` нет `neoforge:composite`, `pylon_ring` и «Failed to load model».
 - Patchouli-книга `ars_controle`: «use_resource_pack set to false» — у мода в jar только заглушка `book.json` (`extend: ars_nouveau:worn_notebook`) без содержимого; исправлено
   kubejs-override `pack/kubejs/data/ars_controle/patchouli_books/ars_controle/book.json` (`use_resource_pack: true`, описание по-русски). Записей в книге у мода нет, переводить нечего.
 

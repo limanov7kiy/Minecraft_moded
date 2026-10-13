@@ -69,8 +69,28 @@ file = "defaultconfigs/lostcities-server.toml"
 hash = "cd8919cee8c45c4b5e243fa0fb03e4a08f12094ed5c0dd053814fff0f6d7e85d"
 
 [[files]]
+file = "kubejs/assets/mekmm/models/block/factory/painting/active/advanced.json"
+hash = "595694306a48eda057cfb4a88dac35c733c56303db64043cbd69a639c44e5ee0"
+
+[[files]]
+file = "kubejs/assets/mekmm/models/block/factory/painting/active/basic.json"
+hash = "5fcf094b8c3bd6a4f4b24b25ad644cd34773261b0d26e8c04054c1f3262a3684"
+
+[[files]]
+file = "kubejs/assets/mekmm/models/block/factory/painting/active/elite.json"
+hash = "aac59c3c982f903595a18af7272535035e836ac77f83f22ce521bc13b3055312"
+
+[[files]]
+file = "kubejs/assets/mekmm/models/block/factory/painting/active/ultimate.json"
+hash = "173d9725ad27e9485985ec12f27aa6eaac2f8f808da9cae279a4fcadb2071310"
+
+[[files]]
 file = "kubejs/assets/minecraft/atlases/blocks.json"
 hash = "52ca3fdfa8aee6d4819281a99ee4a0465225c878dfb723f6040582ede2153e6d"
+
+[[files]]
+file = "kubejs/assets/mna/models/block/obj/pylon/pylon_ring.obj"
+hash = "14e3cd0b623c2e784d3c75e1fa54d7f059df7f24f00262934a19730427c33c6e"
 
 [[files]]
 file = "kubejs/client_scripts/space_rockets.js"
