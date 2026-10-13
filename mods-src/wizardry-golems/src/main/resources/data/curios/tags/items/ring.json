@@ -1,0 +1,24 @@
+{
+  "replace": false,
+  "values": [
+    "wizardrygolems:ring_sandstone",
+    "wizardrygolems:ring_grass",
+    "wizardrygolems:ring_engraved_concrete",
+    "wizardrygolems:ring_forest_guardian",
+    "wizardrygolems:ring_obsidian",
+    "wizardrygolems:ring_glistering",
+    "wizardrygolems:ring_ancient_emperor",
+    "wizardrygolems:ring_charcoal",
+    "wizardrygolems:ring_smoldering",
+    "wizardrygolems:ring_flame_trail",
+    "wizardrygolems:ring_fire_golem_duration",
+    "wizardrygolems:ring_flame_golem",
+    "wizardrygolems:ring_permanent_golem",
+    "wizardrygolems:ring_frostbite",
+    "wizardrygolems:ring_snow_golem",
+    "wizardrygolems:ring_winter_golem",
+    "wizardrygolems:ring_lodestone_golem",
+    "wizardrygolems:ring_spark_golem",
+    "wizardrygolems:ring_electric_scatter"
+  ]
+}

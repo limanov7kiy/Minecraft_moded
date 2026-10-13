@@ -1,0 +1,31 @@
+{
+  "attributes": {
+    "health": 20.0,
+    "attack": 7.0,
+    "speed": 0.26,
+    "armor": 0.0,
+    "knockback_resistance": 0.4,
+    "immune": [
+      "minecraft:freeze"
+    ],
+    "weak": [
+      "minecraft:in_fire",
+      "minecraft:on_fire"
+    ],
+    "swim_ability": "swim",
+    "sound": "minecraft:glass"
+  },
+  "hidden": true,
+  "model": "wizardrygolems:packed_ice",
+  "brain": {
+    "behaviors": [
+      {
+        "type": "golems:aoe_freeze",
+        "radius": 2,
+        "interval": 4,
+        "shape": "disc",
+        "frosted": false
+      }
+    ]
+  }
+}
