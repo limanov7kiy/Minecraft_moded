@@ -681,3 +681,8 @@ Mass Destruction Forge 1.1.2. Cataclysm/Mowzie's/Lycanites не дублирую
 **Тест** `scripts/tests/disasterward.js` (+ `disasterload.js`; запуск: `EXTRA_SERVER_SCRIPTS=<папка только с этими двумя файлами> TEST_COMMANDS=<«#sleep 260»+list> scripts/test-server.sh <папка>`): оберег ставится; зона внутри/снаружи;
 бедствие у зоны не появляется; вне зоны появляется; `tornado`/`sandstorm` Natural Disasters! отключены; бедствие, телепортированное внутрь, исчезает; Weather2 видит отражатель (радиус 128) и перестаёт видеть после ломания;
 галка случайных бедствий включена; оберег ничего не роняет; после ломания зона пропадает. Все проверки `DWCHECK … OK`.
+
+**Проверка клиента** (поток 15, `test-client.sh`, сборка с Weather2, CoroUtil, Natural Disasters!, disaster-ward): `CLIENT OK` (492 с). В логе клиента нашлась единственная
+претензия к нашим модам — `Skipped language file: disaster_ward:lang/ru_ru.json` (лишняя запятая в JSON); исправлено после прогона (правка только файла перевода в jar оберега, повторный прогон клиента не делался).
+Предыдущий `Mixin apply failed lycanitesmobs.mixins.json:LightTextureMixin` — прежний (см. запись про Lycanites выше). Что смотреть глазами: `docs/client-checklist.md` + вид штормов Weather2 (облака-частицы, дождь) с шейдерами и Distant Horizons,
+блок «Оберег от катаклизмов» в творческой вкладке «Функциональные блоки» (текстура, русское название, подсказка с радиусом).

@@ -1098,7 +1098,7 @@ metafile = true
 
 [[files]]
 file = "mods/disaster-ward-1.0.0.jar"
-hash = "7af88190a8595df0a3f832e343ec51b01757f7e7132b968344ce0cc2e0e51cb8"
+hash = "18e2d092ef951afc8ea07f42fb80ecaf7d387901651a5122a9109bff678dccbe"
 
 [[files]]
 file = "mods/distanthorizons.pw.toml"
