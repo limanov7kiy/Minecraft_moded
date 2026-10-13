@@ -1,0 +1,44 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Эндериофаг",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/infect_interaction.png"
+      ],
+      "text": "Добавлены взаимодействия, связанные с заражением эндериофагом",
+      "title": "Взаимодействие с заражением"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Эндериофаг не может заразить мобов с эффектом сопротивления урону",
+      "title": " "
+    },
+    {
+      "type": "patchouli:multiblock",
+      "multiblock": {
+        "mapping": {
+          "0": "alexsmobs:capsid",
+          "E": "minecraft:end_rod"
+        },
+        "pattern": [
+          [
+            " ",
+            "0",
+            " "
+          ],
+          [
+            " ",
+            "E",
+            " "
+          ]
+        ]
+      },
+      "name": "Адаптация эндериофагов",
+      "text": "Эндериофаги приспосабливаются к измерению, в котором появились"
+    }
+  ],
+  "sortnum": 1
+}

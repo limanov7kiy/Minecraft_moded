@@ -1,0 +1,21 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Багровый комар",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/hemogenicism.png"
+      ],
+      "text": "Эффект «Окровавленный» накладывается снарядами крови и жидкой кровью из Biomes O' Plenty; его можно смыть водой",
+      "title": "Кровавое притяжение"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Окровавленных багровые комары замечают вдвое дальше. Окровавленные замедляются, а их броня и урон снижаются",
+      "title": " "
+    }
+  ],
+  "sortnum": 1
+}

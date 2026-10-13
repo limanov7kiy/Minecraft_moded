@@ -1,0 +1,13 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Косатка",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "«Мощь косатки» делает косаток нейтральными к рыбам-костям",
+      "title": "Усиление мощи"
+    }
+  ],
+  "sortnum": 1
+}

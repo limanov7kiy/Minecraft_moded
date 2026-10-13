@@ -1,0 +1,23 @@
+{
+  "name": "guide.animus.entry.sigil_boundless_nature",
+  "icon": "animus:sigil_boundless_nature",
+  "category": "animus:sigils",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "animus:crafting_array",
+      "recipe": "animus:array/sigil_boundless_nature",
+      "text": "Создаётся с помощью $(blood)Алхимического круга$() путём объединения $(l:animus:items/reagentboundlessnature)Реагентом: Безграничная природа$() с $(item)Усиленной плитой$(). Реагент сначала необходимо выковать в Адской кузнице."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "animus:sigil_boundless_nature",
+      "text": "Мост между Blood Magic и Botania. Этот сигил действует как планшет маны: преобразует Эссенцию жизни в ману, позволяя кровавым магам питать инструменты и устройства Botania."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Использование",
+      "text": "$(bold)Стоимость в ОЖ:$() 50 ОЖ в секунду при активности$(br2)$(bold)Эффект:$() Преобразует ОЖ в ману с настраиваемым коэффициентом (по умолчанию: 50 ОЖ = 100 маны в секунду).$(br2)$(bold)Хранилище маны:$() До 2500 маны$(br2)Shift + ПКМ переключает активацию. Пока сигил активен, он непрерывно преобразует ОЖ в ману, может питать инструменты Botania и отдавать ману в бассейны маны.$(br2)$(bold)Для работы требуется Botania.$()$(br)"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Визгун",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/skreecher_ward.png"
+      ],
+      "text": "Души визгунов можно применить к скалковым крикунам, чтобы те призывали стражей",
+      "title": "Страж визгуна"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "alexsmobs:skreecher_soul",
+      "text": "Новый эффект из душ визгунов: когда он заканчивается сам, появляется страж",
+      "title": "Последний визг"
+    }
+  ],
+  "sortnum": 1
+}

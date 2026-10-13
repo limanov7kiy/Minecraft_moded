@@ -1,0 +1,7 @@
+{
+  "name": "Ars Controle",
+  "landing_text": "Исследования управления заклинаниями.",
+  "version": 1,
+  "extend": "ars_nouveau:worn_notebook",
+  "use_resource_pack": true
+}

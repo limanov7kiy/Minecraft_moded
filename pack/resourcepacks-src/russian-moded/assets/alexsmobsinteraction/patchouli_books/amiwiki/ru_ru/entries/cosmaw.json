@@ -1,0 +1,20 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Космав",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/cosmaw_weakness.png"
+      ],
+      "text": "Космавы слабеют, если несут игрока в тяжёлой броне; ослабленные космавы не могут нести игроков",
+      "title": "Слабость космава"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "С зачарованием «Лёгкость», которое можно найти в городах Энда, космавы больше не слабеют, когда несут хозяина"
+    }
+  ],
+  "sortnum": 1
+}

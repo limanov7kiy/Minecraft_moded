@@ -1,0 +1,18 @@
+{
+  "name": "guide.animus.entry.reagent_reparare",
+  "icon": "animus:reagentreparare",
+  "category": "animus:items",
+  "sortnum": 15,
+  "pages": [
+    {
+      "type": "animus:crafting_soulforge",
+      "heading": "Реагент: Репараре",
+      "recipe": "animus:soulforge/reagentreparare",
+      "text": "Реагент с восстанавливающей сущностью."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Этот катализатор можно объединить с $(item)усиленной плитой$() в алхимическом круге, чтобы создать $(l:animus:sigils/sigil_reparare)Сигил Репараре$()."
+    }
+  ]
+}

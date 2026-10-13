@@ -1,0 +1,15 @@
+{
+  "category": "alexsmobsinteraction:general",
+  "icon": "minecraft:paper",
+  "name": "Дружелюбные питомцы",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/general/tamed_friendlies.png"
+      ],
+      "text": "Некоторые приручаемые животные из Alex's Mobs становятся мирными после приручения",
+      "title": "Дружелюбные питомцы"
+    }
+  ]
+}

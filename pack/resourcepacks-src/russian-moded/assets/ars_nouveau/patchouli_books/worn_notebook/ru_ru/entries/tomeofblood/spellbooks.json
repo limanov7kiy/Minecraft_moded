@@ -1,0 +1,37 @@
+{
+  "name": "Tome of Blood",
+  "category": "ars_nouveau:tomeofblood",
+  "icon": "tomeofblood:archmage_tome_of_blood",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Tome of Blood",
+      "item": "tomeofblood:novice_tome_of_blood,tomeofblood:apprentice_tome_of_blood,tomeofblood:archmage_tome_of_blood",
+      "text": "Tome of Blood — особый вариант книги заклинаний Ars Nouveau. Он связан с $(#880808)Сетью душ$() владельца. $(br)Его особая способность — преодолевать ограничения заклинаний по стоимости маны!"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Том пытается накладывать заклинания за счёт маны игрока. $(br2) Если маны игрока не хватает, недостающую часть стоимости он покроет ОЖ игрока по курсу 10 ОЖ за 1 единицу маны."
+    },
+    {
+      "type": "ars_nouveau:crafting_altar",
+      "recipe": "tomeofblood:altar/novice_blood_tome",
+      "text": "Tome of Blood создаётся с затратой некоторого количества крови в Кровавом алтаре. Книги заклинаний высших уровней превращаются в тома тем же способом. Тома можно улучшать на Алхимическом столе (смотрите JEI)."
+    },
+    {
+      "type": "ars_nouveau:2x_crafting_alchemy_table",
+      "a.heading": "Apprentice Tome of Blood",
+      "a.recipe": "tomeofblood:alchemytable/apprentice_tome",
+      "b.heading": "Archmage Tome of Blood",
+      "b.recipe": "tomeofblood:alchemytable/archmage_tome"
+    },
+    {
+      "type": "ars_nouveau:2x_crafting_altar",
+      "a.heading": "Apprentice Tome of Blood",
+      "a.recipe": "tomeofblood:altar/apprentice_blood_tome",
+      "b.heading": "Archmage Tome of Blood",
+      "b.recipe": "tomeofblood:altar/archmage_blood_tome"
+    }
+  ]
+}

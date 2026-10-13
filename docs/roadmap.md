@@ -191,6 +191,14 @@ JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.t
 - [x] Китайские литералы кода/NBT (Талон Боба и др.): миксин LiteralContents + словарь 953 строки в `ru-lang`, `docs/russification.md`, `docs/compat.md`.
 - [ ] Прогнать `scripts/test-client.sh` и убедиться, что язык/паки подхватываются; строка в `docs/friends.md`.
 
+### Поток 11 — Перевод книг (ветка `claude/translate-books`, от `claude/abandoned-cities`)
+- [x] Кодекс **Mana and Artifice** (свой JSON `assets/mna/guide`, ≈ 246 тыс. знаков) + вычитка 660 названий MnA.
+- [x] **Animus**, **AMI Wiki**, **Dimensional Dungeons** (lang лежал как `ru_RU.json` — не грузился), **Ars Magica Legacy**, аддоны Ars, bobbook, exguide; Ars Nouveau (+18 ключей).
+- [x] Проверка всех jar на lang с неверным регистром/форматом (`ru_RU.json`) — только Dimensional Dungeons.
+- [x] Superb Warfare — переводить нечего (3 имени техники).
+- [ ] Приёмка в игре (кодекс MnA, Анимус, AMI Wiki, Dimensional Dungeons). Остальное — по отзывам.
+- PR в интегратор — после слияния #31 (пак внутри мода `ru-lang`).
+
 ## Интеграция (ревью PR, поток «Ревью и интеграция», ветка `claude/confident-hypatia-2zqr1t`)
 Цикл 1 — 2026-10-10:
 - **PR #1, поток 2** (голосовой чат, экспорт, UDP): проверен и **влит** (`013bf69`). `add-mods.sh` пусто,
