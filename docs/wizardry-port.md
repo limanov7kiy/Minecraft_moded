@@ -308,3 +308,25 @@ Restored; namespace сохраняем оригинальный (`wizardrygolems
 - Прогон теста:
   `TEST_COMMANDS=<файл с «#sleep 45»> EXTRA_SERVER_SCRIPTS=<папка с копией scripts/tests/golemcheck.js> scripts/test-server.sh <папка вне репо>`,
   ждать строк `GOLEMCHECK ... OK` (5 заклинаний + lifetime); затем test-client, docs/compat.md.
+
+### Точка остановки потока 12 (2026-10-13, стоп по лимиту — неделя 75%)
+- **Wizardry Golems 0.2.0** — PR #38 (ветка `claude/wizardry-addons-port`): этапы 1–3 готовы, golemcheck 13/13, CLIENT OK;
+  интегратор подтянут 2026-10-12 (`62ae839`). Дальше — по сигналу координатора подтянуть интегратор, refresh, тесты, «Ревью».
+- **ND-1** — ветка `claude/necromancers-delight` (от `claude/wizardry-addons-port` до слияния интегратора — перед PR влить его):
+  - мод-порт FUR `mods-src/fishs-undead-rising` (`mod_lavacow` 0.1.0): эффекты Soiled, Corroded, Infested (паразиты — ND-2),
+    модель гриба; ARR, авторство Fish — NOTICE.md;
+  - `mods-src/necromancers-delight` 0.1.0: Stink/Frost Bomb (заклинания + гранаты), Corrode, Glowshroom (временный гриб),
+    эффекты Poisonous Spore/Locusts, 17 артефактов (работают 5 без FUR: Necromantic/Malice Ward, иммунитеты, Cursed Scarab),
+    добыча, ru 86 ключей (lang_validate 0 ошибок); оба jar в `pack/mods/`, refresh сделан.
+  - **Тест `scripts/tests/ndcheck.js` не доведён.** Подтверждено на сервере: Glowshroom (блок ставится), амулет иммунитета
+    к замедлению в слоте Curios, Poisonous Spore (свинья отравлена), эффекты FUR в реестре. Бомбы и Corrode не проверены:
+    в тех прогонах сущности (хаски, снаряды) в только что загруженных чанках арен «не видны» в тот же тик — чанки ещё не
+    entity-ticking (диагностика: призванный хаск не находится сразу, ручной луч — MISS). Последняя попытка — ждать
+    `isPositionEntityTicking` с фазами в `server.persistentData` — сломалась (persistentData KubeJS не как CompoundTag:
+    фазы не сработали) и сервер завершился SERVER FAILED (не разобрано). **Следующий шаг:** фазы — глобальной переменной
+    скрипта или по тикам с большим запасом (forceload на t≈100, каст на t≈600 после проверки `isPositionEntityTicking`),
+    затем бомбы/Corrode; при провале — смотреть сам мод. Затем test-client, compat.md, PR ND-1.
+  - Рецепты бомб требуют предметов FUR (`foul_bristle`, `shattered_ice`) — вместе с мобами в ND-2.
+- **ND-2** (не начат): мобы FUR (Vespa, Banshee, Mycosis, Salamander, Forsaken, Mummy, Unburied, Parasite/пиявки, Bone Worm,
+  Weta, Mimic), снаряды, предметы, остальные 16 заклинаний и 12 артефактов. jar FUR 1.12.2 (8253053) и 1.16.5 (7327600) —
+  с CurseForge через packwiz/forgecdn.
