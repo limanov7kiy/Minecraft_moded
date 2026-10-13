@@ -686,3 +686,7 @@ Mass Destruction Forge 1.1.2. Cataclysm/Mowzie's/Lycanites не дублирую
 претензия к нашим модам — `Skipped language file: disaster_ward:lang/ru_ru.json` (лишняя запятая в JSON); исправлено после прогона (правка только файла перевода в jar оберега, повторный прогон клиента не делался).
 Предыдущий `Mixin apply failed lycanitesmobs.mixins.json:LightTextureMixin` — прежний (см. запись про Lycanites выше). Что смотреть глазами: `docs/client-checklist.md` + вид штормов Weather2 (облака-частицы, дождь) с шейдерами и Distant Horizons,
 блок «Оберег от катаклизмов» в творческой вкладке «Функциональные блоки» (текстура, русское название, подсказка с радиусом).
+
+## WorldEdit 7.2.15 (2026-10-13, решение владельца В18)
+Modrinth `1u6JkXh5`, версия `Wrlqaul6`, Forge 1.20.1, сторона `both`, в `pack/modlist.txt`. `test-server.sh`: `SERVER OK` (Done 32 с), в логе «WorldEdit for Forge (version 7.2.15) is loaded», команды зарегистрированы, ошибок нет.
+Команды `//…` — по правам OP (разрешений-мода в сборке нет, действует уровень оператора). Клиентский прогон не делался (мод серверный по сути, интерфейса нет). Инструкция переноса построек — `docs/friends.md` («Администратору»).

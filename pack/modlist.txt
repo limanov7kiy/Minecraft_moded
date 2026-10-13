@@ -290,6 +290,9 @@ mr natural_disasters              # Natural Disasters! 2.0.0 (MCreator, YouTuber
 #jar disaster-ward                # наш мод (mods-src/disaster-ward): «Оберег от катаклизмов» (только креатив; зона без бедствий Weather2/Natural Disasters!) и редкий случайный спавн бедствий
 #removed extreme-natural-disasters  # не ставим (поток 15): землетрясения/провалы/метеориты дублируют Natural Disasters!, остальное — WIP-апокалипсисы и вулканы; бедствия не сущности (защиту пришлось бы делать миксинами)
 
+## Строительство (администратору; WorldEdit — команды только для OP)
+mr worldedit                      # WorldEdit 7.2.15 (Forge 1.20.1): перенос построек схематиками, см. docs/friends.md
+
 ## Русификация (поток 6; rp = ресурспак с Modrinth, сторона client; порядок включения — pack/options.txt, docs/russification.md)
 #patched mploc_mods              # MPLOC: ИИ-переводы сотен модов, CC-BY-SA (автор MPLOC), нижний слой; pack_format 88 → 15 через scripts/patch-rp-format.py (иначе 1.20.1 выкидывает пак)
 rp rtf-extension                  # RTF+: переводы + книги Patchouli/Tinkers/Oritech, AGPL, выше MPLOC
