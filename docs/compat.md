@@ -625,3 +625,26 @@ Mass Destruction Forge 1.1.2. Cataclysm/Mowzie's/Lycanites не дублирую
 это первое подозрение: вернуть нужный путь, сузив регулярное выражение в фильтре.
 Запас: новые моды с большими текстурами в `block/`/`item/` или новые «всеобщие» `directory`-источники снова увеличат атлас — после
 добавления модов смотреть в логе клиента строку `Created: …blocks.png-atlas` (должно быть ≤ 16384×16384).
+
+## Weather2 + CoroUtil (поток 15, 2026-10-13) — торнадо и бури
+
+Идея владельца: «мод на катаклизмы — торнадо, цунами». Weather2 2.8.3 («Weather Storms & Tornadoes», Corosus / ProtoManly, All Rights Reserved)
++ библиотека CoroUtil 1.3.7, оба с Modrinth (`url` в `.pw.toml`, сторона `both`), jar в репозиторий не кладём. Выбор из 4 вариантов — PR (таблица в описании).
+Что даёт: штормовые фронты по температурам биомов, торнадо и циклоны F0–F5/C0–C5, град, песчаные и снежные бури, ветер и листопад,
+сирены, датчик торнадо, флюгер, анемометр, блок «Отражатель бурь» (гасит бурю в радиусе 150). Заменяет ванильные облака, дождь и снег частицами.
+
+**Настройки сборки** — `pack/config/Weather2/Tornado.toml` и `Storm.toml` (формат TOML, свой загрузчик CoroUtil; остальные файлы мод создаёт сам):
+- `Storm_Tornado_grabBlocks = false` — торнадо **не рвут блоки** (постройки целы); подхват игроков и мобов оставлен, урон от падения выключен (`Storm_Tornado_fallDamage = false`);
+- шансы сильных торнадо вдвое ниже (F4/C4 = 10, F5/C5 = 5);
+- частота — по умолчанию: «смертельный» шторм на сервер раз в час (`Server_Storm_Deadly_TimeBetweenInTicks = 72000`), в местах без перепада климата — раз в ~3,3 часа; молнии огонь не ставят.
+Включить разрушения — `Storm_Tornado_grabBlocks = true`; совсем убрать бури (только ветер и листва) — `Aesthetic_Only_Mode = true` в `Misc.toml`.
+`lockServerWeatherMode = 0` (по умолчанию) — ванильный дождь заменён дождём Weather2 (Serene Seasons на температуру биомов это не влияет).
+
+**Русификация**: `pack/resourcepacks-src/russian-moded/assets/weather2` и `coroutil` (14 блоков/предметов, `lang_validate` 0 ошибок), `build-ru-pack.sh`.
+
+**Проверка**: `test-server.sh` — `SERVER OK` (Done за 64 с), в логе от Weather2/CoroUtil только штатные `WARN` первой генерации конфигов
+(`Configuration file … is not correct. Correcting`, `coroutil.refmap.json could not be read`) — ошибок нет, наши значения конфига применились.
+Клиент — см. «Проверка клиента» ниже в PR.
+
+**Не добавлено (ждёт решения владельца)**: This Tsunami v16.2 (цунами вёдрами; `/gamerule tsunamiGriefing false` по умолчанию, но тяжёлая),
+Extreme Natural Disasters 1.5 (вулканы, землетрясения, только сервер), Skyfall / Oh My Meteors (метеориты).

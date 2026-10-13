@@ -358,3 +358,6 @@ JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.t
   ~125 Мпкс, атлас 16384×8192, `CLIENT OK` без отката паков (подробности — `docs/compat.md`).
 - [ ] Владельцу/друзьям: проверить в игре мобов Lycanites и драконов Ice and Fire (нет ли «missing»-текстур).
 
+### Поток 15 — Катаклизмы (ветка `claude/thread15-disasters`)
+- [x] Выбор: Weather2 + CoroUtil (торнадо, бури, сирены), безопасный профиль без разрушения построек (`pack/config/Weather2`), русификация, сервер/клиент ОК — см. `docs/compat.md` «Weather2». PR ждёт решения владельца.
+- [ ] Владельцу: нужны ли цунами (This Tsunami), вулканы и землетрясения (Extreme Natural Disasters), метеориты (Skyfall) — добавим отдельными коммитами; проверить в игре вид облаков и дождя Weather2 с шейдерами/Distant Horizons.
