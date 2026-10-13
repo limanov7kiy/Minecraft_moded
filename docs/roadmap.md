@@ -363,3 +363,4 @@ JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.t
 - [x] Свой мод `mods-src/disaster-ward`: «Оберег от катаклизмов» (только креатив, без рецепта и лута; зона 64 блока без бедствий обоих модов), редкий случайный спавн бедствий (30–80 мин на игрока), лимит одновременных бедствий. Extreme Natural Disasters не ставим (дубли, WIP) — `docs/compat.md`.
 - [x] Тест `scripts/tests/disasterward.js` (все DWCHECK OK), замеры нагрузки `disasterload.js`, русификация, строка про бэкап в `docs/friends.md`.
 - [ ] Владельцу: PR не слит; проверить в игре вид штормов (с шейдерами/Distant Horizons), нужны ли вулканы (Extreme Natural Disasters) и цунами-вёдра (This Tsunami); сервер с Natural Disasters! просадил TPS до ~5 при трёх бедствиях сразу над городом — лимит `maxConcurrent` (по умолчанию 1).
+- [x] WorldEdit 7.2.15 (В18, ветка `claude/worldedit`): в сборке, сервер ОК, инструкция переноса построек в `docs/friends.md`.

@@ -1899,6 +1899,11 @@ file = "mods/wizardry-restored-0.6.0.jar"
 hash = "fc133ac35936c75efa516a10513bfdbeb67ee30a1f27038e6b3aa3d283aa9653"
 
 [[files]]
+file = "mods/worldedit.pw.toml"
+hash = "810c63c5de675c9cb2f29c4e63231ae4d35d83f906d3279ac5c7a83132fe387c"
+metafile = true
+
+[[files]]
 file = "mods/xaeros-minimap-world-map-waystones-compatibility-forge.pw.toml"
 hash = "a2330eba9359f699e4c7a6c2f44691b7cf746d188f23d2c985d276d5733b9f2a"
 metafile = true
