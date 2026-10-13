@@ -1,0 +1,4 @@
+{
+  "block.disaster_ward.ward": "Disaster Ward",
+  "tooltip.disaster_ward.ward": "Creative only. Calms disasters (Weather2, Natural Disasters!) within %s blocks."
+}

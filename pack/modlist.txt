@@ -286,6 +286,9 @@ mr jea                        # поиск достижений в JEI (both)
 ## Катаклизмы (поток 15; идея владельца: торнадо, бури; docs/compat.md «Weather2»)
 mr weather-storms-tornadoes       # Weather2 2.8.3 (Corosus/ProtoManly): штормы, торнадо, песчаные/снежные бури, сирены; профиль — pack/config (разрушение построек ВЫКЛ)
 mr coroutil                       # библиотека Weather2
+mr natural_disasters              # Natural Disasters! 2.0.0 (MCreator, YouTuber): метеоры, цунами, пожары, кислотный дождь, воронки, землетрясения; торнадо и песчаная буря отключены (дубли Weather2) модом disaster-ward
+#jar disaster-ward                # наш мод (mods-src/disaster-ward): «Оберег от катаклизмов» (только креатив; зона без бедствий Weather2/Natural Disasters!) и редкий случайный спавн бедствий
+#removed extreme-natural-disasters  # не ставим (поток 15): землетрясения/провалы/метеориты дублируют Natural Disasters!, остальное — WIP-апокалипсисы и вулканы; бедствия не сущности (защиту пришлось бы делать миксинами)
 
 ## Русификация (поток 6; rp = ресурспак с Modrinth, сторона client; порядок включения — pack/options.txt, docs/russification.md)
 #patched mploc_mods              # MPLOC: ИИ-переводы сотен модов, CC-BY-SA (автор MPLOC), нижний слой; pack_format 88 → 15 через scripts/patch-rp-format.py (иначе 1.20.1 выкидывает пак)
