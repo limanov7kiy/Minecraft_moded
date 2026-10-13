@@ -1,0 +1,18 @@
+{
+  "attributes": {
+    "health": 40.0,
+    "attack": 3.0,
+    "speed": 0.26,
+    "armor": 2.0,
+    "knockback_resistance": 0.4,
+    "immune": [
+      "minecraft:lightning_bolt"
+    ],
+    "weak": [],
+    "swim_ability": "swim",
+    "sound": "minecraft:metal"
+  },
+  "hidden": true,
+  "model": "wizardrygolems:lodestone",
+  "brain": "golems:empty"
+}

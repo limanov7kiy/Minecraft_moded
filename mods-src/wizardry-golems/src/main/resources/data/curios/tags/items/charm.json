@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "wizardrygolems:charm_fire_golemancy_potency",
+    "wizardrygolems:charm_ifrit_bottle",
+    "wizardrygolems:charm_frozen_mark",
+    "wizardrygolems:charm_living_snow",
+    "wizardrygolems:charm_static_aura",
+    "wizardrygolems:amulet_raging_skies"
+  ]
+}

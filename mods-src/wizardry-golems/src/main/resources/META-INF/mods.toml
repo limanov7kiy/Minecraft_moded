@@ -1,0 +1,35 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+license = "GPL-3.0-only"
+
+[[mods]]
+modId = "${mod_id}"
+version = "${mod_version}"
+displayName = "Wizardry Golems (1.20.1 port)"
+authors = "WinDanesz (оригинал 1.12.2, идеи HatBot); порт — Minecraft_moded"
+credits = "Electroblob (Electroblob's Wizardry), binaris (Wizardry Redux), skyjay1 / MMD (Extra Golems)"
+description = '''
+Порт Wizardry Golems 1.12.2 (https://github.com/WinDanesz/WizardryGolems, GPL-3.0) на 1.20.1 Forge поверх
+Electroblob's Wizardry Redux и Extra Golems 20.1. Код и ассеты оригинала — © WinDanesz, GPL-3.0.
+'''
+
+[[dependencies.${mod_id}]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "ebwizardry"
+mandatory = true
+versionRange = "[0.8.9,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "golems"
+mandatory = true
+versionRange = "[20.1.0.2,)"
+ordering = "AFTER"
+side = "BOTH"

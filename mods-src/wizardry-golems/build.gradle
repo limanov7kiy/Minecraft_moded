@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'net.neoforged.moddev.legacyforge' version '2.0.77'
+}
+
+group = 'dev.mcmoded'
+version = mod_version
+base { archivesName = 'wizardry-golems' }
+
+
+legacyForge {
+    version = "${minecraft_version}-${forge_version}"
+    parchment {
+        minecraftVersion = parchment_minecraft
+        mappingsVersion = parchment_version
+    }
+    runs {
+        server { server() }
+    }
+    mods {
+        "${mod_id}" { sourceSet sourceSets.main }
+    }
+}
+
+repositories {
+    exclusiveContent {
+        forRepository { maven { url = 'https://api.modrinth.com/maven' } }
+        filter { includeGroup 'maven.modrinth' }
+    }
+    exclusiveContent {
+        forRepository { maven { url = 'https://cursemaven.com' } }
+        filter { includeGroup 'curse.maven' }
+    }
+}
+
+dependencies {
+    // Electroblob's Wizardry Redux — в продакшен-jar SRG-имена, ModDevGradle переводит их в наши маппинги
+    modCompileOnly "maven.modrinth:electroblobs-wizardry-redux:${redux_version}"
+    // Extra Golems (skyjay1, zlib) — голем-типы задаются данными, миньоны Golemancy — его GolemBase
+    modCompileOnly "curse.maven:extra-golems-233300:${extragolems_file}"
+}
+
+processResources {
+    def props = [mod_id: mod_id, mod_version: mod_version]
+    inputs.properties props
+    filesMatching('META-INF/mods.toml') { expand props }
+}
+
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.release = 17 }
