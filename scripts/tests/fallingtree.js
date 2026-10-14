@@ -1,6 +1,7 @@
 // Тест Falling Tree + FallingTreeDamageMixin (mods-src/mm-compat): режим FALL_BLOCK, прочность «всё или ничего».
 // Рубим дубы железным топором фейковым игроком Forge через ServerPlayerGameMode.destroyBlock (то же событие,
 // что при игре). Вывод: FALLINGTREE <случай> OK|FAIL <подробности>
+// Запускать в ЧИСТОМ мире (rm -rf <сервер>/world): упавшие брёвна прошлых прогонов остаются в мире, попадают в дерево и искажают счёт.
 let st = null
 ServerEvents.tick(event => {
   const server = event.server
@@ -37,7 +38,9 @@ ServerEvents.tick(event => {
     return n
   }
   const cases = []
-  const run = (name, x, shape, dmg, sneak, check) => {
+  let slot = 0
+  const run = (name, _x, shape, dmg, sneak, check) => {
+      const x = 20 * (slot++)
     shape(x)
     axe(dmg)
     fake.setShiftKeyDown(sneak)
