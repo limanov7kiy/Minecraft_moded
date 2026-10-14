@@ -3,6 +3,6 @@
   "minVersion": "0.8",
   "package": "dev.mcmoded.compat.mixin",
   "compatibilityLevel": "JAVA_17",
-  "mixins": ["SbwShipHitMixin"],
+  "mixins": ["SbwShipHitMixin", "FallingTreeDamageMixin"],
   "injectors": { "defaultRequire": 0 }
 }

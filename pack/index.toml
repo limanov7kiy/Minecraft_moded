@@ -25,6 +25,10 @@ file = "config/canary.properties"
 hash = "8b34973d33381c95c7bb176234d5ed927110c5b81c0c0d82b5ebbf06dea97b81"
 
 [[files]]
+file = "config/fallingtree.json"
+hash = "e5ce3851728af563cb5b9bf8752dbb461b28340aec350d9b2fd8d9c9026c915f"
+
+[[files]]
 file = "config/sereneseasonsplus-common.toml"
 hash = "ae0213dfbc7561b527d00565ad849c32e096914967590c1aaf85c4133195c885"
 
@@ -1038,6 +1042,11 @@ hash = "aa6dd39469608b2eb82239bebcd36f96f5d7dcecfbbb976417c26c066e86a55e"
 metafile = true
 
 [[files]]
+file = "mods/fallingtree.pw.toml"
+hash = "c3855a5011cc263726532999f35c8691db9fa60b9d470758dd826d25c29ed4cb"
+metafile = true
+
+[[files]]
 file = "mods/farmers-cutting-blue-skies.pw.toml"
 hash = "2fec4fcfef413d13cca9a1914691ed24a1db22c5c173bbdd4836f77934e07430"
 metafile = true
@@ -1336,7 +1345,7 @@ metafile = true
 
 [[files]]
 file = "mods/mm-compat-0.3.0.jar"
-hash = "4e7aca425db5d7ad1caff4192856f18fe4ae02dbc8b886148231ef4a2baf05bf"
+hash = "a03006ac2dad078bf46abe3760a45927b1334d5cec9fcb443e8f3d1d94e9eb2d"
 
 [[files]]
 file = "mods/modernfix.pw.toml"
