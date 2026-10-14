@@ -1,0 +1,25 @@
+{
+  "attributes": {
+    "health": 30.0,
+    "attack": 4.0,
+    "speed": 0.26,
+    "armor": 0.0,
+    "knockback_resistance": 0.4,
+    "immune": [
+      "minecraft:lightning_bolt"
+    ],
+    "weak": [],
+    "swim_ability": "swim",
+    "sound": "minecraft:stone"
+  },
+  "hidden": true,
+  "model": "wizardrygolems:spark",
+  "brain": {
+    "behaviors": [
+      {
+        "type": "golems:light",
+        "light": 8
+      }
+    ]
+  }
+}

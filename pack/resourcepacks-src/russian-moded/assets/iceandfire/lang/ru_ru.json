@@ -1,0 +1,10 @@
+{
+  "block.iceandfire.deepslate_silver_ore": "Глубинная серебряная руда",
+  "block.iceandfire.raw_silver_block": "Блок необработанного серебра",
+  "item.iceandfire.raw_silver": "Необработанное серебро",
+  "entity.iceandfire.lightning_dragon_charge": "Заряд драконьей молнии",
+  "entity.iceandfire.amphithere_arrow": "Стрела амфитеры",
+  "bestiary_gui": "Бестиарий",
+  "key.dragon_change_view": "Камера дракона (3-е лицо)",
+  "key.dragon_down": "Слезть/снять малыша дракона"
+}

@@ -1,0 +1,23 @@
+{
+  "category": "alexsmobsinteraction:general",
+  "icon": "minecraft:paper",
+  "name": "Новые цели",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/general/add_targets.png"
+      ],
+      "text": "Добавляет мобам дополнительные цели для атаки, чтобы мир казался живее",
+      "title": "Новые цели"
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/general/cannibalism.png"
+      ],
+      "text": "Добавляет мобам каннибализм",
+      "title": "Каннибализм"
+    }
+  ]
+}

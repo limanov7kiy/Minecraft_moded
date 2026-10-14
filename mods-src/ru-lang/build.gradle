@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'net.neoforged.moddev.legacyforge' version '2.0.77'
+}
+
+group = 'dev.mcmoded'
+version = mod_version
+base { archivesName = 'ru-lang' }
+
+legacyForge {
+    version = "${minecraft_version}-${forge_version}"
+    parchment {
+        minecraftVersion = parchment_minecraft
+        mappingsVersion = parchment_version
+    }
+    mods {
+        "${mod_id}" { sourceSet sourceSets.main }
+    }
+}
+
+// Сам ресурспак «Русификация сборки» лежит в pack/resourcepacks-src/russian-moded (его пополняют scripts/lang_merge.py и др.);
+// в jar он кладётся как resourcepacks/russian-moded — мод подключает его всегда включённым и самым верхним.
+processResources {
+    def props = [mod_id: mod_id, mod_version: mod_version]
+    inputs.properties props
+    filesMatching('META-INF/mods.toml') { expand props }
+    into('resourcepacks/russian-moded') { from "${rootDir}/../../pack/resourcepacks-src/russian-moded" }
+}
+
+jar { manifest.attributes('MixinConfigs': 'ru_lang.mixins.json') }
+
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.release = 17 }

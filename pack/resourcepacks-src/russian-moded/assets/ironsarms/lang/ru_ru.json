@@ -1,0 +1,9 @@
+{
+  "key.ironsarms.irons_mode": "Режим книги Iron's Spells",
+  "tooltip.arsarms.mana": "Мана",
+  "tooltip.ironsarms.irons_mode.off": "IronsMode: ВЫКЛ",
+  "tooltip.ironsarms.irons_mode.on": "IronsMode: ВКЛ",
+  "tooltip.ironsarms.mana": "Мана",
+  "tooltip.ironsarms.spell_level": "Уровень",
+  "tooltip.ironsarms.spell_name": "Заклинание"
+}

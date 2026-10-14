@@ -1,0 +1,13 @@
+{
+  "advancements.alexsmobs.root.title": "Alex's Mobs",
+  "alexsmobs.sound.subtitle.dragons_breath_cannon_charge": "Пушка драконьего дыхания: зарядка",
+  "alexsmobs.sound.subtitle.music_disc.wormboss": "Червь-босс",
+  "alexsmobs.sound.subtitle.roadrunner_hurt": "Дорожный бегун пищит",
+  "block.alexsmobs.dragons_breath_cannon": "Пушка драконьего дыхания",
+  "block.alexsmobs.end_pirate_anchor_chain": "Цепь якоря энд-пирата",
+  "block.alexsmobs.platypus_egg": "Яйцо утконоса",
+  "entity.alexsmobs.dragons_breath_cannonball": "Снаряд драконьего дыхания",
+  "entity.alexsmobs.end_pirate_rigging": "Оснастка энд-пирата",
+  "item.alexsmobs.end_pirate_rigging": "Оснастка энд-пирата",
+  "itemGroup.alexsmobs": "Alex's Mobs"
+}

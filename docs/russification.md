@@ -1,0 +1,308 @@
+# Русификация сборки (поток 6) — этап 1: аудит, готовые русификаторы, план
+
+Дата: 2026-10-12. Связка 1.20.1 + Forge 47.4.26. Перевод вручную **не начат** — ждёт решения владельца (вопросы — в конце).
+
+Инструменты (в репозитории):
+- `scripts/lang_audit.py <папка jar> [--md out.md] [--json out.json]` — `ru_ru` против `en_us` по каждому jar (включая jar в jar),
+  Patchouli-книги, Modonomicon, Ponder, квесты внутри jar.
+- `scripts/lang_packs_cover.py <папка jar> <pack.zip>...` — сколько недостающих строк закрывает каждый русификатор.
+- `scripts/font_audit.py <папка jar>` — кастомные шрифты и кириллица.
+- `scripts/lang_validate.py lang <ru_ru.json|папка пака> <папка jar>` — валидатор перевода строк (JSON, ключи есть в `en_us`, плейсхолдеры
+  `%s/%1$s/{0}/$(..)` по составу, §-коды, пустые и «нерусские» значения); `lang_validate.py book <en_us книги> <ru_ru книги>` —
+  те же файлы, теги `$(..)` и служебные поля Patchouli совпадают. Код возврата 1 при ошибках. Проверен на `wizardry-restored` (0 ошибок)
+  и на паке RTF+ (находит реальные расхождения версий).
+- Полная таблица по модам — `docs/russification-audit.md` (генерируется скриптами).
+  Набор для аудита: `python3 scripts/fetch-mods.py client <папка вне репо>` (242 jar = клиент + наши jar из `pack/mods/`).
+
+## 1. Итог аудита (цифры)
+
+| | |
+|---|---:|
+| jar проверено | 242 |
+| из них с `en_us` (есть что переводить) | 190 |
+| из них вообще без `ru_ru` | 91 |
+| английских ключей всего | 72 053 |
+| не переведено (нет в `ru_ru` или `ru == en`) | **25 678** (покрытие 64,4 %) |
+| **не переведено после включённых русификаторов** | **12 011** (покрытие ≈ 83 %) в 158 пространствах имён |
+| jar без lang-файлов (библиотеки и т.п.) | 51 |
+
+Мод с основным китайским языком не встретился: у Arknights-модов, Caerula Arbor, Animus и др. есть `en_us` (+ `zh_cn`),
+а `ru_ru` нет — переводить с английского. Единственный jar без `en_us` — `dimdungeons` (там только `ru_ru`).
+Мы не нашли квестов (FTB Quests/Heracles) ни в jar, ни в `pack/`; KubeJS-скрипты `pack/kubejs` не содержат
+отображаемых текстов; наши моды (`wizardry-restored`, `galacticraft-revival`) уже переведены полностью.
+Кастомные шрифты — раздел 5.
+
+Книги и гайды (Patchouli `assets/*/patchouli_books/<книга>/<язык>`):
+
+| Книга (мод) | файлов | знаков en | в jar ru | закрыто паками |
+|---|---:|---:|---:|---|
+| Blood Magic `guide` | 237 | 402 796 | нет | да (RTF+ и MPLOC) |
+| Botania `lexicon` | 265 | 186 718 | нет | да (RTF+) |
+| Caerula Arbor | 48 | 72 290 | нет | да |
+| Extra Botany `lexicon` | 67 | 45 631 | нет | да |
+| Iron's Spellbooks `iss_guide_book` | 10 | 18 933 | нет | да (MPLOC) |
+| Mythic Botany, Twilight Delight, Botanical (Extra) Machinery | 51 | ≈ 38 000 | нет | да |
+| Ad Astra `astrodux` | 35 | 33 739 | 25 файлов | частично |
+| **Animus `codex_animus`** | 96 | 132 105 | нет | **нет** |
+| **Ars Nouveau `worn_notebook`** | 281 | 131 347 | нет | **нет** |
+| **Ars Magica Legacy `arcane_compendium`** | 174 | 85 683 | нет | **нет** |
+| Ars Elemental, Ars Additions, Tome of Blood, Ars Instrumentum, Too Many Glyphs, Ars Technica/Delight/Ocultas/Creo/Artifice | 142 | ≈ 74 000 | нет | **нет** |
+| Alex's Mobs Interaction `amiwiki` | 51 | 25 295 | нет | **нет** |
+| Superb Warfare `manual` | 31 | 14 733 | нет | **нет** |
+| Extra Botany `exguide`, Bob's Originium `bobbook` | 12 | 12 596 | нет | **нет** |
+
+Не закрытые паками книги — **≈ 478 000 знаков** (≈ 130 тыс. токенов английского текста). Modonomicon (Occultism 170 файлов,
+Occult Engineering 23): тексты лежат в lang-ключах, учтены в таблице строк. Ponder-сцены (Create, Northstar, Steam Rails…) —
+тоже в lang-ключах. Оговорка: пак «закрывает» книгу по имени папки; версия книги в паке может отличаться от версии мода
+(тогда часть страниц останется английской) — проверять глазами при приёмке.
+
+Распределение остатка 12 011 строк (после паков): предметы/блоки/сущности/эффекты ≈ 5 470; GUI/сообщения/подсказки ≈ 2 800;
+достижения и прочее ≈ 3 740.
+
+## 2. Готовые русификаторы под 1.20.1 (Modrinth)
+
+Проверено скриптом на реальных jar сборки (закрыто = ключи, которых нет в родном `ru_ru` мода и которые в паке отличаются от en).
+Кроме 5 добавленных, прогнаны ещё 8 — они не дали пользы (таблица ниже).
+
+| Пак | Лицензия | Обновлён | pack_format | Закрывает | Решение |
+|---|---|---|---:|---:|---|
+| **MPLOC mods** (`mploc_mods`) | CC-BY-SA-4.0 | 2026-10-05 | 88 (supported 4–88, включает 15) | 7 464 ключа / 67 ns | **добавлен**, нижний слой; перевод ИИ, высокое покрытие аддонов (Aether, Blood Magic, Animus, MNA…) |
+| **RTF Extension** (`rtf-extension`) | AGPL-3.0 | 2026-08-01 | 15 | 8 109 / 83 ns | **добавлен**, верхний слой (переводчики-люди, книги Goety, Tinkers, Oritech, JDT, Productive Bees…) |
+| RTF (`rtf`) | MIT | 2024-02 | 15 | 310 / 15 | **добавлен**: Ad Astra, Twilight Delight, Undergarden |
+| Russian Delight | MIT | 2026-05 | 15 | 332 / 4 | **добавлен**: Aether's Delight, Ars Delight, Lender's Delight, Alex's Delight |
+| JustSomeTranslations | MIT | 2026-09 | 34 | 323 / 2 | **добавлен**: Xaero's World Map (+Sodium) |
+| Rus For Mods (`mods-ru`) | MIT | 2024-12 | 15 | 145 | не нужен, всё покрыто выше |
+| Russian Translation Pack | свои права | 2026-06 | 34 | 243 | отказ: Create Big Cannons (уже есть в RTF+) |
+| RTC, Take me Translate, Русский перевод, ERP, Unusual mods, Better Russian | разные | — | — | 0–113 | не нужны / ничего нового |
+
+Вместе добавленные паки закрывают **не менее 13 600 строк** (с учётом пересечений: 25 678 → 12 011).
+Файлы не лежат в репозитории — packwiz качает их с Modrinth (`pack/resourcepacks/*.pw.toml`, `side = client`),
+в `pack/modlist.txt` — раздел «Русификация» (источник `rp`, обрабатывается `scripts/add-mods.sh`).
+CurseForge-«RUS For Mods» отдельно не искали: Modrinth-аналог (`mods-ru`) показал, что он ничего не добавляет.
+Модов-русификаторов (не ресурспаков) под 1.20.1 в сборку не требуется.
+
+Условия лицензий (сборка некоммерческая): CC-BY-SA и AGPL требуют указания авторов — указываем здесь и в
+`pack/modlist.txt`: **MPLOC** (CC-BY-SA-4.0), **RTF/RTF+ — авторы проектов `rtf` и `rtf-extension` на Modrinth** (MIT / AGPL-3.0),
+**Russian Delight**, **JustSomeTranslations** (MIT). Сами zip мы не раздаём (ссылки на Modrinth), форков нет.
+
+Замечания по качеству:
+- MPLOC — машинный перевод «на современных ИИ», в нём реклама (3 картинки `boostylogo.png` и т.п. в `textures/item`) —
+  вреда нет; и MPLOC, и RTF+ содержат `assets/minecraft/lang/ru_ru.json` (правка ванильных строк) — при несогласии с терминологией
+  убрать эту запись, порядок слоёв задаёт `options.txt`.
+- Порядок слоёв (чем правее — тем приоритетнее): `just-some-translations`, `russian-delight`, `rtf`, `mploc_mods`, `rtf-extension`.
+  Родной `ru_ru` мода (в jar) всегда ниже любого ресурспака — пак перекрывает его; для модов с хорошим родным переводом
+  (Create, Ars Nouveau…) это может ухудшить термины. Если у кого-то это заметно — решить выборочно через `RP`-исключения
+  (см. «Вопросы»).
+
+## 3. Язык по умолчанию и включение паков
+
+`pack/options.txt` (в индексе packwiz с `preserve = true` — packwiz-installer не затирает настройки игрока при обновлении):
+
+```
+lang:ru_ru
+resourcePacks:["vanilla","mod_resources","file/just-some-translations.zip","file/russian-delight-1.0.zip","file/rtf-2.8.4.zip","file/mploc-mods-v43.zip","file/rtf-extension-2.7.0.zip"]
+```
+
+Особенности:
+- Файл неполный (только две строки): Minecraft добавит остальные настройки сам. `mod_resources` оставлен — без него Forge
+  не подключит ресурсы модов.
+- Имена `file/...` совпадают с `filename` в `pack/resourcepacks/*.pw.toml` (переименованы из «§eRTF+ …» в безопасные).
+  При обновлении версии пака имя в `options.txt` обновлять вручную.
+- Для packwiz-installer: `options.txt` скопируется только если его ещё нет (`preserve`). Для `.mrpack` (Prism/Modrinth App) он
+  идёт в `overrides/` и применяется при **создании** экземпляра; при обновлении лаунчер может его перезаписать — тогда игрок
+  просто включает паки в «Ресурспаки». Инструкцию для друзей дописать в `docs/friends.md` — в этом этапе не трогаем (общий файл,
+  меняется вместе с экспортом; предложение: одна строка «Настройки → Язык → Русский; ресурспаки должны быть включены»).
+- Если у друга `options.txt` уже есть (старый экземпляр), язык и паки включаются вручную: Настройки → Язык, Ресурспаки.
+- Сервер ресурспаки не использует; `fetch-mods.py` их не качает (берёт только `pack/mods`), так что серверный набор не менялся.
+
+## 4. План перевода остатка (12 011 строк + книги)
+
+Приоритет 1 — **предметы/блоки/сущности/GUI** (≈ 8 300 строк), приоритет 2 — достижения и прочее (≈ 3 700), приоритет 3 — книги
+(≈ 478 тыс. знаков). Строки короткие (в среднем ≈ 25 знаков), поэтому пачка ≈ 250–300 строк ≈ 3–4 тыс. токенов вывода.
+
+| Пачка | Содержимое | Строк | Пачек |
+|---|---|---:|---:|
+| A. Arknights-семейство | arks, arknights_endfield/skills/furniture/weapon/races, contigency_contract, fnc, ognmarts, prma | ≈ 1 700 | 7 |
+| B. Магия | arsmagicalegacy, mna (Mana & Artifice), ebwizardry (Redux), occultism, extrabotany, cataclysm, arcaneadditions, ars_elemental, lycanites*, blue_skies, lost_aether_content | ≈ 2 800 | 11 |
+| C. Техника/космос/оружие | mekmm, creatingspace, northstar, northstar_structures, ad_astra, vs_sails, superbwarfare, lrtactical, dmnr, jei_mekanism_multiblocks | ≈ 1 400 | 6 |
+| D. Прочие моды | mahoutsukai (1 038 «совпадающих с en»), bobsoriginiumdream, sarkazs_furnace_side_fables, torchesbecomesunlight, caerula_arbor, tflostblocks, jei, jeed, distanthorizons, xaerominimap, alexsmobsinteraction | ≈ 4 100 | 16 |
+| E. Хвост | ≈ 120 модов по 1–50 строк | ≈ 2 000 | 8 |
+| F. Книги | Animus, Ars Nouveau (Worn Notebook), Ars Magica Legacy, Ars-аддоны, AMI wiki, Superb Warfare manual | ≈ 478 тыс. знаков | ≈ 40 (по 12 тыс. знаков) |
+
+Итого ≈ 48 пачек для строк + ≈ 40 для книг. Исполнитель — дешёвая модель (Haiku/Sonnet), на выходе — `ru_ru.json`
+только с недостающими ключами в ресурспак `pack/resourcepacks-src/russian-moded` (свой пак «сверху» всех остальных),
+проверка скриптом: те же плейсхолдеры (`%s`, `%1$s`, `{0}`, `§x`), JSON валиден, нет ключей, которых нет в `en_us`.
+Для книг — копии Patchouli-JSON в `assets/<ns>/patchouli_books/<книга>/ru_ru/...` с сохранением структуры и ссылок
+(`$(item)`, `$(l:...)`, `$(br)` не трогать), проверка — сравнение набора тегов `$(...)`.
+
+### Глоссарий (единые термины для всех пачек)
+
+Общее: item — предмет, block — блок, mob — моб, spawner — спавнер, dimension — измерение, loot — добыча, tier — уровень,
+cooldown — перезарядка, durability — прочность, hunger — голод.
+Магия: mana — мана (не «магическая энергия»), spell — заклинание, spellbook — книга заклинаний, scroll — свиток, wand — жезл,
+staff — посох, rune — руна, glyph — глиф, ritual — ритуал, familiar — фамильяр, ward — оберег, altar — алтарь, tome — фолиант,
+source (Ars Nouveau) — Источник, will (Blood Magic) — воля, essence — эссенция, aura — аура, sigil — сигил, curse — проклятие,
+school — школа (магии), summon — призыв, bound — связанный, arcane — тайная магия/чародейский (по контексту), Eldritch — потусторонний,
+Fire/Ice/Lightning/Nature/Ender/Holy/Blood Spells — огонь/лёд/молния/природа/эндер/свет/кровь.
+Техника: machine — механизм, generator — генератор, conveyor — конвейер, gear — шестерня, cogwheel — зубчатое колесо, shaft — вал,
+stress (Create) — нагрузка, rotation speed — скорость вращения, ponder — осмысление (Create), blueprint — чертёж, wrench — ключ,
+energy/FE — энергия (FE), tank — бак, pipe — труба, cable — кабель, upgrade — улучшение, circuit — плата/схема.
+Космос: oxygen — кислород, space suit — скафандр, rocket — ракета, launch pad — стартовая площадка, planet — планета,
+orbit — орбита, gravity — гравитация, fuel — топливо, tier N rocket — ракета N уровня, station — станция, lander — посадочный модуль.
+Оружие: ammo — боеприпасы, magazine — магазин, round — патрон, attachment — модификация/обвес, scope — прицел, recoil — отдача,
+cannon — пушка, shell — снаряд, barrel — ствол, firing rate — скорострельность.
+Имена собственные (Create, Botania, Mekanism и т.п.), названия модов, `Iron's Spells`, `Ars Nouveau` — не переводить.
+Arknights: оставлять транслит-имена операторов, Originium — Оригиниум, Operator — оператор, Infected — заражённый, Oripathy — орипатия.
+
+## 5. Шрифты
+
+`scripts/font_audit.py` нашёл всего 5 кастомных шрифтов в 242 jar:
+
+| Мод | Шрифт | Что с кириллицей |
+|---|---|---|
+| Aether `aether:logomarks` | bitmap | не используется для текста, только логотип |
+| Caerula Arbor `caerula_arbor:seabornish` | bitmap+reference | декоративный «язык» для книги — кириллица не нужна; **проверить глазами**, что обычный текст книги не отображается им |
+| ldlib `ldlib:jetbrains_mono_bold` | ttf | JetBrains Mono содержит кириллицу |
+| Modonomicon `modonomicon:default`, Supplementaries `supplementaries:antiquable` | reference на ваниль | ок |
+
+Подозрительных шрифтов нет; визуально проверить: книга Caerula Arbor, меню Modonomicon (Occultism), Jade/JEI (отдельных шрифтов нет).
+Чат Simple Voice Chat и Xaero используют ванильный шрифт.
+
+## 6. Что сделано в этом запуске / не сделано
+
+Сделано: аудит и скрипты; 5 русификаторов в `pack/resourcepacks/` + `pack/modlist.txt` + `scripts/add-mods.sh` (источник `rp`);
+`pack/options.txt` (ru_ru + порядок паков, `preserve`); `packwiz refresh`; отметка в `docs/roadmap.md`.
+
+Не сделано / ограничения: серверный набор не менялся (паки `client`), поэтому `scripts/test-server.sh` не гонял;
+`scripts/test-client.sh` до `CLIENT OK` в этом запуске **не прогонялся** (нужен полный экспорт `.mrpack`, экономия лимита) —
+первое, что стоит проверить при приёмке: что клиент стартует с `options.txt`, паки подхватились и в главном меню русский язык.
+Версии MPLOC (pack_format 88) на 1.20.1 «несовместимость» не выдают благодаря `supported_formats`, но это не проверено в запущенном клиенте.
+
+## 7. Этап 2 — перевод строк (2026-10-12)
+
+Переведено **11 485 строк** (+382 имён собственных оставлены как есть) в 156 пространствах имён: 54 пачки, перевод — Haiku-агентами
+по `scripts/lang_residual.py` (пачки по ≤ 250 ключей) → `scripts/lang_merge.py` (проверка набора ключей и плейсхолдеров) →
+`pack/resourcepacks-src/russian-moded/assets/<ns>/lang/ru_ru.json` → `scripts/build-ru-pack.sh` → `pack/resourcepacks/russian-moded.zip`
+(в индексе packwiz; исходники исключены `.packwizignore`). Пак стоит **последним** в `options.txt` (наивысший приоритет).
+`lang_validate.py lang` по всему паку: 0 ошибок (302 предупреждения — «лишние» ключи из `.lang`-файлов, безвредны).
+После пересчёта остаётся ~377 строк — это названия/имена, совпадающие с английским. Книги и гайды не трогались (по решению владельца).
+Замечания: у мода `bobsoriginiumdream` (и ряда Arknights-модов) в `en_us.json` лежит китайский текст — переведён с китайского;
+качество Haiku выборочно проверено на `arsmagicalegacy` (литературно, без потери плейсхолдеров), полная вычитка глазами — на приёмке клиента.
+Повторить пересчёт: `python3 scripts/lang_residual.py <jar> <out> --packs <5 zip> --skip-done pack/resourcepacks-src/russian-moded/assets`.
+
+### Находка проверки клиента (`test-client.sh`)
+Первый прогон дал `CLIENT OK` (371 с, главное меню по-русски), но в логе: *«Removed resource pack file/mploc-mods-v43.zip from options because it is no longer
+compatible»* — 1.20.1 принимает только `pack_format` 15, а у MPLOC он 88 (`supported_formats` в 1.20.1 не работает), у JustSomeTranslations — 34.
+Оба пака отброшены, держались только RTF/RTF+/Russian Delight/наш пак. Исправлено: `scripts/patch-rp-format.py` делает копию с `pack_format: 15`
+(содержимое без изменений; MIT и CC-BY-SA это допускают с сохранением авторства: **MPLOC**, **JustSomeTranslations**) → `pack/resourcepacks/mploc-mods-v43.zip`
+и `just-some-translations.zip` (обычные файлы в индексе packwiz, исходные `.pw.toml` — в `pack/resourcepacks-src/upstream/`, в `modlist.txt` помечены `#patched`).
+При обновлении версии MPLOC — перегнать скрипт и поправить имя в `options.txt`.
+
+### Решения владельца после приёмки (2026-10-12)
+- **Arknights (Origins, Puffish):** названия рас/классов/подклассов/Originium Arts и навыков остаются английскими, переводятся только описания
+  (`scripts/lang_keep_en_names.py`, 311 ключей-названий; описания 225/225 русские).
+- **Названия модов не переводим** (`scripts/lang_keep_en_modnames.py`, `scripts/lang_modnames.py`): вкладки творческого режима, заголовки экранов/достижений-корней,
+  `menu_title` со значением = displayName из mods.toml остаются английскими (93 ключа, из них 41 было переведено MPLOC/RTF+/нами — переопределены в `russian-moded.zip`);
+  вкладки вида «Название: Хвост» оставлены с переводом хвоста. `lang_validate.py lang` теперь выдаёт ошибку, если такое название переведено. Подсказки JEI/Jade берут название
+  мода из mods.toml, а не из lang, — переводом не затрагиваются.
+
+### Автовключение пака — мод `ru-lang` (2026-10-12)
+Причина жалоб «не переведено» у владельца: его `options.txt` создан до появления нашего пака (`preserve = true` — packwiz-installer настройки игрока не трогает), поэтому
+`russian-moded.zip` был скачан, но не включён (MPLOC/RTF+ работали, наши правки поверх них — нет). Теперь пак вшит в клиентский мод `mods-src/ru-lang`
+(`pack/mods/ru-lang-*-client.jar`): `AddPackFindersEvent` — пак **обязательный, закреплён сверху** (выше MPLOC/RTF+ и паков игрока, выключить нельзя), `options.txt` не важен.
+Отдельный `russian-moded.zip` и строка в `options.txt` убраны. **После любых правок переводов или при слиянии веток, трогавших `pack/resourcepacks-src/russian-moded`,
+пересобирать `scripts/build-ru-pack.sh`** (собирает jar мода и обновляет индекс packwiz). Аудит итогового разрешения: `lang_audit.py cjk` — найдено 88 значений с CJK и 3 543 видимых-только-в-zh_cn ключей
+(из них 144 реально видимых игроку переведены; остальное — настройки/теги, в игре не показываются).
+
+## 8. Перевод книг (поток 11, 2026-10-12)
+
+Повод — отзыв владельца: «не перевелась книга кодекс мага из Mana and Artifice». Книги переводятся по отзывам. **Аудит выше (478 тыс. знаков) оказался завышен:**
+у большинства книг текст лежит не в файлах книги, а в lang-ключах (`i18n: true`), а те уже русские; считать надо «сырой» текст в файлах + непереведённые ключи
+(скрипт-прикидка: `scripts/books/patchouli_units.py extract` и сверка ключей с `ru_ru.json` мода и пака).
+
+| Книга | Формат | Статус |
+|---|---|---|
+| **Mana and Artifice** — Кодекс (`assets/mna/guide/`) | свой JSON-формат мода (не Patchouli): мод читает `guide/en_us.json`, поверх — `guide/<язык>.json` из любого ресурспака | **переведена целиком** (516 записей, ≈ 246 тыс. знаков) → `assets/mna/guide/ru_ru.json` |
+| **Animus** `codex_animus` | Patchouli, текст в файлах; lang-ключи закрыты MPLOC | **переведена** (96 файлов, ≈ 86 тыс.) → `animus/…/ru_ru/` |
+| **Ars Nouveau** `worn_notebook` | текст весь в lang-ключах (131 тыс. в таблице §1 — структура JSON) | не хватало 18 ключей версии 4.12.7 — добавлены |
+| **Alex's Mobs Interaction** `amiwiki` | Patchouli, сырой текст + `book.json` в `data/` | **переведена** (54 файла) + название/описание/подзаголовок через `pack/kubejs/data/alexsmobsinteraction/patchouli_books/amiwiki/book.json` |
+| **Dimensional Dungeons** `guide_book` | Patchouli; в jar `ru_ru`-папка книги неполная; **lang лежал как `ru_RU.json`** (1.20.1 читает только `ru_ru.json` → русского мода не было вообще) | `lang/ru_ru.json` (копия + 51 ключ), полная `ru_ru/` книги (58 строк + 3 файла patch_notes), `book.json` через kubejs |
+| **Ars Magica Legacy** `arcane_compendium` | текст в lang-ключах (русские), сырых строк 26 | переведены |
+| Аддоны Ars (Tome of Blood, Ars Ocultas, Ars Instrumentum, Ars Creo), ExtraBotany `exguide` | сырой текст в файлах | переведены (47 строк; exguide — тестовая запись) |
+| **Bob's Originium Dream** `bobbook` («鲍勃精选指南») | книга целиком **на китайском** уже в `en_us` (39 строк) + название/описание в `data/…/book.json` | переведена с китайского целиком (41 единица) + `book.json` через `pack/kubejs/data/bobsoriginiumdream/patchouli_books/bobbook/book.json` |
+| Superb Warfare `manual` | lang-ключи; «не переведены» только 3 названия техники (LAV-150 Commando, A-10A Thunderbolt II, AH-6 Little Bird) — имена собственные | переводить нечего |
+
+**Названия MnA.** Родной `ru_ru.json` мода — машинный перевод с мусором («Путинка воздуха», «Советский староста», «Персональный по вызову»,
+«Построить портал»…). Вычитаны все 1631 коротких названий (предметы, блоки, существа, эффекты, чары, заклинания, ритуалы, конструкты): 660 исправлено в
+`assets/mna/lang/ru_ru.json` пака (в основном серии деталей конструктов «материал + деталь», кристаллы химерита, амулеты, манаплетение, команды конструктов),
+кодекс пересобран под новые названия. **Сомнительные игры слов — смотреть в игре:** «Метла-сервис» (Broom Service), «Комплектный шик», «Всё, беру себе
+малус!», «Король тараканов» вместо Asmongold, «Древёнки» (мн. ч. Barkling), «Заклеймённый чернокнижник».
+
+**Lang-файлы с неверным именем.** Проверены все jar (в т.ч. jar-in-jar) на `ru_RU.json`, `ru_ru.lang`, регистр в `lang/` и в папках книг: проблема только у
+Dimensional Dungeons (исправлено); у Mahou Tsukai есть и `ru_ru.lang`, и `ru_ru.json` (нормально); Lost Cities — только `en_US.lang` (английские, не наши).
+
+Инструменты (`scripts/books/`): `mna_guide.py` — кодекс MnA (`extract`/`build`/`check`: цвета, переводы строк, структура); `patchouli_units.py` — Patchouli-книги с
+сырым текстом (`extract`/`apply`/`check`: теги `$(..)`, `#плейсхолдеры#`, кириллица). Единицы перевода лежат в `scripts/books/*_data/` (`units_en.json`, `units_ru.json`):
+правка перевода = правка `units_ru.json` + `build`/`apply` + `scripts/build-ru-pack.sh`. `lang_validate.py book` — 0 ошибок для Animus, AMI, Dimensional Dungeons,
+Ars Magica Legacy, аддонов Ars. Названия предметов в тексте книг берутся из `ru_ru.json` мода, поэтому при смене названия книгу надо пересобрать.
+
+**Caerula Arbor** `caerula_illustration`: в `en_us` книги **429 китайских строк** (≈14 тыс. знаков сырого текста; эпиграф в `book.json` — тоже китайский) — **переведена с китайского целиком** (поток 11, ветка `claude/translate-caerula`): `assets/caerula_arbor/patchouli_books/caerula_illustration/ru_ru/` в пакете `ru-lang` + `pack/kubejs/data/caerula_arbor/patchouli_books/caerula_illustration/book.json` (эпиграф); единицы — `scripts/books/caerula_data/`. Названия существ и предметов переведены по английским названиям из `en_us` мода (русского в lang мода нет), имена боссов транслитерированы; термины между пачками выровнены (метка пучины, рассудок, порождения моря, Ишармла); спорное — «Слияние бурь», «Гребень волны·Глава без предсказаний», «хитрый торговец».
+**Баг инструмента (исправлен):** первая версия `patchouli_units.py` пропускала строки без латинских букв, из-за чего bobbook была переведена на 6 из 39 строк; проверка по jar-ам (`CJK` в ключах text/title/name/description): китайский в `en_us` только у bobbook и Caerula Arbor (обе переведены).
+
+**Остаток:** книги, которые закрывают сторонние паки (Blood Magic — 206 тыс. знаков, Botania — 22 тыс., Iron's `iss_guide_book`, Caerula Arbor, Twilight Delight) —
+проверять в игре, наличие русского зависит от версии пака. Приёмка глазами (открыть кодекс MnA, Анимус, AMI Wiki, гайд Dimensional Dungeons) — см. `docs/client-checklist.md`.
+
+**Проверка клиента** (`scripts/test-client.sh`, сборка с кодексом MnA, Animus, AMI, Dimensional Dungeons и пересобранным `ru-lang`; 2026-10-12): до главного меню дошёл
+(`Game took 573 seconds`), интерфейс русский, `mod_resources_ru_lang` в списке паков; ошибок Patchouli/кодекса по нашим книгам в логе нет. Книги в мире не открывались
+(глазами — по `docs/client-checklist.md`). Не наши находки в логе: Patchouli-книга `ars_controle` падает (`use_resource_pack: false`, поведение удалено в 1.20 —
+нужен патч book.json, например kubejs-override как у AMI), `Model loader 'neoforge:composite' not found` (модели NeoForge-сборок), `mna:models/block/eldrin/pylon_ring.json`.
+Тест `test-client.sh` на 16 ГБ: два параллельных запуска клиента убивает OOM (код 137) — перед повтором убедиться, что прошлый JVM завершён.
+
+### Китайские литералы в коде/NBT («Талон Боба», 2026-10-12)
+Часть текстов модов (Bob's Originium Dream, Superb Warfare, Torches Become Sunlight, Extra Botany, Caerula Arbor, Sarkaz…) зашита в код как `Component.literal("…")`
+(и в NBT/лут), а не в lang — поэтому lang-аудит их не видел (`scripts/cjk_nonlang_audit.py`: ≈ 880 строк в классах 13 jar + NBT/JSON). Патчить jar нельзя (40–75 МБ, публичный репозиторий):
+вместо этого клиентский мод `ru-lang` содержит миксин на `LiteralContents` (единая точка всех `Component.literal`, в т.ч. сообщений сервера и NBT-lore) и словарь
+`mods-src/ru-lang/src/main/resources/assets/ru_lang/literals_ru.json` (**953 строки**: «китайская строка → русская»). Подстановка — только по точному совпадению и только для строк с иероглифами/каной
+(быстрая проверка символов, словарь грузится один раз в HashMap). Самопроверка пишется в лог клиента: `ru_lang: словарь литералов 953 строк; … Component.literal (миксин) -> "…" [OK]`.
+Пайплайн: `scripts/cjk_literals_harvest.py` (сбор строк из .class/NBT/data-JSON → пачки) → перевод Haiku → `scripts/literals_build.py` (проверка §-кодов/плейсхолдеров/иероглифов) → `scripts/build-ru-pack.sh`.
+Не покрыто: текст, рисуемый напрямую `font.draw(String)`, и книги Patchouli (Поток 11), NBT-структуры с сигнатурами (таблички) — только если строка идёт через Component.
+
+## 8а. Подсказки загрузки мира (поток 16, 2026-10-13)
+
+Баг владельца: «Совет профессионала: You can plant Wynd Oats…». Подсказки показывает система «Pro Tips» Aether
+(`data/<ns>/tips/*.json`, поля `tip`/`title` — всегда `translate`-ключи, литералов нет). Просмотрены все 263 jar клиента:
+подсказки есть только у **Aether** (58, русские), **Aether: Redux** (15), **Deep Aether** (5). Без перевода были 21 строка
+(15 Redux + «цвет заголовка», 4 Deep Aether + заголовок `gui.deep_aether.pro_tip`) — добавлены в
+`assets/aether_redux/lang/ru_ru.json` и `assets/deep_aether/lang/ru_ru.json` пака `ru-lang`, без переопределения JSON.
+Старый ключ `…aether_redux.wyndsprouts` (от прежней версии Redux) остался в паке, но мод его не использует.
+Проверка: скрипт по jar (ключи tip/title из всех `*/tips/*.json` против ru_ru jar+пака) — после правки непереведённых нет;
+`lang_validate.py` — 0 ошибок.
+
+## 8б. Длинные подписи клавиш (поток 17, 2026-10-13)
+
+Баг владельца: «Управление → Назначение клавиш» при масштабе интерфейса x3+ — длинные подписи уезжают за левый край и обрезаются
+(«…волшебника) Переключить HUD выбора», «…ons] Activate Warp Index», «…Использование заклинания 01»).
+**Откуда префиксы:** из самих ключей перевода модов, а не от мода-«приклеивателя» (Controlling и т. п. в сборке нет; конфигом ничего
+не выключить): Ars Nouveau `(Spell Book) …`, Ars Instrumentum `(Wizards Armarium) …`, Ars Elemental `[Elemental] …`,
+Ars Additions `[Ars Additions] …` — так написаны даже английские оригиналы. «Использование заклинания 01» — это Ars Nouveau
+`qc1…qc10` («Быстрое использование заклинания 01», начало обрезано).
+**Что сделано:** `scripts/lang_shorten_keys.py` (таблица ns→ключ→строка, идемпотентен) правит `ru_ru.json` пака `ru-lang`:
+100 строк в 36 пространствах имён (из них 97 были длиннее 28 символов; после — максимум 28). Префиксы убраны или заменены
+короткой формой («Книга: открыть», «Армариум: HUD выбора», «Быстрое заклинание 01»), семейство Occultism «Переключение эффекта перстня: X» →
+«Перстень: X», Iron's Spells, Sophisticated, JEI, Refined Storage, AE2, Mana and Artifice и др.; категории: Torches «Факелы становятся солнцем»,
+Iron's Spells «Iron's Spells: основное / быстрый вызов». Названия модов не переводились. Добавлены `alshanex_familiars`, `iris`.
+`lang_validate.py` — 0 ошибок; `ru-lang` пересобран (`build-ru-pack.sh`), `packwiz refresh` выполнен.
+Не охвачено: клавиши с нестандартным именем ключа (не `key.*`/`*.key.*`/`*keybind*`) и строки, которые приходят только из внешних
+ресурспаков без `key.`-ключа; «Wizardry Restored» своих длинных подписей не имеет («Слот заклинания N» из Redux).
+**Предложение (без установки):** ваниль обрезает/выравнивает подписи по колонке и не переносит строки; если после сокращений что-то
+останется длинным — клиентский мод **Controlling** (Forge 1.20.1, Jaredlll08) даёт поиск и более читаемый экран, либо
+**Configured/«Better Keybinds»-аналог** с переносом; для масштаба x3+ можно просто советовать x2 в `Настройки → Видео`.
+Решение за Координатором.
+
+## Вопросы владельцу
+
+1. **Не блокирует.** Принять MPLOC (ИИ-перевод) и RTF+ базой, а остальное доводить своим паком сверху? Рекомендация: да.
+2. **Блокирует этап 2.** Переводить ли книги (≈ 478 тыс. знаков, ≈ 40 пачек), или только строки (≈ 48 пачек)? Рекомендация:
+   строки приоритета 1 сейчас, книги — по отзывам друзей (Ars Nouveau и Animus первыми).
+3. **Не блокирует.** Модель для пачек (Haiku против Sonnet): Haiku дешевле, Sonnet заметно лучше сохраняет теги и плейсхолдеры.
+   Рекомендация: Sonnet для книг, Haiku со скриптовой проверкой для строк.

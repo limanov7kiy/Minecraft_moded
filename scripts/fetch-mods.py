@@ -29,7 +29,9 @@ for f in sorted(pack.glob("*.pw.toml")):
     if hashlib.new(d["hash-format"], data).hexdigest() != d["hash"]:
         sys.exit(f"hash mismatch: {m['filename']}")
     dst.write_bytes(data); print("got", dst.name)
-for j in pack.glob("*.jar"):  # собственные jar сборки (патчи, библиотеки-замены) — на обе стороны
+for j in pack.glob("*.jar"):  # собственные jar сборки (патчи, библиотеки-замены) — на обе стороны,
+    if side == "server" and j.name.endswith("-client.jar"):  # кроме клиентских (*-client.jar)
+        continue
     keep.add(j.name)
     if not (out / j.name).exists() or (out / j.name).read_bytes() != j.read_bytes():
         (out / j.name).write_bytes(j.read_bytes()); print("copied", j.name)

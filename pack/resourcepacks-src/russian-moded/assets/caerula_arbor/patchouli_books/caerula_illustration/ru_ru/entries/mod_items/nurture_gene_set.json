@@ -1,0 +1,30 @@
+{
+  "name": "Набор генов Воспитателя",
+  "icon": "caerula_arbor:nurture_gene_set",
+  "category": "caerula_arbor:mod_items",
+  "read_by_default": true,
+  "sortnum": 9,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Набор генов Воспитателя",
+      "item": "caerula_arbor:nurture_gene_set",
+      "scale": 1,
+      "text": "Служит для активации эволюции игрока.$(br)Обратите внимание: после активации эволюции игрока нужно либо иметь реакцию отторжения, либо завершить океанизацию игрока, иначе в глубокосинем регистраторе не откроется окно эволюции и бонусы эволюции не будут действовать."
+    },
+    {
+      "type": "crafting",
+      "recipe": "caerula_arbor:craft_nurture_gene"
+    },
+    {
+      "type": "relations",
+      "title": "Связанные статьи",
+      "text": "Ссылки на другие понятия, упомянутые в этой записи, приведены выше.",
+      "entries": [
+        "caerula_arbor:mod_items/caerula_recorder",
+        "caerula_arbor:lead_in/rejections",
+        "caerula_arbor:tutorial/oceanization"
+      ]
+    }
+  ]
+}

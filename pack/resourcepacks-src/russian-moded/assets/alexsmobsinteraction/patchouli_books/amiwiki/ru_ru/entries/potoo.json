@@ -1,0 +1,13 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Козодой",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Козодой, которого держат в соколиной перчатке, даёт владельцу ночное зрение",
+      "title": "Ночное зрение"
+    }
+  ],
+  "sortnum": 1
+}

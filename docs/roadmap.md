@@ -1,6 +1,6 @@
 # План работ и разделение по чатам
 
-Состояние на 2026-10-10. Связка **1.20.1 + Forge 47.4.26**, сборка — `pack/` (packwiz).
+Состояние на 2026-10-12 (актуальная сводка — раздел «Координация», раунд 6). Связка **1.20.1 + Forge 47.4.26**, сборка — `pack/` (packwiz).
 Ветка-интегратор — `claude/affectionate-davinci-4gddoh` (на GitHub она стоит веткой по умолчанию).
 Каждый чат-поток работает в **своей** ветке от неё и вливается обратно через PR.
 
@@ -21,6 +21,12 @@
 | Серверные тесты: гравитация, маршруты, ракеты, кислород, руды, заклинания | `scripts/tests/` |
 
 ## В работе
+- Владелец проверяет установку по ссылке (Prism + packwiz-installer) и вход на сервер в офлайн-режиме; находки — в compat.md.
+- Очередь (по решению владельца В5 «а» — после отзывов друзей): оригинальные ассеты Wizardry, Galacticraft этап 2.
+- Идея владельца (низкий приоритет, после 17.10 и отзывов): многопоточность — исследовать практичные пути (async-моды
+  под 1.20.1 Forge, параллельная генерация/загрузка чанков, JVM/GC: ZGC/Shenandoah), потокобезопасность наших модов
+  (Valkyrien Skies, Create, Lycanites…), выгода и риски → отчёт в `docs/` и варианты владельцу. Модель: opus — архитектура
+  и риск нестабильности (ванильный тик однопоточный, полная переделка ядра нереалистична).
 - Поток 1 (Wizardry Restored): **0.6.0** — все 61 недостающее заклинание + 4 «тестовых» Redux; этап 3
   (сущности) и этап 4 (статуи petrify/ice_statue, лоза grapple, камни перемещения, 18 артефактов Redux)
   сделаны, `castcheck.js` 69/69. Дальше — оригинальные ассеты и сверка параметров с оригиналом (лицензия
@@ -34,6 +40,8 @@
   не правим руками — пересоздаём `packwiz refresh`.
 - После изменения набора модов — `scripts/test-server.sh`, находки — в `docs/compat.md`.
 - В конце — отметка о сделанном в этом файле (раздел потока).
+- Добавил мод с боссами — обнови `docs/bosses.md`/`docs/bosses.csv` в том же PR: прогон `scripts/tests/bossdump.js` на
+  тестовом сервере + `scripts/boss_table.py --mods <папка jar> --dump <latest.log>`; описание нового босса — в `scripts/boss_info.py`.
 
 ### Поток 1 — Wizardry Restored (заклинания)
 Файлы: `mods-src/wizardry-restored/`, `docs/wizardry-port.md`, `scripts/tests/spellcheck.js`, `castcheck.js`.
@@ -55,6 +63,12 @@
 2. Клиентский пакет `.mrpack` (Prism Launcher / Modrinth App) и серверный пакет (только `both`+`server`)
    — скрипт экспорта и короткая инструкция для друзей.
 3. Выбор хостинга с пользователем и проверка сервера в боевых условиях (RAM, флаги JVM, `spark`).
+4. **Офлайн-режим** (решение владельца «играем без лицензий») — сделано: серверный пакет с `online-mode=false`
+   (`server.properties.default`, существующий не затирается), мод авторизации Sol's AuthLogin (side=server), доки
+   `friends.md` / `hosting.md`. Проверен запуск сервера до `Done`; вход реальным клиентом не проверялся.
+   **Сравнение хостингов сделано** (2026-10-11, `docs/hosting.md`: таблица, отсев, рекомендации — Millida 12–16 ГБ,
+   запасной зарубежный VPS); по ответу владельца (игроки в РФ, оплата рублями) пересмотрено: основной Millida
+   16 ГБ — 1290 ₽/мес, запасной российский VPS; зарубежные не оплатить. Вопросы поддержке — там же. Бой на хостинге ещё не проверен.
 
 Сделано (ветка `claude/lucid-babbage-8qj4no`):
 - [x] Голосовой чат: Simple Voice Chat + Simple Radio, Sound Physics Remastered, Talking Heads, Let Them Talk,
@@ -99,6 +113,9 @@
 - [x] Пачка 6 — моды с крупными зависимостями (одобрено пользователем): Integrated Mowzie's Mobs (+ Quark, Supplementaries,
   Amendments, Integrated API/Patches), Botanical Machinery Extra (+ Applied Energistics 2), More Backpack Upgrades
   (+ Refined Storage). Сервер до `Done`, новый мир создаётся.
+- [x] Mana and Artifice + Ars Magica: Legacy (решение владельца, ветка `claude/stream3-mana-artifice-ars-magica`): 6 модов добавлено,
+  MNAWitchcraft отключён (старый M&A; позже возвращён портом, поток 4b, compat.md); сервер до `Done`, castcheck 69/69. Для Ars Magica дополнений нет. Подробности — compat.md.
+  Потоку 4: проверить на клиенте клавиши/мана-HUD четырёх магических систем и дубли рецептов/предметов.
 - Для Bumblezone и Mahou Tsukai подходящих дополнений под 1.20.1 Forge нет (Mahou Tsukai Combat требует Better Combat).
 
 ### Поток 4 — Совместимость и патчи
@@ -127,21 +144,63 @@
    `mobhealth_commands.txt`: оригинал 20→40→80, порт 20→20. Оригинал из PR #2 убран при слиянии, в сборке порт.
 8. ~~Apothic Attributes и формулы брони~~ — **решено**: броня по Apothic, защита-зачарование по ванилле
    (`pack/config/attributeslib.cfg`, расчёт — compat.md п. 14, тест `scripts/tests/armor_commands.txt`).
+9. ~~**(из потока 5, БЛОКЕР клиента) Cataclysm Spellbooks 1.2.9 × Cataclysm 3.31**~~ — **сделано**: порт
+   `patches/jar-ports/cataclysm-spellbooks` → `pack/mods/cataclysm_spellbooks-1.2.9-1.20.1-mmport.jar` (compat.md п. 14, К4),
+   тест в мире `scripts/tests/sbcastcheck.js` 10/10, клиент со всей сборкой — `CLIENT OK`.
+10. ~~(из потока 5) Lycanites refmap: поле `lightTexture`~~ — **сделано иначе**: refmap к `@Shadow`-полям не применяется,
+    затемнение от страха перенесено в `mm-compat` 0.4.0 (`LycanitesFearLightMixin`, compat.md К6).
+11. ~~(из потока 5) Origin Furs × AzureLib 3.1 (compat.md К3)~~ — **сделано** (поток 4b): Origin Furs и Arknights Furs
+    возвращены; порт `patches/jar-ports/origin-furs` встраивает старый API AzureLib 2.0.39 в jar Origin Furs
+    (`pack/mods/origin_visuals-1.0.5-mmport-client.jar`, только клиент), сервер `Done`, `CLIENT OK`.
+
+### Поток 7 — JEI (просмотр крафтов и использования)
+Файлы: `scripts/jei_audit.py`, `docs/jei.md`, `docs/client-checklist.md` (раздел 8), `pack/modlist.txt` (раздел «JEI»).
+- [x] Аудит: 242 jar — 65 модов со своим плагином + 30 аддонов, покрытых плагином основного мода; пробелы — в `docs/jei.md`.
+- [x] Добавлены Just Enough Breeding, Professions, Beacons (+ Cerbon's API; позже убраны потоком 10 — см. compat.md), Advancements; сервер `Done`, клиент `CLIENT OK` и вход в мир.
+- [x] KubeJS: `missing_mod_refs.js` правит только теги, `space_rockets.js` убирает рецепты ракет Ad Astra и прячет их из JEI — нужные рецепты не скрыты.
+- [x] Ошибки JEI в логе клиента (Blue Skies, mekmm, JER) — собственные баги модов, `docs/compat.md`.
+- [x] JEI-категория Imbuement Altar для Redux — mm-compat 0.5.0 (отдельный PR).
 
 ### Поток 5 — Проверка клиента
-Серверный тест клиент не покрывает. Запуск клиента (Xvfb в облаке или у игрока): Oculus + Embeddium,
-Distant Horizons, Yes Steve Model, AzureLib-рендер, клиентские моды Arknights furs. Найденное — в
-`docs/compat.md`; правки модов — через поток 3/4. Начинать после потоков 2–3, когда набор модов устоится.
-- (из потока 1) Wizardry Restored 0.6.0: сервер проверен, клиент — нет. Посмотреть рендер новых сущностей
-  (тотемы, чёрная дыра, силок, шипы, молот — модели из ванильных блоков; двойник/мираж — скин владельца; феникс —
-  своя текстура; статуи — модель существа текстурой камня/льда; лоза — линия до крюка), частицы силового поля/тучи/диска, иконки заклинаний и эффекта «Метка жертвы», звуки Redux.
-- (из потока 2) Импорт `dist/*.mrpack` в Prism Launcher и Modrinth App (серверные моды не должны ставиться),
-  голосовой чат клиент↔сервер (микрофон, группы, рации Simple Radio), Sound Physics вместе с Oculus;
-  порт аддонов: своя пластинка/козий рог (`/audioplayer`), загрузка через браузер.
+Клиент в облаке: `scripts/test-client.sh <папка>` (Forge через portablemc, моды из `.mrpack` как у Prism,
+Xvfb + Mesa llvmpipe, агент `scripts/clienttest/ExitTrace.java` ловит «тихие» `System.exit`), установщик
+`scripts/mrpack-install.py`. Чек-лист для игрока — `docs/client-checklist.md`, скриншоты — `docs/client-check/`,
+находки — compat.md «Проверка клиента» (К1–К9). Сделано 2026-10-11:
+- **Было: клиент не запускался вообще** — 4 независимых вылета до главного меню.
+- Исправлено в сборке: ImmediatelyFast 1.2.7 → 1.5.5 (с Oculus 1.8 закрывал игру без краш-репорта, К1);
+  убраны VoiceChatProfiles (битый jar, К2), Origin Furs и Arknights Furs (AzureLib 2.x против 3.1, К3);
+  маркер Serene Seasons Plus в `pack/config/` (мод сбрасывал конфиг сборки на сервере и клиенте, К5).
+  Стороны в `.mrpack`/серверном zip совпадают с `side` — править не пришлось.
+- ~~**Осталось (блокер):** Cataclysm Spellbooks 1.2.9 роняет клиент (К4)~~ — порт сделан потоком 4 (задача 9).
+- Проверено с убранным локально Spellbooks (и YSM — он не работает под ВМ, К7): главное меню (старт 272 с на
+  llvmpipe), вход на тестовый сервер без рассинхрона реестров и «mismatched mod channel», выбор Origin, HUD,
+  рендер скелета-босса Galacticraft с полосой здоровья, феникс Wizardry; миксины портов `*-mmport.jar` применяются;
+  Lycanites `LightTextureMixin` — нет (К6, задача 10 потока 4).
+- Не проверено в облаке и почему: шейдеры Oculus, Distant Horizons, YSM (нет GPU, 2 FPS, ВМ), детали рендера
+  сущностей Wizardry/GC, микрофон, рации, Sound Physics, `/audioplayer` (нет звука), импорт в Prism/Modrinth App
+  (нет GUI-лаунчера; установщик повторяет его правила), macOS → `docs/client-checklist.md`.
+- Следующий шаг: после порта Spellbooks — `scripts/test-client.sh` до `CLIENT OK`, затем раздать чек-лист игрокам.
 
-- (из потока Galacticraft) Galacticraft Revival 0.1.0 (в сборке): рендер скелета-босса (модель GC5),
-  модель сундука сокровищ (Legacy, UV под 1.12 — может быть перевёрнута), потухший факел, полоса здоровья босса,
-  захват и бросок игрока боссом, звуки босса.
+### Поток 6 — Русификация
+Ветка `claude/russification`; документ — `docs/russification.md`, таблица по модам — `docs/russification-audit.md`.
+Этап 1 (2026-10-12) сделан: аудит (`scripts/lang_audit.py`, `lang_packs_cover.py`, `font_audit.py`) — 72 053 ключа,
+без паков не переведено 25 678 (64 % покрытие); добавлены 5 ресурспаков-русификаторов (MPLOC, RTF+, RTF, Russian Delight,
+JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.txt`/`add-mods.sh`), остаток **12 011 строк** +
+≈ 478 тыс. знаков книг; `pack/options.txt` — `lang:ru_ru` и порядок паков (`preserve`). `test-client.sh` не прогонялся.
+- [x] Этап 2 (строки): 11 485 строк переведены (`pack/resourcepacks-src/russian-moded` → `pack/resourcepacks/russian-moded.zip`, последним в `options.txt`), ветка `claude/russification-2`. Книги — по отзывам друзей (Ars Nouveau и Animus первыми).
+- [x] Заброшенные города (по просьбе владельца, 2026-10-12): The Lost Cities, профиль `rarecities`, `docs/lost-cities.md`.
+- [x] Китайские литералы кода/NBT (Талон Боба и др.): миксин LiteralContents + словарь 953 строки в `ru-lang`, `docs/russification.md`, `docs/compat.md`.
+- [ ] Прогнать `scripts/test-client.sh` и убедиться, что язык/паки подхватываются; строка в `docs/friends.md`.
+
+### Поток 11 — Перевод книг (ветка `claude/translate-books`, от `claude/abandoned-cities`)
+- [x] Кодекс **Mana and Artifice** (свой JSON `assets/mna/guide`, ≈ 246 тыс. знаков) + вычитка 660 названий MnA.
+- [x] **Animus**, **AMI Wiki**, **Dimensional Dungeons** (lang лежал как `ru_RU.json` — не грузился), **Ars Magica Legacy**, аддоны Ars, bobbook, exguide; Ars Nouveau (+18 ключей).
+- [x] Проверка всех jar на lang с неверным регистром/форматом (`ru_RU.json`) — только Dimensional Dungeons.
+- [x] Superb Warfare — переводить нечего (3 имени техники).
+- [ ] Приёмка в игре (кодекс MnA, Анимус, AMI Wiki, Dimensional Dungeons). Остальное — по отзывам.
+- [x] **Caerula Arbor** `caerula_illustration` (429 китайских строк, ≈14 тыс. знаков) — переведена целиком (ветка `claude/translate-caerula`).
+- PR в интегратор — после слияния #31 (пак внутри мода `ru-lang`).
+
 ## Интеграция (ревью PR, поток «Ревью и интеграция», ветка `claude/confident-hypatia-2zqr1t`)
 Цикл 1 — 2026-10-10:
 - **PR #1, поток 2** (голосовой чат, экспорт, UDP): проверен и **влит** (`013bf69`). `add-mods.sh` пусто,
@@ -175,3 +234,156 @@ Distant Horizons, Yes Steve Model, AzureLib-рендер, клиентские �
 ### Отложено (решение за пользователем)
 - Galacticraft — **в работе отдельным потоком** (0.1.0 «лунный данж с боссом» в сборке) (ветка `claude/determined-sagan-51u10p`): свой мод поверх Ad Astra
   с портом недостающего из GC Legacy/GC5 (данжи, боссы, схемы, астероиды). План и точка остановки — `docs/galacticraft.md`.
+
+## Координация (поток «Координатор (2)», session_01TzhEBzXMNvkdaYhGJBCkDA; до 2026-10-12 22:10 — session_015zoozt65pTMY4bR2XBFgb8)
+Координатор раздаёт задачи потокам и выбирает модель; ревью и слияние — поток «Ревью и интеграция»;
+вопросы владельцу — только через «Связь с владельцем (2)» (session_01Hncw6rYwbbT38frccVHWD8; прежняя session_01TAw9QPkPRVtJZY37wFhBNv архивирована).
+Правило владельца: при большом контексте сеанс заменяется свежим с коротким handoff и ссылками на `docs/`.
+
+Раунд 1 — 2026-10-11:
+| Задача | Поток (сеанс) | Модель — почему | Статус |
+|---|---|---|---|
+| Поток 4, задачи 9–10: порт Cataclysm Spellbooks 1.2.9 × Cataclysm 3.31 (К4, **блокер клиента**) + refmap Lycanites `lightTexture` (К6), до `CLIENT OK` | Поток 4 · Spellbooks (session_019V8WPE7gTHCrhB3kUX3W4M) | opus — порт jar с переходниками и отладка вылета клиента, риск сломать сборку | в работе |
+| Поток 4, задача 11: Origin Furs / Arknights Furs × AzureLib 3.1 (К3) — оценка, порт или вопрос владельцу | Поток 4b · Origin Furs (session_01S19ePL8u9HoLhUJ1ck9Jb8) | opus — переходник чужого API рендера, многошаговый порт | сделано (порт `patches/jar-ports/origin-furs`), PR |
+| PR #11 (поток 5) → затем PR задач 9–10 → PR задачи 11 | Ревью и интеграция (session_01VfvQ6JaX74GK5NGjWZnWoi) | opus — уже ведёт интеграцию, знает тесты | передано |
+| После порта: раздать `docs/client-checklist.md` игрокам (шейдеры, DH, YSM, звук, Prism/Modrinth App) | владелец | — | ждёт `CLIENT OK` |
+| Поток 2, п. 3: исследование хостингов (цены под наши требования, свои jar/SFTP, Forge 47.4.26, UDP 24454 для голосового чата, оплата) → таблица и рекомендация в `docs/hosting.md`, затем вопрос владельцу (В1) | Поток 2 · Хостинг (session_011uQdyPF3w7opk8J86p7SvH) | sonnet — веб-исследование и документация, без риска для сборки | PR #13 (игроки в РФ, оплата в ₽; рекомендация — Millida, запасной — российский VPS) → ревью; вопрос В1 у владельца |
+| Поток 1, п. 5 (оригинальные ассеты Wizardry), Galacticraft этап 2 | — | sonnet / opus соответственно, когда запустим | в очереди: после `CLIENT OK`, чтобы держать ≤ 3–4 рабочих потоков |
+
+Раунд 2 — 2026-10-11 (вечер):
+| Задача | Поток (сеанс) | Модель — почему | Статус |
+|---|---|---|---|
+| Mana and Artifice + Ars Magica: Legacy и их дополнения (решение владельца, «важно»); если нет под 1.20.1 Forge — вопрос владельцу о порте | Поток 3 · Магия (session_01NDk4w99jqw1tVgRhPtVTAA) | sonnet — типовое добавление модов + тест сервера; порт, если понадобится, — отдельной задачей opus | влит PR #15 (3964be1); MNAWitchcraft не вошёл — порт по решению владельца В4 |
+| PR #11, #12 | Ревью и интеграция | — | влиты (24e3b9b, b508c04) |
+| PR #13 (хостинги, РФ/₽) | Ревью и интеграция | — | влит (37dcd27); вопрос В1 у владельца |
+
+Лимиты Claude (указание владельца — следить и приостанавливать заранее). Координатор на каждой проверке смотрит
+`rate_limit_event` потоков (окна `five_hour` и `seven_day`):
+- `five_hour` ≥ 75% — новые потоки не запускаются, второстепенные не будятся;
+- `five_hour` ≥ 90% — всем потокам «WIP-коммит и стоп», будить после `resetsAt`;
+- `seven_day` ≥ 80% — сообщить владельцу.
+Порядок остановки: исследования и документация → второстепенные порты/моды → блокер клиента и ревью — последними.
+Потоки пушат WIP после каждого заметного шага. 2026-10-11 19:13 UTC окно `five_hour` упёрлось в 100% (оплата сверх лимита
+отключена), оба порта встали посреди шага; после сброса в 21:00 работа продолжена.
+Правило лимитов утверждено владельцем («B3 да», 2026-10-11).
+
+Раунд 3 — 2026-10-12:
+| Задача | Поток (сеанс) | Модель — почему | Статус |
+|---|---|---|---|
+| Задачи 9–10 потока 4: порт Cataclysm Spellbooks, затемнение Lycanites в `mm-compat` 0.4.0 | Поток 4 · Spellbooks (session_019V8WPE7gTHCrhB3kUX3W4M) | opus | **влит PR #16 (a1e11e8): К4 снят, CLIENT OK со всей сборкой (202 с)** |
+| Задача 11: Origin Furs / Arknights Furs × AzureLib 3.1 | Поток 4b (session_01S19ePL8u9HoLhUJ1ck9Jb8) | opus — переходник API рендера | в работе |
+| MNAWitchcraft × Mana and Artifice 3.1.11 (В4: «если не слишком тяжело — портировать, иначе пропускаем») | Поток 4b, вторым шагом | opus — порт jar; тем же сеансом, чтобы не плодить контексты | в очереди |
+| Раздать `docs/client-checklist.md` друзьям; выбор хостинга (В1) | владелец | — | ждёт владельца |
+
+Лимиты: 2026-10-11 22:14 UTC окно `five_hour` дошло до 96% (все остановлены заранее), 2026-10-12 03:10 — 80%+. Недельное окно
+растёт ~10%/окно (37% на 2026-10-12 03:00, сброс 17.10) — держим один рабочий opus-поток за раз.
+
+Раунд 4 — 2026-10-12:
+| Задача | Поток (сеанс) | Модель — почему | Статус |
+|---|---|---|---|
+| Задача 11 (Origin Furs / Arknights Furs × AzureLib 3.1) + порт MNAWitchcraft (В4) | Поток 4b (session_01S19ePL8u9HoLhUJ1ck9Jb8) | opus — порт jar | **влит PR #18**: встроенный AzureLib 2.0.39 (клиентский `*-mmport-client.jar`), MNAWitchcraft портирован; сеанс архивирован |
+| Репозиторий публичный, установка по ссылке (raw `refs/heads/claude/affectionate-davinci-4gddoh/pack/pack.toml`; ветки `main` нет) | Координатор | — (только документация) | **влит PR #20**: README, `docs/friends.md`, условия в CLAUDE.md |
+| Игра без лицензий (В7): `online-mode=false` + защита ника паролем (Sol's AuthLogin, `/register`, `/login`) | Поток «Офлайн-сервер» (session_01EDF9Qw9dbkJPF2zXsCo8ME) | sonnet — конфиги и серверный мод по образцу | **влит PR #19** |
+| 23 мода CurseForge без `url` (запрет стороннего скачивания) — jar в `pack/mods/`, 1 переведён на Modrinth; test-server `Done` | Ревью и интеграция (2) (session_01AtTBE2K9ovNYSKAU4EMyda) | sonnet — механическая замена + тест по образцу | **влит PR #22** (правило — в CLAUDE.md) |
+| Ревью и слияние | Ревью и интеграция (2), вместо старого сеанса session_01VfvQ6JaX74GK5NGjWZnWoi (контекст ~720k съедал лимит, архивирован) | sonnet — ревью по чек-листу, экономия лимита | работает |
+| Проверка установки по ссылке и входа на сервер | владелец | — | в работе |
+| Ассеты Wizardry, Galacticraft этап 2 | — | sonnet / opus | в очереди (В5 «а»: ждём отзывов друзей) |
+
+Решения владельца (через «Связь»):
+- В1б хостинг: до 700–800 ₽ в месяц на игрока; рекомендован Millida 16 ГБ (1290 ₽), российский VPS 3000–4750 ₽ —
+  при 6+ игроках; В2: бесплатный тариф Millida владелец проверит позже.
+- В4: MNAWitchcraft портировать, если не слишком тяжело (сделано). В5 «а»: доделать текущее и ждать отзывов друзей.
+- В7: играем без лицензий — `online-mode=false` с защитой от подмены ника.
+- Репозиторий публичный (2026-10-12); при претензии правообладателя — снова приватный, раздача только `.mrpack`.
+
+Лимиты: пороги прежние (`five_hour` 75% — без новых потоков, 90% — всем стоп; `seven_day` 80% — сообщить владельцу).
+2026-10-12 16:38 UTC: `five_hour` 43%, `seven_day` 59% (сброс 17.10 06:00 UTC).
+
+Раунд 5 — 2026-10-12 (вечер, новые требования владельца после первого теста):
+| Задача | Поток (сеанс) | Модель — почему | Статус |
+|---|---|---|---|
+| Русификация («очень важно»): аудит ru_ru, готовые русификаторы, русский по умолчанию; этап 2 — свой пак строк (В8 «как рекомендуют»: строки сейчас, книги по отзывам) | Поток 6 (session_01QeeDTwLudyjkD12gbCa4Kp) | sonnet — аудит/поиск; перевод строк — субагенты haiku + валидатор | этап 1 влит PR #26; этап 2 — PR #27 (11 485 строк), ждёт CLIENT OK |
+| JEI: рецепты и использование для всех модов, недостающие аддоны, KubeJS не прячет рецепты, пункт в client-checklist | Поток 7 (session_015Rs6ouZTeLQJqbVN5ca2yz) | sonnet — аудит + аддоны по образцу | в работе |
+| Производительность клиента: тест владельца — загрузка 2,5+3 мин, подвисания (ноутбук 16 ГБ, RTX 2060, i5-9) → оптимизации, дефолты тяжёлых модов, пресет графики, «Если тормозит» в friends.md, замеры | Поток 8 (session_01Ae6LbVeTMH97URzNTPeK6E) | sonnet — конфиги/моды по образцу; opus — если понадобится отладка | в работе; у владельца после Xmx 14→8 ГБ, дискретной видеокарты, без шейдеров/DH — «не подвисает сильно» |
+
+Тест владельца (Prism, офлайн-аккаунт, ссылка packwiz): установка 387/387, «Missing libraries» решено онлайн-запуском (friends.md, PR #24),
+главное меню без ошибок, одиночный мир создан, Origins и русский интерфейс работают.
+
+Раунд 6 — 2026-10-12 вечер → 2026-10-13 ночь (владелец спит; решения — по принятым правилам):
+| Задача | Поток (сеанс) | Модель — почему | Статус |
+|---|---|---|---|
+| Русификация: этап 2, мод `ru-lang` (русский пак всегда сверху), названия модов/Arknights английские; Lost Cities (В10 «а», `rarecities`) | Поток 6 (session_01QeeDTwLudyjkD12gbCa4Kp) | sonnet — строки, скрипты, конфиги | **влиты #27–#30, #31**; сеанс архивирован |
+| Подсказки загрузки мира по-английски (Aether Redux/Deep Aether, 21 строка) → ru_ru пака `ru-lang`; см. `docs/russification.md` §8а | Поток 16 | sonnet — разбор jar, lang | PR в `claude/affectionate-davinci-4gddoh` |
+| Длинные подписи клавиш уезжают за левый край на GUI x3+: префиксы зашиты в ключи Ars-модов; 100 строк сокращены в ru-lang (`scripts/lang_shorten_keys.py`), `docs/russification.md` §8б | Поток 17 | sonnet — разбор jar, lang | PR в `claude/affectionate-davinci-4gddoh` |
+| Китайские строки в коде модов («Талон Боба»): миксин `LiteralContents` в `ru-lang` + словарь 953 литералов, jar не патчены | Поток 6 | sonnet — по готовому плану, миксин маленький | **влит #39** |
+| Animus / «ключ разрешается в английский» | Поток 6 | — | закрыто без правок: из 72 тыс. ключей 742 английских — намеренные названия Arknights и имена собственные; Animus английский только при откате паков (см. Поток 13) |
+| JEI: аддоны, плагин Imbuement Altar | Поток 7 | sonnet | **влиты** (раунд 5) |
+| Производительность клиента | Поток 8 | sonnet | **влит #35**; дальше Поток 8 работал как «Ревью и интеграция (2)» |
+| Боссы: таблица `docs/bosses.md`, Ice and Fire CE (#34), Bosses of Mass Destruction + Cerbon's API (В12 «а») | Поток 9 (session_01WKtpNF9pEz1ZLSL76u21Qw) | sonnet — моды по образцу + тест спавна | **влиты #32, #34, #36**; сеанс архивирован |
+| Перевод книг: кодекс Mana and Artifice (+660 исправленных названий), Animus, AMI Wiki, Dimensional Dungeons, Ars и аддоны, bobbook | Поток 11 (session_01JahaRV9o4kKTT12dVPbUAf) | sonnet — перевод пачками + валидаторы | **влит #37**; Caerula Arbor (429 строк) — переведена (PR из claude/translate-caerula) |
+| Порт Wizardry Golems 0.2.0 (Extra Golems) → Necromancer's Delight (В13 «полный перенос», включая мобов Fish's Undead Rising) | Поток 12 (session_01Bg28XprSLsi1MoAEr25m4F) | opus — порт кода 1.12.2, низкий приоритет | #38 готов (golemcheck 13/13, CLIENT OK), **отложен по лимиту**; ND-1 — WIP `claude/necromancers-delight`, точка остановки в `docs/wizardry-port.md` |
+| Атлас текстур > 16384² (на слабых GPU слетали русские паки) | Поток 13 (session_01MpjMThXiMwvDnXrMqqdZXL) | opus — диагностика рендера | **влит #41** (~290 → ~125 Мпкс); сеанс архивирован |
+| Битые модели: Mekanism More Machines (`neoforge:composite`) и кольцо пилона Mana and Artifice (нет `pylon_ring.obj`) | Поток 14 | sonnet — разбор jar, KubeJS-ассеты | PR в `claude/affectionate-davinci-4gddoh`; `CLIENT OK`, подробности — `docs/compat.md` |
+| Ревью и слияние: #35, #31, #36, #39, #41, #37 | Ревью и интеграция (2) (session_01AtTBE2K9ovNYSKAU4EMyda) | sonnet — ревью по чек-листу | работает; при сильном росте контекста — замена свежим сеансом |
+
+Порядок слияния PR, которые все трогают jar `ru-lang` и `index.toml`: следующий автор подтягивает интегратор и пересобирает
+`scripts/build-ru-pack.sh` (бинарный jar — только пересборкой); повторный `test-client` не нужен, если влитое не пересекается с PR.
+Ветка `claude/ru-force-packs` (принудительное включение MPLOC/RTF+) не слита: до #41 при переполнении атласа давала краш вместо отката;
+после #41 — можно вернуться.
+
+Лимиты: 2026-10-13 00:00 UTC `seven_day` 75% (порог владельца на эту неделю), расход ночью ~2,5%/ч → режим «2 рабочих потока»
+(Ревью + Поток 13), Поток 12 остановлен с WIP, Поток 11 — после #37. Вопрос В14 владельцу: держать режим до сброса 17.10 06:00 UTC
+или поднять порог.
+Ждёт владельца (13.10): русские паки включены сразу; мобы Lycanites и драконы Ice and Fire без «missing»-текстур; книги
+(MnA, Animus, AMI, Dimensional Dungeons, bobbook) открываются по-русски; спавн мобов после BoMD; ModernFix-текстуры; В2 Millida; В14.
+
+Раунд 7 — 2026-10-13 (день; владелец на связи; лимит: «2 потока», стоп на 85% недели):
+| Задача | Поток (сеанс) | Модель — почему | Статус |
+|---|---|---|---|
+| #38 Wizardry Golems 0.2.0 — довести и слить вместо остановленного Потока 12 | Ревью и интеграция (2) | sonnet — слияние + тесты по образцу | **влит**; Поток 12 архивирован (ND-1 — WIP `claude/necromancers-delight`) |
+| Книга Caerula Arbor (429 строк) | Поток 11 | sonnet — перевод пачками | **влит #43**; сеанс архивирован |
+| Битые модели: mekmm `neoforge:composite`, MnA `pylon_ring.obj` | Поток 14 (session_01GMirfF4NSv9aGz89BvsGpA) | sonnet — замена ассетов через KubeJS | **влит #44**; сеанс архивирован |
+| Катаклизмы (В15): Weather2 + CoroUtil, Natural Disasters!, свой мод «Оберег» `mods-src/disaster-ward`; постройки ломаются (уточнение владельца) | Поток 15 (session_016FK9FaQRGFk4kHRNy6PKCJ) | sonnet — моды + маленький мод по образцу | **влит #45** |
+| WorldEdit (В18) — перенос построек на сервер, только OP | Поток 15 | sonnet | **влит #46**; сеанс архивирован |
+
+Решения владельца: В14 — 2 потока до сброса; В15 — катаклизмы (вариант 1 + на усмотрение 3/4, дубли убрать, оберег только из креатива, постройки ломаются);
+В16 — OreSpawn: поставить ремейк Chaos Persists (1.20.1), сравнить с оригиналом 1.7.10 и доделать недостающее;
+В17 — перенос построек: WorldEdit; В18 — «Да, добавляй».
+
+Очередь после сброса лимита (17.10 06:00 UTC):
+- OreSpawn: Chaos Persists в тестовую сборку → совместимость/дубли (Ice and Fire, Lycanites, Mowzie's) → список недостающего из 1.7.10 → выбор владельца → порт отдельным модом (opus).
+- Necromancer's Delight ND-1: с WIP `claude/necromancers-delight` (точка остановки — `docs/wizardry-port.md`), свежий сеанс opus.
+- Оберег: единый радиус для Weather2 (у него 128) и Natural Disasters! (64); бедствие, прилетевшее снаружи, не ломает блоки в зоне.
+- Ветка `claude/ru-force-packs` (после #41 атлас помещается) — оценить.
+- Extreme Natural Disasters (вулканы) / This Tsunami — только по запросу владельца.
+
+### Поток 8 — Производительность
+Файлы: `docs/performance.md`, `mods-src/mm-perf/`, `pack/config/{modernfix-mixins.properties,DistantHorizons.toml,jei/,sound_physics_remastered/}`, `pack/options.txt` (только строки графики).
+Сделано (ветка `claude/perf-stream8`, подробности и замеры — `docs/performance.md`):
+- [x] Причины: «вход ~3 мин» — запуск JEI на потоке отрисовки при каждом входе в мир (3,5 мин в стенде); создание мира — спавн-чанки (167 из 263 с) и генерация Distant Horizons.
+- [x] ModernFix `remove_spawn_chunks` + `dynamic_resources`, DH (радиус 64, без генерации), JEI без поиска по подсказкам, мод `mm-perf` (JEI без рецептов чар точила/наковальни),
+  Sound Physics, пресет графики `options.txt`, Let Me Despawn / FastFurnace / FastWorkbench; сервер до `Done` (58 с). Результат: создание мира 263 → 75–88 с, JEI 3,5 → 1,6 мин, меню 273–301 → 216–228 с.
+- [x] `friends.md` — «Если тормозит» (Xmx, JVM-флаги, видеокарта, spark); Xmx/JVM через packwiz/.mrpack задать нельзя — только инструкцией.
+- [ ] Решения владельца: JEI остаток (плагин Iron's Spells ~30 с; EMI вместо JEI?), железо владельца, `dynamic_resources` — визуальная проверка моделей; список «в отчёт» (Async Particles, BadOptimizations…) — в `docs/performance.md`.
+
+### Поток 9 — Боссы (таблица и огромные боссы)
+Файлы: `scripts/boss_table.py`, `scripts/boss_info.py`, `scripts/tests/bossdump.js`, `iafcheck.js`, `docs/bosses.md`/`csv`.
+1. ~~Таблица боссов сборки~~ — **сделано** (PR #32): 212 записей, числа из живой сборки; правило ведения — в «Правилах для всех потоков».
+2. Новый мод с огромными боссами — **Ice and Fire CE 2.1.13** (по умолчанию; вопрос владельцу ушёл через «Связь», альтернатива —
+   Bosses of Mass Destruction): в сборке, сервер/клиент ОК, русификация, `docs/compat.md` («Ice and Fire CE»).
+3. **Bosses of Mass Destruction 1.1.2 + Cerbon's API** (решение владельца В12 «а», PR ветки `claude/boss-bmd`): в сборке, spawncheck без просадки,
+   SERVER/CLIENT OK; условие — если у владельца спавн мобов снова пропадёт, убрать оба мода (см. compat.md).
+4. Дальше: описать остальные боссы в `boss_info.py` (Arknights-моды), проверка драконов в игре (нагрузка на ноутбуке), JEI-плагин IaF.
+
+### Поток 13 — Атлас текстур на GPU с пределом 16384
+- [x] Диагноз: «всеобщие» источники атласа блоков у Mana and Artifice (`entity`) и Blood Magic (`models`) тянут в атлас
+  мобов Lycanites/Ice and Fire/Alex's/Cataclysm (293 Мпкс > 16384²). Фильтр `pack/kubejs/assets/minecraft/atlases/blocks.json`:
+  ~125 Мпкс, атлас 16384×8192, `CLIENT OK` без отката паков (подробности — `docs/compat.md`).
+- [ ] Владельцу/друзьям: проверить в игре мобов Lycanites и драконов Ice and Fire (нет ли «missing»-текстур).
+
+### Поток 15 — Катаклизмы (ветка `claude/thread15-disasters`)
+- [x] Выбор: **Weather2 + CoroUtil** (торнадо, бури, сирены; торнадо рвут постройки по списку блоков, сундуки не трогают) + **Natural Disasters!** (метеориты, цунами, пожары, землетрясения, кислотный дождь; торнадо и песчаная буря отключены как дубли) — решение владельца В15.
+- [x] Свой мод `mods-src/disaster-ward`: «Оберег от катаклизмов» (только креатив, без рецепта и лута; зона 64 блока без бедствий обоих модов), редкий случайный спавн бедствий (30–80 мин на игрока), лимит одновременных бедствий. Extreme Natural Disasters не ставим (дубли, WIP) — `docs/compat.md`.
+- [x] Тест `scripts/tests/disasterward.js` (все DWCHECK OK), замеры нагрузки `disasterload.js`, русификация, строка про бэкап в `docs/friends.md`.
+- [ ] Владельцу: PR не слит; проверить в игре вид штормов (с шейдерами/Distant Horizons), нужны ли вулканы (Extreme Natural Disasters) и цунами-вёдра (This Tsunami); сервер с Natural Disasters! просадил TPS до ~5 при трёх бедствиях сразу над городом — лимит `maxConcurrent` (по умолчанию 1).
+- [x] WorldEdit 7.2.15 (В18, ветка `claude/worldedit`): в сборке, сервер ОК, инструкция переноса построек в `docs/friends.md`.

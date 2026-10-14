@@ -1,0 +1,9 @@
+{
+  "itemGroup.sophisticatedbackpacks": "Sophisticated Backpacks",
+  "key.sophisticatedbackpacks.inventory_interaction": "Запустить обмен с инвентарём",
+  "key.sophisticatedbackpacks.toggle_upgrade_1": "Вкл/выкл улучшение в слоте 1",
+  "key.sophisticatedbackpacks.toggle_upgrade_2": "Вкл/выкл улучшение в слоте 2",
+  "key.sophisticatedbackpacks.toggle_upgrade_3": "Вкл/выкл улучшение в слоте 3",
+  "key.sophisticatedbackpacks.toggle_upgrade_4": "Вкл/выкл улучшение в слоте 4",
+  "key.sophisticatedbackpacks.toggle_upgrade_5": "Вкл/выкл улучшение в слоте 5"
+}

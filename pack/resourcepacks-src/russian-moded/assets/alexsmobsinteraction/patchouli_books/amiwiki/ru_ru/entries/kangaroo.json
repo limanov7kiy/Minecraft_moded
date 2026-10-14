@@ -1,0 +1,14 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Кенгуру",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:totem_of_undying",
+      "text": "Позволяет экипировать кенгуру тотемами; также исправляет ошибку: неломающееся оружие теперь ломается, когда его экипируют",
+      "title": "Вооружение"
+    }
+  ],
+  "sortnum": 1
+}

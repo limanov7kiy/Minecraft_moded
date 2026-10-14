@@ -1,0 +1,13 @@
+{
+  "block.tfbr.respawn_hydra": "Пьедестал возрождения гидры",
+  "block.tfbr.respawn_lich": "Пьедестал возрождения лича",
+  "block.tfbr.respawn_naga": "Пьедестал возрождения наги",
+  "block.tfbr.respawn_snow_queen": "Пьедестал возрождения Снежной королевы",
+  "block.tfbr.respawn_ur_ghast": "Пьедестал Ур-гаста",
+  "creativetab.tfbr_tab": "Сумеречный лес: возрождение боссов",
+  "message.hydra.incorrect": "§7Поместите§f %s§7 на подсвеченные места, а§6 %s §7— сверху на пьедестал.",
+  "message.lich.incorrect": "§7Поместите§6 %s§7 на подсвеченные места, а§5 %s §7— сверху на пьедестал.",
+  "message.naga.incorrect": "§7Поместите§f %s§7 на подсвеченные места, а§a %s §7— сверху на пьедестал.",
+  "message.snow_queen.incorrect": "§7Поместите§f %s§7 на подсвеченные места, а§b %s §7— сверху на пьедестал.",
+  "message.ur_ghast.incorrect": "§7Поместите§c %s§7 на подсвеченные места, а§e %s §7— сверху на пьедестал."
+}

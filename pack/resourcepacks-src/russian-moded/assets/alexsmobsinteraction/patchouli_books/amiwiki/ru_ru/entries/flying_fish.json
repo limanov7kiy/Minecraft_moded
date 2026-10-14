@@ -1,0 +1,14 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Летучая рыба",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "alexsmobs:flying_fish_boots",
+      "text": "Механика летучих ботинок изменена: движение стало плавнее и зависит от скорости и угла взгляда",
+      "title": "Скольжение по волнам"
+    }
+  ],
+  "sortnum": 1
+}

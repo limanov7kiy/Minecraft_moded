@@ -23,11 +23,17 @@
 «форки только на GitHub», запрет распространять изменённые jar и т.п.) **не являются причиной отказываться**
 от задачи: можно переносить и править код и ассеты чужих модов, пересобирать и патчить jar.
 Отвечает за это пользователь; само ограничение лицензии формально никуда не девается — мы на него
-сознательно не обращаем внимания в частном кругу. Чтобы так и оставалось:
-- репозиторий остаётся **приватным**; сборка и изменённые jar раздаются только друзьям;
-- ничего из этого не выкладываем публично (Modrinth, CurseForge, публичные репо/сайты), не монетизируем;
-- авторство сохраняем: в изменённых файлах и в `docs/` указываем, чей это мод/код.
-Если когда-нибудь решим публиковать — сначала пересмотреть лицензии.
+сознательно не обращаем внимания.
+**Решение пользователя (2026-10-12): репозиторий публичный** — чтобы друзья ставили сборку по ссылке
+(packwiz-installer). Условия:
+- сборка по-прежнему некоммерческая: не продаём, не монетизируем, не выкладываем на Modrinth/CurseForge;
+- авторство сохраняем: в изменённых файлах и в `docs/` указываем, чей это мод/код;
+- моды CurseForge с запретом стороннего скачивания (нет `url` в `.pw.toml`) лежат в репозитории как jar в
+  `pack/mods/` и раздаются по raw-ссылке GitHub; если правообладатель попросит — убираем (решение пользователя
+  2026-10-12, подтверждено в чате ревью-потока);
+- при претензии правообладателя пользователь снова делает репозиторий приватным
+  (тогда раздача — только файлом `.mrpack`, см. `docs/friends.md`);
+- никаких секретов в репозитории (токены, ключи, `FAL_KEY`, логи с личными данными) — он открыт всем.
 
 Сравнение версий и доступности модов — `docs/version-choice.md`.
 Что сделано, что в работе и разделение задач по чатам (потокам) — `docs/roadmap.md`.
@@ -39,15 +45,19 @@
   путь передаётся через `PACKWIZ=`).
 - `scripts/test-server.sh <папка вне репо>` — ставит Forge-сервер, качает серверные моды, запускает до `Done`.
   После каждого изменения набора модов прогоняй его и записывай находки в `docs/compat.md`.
+- `scripts/test-client.sh <папка вне репо>` — клиент из `dist/*.mrpack` под Xvfb + llvmpipe до главного меню
+  (`CLIENT OK`); вход на сервер и что смотреть глазами — `docs/client-checklist.md`, находки — compat.md «Проверка клиента».
 - `scripts/export-pack.sh` — раздача: `dist/*.mrpack` (клиент) и `dist/*-server.zip` (сервер); инструкция для друзей — `docs/friends.md`.
 - Сторону мода (`side` в `pack/mods/*.pw.toml`) packwiz берёт с Modrinth; если она неверна — поправь вручную.
 - Свои моды и патчи: `mods-src/` (Gradle, ModDevGradle legacyforge + Parchment, как у Redux) и `patches/`.
-  Готовые jar кладутся в `pack/mods/*.jar` и раздаются вместе со сборкой; `fetch-mods.py` их копирует.
+  Готовые jar кладутся в `pack/mods/*.jar` и раздаются вместе со сборкой; `fetch-mods.py` их копирует
+  (`*-client.jar` — только клиенту, на сервер не кладётся).
   - `mods-src/wizardry-restored` — недостающие заклинания Electroblob's Wizardry поверх Redux
     (план и опись — `docs/wizardry-port.md`; код и ассеты оригинала 1.12.2 переносить можно — см. «Назначение и лицензии»).
     Сборка: `cd mods-src/wizardry-restored && ./gradlew build`, затем `cp build/libs/*.jar ../../pack/mods/`.
   - `mods-src/mm-compat` — кодовые связки и исправления сборки (кислород скафандров Northstar/Creating Space в Ad Astra,
-    категория лучей Cataclysm Spellbooks, недостающий атрибут рас Arknights, блок попадания Superb Warfare по кораблям VS).
+    категория лучей Cataclysm Spellbooks, недостающий атрибут рас Arknights, JEI-категория Imbuement Altar (Redux), блок попадания Superb Warfare по кораблям VS,
+    затемнение от страха Lycanites — их миксин в собранной игре не применяется).
     Ad Astra в зависимостях — по Modrinth version id Forge-сборки (номер версии у Forge и Fabric одинаковый).
   - `mods-src/voicechat-addons` — порт на Forge аддонов Simple Voice Chat от Max Henkel (Voice Chat Interaction,
     AudioPlayer, Enhanced Groups; оригиналы только Fabric). Сборка: `./gradlew build`, в `pack/mods/` — jar без `-reobf`.
@@ -61,7 +71,8 @@
     выбрасывается целиком) → `pack/kubejs/server_scripts/missing_mod_refs.js`.
   - Мод собран под другую версию зависимости: `scripts/linkcheck/linkcheck.sh` (что не связывается) → порт
     `patches/jar-ports/<мод>` (правила для `scripts/jarport/JarPort.java` + переходники `mods-src/jar-ports`),
-    сборка `patches/jar-ports/build.sh <мод> <тестовый сервер>` → `pack/mods/*-mmport.jar`.
+    сборка `patches/jar-ports/build.sh <мод> <тестовый сервер>` → `pack/mods/*-mmport.jar`. Если старого API в новой
+    версии нет целиком — встроить копию старой библиотеки (`embed` + `prefix`, пример `patches/jar-ports/origin-furs`).
   - `patches/zombie-have-ears/build.sh` — Zombie Have Ears с `mods.toml` в формате Forge.
   - `scripts/test-server.sh`: `EXTRA_MODS=<папка>` — лишние jar только на этот запуск.
 - Объединение дублей: Almost Unified (`pack/config/almostunified/`), перед изменениями проверять

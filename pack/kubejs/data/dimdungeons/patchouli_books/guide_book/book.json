@@ -1,0 +1,13 @@
+{
+  "name": "Dimensional Dungeons",
+  "landing_text": "Откройте для себя сложные и щедрые на награды Измерения подземелий.",
+  "model": "dimdungeons:item_guidebook",
+  "version": 0,
+  "subtitle": "v194, июль 2024",
+  "use_resource_pack": true,
+  "show_progress": false,
+  "advancement_namespaces": [
+    "dimdungeons"
+  ],
+  "creative_tab": "dimdungeons:creative_tab"
+}

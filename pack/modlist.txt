@@ -18,10 +18,15 @@ mr entityculling          # клиент
 mr immediatelyfast        # клиент
 mr smooth-boot-reloaded
 mr distanthorizons        # дальняя прорисовка
+mr lmd                    # Let Me Despawn (сервер): мобы с предметами/именами тоже деспавнятся — меньше мобов в мире (поток 8)
+mr fastfurnace            # сервер: кэш рецептов печей (поток 8)
+mr fastworkbench          # сервер: кэш рецептов верстака (поток 8)
 
 ## Магия
 mr electroblobs-wizardry-redux
-cf spell-forge-for-electroblobs-wizardry-redux  # дополнение Redux (поток 1); Wizardry Golems и Necromancer's Delight — только 1.12.2
+#jar spell-forge-for-electroblobs-wizardry-redux  # дополнение Redux (поток 1); Wizardry Golems и Necromancer's Delight — порт, поток 12
+#jar extra-golems                # Extra Golems 20.1.0.2 (skyjay1, zlib, both): база для Wizardry Golems; CF без стороннего скачивания
+# свой мод (both): pack/mods/wizardry-golems-*.jar из mods-src/wizardry-golems — порт Wizardry Golems 1.12.2 (WinDanesz, GPL-3.0), docs/wizardry-port.md
 mr irons-spells-n-spellbooks
 mr ars-nouveau
 mr botania
@@ -39,6 +44,9 @@ mr lycanites-mobs          # + pack/mods/lycanites-refmap-fix (patches/lycanites
 mr alexs-mobs
 mr mowzies-mobs
 mr l_enders-cataclysm
+mr ice-and-fire-dragons    # both: Ice and Fire CE 2.1.13 — драконы (огненный/ледяной/молниевый), гидра, сирены и др.; зависимость Citadel (поток 9)
+mr cerbons-api             # both (решение владельца В12 «а»: вернуть ради BoMD; поток 10 убирал из-за миксинов коллизий — регрессионный тест spawncheck.js)
+mr bosses-of-mass-destruction-forge  # both: Bosses of Mass Destruction 1.1.2 — Лич, Обсидилит, Void Blossom, Гаунтлет с аренами (поток 9)
 
 ## Ракеты, космос, техника
 mr create
@@ -65,6 +73,8 @@ mr arknights-races
 mr arknights-skills
 mr arknightsfurniture
 mr arknights-furs
+# свой порт (client): pack/mods/origin_visuals-1.0.5-mmport-client.jar — Origin Furs (зависимость Arknights Furs) под
+#   AzureLib 3.1 со встроенным старым API AzureLib 2.0.39 (patches/jar-ports/origin-furs, compat.md К3)
 mr origins-forge
 mr arknights-origins-originium-arts
 
@@ -76,7 +86,7 @@ mr deeperdarker
 mr alexs-caves
 mr the-bumblezone
 mr dimensional-dungeons
-cf the-twilight-forest
+#jar the-twilight-forest
 
 ## Реализм (умеренный)
 mr legendary-survival-overhaul
@@ -99,10 +109,11 @@ mr simple-radio             # both: рации и радио через SVC; с�
 mr sound-physics-remastered # client: эхо и заглушение звука, в т.ч. голосов
 mr talkingheads             # client: голова говорящего игрока покачивается
 mr let-them-talk            # client: приглушает музыку и другие звуки, пока кто-то говорит
-mr voicechatprofiles        # client: профили настроек голосового чата
+# mr voicechatprofiles      # ОТКЛЮЧЁН (поток 5): jar 1.0.1 под 1.20.1 Forge не перемаплен в SRG — вылет клиента на первом тике
 mr vibrative-voice          # server: голос — вибрация для скалк-сенсоров и Хранителя
 mr vc-admin-voice-chat-moderation-tool # server: OP заходят в запароленные группы (модерация)
 mr simplevoicechat-broadcast # server: OP вещает на всех (группа "broadcast")
+mr sols-authlogin         # server: пароль при входе (/register, /login) — офлайн-режим, защита ников; на клиенте не нужен
 # Voice Chat Interaction, AudioPlayer, Enhanced Groups (Max Henkel) есть только под Fabric — свой порт на Forge:
 #   mods-src/voicechat-addons → pack/mods/voicechat-addons-forge-*.jar (both)
 mr admiral                  # both: библиотека команд Max Henkel, нужна порту AudioPlayer и Enhanced Groups
@@ -113,7 +124,7 @@ mr admiral                  # both: библиотека команд Max Henkel
 mr playeranimator         # нужна Iron's Spells
 mr irons-lib              # Iron's Spells: >=1.20.1-2, <1.20.1-3
 mr caelus                 # нужна Origins (apoli)
-cf cupboard               # нужна Loot Integrations (>=1.20.1-1.5)
+#jar cupboard               # нужна Loot Integrations (>=1.20.1-1.5)
 mr refined-storage         # нужен More Backpack Upgrades (не объявлен на Modrinth)
 mr guideme                 # нужна Applied Energistics 2 (>=20.1.7, <20.2)
 mr moonlight               # нужна Supplementaries и Amendments
@@ -127,7 +138,7 @@ mr ars-creo               # Ars Nouveau × Create
 mr ars-additions
 mr tome-of-blood-rebirth  # Ars Nouveau × Blood Magic
 mr mythicbotany           # Botania: руны, альфхейм
-mr cataclysm-spellbooks   # Iron's Spells × Cataclysm  (нужен azurelib на сервере)
+# mr cataclysm-spellbooks # ОТКЛЮЧЁН: собран под Cataclysm 3.1x (клиент падал на Ancient_Remnant_Rework_Renderer) → порт, см. «Порты» (нужен azurelib на сервере)
 # Ракеты, техника
 mr ad-astra-giselle-addon # Ad Astra × Mekanism/Create (кислород, энергия)
 mr create-ad-astra-recipes
@@ -170,46 +181,47 @@ mr aether-protect-your-moa
 mr aether-treasure-reforging
 mr aether-enhanced-extinguishing
 mr aether-emissivity              # клиент
-cf umbral-skies                   # Twilight Forest × Aether
+#jar umbral-skies                   # Twilight Forest × Aether
 mr the-twilight-forest-dungeons-villages
+mr gtbcs-spelllib             # библиотека для GTBC Geomancy Plus (было CurseForge, теперь Modrinth)
 mr twilight-forest-the-lost-blocks
-cf tw-resurrection                # повторный призыв боссов TF
+#jar tw-resurrection                # повторный призыв боссов TF
 mr twilight-forest-cave-fix       # сервер
-cf create-blue-skies-compat
-cf blue-skies-tweaks
+#jar create-blue-skies-compat
+#jar blue-skies-tweaks
 mr farmers-cutting-blue-skies
 mr blue-skies-gravestones-compat  # сервер
 mr undergarden-delight
 mr deeper-and-darker-spellbooks   # Iron's Spells × Deeper and Darker
-cf deeper-and-darker-to-cataclysm-progression
+#jar deeper-and-darker-to-cataclysm-progression
 mr dungeons-and-villages-deeper-and-darker
 # mr cbc-nuclear                  # ОТКЛЮЧЕН: собран под старую Create Big Cannons, с 5.11.4 падает (NoSuchMethodError CBCBuilderTransformersImpl.safeNbt)
 mr create-alexs-caves-compat
 # Пачка 2: мобы и боссы
-cf lycanite-delight               # Lycanites × Farmer's Delight
-cf lycanites-kin
+#jar lycanite-delight               # Lycanites × Farmer's Delight
+#jar lycanites-kin
 mr mowzies-cataclysm              # Mowzie's × Cataclysm
 mr integrated-mowzies-mobs         # структуры Mowzie's; тянет Quark + Supplementaries + Amendments (одобрено пользователем)
-cf gtbcs-geomancy-plus            # Iron's Spells × Mowzie's
-cf alexs-delight                  # Alex's Mobs × Farmer's Delight
+#jar gtbcs-geomancy-plus            # Iron's Spells × Mowzie's
+#jar alexs-delight                  # Alex's Mobs × Farmer's Delight
 mr alexs-mobs-interaction
-cf alexs-mobs-capsid-fix
+#jar alexs-mobs-capsid-fix
 mr cinematic-cataclysm
-cf loot-integrations-cataclysm
+#jar loot-integrations-cataclysm
 # Пачка 3: магия
-cf ars-elemental                  # 4 стихийные школы Ars Nouveau
-cf too-many-glyphs
-cf ars-technica                   # Ars Nouveau × Create
-cf ars-instrumentum
+#jar ars-elemental                  # 4 стихийные школы Ars Nouveau
+#jar too-many-glyphs
+#jar ars-technica                   # Ars Nouveau × Create
+#jar ars-instrumentum
 mr ars-controle
 mr ars-artifice
 # cf to-tweaks-irons-spells       # ОТКЛЮЧЕН: собран под Cataclysm <3.31 (NoClassDefFoundError DungeonEyeItem)
 # mr alshanexs-familiars         # ОТКЛЮЧЕН: собран под старую Iron's Spells (NoClassDefFoundError SimpleAttributeCurio)
-cf irons-recipe-additions
+#jar irons-recipe-additions
 mr botanical-machinery
 mr botanical-extra-machinery      # тянет Applied Energistics 2 (одобрено пользователем)
 mr extrabotany
-cf mechanical-botania-revived     # мана Botania → вращение Create
+#jar mechanical-botania-revived     # мана Botania → вращение Create
 mr occult-engineering             # Occultism × Create
 mr occultism-ritual-satchel
 mr animus                         # Blood Magic
@@ -226,9 +238,9 @@ mr create-big-cannons-advanced-technologies
 mr valkyrien-sails
 mr vs-tournament-reforged         # порт VS Tournament под VS 2.4 (оригинал vs-tournament падает: VSConfigClass)
 # cf create-eureka                # ОТЛОЖЕН: это датапак (.zip), а не мод — в сборке нет загрузки датапаков (задача потоку 4)
-cf gathering-torches-become-sunlight
+#jar gathering-torches-become-sunlight
 # cf arknights-weapon            # ЗАМЕНЁН портом: arknights_weapon-1.5.6-mmport.jar (оригинал удваивал здоровье мобов) — см. ниже
-cf sarkazs-furnace-side-fables
+#jar sarkazs-furnace-side-fables
 # Пачка 5: техника и удобство
 mr mekanismmoremachine            # Mekanism: больше машин и фабрик
 mr mekanism-covers
@@ -246,10 +258,51 @@ mr legendary-survival-addon       # Create × Legendary Survival Overhaul
 # cbc-nuclear          → cbc_nukes-2.1.1-mmport.jar                (CBC 5.11: safeNbt, explosivePower)
 # alshanexs-familiars  → alshanex_familiars-1.20.1_v1.1.2-mmport.jar (Iron's Spells 3.16)
 # to-tweaks-irons-spells (T.O Magic 'n Extras, CurseForge) → traveloptics-6.3.0-1.20.1-mmport.jar (Cataclysm 3.31)
+# cataclysm-spellbooks → cataclysm_spellbooks-1.2.9-1.20.1-mmport.jar (Cataclysm 3.31: частицы, ракета, лазер, Остаток)
 # arknights-weapon (CurseForge) → arknights_weapon-1.5.6-mmport.jar (без RiseProcedure: удваивала здоровье мобов при каждой
 #   загрузке чанка). Оригинал у потока 3 закомментирован, его .pw.toml удалён.
 mr apothic-attributes     # обязательная зависимость T.O Magic 'n Extras (+ Placebo)
+mr azurelib               # обязательная зависимость Cataclysm: Spellbooks (раньше подтягивалась packwiz'ом)
 # zombie-have-ears (поток 2) → zombiehaveears-1.1.2-forgefix.jar (patches/zombie-have-ears, только mods.toml)
 
 ## Рубка деревьев (поток 18; Falling Tree — RakSrinaNa, LGPL-3.0)
 mr fallingtree            # both: 1.20.1-4.3.4; дерево падает целиком (FALL_BLOCK), присед = один блок; «всё или ничего» по прочности — миксин FallingTreeDamageMixin в mods-src/mm-compat; конфиг pack/config/fallingtree.json (docs/compat.md)
+# Поток 3, по решению владельца: Mana and Artifice и Ars Magica: Legacy (+ дополнения). Все side=both.
+## Магия — Mana and Artifice и Ars Magica: Legacy
+mr mana-and-artifice                 # 3.1.11 Forge 1.20.1; зависимости GeckoLib, Curios уже в сборке
+mr ars-magica-legacy                 # 1.20.1-1.5.0; зависимости GeckoLib, Patchouli уже в сборке; дополнений под 1.20.1 нет
+mr arcaneadditions                   # дополнение M&A: компоненты заклинаний, ритуалы
+mr factions-and-curiosities          # дополнение M&A: новые фракции
+# mr mnawitchcraft                 # ЗАМЕНЁН портом: pack/mods/mnaw-1.20.1-forge-0.2.1-alpha-mmport.jar (both) — M&A Witchcraft под M&A 3.1.11
+#   (patches/jar-ports/mnawitchcraft; оригинал падал с NoClassDefFoundError com.mna.items.ritual.ItemPlayerCharm)
+mr mnaoverpowered                    # дополнение M&A: QoL-твики
+mr dragon-magic-and-relics           # дополнение M&A
+
+## JEI: просмотр крафтов/использования (поток 7, docs/jei.md)
+mr justenoughbreeding         # клиент: разведение мобов (Alex's Mobs, Mowzie's, ванилла) в JEI
+mr just-enough-professions-jep  # рабочие места жителей в JEI
+#removed just-enough-beacons-reforged  # убран 2026-10-12 (поток 10): есть только сборка «1.20.4» и она требует Cerbon's API,
+#   чьи общие миксины коллизий (AABB/Shapes/VoxelShape/Entity) в одиночном мире работают на встроенном сервере — риск > пользы
+mr jea                        # поиск достижений в JEI (both)
+
+## Катаклизмы (поток 15; идея владельца: торнадо, бури; docs/compat.md «Weather2»)
+mr weather-storms-tornadoes       # Weather2 2.8.3 (Corosus/ProtoManly): штормы, торнадо, песчаные/снежные бури, сирены; профиль — pack/config (разрушение построек ВЫКЛ)
+mr coroutil                       # библиотека Weather2
+mr natural_disasters              # Natural Disasters! 2.0.0 (MCreator, YouTuber): метеоры, цунами, пожары, кислотный дождь, воронки, землетрясения; торнадо и песчаная буря отключены (дубли Weather2) модом disaster-ward
+#jar disaster-ward                # наш мод (mods-src/disaster-ward): «Оберег от катаклизмов» (только креатив; зона без бедствий Weather2/Natural Disasters!) и редкий случайный спавн бедствий
+#removed extreme-natural-disasters  # не ставим (поток 15): землетрясения/провалы/метеориты дублируют Natural Disasters!, остальное — WIP-апокалипсисы и вулканы; бедствия не сущности (защиту пришлось бы делать миксинами)
+
+## Строительство (администратору; WorldEdit — команды только для OP)
+mr worldedit                      # WorldEdit 7.2.15 (Forge 1.20.1): перенос построек схематиками, см. docs/friends.md
+
+## Русификация (поток 6; rp = ресурспак с Modrinth, сторона client; порядок включения — pack/options.txt, docs/russification.md)
+#patched mploc_mods              # MPLOC: ИИ-переводы сотен модов, CC-BY-SA (автор MPLOC), нижний слой; pack_format 88 → 15 через scripts/patch-rp-format.py (иначе 1.20.1 выкидывает пак)
+rp rtf-extension                  # RTF+: переводы + книги Patchouli/Tinkers/Oritech, AGPL, выше MPLOC
+rp rtf                            # RTF: Ad Astra, Twilight Delight и др. (MIT)
+rp russian-delight                # дополнения Farmer's Delight (MIT)
+#patched just-some-translations-to-russian  # Xaero's World Map, Sodium/Embeddium (MIT); pack_format 34 → 15, так же
+
+## Заброшенные города (поток 6, docs/lost-cities.md)
+mr the-lost-cities                # The Lost Cities (McJty, MIT): города в обычном Overworld; профиль — pack/defaultconfigs/lostcities-server.toml
+
+#jar ru-lang                      # наш клиентский мод (mods-src/ru-lang): всегда включённый верхний ресурспак russian-moded; пересобирать scripts/build-ru-pack.sh после правок переводов

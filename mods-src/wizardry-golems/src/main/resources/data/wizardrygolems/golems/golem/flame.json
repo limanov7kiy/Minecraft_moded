@@ -1,0 +1,30 @@
+{
+  "attributes": {
+    "health": 80.0,
+    "attack": 7.0,
+    "speed": 0.25,
+    "armor": 0.0,
+    "knockback_resistance": 0.4,
+    "immune": [
+      "minecraft:in_fire",
+      "minecraft:on_fire",
+      "minecraft:lava",
+      "minecraft:hot_floor"
+    ],
+    "weak": [
+      "minecraft:drown"
+    ],
+    "swim_ability": "float",
+    "sound": "minecraft:stone"
+  },
+  "hidden": true,
+  "model": "wizardrygolems:flame",
+  "brain": {
+    "behaviors": [
+      {
+        "type": "golems:light",
+        "light": 15
+      }
+    ]
+  }
+}

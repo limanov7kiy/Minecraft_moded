@@ -1,0 +1,14 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Камнекат",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "alexsmobs:rocky_chestplate",
+      "text": "С зачарованием «Раскаты грома», которое можно найти в подземных шахтах, вы сможете катиться по жидкостям",
+      "title": "Раскаты грома"
+    }
+  ],
+  "sortnum": 1
+}

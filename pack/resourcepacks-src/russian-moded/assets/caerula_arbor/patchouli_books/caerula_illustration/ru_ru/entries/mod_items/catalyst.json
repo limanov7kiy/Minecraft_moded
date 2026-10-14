@@ -1,0 +1,20 @@
+{
+  "name": "Катализатор мутации",
+  "icon": "caerula_arbor:oceanize_catalyst",
+  "category": "caerula_arbor:mod_items",
+  "read_by_default": true,
+  "sortnum": 8,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Катализатор мутации",
+      "item": "caerula_arbor:oceanize_catalyst",
+      "scale": 1,
+      "text": "Катализатор, созданный из мутагенных клеток; щелчок правой кнопкой по другому существу океанизирует его.$(br)Учтите: шанс успеха не равен 100% и растёт по мере снижения здоровья существа. При неудаче катализатор всё равно расходуется, а существо получает огромный урон.$(br)Для низших существ катализ чаще оказывается смертельным."
+    },
+    {
+      "type": "crafting",
+      "recipe": "caerula_arbor:craft_catalyst"
+    }
+  ]
+}

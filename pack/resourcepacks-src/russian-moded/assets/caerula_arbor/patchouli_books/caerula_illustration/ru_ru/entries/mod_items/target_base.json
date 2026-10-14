@@ -1,0 +1,63 @@
+{
+  "name": "Целевые медиаторы",
+  "icon": "caerula_arbor:targeted_base",
+  "category": "caerula_arbor:mod_items",
+  "read_by_default": true,
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Целевая основа",
+      "item": "caerula_arbor:targeted_base",
+      "scale": 1,
+      "text": "Один из краеугольных камней технологии глубоководных охотников. Её можно найти на складе исследовательского центра Эгира; набрав несколько штук, их можно размножить крафтом."
+    },
+    {
+      "type": "text",
+      "title": "Внедрение генов",
+      "text": "Щелчком правой кнопкой поместите её в целевой инъектор Эгира, затем щёлкните очищенным геномом, чтобы завершить обработку и получить целевой медиатор.$(br)Целевой медиатор нужно скрафтить с базовым хирургическим набором; об использовании см. связанные статьи."
+    },
+    {
+      "type": "spotlight",
+      "title": "Целевой медиатор: Хюрроккин",
+      "item": "caerula_arbor:targeted_transmitter_skadi",
+      "scale": 1,
+      "text": "Получается внедрением очищенного генома с программой Хюрроккин; нужен для создания хирургического набора."
+    },
+    {
+      "type": "spotlight",
+      "title": "Целевой медиатор: Ретиарий",
+      "item": "caerula_arbor:targeted_transmitter_gladiia",
+      "scale": 1,
+      "text": "Получается внедрением очищенного генома Ретиария; нужен для создания хирургического набора."
+    },
+    {
+      "type": "spotlight",
+      "title": "Целевой медиатор: Юстиниан",
+      "item": "caerula_arbor:targeted_transmitter_ulpians",
+      "scale": 1,
+      "text": "Получается внедрением очищенного генома Юстиниана; нужен для создания хирургического набора."
+    },
+    {
+      "type": "spotlight",
+      "title": "Целевой медиатор: Лаврентина",
+      "item": "caerula_arbor:targeted_transmitter_specter",
+      "scale": 1,
+      "text": "Получается внедрением очищенного генома Лаврентины; нужен для создания хирургического набора."
+    },
+    {
+      "type": "crafting",
+      "recipe": "caerula_arbor:craft_trageted_base",
+      "recipe2": "caerula_arbor:copy_target_base"
+    },
+    {
+      "type": "relations",
+      "title": "Связанные статьи",
+      "text": "Ссылки на другие понятия, упомянутые в этой записи, приведены выше.",
+      "entries": [
+        "caerula_arbor:mod_items/hunter_gene",
+        "caerula_arbor:mod_items/operation_kit"
+      ]
+    }
+  ]
+}

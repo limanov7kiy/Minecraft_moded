@@ -1,0 +1,12 @@
+{
+  "creative_tab.cataclysm_spellbooks.items": "Cataclysm: Spellbooks",
+  "curios.identifier.sheath": "Ножны клинка",
+  "curios.modifiers.sheath": "Ножны клинка",
+  "item.cataclysm_spellbooks.burning_manuscript_description_2": "В заклинательной кузнице держите этот предмет в инвентаре, и вы сможете создавать заклинания Ignis",
+  "item.cataclysm_spellbooks.frozen_tablet_description_2": "В заклинательной кузнице держите этот предмет в инвентаре, и вы сможете создавать заклинания Maledictus",
+  "item.cataclysm_spellbooks.more_details": "Нажмите [SHIFT], чтобы узнать подробности",
+  "ui.cataclysm_spellbooks.harbinger_unlearned": "Для открытия требуется Странный диск в инвентаре или экипированный проигрыватель дисков",
+  "ui.cataclysm_spellbooks.ignis_unlearned": "Для открытия требуется Горящая рукопись в инвентаре",
+  "ui.cataclysm_spellbooks.maledictus_unlearned": "Для открытия требуется Замороженная табличка в инвентаре",
+  "ui.cataclysm_spellbooks.tentacle_laceration_unlearned": "Для открытия требуется Приливный коготь в основной руке"
+}

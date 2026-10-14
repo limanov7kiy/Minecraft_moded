@@ -1,0 +1,22 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Страддлер",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/straddler_shots.png"
+      ],
+      "text": "Страддлер может сделать несколько выстрелов до перезарядки (по умолчанию: 8)",
+      "title": "Выстрелы страддлера"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "alexsmobs:straddleboard",
+      "text": "Если страддлборд не выпал сам, выпадает половина стоимости его материалов",
+      "title": "Сбор остатков страддлера"
+    }
+  ],
+  "sortnum": 1
+}

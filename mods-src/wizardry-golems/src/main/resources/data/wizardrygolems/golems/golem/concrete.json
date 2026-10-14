@@ -1,0 +1,16 @@
+{
+  "attributes": {
+    "health": 47.0,
+    "attack": 5.0,
+    "speed": 0.26,
+    "armor": 0.0,
+    "knockback_resistance": 0.4,
+    "immune": [],
+    "weak": [],
+    "swim_ability": "float",
+    "sound": "minecraft:stone"
+  },
+  "hidden": true,
+  "model": "wizardrygolems:concrete",
+  "brain": "golems:empty"
+}

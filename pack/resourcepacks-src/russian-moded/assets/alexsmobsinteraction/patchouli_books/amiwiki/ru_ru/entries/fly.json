@@ -1,0 +1,28 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Муха",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/scented_interaction.png"
+      ],
+      "text": "Мух привлекают некоторые животные, а свечи их отпугивают",
+      "title": "Запах"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Корова, овца, свинья, лама, шнюхач, лошадь, разоритель, слон, носорог, тюлень, бизон"
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/maggot_fishing.png"
+      ],
+      "text": "Заброс удочки с личинкой в руке повышает удачу при рыбалке",
+      "title": "Рыбалка на личинку"
+    }
+  ],
+  "sortnum": 1
+}

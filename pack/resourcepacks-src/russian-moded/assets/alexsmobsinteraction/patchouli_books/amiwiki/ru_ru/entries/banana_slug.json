@@ -1,0 +1,16 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Банановый слизняк",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/banana_shear.png"
+      ],
+      "text": "Банановых слизняков можно стричь ножницами, чтобы получить банановые предметы",
+      "title": "Банановая стрижка"
+    }
+  ],
+  "sortnum": 1
+}

@@ -1,0 +1,16 @@
+{
+  "attributes": {
+    "health": 25.0,
+    "attack": 3.0,
+    "speed": 0.26,
+    "armor": 2.0,
+    "immune": [
+      "minecraft:lightning_bolt"
+    ],
+    "swim_ability": "swim",
+    "sound": "minecraft:stone"
+  },
+  "hidden": true,
+  "model": "wizardrygolems:thunderstone",
+  "brain": "golems:empty"
+}

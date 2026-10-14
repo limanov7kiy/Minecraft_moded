@@ -1,0 +1,21 @@
+{
+  "advancements.irons_spellbooks.root.title": "Iron's Spells 'n Spellbooks",
+  "block.irons_spellbooks.cooked_ice_spider_egg": "Приготовленное яйцо ледяного паука",
+  "block.irons_spellbooks.trial_spawner": "Магический спавнер",
+  "block.irons_spellbooks.vault": "Магическое хранилище",
+  "effect.irons_spellbooks.trial_omen": "Предзнаменование испытания",
+  "effect.irons_spellbooks.trial_omen.description": "Превращает ближайшие спавнеры испытаний в зловещие спавнеры испытаний",
+  "item.irons_spellbooks.cooked_ice_spider_egg": "Приготовленное яйцо ледяного паука",
+  "item.irons_spellbooks.music_disc_dead_king_lullaby.desc": "Caner Crebes - Колыбельная короля",
+  "item.irons_spellbooks.music_disc_flame_still_burns.desc": "Caner Crebes - Пламя ещё горит",
+  "item.irons_spellbooks.music_disc_whispers_of_ice.desc": "Caner Crebes - Шёпот льда",
+  "item.irons_spellbooks.ominous_bottle": "Зловещая склянка",
+  "item.irons_spellbooks.prepared_ice_spider_egg": "Подготовленное яйцо ледяного паука",
+  "jukebox_song.irons_spellbooks.flame_still_burns": "Caner Crebes - Пламя ещё горит",
+  "jukebox_song.irons_spellbooks.whispers_of_ice": "Caner Crebes - Шёпот льда",
+  "key.irons_spellbooks.group_1": "Iron's Spells: основное",
+  "key.irons_spellbooks.group_2": "Iron's Spells: быстрый вызов",
+  "key.irons_spellbooks.spell_bar_modifier": "Прокрутка панели заклинаний",
+  "key.irons_spellbooks.spell_wheel_toggle": "Колесо заклинаний",
+  "key.irons_spellbooks.spellbook_cast": "Применить заклинание"
+}

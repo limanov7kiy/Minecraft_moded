@@ -1,0 +1,29 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Таракан",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/asmongold.png"
+      ],
+      "text": "Таракану можно надеть «Корону тараканов», и он станет Королём тараканов; ближайшие тараканы тоже превратятся в его слуг",
+      "title": "Король тараканов"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "alexsmobsinteraction:asmon_crown",
+      "text": "Тараканы-слуги обращают других тараканов и нападают на тех, кто вредит королю"
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/cockroach_mutation.png"
+      ],
+      "text": "[ТРЕБУЕТСЯ ALEX'S CAVES] Под воздействием радиации таракан мутирует в гамматаракана",
+      "title": "Мутация тараканов"
+    }
+  ],
+  "sortnum": 1
+}

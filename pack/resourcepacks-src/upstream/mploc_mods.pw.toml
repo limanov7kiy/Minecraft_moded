@@ -1,0 +1,13 @@
+name = "MPLOCmods"
+filename = "mploc-mods-v43.zip"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/xeqX6g8g/versions/4Ph6g1ML/MPLOCmods_v43.zip"
+hash-format = "sha512"
+hash = "83151de7516bfda5caa329bd987722c623b1aaae024365863e8054f2b1821cb5f8776cb1427d7aae99857ae42a448f00cd2a9070158d52612d1041896fe9fcf4"
+
+[update]
+[update.modrinth]
+mod-id = "xeqX6g8g"
+version = "4Ph6g1ML"

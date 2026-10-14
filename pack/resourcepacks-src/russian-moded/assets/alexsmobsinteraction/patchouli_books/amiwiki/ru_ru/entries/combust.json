@@ -1,0 +1,15 @@
+{
+  "category": "alexsmobsinteraction:general",
+  "icon": "minecraft:paper",
+  "name": "Возгорание",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/general/combust.png"
+      ],
+      "text": "Облитые маслом мобы воспламеняются. Совместимо с огнём душ",
+      "title": "Возгорание"
+    }
+  ]
+}
