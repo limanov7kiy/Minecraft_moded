@@ -49,11 +49,19 @@ public final class MmPerf {
         Minecraft mc = Minecraft.getInstance();
         if (!keysDone && mc.options != null && mc.getOverlay() == null) {   // настройки загружены, игра дошла до меню
             keysDone = true;
+            String assign = System.getProperty("mm_perf.selftest.assign");   // тест: «игрок сам назначил» клавишу до миграции
+            if (assign != null) {
+                for (KeyMapping m : mc.options.keyMappings) {
+                    if (m.getName().equals(assign)) m.setKey(InputConstants.Type.KEYSYM.getOrCreate(InputConstants.KEY_F9));
+                }
+                KeyMapping.resetMapping();
+            }
             try {
                 KeyDefaults.apply(mc, KEY_NAME);
             } catch (RuntimeException | LinkageError ex) {
                 LOGGER.warn("[mm_perf] клавиши модов не обработаны: {}", ex.toString());
             }
+            if (System.getProperty("mm_perf.selftest") != null) SelfTest.run(mc);
         }
         if (lowSpecKey != null) {
             while (lowSpecKey.consumeClick()) LowSpecMode.toggle();
