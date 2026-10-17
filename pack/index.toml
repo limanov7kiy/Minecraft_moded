@@ -1672,7 +1672,7 @@ metafile = true
 
 [[files]]
 file = "mods/ru-lang-1.0.0-client.jar"
-hash = "797622887dc15fa45c6692f3aca8f994d79afddb5b1f66f0c6855728d5d92e20"
+hash = "5dd1d988b43b5024feb7527d2ed07e8160383ae647bdd6342829b06e3563d2fa"
 
 [[files]]
 file = "mods/sarkazs_furnace_side_fables-0.2.3-forge-1.20.1.jar"

@@ -1,11 +1,12 @@
 // Тест порта Necromancer's Delight (поток 12, этап ND-1): заклинания без мобов Fish's Undead Rising и артефакты.
 // Вывод: NDCHECK <проверка> OK|FAIL <подробности>
+const ND = { phase: 0, cast: 0 }
 ServerEvents.tick(event => {
   const server = event.server
   const t = server.tickCount
-  const pd = server.persistentData
   if (t < 200) return
-  // фаза: 0 — грузим чанки; 1 — ждём entity-ticking; 2 — каст сделан на тике pd.ndCast
+  // фазы — в переменной скрипта (server.persistentData у KubeJS — не CompoundTag): 0 — грузим чанки;
+  // 1 — ждём entity-ticking (не раньше t=600); 2 — каст сделан на тике ND.cast
   const RL = Java.loadClass('net.minecraft.resources.ResourceLocation')
   const RM = Java.loadClass('net.minecraftforge.registries.RegistryManager')
   const NdFake = Java.loadClass('net.minecraftforge.common.util.FakePlayerFactory')
@@ -24,18 +25,18 @@ ServerEvents.tick(event => {
   const hasEff = (e, id) => { let ok = false; e.getActiveEffects().forEach(i => { if (String(i.getEffect().getDescriptionId()) == id) ok = true }); return ok }
   // арены по X: -200 (вонючая), -230 (морозная), -260 (разъедание), -290 (светогриб, споры, амулет)
   const arenas = [-200, -230, -260, -290]
-  if (!pd.contains('ndPhase')) {
+  if (ND.phase == 0) {
     // чанки арен грузим заранее: пока чанк не entity-ticking, призванные мобы и снаряды в нём «не видны»
     server.runCommandSilent('forceload add -310 -20 -180 20')
     server.runCommandSilent('time set midnight')
-    pd.putInt('ndPhase', 1)
+    ND.phase = 1
     return
   }
-  let phase = pd.getInt('ndPhase')
-  if (phase == 1) {
+  if (ND.phase == 1) {
+    if (t < 600) return
     let ready = arenas.every(x => level.isPositionEntityTicking(new BlockPos(x, 200, 0)) && level.isPositionEntityTicking(new BlockPos(x, 200, 6)))
     if (!ready) { if (t % 100 == 0) console.info(`NDDIAG waiting chunks t=${t}`); return }
-    pd.putInt('ndPhase', 2); pd.putInt('ndCast', t)
+    ND.phase = 2; ND.cast = t
     arenas.forEach(x => { server.runCommandSilent(`fill ${x - 8} 199 -8 ${x + 8} 199 8 minecraft:stone`); server.runCommandSilent(`fill ${x - 8} 200 -8 ${x + 8} 210 8 minecraft:air`) })
     ;[-200, -230, -260].forEach(x => server.runCommandSilent(`summon minecraft:husk ${x}.5 200 4.5 {NoAI:1b,PersistenceRequired:1b}`))
     let aim = (x, pitch) => { fake.setPos(x + 0.5, 200, 0.5); fake.yRot = 0; fake.xRot = pitch; fake.yHeadRot = 0; fake.setOnGround(true) }
@@ -48,7 +49,7 @@ ServerEvents.tick(event => {
     console.info(`NDDIAG after_cast_entities=${bombs.join(' ')}`)
     return
   }
-  let since = t - pd.getInt('ndCast')
+  let since = t - ND.cast
   if (since == 5 || since == 15) {
     // диагностика: где бомбы и куда смотрит фейковый игрок
     level.getEntitiesOfClass(Entity, new AABB(-320, 0, -40, -170, 320, 40)).forEach(e => {
