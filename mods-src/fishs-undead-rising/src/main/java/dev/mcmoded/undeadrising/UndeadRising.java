@@ -6,6 +6,7 @@ import dev.mcmoded.undeadrising.network.FurNetwork;
 import dev.mcmoded.undeadrising.registry.FurBannerPatterns;
 import dev.mcmoded.undeadrising.registry.FurEntities;
 import dev.mcmoded.undeadrising.registry.FurItems;
+import dev.mcmoded.undeadrising.registry.FurBlocks;
 import dev.mcmoded.undeadrising.registry.FurParticles;
 import dev.mcmoded.undeadrising.registry.FurSounds;
 import dev.mcmoded.undeadrising.registry.FurTabs;
@@ -32,6 +33,7 @@ public class UndeadRising {
         FurSounds.SOUNDS.register(modBus);
         FurParticles.PARTICLES.register(modBus);
         FurEntities.ENTITIES.register(modBus);
+        FurBlocks.BLOCKS.register(modBus);
         FurItems.ITEMS.register(modBus);
         FurTabs.TABS.register(modBus);
         FurBannerPatterns.PATTERNS.register(modBus);

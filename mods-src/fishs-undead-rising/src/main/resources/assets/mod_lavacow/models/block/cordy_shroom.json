@@ -1,7 +1,7 @@
-
 {
-    "parent": "minecraft:block/cross",
-    "textures": {
-        "cross": "mod_lavacow:block/cordy_shroom"
-    }
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "mod_lavacow:block/cordy_shroom"
+  },
+  "render_type": "minecraft:cutout"
 }

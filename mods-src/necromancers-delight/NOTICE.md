@@ -7,3 +7,7 @@
 `mods-src/fishs-undead-rising` (`mod_lavacow`), см. его NOTICE.md.
 
 Порт (код под Electroblob's Wizardry Redux 0.8.9) — проект Minecraft_moded, тоже GPL-3.0.
+
+Состав порта: ND-1 (0.1.0) — бомбы, Corrode, Glowshroom, эффекты, артефакты без мобов FUR; ND-3 (0.2.0) — остальные
+15 заклинаний и 12 артефактов, пиявки-миньоны (`entity/LeechMinion`, текстуры оригинала, модель паразита FUR).
+Подробности и упрощения — `docs/wizardry-port.md`, раздел «ND-3».

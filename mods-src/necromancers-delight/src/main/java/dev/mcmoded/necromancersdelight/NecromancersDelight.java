@@ -25,6 +25,22 @@ public class NecromancersDelight {
     public static final RegistryObject<Spell> FROST_BOMB = SPELLS.register("frost_bomb", NdSpells::frostBomb);
     public static final RegistryObject<Spell> CORRODE = SPELLS.register("corrode", dev.mcmoded.necromancersdelight.spell.Corrode::new);
     public static final RegistryObject<Spell> GLOWSHROOM = SPELLS.register("glowshroom", dev.mcmoded.necromancersdelight.spell.Glowshroom::new);
+    // ND-3 (порядок — как в NDSpells оригинала)
+    public static final RegistryObject<Spell> BOUND_FROZEN_DAGGER = SPELLS.register("bound_frozen_dagger", NdSpells::boundFrozenDagger);
+    public static final RegistryObject<Spell> BOUND_BONE_SWORD = SPELLS.register("bound_bone_sword", NdSpells::boundBoneSword);
+    public static final RegistryObject<Spell> HOLY_HAND_GRENADE = SPELLS.register("holy_hand_grenade", NdSpells::holyHandGrenade);
+    public static final RegistryObject<Spell> GHOST_BOMB = SPELLS.register("ghost_bomb", NdSpells::ghostBomb);
+    public static final RegistryObject<Spell> WAIL_OF_THE_BANSHEE = SPELLS.register("wail_of_the_banshee", NdSpells::wailOfTheBanshee);
+    public static final RegistryObject<Spell> SUMMON_VESPA = SPELLS.register("summon_vespa", NdSpells::summonVespa);
+    public static final RegistryObject<Spell> CONJURE_BANSHEE = SPELLS.register("conjure_banshee", NdSpells::conjureBanshee);
+    public static final RegistryObject<Spell> CONJURE_MYCOSIS = SPELLS.register("conjure_mycosis", NdSpells::conjureMycosis);
+    public static final RegistryObject<Spell> SUMMON_SALAMANDER = SPELLS.register("summon_salamander", NdSpells::summonSalamander);
+    public static final RegistryObject<Spell> TRIAL_OF_MUSHROOMS = SPELLS.register("trial_of_mushrooms", dev.mcmoded.necromancersdelight.spell.TrialOfMushrooms::new);
+    public static final RegistryObject<Spell> BOUND_SPECTRAL_DAGGER = SPELLS.register("bound_spectral_dagger", NdSpells::boundSpectralDagger);
+    public static final RegistryObject<Spell> BOUND_VESPA_SHIELD = SPELLS.register("bound_vespa_shield", NdSpells::boundVespaShield);
+    public static final RegistryObject<Spell> SUMMON_MANA_LEECH = SPELLS.register("summon_mana_leech", NdSpells::summonManaLeech);
+    public static final RegistryObject<Spell> SUMMON_ELEMENTAL_LEECH = SPELLS.register("summon_elemental_leech", NdSpells::summonElementalLeech);
+    public static final RegistryObject<Spell> CARCINIZE = SPELLS.register("carcinize", dev.mcmoded.necromancersdelight.spell.Carcinize::new);
 
     public static final DeferredRegister<net.minecraft.world.level.block.Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MOD_ID);
     public static final RegistryObject<net.minecraft.world.level.block.Block> TEMP_GLOWSHROOM = BLOCKS.register("temporary_glowshroom",
@@ -34,6 +50,11 @@ public class NecromancersDelight {
     public NecromancersDelight() {
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
         NdBombs.init();
+        dev.mcmoded.necromancersdelight.entity.NdEntities.init();
+        modBus.addListener(dev.mcmoded.necromancersdelight.entity.NdEntities::onAttributes);
+        var redux = com.binaris.wizardry.core.event.WizardryEventBus.getInstance();
+        redux.register(com.binaris.wizardry.api.content.event.SpellCastEvent.Pre.class, dev.mcmoded.necromancersdelight.item.NdArtifacts::onSpellPreCast);
+        redux.register(com.binaris.wizardry.api.content.event.SpellCastEvent.Post.class, dev.mcmoded.necromancersdelight.item.NdArtifacts::onSpellPostCast);
         dev.mcmoded.necromancersdelight.item.NdItems.init();
         SPELLS.register(modBus);
         BLOCKS.register(modBus);

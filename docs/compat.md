@@ -630,6 +630,33 @@ Mimic; снаряды Death Coil, Acid/Flame Jet, War Small Fireball; эффек
   `/tmp/.X99-lock` и `/tmp/.X11-unix/X99`.
 - Предметы приручения Salamander/Weta/Mimic падают с мобов FUR, которых нет в порте, — пока только в творческом разделе.
 
+### Necromancer's Delight — ND-3 (поток 29, 2026-10-17)
+`mods-src/necromancers-delight` 0.2.0 (15 заклинаний и 12 артефактов на мобах/предметах FUR, пиявки-миньоны) и
+`mods-src/fishs-undead-rising` 0.3.0 (оружие, бомбы, кактусовый шип, грибы-блоки с генерацией). Подробности — docs/wizardry-port.md «ND-3».
+- Сервер: `scripts/tests/nd3check.js` 55/55 OK (касты 15 заклинаний и эффекты в мире: призванное оружие, морозный кинжал,
+  три бомбы FUR, 6 миньонов с хозяином, грибы, мимикраб из сундука, подмены зомби/скелетов, Bone Bag, грибной талисман,
+  мана-пиявка ворует ману и делится с хозяином, цена ×2 и Venom ×0,6, амулет кристалла, корона, пояс шипов, генерация гриба)
+  + ndcheck 11/11 + furcheck 13/13, SERVER OK. Прогон: `TEST_COMMANDS=<«#sleep 480»> EXTRA_SERVER_SCRIPTS=<копии трёх скриптов>`.
+- Один раз JVM тестового сервера не завершилась после «All dimensions are saved» (висела 10+ мин) — результаты в логе уже есть, убит вручную.
+- Миньоны Redux (`MinionData`) телепортируются к хозяину; не приручённые мобы FUR (`removeWhenFarAway`) **деспавнились**, когда хозяин
+  уходил дальше 128 блоков (оригинальный `ISummonedCreature` не исчезал) — ND помечает призванных мобов FUR и пиявок
+  `setPersistenceRequired()`, убирает их время жизни. Пиявкам следование выключено (как в оригинале), иначе телепорт к хозяину
+  снимает их с носителя.
+- Тесты с фейковым игроком: хозяин миньонов ищется по UUID в мире (`ServerLevel.getEntity`) — фейкового игрока надо добавить
+  в мир (`level.addFreshEntity(fake)`), в конце убрать (`remove(CHANGED_DIMENSION)`). Он не тикает (нет `PlayerTickEvent`) и не
+  выбирается командой `/damage`; прямой `spell.cast(...)` не шлёт `SpellCastEvent` Redux — для проверки слать вручную.
+- KubeJS/Rhino: у `ItemStack` не видны `getTag()`/`hasTag()` — свойство `stack.nbt`; у сущностей не виден `getUUID()`;
+  `new SimpleContainer(2)` Rhino вызывает как varargs `ItemStack...` (контейнер на 1 ячейку).
+- «Грибной мертвец» (Mycosis, ND-2) с фиолетово-чёрными кубами над головой и на спине (жалоба владельца): слой `LayerMycosis`
+  брал модели грибов как «дополнительные» (`ModelEvent.RegisterAdditional` + `getModel(ResourceLocation)`) — с ModernFix
+  `mixin.perf.dynamic_resources=true` (наш конфиг) такая модель приходила missing model. В 0.3.0 грибы — настоящие блоки,
+  слой рисует блок-состояние `age=1` (`renderSingleBlock`), как оригинал. В test-client.sh добавлен вывод
+  «Unable to load model/Missing textures» по своим модам-портам (в логе этой ошибки не было — missing model молчит).
+- Клиент: CLIENT OK (481 с), ошибок по `mod_lavacow`/`necromancersdelight` в логе нет.
+  Глазами исправление Mycosis не проверено: в одиночном мире облачного клиента (YSM убран, мир создан кнопками) вход
+  обрывается «Сервер отправил неверный пакет» сразу после входа; клиентская причина в latest.log не пишется — осмотр
+  Mycosis (оба варианта) остаётся владельцу/следующему потоку.
+
 ### Bosses of Mass Destruction + Cerbon's API (поток 9, 2026-10-12, решение владельца В12 «а»)
 Владелец ответил «оба», затем «а»: вернуть Cerbon's API и добавить BoMD, с регрессионной проверкой спавна; если у владельца
 спавн мобов снова пропадёт — **сразу убрать оба мода** (`mr cerbons-api`, `mr bosses-of-mass-destruction-forge` и Cloth Config,

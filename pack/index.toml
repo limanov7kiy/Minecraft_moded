@@ -1262,8 +1262,8 @@ hash = "902bac905b93271f02bd0951a22bac06a3da24f5c237fcaeb469e14a7679e508"
 metafile = true
 
 [[files]]
-file = "mods/fishs-undead-rising-port-0.2.0.jar"
-hash = "5d8057173c0437641723297b0f810a034f79502c36b227607a543aeb8c8d6ff9"
+file = "mods/fishs-undead-rising-port-0.3.0.jar"
+hash = "91a5083ffd78ce6b5c6f90a57acec42d330b0feee4f1adf7618bb86df9052e0b"
 
 [[files]]
 file = "mods/fungal-infectionspore.pw.toml"
@@ -1628,8 +1628,8 @@ hash = "77b4a611e5f3c30a5c3ab6ce2b330d25dbb9cf67b50e3ba34508b9dbfbf54300"
 metafile = true
 
 [[files]]
-file = "mods/necromancers-delight-0.1.0.jar"
-hash = "3d5cae8bb057e28c570c4c75837f888b350c800289368d91ce9151f1fd9854ee"
+file = "mods/necromancers-delight-0.2.0.jar"
+hash = "35e0e3849243a3b17e86387cd24e98148e6daf501b5191c8fa3b725706ac03ee"
 
 [[files]]
 file = "mods/northstar-redux.pw.toml"
@@ -1727,7 +1727,7 @@ metafile = true
 
 [[files]]
 file = "mods/ru-lang-1.0.0-client.jar"
-hash = "041b29a3f030ac1cb43cf0761c013299776408b7e31962a90c0ea126da7a618f"
+hash = "cfcfaea24ff8e15f7b2d1721e36491bbe8e7166e6f5d00637b5956d2c16d16a2"
 
 [[files]]
 file = "mods/sarkazs_furnace_side_fables-0.2.3-forge-1.20.1.jar"

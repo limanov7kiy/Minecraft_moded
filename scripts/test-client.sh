@@ -46,6 +46,8 @@ until [ -f java-exit.txt ] || grep -qs 'Game took' game/logs/latest.log || [ $t 
 sleep 20; import -window root "$dir/menu.png" 2>/dev/null || true
 grep -h 'Mixin apply failed' game/logs/latest.log | sed 's/.*Mixin apply failed/Mixin apply failed/' | cut -c1-200 | sort -u
 grep -h -A8 'EXIT TRACE' game/logs/latest.log | head -12 || true
+# модели/текстуры своих модов-портов (missing model рисуется фиолетово-чёрным кубом)
+grep -hE "Unable to load model|Missing textures in model|Unable to resolve texture" -A3 game/logs/latest.log | grep -E "mod_lavacow|necromancersdelight|wizardry_restored|wizardrygolems" | cut -c1-200 | sort -u || true
 if [ -f java-exit.txt ]; then
   cr="$(ls -t game/crash-reports/*.txt 2>/dev/null | head -1)"
   [ -n "$cr" ] && grep -m3 -E 'Exception|Error' "$cr" | cut -c1-200
