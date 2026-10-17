@@ -352,6 +352,7 @@ JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.t
 
 Очередь после сброса лимита (17.10 06:00 UTC):
 - OreSpawn: Chaos Persists в тестовую сборку → совместимость/дубли (Ice and Fire, Lycanites, Mowzie's) → список недостающего из 1.7.10 → выбор владельца → порт отдельным модом (opus).
+  Этап 1 сделан (поток 23, ветка `claude/orespawn`): ремейк + AttributeFix в сборке, сравнение — `docs/orespawn.md` (из 1.7.10 не хватает только яйца Zombie Pigman); ждёт выбора владельца по списку в конце документа.
 - Necromancer's Delight ND-1: с WIP `claude/necromancers-delight` (точка остановки — `docs/wizardry-port.md`), свежий сеанс opus.
 - Оберег: единый радиус для Weather2 (у него 128) и Natural Disasters! (64); бедствие, прилетевшее снаружи, не ломает блоки в зоне.
 - Ветка `claude/ru-force-packs` (после #41 атлас помещается) — оценить.
