@@ -937,7 +937,7 @@ CurseForge 1460238, файл 9130290, Astryxion, All Rights Reserved. Jar `pack/
   тост «Память почти закончилась — включите Режим слабого ПК» (не чаще раза в 10 минут).
 - **Controlling 12.0.2 + Searchables 1.0.3** (MIT, client): поиск по названию в экране «Управление» и кнопка «только конфликты». Поиск по моду: у 372 из 384 клавиш модов своя категория (группируются по моду),
   в ванильных общих категориях только 12 (`key.dragon_*`, `natural_disasters`, `contigency_contract`, `special_ability`, `create_sa`) — 3 %, подпись мода не добавляли.
-- **Ресурспак низких текстур**: Potato Craft-8x v1.4 (Modrinth, CC-BY-4.0; ванильные 8×8, текстуры модов не меняет — выигрыш небольшой), лежит в `pack/resourcepacks/`, в `options.txt` **не включён**.
+- **Ресурспак низких текстур**: Potato Craft-8x v1.4 (автор — Saransh, https://modrinth.com/resourcepack/potato-craft-8x; CC-BY-4.0, изменений нет; ванильные 8×8, текстуры модов не меняет — выигрыш небольшой), лежит в `pack/resourcepacks/`, в `options.txt` **не включён**.
   Других подходящих по лицензии с покрытием модов не нашлось (Potato Graphics, 1x1 Potato — All Rights Reserved).
 - **Distant Horizons по умолчанию полегче**: радиус 48, качество LOW/LOW, потоков 1 (`pack/config/DistantHorizons.toml`).
 Проверка: сборка `./gradlew build` без ошибок; `test-client.sh` из нового `.mrpack` с `-Dmm_perf.selftest=true` — `CLIENT OK` (565 с), строки `MMPERF-SELFTEST`: ванильных клавиш 34 (назначено 32, `key.forward=W`),
