@@ -875,3 +875,25 @@ CurseForge 1460238, файл 9130290, Astryxion, All Rights Reserved. Jar `pack/
 - Русский перевод: `ru_ru.json` внутри jar покрывает все 36 ключей en_us — наш пак не менялся.
 - `test-server.sh`: `SERVER OK: Done (50.9s)`, 153 ERROR в логе — как до мода (ни одной от ironchest).
 - Не проверено: крафт улучшений сундуков и рецепты с серебром (зависят от тегов `forge:ingots/silver`, Almost Unified) — в игре.
+
+## Ars Nouveau и аддоны: «Incorrect key … was corrected» (поток 28, 2026-10-17)
+Жалоба: в логах игроков сотни WARN `ForgeConfigSpec: Incorrect key general.cost was corrected from null to its default`. Разбор
+(Ars Nouveau 4.12.7, Ars Elemental 0.6.8, Ars Additions 1.6.7, Ars Technica, Ars Creo, Ars Instrumentum и др.):
+- **В репозитории нет ни одного конфига Ars или его аддона** (`pack/config/`, `pack/defaultconfigs/`) — стартовых значений мы не задавали,
+  поэтому ключей, не совпадающих со схемой, у нас нет, и править нечего (значения не менялись). Смысл настроек не тронут.
+- Источник шума — **создание файлов при первом запуске**: Ars пишет по файлу на каждый глиф/форму/эффект (`config/ars_nouveau/glyph_*.toml`,
+  `ars_elemental/`, `tomeofblood/`…), Forge создаёт файл и для каждого ключа пишет WARN «corrected from null». Все 13 973 строки первого прогона
+  сервера (и 7 454 на клиенте) — именно «from null»; ни одной «устаревший/лишний/не того типа ключ». Это не вина Ars: так ведёт себя любой
+  мод на `ForgeConfigSpec` при первом запуске (в списке и Bumblezone, Zombie Have Ears, Alex's Caves, Clanging Howl…).
+- Проверка (сервер, папка вне репо, `scripts/test-server.sh` дважды подряд на одной папке): запуск 1 — 13 973 WARN «Incorrect key» (все `from null`),
+  `SERVER OK: Done (58.7s)`; **запуск 2 — 3 WARN, ни одного от Ars**, `SERVER OK: Done (29.9s)`.
+  Клиент (`scripts/test-client.sh`, `.mrpack`, дважды): запуск 1 — 7 454 WARN (все `from null`), запуск 2 — 2 WARN, `CLIENT OK` оба раза
+  (в первом `Mixin apply failed … lycanitesmobs LightTextureMixin` — прежняя известная строка, см. «затемнение Lycanites»).
+- Остаток (2–3 строки при каждом запуске, не Ars): Mechanical Botania `rpmvalues` и Legendary Survival Overhaul `temperature.wetness.Wetness Immunity
+  Mounts` — Forge считает списки невалидными и «исправляет» их на то же значение (`from [8,16,32,64,128] to its default [8,16,32,64,128]`);
+  `soulsearchers_lens.creatureModifiers` (`[minecraft:villager,1.5]` → то же). Безвредны; поменять значения тут нечем — формат списка задан модом.
+- Если у игрока WARN повторяются **при каждом запуске** — значит, лаунчер каждый раз начинает с пустой папки `config/` (новый экземпляр/«чистая»
+  переустановка/удаление `config`), а не конфиг сборки неверен. Проверка: открыть `config/ars_nouveau/` после первого запуска — файлы должны остаться.
+  Класть в `pack/config/` сгенерированные по умолчанию файлы Ars (≈240 штук) **не стали**: они заморозят значения по умолчанию и при обновлении Ars
+  дадут настоящие «Incorrect key» (устаревшие ключи); к тому же `packwiz` перезаписывал бы у игроков их правки.
+- Если понадобится менять значения Ars (стоимость глифов и т. п.) — править через KubeJS/датапак либо класть в `pack/config/` только нужные файлы целиком (Forge допишет недостающие ключи с одним WARN «from null»).
