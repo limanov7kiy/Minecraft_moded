@@ -52,7 +52,8 @@ const furTick = (event) => {
       let found = []
       level.getEntitiesOfClass(Entity, new AABB(x - 3, 198, -3, x + 4, 207, 4)).forEach(e => { if (String(e.getType()) == `mod_lavacow:${m}`) found.push(e) })
       let egg = FRegs.ITEMS.getValue(new RL('mod_lavacow', `spawn_egg_${m}`))
-      let eggOk = egg && String(FRegs.ITEMS.getKey(egg)) != 'minecraft:air'
+      // у кокона веспы яйца нет и в оригинале
+      let eggOk = m == 'vespacocoon' || (egg && String(FRegs.ITEMS.getKey(egg)) != 'minecraft:air')
       let loot = server.getLootData().getLootTable(new RL('mod_lavacow', `entities/${m}`))
       let lootOk = loot && loot != Java.loadClass('net.minecraft.world.level.storage.loot.LootTable').EMPTY
       let e = found.length ? found[0] : null

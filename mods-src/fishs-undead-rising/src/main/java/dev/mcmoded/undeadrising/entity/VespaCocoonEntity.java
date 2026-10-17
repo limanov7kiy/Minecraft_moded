@@ -106,7 +106,7 @@ public class VespaCocoonEntity extends FURTameableEntity {
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
-        this.lifespan = tag.getInt("lifespan");
+        if (tag.contains("lifespan")) this.lifespan = tag.getInt("lifespan"); // в оригинале без проверки: /summon с NBT давал 0 и кокон вылуплялся сразу
         this.setSkin(tag.getInt("Variant"));
     }
 
