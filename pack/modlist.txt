@@ -48,6 +48,8 @@ mr ice-and-fire-dragons    # both: Ice and Fire CE 2.1.13 — драконы (о
 mr cerbons-api             # both (решение владельца В12 «а»: вернуть ради BoMD; поток 10 убирал из-за миксинов коллизий — регрессионный тест spawncheck.js)
 mr bosses-of-mass-destruction-forge  # both: Bosses of Mass Destruction 1.1.2 — Лич, Обсидилит, Void Blossom, Гаунтлет с аренами (поток 9)
 #jar clanging-howl             # both: Clanging Howl 1.1.0 (Mongoose_artist, Polarice3; All Rights Reserved, CF без стороннего скачивания) — инопланетные падения метеоритов, техноплоть-мобы, энергоинструменты; зависимости GeckoLib и Curios уже в сборке (поток 20). Перевод — russian-moded/assets/clanginghowl (den1s64dev, CC-BY-NC-SA-4.0 + дописано нами)
+#jar chaos-persists            # both: Chaos Persists 0.9.1 (Astryxion; All Rights Reserved, CF 1460238) — ремейк OreSpawn 1.7.10 (В16, поток 23): ~130 мобов, King/Queen/Mobzilla, измерения Utopia/Mining/Village/Crystal/Chaos/Danger; зависимостей нет. Сравнение с оригиналом — docs/orespawn.md
+mr attributefix              # both: AttributeFix (Darkhax, LGPL-2.1) — снимает потолок здоровья 1024: без него King (7000), Queen (6000), Mobzilla (4000) у Chaos Persists урезаны до 1024 (его собственный обход падает: «failed to raise generic.maxHealth cap»)
 
 ## Ракеты, космос, техника
 mr create
