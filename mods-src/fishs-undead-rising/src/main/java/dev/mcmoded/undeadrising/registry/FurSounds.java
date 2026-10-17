@@ -20,6 +20,27 @@ public final class FurSounds {
     /// Посох Forsaken (в оригинале — звук заклинания Skeleton King).
     public static final RegistryObject<SoundEvent> SKELETONKING_SPELL_TOSS = register("skeletonking_spell_toss");
 
+    public static final RegistryObject<SoundEvent> PARASITE_AMBIENT = register("parasite_ambient");
+    public static final RegistryObject<SoundEvent> PARASITE_HURT = register("parasite_hurt");
+    public static final RegistryObject<SoundEvent> PARASITE_DEATH = register("parasite_death");
+    /// Паразит плетёт кокон.
+    public static final RegistryObject<SoundEvent> PARASITE_WEAVE = register("parasite_weave");
+    public static final RegistryObject<SoundEvent> VESPA_AMBIENT = register("vespa_ambient");
+    public static final RegistryObject<SoundEvent> VESPA_HURT = register("vespa_hurt");
+    public static final RegistryObject<SoundEvent> VESPA_DEATH = register("vespa_death");
+    /// Жужжание крыльев в полёте (без субтитра, как в оригинале).
+    public static final RegistryObject<SoundEvent> VESPA_FLYING = register("vespa_flying");
+    public static final RegistryObject<SoundEvent> BONEWORM_AMBIENT = register("boneworm_ambient");
+    public static final RegistryObject<SoundEvent> BONEWORM_ATTACK = register("boneworm_attack");
+    public static final RegistryObject<SoundEvent> BONEWORM_BURROW = register("boneworm_burrow");
+    public static final RegistryObject<SoundEvent> BONEWORM_HURT = register("boneworm_hurt");
+    public static final RegistryObject<SoundEvent> BONEWORM_DEATH = register("boneworm_death");
+    public static final RegistryObject<SoundEvent> BANSHEE_AMBIENT = register("banshee_ambient");
+    /// Крик Банши.
+    public static final RegistryObject<SoundEvent> BANSHEE_ATTACK = register("banshee_attack");
+    public static final RegistryObject<SoundEvent> BANSHEE_HURT = register("banshee_hurt");
+    public static final RegistryObject<SoundEvent> BANSHEE_DEATH = register("banshee_death");
+
     private static RegistryObject<SoundEvent> register(String name) {
         return SOUNDS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(UndeadRising.MOD_ID, name)));
     }

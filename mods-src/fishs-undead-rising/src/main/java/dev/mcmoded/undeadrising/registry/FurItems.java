@@ -1,7 +1,10 @@
 package dev.mcmoded.undeadrising.registry;
 
 import dev.mcmoded.undeadrising.UndeadRising;
+import dev.mcmoded.undeadrising.effect.FurEffects;
+import dev.mcmoded.undeadrising.item.CrownItem;
 import dev.mcmoded.undeadrising.item.ForsakenStaffItem;
+import dev.mcmoded.undeadrising.item.TooltipItem;
 import dev.mcmoded.undeadrising.item.FrozenThighItem;
 import dev.mcmoded.undeadrising.item.ShatteredIceItem;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -53,12 +56,40 @@ public final class FurItems {
     /// Посох Forsaken — выпускает «Кольцо смерти».
     public static final RegistryObject<Item> FORSAKEN_STAFF = ITEMS.register("forsaken_staff", () -> new ForsakenStaffItem(new Item.Properties().durability(32)));
 
+    /// Vespa: отравленное жало.
+    public static final RegistryObject<Item> POISONSTINGER = simple("poisonstinger", new Item.Properties());
+    /// Vespa: панцирь.
+    public static final RegistryObject<Item> VESPA_CARAPACE = simple("vespa_carapace", new Item.Properties());
+    /// Vespa: яйцо паразита — съедобно, но с шансом 80% заражает.
+    public static final RegistryObject<Item> PARASITE_OVUM = simple("parasite_ovum", new Item.Properties().food(new FoodProperties.Builder()
+            .nutrition(1).saturationMod(0.1F).effect(() -> new MobEffectInstance(FurEffects.INFESTED.get(), 240, 0), 0.8F).build()));
+    /// Паразиты (добыча и «подобрать крадучись»): сырые — с шансом голод (джунглей — яд), жареный — сытная еда.
+    public static final RegistryObject<Item> PARASITE_COMMON = ITEMS.register("parasite_item_common", () -> new TooltipItem(new Item.Properties()
+            .food(new FoodProperties.Builder().nutrition(2).saturationMod(0.3F).effect(() -> new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F).build())));
+    public static final RegistryObject<Item> PARASITE_DESERT = ITEMS.register("parasite_item_desert", () -> new TooltipItem(new Item.Properties()
+            .food(new FoodProperties.Builder().nutrition(2).saturationMod(0.3F).effect(() -> new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F).build())));
+    public static final RegistryObject<Item> PARASITE_JUNGLE = ITEMS.register("parasite_item_jungle", () -> new TooltipItem(new Item.Properties()
+            .food(new FoodProperties.Builder().nutrition(2).saturationMod(0.3F).effect(() -> new MobEffectInstance(MobEffects.POISON, 80, 0), 0.3F).build())));
+    public static final RegistryObject<Item> PARASITE_COOKED = simple("parasite_item_cooked", new Item.Properties()
+            .food(new FoodProperties.Builder().nutrition(6).saturationMod(0.6F).build()));
+    /// Banshee: эктоплазма.
+    public static final RegistryObject<Item> ECTOPLASM = simple("ectoplasm", new Item.Properties());
+    /// Banshee: голосовые связки.
+    public static final RegistryObject<Item> SHRIEK_CORD = simple("shriek_cord", new Item.Properties().rarity(Rarity.RARE));
+    /// Osvermis (редко): запятнанная корона короля. В оригинале — часть призыва Короля-скелета (через проклятую корону).
+    public static final RegistryObject<Item> STAINED_KINGS_CROWN = ITEMS.register("stained_kings_crown",
+            () -> new CrownItem(new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(1), 0));
+
     // --- Яйца призыва (цвета — из оригинала) ---
     public static final RegistryObject<Item> SPAWN_EGG_UNBURIED = egg("unburied", FurEntities.UNBURIED, 13949370, 2698290);
     public static final RegistryObject<Item> SPAWN_EGG_MUMMY = egg("mummy", FurEntities.MUMMY, 15325870, 10125655);
     public static final RegistryObject<Item> SPAWN_EGG_MYCOSIS = egg("mycosis", FurEntities.MYCOSIS, 12378284, 8610589);
     public static final RegistryObject<Item> SPAWN_EGG_FRIGID = egg("frigid", FurEntities.FRIGID, 11526370, 5851215);
     public static final RegistryObject<Item> SPAWN_EGG_FORSAKEN = egg("forsaken", FurEntities.FORSAKEN, 12698049, 4802889);
+    public static final RegistryObject<Item> SPAWN_EGG_PARASITE = egg("parasite", FurEntities.PARASITE, 11206638, 12320750);
+    public static final RegistryObject<Item> SPAWN_EGG_VESPA = egg("vespa", FurEntities.VESPA, 8774164, 14299417);
+    public static final RegistryObject<Item> SPAWN_EGG_BONEWORM = egg("boneworm", FurEntities.BONEWORM, 10000536, 4263438);
+    public static final RegistryObject<Item> SPAWN_EGG_BANSHEE = egg("banshee", FurEntities.BANSHEE, 10659725, 3421754);
 
     private static RegistryObject<Item> simple(String name, Item.Properties props) {
         return ITEMS.register(name, () -> new Item(props));

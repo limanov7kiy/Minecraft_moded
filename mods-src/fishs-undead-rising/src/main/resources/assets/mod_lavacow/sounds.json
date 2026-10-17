@@ -38,5 +38,174 @@
         "stream": true
       }
     ]
+  },
+  "parasite_ambient": {
+    "category": "hostile",
+    "subtitle": "subtitles.mod_lavacow.parasite_ambient",
+    "sounds": [
+      {
+        "name": "mod_lavacow:entity/parasite/ambient",
+        "stream": true
+      }
+    ]
+  },
+  "parasite_hurt": {
+    "category": "hostile",
+    "subtitle": "subtitles.mod_lavacow.parasite_hurt",
+    "sounds": [
+      {
+        "name": "mod_lavacow:entity/parasite/hurt",
+        "stream": true
+      }
+    ]
+  },
+  "parasite_death": {
+    "category": "hostile",
+    "subtitle": "subtitles.mod_lavacow.parasite_death",
+    "sounds": [
+      {
+        "name": "mod_lavacow:entity/parasite/death",
+        "stream": true
+      }
+    ]
+  },
+  "parasite_weave": {
+    "category": "hostile",
+    "subtitle": "subtitles.mod_lavacow.parasite_weave",
+    "sounds": [
+      {
+        "name": "mod_lavacow:entity/parasite/weave",
+        "stream": true
+      }
+    ]
+  },
+  "vespa_ambient": {
+    "category": "hostile",
+    "subtitle": "subtitles.mod_lavacow.vespa_ambient",
+    "sounds": [
+      {
+        "name": "mod_lavacow:entity/vespa/ambient1",
+        "stream": true
+      }
+    ]
+  },
+  "vespa_hurt": {
+    "category": "hostile",
+    "subtitle": "subtitles.mod_lavacow.vespa_hurt",
+    "sounds": [
+      {
+        "name": "mod_lavacow:entity/vespa/hurt",
+        "stream": true
+      }
+    ]
+  },
+  "vespa_death": {
+    "category": "hostile",
+    "subtitle": "subtitles.mod_lavacow.vespa_death",
+    "sounds": [
+      {
+        "name": "mod_lavacow:entity/vespa/death",
+        "stream": true
+      }
+    ]
+  },
+  "vespa_flying": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "mod_lavacow:entity/vespa/ambient0",
+        "stream": true
+      }
+    ]
+  },
+  "boneworm_ambient": {
+    "category": "hostile",
+    "subtitle": "subtitles.mod_lavacow.boneworm_ambient",
+    "sounds": [
+      {
+        "name": "mod_lavacow:entity/boneworm/ambient",
+        "stream": true
+      }
+    ]
+  },
+  "boneworm_attack": {
+    "category": "hostile",
+    "subtitle": "subtitles.mod_lavacow.boneworm_attack",
+    "sounds": [
+      {
+        "name": "mod_lavacow:entity/boneworm/attack",
+        "stream": true
+      }
+    ]
+  },
+  "boneworm_burrow": {
+    "category": "hostile",
+    "subtitle": "subtitles.mod_lavacow.boneworm_burrow",
+    "sounds": [
+      {
+        "name": "mod_lavacow:entity/boneworm/burrow",
+        "stream": true
+      }
+    ]
+  },
+  "boneworm_hurt": {
+    "category": "hostile",
+    "subtitle": "subtitles.mod_lavacow.boneworm_hurt",
+    "sounds": [
+      {
+        "name": "mod_lavacow:entity/boneworm/hurt",
+        "stream": true
+      }
+    ]
+  },
+  "boneworm_death": {
+    "category": "hostile",
+    "subtitle": "subtitles.mod_lavacow.boneworm_death",
+    "sounds": [
+      {
+        "name": "mod_lavacow:entity/boneworm/death",
+        "stream": true
+      }
+    ]
+  },
+  "banshee_ambient": {
+    "category": "hostile",
+    "subtitle": "subtitles.mod_lavacow.banshee_ambient",
+    "sounds": [
+      {
+        "name": "mod_lavacow:entity/banshee/ambient",
+        "stream": true
+      }
+    ]
+  },
+  "banshee_attack": {
+    "category": "hostile",
+    "subtitle": "subtitles.mod_lavacow.banshee_attack",
+    "sounds": [
+      {
+        "name": "mod_lavacow:entity/banshee/attack",
+        "stream": true
+      }
+    ]
+  },
+  "banshee_hurt": {
+    "category": "hostile",
+    "subtitle": "subtitles.mod_lavacow.banshee_hurt",
+    "sounds": [
+      {
+        "name": "mod_lavacow:entity/banshee/hurt",
+        "stream": true
+      }
+    ]
+  },
+  "banshee_death": {
+    "category": "hostile",
+    "subtitle": "subtitles.mod_lavacow.banshee_death",
+    "sounds": [
+      {
+        "name": "mod_lavacow:entity/banshee/death",
+        "stream": true
+      }
+    ]
   }
 }

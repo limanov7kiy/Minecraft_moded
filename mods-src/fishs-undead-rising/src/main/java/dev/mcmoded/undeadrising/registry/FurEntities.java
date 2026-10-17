@@ -3,7 +3,16 @@ package dev.mcmoded.undeadrising.registry;
 import dev.mcmoded.undeadrising.UndeadRising;
 import dev.mcmoded.undeadrising.entity.FURTameableEntity;
 import dev.mcmoded.undeadrising.entity.ForsakenEntity;
+import dev.mcmoded.undeadrising.entity.BoneWormEntity;
+import dev.mcmoded.undeadrising.entity.ParasiteEntity;
+import dev.mcmoded.undeadrising.entity.VespaCocoonEntity;
+import dev.mcmoded.undeadrising.entity.floating.BansheeEntity;
+import dev.mcmoded.undeadrising.entity.floating.FloatingMobEntity;
+import dev.mcmoded.undeadrising.entity.flying.FlyingMobEntity;
+import dev.mcmoded.undeadrising.entity.flying.VespaEntity;
+import dev.mcmoded.undeadrising.entity.projectile.AcidJetEntity;
 import dev.mcmoded.undeadrising.entity.projectile.DeathCoilEntity;
+import dev.mcmoded.undeadrising.entity.projectile.FlameJetEntity;
 import dev.mcmoded.undeadrising.entity.unburied.FrigidEntity;
 import dev.mcmoded.undeadrising.entity.unburied.MummyEntity;
 import dev.mcmoded.undeadrising.entity.unburied.MycosisEntity;
@@ -44,10 +53,27 @@ public final class FurEntities {
     public static final RegistryObject<EntityType<ForsakenEntity>> FORSAKEN = ENTITIES.register("forsaken",
             () -> EntityType.Builder.<ForsakenEntity>of(ForsakenEntity::new, MobCategory.MONSTER).sized(0.6F, 1.99F).fireImmune().build(id("forsaken")));
 
+    public static final RegistryObject<EntityType<ParasiteEntity>> PARASITE = ENTITIES.register("parasite",
+            () -> EntityType.Builder.<ParasiteEntity>of(ParasiteEntity::new, MobCategory.MONSTER).sized(0.8F, 0.3F).build(id("parasite")));
+    public static final RegistryObject<EntityType<VespaEntity>> VESPA = ENTITIES.register("vespa",
+            () -> EntityType.Builder.<VespaEntity>of(VespaEntity::new, MobCategory.MONSTER).sized(1.6F, 1.0F).build(id("vespa")));
+    public static final RegistryObject<EntityType<VespaCocoonEntity>> VESPACOCOON = ENTITIES.register("vespacocoon",
+            () -> EntityType.Builder.<VespaCocoonEntity>of(VespaCocoonEntity::new, MobCategory.MONSTER).sized(0.8F, 1.0F).build(id("vespacocoon")));
+    public static final RegistryObject<EntityType<BoneWormEntity>> BONEWORM = ENTITIES.register("boneworm",
+            () -> EntityType.Builder.<BoneWormEntity>of(BoneWormEntity::new, MobCategory.MONSTER).sized(0.8F, 2.0F).build(id("boneworm")));
+    public static final RegistryObject<EntityType<BansheeEntity>> BANSHEE = ENTITIES.register("banshee",
+            () -> EntityType.Builder.<BansheeEntity>of(BansheeEntity::new, MobCategory.MONSTER).sized(0.75F, 1.75F).build(id("banshee")));
+
     // --- Снаряды ---
     public static final RegistryObject<EntityType<DeathCoilEntity>> DEATHCOIL = ENTITIES.register("deathcoil",
             () -> EntityType.Builder.<DeathCoilEntity>of(DeathCoilEntity::new, MobCategory.MISC).sized(0.3125F, 0.3125F)
                     .clientTrackingRange(4).updateInterval(1).build(id("deathcoil")));
+    public static final RegistryObject<EntityType<AcidJetEntity>> ACIDJET = ENTITIES.register("acidjet",
+            () -> EntityType.Builder.<AcidJetEntity>of(AcidJetEntity::new, MobCategory.MISC).sized(0.25F, 0.25F)
+                    .clientTrackingRange(4).updateInterval(10).build(id("acidjet")));
+    public static final RegistryObject<EntityType<FlameJetEntity>> FLAMEJET = ENTITIES.register("flamejet",
+            () -> EntityType.Builder.<FlameJetEntity>of(FlameJetEntity::new, MobCategory.MISC).sized(0.25F, 0.25F)
+                    .clientTrackingRange(4).updateInterval(10).build(id("flamejet")));
 
     private static String id(String name) {
         return UndeadRising.MOD_ID + ":" + name;
@@ -61,6 +87,11 @@ public final class FurEntities {
         event.put(MYCOSIS.get(), MycosisEntity.createAttributes().build());
         event.put(FRIGID.get(), FrigidEntity.createAttributes().build());
         event.put(FORSAKEN.get(), ForsakenEntity.createAttributes().build());
+        event.put(PARASITE.get(), ParasiteEntity.createAttributes().build());
+        event.put(VESPA.get(), VespaEntity.createAttributes().build());
+        event.put(VESPACOCOON.get(), VespaCocoonEntity.createAttributes().build());
+        event.put(BONEWORM.get(), BoneWormEntity.createAttributes().build());
+        event.put(BANSHEE.get(), BansheeEntity.createAttributes().build());
     }
 
     /// Правила естественного появления (MOD-шина) — как `EntitySpawnPlacementRegistry` оригинала.
@@ -72,5 +103,9 @@ public final class FurEntities {
         event.register(MYCOSIS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING, FURTameableEntity::checkMonsterSpawnRules, replace);
         event.register(FRIGID.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FURTameableEntity::checkMonsterSpawnRules, replace);
         event.register(FORSAKEN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, replace);
+        event.register(PARASITE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, replace);
+        event.register(VESPA.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING, FlyingMobEntity::checkFlyerSpawnRules, replace);
+        event.register(BONEWORM.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, replace);
+        event.register(BANSHEE.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, replace);
     }
 }

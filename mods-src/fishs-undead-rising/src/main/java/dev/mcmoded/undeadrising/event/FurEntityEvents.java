@@ -1,6 +1,29 @@
 package dev.mcmoded.undeadrising.event;
 
+import dev.mcmoded.undeadrising.effect.FurEffects;
+import dev.mcmoded.undeadrising.entity.ParasiteEntity;
+import dev.mcmoded.undeadrising.entity.flying.VespaEntity;
 import dev.mcmoded.undeadrising.entity.unburied.UnburiedEntity;
+import dev.mcmoded.undeadrising.registry.FurEntities;
+import dev.mcmoded.undeadrising.registry.FurParticles;
+import dev.mcmoded.undeadrising.registry.FurTags;
+import dev.mcmoded.undeadrising.util.FurSpawnUtil;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BiomeTags;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.animal.Bee;
+import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.common.Tags;
+import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.npc.Villager;
@@ -15,6 +38,90 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 /// Шина FORGE.
 public final class FurEntityEvents {
     private FurEntityEvents() {}
+
+    /// pSpawnRate_Parasite (%), Parasite_SandSpawn (%), Parasite_InfestedAmpSpawns, pBeeConvertRate_Vespa (%) по умолчанию.
+    public static final int PARASITE_SPAWN_RATE = 10, PARASITE_SAND_SPAWN = 2, PARASITE_INFESTED_AMP_SPAWNS = 4, BEE_CONVERT_RATE = 10;
+
+    /// Из умершего заражённого (эффект «Заражение», паразит на нём или с шансом 10% — цель паразитов из тега)
+    /// вылезают паразиты: вариант — как у сидевшего паразита, иначе по биому (сухой — пустынный, джунгли — джунглей),
+    /// убитые веспой — личинки джунглей (у прирученной веспы — призванные).
+    @SubscribeEvent
+    public static void onDeath(LivingDeathEvent event) {
+        LivingEntity entity = event.getEntity();
+        if (!(entity.level() instanceof ServerLevel level) || entity.isInWaterOrBubble()) return;
+        Entity rider = FurSpawnUtil.gotRiderEntity(entity.getPassengers(), FurEntities.PARASITE.get());
+        MobEffectInstance infested = entity.getEffect(FurEffects.INFESTED.get());
+        RandomSource random = level.random;
+        boolean tagged = entity.getType().is(FurTags.PARASITE_TARGETS) && random.nextInt(100) < PARASITE_SPAWN_RATE;
+        if (!tagged && rider == null && infested == null) return;
+
+        int base = 3 + random.nextInt(3);
+        int amp = infested != null ? Math.min(PARASITE_INFESTED_AMP_SPAWNS, infested.getAmplifier()) : 0;
+        Entity killer = event.getSource().getDirectEntity();
+        var biome = level.getBiome(entity.blockPosition());
+        for (int i = 0; i < base + (amp - 1) * (1 + random.nextInt(3)); i++) {
+            float ox = ((i % 2) - 0.5F) / 4.0F;
+            float oz = ((i / 2) - 0.5F) / 4.0F;
+            ParasiteEntity parasite = FurSpawnUtil.trySpawnEntity(FurEntities.PARASITE.get(), level,
+                    BlockPos.containing(entity.getX() + ox, entity.getY() + 1.0, entity.getZ() + oz));
+            if (parasite == null) continue;
+            if (rider instanceof ParasiteEntity p) {
+                parasite.setSkin(p.getSkin());
+            } else if (biome.is(Tags.Biomes.IS_DRY)) {
+                parasite.setSkin(1);
+            } else if (biome.is(BiomeTags.IS_JUNGLE)) {
+                parasite.setSkin(2);
+            } else if (killer instanceof VespaEntity vespa) {
+                parasite.setSkin(2);
+                if (vespa.isTame()) parasite.setSummoned(true);
+            } else {
+                parasite.setSkin(0);
+            }
+        }
+    }
+
+    /// Разбитый песок в жаркой сухой песчаной местности Верхнего мира — с шансом 2% вылезает пустынный паразит.
+    @SubscribeEvent
+    public static void onBlockBreak(BlockEvent.BreakEvent event) {
+        if (!(event.getLevel() instanceof ServerLevel level) || !event.getState().is(BlockTags.SAND)) return;
+        var biome = level.getBiome(event.getPos());
+        if (biome.is(Tags.Biomes.IS_HOT_OVERWORLD) && biome.is(Tags.Biomes.IS_DRY_OVERWORLD) && biome.is(Tags.Biomes.IS_SANDY)
+                && level.random.nextInt(100) < PARASITE_SAND_SPAWN) {
+            ParasiteEntity parasite = FurSpawnUtil.trySpawnEntity(FurEntities.PARASITE.get(), level, event.getPos().above());
+            if (parasite != null) {
+                parasite.setSkin(1);
+                parasite.setDeltaMovement(parasite.getDeltaMovement().add(0.0, 0.4, 0.0));
+            }
+        }
+    }
+
+    /// Пчела, в которую ударила молния, с шансом 10% становится веспой (вариант 1).
+    @SubscribeEvent
+    public static void onLightning(EntityStruckByLightningEvent event) {
+        if (!(event.getEntity() instanceof Bee bee) || !(bee.level() instanceof ServerLevel level) || level.getDifficulty() == Difficulty.PEACEFUL) return;
+        if (level.random.nextInt(100) >= BEE_CONVERT_RATE) return;
+        VespaEntity vespa = FurEntities.VESPA.get().create(level);
+        if (vespa == null) return;
+        vespa.moveTo(bee.blockPosition(), 0.0F, 0.0F);
+        vespa.finalizeSpawn(level, level.getCurrentDifficultyAt(vespa.blockPosition()), MobSpawnType.CONVERSION, null, null);
+        vespa.setSkin(1);
+        vespa.setPersistenceRequired();
+        level.addFreshEntity(vespa);
+        bee.discard();
+    }
+
+    /// Частицы «Страха» над испуганными: у игроков — раз в 32 тика, у мобов — раз в 20.
+    @SubscribeEvent
+    public static void onLivingTick(LivingEvent.LivingTickEvent event) {
+        LivingEntity entity = event.getEntity();
+        if (!(entity.level() instanceof ServerLevel level) || !entity.hasEffect(FurEffects.FEAR.get())) return;
+        boolean due = entity instanceof Player ? (level.getGameTime() & 31L) == 0L : entity.tickCount % 20 == 0;
+        if (due) {
+            RandomSource r = entity.getRandom();
+            level.sendParticles(FurParticles.FEAR.get(), entity.getRandomX(1.0), entity.getRandomY() + 1.0, entity.getRandomZ(1.0), 15,
+                    r.nextGaussian() * 0.02, r.nextGaussian() * 0.02, r.nextGaussian() * 0.02, 0.0);
+        }
+    }
 
     /// Доп. урон призванных Unburied (чары оружия призыва).
     @SubscribeEvent

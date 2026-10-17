@@ -18,4 +18,8 @@ public final class FurParticles {
     public static final RegistryObject<SimpleParticleType> LOCUST_SWARM = PARTICLES.register("locust_swarm", () -> new SimpleParticleType(false));
     /// След «Кольца смерти» (снаряд посоха Forsaken).
     public static final RegistryObject<SimpleParticleType> WITHER_FLAME = PARTICLES.register("wither_flame", () -> new SimpleParticleType(false));
+    /// Брызги желудочного сока (снаряд Osvermis).
+    public static final RegistryObject<SimpleParticleType> GASTRO_ACID = PARTICLES.register("gastro_acid", () -> new SimpleParticleType(false));
+    /// Над существом под эффектом «Страх».
+    public static final RegistryObject<SimpleParticleType> FEAR = PARTICLES.register("fear", () -> new SimpleParticleType(false));
 }

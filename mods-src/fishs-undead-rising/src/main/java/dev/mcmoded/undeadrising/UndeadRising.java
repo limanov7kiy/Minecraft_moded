@@ -2,6 +2,7 @@ package dev.mcmoded.undeadrising;
 
 import dev.mcmoded.undeadrising.effect.FurEffects;
 import dev.mcmoded.undeadrising.event.FurEntityEvents;
+import dev.mcmoded.undeadrising.network.FurNetwork;
 import dev.mcmoded.undeadrising.registry.FurBannerPatterns;
 import dev.mcmoded.undeadrising.registry.FurEntities;
 import dev.mcmoded.undeadrising.registry.FurItems;
@@ -12,6 +13,7 @@ import dev.mcmoded.undeadrising.world.AddStructureSpawnsModifier;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 /// Частичный порт Fish's Undead Rising (Fish; ARR, порт по решению владельца сборки — см. NOTICE.md)
@@ -35,6 +37,7 @@ public class UndeadRising {
         FurBannerPatterns.PATTERNS.register(modBus);
         AddStructureSpawnsModifier.SERIALIZERS.register(modBus);
         modBus.register(FurEntities.class);
+        modBus.addListener((FMLCommonSetupEvent e) -> e.enqueueWork(FurNetwork::register));
 
         MinecraftForge.EVENT_BUS.register(FurEffects.class);
         MinecraftForge.EVENT_BUS.register(FurEntityEvents.class);

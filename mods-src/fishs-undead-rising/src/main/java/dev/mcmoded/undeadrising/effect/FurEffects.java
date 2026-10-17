@@ -4,6 +4,11 @@ import dev.mcmoded.undeadrising.UndeadRising;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.util.LandRandomPos;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.item.PotionItem;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingHealEvent;
@@ -24,8 +29,13 @@ public final class FurEffects {
     public static final RegistryObject<MobEffect> SOILED = EFFECTS.register("soiled", () -> new Plain(MobEffectCategory.HARMFUL, 7298108));
     /// Corroded: входящий урон +10% за уровень (I — +10%, II — +20%…).
     public static final RegistryObject<MobEffect> CORRODED = EFFECTS.register("corroded", () -> new Plain(MobEffectCategory.HARMFUL, 2361095));
-    /// Infested: из существа вылезают паразиты (мобы — этап 2 порта; пока эффект без появления паразитов).
-    public static final RegistryObject<MobEffect> INFESTED = EFFECTS.register("infested", () -> new Plain(MobEffectCategory.HARMFUL, 10037074));
+    /// Infested: скорость −10%; при смерти из существа вылезают паразиты (`event/FurEntityEvents#onDeath`).
+    public static final RegistryObject<MobEffect> INFESTED = EFFECTS.register("infested", () -> new Plain(MobEffectCategory.HARMFUL, 10037074)
+            .addAttributeModifier(Attributes.MOVEMENT_SPEED, "7107DE5E-7CE8-4030-940E-514C1F160890", -0.1F, AttributeModifier.Operation.MULTIPLY_TOTAL));
+    /// Fear (крик Банши): урон −4, скорость −5%; мобы бросают цель и бегут куда глаза глядят (оригинал: `effect/EffectFear`).
+    public static final RegistryObject<MobEffect> FEAR = EFFECTS.register("fear", () -> new Fear()
+            .addAttributeModifier(Attributes.ATTACK_DAMAGE, "22653B89-116E-49DC-9B6B-9971489B5BE5", -4.0, AttributeModifier.Operation.ADDITION)
+            .addAttributeModifier(Attributes.MOVEMENT_SPEED, "91AEAA56-376B-4498-935B-2F7F68070635", -0.05F, AttributeModifier.Operation.MULTIPLY_TOTAL));
 
     /// Fragile («Смертное касание»): пока здоровье ниже 5% × (уровень + 1) от максимума — мгновенная смерть
     /// (оригинал: `effect/EffectFragile`). Накладывают Forsaken и «Кольцо смерти».
@@ -48,6 +58,27 @@ public final class FurEffects {
         @Override
         public boolean isDurationEffectTick(int duration, int amplifier) {
             return true;
+        }
+    }
+
+    static final class Fear extends MobEffect {
+        Fear() {
+            super(MobEffectCategory.HARMFUL, 13457950);
+        }
+
+        @Override
+        public void applyEffectTick(LivingEntity entity, int amplifier) {
+            if (entity instanceof PathfinderMob mob) {
+                Vec3 vec = LandRandomPos.getPos(mob, 20, 5);
+                mob.setTarget(null);
+                mob.setLastHurtByMob(null);
+                if (vec != null) mob.getNavigation().moveTo(vec.x, vec.y, vec.z, 1.0);
+            }
+        }
+
+        @Override
+        public boolean isDurationEffectTick(int duration, int amplifier) {
+            return duration % 10 == 0;
         }
     }
 
