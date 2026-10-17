@@ -375,6 +375,28 @@ JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.t
 Раунд 8 — 2026-10-17 (сброс лимита; порядок владельца): скрипт диагностики (Поток 19, session_01VBNcQCP282sjURUfRbitCD) → max-tick-time и #49 (Ревью) →
 анализ фризов + Embeddium/Oculus → Clanging Howl → паразиты + Оберег (единый радиус, бедствия снаружи, зараза) → OreSpawn, Necromancer's Delight.
 
+Итоги раунда 8 (17.10; ночью пятичасовое окно дошло до 86% → пауза до сброса, затем «запускай процессы и сливай то, что готово»):
+| Задача | Поток (сеанс) | Модель — почему | Статус |
+|---|---|---|---|
+| Скрипт сбора диагностики у игроков (`scripts/collect-diagnostics.ps1/.bat`, `docs/diagnostics.md`) | Поток 19 (session_01VBNcQCP282sjURUfRbitCD) | sonnet | **влит #51** |
+| `max-tick-time=-1` (тест-сервер, серверный zip, docs) | Ревью | sonnet | **влит #52** |
+| Falling Tree + миксин прочности mm-compat | Поток 18 (session_01JYt9eB41N7DcqRHeab2qLY) | opus — миксин | **влит #49** |
+| Clanging Howl + перевод | Поток 20 | sonnet | **влит #53** |
+| Перевод Caerula Arbor (2519 строк), опечатка «Ппластины» | Поток 21 | sonnet | **влит #54** |
+| OreSpawn этап 1: Chaos Persists 0.9.1 + AttributeFix, `docs/orespawn.md` | Поток 23 | sonnet | **влит #55**; сеанс архивирован |
+| Фризы у игроков: все дампы потоков — Mana and Artifice `onWorldTick` ждёт генерации чанка → `MnaChunkTickMixin` (mm-compat 0.5.2) | Поток 24 (session_01RJtt54NkGNcCBYBySSmGcG) | opus — разбор дампов + миксин | **влит #57** (a70d294; mnachunk.js maxTick 0,97 с) |
+| Паразиты: Fungal Infection: Spore + SRP System, датапак на 682 вида мобов, Оберег 1.1.0 (радиус 96 для всех бедствий, зараза и заражённые не входят) | Поток 22 (session_014aSvECF1SDZZ69C9kbu4XW) | sonnet | **влит #56** (d319e23; sporeward.js 24/24); нагрузка `sporeload.js` и клиент не прогнаны |
+| Iron Chests 14.4.4 (оригинал alexbegt, both); `docs/friends.md`: радиус Оберега 96, где взять блок, старые ресурспаки | Поток 26 (session_01VgSdALGeFhf4tEXBDbNjNY) | sonnet — механика | **влиты #58, #59** (3bfd34b) |
+| Доводка OreSpawn: спавн в Overworld реже, руды меньше и мельче, перевод структур и настроек; Utopia и разрушения не трогаем | Поток 25 (session_013nBhme6Z4ja8tYJiNzhYwY) | sonnet — конфиг + перевод | работает (`claude/orespawn-tune`) |
+| Necromancer's Delight ND-1 с WIP | Поток 27 (session_01Q9GnopY8NLkbfXBhFoXQAp) | opus — порт кода 1.12.2 | работает (`claude/necromancers-delight`) |
+
+Разбор логов трёх игроков (данные не в репо, копии удалены): у всех длинные фризы — MnA + генерация чанков (исправлено #57);
+у одного окна съезжали из-за ресурспака Faithful 1.17.1 (не для 1.20.1); у одного OutOfMemory 13.10 при 8 ГБ (не повторялся).
+Решения владельца: OreSpawn — «Utopia не мирная, пусть мобы смогут появляться как в оригинале»; в Overworld — «чтобы это происходило не часто и руды в малом кол-ве»;
+Iron Chests — оригинал. Новая неделя с 17.10 06:00 UTC; режим прежний: 2 рабочих потока, стоп 95% недели (В23 — ждёт ответа владельца).
+Очередь: конфиги Ars Nouveau переписываются при каждом запуске; первый тик после Done ~136 с — найти виновника; обзор Embeddium/Oculus (В25) — короткий отчёт;
+при необходимости — нагрузка Spore (`sporeload.js`) и клиентский тест.
+
 ### Поток 8 — Производительность
 Файлы: `docs/performance.md`, `mods-src/mm-perf/`, `pack/config/{modernfix-mixins.properties,DistantHorizons.toml,jei/,sound_physics_remastered/}`, `pack/options.txt` (только строки графики).
 Сделано (ветка `claude/perf-stream8`, подробности и замеры — `docs/performance.md`):
