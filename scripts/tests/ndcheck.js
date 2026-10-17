@@ -1,13 +1,13 @@
 // Тест порта Necromancer's Delight (поток 12, этап ND-1): заклинания без мобов Fish's Undead Rising и артефакты.
 // Вывод: NDCHECK <проверка> OK|FAIL <подробности>
-const ND = { phase: 0, cast: 0 }
+const ND = { phase: 0, cast: 0, prep: 0 }
 ServerEvents.tick(event => { try { ndTick(event) } catch (err) { console.info(`NDCHECK script FAIL error=${err}`) } })
 const ndTick = (event) => {
   const server = event.server
   const t = server.tickCount
   if (t < 200) return
   // фазы — в переменной скрипта (server.persistentData у KubeJS — не CompoundTag): 0 — грузим чанки;
-  // 1 — ждём entity-ticking (не раньше t=600); 2 — каст сделан на тике ND.cast
+  // 1 — ждём entity-ticking (не раньше t=600); 3 — арены очищены; 2 — каст сделан на тике ND.cast
   const RL = Java.loadClass('net.minecraft.resources.ResourceLocation')
   const RM = Java.loadClass('net.minecraftforge.registries.RegistryManager')
   const NdFake = Java.loadClass('net.minecraftforge.common.util.FakePlayerFactory')
@@ -37,10 +37,16 @@ const ndTick = (event) => {
     if (t < 600) return
     let ready = arenas.every(x => level.isPositionEntityTicking(new BlockPos(x, 200, 0)) && level.isPositionEntityTicking(new BlockPos(x, 200, 6)))
     if (!ready) { if (t % 100 == 0) console.info(`NDDIAG waiting chunks t=${t}`); return }
-    ND.phase = 2; ND.cast = t
-    // мир тестового сервера сохраняется между прогонами — убрать мобов и грибы прошлых запусков
+    // мир тестового сервера сохраняется между прогонами — убрать мобов и грибы прошлых запусков;
+    // убитые мобы ещё ~20 тиков в мире (анимация смерти) — каст через 40 тиков
     server.runCommandSilent('kill @e[type=!minecraft:player,x=-310,y=190,z=-20,dx=140,dy=30,dz=40]')
     arenas.forEach(x => { server.runCommandSilent(`fill ${x - 8} 199 -8 ${x + 8} 199 8 minecraft:stone`); server.runCommandSilent(`fill ${x - 8} 200 -8 ${x + 8} 210 8 minecraft:air`) })
+    ND.phase = 3; ND.prep = t
+    return
+  }
+  if (ND.phase == 3) {
+    if (t < ND.prep + 40) return
+    ND.phase = 2; ND.cast = t
     ;[-200, -230, -260].forEach(x => server.runCommandSilent(`summon minecraft:husk ${x + 0.5} 200 4.5 {NoAI:1b,PersistenceRequired:1b}`))
     // setOldPosAndRot: MagicProjectileEntity.aim ставит снаряд в xo/yo/zo стрелка (позиция прошлого тика)
     let aim = (x, pitch) => { fake.setPos(x + 0.5, 200, 0.5); fake.yRot = 0; fake.xRot = pitch; fake.yHeadRot = 0; fake.setOldPosAndRot(); fake.setOnGround(true) }
