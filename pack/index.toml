@@ -41,6 +41,10 @@ file = "config/canary.properties"
 hash = "8b34973d33381c95c7bb176234d5ed927110c5b81c0c0d82b5ebbf06dea97b81"
 
 [[files]]
+file = "config/chaospersists.cfg"
+hash = "5ea39f6c26890141c0c72ced22d00b8154753aed32847412dc5decfaf2735fe8"
+
+[[files]]
 file = "config/fallingtree.json"
 hash = "e5ce3851728af563cb5b9bf8752dbb461b28340aec350d9b2fd8d9c9026c915f"
 
@@ -619,6 +623,10 @@ hash = "a75d5d611e58e3c80bbf0244f82a8a8351c4e8c4aa0f3a1c56da5343aa6d5ae5"
 [[files]]
 file = "kubejs/server_scripts/missing_mod_refs.js"
 hash = "98f946259767d1ecf5cd8f6f43192b0832b5d68b60d5f3273e48a7edc2847817"
+
+[[files]]
+file = "kubejs/server_scripts/orespawn_spawn_thin.js"
+hash = "9d58de2ac8432902fb858bebe2431a54c6fd40cb690b09769a64befd342aa6e7"
 
 [[files]]
 file = "kubejs/server_scripts/space_rockets.js"
@@ -1664,7 +1672,7 @@ metafile = true
 
 [[files]]
 file = "mods/ru-lang-1.0.0-client.jar"
-hash = "797622887dc15fa45c6692f3aca8f994d79afddb5b1f66f0c6855728d5d92e20"
+hash = "1c4c6c7bea2888f7bccbd6603c29ccc9e3b4454547bbec47a04dc493c15f81d2"
 
 [[files]]
 file = "mods/sarkazs_furnace_side_fables-0.2.3-forge-1.20.1.jar"
