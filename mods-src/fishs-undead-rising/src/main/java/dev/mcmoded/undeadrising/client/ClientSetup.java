@@ -134,11 +134,4 @@ public final class ClientSetup {
         event.registerSpriteSet(FurParticles.GASTRO_ACID.get(), GastroAcidParticle.Provider::new);
         event.registerSpriteSet(FurParticles.FEAR.get(), FearParticle.Provider::new);
     }
-
-    /// Модели грибов для {@link LayerMycosis} (вариант блока, не входящий в blockstate по умолчанию).
-    @SubscribeEvent
-    public static void onRegisterModels(ModelEvent.RegisterAdditional event) {
-        event.register(LayerMycosis.GLOWSHROOM_MODEL);
-        event.register(LayerMycosis.CORDY_SHROOM_MODEL);
-    }
 }

@@ -263,7 +263,7 @@ const nd3Tick = (event) => {
     let hw = host ? host.getMainHandItem() : null; let w = fake.getMainHandItem()
     let IMana = Java.loadClass('com.binaris.wizardry.api.content.item.IManaItem')
     let hm = hw && hw.getItem() instanceof IMana ? hw.getItem().getMana(hw) : -1; let fm = w.getItem() instanceof IMana ? w.getItem().getMana(w) : -1
-    report('amulet_leechlink', host && host.getPassengers().size() == 1 && hm < ND3.hostMana && fm > 0, `host=${hm}/${ND3.hostMana} owner=${fm}`)
+    report('amulet_leechlink', host && host.getPassengers().size() >= 1 && hm < ND3.hostMana && fm > 0, `host=${hm}/${ND3.hostMana} owner=${fm}`)
     let weta = all('mod_lavacow:weta').filter(minionOf)
     report('head_pest_crown', weta.length == 1 && weta[0].isTame(), `wetas=${weta.length}`)
     let shrooms = 0

@@ -446,7 +446,7 @@ Curios (`maven.modrinth:curios`) — сначала собрать FUR, пото
 - Рецептов bonesword / spectral_dagger / бомб нет (нужны sharptooth, ectoplasm_ingot, basic_bomb FUR — не перенесены);
   предметы — из заклинаний и творческой вкладки. Огромный светящийся гриб FUR (костная мука) не перенесён.
 
-**Тест:** `scripts/tests/nd3check.js` — фейковый игрок добавляется в мир (иначе `MinionData.getOwner()` не находит хозяина по
+**Тест:** `scripts/tests/nd3check.js` 55/55 OK (+ ndcheck 11/11, furcheck 13/13), SERVER OK — фейковый игрок добавляется в мир (иначе `MinionData.getOwner()` не находит хозяина по
 UUID), касты/артефакты проверяются в мире. Crown of Pests и Thornbelt вызываются напрямую (`NdArtifacts.pestCrown`/
 `thornBurst`: фейковый игрок не тикает и не ранится командой), Bone Bag и цена у пиявки — через `SpellCastEvent` Redux (прямой
 каст событий не шлёт). KubeJS: у `ItemStack` нет `getTag()`/`hasTag()` — только свойство `stack.nbt`.
