@@ -20,7 +20,7 @@ packs = {
     "_PunishingGrayRaven": ("punishing_gray_raven", "Punishing: Gray Raven", "Модели Punishing: Gray Raven"),
 }
 # не открываются в YSM 2.6.5 (лог сервера) — не раздаём; причины — docs/ysm-models.md
-skip = set()
+skip = {"AK_Rosmontis_v0.9.ysm"}  # YSM 2.6.5 не читает (сервер: 0 моделей из этого файла); есть v1.0 той же модели
 
 n = 0
 for folder, (dst, title, desc) in packs.items():

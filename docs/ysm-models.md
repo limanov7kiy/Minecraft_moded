@@ -19,7 +19,7 @@ macOS: YSM на Mac не работает. В облаке (виртуальна
    Позу «закрепить», чтобы ходьба её не прерывала, — замок в колесе (Alt+L).
 
 ## Как раздаются модели
-- **Готовые модели** (66 файлов, ~31 МБ) в наш репозиторий не копируются: в `pack/config/yes_steve_model/custom/<пакет>/`
+- **Готовые модели** (65 файлов, ~31 МБ) в наш репозиторий не копируются: в `pack/config/yes_steve_model/custom/<пакет>/`
   лежат packwiz-метафайлы `*.pw.toml` со ссылкой на файл в репозитории
   [Elaina69/Yes-Steve-Model-Repo](https://github.com/Elaina69/Yes-Steve-Model-Repo) (закреплён коммит `1749b464`,
   хэш sha256 проверяется). Клиенты получают файлы через packwiz-installer или `.mrpack` (ссылки на raw.githubusercontent.com),
@@ -37,12 +37,12 @@ macOS: YSM на Mac не работает. В облаке (виртуальна
 (+ 27 встроенных) — счёт по серверному кэшу `config/yes_steve_model/cache/server`, сама YSM в лог по моделям не пишет;
 непрочитанная найдена делением набора пополам. Формат `.ysm` новее, чем умеет 2.6.5, в наборе нет (самые новые — формат 26).
 
-Не читается вместе: `AK_Rosmontis_v0.9.ysm` и `AK_Rosmontis_v1.0.ysm` (одна модель «Rosmontis» формата 26 в двух версиях) — из пары YSM загружает только одну (проверка 2 файла → +1 в кэше). Уточнение, какую оставить, — в работе (WIP).
+Не читается: `AK_Rosmontis_v0.9.ysm` (формат 26) — YSM 2.6.5 не загружает её даже одну (прогон с одним этим файлом: 0 моделей в кэше), в паре с v1.0 грузится только v1.0. **Не раздаём** (`skip` в `scripts/ysm-models.py`); остаются v1.0, v1.1, v1.3 и две старые zip-версии Rosmontis. Итого раздаётся **65** моделей.
 
 | Пакет | Файл | Имя в модели | Авторы (из файла) | Лицензия (из файла) | Формат |
 |---|---|---|---|---|---|
 | Arknights | `AK_Chen.ysm` | 陈 | 日月明567 (模型) | All Rights Reserved | .ysm, формат 15 |
-| Arknights | `AK_Rosmontis_v0.9.ysm` | Rosmontis | 平行Rosmontis (ALL) | CC BY-NC-ND 4.0 | .ysm, формат 26 |
+| Arknights | ~~`AK_Rosmontis_v0.9.ysm`~~ (не читается, не раздаём) | Rosmontis | 平行Rosmontis (ALL) | CC BY-NC-ND 4.0 | .ysm, формат 26 |
 | Arknights | `AK_Rosmontis_v1.0.ysm` | Rosmontis | 平行Rosmontis (ALL) | CC BY-NC-ND 4.0 | .ysm, формат 26 |
 | Arknights | `AK_Sora_v1.0_Fllz.ysm` | Sora_Default | Fllz (Model Author) | All Rights Reserved | .ysm, формат 15 |
 | Arknights | `Ak_Angelina.ysm` | 安洁莉娜_free | 映白L (作者) | CC BY-NC-SA 4.0 | .ysm, формат 15 |
@@ -122,6 +122,13 @@ macOS: YSM на Mac не работает. В облаке (виртуальна
 справа большая), свисающие ремешки; бейдж на клипсе; чёрная плиссированная юбка с фиолетовой оборкой; ремень с
 ромбовой пряжкой; тёмно-фиолетовые колготки; белые туфли с чёрным бантом и ремешком-крестом; над головой — светящийся
 красно-белый ромб с глитч-обрывками.
+
+Превью (свой рендер, не скриншот из игры — клиент YSM в облаке не запускается; `mods-src/ysm-priestess/previews.py`):
+![виды](img/ysm-priestess/01_views.png)
+![состояния](img/ysm-priestess/02_states.png)
+![формы осколка](img/ysm-priestess/03_forms.png)
+![глаза](img/ysm-priestess/04_eyes.png)
+![позы колеса](img/ysm-priestess/05_poses.png)
 
 Механики:
 - **Осколок Originium** всегда парит рядом (орбита вокруг игрока, покачивание, вращение), пока руки пусты.

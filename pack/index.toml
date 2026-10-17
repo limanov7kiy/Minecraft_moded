@@ -102,11 +102,6 @@ hash = "590f56c8b1a90eb4e51c6cce995e33332d96b2ed8deec083a1526bf5dee0fdd3"
 metafile = true
 
 [[files]]
-file = "config/yes_steve_model/custom/arknights/AK_Rosmontis_v0.9.ysm.pw.toml"
-hash = "8c00520b1bb1d6e34b2843fd4e62bf9f780ea901ba03d98dfa86d26530b9b10c"
-metafile = true
-
-[[files]]
 file = "config/yes_steve_model/custom/arknights/AK_Rosmontis_v1.0.ysm.pw.toml"
 hash = "4a72cd587b3b920bb40254b151a76356b9cea4bba6cc4e5d4e61cd7a60d26cbc"
 metafile = true
