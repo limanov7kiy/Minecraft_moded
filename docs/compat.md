@@ -968,3 +968,16 @@ CurseForge 1460238, файл 9130290, Astryxion, All Rights Reserved. Jar `pack/
 Проверка: `export-pack.sh` — в `.mrpack` WorldEdit с `env.client = unsupported`, в серверном zip он есть; `test-server.sh` — `SERVER OK: Done (28.6s)`, WorldEdit загружен;
 `test-client.sh` из нового `.mrpack` — `CLIENT OK` (582 с), `worldedit` в `game/mods` нет. **Не измерено:** вход в одиночный мир без 130 с — в стенде нет `xdotool`, а `--quickPlaySingleplayer` мир не создал
 (клиент остался в меню); ожидание следует из стека (всё время первого тика — WorldEdit).
+
+## Northstar Structures удаляло всех существ в «кратерах» Обычного мира (поток 30, 2026-10-17, баг владельца «мобы не спавнятся»)
+**Симптом** (одиночная игра, новый обычный мир; суперплоский и Сумеречный лес работали): `/summon` без ответа, яйцо — только звук, естественного спавна нет.
+**Причина** — `com.northstar_structures.NorthstarStructures.onEntityJoinLevel` (Create: Northstar — Structures 1.0.0): для каждого не-игрового живого существа
+вызывает `ProtectedCraterAreas.isInsideProtectedCrater(seed, chunkPos)` и при попадании делает `discard()` + `setCanceled(true)`. «Защищённые кратеры» считаются
+только по зерну и координатам чанка (круги радиусом 150–250 блоков в каждой ячейке 64×64 чанка + бассейн Эйткена радиусом 2400) — **измерение не проверяется**,
+поэтому на Земле такие круги стали «мёртвыми зонами»: ни одно существо там не появляется и не живёт. Найдено на dedicated: корова, добавленная `addFreshEntity`,
+возвращала `false` и была `DISCARDED` в (600,600) snowy_taiga и (-600,-600) jungle, но не в (0,30), (100,100), (300,300), (1000,0), (0,1000); вызов слушателей
+`EntityJoinLevelEvent` по одному назвал виновника. Не виноваты: Cerbon's API/BoMD, ModernFix `remove_spawn_chunks`, Оберег, Spore/SRP, `orespawn_spawn_thin.js`.
+**Исправление** — `mods-src/mm-compat` 0.5.3: миксин `NorthstarCraterJoinMixin` пропускает обработчик во всех измерениях, кроме Луны (путь измерения `moon`: `northstar:moon`, `ad_astra:moon`).
+Кратеры и бассейн (структуры, фичи) — только на Луне, их это не затрагивает. После исправления корова добавляется во всех семи точках, в логе: «mm_compat: Northstar Structures onEntityJoinLevel — только на Луне».
+Тесты: `scripts/tests/spawnnat.js` (диагностика + яйца/summon/естественный спавн, два фейковых игрока; `culprit` перебирает слушателей), `scripts/tests/explorecheck.js` (тики при исследовании нового мира).
+Побочно: `scripts/test-server.sh` — переменные `EXTRA_CONFIG`, `SERVER_JVM_EXTRA`, `SERVER_XMX`.
