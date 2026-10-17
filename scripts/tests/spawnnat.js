@@ -29,7 +29,7 @@ ServerEvents.tick(event => {
       var Fake = Java.loadClass('net.minecraftforge.common.util.FakePlayerFactory'), GP = Java.loadClass('com.mojang.authlib.GameProfile'), UUID = Java.loadClass('java.util.UUID')
       var mk = (name, id, c) => { var fp = Fake.get(level, new GP(UUID.fromString(id), name)); fp.setPos(c[0] + 0.5, H(c[0], c[1]), c[1] + 0.5); level.addFreshEntity(fp); return fp }
       SN.A = mk('snA', '5a0e10ad-0000-4000-8000-0000000000a1', pts.A); SN.B = mk('snB', '5a0e10ad-0000-4000-8000-0000000000b1', pts.B)
-      console.info('SPAWNNAT players=' + level.players().size() + ' diff=' + level.getDifficulty() + ' A=' + SN.A.blockPosition() + ' B=' + SN.B.blockPosition())
+      console.info('SPAWNNAT players=' + level.players.size() + ' diff=' + level.getDifficulty() + ' A=' + SN.A.blockPosition() + ' B=' + SN.B.blockPosition())
     } catch (e) { console.info('SPAWNNAT fakeplayers FAIL ' + e); return }
     // оберег рядом с игроком A
     var ap = SN.A.blockPosition()
