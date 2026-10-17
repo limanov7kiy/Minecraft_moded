@@ -28,6 +28,7 @@ for f in $(grep -L '^url' "$root"/pack/mods/*.pw.toml); do
 done
 rm -f "$out/$base.mrpack"
 (cd "$root/pack" && "$PACKWIZ" refresh >/dev/null && "$PACKWIZ" modrinth export -o "$out/$base.mrpack" | tail -1)
+python3 "$root/scripts/mrpack-optional.py" "$out/$base.mrpack"   # необязательные моды (default=false) клиенту в .mrpack не ставим
 [ -f "$out/$base.mrpack" ] || { echo "mrpack не собран: см. вывод packwiz modrinth export"; exit 1; }
 
 # --- сервер ---
