@@ -925,7 +925,6 @@ CurseForge 1460238, файл 9130290, Astryxion, All Rights Reserved. Jar `pack/
   дадут настоящие «Incorrect key» (устаревшие ключи); к тому же `packwiz` перезаписывал бы у игроков их правки.
 - Если понадобится менять значения Ars (стоимость глифов и т. п.) — править через KubeJS/датапак либо класть в `pack/config/` только нужные файлы целиком (Forge допишет недостающие ключи с одним WARN «from null»).
 
-<<<<<<< HEAD
 ## Клиентские удобства: mm-perf 0.2.0, Controlling, Potato Craft 8x (поток 28, решения владельца В27/В28/В30)
 Всё в клиентском моде `mods-src/mm-perf` (`pack/mods/mm-perf-0.2.0-client.jar`, на сервер не попадает: серверный zip и `test-server` его не содержат).
 - **Режим слабого ПК** (`LowSpecMode`): кнопка «Режим слабого ПК» / «Вернуть как было» внизу слева на экранах настроек видео (ваниль и Embeddium) и «Настройки»; клавиша `key.mm_perf.lowspec`
@@ -946,7 +945,7 @@ CurseForge 1460238, файл 9130290, Astryxion, All Rights Reserved. Jar `pack/
 Второй прогон (`-Dmm_perf.selftest.assign=key.create_sa.flying` — клавиша, «назначенная игроком» F9): остаётся F9, отвязано 239 остальных. `test-server.sh`: `SERVER OK: Done (29.0s)`.
 **Не проверено:** нажатие кнопки мышью и горячей клавиши (нет `xdotool`; логика та же `LowSpecMode.toggle()`, вызывается из самотеста); тосты на экране; применение Embeddium/Oculus/DH в реальном рендере (без GPU) —
 ошибок отражения в логе нет, но DH к меню ещё не запущен (шаг пропускается, как задумано); вид Controlling-экрана.
-=======
+
 ## Первый тик после Done ≈ 2 минуты — виновник WorldEdit (поток 28, 2026-10-17)
 Метод: `scripts`-стенд без репозитория — сервер `run.sh` на готовом мире, сразу после `Done` `jstack` потока `Server thread` каждые 5 с (40 дампов, 3,5 мин).
 - `Done (29.9s)` в 18:18:37; поток сервера занят до ≈18:20:50 (**≈130 с**), затем первые нормальные тики (Northstar `PlanetTracker.updateOrbits` — доли секунды, остальное ожидание).
@@ -969,4 +968,3 @@ CurseForge 1460238, файл 9130290, Astryxion, All Rights Reserved. Jar `pack/
 Проверка: `export-pack.sh` — в `.mrpack` WorldEdit с `env.client = unsupported`, в серверном zip он есть; `test-server.sh` — `SERVER OK: Done (28.6s)`, WorldEdit загружен;
 `test-client.sh` из нового `.mrpack` — `CLIENT OK` (582 с), `worldedit` в `game/mods` нет. **Не измерено:** вход в одиночный мир без 130 с — в стенде нет `xdotool`, а `--quickPlaySingleplayer` мир не создал
 (клиент остался в меню); ожидание следует из стека (всё время первого тика — WorldEdit).
->>>>>>> origin/claude/affectionate-davinci-4gddoh
