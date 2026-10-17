@@ -27,7 +27,6 @@ public class WardBlock extends Block {
         super.onPlace(state, level, pos, old, moving);
         if (level instanceof ServerLevel sl && !old.is(this)) {
             WardData.get(sl).add(pos);
-            WardApi.weatherRegister(level, pos, true);
         }
     }
 
@@ -35,7 +34,7 @@ public class WardBlock extends Block {
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean moving) {
         if (level instanceof ServerLevel sl && !state.is(newState.getBlock())) {
             WardData.get(sl).remove(pos);
-            WardApi.weatherRegister(level, pos, false);
+            WardApi.weatherUnregister(level, pos);
         }
         super.onRemove(state, level, pos, newState, moving);
     }

@@ -1,4 +1,4 @@
 {
   "block.disaster_ward.ward": "Disaster Ward",
-  "tooltip.disaster_ward.ward": "Creative only. Calms disasters (Weather2, Natural Disasters!) within %s blocks."
+  "tooltip.disaster_ward.ward": "Creative only. Within %s blocks: no storms or disasters (Weather2, Natural Disasters!), no parasite infection (Spore, SRP System); disasters from outside do not break blocks inside."
 }
