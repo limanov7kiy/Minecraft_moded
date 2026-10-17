@@ -72,3 +72,41 @@
 4. **Lycanites / Valkyrien Skies / Create**: настройки по умолчанию оставлены (у Lycanites `typeSpawnLimit` 64 на вид; у VS `enableClientConnectivity` уже `false`).
    Если после правок остаются лаги в самой игре — `/spark profiler` (см. `friends.md`) и пришлите ссылку: тогда тюнить по факту, а не вслепую.
 5. Сервер: в `export-pack.sh` флаги JVM сервера — `-Xms4G -Xmx10G` без GC-флагов; можно добавить набор Aikar (как в `friends.md`) — по желанию хоста.
+
+## Embeddium и Oculus: «Sodium на Forge» (поток 28, 2026-10-17, решение владельца В25)
+**Что стоит.** `Embeddium 0.3.31+mc1.20.1` (порт Sodium 0.5.x на Forge от embeddedt) и `Oculus 1.8.0` (порт Iris на Forge). Оба — **последние версии под 1.20.1 Forge**
+(Modrinth: Embeddium 0.3.31 от 2024-08-31, Oculus 1.8.0 от 2024-12-24; новее нет, обновлять нечего). Оба `client`, на сервер не ставятся; Oculus зависит от Embeddium.
+
+**Почему не настоящий Sodium.** Sodium и Iris — моды для Fabric/NeoForge; на Forge 1.20.1 (где живёт почти вся сборка) их нет. Embeddium — форк Sodium,
+переписанный под Forge и расширенный API для модов; Oculus — то же для Iris (поэтому «шейдеры» тут через Oculus, багрепорты официальному Iris слать нельзя).
+Скорость рендера земли та же, что у Sodium 0.5 (чанки в видеопамяти, отсечение невидимого); отличие — версии отстают от свежего Sodium и поддерживаются одним человеком.
+
+**Что проверено** (`scripts/test-client.sh`, `CLIENT OK`; программный OpenGL, поэтому FPS/картинку не оцениваем):
+- Загружаются без ошибок, `Embeddium: 335 options available`, ImmediatelyFast 1.5.5 «Found Iris/Oculus 1.8.0. Enabling compatibility» (версия 1.2.7 здесь закрывала игру — см. compat.md К1, не откатывать).
+- Distant Horizons 3.3.3: «Partial Oculus support enabled… use Iris instead if possible», «DH Iris events bound», рендер «bound to OpenGL». «Partial» — норма для Oculus: ограничения DH с шейдерами
+  (LOD под шейдером могут быть без части эффектов). DH предупреждает, что Alex's Caves «может требовать правок конфига» для дальнего рендера — к Embeddium не относится.
+- Create 6.0.8 + Flywheel 1.0.5: бэкенд `DEFAULT`, `lightSmoothness SMOOTH`; ошибок рендера не видно. Valkyrien Skies 2.4.11 и Oculus вешают миксины на классы Embeddium
+  (`SodiumWorldRenderer`, `SodiumBufferBuilder`…) — это ожидаемо для связки (VS рассчитан на Sodium-подобные рендеры), но отдельно не проверялось. **Не проверено глазами**: Create-механизмы и корабли VS с включённым шейдером,
+  небо планет Ad Astra, Aether — нужна видеокарта (`docs/client-checklist.md`, раздел 3).
+- Две строки в логе, которые выглядят страшно, но безвредны: `ERROR Mod mixin into Embeddium internals detected. This instance is now tainted` и серия `WARN Mod(s) [oculus] are modifying Embeddium class…` —
+  Oculus по определению правит классы Embeddium (его меню шейдеров), Embeddium так предупреждает о «неподдерживаемой» сборке. `disable_incompatible_mod_warnings` в
+  `config/embeddium-options.json` убирает окно предупреждений в игре, но не строки лога. Строка `Force-disabling mixin … features.render.* (added by mods [oculus])` — Oculus сам отключает конфликтующие
+  оптимизации Embeddium (небо, шрифт, тени сущностей), чтобы шейдеры работали; это тоже штатно (часть выигрыша FPS с шейдерами недоступна).
+- `OpenGL debug message … GLSL 4.60 is not supported` — особенность программного Mesa стенда, на реальных видеокартах не встречается.
+- Встретилось попутно (не Embeddium): ModernFix `dynamic_resources` — `Exception baking cbc_at:block/heavy_autocannon/*_recoil_spring` (3 модели Create Big Cannons: Advanced Technologies не найдены, пушка без пружины; в сборку не лезет, проверить глазами).
+
+**Известные ограничения этой пары** (по Modrinth/описаниям, на нашей сборке без GPU не воспроизводились):
+- Совместимость с шейдерами — «best effort»: часть модовых блоков/существ с кастомным рендером (Create, Valkyrien Skies, Lycanites, Wizardry, Ars) может выглядеть без теней/подсветки или мерцать. Лечение — другой шейдер или выключить шейдеры; в логе ищите `Oculus`/`shader`.
+- Моды, вешающие миксины на рендер мира (`Rubidium Extra`, `BadOptimizations`, `More Culling`), с Embeddium/Oculus конфликтуют — их не ставим (таблица выше). Любой новый «оптимизатор» рендера — только после теста клиента.
+- Шейдеры тяжёлые: даже на хорошей видеокарте с DH FPS падает вдвое; на слабой — шейдеры выключить (*Настройки → Видео → Пакеты шейдеров → Выкл.*), Embeddium остаётся полезным и без них.
+
+**Рекомендации игрокам.**
+1. Драйвер видеокарты свежий (NVIDIA/AMD с сайта производителя; Intel — Intel Arc Control / Windows Update). Ноутбуки с двумя видеокартами: Java (`javaw.exe` Prism) прописать на дискретную в *Параметры Windows → Дисплей → Графика*; в F3 должна быть ваша карта, а не Intel UHD/`llvmpipe`.
+2. *Настройки → Видео (Embeddium)*: дальность 8–10 (не выше, дальше рисует Distant Horizons), облака «быстрые», частицы «уменьшенные», «Вертикальная синхронизация» — по вкусу; `chunk_builder_threads=0` (автоматически) оставить; включена «Сортировка прозрачных граней» (делает воду/стекло правильными).
+3. Шейдеры: сначала без них; потом лёгкий (Complementary Reimagined/BSL «Low»), *Распределение теней* ≤ 32 (в `oculus.properties` уже `maxShadowRenderDistance=32`). На ПК без дискретной карты шейдеры не включать.
+4. Distant Horizons: в сборке радиус 64, генерация самим DH выключена. Предупреждение «G1 Garbage collector detected» можно игнорировать: наш набор — G1 с флагами Aikar (`friends.md`), ZGC/Shenandoah на Java 17 для клиента **не советуем**
+   (ZGC без поколений на 17 хуже G1 и не проверялся на сборке). Если рывки именно при подгрузке LOD: уменьшить в настройках DH «Потоки» и «Радиус LOD», дать клиенту 8 ГБ, держать мир на SSD.
+5. Если видите вылет/фиолетовые блоки с шейдером — сначала выключить шейдер, затем (для проверки) вынуть `oculus-*.jar` из `mods/`; Embeddium без Oculus работает и даёт FPS.
+6. Для диагностики: `scripts/collect-diagnostics.*` (`docs/diagnostics.md`) уже собирает `embeddium-options.json` и `oculus.properties`; присылать вместе с `latest.log`.
+
+**Вывод.** Явной поломки не найдено: версии свежие и совместимые между собой, `CLIENT OK`, код и моды не менялись. Реальные FPS и шейдеры проверит только игра на видеокарте (проверочный список — `client-checklist.md`, раздел 3).
