@@ -73,7 +73,9 @@ const ndTick = (event) => {
   report('glowshroom', shrooms == 1, `blocks=${shrooms}`)
   // Corroded: урон +10%
   // Rhino не видит SRG-имя hurt — урон командой /damage
-  if (h.length == 1) { let before = h[0].getHealth(); server.runCommandSilent('execute positioned -259.5 200 4.5 run damage @e[type=minecraft:husk,distance=..1.5,limit=1] 4 minecraft:magic'); report('corroded_damage', Math.abs((before - h[0].getHealth()) - 4.4) < 0.05, `dmg=${before - h[0].getHealth()}`) }
+  if (h.length == 1) { let src = h[0].getLastDamageSource(); h[0].invulnerableTime = 0; let before = h[0].getHealth();  // сброс неуязвимости после чужого удара (иначе урон = 4 − прошлый)
+    console.info(`NDDIAG corrode husk last_damage=${src ? src.getMsgId() : '-'}`)
+    server.runCommandSilent('execute positioned -259.5 200 4.5 run damage @e[type=minecraft:husk,distance=..1.5,limit=1] 4 minecraft:magic'); report('corroded_damage', Math.abs((before - h[0].getHealth()) - 4.4) < 0.05, `dmg=${before - h[0].getHealth()}`) }
   // Poisonous Spore: стойка для брони с эффектом отравляет хаска рядом (проверка на t=400)
   server.runCommandSilent('summon minecraft:pig -289.5 200 3.5 {NoAI:1b,PersistenceRequired:1b}')
   server.runCommandSilent('summon minecraft:armor_stand -289.5 200 2.5 {PersistenceRequired:1b}')

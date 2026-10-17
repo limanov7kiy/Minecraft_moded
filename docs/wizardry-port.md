@@ -335,6 +335,77 @@ Restored; namespace сохраняем оригинальный (`wizardrygolems
   - Не перенесено в ND-1 (уходит в ND-2, нужны мобы/предметы FUR): Mana/Elemental Leech (пиявки FUR), 12 артефактов с
     эффектами через мобов FUR (лежат как предметы, без эффекта), остальные 16 заклинаний.
   - Рецепты бомб требуют предметов FUR (`foul_bristle`, `shattered_ice`) — вместе с мобами в ND-2.
-- **ND-2** (не начат): мобы FUR (Vespa, Banshee, Mycosis, Salamander, Forsaken, Mummy, Unburied, Parasite/пиявки, Bone Worm,
-  Weta, Mimic), снаряды, предметы, остальные 16 заклинаний и 12 артефактов. jar FUR 1.12.2 (8253053) и 1.16.5 (7327600) —
-  с CurseForge через packwiz/forgecdn.
+- **ND-2 — мобы FUR (поток 27, 2026-10-17, ветка `claude/necromancers-delight-nd2`):** порт `mods-src/fishs-undead-rising`
+  0.2.0 по декомпиляции jar 1.16.5 2.4.1 (Vineflower; модели ModelRenderer → LayerDefinition 1.20.1, анимации построчно).
+  - Мобы (13 сущностей): Unburied, Mummy, Mycosis, Frigid, Forsaken (+ снаряд Death Coil, посох), Vespa (+ кокон, езда,
+    жало по G), Banshee (крик → эффект Fear), Parasite (4 варианта, связь с Infested), Bone Worm/Osvermis (снаряды acid/flame jet),
+    Salamander (+ нимфа, езда, залп по G, эффект Immolation), Weta, Mimic (мимикраб). Модели, текстуры, звуки, добыча,
+    яйца призыва, свой творческий раздел, ru/en.
+  - Спавн — значения конфига 1.16.5 по умолчанию, через biome modifiers (`data/mod_lavacow/forge/biome_modifier/`) и свой
+    structure modifier `mod_lavacow:add_spawns` (мумии — пустынный храм; мимикраб — тег `mod_lavacow:mimic_habitat`
+    у сундуков, адская крепость, аванпост; в оригинале спавн-лист строения вытеснял всех прочих монстров — здесь нет).
+    Unburied сам не появляется (как в оригинале).
+  - Исправлены баги оригинала: кокон веспы при `/summon` с NBT вылуплялся сразу; здоровье Frigid/Mummy/веспы при загрузке;
+    smite читался из `fire_aspect`; вета после первого растения ломала остальные мгновенно.
+  - Не перенесено: мобы, не нужные ND (Beelzebub, Enigmoth, Ptera, Imp…), поэтому предметы приручения Salamander/Weta/Mimic
+    (`imp_horn`, `ptera_wing`, `plagued_porkchop`…) есть только в творческом разделе; блоки glowshroom/cordy_shroom FUR
+    (Mycosis рисует их модели как слой); weta_hoe, гробница в пустыне, зелья FUR, конфиг FUR; `foul_bristle` (крафт из
+    `foul_hide` моба вне списка) — рецепт вонючей бомбы ND пока без него не собрать.
+  - Тест `scripts/tests/furcheck.js`: призыв каждого моба, жив через 100 тиков, яйцо и таблица добычи.
+  - **Дальше — ND-3**, см. раздел «Передача ND-3» ниже.
+  jar FUR 1.12.2 (8253053) и 1.16.5 (7327600) — с CurseForge (`mediafilez.forgecdn.net/files/7327/600/...`).
+
+### Передача ND-3 (поток 27 → свежий сеанс, 2026-10-17)
+Цель: оставшиеся заклинания и артефакты Necromancer's Delight поверх мобов порта FUR (ND-2, PR #67). Ветка — от
+`claude/necromancers-delight-nd2` (или от интегратора после слияния #67), PR в `claude/affectionate-davinci-4gddoh`.
+
+**Исходники оригинала:**
+- ND 1.12.2 — https://github.com/WinDanesz/WizardryNecromancersDelight, коммит `0e52462` (GPL-3.0). Регистрация
+  заклинаний — `registry/NDSpells.java` (строки 80–117), артефактов — `registry/NDItems.java` (66–89), эффекты артефактов —
+  `handler/NDEventHandler.java` (372 строки), свои классы — `spell/`, `item/`, `entity/`; ассеты и
+  `assets/necromancersdelight/spells/*.json` (параметры заклинаний).
+- FUR 1.16.5 2.4.1 — jar с CurseForge, файл 7327600 (`mediafilez.forgecdn.net/files/7327/600/Fish's%20Undead%20Rising-2.4.1.jar`),
+  декомпиляция Vineflower 1.10.1 (`org/vineflower/vineflower/1.10.1` на Maven Central): `java -jar vineflower.jar -dgs=1 <jar> <out>`.
+  FUR 1.12.2 1.6.2 — файл 8253053. Классы FUR, нужные ND-3, — в декомпиляции 1.16.5: предметы `item/` (FrozenDagger,
+  BoneSword, SpectralDagger, VespaShield), снаряды `entities/projectiles/` (HolyGrenade, GhostBomb, SonicBomb),
+  блоки грибов `block/` (Glowshroom, Cordyceps, VeilShroom).
+
+**Опись: заклинания (16 из 20; 4 сделаны в ND-1 — stink_bomb, frost_bomb, corrode, glowshroom):**
+| id | оригинал (NDSpells) | что нужно |
+|---|---|---|
+| bound_frozen_dagger, bound_bone_sword, bound_spectral_dagger, bound_vespa_shield | `SpellDynamicConjuration` + `FishItems.*` | перенести 4 предмета FUR; Redux `ConjureItemSpell` |
+| holy_hand_grenade, ghost_bomb, wail_of_the_banshee | `SpellThrowable` + EntityHolyGrenade/GhostBomb/SonicBomb (FUR) | перенести 3 снаряда FUR; Redux `ProjectileSpell` (как бомбы ND-1, `NdBomb`) |
+| summon_vespa | `SpellMinion` + своя `EntityVespaMinion` | миньон на `VespaEntity` порта; Redux `MinionSpell` |
+| conjure_banshee, conjure_mycosis, summon_salamander | `SpellDynamicMinion` + мобы FUR | мобы есть в порте (`FurEntities`); Redux `MinionSpell` + `MinionData` (как в wizardry-golems) |
+| summon_mana_leech, summon_elemental_leech | `SummonManaLeech`/`SummonElementalLeech` + `EntityLeechMinionBase` | миньоны на модели `ParasiteModel` порта |
+| trial_of_mushrooms | `TrialOfMushrooms` (IMBUE) | грибы FUR (блоки — не перенесены в ND-2) |
+| carcinize | `Carcinize` (сундук → мимик) | `MimicEntity` порта, перенос содержимого сундука |
+
+**Опись: артефакты** (из 15 + Leech Crystal работают 5 — Necromantic/Malice Ward, иммунитеты к замедлению/слабости,
+Cursed Scarab; остальные зарегистрированы в `NdArtifacts`/`NdItems` без эффекта): `amulet_leechlink`, `ring_legion`
+(Unburied), `ring_nameless`, `ring_frozen_dagger`, `ring_forsaken` (Forsaken), `charm_bone_bag`, `charm_mummy_minion`
+(Mummy), `charm_mushroom_minion` (Mycosis), `belt_thorns`, `head_pest_crown` (`ItemPestCrown`), `amulet_leech_crystal`
+(`ItemLeechCrystalAmulet`). Логика — `NDEventHandler`.
+
+**Что уже есть для переиспользования:**
+- `mods-src/necromancers-delight` 0.1.0: регистрация заклинаний (`NecromancersDelight` — `SPELLS` registry Redux
+  `ebwizardry:spells`), `NdSpells` (свойства через `SpellProperties.builder()`), `NdBomb`/`NdBombs` (снаряд + граната),
+  `NdArtifacts` (Curios, проверки слота), `NdEffects`, `NdLoot`, lang en/ru/zh (ru — ещё в ru-пакете).
+- `mods-src/fishs-undead-rising` 0.2.0: `registry/FurEntities` (в javadoc — порядок добавления моба), `FurItems`
+  (вкладка, `egg(...)`), `FurSounds`, `entity/FURTameableEntity` (владелец/приручение — удобно для миньонов),
+  `client/model/FURBaseModel` (хелперы анимаций), `client/ClientSetup`, `world/AddStructureSpawnsModifier`.
+- Образец миньонов Redux — `mods-src/wizardry-golems` (`MinionData`: владелец, время жизни, следование).
+- Тесты: `scripts/tests/ndcheck.js` (касты фейковым игроком, арены, фазы), `scripts/tests/furcheck.js` (призыв мобов).
+
+**Ловушки (найдено в ND-1/ND-2):**
+- Снаряды Redux (`MagicProjectileEntity.aim`) вылетают из `xo/yo/zo` стрелка — в тестах фейкового игрока ставить
+  `setPos` + `setOldPosAndRot()` (5-аргументный `moveTo` Rhino не находит).
+- Тестовый сервер: «Done» в логе за ~3 мин до первого тика — `TEST_COMMANDS` с `#sleep 420`; мир между прогонами
+  сохраняется — арены чистить `kill` за 40 тиков до каста; `server.persistentData` KubeJS — не CompoundTag (фазы — в
+  переменной скрипта); `const` внутри блока в обработчике тика — «redeclaration», только `let`.
+- Перед проверкой урона сбрасывать `invulnerableTime` цели (чужой удар за ≤10 тиков съедает часть урона).
+- Biome/structure modifiers: несколько тегов — только `{"type": "forge:or", "values": [...]}`, массив не парсится и
+  мир не грузится. NBT-поля сущностей читать с `tag.contains(...)` (иначе `/summon` с NBT обнуляет их).
+- test-client: остатки мёртвого Xvfb (`/tmp/.X99-lock`, `/tmp/.X11-unix/X99`) дают «glfwInit failed» — удалить.
+- Модели ND-2 переводились автоматическим конвертером — при работе с миньонами на их моделях глянуть позы в мире.
+

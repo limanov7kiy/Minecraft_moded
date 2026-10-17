@@ -617,6 +617,19 @@ Mass Destruction Forge 1.1.2. Cataclysm/Mowzie's/Lycanites не дублирую
   в `TEST_COMMANDS` для тиковых тестов брать от 420 с; мир между прогонами сохраняется — арены чистить за 40 тиков до каста.
 - Рецепты бомб требуют предметов FUR (`foul_bristle`, `shattered_ice`) — появятся с мобами в ND-2.
 
+### Fish's Undead Rising — мобы для Necromancer's Delight, ND-2 (поток 27, 2026-10-17)
+`mods-src/fishs-undead-rising` 0.2.0 (`mod_lavacow`, порт по декомпиляции FUR 1.16.5 2.4.1, автор Fish, ARR — NOTICE.md):
+13 сущностей — Unburied, Mummy, Mycosis, Frigid, Forsaken, Vespa (+ кокон), Banshee, Parasite, Bone Worm, Salamander, Weta,
+Mimic; снаряды Death Coil, Acid/Flame Jet, War Small Fireball; эффекты Fear, Fragile, Immolation.
+- Сервер: `scripts/tests/furcheck.js` 13/13 OK (призыв, жив через 100 тиков, яйцо, таблица добычи), ndcheck не сломан; SERVER OK.
+  Клиент: CLIENT OK (568 с), ошибок по `mod_lavacow` нет (модели и рендеры пекутся при загрузке ресурсов).
+- Biome modifier `forge:add_spawns`: несколько тегов в `biomes` — только через `{"type": "forge:or", "values": [...]}`;
+  JSON-массив тегов не парсится, и мир не загружается вовсе («Failed to parse … biome_modifier», сервер висит до таймаута).
+- Спавн мобов в строениях — свой structure modifier `mod_lavacow:add_spawns` (в Forge 1.20.1 своего типа нет).
+- test-client: если Xvfb прошлого запуска умер, а `/tmp/.X11-unix/X99` остался — «glfwInit failed»; удалить
+  `/tmp/.X99-lock` и `/tmp/.X11-unix/X99`.
+- Предметы приручения Salamander/Weta/Mimic падают с мобов FUR, которых нет в порте, — пока только в творческом разделе.
+
 ### Bosses of Mass Destruction + Cerbon's API (поток 9, 2026-10-12, решение владельца В12 «а»)
 Владелец ответил «оба», затем «а»: вернуть Cerbon's API и добавить BoMD, с регрессионной проверкой спавна; если у владельца
 спавн мобов снова пропадёт — **сразу убрать оба мода** (`mr cerbons-api`, `mr bosses-of-mass-destruction-forge` и Cloth Config,

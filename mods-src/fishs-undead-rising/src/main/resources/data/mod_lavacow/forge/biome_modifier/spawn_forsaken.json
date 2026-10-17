@@ -1,0 +1,20 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": {
+    "type": "forge:and",
+    "values": [
+      "#minecraft:is_overworld",
+      "#forge:is_sandy",
+      {
+        "type": "forge:not",
+        "value": "#forge:is_mushroom"
+      }
+    ]
+  },
+  "spawners": {
+    "type": "mod_lavacow:forsaken",
+    "weight": 10,
+    "minCount": 4,
+    "maxCount": 8
+  }
+}
