@@ -17,6 +17,7 @@
 | Кислород скафандров Northstar/CS в системе Ad Astra | `mods-src/mm-compat` |
 | Wizardry Restored 0.4.0: 38 из 61 недостающего заклинания + 4 SENSIBLE-заклинания Redux, тест в мире `castcheck.js` (42/42) | `mods-src/wizardry-restored`, `docs/wizardry-port.md` |
 | Lycanites Mobs: недостающий refmap миксинов (сделано в основном чате до разделения) | `patches/lycanites-refmap`, `docs/compat.md` |
+| Falling Tree 1.20.1-4.3.4: дерево падает целиком (FALL_BLOCK), присед = один блок, прочность «всё или ничего» (миксин в mm-compat), лимит 300 брёвен; тест на фейковом игроке | `docs/compat.md` «Falling Tree», `pack/config/fallingtree.json`, `scripts/tests/fallingtree.js` |
 | Серверные тесты: гравитация, маршруты, ракеты, кислород, руды, заклинания | `scripts/tests/` |
 
 ## В работе
@@ -159,6 +160,7 @@
 - [x] KubeJS: `missing_mod_refs.js` правит только теги, `space_rockets.js` убирает рецепты ракет Ad Astra и прячет их из JEI — нужные рецепты не скрыты.
 - [x] Ошибки JEI в логе клиента (Blue Skies, mekmm, JER) — собственные баги модов, `docs/compat.md`.
 - [x] JEI-категория Imbuement Altar для Redux — mm-compat 0.5.0 (отдельный PR).
+- [x] Фриз сервера от Mana and Artifice (блокирующий `getChunk` в `onWorldTick`, тик до 45 мин) — mm-compat 0.5.2, миксин `MnaChunkTickMixin`, тест `mnachunk.js` (поток 24, compat.md).
 
 ### Поток 5 — Проверка клиента
 Клиент в облаке: `scripts/test-client.sh <папка>` (Forge через portablemc, моды из `.mrpack` как у Prism,
@@ -351,6 +353,7 @@ JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.t
 
 Очередь после сброса лимита (17.10 06:00 UTC):
 - OreSpawn: Chaos Persists в тестовую сборку → совместимость/дубли (Ice and Fire, Lycanites, Mowzie's) → список недостающего из 1.7.10 → выбор владельца → порт отдельным модом (opus).
+  Этап 1 сделан (поток 23, ветка `claude/orespawn`): ремейк + AttributeFix в сборке, сравнение — `docs/orespawn.md` (из 1.7.10 не хватает только яйца Zombie Pigman); ждёт выбора владельца по списку в конце документа.
 - Necromancer's Delight ND-1: с WIP `claude/necromancers-delight` (точка остановки — `docs/wizardry-port.md`), свежий сеанс opus.
 - Оберег: единый радиус для Weather2 (у него 128) и Natural Disasters! (64); бедствие, прилетевшее снаружи, не ломает блоки в зоне.
 - Ветка `claude/ru-force-packs` (после #41 атлас помещается) — оценить.
@@ -365,7 +368,7 @@ JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.t
 
 Решения владельца: В19 — Lost Cities «Оставь как есть» (современный стиль, `rarecities`); В20/В21 — Falling Tree, Dynamic Trees не ставим:
 присед = по блоку, прочность за каждое бревно, при нехватке прочности — один блок (миксин mm-compat), `maxSize` 300 ABORT, широкие стволы не трогаем;
-В22 — фризы у игроков: скрипт сбора диагностики и анализ; В23 — Clanging Howl (мод на CurseForge, есть русский перевод на Modrinth);
+В22 — фризы у игроков: скрипт сбора диагностики и анализ; В23 — Clanging Howl (мод на CurseForge, есть русский перевод на Modrinth) — **сделано, поток 20**;
 В24 — паразиты: Fungal Infection: Spore (+ SRP System, если совместим), Оберег не пускает заразу и заражённых в зону;
 В25 — разбор Embeddium/Oculus («Sodium на Forge») в рамках анализа фризов.
 

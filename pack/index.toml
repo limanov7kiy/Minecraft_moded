@@ -49,6 +49,10 @@ file = "config/disaster_ward-common.toml"
 hash = "4e9832f68b71d638c938b91fcf04cd02124e56255636d20ab480c4b2027077e4"
 
 [[files]]
+file = "config/fallingtree.json"
+hash = "e5ce3851728af563cb5b9bf8752dbb461b28340aec350d9b2fd8d9c9026c915f"
+
+[[files]]
 file = "config/iceandfire-common.toml"
 hash = "4e686e3616fc1885ce4380e95fe8c9d32be13536693da638e27b091372c0777b"
 
@@ -886,6 +890,11 @@ hash = "50e84c4b402d1772d2fea803812074b2946dac2a6b85944bfb5af37fd0db082c"
 metafile = true
 
 [[files]]
+file = "mods/attributefix.pw.toml"
+hash = "1af0f2515f459bc59ac0f489ef94bf2d6e0453e57831d5711c64da695929bde9"
+metafile = true
+
+[[files]]
 file = "mods/attributes.pw.toml"
 hash = "6cf3028c6bbba1936405cd988a11626069676e678bc3caf440fe216bb0931f8c"
 metafile = true
@@ -992,6 +1001,10 @@ hash = "b04f3690005952fb2f0d93b742a00d4b25547cbb4e2975aaca89fb0af58a9539"
 metafile = true
 
 [[files]]
+file = "mods/chaospersists-1.20.1-0.9.1.jar"
+hash = "f868d47bf5a8cf4a327df98ae896e9e0d55fd1bf1858f3d851e8a60c38ab6698"
+
+[[files]]
 file = "mods/cinematic-cataclysm.pw.toml"
 hash = "51a26b15b158cb016944b8ac19d3badc251ccde6ce58d8143e0a37524ea09ce7"
 metafile = true
@@ -1000,6 +1013,10 @@ metafile = true
 file = "mods/citadel.pw.toml"
 hash = "c7ac7f84731a0ca1fefb3491c3f65c2767afd4be207e094fcb65c4cea99c9549"
 metafile = true
+
+[[files]]
+file = "mods/clanging-howl-1.20.1-1.1.0.jar"
+hash = "451fb79e2634d59b2bd9443bb4a28aa528c2123c2e6ee0f67a59318683d89774"
 
 [[files]]
 file = "mods/cloth-config.pw.toml"
@@ -1194,6 +1211,11 @@ hash = "9cf8b4b8fbb8ce4de87893f38a50ef10b73905bdf0f703d72917b0b8fbcb2aa0"
 [[files]]
 file = "mods/factions-and-curiosities.pw.toml"
 hash = "cf1a0474ae05fe512d822a758c5a093c959da23c53c1c2e3459461b6b0657d06"
+metafile = true
+
+[[files]]
+file = "mods/fallingtree.pw.toml"
+hash = "c3855a5011cc263726532999f35c8691db9fa60b9d470758dd826d25c29ed4cb"
 metafile = true
 
 [[files]]
@@ -1527,8 +1549,8 @@ hash = "c25495262a852dc02886ec8c4b695f30e53264a2e3d881dd36ee9de16a1ef499"
 metafile = true
 
 [[files]]
-file = "mods/mm-compat-0.5.0.jar"
-hash = "10136eb69537c3a2c9c5d81c7d57a700281ddf419d5f79b8aba09c82d2289da8"
+file = "mods/mm-compat-0.5.2.jar"
+hash = "25d09eea0e969a11ee1b20efb21e14f51b2fbd697c10ca48d44d3bea78b8dabe"
 
 [[files]]
 file = "mods/mm-perf-0.1.0-client.jar"
@@ -1679,7 +1701,7 @@ metafile = true
 
 [[files]]
 file = "mods/ru-lang-1.0.0-client.jar"
-hash = "d3507a940243ecc8cc08e3fb1948c0e2b939e5d984a169989feb661906ee2f49"
+hash = "2aa3e590e57600c12e5ca4edfb796fc577d1a3070d0bbb00a88ad46bc0f0cdcf"
 
 [[files]]
 file = "mods/sarkazs_furnace_side_fables-0.2.3-forge-1.20.1.jar"

@@ -47,6 +47,9 @@ mr l_enders-cataclysm
 mr ice-and-fire-dragons    # both: Ice and Fire CE 2.1.13 — драконы (огненный/ледяной/молниевый), гидра, сирены и др.; зависимость Citadel (поток 9)
 mr cerbons-api             # both (решение владельца В12 «а»: вернуть ради BoMD; поток 10 убирал из-за миксинов коллизий — регрессионный тест spawncheck.js)
 mr bosses-of-mass-destruction-forge  # both: Bosses of Mass Destruction 1.1.2 — Лич, Обсидилит, Void Blossom, Гаунтлет с аренами (поток 9)
+#jar clanging-howl             # both: Clanging Howl 1.1.0 (Mongoose_artist, Polarice3; All Rights Reserved, CF без стороннего скачивания) — инопланетные падения метеоритов, техноплоть-мобы, энергоинструменты; зависимости GeckoLib и Curios уже в сборке (поток 20). Перевод — russian-moded/assets/clanginghowl (den1s64dev, CC-BY-NC-SA-4.0 + дописано нами)
+#jar chaos-persists            # both: Chaos Persists 0.9.1 (Astryxion; All Rights Reserved, CF 1460238) — ремейк OreSpawn 1.7.10 (В16, поток 23): ~130 мобов, King/Queen/Mobzilla, измерения Utopia/Mining/Village/Crystal/Chaos/Danger; зависимостей нет. Сравнение с оригиналом — docs/orespawn.md
+mr attributefix              # both: AttributeFix (Darkhax, LGPL-2.1) — снимает потолок здоровья 1024: без него King (7000), Queen (6000), Mobzilla (4000) у Chaos Persists урезаны до 1024 (его собственный обход падает: «failed to raise generic.maxHealth cap»)
 
 ## Ракеты, космос, техника
 mr create
@@ -265,6 +268,8 @@ mr apothic-attributes     # обязательная зависимость T.O 
 mr azurelib               # обязательная зависимость Cataclysm: Spellbooks (раньше подтягивалась packwiz'ом)
 # zombie-have-ears (поток 2) → zombiehaveears-1.1.2-forgefix.jar (patches/zombie-have-ears, только mods.toml)
 
+## Рубка деревьев (поток 18; Falling Tree — RakSrinaNa, LGPL-3.0)
+mr fallingtree            # both: 1.20.1-4.3.4; дерево падает целиком (FALL_BLOCK), присед = один блок; «всё или ничего» по прочности — миксин FallingTreeDamageMixin в mods-src/mm-compat; конфиг pack/config/fallingtree.json (docs/compat.md)
 # Поток 3, по решению владельца: Mana and Artifice и Ars Magica: Legacy (+ дополнения). Все side=both.
 ## Магия — Mana and Artifice и Ars Magica: Legacy
 mr mana-and-artifice                 # 3.1.11 Forge 1.20.1; зависимости GeckoLib, Curios уже в сборке

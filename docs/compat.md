@@ -310,6 +310,26 @@ Northstar/CS выживает на Луне, воздух тратится ~1/с
 Ванильный `/locate` в сборке асинхронный (Async Locator) — результат команды всегда 0, ответ приходит позже.
 План и ход работ — `docs/galacticraft.md`.
 
+## Falling Tree (поток 18)
+Falling Tree 1.20.1-4.3.4 (RakSrinaNa, LGPL-3.0; Modrinth `fallingtree`, сторона `both`): срубленное дерево падает целиком.
+- Конфиг `pack/config/fallingtree.json` (файл мода; в нём всё, что не перечислено ниже, — значения по умолчанию):
+  `trees.breakMode = FALL_BLOCK`, `sneakMode = SNEAK_DISABLE` (присед = рубить по одному блоку),
+  `tools.damageMultiplicand = 1` (1 прочности за бревно), `tools.preserve = true`, `tools.forceToolUsage = true`,
+  `trees.maxSize = 300`, `trees.maxSizeAction = ABORT` (дерево больше 300 брёвен — рубится один блок).
+- Миксин `FallingTreeDamageMixin` (`mods-src/mm-compat`, необязательный, `@Pseudo`): при `preserve = true` Falling Tree сам рубит
+  столько брёвен, на сколько хватает прочности. Миксин в конце конструктора `ToolDamageHandler` бросает то же
+  `BreakTreeTooBigException`, что мод бросает при превышении maxSize, если прочности не хватает на все брёвна дерева
+  (с `preserve` — так, чтобы топор не сломался на последнем бревне). `TreeHandler` ловит его и отвечает `TREE_TOO_BIG_BREAK`
+  (`cancel = false`) — событие не отменяется, игра ломает один блок. Исключение летит одинаково из всех трёх обработчиков
+  (Instantaneous, FallingAnimation, ShiftDown): все создают `ToolDamageHandler` и пропускают исключение наверх.
+  Параметры конструктора (javap): `int` №1 — число брёвен дерева (`Tree.getBreakableCount`), `int` №2 — `maxSize`.
+- Широкие стволы 2×2 не трогали (решение владельца).
+- Тест `scripts/tests/fallingtree.js` (фейковый игрок Forge, `ServerPlayerGameMode.destroyBlock`, железный топор 250 прочности;
+  запускать в чистом мире — брёвна прошлых прогонов остаются в мире и попадают в дерево). Результат на чистом мире, `Done`:
+  полная прочность (6 брёвен) — дерево целиком, −6 прочности; осталось 3 прочности — один блок (−1: 247 → 248);
+  присед — один блок; куб 384 бревна — один блок; осталось 7 на 6 брёвен — целиком, топор остаётся с 1; осталось 6 на 6 — один блок.
+  Не проверено: игра живым игроком и реальные деревья (листва `persistent=false` проверена справочно — тоже −6),
+  мод Falling Tree без миксина-цели (запуск без мода), клиент.
 ## Проверка клиента (поток 5, 2026-10-11)
 Клиент запускался в облаке: `scripts/test-client.sh` — Forge через portablemc, моды из `.mrpack` так же, как
 ставит Prism (только `env.client != unsupported` + `overrides/`), Xvfb + Mesa llvmpipe (OpenGL 4.5), без звука.
@@ -409,6 +429,34 @@ Arknights Weapon) применяются без ошибок. Микрофон, 
   Возможный пересечение `forge:gems/topaz` с другими модами — не проверялось.
 - **Не проверено (задача потоку 4):** конфликты клавиш и интерфейса маны на клиенте (у M&A, Ars Magica, Iron's Spells,
   Ars Nouveau, Wizardry — у каждого своя система маны; общей нет), рецепты и дубли предметов, генерация мира/структур M&A рядом с остальными.
+
+### Фриз сервера от Mana and Artifice — блокирующая загрузка чанков (mm-compat 0.5.2, поток 24, 2026-10-17)
+- **Находка (логи игрока, Координатор):** ModernFix IntegratedWatchdog — «A single server tick has taken 2269630 ms», сервер
+  висел ~45 мин; во всех дампах Server thread стоит в `ServerChunkCache.getChunkBlocking` ← `Level.getChunk(int,int)` ←
+  `com.mna.events.CommonEventHandler.onWorldTick` (строка 1256). В других сессиях — частые «Can't keep up» по 2–9 с с тем же стеком.
+- **Причина (байткод M&A 3.1.11, строки 1241–1259):** на каждый `LevelTickEvent` (END) для каждого игрока мира — цикл по чанкам
+  в радиусе 5 (11×11 = 121 чанк), затухание остаточной магии чанка (`ChunkMagicProvider.MAGIC` → `removeResidualMagic(0.01)`).
+  Отбор — `Level.hasChunk(x,z)`: на сервере это «у чанка есть тикет уровня FULL», а не «чанк готов». У края загруженной
+  области (вход, телепорт, полёт, быстрый бег) чанки с тикетом ещё генерируются, и `Level.getChunk(x,z)` синхронно ждёт
+  их генерацию на серверном потоке — тик длится секунды, при тяжёлой генерации (много модов мира) — минуты.
+- **Исправление:** миксин `MnaChunkTickMixin` (`mods-src/mm-compat`, необязательный: `@Pseudo`, без M&A не применяется,
+  `require = 1` — неудача видна в логе) — `@Redirect` вызова `hasChunk` (SRG `m_7232_`) в `onWorldTick`: на `ServerLevel`
+  чанк берётся, только если он уже FULL (`ServerChunkCache.getChunkNow != null`), иначе пропускается в этом тике;
+  следующий `getChunk` вызывается только для готовых чанков и не блокирует. Клиент (`ClientLevel`) — без изменений.
+  Поведение M&A то же: магия в недогруженном чанке затухает со следующих тиков, когда он догрузится.
+  Маркер в логе: `[com.mna.events.CommonEventHandler/]: mm_compat: MnA onWorldTick — только готовые чанки…` (один раз, при первом вызове).
+- **Проверка** (`scripts/tests/mnachunk.js`, свежий мир): через 90 с после старта фейковый игрок Forge входит в мир
+  (`addNewPlayer`) у чанка 20000,20000, плюс region-тикет радиуса 6 — чанки с тикетом, но не сгенерированные; меряется
+  длительность 100 следующих тиков. С исправлением (2 прогона): `MNACHUNK OK maxTick=182 фон=885` и `maxTick=1056 фон=1203`
+  (тик не дольше фоновых всплесков первых минут; `full=1` — за 5 с готов 1 чанк
+  из 121 — сервер не ждёт генерацию). Без исправления (mm-compat 0.5.1): после входа ни одного тика за 21 с до остановки —
+  spark «Timed out waiting for world statistics», переполнена очередь физики Valkyrien Skies; фриз воспроизведён.
+  Сервер с исправлением прожил 5,7 мин, «Mixin apply failed» нет, `Mixing MnaChunkTickMixin … into com.mna.events.CommonEventHandler` в debug.log.
+  `forceload add` для такого теста не годится: сама команда ждёт загрузку чанков (~30 с на 121 чанк).
+- **Радиус цикла (не меняли):** 121 чанк на игрока за тик в каждом мире, где есть игроки, с `HashSet<Long>` против повторов;
+  на готовый чанк — поиск в кэше чанков + `getCapability` (LazyOptional) + чтение float. Это ~120 дешёвых обращений на игрока
+  за тик (у 5 игроков ≈ 600) — заметно в профиле, но не фриз. Тот же цикл идёт и на клиенте (`LevelTickEvent` для `ClientLevel`),
+  там `getChunk` не блокирует. Если профиль spark покажет `onWorldTick` в верхних строках — можно прореживать (раз в N тиков).
 
 ## Офлайн-режим и авторизация (поток 2, 2026-10-12)
 - `online-mode=false`: тест-сервер (`test-server.sh`, новый мир) — `Done`, предупреждение «OFFLINE/INSECURE MODE» ожидаемо.
@@ -769,3 +817,32 @@ Alex's Mobs/Caves, Twilight Forest, Undergarden, Blue Skies, Quark, Bumblezone, 
 ## WorldEdit 7.2.15 (2026-10-13, решение владельца В18)
 Modrinth `1u6JkXh5`, версия `Wrlqaul6`, Forge 1.20.1, сторона `both`, в `pack/modlist.txt`. `test-server.sh`: `SERVER OK` (Done 32 с), в логе «WorldEdit for Forge (version 7.2.15) is loaded», команды зарегистрированы, ошибок нет.
 Команды `//…` — по правам OP (разрешений-мода в сборке нет, действует уровень оператора). Клиентский прогон не делался (мод серверный по сути, интерфейса нет). Инструкция переноса построек — `docs/friends.md` («Администратору»).
+
+## Clanging Howl 1.1.0 (поток 20, 2026-10-17, решение владельца В23)
+Автор — Mongoose_artist (владелец), Polarice3; CurseForge project 1367022, ModJam 2025, лицензия All Rights Reserved, **стороннее скачивание
+запрещено** (в API нет `downloadUrl`) → jar `pack/mods/clanging-howl-1.20.1-1.1.0.jar` лежит в репозитории (правило CLAUDE.md), строка `#jar` в
+`modlist.txt`. Единственный мод с таким названием; Forge 1.20.1, сторона **both**. Зависимости: GeckoLib (≥84) и Curios (≥5.3.4) — уже в сборке;
+JEI необязательна. Добавляет: метеоритные дожди, внеземные объекты/гнёзда/исследовательские станции, мобов-техноплоть (гематома, охотник, туша,
+кровораспространитель…), энергогаджеты (curios-слоты heart/legs/feet), броню-инструменты из внеземной стали.
+Конфликты: теги `forge:ingots`/`ores` содержат только свои предметы (Almost Unified не затрагивается — `steel` в `unify.json` это `forge:ingots/steel`);
+слоты Curios `replace:false` — с остальными модами складываются. Русификация — см. docs/russification.md.
+
+**Прогон `test-server.sh` (max-tick-time=-1): `Done (48.6s)`**, 152 ERROR в логе — фоновые, как у остальных модов; строк с `clanginghowl` уровня ERROR/exception нет.
+Единственное — WARN «config/clanginghowl.toml исправлен до значений по умолчанию» (первый запуск: метеоритный дождь включён, раз в 15 дней).
+Не проверено: клиент (рендер GeckoLib, перевод в игре), реальный метеоритный дождь и спавн мобов/структур в мире, поведение рядом с Lycanites/Cataclysm.
+
+## Chaos Persists 0.9.1 — ремейк OreSpawn (поток 23, 2026-10-17, решение владельца В16)
+CurseForge 1460238, файл 9130290, Astryxion, All Rights Reserved. Jar `pack/mods/chaospersists-1.20.1-0.9.1.jar`, сторона both, обязательных зависимостей нет.
+Полное сравнение с OreSpawn 1.7.10 и находки — **`docs/orespawn.md`**. Коротко:
+- потолок здоровья 1024 обрезал бы King, Queen, Mobzilla → добавлен **AttributeFix** (mr `attributefix`, both);
+- рецепты ремейка создаются в коде и не видны KubeJS и Almost Unified;
+- металлы (уран, титан, соль, рубин, аметист) не стоят в тегах `forge:` и **намеренно не объединяются**;
+- `chaospersists:utopia` добавлен в `#minecraft:is_overworld` — туда попадут мобы и руды других модов.
+
+**Прогоны `test-server.sh`:**
+- `Done (81.8s)` — первый запуск, 153 ERROR, от ремейка один (потолок здоровья);
+- с AttributeFix — `Done (35.3s)`, 152 ERROR.
+
+Первый тик после Done ~136 с (WorldEdit + 6 новых измерений; `max-tick-time=-1` обязателен).
+Не проверено: клиент, измерения и бои в игре, HP боссов в бою.
+
