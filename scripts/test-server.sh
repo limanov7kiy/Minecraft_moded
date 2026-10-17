@@ -19,7 +19,7 @@ python3 "$root/scripts/fetch-mods.py" server mods | grep -v '^got' || true
 for d in config defaultconfigs kubejs; do [ -d "$root/pack/$d" ] && mkdir -p "$d" && cp -r "$root/pack/$d/." "$d/"; done
 [ -n "${EXTRA_SERVER_SCRIPTS:-}" ] && mkdir -p kubejs/server_scripts && cp "$EXTRA_SERVER_SCRIPTS"/*.js kubejs/server_scripts/
 echo eula=true > eula.txt
-[ -f server.properties ] || printf 'online-mode=false\nlevel-seed=12345\n' > server.properties
+[ -f server.properties ] || printf 'online-mode=false\nlevel-seed=12345\nmax-tick-time=-1\n' > server.properties   # max-tick-time=-1: WorldEdit на старте делает тик >60 с, иначе сторож убивает сервер (docs/hosting.md)
 echo "-Xmx8G" > user_jvm_args.txt
 rm -rf crash-reports
 rm -f logs/latest.log

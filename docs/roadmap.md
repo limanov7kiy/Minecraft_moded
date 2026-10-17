@@ -357,6 +357,22 @@ JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.t
 - Ветка `claude/ru-force-packs` (после #41 атлас помещается) — оценить.
 - Extreme Natural Disasters (вулканы) / This Tsunami — только по запросу владельца.
 
+Пауза 13–17.10 (неделя дошла до 96%: в основном тратили другие проекты аккаунта; стоп-порог владельца поднят до 95%):
+| Задача | Поток (сеанс) | Статус |
+|---|---|---|
+| Экран клавиш при GUI x3: 100 подписей сокращены (`scripts/lang_shorten_keys.py`) | Поток 17 | коммит 1b07f3d ушёл прямо в интегратор без PR; Ревью проверил постфактум — оставлен; сеанс архивирован |
+| Falling Tree (В20/В21) | Поток 18 (session_01JYt9eB41N7DcqRHeab2qLY) | PR #49, по статике чисто; тест на объединённой сборке не дошёл — сервер убивал WorldEdit (ниже) |
+| Находка: WorldEdit 7.2.15 делает первый тик сервера >60 с → ServerHangWatchdog убивает сервер | Ревью | нужен `max-tick-time=-1` (тест-сервер, серверный zip, docs) |
+
+Решения владельца: В19 — Lost Cities «Оставь как есть» (современный стиль, `rarecities`); В20/В21 — Falling Tree, Dynamic Trees не ставим:
+присед = по блоку, прочность за каждое бревно, при нехватке прочности — один блок (миксин mm-compat), `maxSize` 300 ABORT, широкие стволы не трогаем;
+В22 — фризы у игроков: скрипт сбора диагностики и анализ; В23 — Clanging Howl (мод на CurseForge, есть русский перевод на Modrinth);
+В24 — паразиты: Fungal Infection: Spore (+ SRP System, если совместим), Оберег не пускает заразу и заражённых в зону;
+В25 — разбор Embeddium/Oculus («Sodium на Forge») в рамках анализа фризов.
+
+Раунд 8 — 2026-10-17 (сброс лимита; порядок владельца): скрипт диагностики (Поток 19, session_01VBNcQCP282sjURUfRbitCD) → max-tick-time и #49 (Ревью) →
+анализ фризов + Embeddium/Oculus → Clanging Howl → паразиты + Оберег (единый радиус, бедствия снаружи, зараза) → OreSpawn, Necromancer's Delight.
+
 ### Поток 8 — Производительность
 Файлы: `docs/performance.md`, `mods-src/mm-perf/`, `pack/config/{modernfix-mixins.properties,DistantHorizons.toml,jei/,sound_physics_remastered/}`, `pack/options.txt` (только строки графики).
 Сделано (ветка `claude/perf-stream8`, подробности и замеры — `docs/performance.md`):
