@@ -53,6 +53,11 @@ public final class FurSounds {
     /// Щелчок клешни (в оригинале — общий звук укуса Swarmer, им щёлкает мимикраб).
     public static final RegistryObject<SoundEvent> SWARMER_ATTACK = register("swarmer_attack");
 
+    /// Взрыв Святой гранаты (звук из 1.12.2, в 1.16.5 его заменил обычный взрыв).
+    public static final RegistryObject<SoundEvent> RANDOM_HOLY_GRENADE = register("random_holy_grenade");
+    /// Пояс шипов Necromancer's Delight / Thorn Shooter.
+    public static final RegistryObject<SoundEvent> RANDOM_THORN_SHOOT = register("random_thorn_shoot");
+
     private static RegistryObject<SoundEvent> register(String name) {
         return SOUNDS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(UndeadRising.MOD_ID, name)));
     }

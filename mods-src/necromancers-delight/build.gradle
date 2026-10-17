@@ -23,6 +23,7 @@ legacyForge {
 }
 
 repositories {
+    flatDir { dirs '../fishs-undead-rising/build/libs' }
     exclusiveContent {
         forRepository { maven { url = 'https://api.modrinth.com/maven' } }
         filter { includeGroup 'maven.modrinth' }
@@ -32,6 +33,10 @@ repositories {
 dependencies {
     // Electroblob's Wizardry Redux — в продакшен-jar SRG-имена, ModDevGradle переводит их в наши маппинги
     modCompileOnly "maven.modrinth:electroblobs-wizardry-redux:${redux_version}"
+    // Наш порт Fish's Undead Rising (mod_lavacow) — собирается рядом: cd ../fishs-undead-rising && ./gradlew build
+    modCompileOnly "local:fishs-undead-rising-port:${fur_version}"
+    // Curios — Leech Crystal Amulet наследует CuriosArtifactItem Redux (нужен для привязки стихии в Arcane Workbench)
+    modCompileOnly "maven.modrinth:curios:${curios_version}"
 }
 
 processResources {

@@ -1,5 +1,9 @@
 package dev.mcmoded.undeadrising.event;
 
+import dev.mcmoded.undeadrising.entity.projectile.FurBombEntity;
+import dev.mcmoded.undeadrising.item.FurWeaponItem;
+import dev.mcmoded.undeadrising.item.VespaShieldItem;
+
 import dev.mcmoded.undeadrising.effect.FurEffects;
 import dev.mcmoded.undeadrising.entity.MimicEntity;
 import net.minecraft.core.particles.ParticleTypes;
@@ -137,6 +141,14 @@ public final class FurEntityEvents {
         if (event.getSource().getDirectEntity() instanceof UnburiedEntity unburied) {
             event.setAmount(event.getAmount() + unburied.getBonusDamage(event.getEntity()));
         }
+        FurWeaponItem.onHurt(event);
+        FurBombEntity.onExplosionHurt(event);
+    }
+
+    /// Щит Vespa колет того, чей удар заблокирован.
+    @SubscribeEvent
+    public static void onShieldBlock(net.minecraftforge.event.entity.living.ShieldBlockEvent event) {
+        VespaShieldItem.onBlock(event);
     }
 
     /// Вампиризм: хозяин призванного Unburied лечится на 5% нанесённого урона за уровень.

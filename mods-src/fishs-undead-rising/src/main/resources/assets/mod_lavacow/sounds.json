@@ -299,5 +299,25 @@
         "stream": true
       }
     ]
+  },
+  "random_holy_grenade": {
+    "category": "neutral",
+    "subtitle": "subtitles.mod_lavacow.random_holy_grenade",
+    "sounds": [
+      {
+        "name": "mod_lavacow:random/holy_grenade",
+        "stream": true
+      }
+    ]
+  },
+  "random_thorn_shoot": {
+    "category": "neutral",
+    "subtitle": "subtitles.mod_lavacow.random_thorn_shoot",
+    "sounds": [
+      {
+        "name": "mod_lavacow:random/thorn_shoot",
+        "stream": true
+      }
+    ]
   }
 }

@@ -1,0 +1,131 @@
+{
+  "spell.bound_bone_sword": {
+    "sounds": [
+      "ebwizardry:conjure"
+    ],
+    "subtitle": "subtitles.ebwizardry.spell_casting"
+  },
+  "spell.bound_frozen_dagger": {
+    "sounds": [
+      "ebwizardry:conjure"
+    ],
+    "subtitle": "subtitles.ebwizardry.spell_casting"
+  },
+  "spell.bound_spectral_dagger": {
+    "sounds": [
+      "ebwizardry:conjure"
+    ],
+    "subtitle": "subtitles.ebwizardry.spell_casting"
+  },
+  "spell.stink_bomb": {
+    "sounds": [
+      "random/bow"
+    ],
+    "subtitle": "subtitles.ebwizardry.spell_casting"
+  },
+  "spell.holy_hand_grenade": {
+    "sounds": [
+      "random/bow"
+    ],
+    "subtitle": "subtitles.ebwizardry.spell_casting"
+  },
+  "spell.ghost_bomb": {
+    "sounds": [
+      "random/bow"
+    ],
+    "subtitle": "subtitles.ebwizardry.spell_casting"
+  },
+  "spell.glowshroom": {
+    "sounds": [
+      "ebwizardry:grow"
+    ],
+    "subtitle": "subtitles.ebwizardry.spell_casting"
+  },
+  "spell.trial_of_mushrooms": {
+    "sounds": [
+      "ebwizardry:grow"
+    ],
+    "subtitle": "subtitles.ebwizardry.spell_casting"
+  },
+  "spell.summon_salamander": {
+    "sounds": [
+      "mob/wither/idle1",
+      "mob/wither/idle2",
+      "mob/wither/idle3",
+      "mob/wither/idle4"
+    ],
+    "subtitle": "subtitles.ebwizardry.spell_casting"
+  },
+  "spell.wail_of_the_banshee": {
+    "sounds": [
+      "mob/wither/hurt1",
+      "mob/wither/hurt2",
+      "mob/wither/hurt3",
+      "mob/wither/hurt4"
+    ],
+    "subtitle": "subtitles.ebwizardry.spell_casting"
+  },
+  "spell.conjure_banshee": {
+    "sounds": [
+      "mob/wither/idle1",
+      "mob/wither/idle2",
+      "mob/wither/idle3",
+      "mob/wither/idle4"
+    ],
+    "subtitle": "subtitles.ebwizardry.spell_casting"
+  },
+  "spell.summon_vespa": {
+    "sounds": [
+      "mob/wither/idle1",
+      "mob/wither/idle2",
+      "mob/wither/idle3",
+      "mob/wither/idle4"
+    ],
+    "subtitle": "subtitles.ebwizardry.spell_casting"
+  },
+  "spell.conjure_mycosis": {
+    "sounds": [
+      "ebwizardry:summon1",
+      "ebwizardry:summon2"
+    ],
+    "subtitle": "subtitles.ebwizardry.spell_casting"
+  },
+  "spell.corrode": {
+    "sounds": [
+      "mob/wither/shoot"
+    ],
+    "subtitle": "subtitles.ebwizardry.spell_casting"
+  },
+  "spell.bound_vespa_shield": {
+    "sounds": [
+      "ebwizardry:conjure"
+    ],
+    "subtitle": "subtitles.ebwizardry.spell_casting"
+  },
+  "spell.frost_bomb": {
+    "sounds": [
+      "random/bow"
+    ],
+    "subtitle": "subtitles.ebwizardry.spell_casting"
+  },
+  "spell.summon_mana_leech": {
+    "sounds": [
+      "ebwizardry:summon1",
+      "ebwizardry:summon2"
+    ],
+    "subtitle": "subtitles.ebwizardry.spell_casting"
+  },
+  "spell.summon_elemental_leech": {
+    "sounds": [
+      "ebwizardry:summon1",
+      "ebwizardry:summon2"
+    ],
+    "subtitle": "subtitles.ebwizardry.spell_casting"
+  },
+  "spell.carcinize": {
+    "sounds": [
+      "ebwizardry:conjure"
+    ],
+    "subtitle": "subtitles.ebwizardry.spell_casting"
+  }
+}

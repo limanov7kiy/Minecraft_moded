@@ -1257,8 +1257,8 @@ hash = "902bac905b93271f02bd0951a22bac06a3da24f5c237fcaeb469e14a7679e508"
 metafile = true
 
 [[files]]
-file = "mods/fishs-undead-rising-port-0.2.0.jar"
-hash = "5d8057173c0437641723297b0f810a034f79502c36b227607a543aeb8c8d6ff9"
+file = "mods/fishs-undead-rising-port-0.3.0.jar"
+hash = "31beaeef8d12e8b1a0d6896ad177e3ebf59e0ac2e00ce29c3df8b1006a860a37"
 
 [[files]]
 file = "mods/fungal-infectionspore.pw.toml"
@@ -1623,8 +1623,8 @@ hash = "77b4a611e5f3c30a5c3ab6ce2b330d25dbb9cf67b50e3ba34508b9dbfbf54300"
 metafile = true
 
 [[files]]
-file = "mods/necromancers-delight-0.1.0.jar"
-hash = "3d5cae8bb057e28c570c4c75837f888b350c800289368d91ce9151f1fd9854ee"
+file = "mods/necromancers-delight-0.2.0.jar"
+hash = "5e33e27e74a1f23d56442480903bf348945df771d6c235039d0d63dac96a535a"
 
 [[files]]
 file = "mods/northstar-redux.pw.toml"

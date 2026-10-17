@@ -8,6 +8,11 @@ import dev.mcmoded.undeadrising.item.MoltenBeefItem;
 import dev.mcmoded.undeadrising.item.SalamanderBucketItem;
 import dev.mcmoded.undeadrising.item.ForsakenStaffItem;
 import dev.mcmoded.undeadrising.item.TooltipItem;
+import dev.mcmoded.undeadrising.item.FurThrowableItem;
+import dev.mcmoded.undeadrising.item.FurWeaponItem;
+import dev.mcmoded.undeadrising.item.VespaShieldItem;
+import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.crafting.Ingredient;
 import dev.mcmoded.undeadrising.item.FrozenThighItem;
 import dev.mcmoded.undeadrising.item.ShatteredIceItem;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -37,10 +42,13 @@ public final class FurItems {
     public static final RegistryObject<Item> HYPHAE = simple("hyphae", new Item.Properties());
     /// Mycosis: ядовитые споры.
     public static final RegistryObject<Item> POISONSPORE = simple("poisonspore", new Item.Properties().rarity(Rarity.RARE));
-    /// Mycosis (обычный): кордицепс. В оригинале — растение-блок; здесь пока простой предмет (блок не переносили).
-    public static final RegistryObject<Item> CORDY_SHROOM = simple("cordy_shroom", new Item.Properties());
-    /// Mycosis (светящийся, вариант 1): светящийся гриб. В оригинале — растение-блок; здесь пока простой предмет.
-    public static final RegistryObject<Item> GLOWSHROOM = simple("glowshroom", new Item.Properties());
+    /// Mycosis (обычный): кордицепс — гриб-растение {@link FurBlocks#CORDY_SHROOM}.
+    public static final RegistryObject<Item> CORDY_SHROOM = block(FurBlocks.CORDY_SHROOM);
+    /// Mycosis (светящийся, вариант 1): светящийся гриб {@link FurBlocks#GLOWSHROOM}.
+    public static final RegistryObject<Item> GLOWSHROOM = block(FurBlocks.GLOWSHROOM);
+    /// Кровозуб (багровый лес Незера) и вуалевик (грибные поля, леса) — для Trial of Mushrooms Necromancer's Delight.
+    public static final RegistryObject<Item> BLOODTOOTH_SHROOM = block(FurBlocks.BLOODTOOTH_SHROOM);
+    public static final RegistryObject<Item> VEIL_SHROOM = block(FurBlocks.VEIL_SHROOM);
     /// Mummy: проклятая ткань.
     public static final RegistryObject<Item> CURSED_FABRIC = simple("cursed_fabric", new Item.Properties());
     /// Mummy: ушебти.
@@ -130,6 +138,25 @@ public final class FurItems {
     /// (не перенесена); своё свойство «−% урона от огня» здесь не перенесено.
     public static final RegistryObject<Item> MOOTENHEART = simple("mootenheart", new Item.Properties().rarity(Rarity.RARE));
 
+    // --- Оружие и бомбы (их же призывают заклинания Necromancer's Delight) ---
+    /// Кинжал изо льда: сам чинится в воде.
+    public static final RegistryObject<Item> FROZEN_DAGGER = ITEMS.register("frozen_dagger", () -> new FurWeaponItem(Tiers.WOOD, 2, -2.4F,
+            () -> Ingredient.of(SHATTERED_ICE.get()), new Item.Properties()));
+    /// Костяной меч: +5% максимального здоровья цели к урону. Рецепт оригинала — из острого зуба (не перенесён).
+    public static final RegistryObject<Item> BONESWORD = ITEMS.register("bonesword", () -> new FurWeaponItem(Tiers.IRON, 2, -2.4F,
+            () -> Ingredient.of(net.minecraft.world.item.Items.BONE_BLOCK), new Item.Properties()));
+    /// Призрачный кинжал: вечный, +2 урона живым. Рецепт оригинала — из слитка эктоплазмы (не перенесён).
+    public static final RegistryObject<Item> SPECTRAL_DAGGER = ITEMS.register("spectral_dagger", () -> new FurWeaponItem(FurWeaponItem.SPECTRAL, -1, -2.4F,
+            () -> Ingredient.of(ECTOPLASM.get()), new Item.Properties()));
+    /// Щит Vespa: колет и отравляет того, чей удар заблокирован.
+    public static final RegistryObject<Item> VESPA_SHIELD = ITEMS.register("vespa_shield", () -> new VespaShieldItem(new Item.Properties().durability(504)));
+    /// Святая граната / призрачная / звуковая бомбы. Рецепты оригинала — из простой бомбы (не перенесена).
+    public static final RegistryObject<Item> HOLY_GRENADE = ITEMS.register("holy_grenade", () -> new FurThrowableItem(FurEntities.HOLY_GRENADE, new Item.Properties().stacksTo(16)));
+    public static final RegistryObject<Item> GHOSTBOMB = ITEMS.register("ghostbomb", () -> new FurThrowableItem(FurEntities.GHOSTBOMB, new Item.Properties().stacksTo(16)));
+    public static final RegistryObject<Item> SONICBOMB = ITEMS.register("sonicbomb", () -> new FurThrowableItem(FurEntities.SONICBOMB, new Item.Properties().stacksTo(16)));
+    /// Кактусовый шип (подбирается после выстрела шипом).
+    public static final RegistryObject<Item> CACTUS_THORN = simple("cactus_thorn", new Item.Properties());
+
     // --- Яйца призыва (цвета — из оригинала) ---
     public static final RegistryObject<Item> SPAWN_EGG_UNBURIED = egg("unburied", FurEntities.UNBURIED, 13949370, 2698290);
     public static final RegistryObject<Item> SPAWN_EGG_MUMMY = egg("mummy", FurEntities.MUMMY, 15325870, 10125655);
@@ -143,6 +170,10 @@ public final class FurItems {
     public static final RegistryObject<Item> SPAWN_EGG_SALAMANDER = egg("salamander", FurEntities.SALAMANDER, 2491910, 16052546);
     public static final RegistryObject<Item> SPAWN_EGG_WETA = egg("weta", FurEntities.WETA, 8672054, 15387303);
     public static final RegistryObject<Item> SPAWN_EGG_MIMIC = egg("mimic", FurEntities.MIMIC, 14772479, 458752);
+
+    private static RegistryObject<Item> block(RegistryObject<net.minecraft.world.level.block.Block> block) {
+        return ITEMS.register(block.getId().getPath(), () -> new net.minecraft.world.item.BlockItem(block.get(), new Item.Properties()));
+    }
 
     private static RegistryObject<Item> simple(String name, Item.Properties props) {
         return ITEMS.register(name, () -> new Item(props));
