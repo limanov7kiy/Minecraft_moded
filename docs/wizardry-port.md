@@ -409,3 +409,44 @@ Cursed Scarab; остальные зарегистрированы в `NdArtifac
 - test-client: остатки мёртвого Xvfb (`/tmp/.X99-lock`, `/tmp/.X11-unix/X99`) дают «glfwInit failed» — удалить.
 - Модели ND-2 переводились автоматическим конвертером — при работе с миньонами на их моделях глянуть позы в мире.
 
+
+### ND-3 — сделано (поток 29, 2026-10-17, ветка `claude/necromancers-delight-nd3`)
+`mods-src/necromancers-delight` 0.2.0 + `mods-src/fishs-undead-rising` 0.3.0. Сборка ND теперь компилируется против jar
+порта FUR (`flatDir` на `../fishs-undead-rising/build/libs`, `modCompileOnly "local:fishs-undead-rising-port:<версия>"`) и
+Curios (`maven.modrinth:curios`) — сначала собрать FUR, потом ND.
+
+**Заклинания (15 зарегистрированных в оригинале; `forsaken_shield` — только json, в `NDSpells` его нет, не переносили):**
+| id | как сделано |
+|---|---|
+| bound_frozen_dagger / bound_bone_sword / bound_spectral_dagger / bound_vespa_shield | Redux `ConjureItemSpell` с предметами порта FUR (`frozen_dagger`, `bonesword`, `spectral_dagger`, `vespa_shield`); время жизни — `item_lifetime` из json |
+| holy_hand_grenade / ghost_bomb / wail_of_the_banshee | свой `ThrowBombSpell` бросает `FurBombEntity` порта FUR (holy_grenade / ghostbomb / sonicbomb); скорость — из `range` |
+| summon_vespa / conjure_banshee / conjure_mycosis / summon_salamander | Redux `MinionSpell` с мобами порта FUR (`MinionData`); саламандра ещё и приручена; укус призванной веспы снимает Infested (как `EntityVespaMinion`) |
+| summon_mana_leech / summon_elemental_leech | свои `ManaLeech`/`ElementalLeech` (`entity/LeechMinion` — паук, модель паразита FUR, текстуры оригинала): впиваются в не-союзника и становятся бессрочными; мана-пиявка тянет 5% маны палочки носителя в секунду, стихийная кусает уроном и эффектом стихии |
+| trial_of_mushrooms | гриб FUR из второй руки → эффекты (параметры из json) |
+| carcinize | луч по сундуку: тратит кристалл Земли, ломает сундук, прирученный мимикраб |
+
+**Артефакты (12):** Leechlink (половина украденной маны — в палочку хозяина), Spell-Sapping Venom (пиявки этого хозяина
+ослабляют заклинания носителя ×0,6), Fallen Legion's Ring / Ring of the Nameless (зомби Redux → Unburied; оба — + предмет
+снаряжения, с `charm_undead_helmets` — ещё шлем), Frigidbone Ring (ледяной кинжал морозит цель: Frost 10 с), Ring of Hatred
+(скелет → Forsaken: щит с гербом Короля-скелета / меч / лук / всадник на костяной лошади), Bone Bag (скелеты наполняют мешок
+по 25%, полный — следующий призыв даёт Osvermis), Malevolent Ushabti (зомби → мумия), Book of Witchcraft (гриб из второй руки
+усиливает призванного), Thornbelt (16 кактусовых шипов при уроне, откат 15 с), Crown of Pests (вечный вета-спутник, после
+гибели — новый через 40 с), Leech Crystal Amulet (стихия привязывается кристаллом в Arcane Workbench).
+
+**Отличия от оригинала (и почему):**
+- Мана-пиявка на кастующем: в оригинале условие `caster.getRidingEntity() instanceof EntityManaLeechMinion` (кастующий *верхом
+  на* пиявке) не срабатывало никогда; сделано по описанию — пиявка *на* кастующем: цена ×2, с Venom ещё ×0,6 силы/взрыва/
+  дальности/длительности. `setWeakensSpells` в оригинале никто не вызывал — Venom ставит его при призыве.
+- Frigidbone Ring: зачарования `freezing_weapon` в Redux 0.8.9 нет — метка `necromancersdelight_freezing` на кинжале и
+  Frost 10 с при ударе (как уровень I «Freezing Weapon» 1.12.2).
+- Стихийная пиявка: усиление от силы заклинания — общее у Redux `MinionSpell` (в оригинале своя формула с ошибкой
+  приоритета `potency - 1 * 0.7`); стихия палочки — по `IElementValue`, а не по подстроке id.
+- Святая граната: в 1.16.5 FUR проверка не срабатывала (имя `holygrenade` ≠ id `holy_grenade`) — сделано как в 1.12.2.
+- Предмет-лук у мана-пиявки (оригинал кладёт в руку `Items.BOW`, моделью не рисуется) не выдаём.
+- Рецептов bonesword / spectral_dagger / бомб нет (нужны sharptooth, ectoplasm_ingot, basic_bomb FUR — не перенесены);
+  предметы — из заклинаний и творческой вкладки. Огромный светящийся гриб FUR (костная мука) не перенесён.
+
+**Тест:** `scripts/tests/nd3check.js` — фейковый игрок добавляется в мир (иначе `MinionData.getOwner()` не находит хозяина по
+UUID), касты/артефакты проверяются в мире. Crown of Pests и Thornbelt вызываются напрямую (`NdArtifacts.pestCrown`/
+`thornBurst`: фейковый игрок не тикает и не ранится командой), Bone Bag и цена у пиявки — через `SpellCastEvent` Redux (прямой
+каст событий не шлёт). KubeJS: у `ItemStack` нет `getTag()`/`hasTag()` — только свойство `stack.nbt`.

@@ -135,7 +135,7 @@ public final class NdArtifacts {
 
     /// Crown of Pests: при каждом надевании держит рядом прирученную бессрочную вету-миньона; погибла — новая
     /// через {@link #PEST_CROWN_COOLDOWN} тиков.
-    static void pestCrown(Player p) {
+    public static void pestCrown(Player p) {
         Item crown = NdItems.HEAD_PEST_CROWN.get();
         if (p.getCooldowns().isOnCooldown(crown) || !has(p, NdItems.HEAD_PEST_CROWN) || !(p.level() instanceof ServerLevel level)) return;
         CompoundTag data = p.getPersistentData();
@@ -162,6 +162,9 @@ public final class NdArtifacts {
         if (event.getLevel().isClientSide || !(event.getEntity() instanceof Mob mob)) return;
         Player player = summoner(mob);
         if (player == null) return;
+        // Призванные мобы FUR и пиявки не исчезают вдали от игроков (как ISummonedCreature оригинала): их убирает время жизни.
+        String ns = net.minecraftforge.registries.ForgeRegistries.ENTITY_TYPES.getKey(mob.getType()).getNamespace();
+        if (ns.equals("mod_lavacow") || ns.equals("necromancersdelight")) mob.setPersistenceRequired();
 
         // Book of Witchcraft: гриб из второй руки — реагент для призванного.
         if (has(player, NdItems.CHARM_MUSHROOM_MINION)) {
@@ -328,6 +331,10 @@ public final class NdArtifacts {
     @SubscribeEvent
     public static void onDamage(LivingDamageEvent event) {
         if (!(event.getEntity() instanceof Player p) || p.level().isClientSide || event.getSource().getEntity() == null) return;
+        thornBurst(p);
+    }
+
+    public static void thornBurst(Player p) {
         Item belt = NdItems.BELT_THORNS.get();
         if (p.getCooldowns().isOnCooldown(belt) || !has(p, NdItems.BELT_THORNS)) return;
         for (int i = 0; i < 16; i++) {

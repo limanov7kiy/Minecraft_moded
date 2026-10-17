@@ -29,3 +29,15 @@ Namespace оригинала `mod_lavacow` сохранён.
   Mimicrab — у сундуков внутри строений (тег `mod_lavacow:mimic_habitat`, вес 10; в аванпосте — 1), а также с шансом 25%
   у места гибели игрока. В 1.16.5 мимикраб добавлялся в списки спавна строений, что заменяло там всех прочих монстров;
   здесь — общий biome modifier + проверка строения в правиле появления (зомби в деревнях и т. п. не пропадают).
+
+## ND-3 (0.3.0, поток 29)
+- Блоки-грибы: glowshroom, bloodtooth_shroom, cordy_shroom, veil_shroom (`block/FURShroomBlock`, два вида по `age`),
+  генерация как в 1.16.5: светящийся — Верхний мир кроме холодных/сухих (каждый чанк, 8 попыток), кровозуб — багровый лес
+  (1/8, ×3), кордицепс — грибные поля и влажные биомы (1/4, ×3), гриб-покров — грибные поля и леса (1/4, ×3).
+  Огромный светящийся гриб (костная мука) не перенесён. Предметы glowshroom/cordy_shroom теперь — предметы-блоки.
+- Оружие: frozen_dagger (чинится в воде), bonesword (+5% макс. здоровья цели), spectral_dagger (вечный, +2 живым),
+  vespa_shield (колет и отравляет нападающего; модель брюшка — `client/VespaShieldRenderer`).
+- Бомбы holy_grenade / ghostbomb / sonicbomb (сущности и предметы, `entities/projectiles/BasicBombEntity` + обработчик урона).
+  Проверка святой гранаты в 1.16.5 не срабатывала (имя `holygrenade` ≠ id) — сделано как задумано; звук — из 1.12.2.
+- Кактусовый шип (снаряд и предмет); рецепты frozen_dagger, vespa_shield, cyan_dye_from_glowshroom.
+- Не перенесено: рецепты bonesword/spectral_dagger/бомб (нужны sharptooth, ectoplasm_ingot, basic_bomb), Thorn Shooter.

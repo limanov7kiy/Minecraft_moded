@@ -159,6 +159,7 @@ public final class NdSpells {
         }.assignProperties(minionProps(SpellTiers.MASTER, Elements.FIRE, 100, 35, 200, 900, 3));
     }
 
+    /// Пиявки, как в оригинале, за хозяином не ходят (иначе телепорт к хозяину снимает их с носителя).
     /// Summon Mana Leech: с Spell-Sapping Venom у хозяина пиявка ослабляет заклинания носителя.
     public static Spell summonManaLeech() {
         return new MinionSpell<ManaLeech>(of(NdEntities.MANA_LEECH)) {
@@ -166,7 +167,7 @@ public final class NdSpells {
             protected void addMinionExtras(ManaLeech minion, CastContext ctx, int alreadySpawned) {
                 if (ctx.caster() instanceof Player p && NdItems.has(p, NdItems.CHARM_SPELLVENOM)) minion.setWeakensSpells(true);
             }
-        }.soundValues(7, 0.6f, 0).assignProperties(minionProps(SpellTiers.ADVANCED, Elements.NECROMANCY, 50, 0, 200, 900, 3));
+        }.setShouldFollowOwner(false).soundValues(7, 0.6f, 0).assignProperties(minionProps(SpellTiers.ADVANCED, Elements.NECROMANCY, 50, 0, 200, 900, 3));
     }
 
     /// Summon Elemental Leech: стихия — стихия палочки в главной руке (иначе случайная), а Leech Crystal Amulet с
@@ -185,6 +186,6 @@ public final class NdSpells {
                 if (element != null) minion.setElement(element);
                 else minion.setElementIndex(1 + minion.getRandom().nextInt(ElementalLeech.ELEMENTS.size() - 1));
             }
-        }.soundValues(7, 0.6f, 0).assignProperties(minionProps(SpellTiers.ADVANCED, Elements.MAGIC, 50, 30, 200, 400, 3));
+        }.setShouldFollowOwner(false).soundValues(7, 0.6f, 0).assignProperties(minionProps(SpellTiers.ADVANCED, Elements.MAGIC, 50, 30, 200, 400, 3));
     }
 }

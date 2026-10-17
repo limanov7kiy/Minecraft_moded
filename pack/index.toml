@@ -1624,7 +1624,7 @@ metafile = true
 
 [[files]]
 file = "mods/necromancers-delight-0.2.0.jar"
-hash = "5e33e27e74a1f23d56442480903bf348945df771d6c235039d0d63dac96a535a"
+hash = "35e0e3849243a3b17e86387cd24e98148e6daf501b5191c8fa3b725706ac03ee"
 
 [[files]]
 file = "mods/northstar-redux.pw.toml"

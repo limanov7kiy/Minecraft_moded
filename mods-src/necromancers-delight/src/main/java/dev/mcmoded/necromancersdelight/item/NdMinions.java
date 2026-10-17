@@ -29,6 +29,7 @@ public final class NdMinions {
         data.setShouldFollowOwner(true);
         data.setShouldDeleteGoals(false);
         data.setSearchNearbyTargets(true);
+        mob.setPersistenceRequired();
     }
 
     /// Подмена: `replacement` получает хозяина, срок, место и усиления (модификаторы урона/здоровья Redux) от `original`.
