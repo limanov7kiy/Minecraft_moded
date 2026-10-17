@@ -69,11 +69,10 @@ ServerEvents.tick(event => {
     ok('earthquake-alive', ents('natural_disasters:earthquake', 130, 130, 8).length == 1, 'землетрясение снаружи у угла')
     // заражение блоков Spore в контексте тика паразита (как его делает курган): центр у края зоны снаружи и далеко снаружи
     try {
-      var Fol = Java.loadClass('com.Harbinger.Spore.Sentities.FoliageSpread')
       server.runCommandSilent('summon spore:mound 150 150 0 {NoAI:1b,PersistenceRequired:1b}')
       var m = ents('spore:mound', 150, 0, 3)[0]
       SW.spreadIn = 0; SW.spreadOut = 0
-      if (m && Fol.isInstance(m)) {
+      if (m && m.SpreadInfection) {
         for (let i = 0; i < 6; i++) {
           Guard().enter(level, m)
           try { m.SpreadInfection(level, 8.0, new BlockPos(92, 150, 0)); m.SpreadInfection(level, 8.0, new BlockPos(128, 150, 0)) } finally { Guard().exit() }
