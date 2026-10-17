@@ -1,6 +1,6 @@
 name = "Blue Skies Gravestones Compat"
 filename = "blue_skies_gravestones_compat-0.1-1.20.1.jar"
-side = "server"
+side = "both"
 
 [download]
 url = "https://cdn.modrinth.com/data/pXS1mDIy/versions/FQAPkazt/blue_skies_gravestones_compat-0.1-1.20.1.jar"
