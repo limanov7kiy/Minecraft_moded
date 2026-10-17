@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "necromancersdelight:amulet_necromantic_ward",
+    "necromancersdelight:amulet_slowness_immunity",
+    "necromancersdelight:amulet_weakness_immunity",
+    "necromancersdelight:amulet_malice_ward",
+    "necromancersdelight:amulet_leechlink",
+    "necromancersdelight:amulet_leech_crystal"
+  ]
+}

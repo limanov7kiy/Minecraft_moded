@@ -308,3 +308,33 @@ Restored; namespace сохраняем оригинальный (`wizardrygolems
 - Прогон теста:
   `TEST_COMMANDS=<файл с «#sleep 45»> EXTRA_SERVER_SCRIPTS=<папка с копией scripts/tests/golemcheck.js> scripts/test-server.sh <папка вне репо>`,
   ждать строк `GOLEMCHECK ... OK` (5 заклинаний + lifetime); затем test-client, docs/compat.md.
+
+### Точка остановки потока 12 (2026-10-13, стоп по лимиту — неделя 75%)
+- **Wizardry Golems 0.2.0** — PR #38 (ветка `claude/wizardry-addons-port`): этапы 1–3 готовы, golemcheck 13/13, CLIENT OK;
+  интегратор подтянут 2026-10-12 (`62ae839`). Дальше — по сигналу координатора подтянуть интегратор, refresh, тесты, «Ревью».
+- **ND-1** — ветка `claude/necromancers-delight` (от `claude/wizardry-addons-port` до слияния интегратора — перед PR влить его):
+  - мод-порт FUR `mods-src/fishs-undead-rising` (`mod_lavacow` 0.1.0): эффекты Soiled, Corroded, Infested (паразиты — ND-2),
+    модель гриба; ARR, авторство Fish — NOTICE.md;
+  - `mods-src/necromancers-delight` 0.1.0: Stink/Frost Bomb (заклинания + гранаты), Corrode, Glowshroom (временный гриб),
+    эффекты Poisonous Spore/Locusts, 17 артефактов (работают 5 без FUR: Necromantic/Malice Ward, иммунитеты, Cursed Scarab),
+    добыча, ru 86 ключей (lang_validate 0 ошибок); оба jar в `pack/mods/`, refresh сделан.
+  - **ND-1 доведён потоком 27 (2026-10-17):** `scripts/tests/ndcheck.js` — 11/11 OK (касты Stink/Frost Bomb, Corrode,
+    Glowshroom; бомбы накладывают Soiled/Frost и наносят урон; Corroded на хаске и урон ×1.1; временный гриб — 1 блок;
+    Poisonous Spore отравляет свинью; амулет иммунитета к замедлению в слоте Curios). SERVER OK, CLIENT OK.
+    Причины прежних провалов теста (сам мод исправлять не пришлось):
+    `MagicProjectileEntity.aim` Redux ставит снаряд в `xo/yo/zo` стрелка — фейкового игрока двигать `setPos` + `setOldPosAndRot()`;
+    хаски стояли в 0.7 блока от линии луча (`${x}.5` при отрицательном x); `server.persistentData` KubeJS — не CompoundTag
+    (фазы — переменной скрипта); строка «Done» в логе — за ~3 мин до первого тика (ModernFix), поэтому `TEST_COMMANDS` с `#sleep 420`.
+    Перевод: ru_ru обоих модов — ещё и в ru-пакете (`pack/resourcepacks-src/russian-moded/assets/{necromancersdelight,mod_lavacow}`),
+    `lang_validate` 0 ошибок.
+  - Прогон: `TEST_COMMANDS=<файл «#sleep 420»> EXTRA_SERVER_SCRIPTS=<папка с копией ndcheck.js> scripts/test-server.sh <папка вне репо>`,
+    ждать 11 строк `NDCHECK ... OK`.
+  - **Точка остановки потока 27 (2026-10-17, стоп по лимиту координатора):** ND-1 готов полностью — ndcheck 11/11,
+    SERVER OK, CLIENT OK (858 с), docs обновлены, ветка запушена; осталось только открыть PR в `claude/affectionate-davinci-4gddoh`
+    (если ещё не открыт). Следующий этап — ND-2 (мобы FUR).
+  - Не перенесено в ND-1 (уходит в ND-2, нужны мобы/предметы FUR): Mana/Elemental Leech (пиявки FUR), 12 артефактов с
+    эффектами через мобов FUR (лежат как предметы, без эффекта), остальные 16 заклинаний.
+  - Рецепты бомб требуют предметов FUR (`foul_bristle`, `shattered_ice`) — вместе с мобами в ND-2.
+- **ND-2** (не начат): мобы FUR (Vespa, Banshee, Mycosis, Salamander, Forsaken, Mummy, Unburied, Parasite/пиявки, Bone Worm,
+  Weta, Mimic), снаряды, предметы, остальные 16 заклинаний и 12 артефактов. jar FUR 1.12.2 (8253053) и 1.16.5 (7327600) —
+  с CurseForge через packwiz/forgecdn.

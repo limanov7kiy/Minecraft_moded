@@ -1,0 +1,20 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+license = "All Rights Reserved (оригинал — Fish); некоммерческий порт для своей сборки"
+
+[[mods]]
+modId = "${mod_id}"
+version = "${mod_version}"
+displayName = "Fish's Undead Rising (1.20.1 port)"
+authors = "Fish (оригинал); порт — Minecraft_moded"
+description = '''
+Порт части Fish's Undead Rising (Fish, CurseForge 321139; 1.12.2/1.16.5, на 1.20.1 нет) — то, что нужно
+дополнению Necromancer's Delight. Ассеты и механики — © Fish. Некоммерческий порт; по требованию автора будет убран.
+'''
+
+[[dependencies.${mod_id}]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "BOTH"

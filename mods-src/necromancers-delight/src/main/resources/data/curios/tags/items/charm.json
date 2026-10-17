@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "necromancersdelight:charm_bone_bag",
+    "necromancersdelight:charm_mummy_minion",
+    "necromancersdelight:charm_scarab",
+    "necromancersdelight:charm_mushroom_minion",
+    "necromancersdelight:charm_spellvenom"
+  ]
+}

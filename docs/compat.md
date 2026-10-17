@@ -605,6 +605,18 @@ Mass Destruction Forge 1.1.2. Cataclysm/Mowzie's/Lycanites не дублирую
 - Клиент: CLIENT OK (418 с), ошибок по `wizardrygolems` нет.
 - KubeJS/Rhino: `const` внутри блока `if`/`try` обработчика тика даёт «redeclaration» — в тестах только `let`.
 
+### Necromancer's Delight — ND-1 (потоки 12 и 27, 2026-10-17)
+Моды `mods-src/necromancers-delight` 0.1.0 (оригинал WinDanesz, аддон Electroblob's Wizardry 1.12.2) и
+`mods-src/fishs-undead-rising` (`mod_lavacow` 0.1.0, порт нужных частей Fish's Undead Rising, автор Fish, ARR — NOTICE.md),
+решение владельца В13 «полный перенос». В ND-1 — то, что не требует мобов FUR: Stink/Frost Bomb, Corrode, Glowshroom,
+эффекты Soiled/Corroded/Infested/Poisonous Spore/Locusts, 17 артефактов (действуют 5), добыча.
+- Сервер: `scripts/tests/ndcheck.js` 11/11 OK, SERVER OK. Клиент: CLIENT OK (858 с), ошибок по `necromancersdelight`/`mod_lavacow` нет.
+- Снаряды Redux (`MagicProjectileEntity.aim`) вылетают из позиции стрелка прошлого тика (`xo/yo/zo`): в тестах фейкового
+  игрока ставить `setPos` + `setOldPosAndRot()`, иначе бомба появляется там, где он стоял раньше.
+- Тестовый сервер: «Done» в логе выводится за ~3 мин до первого тика (ModernFix догружает мир после строки) — паузу
+  в `TEST_COMMANDS` для тиковых тестов брать от 420 с; мир между прогонами сохраняется — арены чистить за 40 тиков до каста.
+- Рецепты бомб требуют предметов FUR (`foul_bristle`, `shattered_ice`) — появятся с мобами в ND-2.
+
 ### Bosses of Mass Destruction + Cerbon's API (поток 9, 2026-10-12, решение владельца В12 «а»)
 Владелец ответил «оба», затем «а»: вернуть Cerbon's API и добавить BoMD, с регрессионной проверкой спавна; если у владельца
 спавн мобов снова пропадёт — **сразу убрать оба мода** (`mr cerbons-api`, `mr bosses-of-mass-destruction-forge` и Cloth Config,
