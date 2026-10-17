@@ -388,14 +388,16 @@ JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.t
 | Фризы у игроков: все дампы потоков — Mana and Artifice `onWorldTick` ждёт генерации чанка → `MnaChunkTickMixin` (mm-compat 0.5.2) | Поток 24 (session_01RJtt54NkGNcCBYBySSmGcG) | opus — разбор дампов + миксин | **влит #57** (a70d294; mnachunk.js maxTick 0,97 с) |
 | Паразиты: Fungal Infection: Spore + SRP System, датапак на 682 вида мобов, Оберег 1.1.0 (радиус 96 для всех бедствий, зараза и заражённые не входят) | Поток 22 (session_014aSvECF1SDZZ69C9kbu4XW) | sonnet | **влит #56** (d319e23; sporeward.js 24/24); нагрузка `sporeload.js` и клиент не прогнаны |
 | Iron Chests 14.4.4 (оригинал alexbegt, both); `docs/friends.md`: радиус Оберега 96, где взять блок, старые ресурспаки | Поток 26 (session_01VgSdALGeFhf4tEXBDbNjNY) | sonnet — механика | **влиты #58, #59** (3bfd34b) |
-| Доводка OreSpawn: спавн в Overworld реже, руды меньше и мельче, перевод структур и настроек; Utopia и разрушения не трогаем | Поток 25 (session_013nBhme6Z4ja8tYJiNzhYwY) | sonnet — конфиг + перевод | работает (`claude/orespawn-tune`) |
-| Necromancer's Delight ND-1 с WIP | Поток 27 (session_01Q9GnopY8NLkbfXBhFoXQAp) | opus — порт кода 1.12.2 | работает (`claude/necromancers-delight`) |
+| Доводка OreSpawn: спавн в Overworld реже, руды меньше и мельче, перевод структур и настроек; Utopia и разрушения не трогаем | Поток 25 (session_013nBhme6Z4ja8tYJiNzhYwY) | sonnet — конфиг + перевод | **влит #61** (b51ee0f; руды −72…−85%, естественный спавн в Overworld ×0,25 через KubeJS, +427 строк ru); сеанс архивирован |
+| Necromancer's Delight ND-1 с WIP | Поток 27 (session_01Q9GnopY8NLkbfXBhFoXQAp) | opus — порт кода 1.12.2 | **влит #62** (18f08d2; ndcheck 11/11, SERVER/CLIENT OK); ND-2 (мобы Fish's Undead Rising) — тот же поток, ветка `claude/necromancers-delight-nd2` |
+| Конфиги Ars Nouveau переписываются при каждом запуске + обзор Embeddium/Oculus (В25); срочно: прыжок расы «Охотники из бездны» 10 → ~3 блока (просьба владельца) | Поток 28 (session_015HbD2RG4mJzUSWPrjkkSTq) | sonnet — конфиги, датапак, обзор | работает (`claude/abyssal-jump`, `claude/ars-config-embeddium`) |
 
 Разбор логов трёх игроков (данные не в репо, копии удалены): у всех длинные фризы — MnA + генерация чанков (исправлено #57);
 у одного окна съезжали из-за ресурспака Faithful 1.17.1 (не для 1.20.1); у одного OutOfMemory 13.10 при 8 ГБ (не повторялся).
 Решения владельца: OreSpawn — «Utopia не мирная, пусть мобы смогут появляться как в оригинале»; в Overworld — «чтобы это происходило не часто и руды в малом кол-ве»;
 Iron Chests — оригинал. Новая неделя с 17.10 06:00 UTC; режим прежний: 2 рабочих потока, стоп 95% недели (В23 — ждёт ответа владельца).
-Очередь: конфиги Ars Nouveau переписываются при каждом запуске; первый тик после Done ~136 с — найти виновника; обзор Embeddium/Oculus (В25) — короткий отчёт;
+Пауза 13:05–16:10 (пятичасовое окно 82%; при 2 потоках + Ревью окно уходит за ~1,5 ч → держим 1 opus + 1 sonnet).
+Очередь: первый тик после Done ~136 с — найти виновника;
 при необходимости — нагрузка Spore (`sporeload.js`) и клиентский тест.
 
 ### Поток 8 — Производительность
