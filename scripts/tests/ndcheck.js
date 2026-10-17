@@ -1,7 +1,8 @@
 // Тест порта Necromancer's Delight (поток 12, этап ND-1): заклинания без мобов Fish's Undead Rising и артефакты.
 // Вывод: NDCHECK <проверка> OK|FAIL <подробности>
 const ND = { phase: 0, cast: 0 }
-ServerEvents.tick(event => {
+ServerEvents.tick(event => { try { ndTick(event) } catch (err) { console.info(`NDCHECK script FAIL error=${err}`) } })
+const ndTick = (event) => {
   const server = event.server
   const t = server.tickCount
   if (t < 200) return
@@ -38,25 +39,17 @@ ServerEvents.tick(event => {
     if (!ready) { if (t % 100 == 0) console.info(`NDDIAG waiting chunks t=${t}`); return }
     ND.phase = 2; ND.cast = t
     arenas.forEach(x => { server.runCommandSilent(`fill ${x - 8} 199 -8 ${x + 8} 199 8 minecraft:stone`); server.runCommandSilent(`fill ${x - 8} 200 -8 ${x + 8} 210 8 minecraft:air`) })
-    ;[-200, -230, -260].forEach(x => server.runCommandSilent(`summon minecraft:husk ${x}.5 200 4.5 {NoAI:1b,PersistenceRequired:1b}`))
-    let aim = (x, pitch) => { fake.setPos(x + 0.5, 200, 0.5); fake.yRot = 0; fake.xRot = pitch; fake.yHeadRot = 0; fake.setOnGround(true) }
+    ;[-200, -230, -260].forEach(x => server.runCommandSilent(`summon minecraft:husk ${x + 0.5} 200 4.5 {NoAI:1b,PersistenceRequired:1b}`))
+    // moveTo, а не setPos: MagicProjectileEntity.aim ставит снаряд в xo/yo/zo стрелка (позиция прошлого тика)
+    let aim = (x, pitch) => { fake.moveTo(x + 0.5, 200, 0.5, 0, pitch); fake.yHeadRot = 0; fake.setOnGround(true) }
     aim(-200, 10); report('stink_bomb_cast', cast('stink_bomb') === true, '')
     aim(-230, 10); report('frost_bomb_cast', cast('frost_bomb') === true, '')
     aim(-260, 10); report('corrode_cast', cast('corrode') === true, '')
     // светогриб: луч в пол перед собой
     aim(-290, 60); report('glowshroom_cast', cast('glowshroom') === true, '')
-    let bombs = []; level.getEntitiesOfClass(Entity, new AABB(-210, 190, -5, -190, 210, 10)).forEach(e => bombs.push(String(e.getType())))
-    console.info(`NDDIAG after_cast_entities=${bombs.join(' ')}`)
     return
   }
   let since = t - ND.cast
-  if (since == 5 || since == 15) {
-    // диагностика: где бомбы и куда смотрит фейковый игрок
-    level.getEntitiesOfClass(Entity, new AABB(-320, 0, -40, -170, 320, 40)).forEach(e => {
-      let ty = String(e.getType()); if (ty.startsWith('necromancersdelight:')) console.info(`NDDIAG t=${t} ${ty} pos=${e.getX().toFixed(2)},${e.getY().toFixed(2)},${e.getZ().toFixed(2)} v=${e.getDeltaMovement()}`) })
-    console.info(`NDDIAG fake pos=${fake.getX()},${fake.getY()},${fake.getZ()} look=${fake.getLookAngle()} eye=${fake.getEyeY()}`)
-    return
-  }
   if (since == 160) {
     let pigs = []; level.getEntitiesOfClass(Entity, new AABB(-292, 195, 1, -287, 205, 6)).forEach(e => { if (String(e.getType()) == 'minecraft:pig') pigs.push(e) })
     report('poisonous_spore', pigs.length >= 1 && hasEff(pigs[0], 'effect.minecraft.poison'), `pigs=${pigs.length}`)
@@ -93,4 +86,4 @@ ServerEvents.tick(event => {
       neck.get().getStacks().setStackInSlot(0, Item.of('minecraft:air'))
     }
   } catch (err) { report('amulet_slowness_immunity', false, `error=${err}`) }
-})
+}
