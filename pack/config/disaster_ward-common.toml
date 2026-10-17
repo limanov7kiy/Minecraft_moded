@@ -1,0 +1,46 @@
+
+[ward]
+	#Радиус зоны оберега по X и Z (на всю высоту), блоков. Один для всего: бури Weather2, бедствия Natural Disasters!, паразиты Spore/SRP System.
+	#Range: 8 ~ 512
+	radius = 96
+	#Запас у края зоны: бедствия Natural Disasters! и паразиты не появляются ближе radius + edgeMargin, паразитов в этой полосе отталкивает,
+	#бури Weather2 разворачиваются, когда их центр подходит ближе radius + edgeMargin.
+	#Range: 0 ~ 128
+	edgeMargin = 16
+	#Бедствия и паразиты снаружи не меняют блоки внутри зоны (торнадо Weather2, метеоры/землетрясения/цунами/пожар Natural Disasters!, заражение Spore).
+	protectBlocks = true
+	#Разворачивать бури Weather2 (стадия «формируется» и выше), подошедшие к зоне.
+	steerStorms = true
+	#Пространства имён существ-бедствий, которые не допускаются в зону (Natural Disasters!).
+	protectedNamespaces = ["natural_disasters"]
+	#Существа, которые не появляются нигде (дубли Weather2: торнадо и песчаная буря Natural Disasters!). Пустой список — всё разрешено.
+	disabledEntities = ["natural_disasters:tornado", "natural_disasters:sandstorm"]
+	#Сколько бедствий Natural Disasters! может идти одновременно в измерении (замер: три сразу над городом — ~200 мс/тик, ~5 TPS). 0 — без ограничения.
+	#Range: 0 ~ 100
+	maxConcurrent = 1
+	#Какие существа считаются «самим бедствием» для maxConcurrent (метеоры и землетрясения-потомки в счёт не идут).
+	rootDisasters = ["natural_disasters:spawnmeteorshower", "natural_disasters:spawnmeteor", "natural_disasters:spawnaearthquake", "natural_disasters:acidrain", "natural_disasters:tsunami", "natural_disasters:sinkhole", "natural_disasters:wildfire"]
+
+[parasites]
+	#Пространства имён паразитов (Fungal Infection: Spore): не появляются в зоне и у её края, в полосе у края их отталкивает, внутри — убираются.
+	namespaces = ["spore"]
+	#Эффекты заражения: в зоне не накладываются и снимаются (мицелий Spore, заражение SRP System).
+	infectionEffects = ["spore:mycelium_ef", "srpsystem:infection"]
+	#Снимать эффекты заражения с существ и игроков в зоне.
+	cureInZone = true
+	#Отталкивать паразитов в полосе edgeMargin у края зоны (иначе убираются только зашедшие внутрь).
+	pushParasites = true
+	#Боссы (тег forge:bosses) и существа из тега disaster_ward:infection_immune не получают эффекты заражения нигде
+	#(иначе SRP System превращает дракона или босса при 30 % здоровья в заражённого человека).
+	immuneBosses = true
+
+[naturalDisasters]
+	#Случайные бедствия Natural Disasters! (в самом моде по умолчанию выкл, а во включённом виде бросок кубика раз в 5 секунд на игрока).
+	enabled = true
+	#Минимальная пауза между бросками на игрока, тиков (20 тиков = 1 с; 36000 = 30 мин).
+	#Range: 200 ~ 24000000
+	minTicks = 36000
+	#Максимальная пауза между бросками на игрока, тиков.
+	#Range: 200 ~ 24000000
+	maxTicks = 96000
+

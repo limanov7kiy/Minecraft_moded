@@ -21,7 +21,9 @@ legacyForge {
     }
 }
 
-// Weather2 и Natural Disasters! не нужны при сборке: к ним обращаемся через рефлексию (мягкая связь)
+// Weather2, Natural Disasters!, Spore и SRP System не нужны при сборке: к ним обращаемся через рефлексию и id реестров (мягкая связь)
+
+jar { manifest.attributes('MixinConfigs': 'disaster_ward.mixins.json') }
 
 processResources {
     def props = [mod_id: mod_id, mod_version: mod_version]

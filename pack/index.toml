@@ -9,6 +9,10 @@ file = "config/DistantHorizons.toml"
 hash = "77155a1e8e79c1c932654c28d6c004325a296da837d768800cfd1733e349150e"
 
 [[files]]
+file = "config/Weather2/Misc.toml"
+hash = "48566ca0091a23ee20767fe8f0b59140106e96eaf0b99e381ebc895366de5a0e"
+
+[[files]]
 file = "config/Weather2/Storm.toml"
 hash = "d90d1cdabb978dba7833e8f9460e9941382ea3c9126c2bed06c84c8e0bf6fd87"
 
@@ -41,6 +45,10 @@ file = "config/canary.properties"
 hash = "8b34973d33381c95c7bb176234d5ed927110c5b81c0c0d82b5ebbf06dea97b81"
 
 [[files]]
+file = "config/disaster_ward-common.toml"
+hash = "4e9832f68b71d638c938b91fcf04cd02124e56255636d20ab480c4b2027077e4"
+
+[[files]]
 file = "config/fallingtree.json"
 hash = "e5ce3851728af563cb5b9bf8752dbb461b28340aec350d9b2fd8d9c9026c915f"
 
@@ -67,6 +75,14 @@ hash = "03774e9720dbb20d1054caf5ef3830e4f58bb3854035a3ad9b43d24a5aa76e08"
 [[files]]
 file = "config/sound_physics_remastered/soundphysics.properties"
 hash = "81511081d13eaf2cfcd6ae5fc95973e44bf7912543573ced691a218cceafd531"
+
+[[files]]
+file = "config/sporeconfig.toml"
+hash = "2ad6e7482e70f641102d77ade3dad0d55a71cd757853010d5aa14425e5b53de7"
+
+[[files]]
+file = "config/srpsystem-common.toml"
+hash = "00457ff2771a8b29b64bd7eca40b402a071d81a2a71c7bb52ced75c4f2c65ff7"
 
 [[files]]
 file = "config/vcinteraction/vcinteraction.properties"
@@ -271,6 +287,18 @@ hash = "5623b9dfc19c8c2c33475572fc36184f538a986fc151dd20c7d02036535a83ca"
 [[files]]
 file = "kubejs/data/dimdungeons/patchouli_books/guide_book/book.json"
 hash = "e486eaa37e89f8a264d01785307e2f0379ec6b5efb5df0afd843047c5720b23d"
+
+[[files]]
+file = "kubejs/data/disaster_ward/tags/entity_types/infection_immune.json"
+hash = "6095e66e44fd2c6a102cfcf2134555778a2649b71b8a8fd3cae06013a8da820e"
+
+[[files]]
+file = "kubejs/data/disaster_ward/tags/entity_types/spore_to_claw.json"
+hash = "3898dfe843b8616bfd4bdf45821503fe35b97189da61fdb9069433cdafa11e60"
+
+[[files]]
+file = "kubejs/data/disaster_ward/tags/entity_types/spore_to_licker.json"
+hash = "28939af178724af921c16b2de7b0acc0ee4c39c4d0e766974680991014488cdc"
 
 [[files]]
 file = "kubejs/data/irons_spellbooks/loot_tables/chests/catacombs/crypt_loot.json"
@@ -599,6 +627,10 @@ hash = "133759e34b7fe4947028331120afea1641f0f8299618776401f3c394c4074496"
 [[files]]
 file = "kubejs/data/northstar_structures/worldgen/structure/south_pole_aitken_basin.json"
 hash = "88fe83d6f47486f23745e3b3594c05667a7feedabfdb486d8f3590bb013bd3ab"
+
+[[files]]
+file = "kubejs/data/spore/spore_mob_conversion/mm_moded.json"
+hash = "e8a1c5f1d859c24104088b8abc0f482582bee196f1945e9952bb65c20bc2836f"
 
 [[files]]
 file = "kubejs/data/superbwarfare/forge/biome_modifier/deepslate_galena_ore_biome_modifier.json"
@@ -1114,8 +1146,8 @@ hash = "f2d6e4f93abbd4efdad16d85653a878415a43a7f389d12c3f0a4afdb5d002745"
 metafile = true
 
 [[files]]
-file = "mods/disaster-ward-1.0.0.jar"
-hash = "18e2d092ef951afc8ea07f42fb80ecaf7d387901651a5122a9109bff678dccbe"
+file = "mods/disaster-ward-1.1.0.jar"
+hash = "35ed2bcbdd38c46a6d594fbfc387170f1f069204ac39e2b8a324d709be98ed3d"
 
 [[files]]
 file = "mods/distanthorizons.pw.toml"
@@ -1214,6 +1246,11 @@ metafile = true
 [[files]]
 file = "mods/ferrite-core.pw.toml"
 hash = "902bac905b93271f02bd0951a22bac06a3da24f5c237fcaeb469e14a7679e508"
+metafile = true
+
+[[files]]
+file = "mods/fungal-infectionspore.pw.toml"
+hash = "d1be54a94fad3a38aaf2e3c18f825ed4b01c09e4274e9faa97d5409f44ebc1b6"
 metafile = true
 
 [[files]]
@@ -1664,7 +1701,7 @@ metafile = true
 
 [[files]]
 file = "mods/ru-lang-1.0.0-client.jar"
-hash = "797622887dc15fa45c6692f3aca8f994d79afddb5b1f66f0c6855728d5d92e20"
+hash = "2aa3e590e57600c12e5ca4edfb796fc577d1a3070d0bbb00a88ad46bc0f0cdcf"
 
 [[files]]
 file = "mods/sarkazs_furnace_side_fables-0.2.3-forge-1.20.1.jar"
@@ -1753,6 +1790,11 @@ metafile = true
 [[files]]
 file = "mods/spellforge-1.1.0.jar"
 hash = "e7b58e519c26d148b9e41fb6be5ca26b93b7814e996d35feedb16d5d1892fc5d"
+
+[[files]]
+file = "mods/srpsystem.pw.toml"
+hash = "8c510a687aa69e7a7fc13276daa235ed09a5dc3d1e7b2db146896aa98b1801d7"
+metafile = true
 
 [[files]]
 file = "mods/structure-gel-api.pw.toml"
