@@ -924,3 +924,47 @@ CurseForge 1460238, файл 9130290, Astryxion, All Rights Reserved. Jar `pack/
   Класть в `pack/config/` сгенерированные по умолчанию файлы Ars (≈240 штук) **не стали**: они заморозят значения по умолчанию и при обновлении Ars
   дадут настоящие «Incorrect key» (устаревшие ключи); к тому же `packwiz` перезаписывал бы у игроков их правки.
 - Если понадобится менять значения Ars (стоимость глифов и т. п.) — править через KubeJS/датапак либо класть в `pack/config/` только нужные файлы целиком (Forge допишет недостающие ключи с одним WARN «from null»).
+
+## Клиентские удобства: mm-perf 0.2.0, Controlling, Potato Craft 8x (поток 28, решения владельца В27/В28/В30)
+Всё в клиентском моде `mods-src/mm-perf` (`pack/mods/mm-perf-0.2.0-client.jar`, на сервер не попадает: серверный zip и `test-server` его не содержат).
+- **Режим слабого ПК** (`LowSpecMode`): кнопка «Режим слабого ПК» / «Вернуть как было» внизу слева на экранах настроек видео (ваниль и Embeddium) и «Настройки»; клавиша `key.mm_perf.lowspec`
+  (не назначена). Ставит: дальность 5, симуляция 5, графика «Быстро», облака выкл., частицы «минимум», мягкий свет выкл., тени сущностей выкл., сглаживание биомов 0, mipmap 0, лимит 60 FPS, VSync выкл.;
+  Embeddium — погода/листва «Быстро», виньетка выкл. (через `SodiumClientMod.options().quality`, `writeChanges`), Oculus — `Iris.toggleShaders(false)`, Distant Horizons — `DhApi.Delayed.configs.graphics().renderingEnabled(false)`
+  (все три — отражением, нет мода или API — шаг пропускается). Прежние значения — `config/mm-perf-lowspec.json` до «Вернуть». Анимации текстур: у ванили нет настройки, у Embeddium `animateOnlyVisibleTextures` уже включено.
+- **Клавиши модов «Не назначено»** (`KeyDefaults`): после загрузки настроек у каждой не ванильной `KeyMapping` (ванильные — по списку имён 1.20.1 + `key.hotbar.*`) заводское значение (`defaultKey`) = не назначено, поэтому «Сбросить» тоже даёт «Не назначено».
+  Один раз при первом запуске (флаг `config/mm-perf-keys.json`) клавиши модов, стоявшие на заводском значении, отвязываются; назначенные игроком — остаются.
+- **Память** (`MemoryWatch`): тост в главном меню, если Xmx < ~7 ГБ или > 70 % физической ОЗУ (`com.sun.management.OperatingSystemMXBean`); в мире — если занято > 90 % кучи **после** последней сборки мусора около 30 с,
+  тост «Память почти закончилась — включите Режим слабого ПК» (не чаще раза в 10 минут).
+- **Controlling 12.0.2 + Searchables 1.0.3** (MIT, client): поиск по названию в экране «Управление» и кнопка «только конфликты». Поиск по моду: у 372 из 384 клавиш модов своя категория (группируются по моду),
+  в ванильных общих категориях только 12 (`key.dragon_*`, `natural_disasters`, `contigency_contract`, `special_ability`, `create_sa`) — 3 %, подпись мода не добавляли.
+- **Ресурспак низких текстур**: Potato Craft-8x v1.4 (автор — Saransh, https://modrinth.com/resourcepack/potato-craft-8x; CC-BY-4.0, изменений нет; ванильные 8×8, текстуры модов не меняет — выигрыш небольшой), лежит в `pack/resourcepacks/`, в `options.txt` **не включён**.
+  Других подходящих по лицензии с покрытием модов не нашлось (Potato Graphics, 1x1 Potato — All Rights Reserved).
+- **Distant Horizons по умолчанию полегче**: радиус 48, качество LOW/LOW, потоков 1 (`pack/config/DistantHorizons.toml`).
+Проверка: сборка `./gradlew build` без ошибок; `test-client.sh` из нового `.mrpack` с `-Dmm_perf.selftest=true` — `CLIENT OK` (565 с), строки `MMPERF-SELFTEST`: ванильных клавиш 34 (назначено 32, `key.forward=W`),
+клавиш модов 385, назначено 0, заводское не пустое 0; отвязано заводских 240; Режим: `rd 10→5, sim 6→5, graphics fancy→fast, clouds FAST→OFF, particles→MINIMAL, ao→false, fps 120→60, vsync→false`, после «Вернуть» всё как было (`restored=true`).
+Второй прогон (`-Dmm_perf.selftest.assign=key.create_sa.flying` — клавиша, «назначенная игроком» F9): остаётся F9, отвязано 239 остальных. `test-server.sh`: `SERVER OK: Done (29.0s)`.
+**Не проверено:** нажатие кнопки мышью и горячей клавиши (нет `xdotool`; логика та же `LowSpecMode.toggle()`, вызывается из самотеста); тосты на экране; применение Embeddium/Oculus/DH в реальном рендере (без GPU) —
+ошибок отражения в логе нет, но DH к меню ещё не запущен (шаг пропускается, как задумано); вид Controlling-экрана.
+
+## Первый тик после Done ≈ 2 минуты — виновник WorldEdit (поток 28, 2026-10-17)
+Метод: `scripts`-стенд без репозитория — сервер `run.sh` на готовом мире, сразу после `Done` `jstack` потока `Server thread` каждые 5 с (40 дампов, 3,5 мин).
+- `Done (29.9s)` в 18:18:37; поток сервера занят до ≈18:20:50 (**≈130 с**), затем первые нормальные тики (Northstar `PlanetTracker.updateOrbits` — доли секунды, остальное ожидание).
+- **Все 25 дампов с 18:18:38 по 18:20:46 — один и тот же стек:** `ForgeWorldEdit.serverStarted` (ServerStartedEvent) → `PlatformManager.handleNewPlatformReady` → `Capability$4.ready` (WORLD_EDITING)
+  → для каждого `BlockType` из реестра `getAllStates()` → `BlockType.getBlockStatesMap` → `BlockState.generateStateMap/populate/withValue` (Guava `ImmutableMap.build/equals`, `HashMap$TreeNode.find` — коллизии хэшей карт состояний) →
+  `BlockStateIdAccess.register(state, id)` для каждого состояния. Это построение таблицы состояний блоков **всех модов** (десятки тысяч блоков × состояния), целиком на главном потоке, до обработки тиков.
+  Мы уже встречали то же как «WorldEdit делает первый тик >60 с, сторож убивает сервер» (`max-tick-time=-1`, PR #52) — причина та же.
+- Других заметных потребителей в первом тике нет: OreSpawn/DH/Spore/KubeJS в дампах не встречаются.
+- Версия WorldEdit 7.2.15 — последняя для 1.20.1 Forge на Modrinth; обновлять нечем.
+Варианты (не применены, нужен выбор):
+1. **Оставить** (сервер всё равно запускается; игроки ждут «Done» и первые 2 мин сервер не отвечает на тики — вход возможен только после; на сильном железе время меньше).
+2. **Убрать WorldEdit** с сервера/из сборки (схематики нужны администратору — `docs/friends.md`; можно держать как отдельный серверный мод, включаемый вручную) — выигрыш 130 с на каждый запуск сервера и встроенного сервера клиента.
+3. **Миксин в `mm-compat`** на `Capability$4.ready`: выполнить обход в фоновом потоке (после Done сервер сразу тикает). Риск: `BlockStateIdAccess.TO_STATE` (`Int2ObjectOpenHashMap`) и `LazyReference` не потокобезопасны; команда WorldEdit в первые 2 минуты (или WE-код, читающий таблицу) может увидеть недостроенную таблицу.
+   Защита: подставить блокировку/ожидание завершения в `//`-команды (`ForgeWorldEdit` `PlatformManager.getPlatformManager().getPlatformCommandManager()`), либо `synchronized` вокруг `register`. Средний объём, нужен тест `//set` под нагрузкой.
+
+**Решение (Координатор, 2026-10-17): вариант 2.** WorldEdit — необязательный мод, по умолчанию выключен у клиента (в одиночной игре встроенный сервер тратил бы те же ≈130 с на каждый вход в мир):
+`pack/mods/worldedit.pw.toml` — `[option] optional = true, default = false` (packwiz-installer спрашивает пользователя); формат `.mrpack` не знает «выключено по умолчанию», а Prism/Modrinth App ставят и optional-моды,
+поэтому `scripts/mrpack-optional.py` (вызывается из `export-pack.sh`) ставит таким модам `env.client = unsupported` в `modrinth.index.json`. Сервер (`fetch-mods.py`, серверный zip) WorldEdit получает как раньше.
+Включение у администратора — `docs/friends.md`, «Администратору: перенос построек».
+Проверка: `export-pack.sh` — в `.mrpack` WorldEdit с `env.client = unsupported`, в серверном zip он есть; `test-server.sh` — `SERVER OK: Done (28.6s)`, WorldEdit загружен;
+`test-client.sh` из нового `.mrpack` — `CLIENT OK` (582 с), `worldedit` в `game/mods` нет. **Не измерено:** вход в одиночный мир без 130 с — в стенде нет `xdotool`, а `--quickPlaySingleplayer` мир не создал
+(клиент остался в меню); ожидание следует из стека (всё время первого тика — WorldEdit).

@@ -2,6 +2,11 @@ name = "WorldEdit"
 filename = "worldedit-mod-7.2.15.jar"
 side = "both"
 
+[option]
+optional = true
+default = false
+description = "Для администратора: перенос построек схематиками. Замедляет вход в одиночный мир на ~2 минуты (один раз за запуск мира); на сервере стоит всегда"
+
 [download]
 url = "https://cdn.modrinth.com/data/1u6JkXh5/versions/Wrlqaul6/worldedit-mod-7.2.15.jar"
 hash-format = "sha512"
