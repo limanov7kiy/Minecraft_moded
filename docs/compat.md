@@ -982,3 +982,7 @@ CurseForge 1460238, файл 9130290, Astryxion, All Rights Reserved. Jar `pack/
 Тесты: `scripts/tests/spawnnat.js` (диагностика + яйца/summon/естественный спавн, два фейковых игрока; `culprit` перебирает слушателей), `scripts/tests/explorecheck.js` (тики при исследовании нового мира).
 Побочно: `scripts/test-server.sh` — переменные `EXTRA_CONFIG`, `SERVER_JVM_EXTRA`, `SERVER_XMX`.
 **ModernFix не виноват** (проверено): со старым mm-compat 0.5.2 и `remove_spawn_chunks=false` корова так же удаляется в (600,600), (-600,-600), в Энде (-400,400) и в Нижнем мире (-600,-600); с mm-compat 0.5.3 и `remove_spawn_chunks=true` (как в паке) во всех точках Земли, Энда и Нижнего мира сущность добавляется. «Помогло» у владельца — совпадение: «мёртвые зоны» считаются по зерну, новый мир даёт другие. `modernfix-mixins.properties` не менялся.
+
+### Нагрузка Spore + SRP System на сервере (поток 30, 2026-10-17)
+Числа и вывод — `docs/performance.md`, «Нагрузка от Spore + SRP System». Коротко: без заразы нагрузки нет; один очаг (~50 существ) ≈ +10–25 % тика (11 % потока сервера),
+три очага (~70 существ — работает лимит деспавна) ≈ +45–50 % (20 %). Конфиг не меняли. Тест `scripts/tests/sporeload.js`.
