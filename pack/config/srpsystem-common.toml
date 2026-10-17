@@ -1,0 +1,148 @@
+# Профиль сборки (поток 22, docs/compat.md «Паразиты»). target_mod_ids = [] — выключены «минимальный урон» (ставит здоровье напрямую мимо брони,
+# смерть игрока без события смерти — пропадали вещи) и «Вздутие»-взрывы. Ослабление лечения колонией выключено (на КАЖДОЕ лечение любого
+# существа искал колонию в радиусе 100 — нагрузка), радиус колонии 100→32. «Вселение в любых» (forced_infection) включено; боссов защищает disaster-ward.
+
+#SRP System 配置
+[general]
+	#总开关 - 启用系统的模组ID列表
+	#只有这些模组的生物会触发SRP系统功能
+	#例如: ["iceandfire", "twilightforest", "alexsmobs"]
+	enabled_mod_ids = ["sopre", "dotf"]
+
+#最小伤害功能配置
+[minimum_damage]
+	#要监测的模组ID列表
+	#来自这些模组的生物攻击时会触发额外伤害
+	#默认: ["iceandfire", "twilightforest", "alexsmobs"]
+	target_mod_ids = []
+	#伤害放大系数
+	#最终伤害 = 基础伤害 × 此系数
+	#设置为1.0使用原版伤害，大于1.0增加伤害，小于1.0减少伤害
+	#默认: 1
+	#Range: 0.01 ~ 100.0
+	damage_multiplier = 1.0
+	#友军伤害
+	#如果为true，来自同一模组的生物可以互相造成伤害
+	#如果为false，来自同一模组的生物不会互相造成伤害
+	#默认: false
+	friendly_fire = false
+
+#死亡重生功能配置
+[death_rebirth]
+	#启用死亡重生功能
+	#如果为true，父本生物死亡时会生成子本生物
+	#默认: true
+	enable = true
+	#死亡重生映射表
+	#格式: 父本modid:实体id;子本modid:实体id [数量]
+	#示例:
+	#  "iceandfire:fire_dragon;iceandfire:fire_dragonling 2"
+	#  "twilightforest:naga;twilightforest:naga_segment 3"
+	#数量可选，默认为1
+	mappings = ["spore:proto;spore:arena_tendril", "spore:verva;spore:gastgaber 1", "spore:verva;spore:gastgaber 1", "spore:gastgaber;spore:scamper 1", "spore:scamper;spore:mound 1", "spore:spitter;spore:inf_villager 1", "spore:leaper;spore:inf_villager 1", "spore:slasher;spore:inf_villager 1", "spore:specter;spore:inf_wanderer 1", "spore:delusioner;spore:inf_wanderer 1", "spore:inebriater;spore:inf_hazmat 1", "spore:thorn;spore:inf_husk 1", "spore:scavenger;spore:inf_husk 1", "spore:Jagd;spore:inf_husk 1", "spore:bloater;spore:inf_drowned 1", "spore:howler;spore:inf_pillager 1", "spore:stalker;spore:inf_pillager 1", "spore:brute;spore:inf_pillager 1", "spore:volatele;spore:inf_witch 1", "spore:mephitic;spore:inf_witch 1", "spore:braurei;spore:mephitic 1", "spore:prot_spawnegg;spore:inf_player 1", "spore:nuclea;spore:inf_player 1", "spore:griefer;spore:inf_human 1", "spore:knight;spore:inf_human 1", "spore:braiomil;spore:inf_human 1", "spore:busser;spore:inf_human 1", "spore:hvindicator;spore:inf_vindicator 1", "spore:hevoker;spore:inf_evoker 1", "spore:ogre;spore:brute 1", "spore:brot;spore:braiomil 1", "spore:inquisitor;spore:knight 1", "spore:wendigo;spore:stalker 1"]
+
+#母体系统配置
+[mother_system]
+	#母体生物列表
+	#这些生物在生成时会被赋予一级nude效果
+	#当它们达到三级nude效果时会被添加colony标签
+	#格式: modid:entity_id
+	#示例:
+	#  "iceandfire:fire_dragon"
+	#  "twilightforest:naga"
+	mother_entities = ["spore:proto"]
+	#colony标签影响半径
+	#拥有colony标签的生物会对该半径内的非己方单位施加回血削弱效果
+	#以及对同模组生物施加reborn效果
+	#单位: 格
+	#默认: 100
+	#Range: 1 ~ 1000
+	colony_radius = 32
+	#reborn效果持续时间
+	#被colony标签辐射的reborn效果持续时间
+	#单位: 刻 (20刻=1秒)
+	#默认: 6000 (5分钟)
+	#Range: 20 ~ 72000
+	reborn_effect_duration = 6000
+	#nude效果基础持续时间
+	#nude效果1级和2级的持续时间
+	#单位: 刻 (20刻=1秒)
+	#默认: 9600 (8分钟)
+	#Range: 100 ~ 72000
+	nude_effect_base_duration = 9600
+	#启用colony回血削弱效果
+	#如果为true，colony标签生物会削弱周围非己方单位的回血效果
+	#默认: true
+	enable_colony_heal_reduction = false
+
+#强制感染功能配置
+[forced_infection]
+	#启用强制感染功能
+	#如果为true，感染源药水效果会触发强制感染
+	#默认: true
+	enable = true
+	#感染源药水效果列表
+	#拥有这些药水效果的生物会自动获得infection效果
+	#格式: modid:effect_id
+	#示例:
+	#  "spore:mycelium_ef"
+	infection_sources = ["spore:mycelium_ef"]
+	#感染转换映射表
+	#格式: 父本modid:实体id;子本modid:实体id [数量]
+	#示例:
+	#  "minecraft:zombie;minecraft:skeleton 1"
+	#  "iceandfire:fire_dragon;iceandfire:ice_dragon 1"
+	#数量可选，默认为1
+	infection_mappings = []
+	#infection效果基础持续时间
+	#infection效果每级的持续时间
+	#单位: 刻 (20刻=1秒)
+	#默认: 6000 (5分钟)
+	#Range: 20 ~ 72000
+	infection_base_duration = 6000
+	#感染转换血量阈值
+	#当生物血量低于此百分比时触发感染转换
+	#单位: 百分比 (0.0-1.0)
+	#默认: 0.3 (30%)
+	#Range: 0.01 ~ 1.0
+	infection_transform_threshold = 0.3
+	#默认感染转换生物
+	#当感染映射表中没有对应映射时，将生物转换为此生物
+	#格式: modid:entity_id
+	#示例: "minecraft:zombie"
+	default_infection_entity = "spore:inf_human"
+
+#Boom效果配置
+[boom_effect]
+	#Boom效果触发概率
+	#血量100以上的非玩家生物攻击时触发boom效果的概率
+	#单位: 百分比 (0.0-1.0)
+	#默认: 0.1 (10%)
+	#Range: 0.0 ~ 1.0
+	boom_effect_chance = 0.1
+	#Boom爆炸强度
+	#当boom效果达到7级时产生的爆炸强度
+	#默认: 2
+	#Range: 1 ~ 10
+	boom_explosion_strength = 2
+
+#限伤功能配置
+[damage_limit]
+	#启用限伤功能
+	#如果为true，特定生物的单次伤害将被限制
+	#默认: true
+	enable = true
+	#限伤生物列表
+	#这些生物的单次伤害将被限制
+	#格式: modid:entity_id
+	#示例:
+	#  "iceandfire:fire_dragon"
+	#  "twilightforest:naga"
+	entities = ["spore:proto"]
+	#最小击杀次数
+	#击杀限伤生物所需的最小攻击次数
+	#单次最大伤害 = 生物最大生命值 / 最小击杀次数
+	#默认: 10
+	#Range: 1 ~ 1000
+	min_kill_count = 10
+
