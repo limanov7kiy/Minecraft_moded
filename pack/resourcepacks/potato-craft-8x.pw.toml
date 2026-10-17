@@ -1,0 +1,13 @@
+name = "Potato Craft-8x"
+filename = "PotatoCraft 8x v1.4.zip"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/cCiIp0Ns/versions/BEd7hmzN/PotatoCraft%208x%20v1.4.zip"
+hash-format = "sha512"
+hash = "8e84b815889a53a64d0d95f5eac079fd73fb60d9a1f3ce4d2e9b5c5a1bf25e9f77743f4fb389f23786efc6a67f495c39804ce74025ff69a7ce4289792d3f6172"
+
+[update]
+[update.modrinth]
+mod-id = "cCiIp0Ns"
+version = "BEd7hmzN"

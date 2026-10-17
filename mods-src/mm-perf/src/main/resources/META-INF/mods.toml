@@ -8,7 +8,7 @@ version = "${mod_version}"
 displayName = "Minecraft_moded Perf"
 authors = "Minecraft_moded"
 description = '''
-Клиентские ускорения сборки Minecraft_moded (docs/performance.md): убирает самый тяжёлый шаг запуска JEI при входе в мир.
+Клиентские удобства сборки Minecraft_moded (docs/performance.md): Режим слабого ПК, клавиши модов «Не назначено», подсказки о памяти, ускорение JEI при входе в мир.
 '''
 
 [[dependencies.${mod_id}]]

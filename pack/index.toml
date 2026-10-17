@@ -6,7 +6,7 @@ hash = "f1ceb92d0b8b72485894a12f2e434f475a127d59cae046ee5843be6318f6745e"
 
 [[files]]
 file = "config/DistantHorizons.toml"
-hash = "77155a1e8e79c1c932654c28d6c004325a296da837d768800cfd1733e349150e"
+hash = "fc7ca364a55cb70b312ddae5be1eee4c49a3234927b1a8685a0585748c4d7fba"
 
 [[files]]
 file = "config/Weather2/Misc.toml"
@@ -1042,6 +1042,11 @@ hash = "aae85ecbdd1e9b180b78643ade9b81fe4c85b2d2c8f6e46c8597d19c9935877c"
 metafile = true
 
 [[files]]
+file = "mods/controlling.pw.toml"
+hash = "4063abe583282834b2f78e3b3e6b9ee4d231a680f74c020e405a4ef196f21ee4"
+metafile = true
+
+[[files]]
 file = "mods/copycats.pw.toml"
 hash = "bc4c7fcbe7ac207a8cf408e754a02ffb61cc106a5445a6987a0924b45ce8b53b"
 metafile = true
@@ -1570,8 +1575,8 @@ file = "mods/mm-compat-0.5.2.jar"
 hash = "25d09eea0e969a11ee1b20efb21e14f51b2fbd697c10ca48d44d3bea78b8dabe"
 
 [[files]]
-file = "mods/mm-perf-0.1.0-client.jar"
-hash = "d7ca544e6d60bc2f18057f55712d985b3faf219404ad267f3c756ff59e232eb7"
+file = "mods/mm-perf-0.2.0-client.jar"
+hash = "12e174b7fa79ed79920e239516bf02ac287f0f25603d1e17868eb27e98913cfe"
 
 [[files]]
 file = "mods/mnaoverpowered.pw.toml"
@@ -1731,6 +1736,11 @@ hash = "a2dd286bd8602067f1c7e3f34bf410d1f7de8fd51262f329775396852c27310d"
 [[files]]
 file = "mods/saturn.pw.toml"
 hash = "3602f220a9d98e89d44168a6e84dc7bb169fb8b8209b4b966288d1fa1c3650bc"
+metafile = true
+
+[[files]]
+file = "mods/searchables.pw.toml"
+hash = "b8c7497acbf4890b4609b6b20de7affdd3482fc99af975d9ff6b29c075e1d8a7"
 metafile = true
 
 [[files]]
@@ -2034,6 +2044,11 @@ hash = "dac71a33fe4eb0aa6f0bbfd5a2c857406239f1842c5bb33b00b142c2809f557d"
 [[files]]
 file = "resourcepacks/mploc-mods-v43.zip"
 hash = "fcc4a8050864c73aa3a011a7cdd8d031eea7639f7ab925c672ca3ba0d684cf3c"
+
+[[files]]
+file = "resourcepacks/potato-craft-8x.pw.toml"
+hash = "221f4d99e604da2922f13a009136427623d654e1336536e6e7d60dd827e08140"
+metafile = true
 
 [[files]]
 file = "resourcepacks/rtf-extension.pw.toml"

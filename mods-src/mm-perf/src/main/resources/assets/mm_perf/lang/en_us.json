@@ -1,0 +1,14 @@
+{
+  "key.categories.mm_perf": "Minecraft_moded: performance",
+  "key.mm_perf.lowspec": "Low-end PC mode: toggle",
+  "mm_perf.lowspec.button.on": "Low-end PC mode",
+  "mm_perf.lowspec.button.off": "Restore settings",
+  "mm_perf.lowspec.on.title": "Low-end PC mode is ON",
+  "mm_perf.lowspec.on.text": "Render distance 5, Fast graphics, shaders and Distant Horizons off. Press the same button to restore.",
+  "mm_perf.lowspec.off.title": "Previous settings restored",
+  "mm_perf.lowspec.off.text": "Graphics settings were restored.",
+  "mm_perf.mem.title": "Memory",
+  "mm_perf.mem.low": "The game has %s GB — that is too little. Raise memory in the launcher or enable Low-end PC mode.",
+  "mm_perf.mem.high": "The game has %s GB of %s GB RAM — too much, the system will slow down. Lower memory in the launcher.",
+  "mm_perf.mem.full": "Memory is almost full — enable Low-end PC mode (Options → Video)."
+}
