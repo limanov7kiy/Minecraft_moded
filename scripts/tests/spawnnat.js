@@ -36,6 +36,36 @@ ServerEvents.tick(event => {
     server.runCommandSilent('setblock ' + ap.getX() + ' ' + (ap.getY() + 3) + ' ' + ap.getZ() + ' disaster_ward:ward')
     console.info('SPAWNNAT ward placed: ' + level.getBlockState(ap.above(3)).block.id)
   }
+
+  // диагностика: создаём корову в разных точках мира и смотрим, жива ли через 1 и 40 тиков (причина удаления — getRemovalReason)
+  if (T == 205) {
+    var ETc = Java.loadClass('net.minecraft.world.entity.EntityType')
+    SN.diag = []
+    var pts2 = [[0, 30], [100, 100], [300, 300], [600, 600], [-600, -600], [1000, 0], [0, 1000]]
+    pts2.forEach(p => { var x = p[0], z = p[1]
+      server.runCommandSilent('forceload add ' + x + ' ' + z + ' ' + (x + 16) + ' ' + (z + 16))
+      level.getChunk(x >> 4, z >> 4); var y = H(x, z)
+      var cow = ETc.COW.create(level); cow.setPos(x + 0.5, y, z + 0.5); var added = level.addFreshEntity(cow)
+      SN.diag.push({ p: p, y: y, cow: cow, added: added, biome: String(level.getBiome(cow.blockPosition()).unwrapKey().get().location()),
+        tick: String(level.isPositionEntityTicking(cow.blockPosition())), loaded: String(level.isLoaded(cow.blockPosition())) }) })
+  }
+
+  if (T == 207) {   // кто отклоняет добавление сущности: вызываем слушателей EntityJoinLevelEvent по одному на корове в проблемной точке
+    try {
+      var MF = Java.loadClass('net.minecraftforge.common.MinecraftForge'), bus = MF.EVENT_BUS
+      var f = bus.getClass().getDeclaredField('busID'); f.setAccessible(true); var id = f.get(bus)
+      var ELH = Java.loadClass('net.minecraftforge.eventbus.api.EventListenerHelper')
+      var EJ = Java.loadClass('net.minecraftforge.event.entity.EntityJoinLevelEvent')
+      var ls = ELH.getListenerList(EJ).getListeners(id), ETj = Java.loadClass('net.minecraft.world.entity.EntityType')
+      var tests = [[600, 600], [-600, -600], [100, 100]]
+      tests.forEach(t => { var y = H(t[0], t[1]); var cow = ETj.COW.create(level); cow.setPos(t[0] + 3.5, y, t[1] + 3.5)
+        var ev = new EJ(cow, level, false), culprit = null
+        for (var i = 0; i < ls.length && !culprit; i++) { try { ls[i].invoke(ev) } catch (e) { }
+          if (ev.isCanceled() || cow.isRemoved()) culprit = i + ' ' + ls[i] + ' canceled=' + ev.isCanceled() + ' removed=' + cow.isRemoved() }
+        console.info('SPAWNNAT culprit at ' + t + ': ' + culprit + ' (слушателей ' + ls.length + ')') })
+    } catch (e) { console.info('SPAWNNAT listeners FAIL ' + e) }
+  }
+  if (T == 206 || T == 260) SN.diag && SN.diag.forEach(d => console.info('SPAWNNAT diag t=' + T + ' at ' + d.p + ' y=' + d.y + ' biome=' + d.biome + ' added=' + d.added + ' entityTicking=' + d.tick + ' removed=' + d.cow.isRemoved() + ' reason=' + d.cow.getRemovalReason()))
   if (!SN.A) return
   if (T == 220) {
     var Items = Java.loadClass('net.minecraft.world.item.Items'), SE = Java.loadClass('net.minecraft.world.item.SpawnEggItem')
@@ -61,7 +91,7 @@ ServerEvents.tick(event => {
       near(fp.blockPosition(), 40).forEach(m => { if (String(m.getType()).replace('entity.', '').replace('.', ':') == e[1]) { n++ } })
       rep(e[0] + '_egg_or_summon_' + e[1], n >= 2, 'alive=' + n + ' (ждём 2: summon + яйцо) eggUseResult=' + e[2]) })
   }
-  if (T == 400) {   // освобождаем зону: убираем все Mob вокруг игроков, чтобы считать только естественный спавн
+  if (T == 500) {   // освобождаем зону: убираем все Mob вокруг игроков, чтобы считать только естественный спавн
     [SN.A, SN.B].forEach(p => near(p.blockPosition(), 80).forEach(m => m.discard()))
     SN.t0 = T; server.runCommandSilent('time set 18000')
     console.info('SPAWNNAT cleared; natural spawn window starts T=' + T)
@@ -71,5 +101,5 @@ ServerEvents.tick(event => {
     console.info('SPAWNNAT natural t+' + ((T - SN.t0) / 20) + 's  IN-ward: ' + summary(SN.A.blockPosition()))
     console.info('SPAWNNAT natural t+' + ((T - SN.t0) / 20) + 's OUTSIDE : ' + summary(SN.B.blockPosition()))
   }
-  if (T == 400 + 3600 + 5) console.info('SPAWNNAT DONE')
+  if (T == 500 + 3600 + 5) console.info('SPAWNNAT DONE')
 })
