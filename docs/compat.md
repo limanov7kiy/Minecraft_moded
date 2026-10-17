@@ -710,3 +710,16 @@ Mass Destruction Forge 1.1.2. Cataclysm/Mowzie's/Lycanites не дублирую
 ## WorldEdit 7.2.15 (2026-10-13, решение владельца В18)
 Modrinth `1u6JkXh5`, версия `Wrlqaul6`, Forge 1.20.1, сторона `both`, в `pack/modlist.txt`. `test-server.sh`: `SERVER OK` (Done 32 с), в логе «WorldEdit for Forge (version 7.2.15) is loaded», команды зарегистрированы, ошибок нет.
 Команды `//…` — по правам OP (разрешений-мода в сборке нет, действует уровень оператора). Клиентский прогон не делался (мод серверный по сути, интерфейса нет). Инструкция переноса построек — `docs/friends.md` («Администратору»).
+
+## Clanging Howl 1.1.0 (поток 20, 2026-10-17, решение владельца В23)
+Автор — Mongoose_artist (владелец), Polarice3; CurseForge project 1367022, ModJam 2025, лицензия All Rights Reserved, **стороннее скачивание
+запрещено** (в API нет `downloadUrl`) → jar `pack/mods/clanging-howl-1.20.1-1.1.0.jar` лежит в репозитории (правило CLAUDE.md), строка `#jar` в
+`modlist.txt`. Единственный мод с таким названием; Forge 1.20.1, сторона **both**. Зависимости: GeckoLib (≥84) и Curios (≥5.3.4) — уже в сборке;
+JEI необязательна. Добавляет: метеоритные дожди, внеземные объекты/гнёзда/исследовательские станции, мобов-техноплоть (гематома, охотник, туша,
+кровораспространитель…), энергогаджеты (curios-слоты heart/legs/feet), броню-инструменты из внеземной стали.
+Конфликты: теги `forge:ingots`/`ores` содержат только свои предметы (Almost Unified не затрагивается — `steel` в `unify.json` это `forge:ingots/steel`);
+слоты Curios `replace:false` — с остальными модами складываются. Русификация — см. docs/russification.md.
+
+**Прогон `test-server.sh` (max-tick-time=-1): `Done (48.6s)`**, 152 ERROR в логе — фоновые, как у остальных модов; строк с `clanginghowl` уровня ERROR/exception нет.
+Единственное — WARN «config/clanginghowl.toml исправлен до значений по умолчанию» (первый запуск: метеоритный дождь включён, раз в 15 дней).
+Не проверено: клиент (рендер GeckoLib, перевод в игре), реальный метеоритный дождь и спавн мобов/структур в мире, поведение рядом с Lycanites/Cataclysm.

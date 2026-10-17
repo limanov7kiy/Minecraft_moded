@@ -974,6 +974,10 @@ hash = "c7ac7f84731a0ca1fefb3491c3f65c2767afd4be207e094fcb65c4cea99c9549"
 metafile = true
 
 [[files]]
+file = "mods/clanging-howl-1.20.1-1.1.0.jar"
+hash = "451fb79e2634d59b2bd9443bb4a28aa528c2123c2e6ee0f67a59318683d89774"
+
+[[files]]
 file = "mods/cloth-config.pw.toml"
 hash = "e3dd03e7fec88831974857e2cdded54dd5c5bdcaa3f6d6248c2800e82db4dd41"
 metafile = true
@@ -1651,7 +1655,7 @@ metafile = true
 
 [[files]]
 file = "mods/ru-lang-1.0.0-client.jar"
-hash = "16f4e503b9d9c5d9e666aa83bdd68fe1f401c493c4ae36a4dd34d7520fd6b1a2"
+hash = "dd88c7855f80f820a59aa97e235df7ff703c861021c472941bd5ce2168b9ecde"
 
 [[files]]
 file = "mods/sarkazs_furnace_side_fables-0.2.3-forge-1.20.1.jar"
