@@ -2046,6 +2046,11 @@ file = "resourcepacks/mploc-mods-v43.zip"
 hash = "fcc4a8050864c73aa3a011a7cdd8d031eea7639f7ab925c672ca3ba0d684cf3c"
 
 [[files]]
+file = "resourcepacks/potato-craft-8x.pw.toml"
+hash = "221f4d99e604da2922f13a009136427623d654e1336536e6e7d60dd827e08140"
+metafile = true
+
+[[files]]
 file = "resourcepacks/rtf-extension.pw.toml"
 hash = "8b547208a0a882127858dae3936457fc8508a358a1bf7141f138298899c28b1b"
 metafile = true
