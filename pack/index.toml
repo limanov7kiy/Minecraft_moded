@@ -41,6 +41,10 @@ file = "config/canary.properties"
 hash = "8b34973d33381c95c7bb176234d5ed927110c5b81c0c0d82b5ebbf06dea97b81"
 
 [[files]]
+file = "config/fallingtree.json"
+hash = "e5ce3851728af563cb5b9bf8752dbb461b28340aec350d9b2fd8d9c9026c915f"
+
+[[files]]
 file = "config/iceandfire-common.toml"
 hash = "4e686e3616fc1885ce4380e95fe8c9d32be13536693da638e27b091372c0777b"
 
@@ -970,6 +974,10 @@ hash = "c7ac7f84731a0ca1fefb3491c3f65c2767afd4be207e094fcb65c4cea99c9549"
 metafile = true
 
 [[files]]
+file = "mods/clanging-howl-1.20.1-1.1.0.jar"
+hash = "451fb79e2634d59b2bd9443bb4a28aa528c2123c2e6ee0f67a59318683d89774"
+
+[[files]]
 file = "mods/cloth-config.pw.toml"
 hash = "e3dd03e7fec88831974857e2cdded54dd5c5bdcaa3f6d6248c2800e82db4dd41"
 metafile = true
@@ -1162,6 +1170,11 @@ hash = "9cf8b4b8fbb8ce4de87893f38a50ef10b73905bdf0f703d72917b0b8fbcb2aa0"
 [[files]]
 file = "mods/factions-and-curiosities.pw.toml"
 hash = "cf1a0474ae05fe512d822a758c5a093c959da23c53c1c2e3459461b6b0657d06"
+metafile = true
+
+[[files]]
+file = "mods/fallingtree.pw.toml"
+hash = "c3855a5011cc263726532999f35c8691db9fa60b9d470758dd826d25c29ed4cb"
 metafile = true
 
 [[files]]
@@ -1490,8 +1503,8 @@ hash = "c25495262a852dc02886ec8c4b695f30e53264a2e3d881dd36ee9de16a1ef499"
 metafile = true
 
 [[files]]
-file = "mods/mm-compat-0.5.0.jar"
-hash = "10136eb69537c3a2c9c5d81c7d57a700281ddf419d5f79b8aba09c82d2289da8"
+file = "mods/mm-compat-0.5.1.jar"
+hash = "d7bb2f1c7031b70512db5a199cde51af8e85b56db447646eac12cf63425320af"
 
 [[files]]
 file = "mods/mm-perf-0.1.0-client.jar"
@@ -1642,7 +1655,7 @@ metafile = true
 
 [[files]]
 file = "mods/ru-lang-1.0.0-client.jar"
-hash = "48f346ce6f20914d58f26fdac407ac0685f68e99f902b11cac4fa37f605fe4e3"
+hash = "797622887dc15fa45c6692f3aca8f994d79afddb5b1f66f0c6855728d5d92e20"
 
 [[files]]
 file = "mods/sarkazs_furnace_side_fables-0.2.3-forge-1.20.1.jar"

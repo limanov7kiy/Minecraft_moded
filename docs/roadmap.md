@@ -17,6 +17,7 @@
 | Кислород скафандров Northstar/CS в системе Ad Astra | `mods-src/mm-compat` |
 | Wizardry Restored 0.4.0: 38 из 61 недостающего заклинания + 4 SENSIBLE-заклинания Redux, тест в мире `castcheck.js` (42/42) | `mods-src/wizardry-restored`, `docs/wizardry-port.md` |
 | Lycanites Mobs: недостающий refmap миксинов (сделано в основном чате до разделения) | `patches/lycanites-refmap`, `docs/compat.md` |
+| Falling Tree 1.20.1-4.3.4: дерево падает целиком (FALL_BLOCK), присед = один блок, прочность «всё или ничего» (миксин в mm-compat), лимит 300 брёвен; тест на фейковом игроке | `docs/compat.md` «Falling Tree», `pack/config/fallingtree.json`, `scripts/tests/fallingtree.js` |
 | Серверные тесты: гравитация, маршруты, ракеты, кислород, руды, заклинания | `scripts/tests/` |
 
 ## В работе
@@ -365,7 +366,7 @@ JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.t
 
 Решения владельца: В19 — Lost Cities «Оставь как есть» (современный стиль, `rarecities`); В20/В21 — Falling Tree, Dynamic Trees не ставим:
 присед = по блоку, прочность за каждое бревно, при нехватке прочности — один блок (миксин mm-compat), `maxSize` 300 ABORT, широкие стволы не трогаем;
-В22 — фризы у игроков: скрипт сбора диагностики и анализ; В23 — Clanging Howl (мод на CurseForge, есть русский перевод на Modrinth);
+В22 — фризы у игроков: скрипт сбора диагностики и анализ; В23 — Clanging Howl (мод на CurseForge, есть русский перевод на Modrinth) — **сделано, поток 20**;
 В24 — паразиты: Fungal Infection: Spore (+ SRP System, если совместим), Оберег не пускает заразу и заражённых в зону;
 В25 — разбор Embeddium/Oculus («Sodium на Forge») в рамках анализа фризов.
 
