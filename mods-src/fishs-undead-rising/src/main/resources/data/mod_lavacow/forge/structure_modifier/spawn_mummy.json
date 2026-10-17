@@ -1,0 +1,10 @@
+{
+  "type": "mod_lavacow:add_spawns",
+  "structures": "minecraft:desert_pyramid",
+  "spawners": {
+    "type": "mod_lavacow:mummy",
+    "weight": 40,
+    "minCount": 4,
+    "maxCount": 8
+  }
+}

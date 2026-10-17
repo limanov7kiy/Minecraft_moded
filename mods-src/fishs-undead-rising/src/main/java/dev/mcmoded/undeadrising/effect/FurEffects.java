@@ -27,6 +27,30 @@ public final class FurEffects {
     /// Infested: из существа вылезают паразиты (мобы — этап 2 порта; пока эффект без появления паразитов).
     public static final RegistryObject<MobEffect> INFESTED = EFFECTS.register("infested", () -> new Plain(MobEffectCategory.HARMFUL, 10037074));
 
+    /// Fragile («Смертное касание»): пока здоровье ниже 5% × (уровень + 1) от максимума — мгновенная смерть
+    /// (оригинал: `effect/EffectFragile`). Накладывают Forsaken и «Кольцо смерти».
+    public static final RegistryObject<MobEffect> FRAGILE = EFFECTS.register("fragile", Fragile::new);
+
+    static final class Fragile extends MobEffect {
+        Fragile() {
+            super(MobEffectCategory.HARMFUL, 3483434);
+        }
+
+        @Override
+        public void applyEffectTick(LivingEntity entity, int amplifier) {
+            float max = entity.getMaxHealth();
+            if (entity.getHealth() / max < 0.05F * (amplifier + 1)) {
+                if (entity instanceof net.minecraft.world.entity.player.Player p && (p.isSpectator() || p.isCreative())) return;
+                entity.hurt(entity.damageSources().wither(), max);
+            }
+        }
+
+        @Override
+        public boolean isDurationEffectTick(int duration, int amplifier) {
+            return true;
+        }
+    }
+
     static final class Plain extends MobEffect {
         Plain(MobEffectCategory category, int color) {
             super(category, color);

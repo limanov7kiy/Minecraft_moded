@@ -1,0 +1,42 @@
+{
+  "unburied_ambient": {
+    "category": "hostile",
+    "subtitle": "subtitles.mod_lavacow.unburied_ambient",
+    "sounds": [
+      {
+        "name": "mod_lavacow:entity/unburied/ambient",
+        "stream": true
+      }
+    ]
+  },
+  "unburied_hurt": {
+    "category": "hostile",
+    "subtitle": "subtitles.mod_lavacow.unburied_hurt",
+    "sounds": [
+      {
+        "name": "mod_lavacow:entity/unburied/hurt",
+        "stream": true
+      }
+    ]
+  },
+  "unburied_death": {
+    "category": "hostile",
+    "subtitle": "subtitles.mod_lavacow.unburied_death",
+    "sounds": [
+      {
+        "name": "mod_lavacow:entity/unburied/death",
+        "stream": true
+      }
+    ]
+  },
+  "skeletonking_spell_toss": {
+    "category": "hostile",
+    "subtitle": "subtitles.mod_lavacow.skeletonking_spell_toss",
+    "sounds": [
+      {
+        "name": "mod_lavacow:entity/skeletonking/spell_toss",
+        "stream": true
+      }
+    ]
+  }
+}
