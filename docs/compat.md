@@ -652,7 +652,10 @@ Mimic; снаряды Death Coil, Acid/Flame Jet, War Small Fireball; эффек
   `mixin.perf.dynamic_resources=true` (наш конфиг) такая модель приходила missing model. В 0.3.0 грибы — настоящие блоки,
   слой рисует блок-состояние `age=1` (`renderSingleBlock`), как оригинал. В test-client.sh добавлен вывод
   «Unable to load model/Missing textures» по своим модам-портам (в логе этой ошибки не было — missing model молчит).
-- Клиент: CLIENT OK (481 с), ошибок по `mod_lavacow`/`necromancersdelight` в логе нет. CLIENT_VIEW
+- Клиент: CLIENT OK (481 с), ошибок по `mod_lavacow`/`necromancersdelight` в логе нет.
+  Глазами исправление Mycosis не проверено: в одиночном мире облачного клиента (YSM убран, мир создан кнопками) вход
+  обрывается «Сервер отправил неверный пакет» сразу после входа; клиентская причина в latest.log не пишется — осмотр
+  Mycosis (оба варианта) остаётся владельцу/следующему потоку.
 
 ### Bosses of Mass Destruction + Cerbon's API (поток 9, 2026-10-12, решение владельца В12 «а»)
 Владелец ответил «оба», затем «а»: вернуть Cerbon's API и добавить BoMD, с регрессионной проверкой спавна; если у владельца
