@@ -912,3 +912,8 @@ CurseForge 1460238, файл 9130290, Astryxion, All Rights Reserved. Jar `pack/
 2. **Убрать WorldEdit** с сервера/из сборки (схематики нужны администратору — `docs/friends.md`; можно держать как отдельный серверный мод, включаемый вручную) — выигрыш 130 с на каждый запуск сервера и встроенного сервера клиента.
 3. **Миксин в `mm-compat`** на `Capability$4.ready`: выполнить обход в фоновом потоке (после Done сервер сразу тикает). Риск: `BlockStateIdAccess.TO_STATE` (`Int2ObjectOpenHashMap`) и `LazyReference` не потокобезопасны; команда WorldEdit в первые 2 минуты (или WE-код, читающий таблицу) может увидеть недостроенную таблицу.
    Защита: подставить блокировку/ожидание завершения в `//`-команды (`ForgeWorldEdit` `PlatformManager.getPlatformManager().getPlatformCommandManager()`), либо `synchronized` вокруг `register`. Средний объём, нужен тест `//set` под нагрузкой.
+
+**Решение (Координатор, 2026-10-17): вариант 2.** WorldEdit — необязательный мод, по умолчанию выключен у клиента (в одиночной игре встроенный сервер тратил бы те же ≈130 с на каждый вход в мир):
+`pack/mods/worldedit.pw.toml` — `[option] optional = true, default = false` (packwiz-installer спрашивает пользователя); формат `.mrpack` не знает «выключено по умолчанию», а Prism/Modrinth App ставят и optional-моды,
+поэтому `scripts/mrpack-optional.py` (вызывается из `export-pack.sh`) ставит таким модам `env.client = unsupported` в `modrinth.index.json`. Сервер (`fetch-mods.py`, серверный zip) WorldEdit получает как раньше.
+Включение у администратора — `docs/friends.md`, «Администратору: перенос построек».
