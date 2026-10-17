@@ -310,6 +310,26 @@ Northstar/CS выживает на Луне, воздух тратится ~1/с
 Ванильный `/locate` в сборке асинхронный (Async Locator) — результат команды всегда 0, ответ приходит позже.
 План и ход работ — `docs/galacticraft.md`.
 
+## Falling Tree (поток 18)
+Falling Tree 1.20.1-4.3.4 (RakSrinaNa, LGPL-3.0; Modrinth `fallingtree`, сторона `both`): срубленное дерево падает целиком.
+- Конфиг `pack/config/fallingtree.json` (файл мода; в нём всё, что не перечислено ниже, — значения по умолчанию):
+  `trees.breakMode = FALL_BLOCK`, `sneakMode = SNEAK_DISABLE` (присед = рубить по одному блоку),
+  `tools.damageMultiplicand = 1` (1 прочности за бревно), `tools.preserve = true`, `tools.forceToolUsage = true`,
+  `trees.maxSize = 300`, `trees.maxSizeAction = ABORT` (дерево больше 300 брёвен — рубится один блок).
+- Миксин `FallingTreeDamageMixin` (`mods-src/mm-compat`, необязательный, `@Pseudo`): при `preserve = true` Falling Tree сам рубит
+  столько брёвен, на сколько хватает прочности. Миксин в конце конструктора `ToolDamageHandler` бросает то же
+  `BreakTreeTooBigException`, что мод бросает при превышении maxSize, если прочности не хватает на все брёвна дерева
+  (с `preserve` — так, чтобы топор не сломался на последнем бревне). `TreeHandler` ловит его и отвечает `TREE_TOO_BIG_BREAK`
+  (`cancel = false`) — событие не отменяется, игра ломает один блок. Исключение летит одинаково из всех трёх обработчиков
+  (Instantaneous, FallingAnimation, ShiftDown): все создают `ToolDamageHandler` и пропускают исключение наверх.
+  Параметры конструктора (javap): `int` №1 — число брёвен дерева (`Tree.getBreakableCount`), `int` №2 — `maxSize`.
+- Широкие стволы 2×2 не трогали (решение владельца).
+- Тест `scripts/tests/fallingtree.js` (фейковый игрок Forge, `ServerPlayerGameMode.destroyBlock`, железный топор 250 прочности;
+  запускать в чистом мире — брёвна прошлых прогонов остаются в мире и попадают в дерево). Результат на чистом мире, `Done`:
+  полная прочность (6 брёвен) — дерево целиком, −6 прочности; осталось 3 прочности — один блок (−1: 247 → 248);
+  присед — один блок; куб 384 бревна — один блок; осталось 7 на 6 брёвен — целиком, топор остаётся с 1; осталось 6 на 6 — один блок.
+  Не проверено: игра живым игроком и реальные деревья (листва `persistent=false` проверена справочно — тоже −6),
+  мод Falling Tree без миксина-цели (запуск без мода), клиент.
 ## Проверка клиента (поток 5, 2026-10-11)
 Клиент запускался в облаке: `scripts/test-client.sh` — Forge через portablemc, моды из `.mrpack` так же, как
 ставит Prism (только `env.client != unsupported` + `overrides/`), Xvfb + Mesa llvmpipe (OpenGL 4.5), без звука.

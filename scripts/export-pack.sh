@@ -42,7 +42,8 @@ echo "-Xms4G
 # online-mode=false: игроки с офлайн-аккаунтов (защита ников — мод sols-authlogin, /register и /login).
 # Кладём как server.properties.default: start.sh/start.bat копируют его, только если server.properties ещё нет,
 # так что обновление пакета поверх сервера не затирает настройки хоста.
-printf 'motd=%s\nmax-players=10\nview-distance=10\nsimulation-distance=8\nallow-flight=true\nonline-mode=false\n' "$name" > "$stage/server.properties.default"
+# max-tick-time=-1: WorldEdit при старте считает все состояния блоков одним тиком дольше 60 с; без этого сторож убивает сервер.
+printf 'motd=%s\nmax-players=10\nview-distance=10\nsimulation-distance=8\nallow-flight=true\nonline-mode=false\nmax-tick-time=-1\n' "$name" > "$stage/server.properties.default"
 cat > "$stage/start.sh" <<'EOF'
 #!/usr/bin/env sh
 # Первый запуск ставит Forge; дальше просто запускает сервер. ОЗУ — в user_jvm_args.txt.
