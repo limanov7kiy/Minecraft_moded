@@ -352,6 +352,60 @@ Restored; namespace сохраняем оригинальный (`wizardrygolems
     (Mycosis рисует их модели как слой); weta_hoe, гробница в пустыне, зелья FUR, конфиг FUR; `foul_bristle` (крафт из
     `foul_hide` моба вне списка) — рецепт вонючей бомбы ND пока без него не собрать.
   - Тест `scripts/tests/furcheck.js`: призыв каждого моба, жив через 100 тиков, яйцо и таблица добычи.
-  - **Дальше (ND-3):** оставшиеся 16 заклинаний и 12 артефактов Necromancer's Delight на этих мобах, снаряды ND
-    (holy_hand_grenade, ghost_bomb, wail), bound-оружие, carcinize (сундук → мимик), trial_of_mushrooms; рецепты бомб.
+  - **Дальше — ND-3**, см. раздел «Передача ND-3» ниже.
   jar FUR 1.12.2 (8253053) и 1.16.5 (7327600) — с CurseForge (`mediafilez.forgecdn.net/files/7327/600/...`).
+
+### Передача ND-3 (поток 27 → свежий сеанс, 2026-10-17)
+Цель: оставшиеся заклинания и артефакты Necromancer's Delight поверх мобов порта FUR (ND-2, PR #67). Ветка — от
+`claude/necromancers-delight-nd2` (или от интегратора после слияния #67), PR в `claude/affectionate-davinci-4gddoh`.
+
+**Исходники оригинала:**
+- ND 1.12.2 — https://github.com/WinDanesz/WizardryNecromancersDelight, коммит `0e52462` (GPL-3.0). Регистрация
+  заклинаний — `registry/NDSpells.java` (строки 80–117), артефактов — `registry/NDItems.java` (66–89), эффекты артефактов —
+  `handler/NDEventHandler.java` (372 строки), свои классы — `spell/`, `item/`, `entity/`; ассеты и
+  `assets/necromancersdelight/spells/*.json` (параметры заклинаний).
+- FUR 1.16.5 2.4.1 — jar с CurseForge, файл 7327600 (`mediafilez.forgecdn.net/files/7327/600/Fish's%20Undead%20Rising-2.4.1.jar`),
+  декомпиляция Vineflower 1.10.1 (`org/vineflower/vineflower/1.10.1` на Maven Central): `java -jar vineflower.jar -dgs=1 <jar> <out>`.
+  FUR 1.12.2 1.6.2 — файл 8253053. Классы FUR, нужные ND-3, — в декомпиляции 1.16.5: предметы `item/` (FrozenDagger,
+  BoneSword, SpectralDagger, VespaShield), снаряды `entities/projectiles/` (HolyGrenade, GhostBomb, SonicBomb),
+  блоки грибов `block/` (Glowshroom, Cordyceps, VeilShroom).
+
+**Опись: заклинания (16 из 20; 4 сделаны в ND-1 — stink_bomb, frost_bomb, corrode, glowshroom):**
+| id | оригинал (NDSpells) | что нужно |
+|---|---|---|
+| bound_frozen_dagger, bound_bone_sword, bound_spectral_dagger, bound_vespa_shield | `SpellDynamicConjuration` + `FishItems.*` | перенести 4 предмета FUR; Redux `ConjureItemSpell` |
+| holy_hand_grenade, ghost_bomb, wail_of_the_banshee | `SpellThrowable` + EntityHolyGrenade/GhostBomb/SonicBomb (FUR) | перенести 3 снаряда FUR; Redux `ProjectileSpell` (как бомбы ND-1, `NdBomb`) |
+| summon_vespa | `SpellMinion` + своя `EntityVespaMinion` | миньон на `VespaEntity` порта; Redux `MinionSpell` |
+| conjure_banshee, conjure_mycosis, summon_salamander | `SpellDynamicMinion` + мобы FUR | мобы есть в порте (`FurEntities`); Redux `MinionSpell` + `MinionData` (как в wizardry-golems) |
+| summon_mana_leech, summon_elemental_leech | `SummonManaLeech`/`SummonElementalLeech` + `EntityLeechMinionBase` | миньоны на модели `ParasiteModel` порта |
+| trial_of_mushrooms | `TrialOfMushrooms` (IMBUE) | грибы FUR (блоки — не перенесены в ND-2) |
+| carcinize | `Carcinize` (сундук → мимик) | `MimicEntity` порта, перенос содержимого сундука |
+
+**Опись: артефакты** (из 15 + Leech Crystal работают 5 — Necromantic/Malice Ward, иммунитеты к замедлению/слабости,
+Cursed Scarab; остальные зарегистрированы в `NdArtifacts`/`NdItems` без эффекта): `amulet_leechlink`, `ring_legion`
+(Unburied), `ring_nameless`, `ring_frozen_dagger`, `ring_forsaken` (Forsaken), `charm_bone_bag`, `charm_mummy_minion`
+(Mummy), `charm_mushroom_minion` (Mycosis), `belt_thorns`, `head_pest_crown` (`ItemPestCrown`), `amulet_leech_crystal`
+(`ItemLeechCrystalAmulet`). Логика — `NDEventHandler`.
+
+**Что уже есть для переиспользования:**
+- `mods-src/necromancers-delight` 0.1.0: регистрация заклинаний (`NecromancersDelight` — `SPELLS` registry Redux
+  `ebwizardry:spells`), `NdSpells` (свойства через `SpellProperties.builder()`), `NdBomb`/`NdBombs` (снаряд + граната),
+  `NdArtifacts` (Curios, проверки слота), `NdEffects`, `NdLoot`, lang en/ru/zh (ru — ещё в ru-пакете).
+- `mods-src/fishs-undead-rising` 0.2.0: `registry/FurEntities` (в javadoc — порядок добавления моба), `FurItems`
+  (вкладка, `egg(...)`), `FurSounds`, `entity/FURTameableEntity` (владелец/приручение — удобно для миньонов),
+  `client/model/FURBaseModel` (хелперы анимаций), `client/ClientSetup`, `world/AddStructureSpawnsModifier`.
+- Образец миньонов Redux — `mods-src/wizardry-golems` (`MinionData`: владелец, время жизни, следование).
+- Тесты: `scripts/tests/ndcheck.js` (касты фейковым игроком, арены, фазы), `scripts/tests/furcheck.js` (призыв мобов).
+
+**Ловушки (найдено в ND-1/ND-2):**
+- Снаряды Redux (`MagicProjectileEntity.aim`) вылетают из `xo/yo/zo` стрелка — в тестах фейкового игрока ставить
+  `setPos` + `setOldPosAndRot()` (5-аргументный `moveTo` Rhino не находит).
+- Тестовый сервер: «Done» в логе за ~3 мин до первого тика — `TEST_COMMANDS` с `#sleep 420`; мир между прогонами
+  сохраняется — арены чистить `kill` за 40 тиков до каста; `server.persistentData` KubeJS — не CompoundTag (фазы — в
+  переменной скрипта); `const` внутри блока в обработчике тика — «redeclaration», только `let`.
+- Перед проверкой урона сбрасывать `invulnerableTime` цели (чужой удар за ≤10 тиков съедает часть урона).
+- Biome/structure modifiers: несколько тегов — только `{"type": "forge:or", "values": [...]}`, массив не парсится и
+  мир не грузится. NBT-поля сущностей читать с `tag.contains(...)` (иначе `/summon` с NBT обнуляет их).
+- test-client: остатки мёртвого Xvfb (`/tmp/.X99-lock`, `/tmp/.X11-unix/X99`) дают «glfwInit failed» — удалить.
+- Модели ND-2 переводились автоматическим конвертером — при работе с миньонами на их моделях глянуть позы в мире.
+
