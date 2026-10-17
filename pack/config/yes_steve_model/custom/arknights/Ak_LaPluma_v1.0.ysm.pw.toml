@@ -1,0 +1,8 @@
+name = "Ak_LaPluma_v1.0"
+filename = "Ak_LaPluma_v1.0.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_LaPluma_v1.0.ysm"
+hash-format = "sha256"
+hash = "f52822c01b96239c3d557457515f624802598265032aea7dd6de3318b8ea6a72"

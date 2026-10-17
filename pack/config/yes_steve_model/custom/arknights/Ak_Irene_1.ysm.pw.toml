@@ -1,0 +1,8 @@
+name = "Ak_Irene_1"
+filename = "Ak_Irene_1.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Irene_1.ysm"
+hash-format = "sha256"
+hash = "f144a287f31b10b5c014c1fd2144b1490e4ea430fe4136e863a4761935527d3b"

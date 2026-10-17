@@ -1,0 +1,8 @@
+name = "Ak_Myrtle"
+filename = "Ak_Myrtle.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Myrtle.ysm"
+hash-format = "sha256"
+hash = "fc0cb42ae9f00706a4b528f3d58295373bca865b06fa9d4c47e8e937e37d25c1"

@@ -1,0 +1,15 @@
+// форма осколка для mainhand: 0 — пусто, 1..13 — sword, axe, pickaxe, shovel, hoe, bow, crossbow, shield, spear, staff, tome, food, other
+!ysm.has_mainhand ? { return 0; };
+(q.equipped_item_any_tag('mainhand', 'mm:ysm_form/sword', 'minecraft:swords', 'forge:tools/swords')) ? { return 1; };
+(q.equipped_item_any_tag('mainhand', 'mm:ysm_form/axe', 'minecraft:axes', 'forge:tools/axes')) ? { return 2; };
+(q.equipped_item_any_tag('mainhand', 'mm:ysm_form/pickaxe', 'minecraft:pickaxes', 'forge:tools/pickaxes')) ? { return 3; };
+(q.equipped_item_any_tag('mainhand', 'mm:ysm_form/shovel', 'minecraft:shovels', 'forge:tools/shovels')) ? { return 4; };
+(q.equipped_item_any_tag('mainhand', 'mm:ysm_form/hoe', 'minecraft:hoes', 'forge:tools/hoes')) ? { return 5; };
+(q.equipped_item_any_tag('mainhand', 'mm:ysm_form/bow', 'forge:tools/bows') || q.is_item_name_any('mainhand', 'minecraft:bow')) ? { return 6; };
+(q.equipped_item_any_tag('mainhand', 'mm:ysm_form/crossbow', 'forge:tools/crossbows') || q.is_item_name_any('mainhand', 'minecraft:crossbow')) ? { return 7; };
+(q.equipped_item_any_tag('mainhand', 'mm:ysm_form/shield', 'forge:tools/shields') || q.is_item_name_any('mainhand', 'minecraft:shield')) ? { return 8; };
+(q.equipped_item_any_tag('mainhand', 'mm:ysm_form/spear', 'forge:tools/tridents') || q.is_item_name_any('mainhand', 'minecraft:trident')) ? { return 9; };
+(q.equipped_item_any_tag('mainhand', 'mm:ysm_form/staff')) ? { return 10; };
+(q.equipped_item_any_tag('mainhand', 'mm:ysm_form/tome')) ? { return 11; };
+(q.equipped_item_any_tag('mainhand', 'mm:ysm_form/food') || q.is_item_name_any('mainhand', 'minecraft:potion', 'minecraft:milk_bucket', 'minecraft:honey_bottle')) ? { return 12; };
+return 13;

@@ -1,0 +1,8 @@
+name = "Ak_Eblana"
+filename = "Ak_Eblana.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Eblana.ysm"
+hash-format = "sha256"
+hash = "d3760926f74ed8295a521bce461f6ffc8673302909cd79eee00f3241ac79b8be"

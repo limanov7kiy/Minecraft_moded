@@ -1,0 +1,8 @@
+name = "Ak_Mudrock(Coral-Coast)_1"
+filename = "Ak_Mudrock(Coral-Coast)_1.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Mudrock%28Coral-Coast%29_1.ysm"
+hash-format = "sha256"
+hash = "19ebc190cc3aa620f28694e2b9b52d88c95648193d289fce2728cc532bf66cc4"

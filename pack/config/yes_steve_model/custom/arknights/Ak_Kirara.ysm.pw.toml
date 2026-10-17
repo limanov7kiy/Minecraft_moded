@@ -1,0 +1,8 @@
+name = "Ak_Kirara"
+filename = "Ak_Kirara.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Kirara.ysm"
+hash-format = "sha256"
+hash = "896c56765ac0e026f646048248ad89bad63d068d51236719b7d8111346bf6334"

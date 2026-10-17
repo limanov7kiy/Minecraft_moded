@@ -1,0 +1,8 @@
+name = "Ak_Angelina"
+filename = "Ak_Angelina.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Angelina.ysm"
+hash-format = "sha256"
+hash = "fb2bad334ab501b7bdbe19bc97929ac19abd2a9fcba4863ee9ac20246bce8676"

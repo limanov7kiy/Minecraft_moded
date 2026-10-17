@@ -1,0 +1,8 @@
+name = "Ak_Typhon"
+filename = "Ak_Typhon.zip"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Typhon.zip"
+hash-format = "sha256"
+hash = "48b555fb448640771d5f2b9a6b99b3b1dc485b888cf7cb1a3ff65b93b5c94d8c"

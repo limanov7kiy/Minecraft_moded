@@ -1,0 +1,8 @@
+name = "Ak_Specter(Speciallist)_v1.0"
+filename = "Ak_Specter(Speciallist)_v1.0.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Specter%28Speciallist%29_v1.0.ysm"
+hash-format = "sha256"
+hash = "4f912215c984c46ad384738e5d60bd9fdc3159ec04344d62d3698898d0cb8cb2"

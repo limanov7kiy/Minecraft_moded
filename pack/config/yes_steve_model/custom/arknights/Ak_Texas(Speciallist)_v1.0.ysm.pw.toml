@@ -1,0 +1,8 @@
+name = "Ak_Texas(Speciallist)_v1.0"
+filename = "Ak_Texas(Speciallist)_v1.0.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Texas%28Speciallist%29_v1.0.ysm"
+hash-format = "sha256"
+hash = "fbed44d69f64ffea202ab7c8becbae38e35ad52a956571cd59e314d9da870dec"

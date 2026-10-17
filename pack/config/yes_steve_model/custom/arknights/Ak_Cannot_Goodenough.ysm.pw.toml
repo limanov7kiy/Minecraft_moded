@@ -1,0 +1,8 @@
+name = "Ak_Cannot_Goodenough"
+filename = "Ak_Cannot_Goodenough.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Cannot_Goodenough.ysm"
+hash-format = "sha256"
+hash = "428917c5278d2240b90206264749629db4fc00b39aafc55a72ec9391345bcb65"

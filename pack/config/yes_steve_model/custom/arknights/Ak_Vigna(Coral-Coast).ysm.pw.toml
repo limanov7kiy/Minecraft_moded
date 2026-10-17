@@ -1,0 +1,8 @@
+name = "Ak_Vigna(Coral-Coast)"
+filename = "Ak_Vigna(Coral-Coast).ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Vigna%28Coral-Coast%29.ysm"
+hash-format = "sha256"
+hash = "1399c9526541eb75b63c15b7ee0bb58de70833cebb36f8f410c07a4d78ce6b9b"

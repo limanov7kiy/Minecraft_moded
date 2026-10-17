@@ -1,0 +1,8 @@
+name = "PGR_Lamia"
+filename = "PGR_Lamia.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_PunishingGrayRaven/PGR_Lamia.ysm"
+hash-format = "sha256"
+hash = "c09ddf10bf0d41c1e6eb0bc67a1aa96fecb05b442671b96404c46ff9e8df4d44"

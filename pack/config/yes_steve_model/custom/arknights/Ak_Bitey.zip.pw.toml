@@ -1,0 +1,8 @@
+name = "Ak_Bitey"
+filename = "Ak_Bitey.zip"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Bitey.zip"
+hash-format = "sha256"
+hash = "fc0517cd1ab29e24feb1ec27154d7245fd71a878990afed16f266d931f63d9a1"

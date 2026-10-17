@@ -1,0 +1,8 @@
+name = "Ak_Fiammetta"
+filename = "Ak_Fiammetta.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Fiammetta.ysm"
+hash-format = "sha256"
+hash = "32553a330bb7b0d6833ed53d1b656c60adecaa6cd9d06cbbc2ee707ee57cc550"

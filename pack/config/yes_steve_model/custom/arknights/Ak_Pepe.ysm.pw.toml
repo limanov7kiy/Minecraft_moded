@@ -1,0 +1,8 @@
+name = "Ak_Pepe"
+filename = "Ak_Pepe.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Pepe.ysm"
+hash-format = "sha256"
+hash = "b69862b87b0ee25f8eb75bbfe911df8abdf9ba2d1e2a2d0caf06240c558fd366"

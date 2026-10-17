@@ -1,0 +1,8 @@
+name = "Ak_Ptilopsis"
+filename = "Ak_Ptilopsis.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Ptilopsis.ysm"
+hash-format = "sha256"
+hash = "ee1a5453de5092d498077990aa43759bb129dcec09fa4857816224f68ef0e3be"

@@ -1,0 +1,8 @@
+name = "Ak_Skadi"
+filename = "Ak_Skadi.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Skadi.ysm"
+hash-format = "sha256"
+hash = "60cb7f9336640abe318b3716cc16c3a050998e0af83cde09893d5ed18affeb04"

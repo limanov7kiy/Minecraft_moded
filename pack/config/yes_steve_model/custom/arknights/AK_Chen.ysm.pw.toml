@@ -1,0 +1,8 @@
+name = "AK_Chen"
+filename = "AK_Chen.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/AK_Chen.ysm"
+hash-format = "sha256"
+hash = "461bebbaa41987b3618495543db70a4f9628801f25c8569a524ae1318bbee840"

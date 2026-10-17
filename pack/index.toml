@@ -97,6 +97,400 @@ file = "config/voicechat/voicechat-server.properties"
 hash = "44e28ca45bf8648f18a9363105a7faa363d254ed8ace91ff523193b60786968d"
 
 [[files]]
+file = "config/yes_steve_model/custom/arknights/AK_Chen.ysm.pw.toml"
+hash = "590f56c8b1a90eb4e51c6cce995e33332d96b2ed8deec083a1526bf5dee0fdd3"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/AK_Rosmontis_v0.9.ysm.pw.toml"
+hash = "8c00520b1bb1d6e34b2843fd4e62bf9f780ea901ba03d98dfa86d26530b9b10c"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/AK_Rosmontis_v1.0.ysm.pw.toml"
+hash = "4a72cd587b3b920bb40254b151a76356b9cea4bba6cc4e5d4e61cd7a60d26cbc"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/AK_Sora_v1.0_Fllz.ysm.pw.toml"
+hash = "801097492e36925e497fbf313ba3edf85e36c97f326ef6ddbb5e4aaba8ce5cae"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Angelina.ysm.pw.toml"
+hash = "13519086e74a9579054c5be108085fda4a046b736c73eef0cce64c962a973c0e"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Aurora.ysm.pw.toml"
+hash = "35ddd7289bfe985a625390cec0ea7eaab71ad9d90b4ef58f46a27246a362d476"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Bitey.zip.pw.toml"
+hash = "bd17dbc87361f75c12153d7283d6cd7e71a492bf7725897980b08a1f52be5426"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Cannot_Goodenough.ysm.pw.toml"
+hash = "835329625e36950d714459c6416f1dccf59eeb4704d2a5d51fa457365e2357d8"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Chen(Tourist-C).zip.pw.toml"
+hash = "2465d3997d730343809c1692df24a3a8ff939493a5bec8243b4305f3a3196d05"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Eblana.ysm.pw.toml"
+hash = "813aa5c916249f596fa73e8536a9bc2614aa1328ac44989ac601062173483c8f"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Eblana_1.21-fix-2.ysm.pw.toml"
+hash = "07b199b11ed8d62c29284e86e0af1f1f07d45e6c147c2d4606281bf38cdaeb01"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Eblana_1.21-fix.ysm.pw.toml"
+hash = "0d98851e339f18aec4d3f6491d9a30d666320e16efd7d5feb7c03533afbd2283"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Eyjafjalla(Medic)_v1.0.zip.pw.toml"
+hash = "8caeda3bdfb6cdea23617db9ab630237a20a55917d3d646bac278fa5ad5f9c43"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Fiammetta.ysm.pw.toml"
+hash = "8866baadb1660f4325442e098678398590bf41bd6f21cc0b1ccdb72c1dd41217"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Hoolheyak.ysm.pw.toml"
+hash = "221b304401b2a663342388c7e84cfd21adf09090a40e271da9ffa865253ad49c"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Irene.zip.pw.toml"
+hash = "f6f9922e1e07291c1300183622d77fa74ad917a3e3af5e8bfa04feadc12e3bbc"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Irene_1.ysm.pw.toml"
+hash = "2e08d8f4837a1eaf5b6c9897ac06d3c8f3d0d0a90569ccd1e8e81d0ed5ca1904"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Jessica(Defender)_v1.0.ysm.pw.toml"
+hash = "faeb5899313bde30a3d1016bf41424647c86c041309c2e8817d5fcba0edc65aa"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Jessica.zip.pw.toml"
+hash = "4f5f65a9ecfc2d40a6d5adfe0a59f080e59984bb6a4903af275a3859730b5f97"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Kaltsit.ysm.pw.toml"
+hash = "edc5a7438c713f055ce2446ad0c2a99fe51976d1c0dd244ae6f0dd75f6ad1f8d"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Kaltsit_0.zip.pw.toml"
+hash = "8dc9043b9dfaeb591de357cb42cdd946fbbb6f068946a2c6d91c264585a63c1c"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Kirara.ysm.pw.toml"
+hash = "ee11b54f231949fbda964c4a61789254fd0ff3f9b57f621b33bb1b6868c69a1a"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Kirara_v1.01.ysm.pw.toml"
+hash = "25b3dc1ae07ba6f46a1a5d1d5ac9652c68442cf6ba29ba4c3c3d218680fcb140"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_LaPluma_v1.0.ysm.pw.toml"
+hash = "14fc14a90f3e630464032d5c0c2a6ea3cb939863d618961d8802370e4f2dc710"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Lappland.zip.pw.toml"
+hash = "63ff95340f27e191767c6313fb121c8c860d3bcc051ba7f7a11953f743a06a73"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Magallan.ysm.pw.toml"
+hash = "6f661355f53432e38b877ef0455d5ffbc64d44beb3100dfc3d545ede8fc72372"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_May.ysm.pw.toml"
+hash = "0b1345363bbeb3a7749bc00abd21a0af9e13d7493564f68688308f5c6e7cfbf4"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Mudrock(AmbienceSynesthesia)_0.ysm.pw.toml"
+hash = "52c0988575e249168594b9626ac81db3529c920c1473b38d12fb0f239968dae9"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Mudrock(AmbienceSynesthesia)_1.ysm.pw.toml"
+hash = "bc51c15df386e934a160478e5f46b7b1239a53e16e2942c5df4b721b0a204c4b"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Mudrock(Coral-Coast)_0.ysm.pw.toml"
+hash = "bbc34e01e39a79e46fb3e0d414e27331abe9ae2685eacd4aa89e114eef5812e3"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Mudrock(Coral-Coast)_1.ysm.pw.toml"
+hash = "b32bd998e4117a6216d2defc90dad735a50aca0e8c7600b2ac6d157042bc36e9"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Mudrock_0.ysm.pw.toml"
+hash = "f5508b95effb69e0ea1fe3739c6a218b7f05a8fd01052ea34fb4d889d3a49834"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Mudrock_1.1.1.ysm.pw.toml"
+hash = "9c86841d99b8d7aac1ca78f1aeb3aea2e3e5b4ccc8d3eb2c3ebe454d531b4383"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Mudrock_1.5.2.ysm.pw.toml"
+hash = "c7382e3ebe80e9a7e76be95365c20a608c14f47fa4dddfc75fce957e6a260401"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Myrtle.ysm.pw.toml"
+hash = "8c00c790de53f4099495291ac90375357a5875ea639a0a1f60aa73afb3fdc9c3"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Nearl(Horse-form).ysm.pw.toml"
+hash = "d022023f0814178c3a93346936cb6d2938700f475a362ea97f52ae0cd4519270"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Nian.ysm.pw.toml"
+hash = "16251d994737ceb53e04731d1d192624977cafe8dea49a4d88c41a2676f960a2"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Penance_0.zip.pw.toml"
+hash = "a42b9f0572d65091bc1e053c02e14b98432daec294734d38a7014b90f51cbc53"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Penance_1.zip.pw.toml"
+hash = "103213fcdffba62035c5363ce9f3943676966b59821b8800675e98fd8560b6f9"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Pepe.ysm.pw.toml"
+hash = "c47555372ece6eb8dafdb24da1ba6fa03df7e108c73cf38f4b79df7e66356f7b"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Projekt-Red(Coral-Coast)_1.ysm.pw.toml"
+hash = "2ab755f7d32fa231c051d38fa7ed128710a77d2bfd8b3cf0f2b92e34905104c2"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Ptilopsis.ysm.pw.toml"
+hash = "0c1685058e2afd4e1f49f9edf967f99113fbaddf71bbe66d953f400409c2a860"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Rosmontis_0.zip.pw.toml"
+hash = "b94dec820b1154bafc4d66d93357b1fe7c48c55ddb95438a5190eda2848770a5"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Rosmontis_1.zip.pw.toml"
+hash = "b420055d5b88636e95292ae8f515564168f8b4b086b8837826f58816414e4701"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Rosmontis_v1.1.ysm.pw.toml"
+hash = "91baeee4e16a23301e4b7a660a203a14821e11689b4037d8d4de8e739c40aa3b"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Rosmontis_v1.3.ysm.pw.toml"
+hash = "1fef045810766912d1f43430478cc752b979af0c2b9b6e9630bcb6991900ce7f"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Saga.ysm.pw.toml"
+hash = "48e3a17185dcd253c6fe54837d0d8b548d37fc6cacd6a8d36d310f1851d33e1a"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Shamare(WitchFeast)_v1.0_Fllz.ysm.pw.toml"
+hash = "20f5bb58e268a03dbcf482cf162a90aa1e9fd716f8c66cf7da88496eee2a432b"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Shu.ysm.pw.toml"
+hash = "27df869eaf470e68c9441cb230d6d2502c1ba9f6c2785d55a59894c7723f55cb"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Sideroca(Coral-Coast)_2.ysm.pw.toml"
+hash = "a2f88043aac20ec6ad01165eb45dbb0104d845115b0a99e15139d784216f9139"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Skadi(Sleepwear).ysm.pw.toml"
+hash = "f81e3222e9794ac8a93db64fd905b026ea8b2f5f7c45384874671959ad92d013"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Skadi.ysm.pw.toml"
+hash = "8b1cd8929b163cc4d052e844350663b93e53f597c8d189b1c73849d75c5389f1"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Soldier.ysm.pw.toml"
+hash = "38851e70f10831d3f95f46e92ba0b69e53357f55e41f863a1ec5f6fafdcf1c1f"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Specter(Speciallist)_v1.0.ysm.pw.toml"
+hash = "eaaf32b13550edc0fd24d00f6eb7025f85fe6cacfc1735ca09ce4e6f296aa3c9"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Suzuran.ysm.pw.toml"
+hash = "f5204bc117e34467250118f18e7346b6305cc595595a91b69269fe473b351397"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Texas(Epoque).ysm.pw.toml"
+hash = "72092e46cc4c5ce76367369853e174e0ecef0a172e395aab3c27d41c03a9c6db"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Texas(Speciallist)_v1.0.ysm.pw.toml"
+hash = "dfedb086ae292243d05084beba2dca041f4df4e1d2d50a05ef32105d9f0bb987"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Typhon.zip.pw.toml"
+hash = "5dccf2ad26198173f35af95307355e5df66cb84e282f5b5c9b0ddb25f18ce039"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Vigna(Coral-Coast).ysm.pw.toml"
+hash = "5710c48c283c2389f099ba5dad00974af640b64336430498c4230859179d1921"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Virtuosa.ysm.pw.toml"
+hash = "106be0b2de1794745eb8f7aaf25284b813287f67bb7cdb4756ca920a61ff76bb"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/Ak_Waiifu.ysm.pw.toml"
+hash = "c05adb5d4bacab977606bdb97afd484d9c4338aa982b0f2bb16f3a5d98746427"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights/ysm-pack.json"
+hash = "f597b45d5ca4775c21dd70f9684fe608b4b055737f471c49ad773773a0b64a13"
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights_endfield/Endfield_Rossi_v1.1.ysm.pw.toml"
+hash = "9a77e3ba3c9900c16d80c89d4696f46dc0eb8e6a7ab3f0a26d304764cd48d6ce"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/arknights_endfield/ysm-pack.json"
+hash = "5b1cb1d1d5ba1b9a94cf60310df926c8018f20eefc8db5818d25db4216802c2c"
+
+[[files]]
+file = "config/yes_steve_model/custom/priestess/animations/arm.animation.json"
+hash = "239e2dadcc57f8fa08e8087c9eb2e3db9fafef289c787421caa77f2dce09538e"
+
+[[files]]
+file = "config/yes_steve_model/custom/priestess/animations/extra.animation.json"
+hash = "09ed412f9bdcee63e697884578b09e4033d97ee867fca8da2ff53c0a6784182a"
+
+[[files]]
+file = "config/yes_steve_model/custom/priestess/animations/fp.arm.animation.json"
+hash = "6030836fffd11cc9883b495cc01e314c377db9f428bd0d76578f3431898a3b9a"
+
+[[files]]
+file = "config/yes_steve_model/custom/priestess/animations/iss.animation.json"
+hash = "37cc6952c62fbe24376a1effdca702a015ae224c4cde5c042e2ed70a94987fb9"
+
+[[files]]
+file = "config/yes_steve_model/custom/priestess/animations/main.animation.json"
+hash = "9cbd2551811a7409809ef6383429cb8a419f21367712ed8fece827ae2e353ffc"
+
+[[files]]
+file = "config/yes_steve_model/custom/priestess/animations/tac.animation.json"
+hash = "4594de398c4d34311d540caa2c1b314f631307fd68d810dfc84a8ac1552b3e88"
+
+[[files]]
+file = "config/yes_steve_model/custom/priestess/functions/pr_form_l.molang"
+hash = "699066dff16e2852197f2bd880a8979f79ead09e89882e47e0a7232952f8f09f"
+
+[[files]]
+file = "config/yes_steve_model/custom/priestess/functions/pr_form_r.molang"
+hash = "ce1814a0c33882a8de5848464961662b6003540cf36816e938478f68a0de1377"
+
+[[files]]
+file = "config/yes_steve_model/custom/priestess/functions/pr_update@player_update.molang"
+hash = "4041521a6ddaff5a1ee6dd8e0edf9081610a2501c3b6a9f481ad02491318290d"
+
+[[files]]
+file = "config/yes_steve_model/custom/priestess/models/arm.json"
+hash = "8deb021b0646dc12d72506eaab838996ecd052ac259f52c0c93e416f6cce40ef"
+
+[[files]]
+file = "config/yes_steve_model/custom/priestess/models/main.json"
+hash = "ceaba5085b0f196387c16efe0cd55d118e6835ae232789050307dc5854392c49"
+
+[[files]]
+file = "config/yes_steve_model/custom/priestess/textures/priestess.png"
+hash = "4a225c858dc883b3e1e8f6b79d1bf511ca06b68de48ec393274f8618f3d9985c"
+
+[[files]]
+file = "config/yes_steve_model/custom/priestess/ysm.json"
+hash = "0ee7bec26d132c2a733636c4c13d6d24975bef335491371aa008fa6ce9876aee"
+
+[[files]]
+file = "config/yes_steve_model/custom/punishing_gray_raven/PGR_Adolf2.ysm.pw.toml"
+hash = "437913a39acb846b688ed8f1b479ccb056d2ba0d89d5c204d23bbbcb65d8ca45"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/punishing_gray_raven/PGR_Lamia.ysm.pw.toml"
+hash = "cb800f73fd68ec667868f15e40773f7897fd9a5c3176210cef27e1fe897f6d33"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/punishing_gray_raven/PGR_Lucia_1.4.ysm.pw.toml"
+hash = "9755d67bb18c04124adb612c1a160704df632c2d643df2a019ba7e9d308dcec5"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/punishing_gray_raven/PGR_Lucia_1.ysm.pw.toml"
+hash = "177a808b324eea7a5a9a9e55358efc031f78351abd2e3b929b8224980cff88b4"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/punishing_gray_raven/ysm-pack.json"
+hash = "17880cdb60e684e3b1df193f8f75aeb91fc7177818e4ea137a066fa0cc5130d4"
+
+[[files]]
 file = "defaultconfigs/lostcities-server.toml"
 hash = "cd8919cee8c45c4b5e243fa0fb03e4a08f12094ed5c0dd053814fff0f6d7e85d"
 
@@ -663,6 +1057,14 @@ hash = "9d58de2ac8432902fb858bebe2431a54c6fd40cb690b09769a64befd342aa6e7"
 [[files]]
 file = "kubejs/server_scripts/space_rockets.js"
 hash = "d35a677aabcb95f98027c73562f8fe5c4ccf01c5996ae81107ca840a0cbf1397"
+
+[[files]]
+file = "kubejs/server_scripts/ysm_chat_glow.js"
+hash = "d8b36088a29449b83a0a20956a194534ff0dc3a6dd287b09ffde38721d6713a2"
+
+[[files]]
+file = "kubejs/server_scripts/ysm_priestess_forms.js"
+hash = "936a53c82988205a015331ae4c1f14b04157faf4282d559cc5cf5f3355da1b8c"
 
 [[files]]
 file = "kubejs/startup_scripts/space_rockets_list.js"
