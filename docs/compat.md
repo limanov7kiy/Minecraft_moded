@@ -884,7 +884,7 @@ CurseForge 1460238, файл 9130290, Astryxion, All Rights Reserved. Jar `pack/
   **поножи** — 3 (IV, ≈4 блока). Датапаком/конфигом это не меняется (значения в коде), поэтому — патч байткода.
 - **Сделано:** `patches/abyssal-jump/` (ASM, `build.sh <тестовый сервер>`): усиление Прыгучести в этих трёх классах → **2** («Прыгучесть III», ≈3,3 блока: ваниль 1,25 → I 1,8 → II 2,5 → III 3,3). Эффект: `10 + уровень` → `2 + уровень`.
   Остальные эффекты (скорость, сила, сопротивление, регенерация, ночное зрение…) не тронуты. Применено к `pack/mods/arknights_weapon-1.5.6-mmport.jar` (порт для Rise-процедуры сохранён; патч поверх), `packwiz refresh`.
-- Другие источники Прыгучести в сборке (не менялись, не «Охотники Бездны»): `SnowSuitLeggingsProcedure` (Arknights_Weapon, сапоги-набор «Снежный», усиление 7), Caerula Arbor — `NetherseaBuffFunc`, `EatArmaticoffee`
+- Другие источники Прыгучести в сборке (не менялись, не «Охотники Бездны»): `SnowSuitLeggingsProcedure` (Arknights_Weapon, поножи набора «Снежный», усиление 7), Caerula Arbor — `NetherseaBuffFunc`, `EatArmaticoffee`
   (кофе), `NetherseaWalkerExtraFunc`, `DamagedByNethseabrand`. Ванильные Jump Boost зелья/маяк — как прежде.
 - Проверка: `scripts/tests/abyssaljump.js` (фейковый игрок; запуск `TEST_COMMANDS` с `#sleep 220` — первый тик после Done ≈2 мин). До патча: `effect amp=10`, `boots amp=6`, `leggings amp=3`; после: `OK amp=2` во всех трёх;
   `SERVER OK: Done (32.3s)`. Не проверено: реальный прыжок игрока на высоту (ожидание по формуле ванильной физики — 3,3 блока), клиентский показ уровня эффекта.
