@@ -700,3 +700,6 @@ JEI необязательна. Добавляет: метеоритные до�
 Конфликты: теги `forge:ingots`/`ores` содержат только свои предметы (Almost Unified не затрагивается — `steel` в `unify.json` это `forge:ingots/steel`);
 слоты Curios `replace:false` — с остальными модами складываются. Русификация — см. docs/russification.md.
 
+**Прогон `test-server.sh` (max-tick-time=-1): `Done (48.6s)`**, 152 ERROR в логе — фоновые, как у остальных модов; строк с `clanginghowl` уровня ERROR/exception нет.
+Единственное — WARN «config/clanginghowl.toml исправлен до значений по умолчанию» (первый запуск: метеоритный дождь включён, раз в 15 дней).
+Не проверено: клиент (рендер GeckoLib, перевод в игре), реальный метеоритный дождь и спавн мобов/структур в мире, поведение рядом с Lycanites/Cataclysm.
