@@ -52,6 +52,9 @@ ServerEvents.tick(event => {
   }
   if (T > 330 && T % 20 == 0) SL.fakes.forEach(fp => { try { fp.setHealth(fp.getMaxHealth()); fp.removeAllEffects(); fp.getFoodData().setFoodLevel(20) } catch (e) {} })
 
+  // чистый замер: без естественного спавна и без посторонних мобов (иначе 6 игроков с мобкапами дают сотни мобов и ~160 мс/тик фона)
+  if (T == 330) server.runCommandSilent('gamerule doMobSpawning false')
+  if (T == 590) { var Mob = Java.loadClass('net.minecraft.world.entity.Mob'); var n0 = 0; level.getAllEntities().forEach(e => { if (e instanceof Mob) { e.discard(); n0++ } }); console.info('SLOAD cleared mobs=' + n0) }
   if (T < 600) return
   // номер фазы по тику
   var rel = T - 600, idx = rel < SL_BASE ? 0 : 1 + Math.floor((rel - SL_BASE) / SL_PHASE)
