@@ -858,6 +858,11 @@ hash = "50e84c4b402d1772d2fea803812074b2946dac2a6b85944bfb5af37fd0db082c"
 metafile = true
 
 [[files]]
+file = "mods/attributefix.pw.toml"
+hash = "1af0f2515f459bc59ac0f489ef94bf2d6e0453e57831d5711c64da695929bde9"
+metafile = true
+
+[[files]]
 file = "mods/attributes.pw.toml"
 hash = "6cf3028c6bbba1936405cd988a11626069676e678bc3caf440fe216bb0931f8c"
 metafile = true
@@ -962,6 +967,10 @@ hash = "9cfaa0742987ac26b70b08a994b1b0f38abc41cf642baaf637f1d9179a0533f9"
 file = "mods/cerbons-api.pw.toml"
 hash = "b04f3690005952fb2f0d93b742a00d4b25547cbb4e2975aaca89fb0af58a9539"
 metafile = true
+
+[[files]]
+file = "mods/chaospersists-1.20.1-0.9.1.jar"
+hash = "f868d47bf5a8cf4a327df98ae896e9e0d55fd1bf1858f3d851e8a60c38ab6698"
 
 [[files]]
 file = "mods/cinematic-cataclysm.pw.toml"
