@@ -265,6 +265,8 @@ mr apothic-attributes     # обязательная зависимость T.O 
 mr azurelib               # обязательная зависимость Cataclysm: Spellbooks (раньше подтягивалась packwiz'ом)
 # zombie-have-ears (поток 2) → zombiehaveears-1.1.2-forgefix.jar (patches/zombie-have-ears, только mods.toml)
 
+## Рубка деревьев (поток 18; Falling Tree — RakSrinaNa, LGPL-3.0)
+mr fallingtree            # both: 1.20.1-4.3.4; дерево падает целиком (FALL_BLOCK), присед = один блок; «всё или ничего» по прочности — миксин FallingTreeDamageMixin в mods-src/mm-compat; конфиг pack/config/fallingtree.json (docs/compat.md)
 # Поток 3, по решению владельца: Mana and Artifice и Ars Magica: Legacy (+ дополнения). Все side=both.
 ## Магия — Mana and Artifice и Ars Magica: Legacy
 mr mana-and-artifice                 # 3.1.11 Forge 1.20.1; зависимости GeckoLib, Curios уже в сборке

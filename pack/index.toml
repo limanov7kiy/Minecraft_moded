@@ -41,6 +41,10 @@ file = "config/canary.properties"
 hash = "8b34973d33381c95c7bb176234d5ed927110c5b81c0c0d82b5ebbf06dea97b81"
 
 [[files]]
+file = "config/fallingtree.json"
+hash = "e5ce3851728af563cb5b9bf8752dbb461b28340aec350d9b2fd8d9c9026c915f"
+
+[[files]]
 file = "config/iceandfire-common.toml"
 hash = "4e686e3616fc1885ce4380e95fe8c9d32be13536693da638e27b091372c0777b"
 
@@ -1165,6 +1169,11 @@ hash = "cf1a0474ae05fe512d822a758c5a093c959da23c53c1c2e3459461b6b0657d06"
 metafile = true
 
 [[files]]
+file = "mods/fallingtree.pw.toml"
+hash = "c3855a5011cc263726532999f35c8691db9fa60b9d470758dd826d25c29ed4cb"
+metafile = true
+
+[[files]]
 file = "mods/farmers-cutting-blue-skies.pw.toml"
 hash = "2fec4fcfef413d13cca9a1914691ed24a1db22c5c173bbdd4836f77934e07430"
 metafile = true
@@ -1490,8 +1499,8 @@ hash = "c25495262a852dc02886ec8c4b695f30e53264a2e3d881dd36ee9de16a1ef499"
 metafile = true
 
 [[files]]
-file = "mods/mm-compat-0.5.0.jar"
-hash = "10136eb69537c3a2c9c5d81c7d57a700281ddf419d5f79b8aba09c82d2289da8"
+file = "mods/mm-compat-0.5.1.jar"
+hash = "d7bb2f1c7031b70512db5a199cde51af8e85b56db447646eac12cf63425320af"
 
 [[files]]
 file = "mods/mm-perf-0.1.0-client.jar"
