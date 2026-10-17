@@ -309,3 +309,6 @@ rp russian-delight                # дополнения Farmer's Delight (MIT)
 mr the-lost-cities                # The Lost Cities (McJty, MIT): города в обычном Overworld; профиль — pack/defaultconfigs/lostcities-server.toml
 
 #jar ru-lang                      # наш клиентский мод (mods-src/ru-lang): всегда включённый верхний ресурспак russian-moded; пересобирать scripts/build-ru-pack.sh после правок переводов
+
+## Хранилища (поток 26; решение владельца: «Надо добавить Iron Chest на будущее», именно оригинал)
+mr iron-chests                    # Iron Chests 14.4.4 (alexbegt, GPL-3.0, both): сундуки медь/железо/серебро/золото/алмаз/кристалл/обсидиан + улучшения; ru_ru в jar полный
