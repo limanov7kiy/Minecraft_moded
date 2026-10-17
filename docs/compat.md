@@ -917,3 +917,6 @@ CurseForge 1460238, файл 9130290, Astryxion, All Rights Reserved. Jar `pack/
 `pack/mods/worldedit.pw.toml` — `[option] optional = true, default = false` (packwiz-installer спрашивает пользователя); формат `.mrpack` не знает «выключено по умолчанию», а Prism/Modrinth App ставят и optional-моды,
 поэтому `scripts/mrpack-optional.py` (вызывается из `export-pack.sh`) ставит таким модам `env.client = unsupported` в `modrinth.index.json`. Сервер (`fetch-mods.py`, серверный zip) WorldEdit получает как раньше.
 Включение у администратора — `docs/friends.md`, «Администратору: перенос построек».
+Проверка: `export-pack.sh` — в `.mrpack` WorldEdit с `env.client = unsupported`, в серверном zip он есть; `test-server.sh` — `SERVER OK: Done (28.6s)`, WorldEdit загружен;
+`test-client.sh` из нового `.mrpack` — `CLIENT OK` (582 с), `worldedit` в `game/mods` нет. **Не измерено:** вход в одиночный мир без 130 с — в стенде нет `xdotool`, а `--quickPlaySingleplayer` мир не создал
+(клиент остался в меню); ожидание следует из стека (всё время первого тика — WorldEdit).
