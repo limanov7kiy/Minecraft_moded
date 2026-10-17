@@ -160,6 +160,7 @@
 - [x] KubeJS: `missing_mod_refs.js` правит только теги, `space_rockets.js` убирает рецепты ракет Ad Astra и прячет их из JEI — нужные рецепты не скрыты.
 - [x] Ошибки JEI в логе клиента (Blue Skies, mekmm, JER) — собственные баги модов, `docs/compat.md`.
 - [x] JEI-категория Imbuement Altar для Redux — mm-compat 0.5.0 (отдельный PR).
+- [x] Фриз сервера от Mana and Artifice (блокирующий `getChunk` в `onWorldTick`, тик до 45 мин) — mm-compat 0.5.2, миксин `MnaChunkTickMixin`, тест `mnachunk.js` (поток 24, compat.md).
 
 ### Поток 5 — Проверка клиента
 Клиент в облаке: `scripts/test-client.sh <папка>` (Forge через portablemc, моды из `.mrpack` как у Prism,
