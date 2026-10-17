@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:bastion_remnant",
+    "minecraft:jungle_pyramid",
+    "#minecraft:mineshaft",
+    "minecraft:fortress",
+    "minecraft:stronghold",
+    "#minecraft:village",
+    "minecraft:mansion",
+    "#minecraft:shipwreck",
+    "#minecraft:ocean_ruin",
+    "minecraft:pillager_outpost"
+  ]
+}

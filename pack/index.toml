@@ -828,7 +828,7 @@ metafile = true
 
 [[files]]
 file = "mods/arknights_weapon-1.5.6-mmport.jar"
-hash = "5158102402fe4a55e849df1cf4262891d7648b2fef2a94a5da123470c1e1a1ed"
+hash = "0b4e307f84841ed7298bbbc80f6f1b8e5f33096f2082334163be5aa05e0c3173"
 
 [[files]]
 file = "mods/arknightsfurniture.pw.toml"
@@ -1257,8 +1257,8 @@ hash = "902bac905b93271f02bd0951a22bac06a3da24f5c237fcaeb469e14a7679e508"
 metafile = true
 
 [[files]]
-file = "mods/fishs-undead-rising-port-0.1.0.jar"
-hash = "29a7768fad7d23cc32589d4f8973ed7c183d90ff4b02df9a663d045a75f0af62"
+file = "mods/fishs-undead-rising-port-0.2.0.jar"
+hash = "5d8057173c0437641723297b0f810a034f79502c36b227607a543aeb8c8d6ff9"
 
 [[files]]
 file = "mods/fungal-infectionspore.pw.toml"
@@ -1722,7 +1722,7 @@ metafile = true
 
 [[files]]
 file = "mods/ru-lang-1.0.0-client.jar"
-hash = "c47f22991fa0bd77e6ae754dfbfc6ab00990ee607175534803cb76817b8fab6b"
+hash = "041b29a3f030ac1cb43cf0761c013299776408b7e31962a90c0ea126da7a618f"
 
 [[files]]
 file = "mods/sarkazs_furnace_side_fables-0.2.3-forge-1.20.1.jar"

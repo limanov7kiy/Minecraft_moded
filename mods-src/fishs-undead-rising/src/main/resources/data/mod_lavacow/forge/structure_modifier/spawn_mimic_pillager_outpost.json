@@ -1,0 +1,10 @@
+{
+  "type": "mod_lavacow:add_spawns",
+  "structures": "minecraft:pillager_outpost",
+  "spawners": {
+    "type": "mod_lavacow:mimic",
+    "weight": 1,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

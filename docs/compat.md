@@ -617,6 +617,19 @@ Mass Destruction Forge 1.1.2. Cataclysm/Mowzie's/Lycanites не дублирую
   в `TEST_COMMANDS` для тиковых тестов брать от 420 с; мир между прогонами сохраняется — арены чистить за 40 тиков до каста.
 - Рецепты бомб требуют предметов FUR (`foul_bristle`, `shattered_ice`) — появятся с мобами в ND-2.
 
+### Fish's Undead Rising — мобы для Necromancer's Delight, ND-2 (поток 27, 2026-10-17)
+`mods-src/fishs-undead-rising` 0.2.0 (`mod_lavacow`, порт по декомпиляции FUR 1.16.5 2.4.1, автор Fish, ARR — NOTICE.md):
+13 сущностей — Unburied, Mummy, Mycosis, Frigid, Forsaken, Vespa (+ кокон), Banshee, Parasite, Bone Worm, Salamander, Weta,
+Mimic; снаряды Death Coil, Acid/Flame Jet, War Small Fireball; эффекты Fear, Fragile, Immolation.
+- Сервер: `scripts/tests/furcheck.js` 13/13 OK (призыв, жив через 100 тиков, яйцо, таблица добычи), ndcheck не сломан; SERVER OK.
+  Клиент: CLIENT OK (568 с), ошибок по `mod_lavacow` нет (модели и рендеры пекутся при загрузке ресурсов).
+- Biome modifier `forge:add_spawns`: несколько тегов в `biomes` — только через `{"type": "forge:or", "values": [...]}`;
+  JSON-массив тегов не парсится, и мир не загружается вовсе («Failed to parse … biome_modifier», сервер висит до таймаута).
+- Спавн мобов в строениях — свой structure modifier `mod_lavacow:add_spawns` (в Forge 1.20.1 своего типа нет).
+- test-client: если Xvfb прошлого запуска умер, а `/tmp/.X11-unix/X99` остался — «glfwInit failed»; удалить
+  `/tmp/.X99-lock` и `/tmp/.X11-unix/X99`.
+- Предметы приручения Salamander/Weta/Mimic падают с мобов FUR, которых нет в порте, — пока только в творческом разделе.
+
 ### Bosses of Mass Destruction + Cerbon's API (поток 9, 2026-10-12, решение владельца В12 «а»)
 Владелец ответил «оба», затем «а»: вернуть Cerbon's API и добавить BoMD, с регрессионной проверкой спавна; если у владельца
 спавн мобов снова пропадёт — **сразу убрать оба мода** (`mr cerbons-api`, `mr bosses-of-mass-destruction-forge` и Cloth Config,
@@ -875,6 +888,20 @@ CurseForge 1460238, файл 9130290, Astryxion, All Rights Reserved. Jar `pack/
 - Русский перевод: `ru_ru.json` внутри jar покрывает все 36 ключей en_us — наш пак не менялся.
 - `test-server.sh`: `SERVER OK: Done (50.9s)`, 153 ERROR в логе — как до мода (ни одной от ironchest).
 - Не проверено: крафт улучшений сундуков и рецепты с серебром (зависят от тегов `forge:ingots/silver`, Almost Unified) — в игре.
+
+## «Охотники Бездны»: прыжок 10 блоков → 3 (поток 28, 2026-10-17, просьба владельца)
+Жалоба: у «Охотников Бездны» прыжок ≈10 блоков, неудобно. Разбор:
+- Раса `arks:seahunter` (Arknights Races 1.5.3) **прыжка не даёт** (силы `seahunter/modify|status|waterful` — здоровье, урон, плавание, регенерация, вода; в `data/arks/` нет ни `jump`, ни атрибута прыжка).
+- Источник — мод **Arknights_Weapon 1.5.6** (MCreator, всё зашито в байткоде): эффект `arknights_weapon:abyssal_hunters` («Глубинный охотник», игла генной модификации) через 6 с после наложения выдаёт на 1800 тиков
+  Прыгучесть с усилением **10** (+уровень эффекта; союзникам рядом то же) = «Прыгучесть XI», ≈12 блоков. Сверх того броня образца «Агор» (набор «Охотника из бездны»): **ботинки** — Прыгучесть усиление 6 (VII, ≈7 блоков),
+  **поножи** — 3 (IV, ≈4 блока). Датапаком/конфигом это не меняется (значения в коде), поэтому — патч байткода.
+- **Сделано:** `patches/abyssal-jump/` (ASM, `build.sh <тестовый сервер>`): усиление Прыгучести в этих трёх классах → **2** («Прыгучесть III», ≈3,3 блока: ваниль 1,25 → I 1,8 → II 2,5 → III 3,3). Эффект: `10 + уровень` → `2 + уровень`.
+  Остальные эффекты (скорость, сила, сопротивление, регенерация, ночное зрение…) не тронуты. Применено к `pack/mods/arknights_weapon-1.5.6-mmport.jar` (порт для Rise-процедуры сохранён; патч поверх), `packwiz refresh`.
+- Другие источники Прыгучести в сборке (не менялись, не «Охотники Бездны»): `SnowSuitLeggingsProcedure` (Arknights_Weapon, поножи набора «Снежный», усиление 7), Caerula Arbor — `NetherseaBuffFunc`, `EatArmaticoffee`
+  (кофе), `NetherseaWalkerExtraFunc`, `DamagedByNethseabrand`. Ванильные Jump Boost зелья/маяк — как прежде.
+- Проверка: `scripts/tests/abyssaljump.js` (фейковый игрок; запуск `TEST_COMMANDS` с `#sleep 220` — первый тик после Done ≈2 мин). До патча: `effect amp=10`, `boots amp=6`, `leggings amp=3`; после: `OK amp=2` во всех трёх;
+  `SERVER OK: Done (32.3s)`. Не проверено: реальный прыжок игрока на высоту (ожидание по формуле ванильной физики — 3,3 блока), клиентский показ уровня эффекта.
+- Побочное: при проверке на «чистой» папке один раз `ConcurrentModificationException` в Aether при common_setup (гонка загрузчика, ModernFix `MappedRegistry`); повторный запуск прошёл — к патчу не относится.
 
 ## Ars Nouveau и аддоны: «Incorrect key … was corrected» (поток 28, 2026-10-17)
 Жалоба: в логах игроков сотни WARN `ForgeConfigSpec: Incorrect key general.cost was corrected from null to its default`. Разбор

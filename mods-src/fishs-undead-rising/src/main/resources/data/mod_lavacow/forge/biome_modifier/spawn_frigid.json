@@ -1,0 +1,20 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": {
+    "type": "forge:and",
+    "values": [
+      "#minecraft:is_overworld",
+      "#forge:is_cold",
+      {
+        "type": "forge:not",
+        "value": "#forge:is_mushroom"
+      }
+    ]
+  },
+  "spawners": {
+    "type": "mod_lavacow:frigid",
+    "weight": 20,
+    "minCount": 8,
+    "maxCount": 16
+  }
+}
