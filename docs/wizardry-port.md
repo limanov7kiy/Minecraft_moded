@@ -335,6 +335,23 @@ Restored; namespace сохраняем оригинальный (`wizardrygolems
   - Не перенесено в ND-1 (уходит в ND-2, нужны мобы/предметы FUR): Mana/Elemental Leech (пиявки FUR), 12 артефактов с
     эффектами через мобов FUR (лежат как предметы, без эффекта), остальные 16 заклинаний.
   - Рецепты бомб требуют предметов FUR (`foul_bristle`, `shattered_ice`) — вместе с мобами в ND-2.
-- **ND-2** (не начат): мобы FUR (Vespa, Banshee, Mycosis, Salamander, Forsaken, Mummy, Unburied, Parasite/пиявки, Bone Worm,
-  Weta, Mimic), снаряды, предметы, остальные 16 заклинаний и 12 артефактов. jar FUR 1.12.2 (8253053) и 1.16.5 (7327600) —
-  с CurseForge через packwiz/forgecdn.
+- **ND-2 — мобы FUR (поток 27, 2026-10-17, ветка `claude/necromancers-delight-nd2`):** порт `mods-src/fishs-undead-rising`
+  0.2.0 по декомпиляции jar 1.16.5 2.4.1 (Vineflower; модели ModelRenderer → LayerDefinition 1.20.1, анимации построчно).
+  - Мобы (13 сущностей): Unburied, Mummy, Mycosis, Frigid, Forsaken (+ снаряд Death Coil, посох), Vespa (+ кокон, езда,
+    жало по G), Banshee (крик → эффект Fear), Parasite (4 варианта, связь с Infested), Bone Worm/Osvermis (снаряды acid/flame jet),
+    Salamander (+ нимфа, езда, залп по G, эффект Immolation), Weta, Mimic (мимикраб). Модели, текстуры, звуки, добыча,
+    яйца призыва, свой творческий раздел, ru/en.
+  - Спавн — значения конфига 1.16.5 по умолчанию, через biome modifiers (`data/mod_lavacow/forge/biome_modifier/`) и свой
+    structure modifier `mod_lavacow:add_spawns` (мумии — пустынный храм; мимикраб — тег `mod_lavacow:mimic_habitat`
+    у сундуков, адская крепость, аванпост; в оригинале спавн-лист строения вытеснял всех прочих монстров — здесь нет).
+    Unburied сам не появляется (как в оригинале).
+  - Исправлены баги оригинала: кокон веспы при `/summon` с NBT вылуплялся сразу; здоровье Frigid/Mummy/веспы при загрузке;
+    smite читался из `fire_aspect`; вета после первого растения ломала остальные мгновенно.
+  - Не перенесено: мобы, не нужные ND (Beelzebub, Enigmoth, Ptera, Imp…), поэтому предметы приручения Salamander/Weta/Mimic
+    (`imp_horn`, `ptera_wing`, `plagued_porkchop`…) есть только в творческом разделе; блоки glowshroom/cordy_shroom FUR
+    (Mycosis рисует их модели как слой); weta_hoe, гробница в пустыне, зелья FUR, конфиг FUR; `foul_bristle` (крафт из
+    `foul_hide` моба вне списка) — рецепт вонючей бомбы ND пока без него не собрать.
+  - Тест `scripts/tests/furcheck.js`: призыв каждого моба, жив через 100 тиков, яйцо и таблица добычи.
+  - **Дальше (ND-3):** оставшиеся 16 заклинаний и 12 артефактов Necromancer's Delight на этих мобах, снаряды ND
+    (holy_hand_grenade, ghost_bomb, wail), bound-оружие, carcinize (сундук → мимик), trial_of_mushrooms; рецепты бомб.
+  jar FUR 1.12.2 (8253053) и 1.16.5 (7327600) — с CurseForge (`mediafilez.forgecdn.net/files/7327/600/...`).
