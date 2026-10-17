@@ -617,6 +617,19 @@ Mass Destruction Forge 1.1.2. Cataclysm/Mowzie's/Lycanites не дублирую
   в `TEST_COMMANDS` для тиковых тестов брать от 420 с; мир между прогонами сохраняется — арены чистить за 40 тиков до каста.
 - Рецепты бомб требуют предметов FUR (`foul_bristle`, `shattered_ice`) — появятся с мобами в ND-2.
 
+### Fish's Undead Rising — мобы для Necromancer's Delight, ND-2 (поток 27, 2026-10-17)
+`mods-src/fishs-undead-rising` 0.2.0 (`mod_lavacow`, порт по декомпиляции FUR 1.16.5 2.4.1, автор Fish, ARR — NOTICE.md):
+13 сущностей — Unburied, Mummy, Mycosis, Frigid, Forsaken, Vespa (+ кокон), Banshee, Parasite, Bone Worm, Salamander, Weta,
+Mimic; снаряды Death Coil, Acid/Flame Jet, War Small Fireball; эффекты Fear, Fragile, Immolation.
+- Сервер: `scripts/tests/furcheck.js` 13/13 OK (призыв, жив через 100 тиков, яйцо, таблица добычи), ndcheck не сломан; SERVER OK.
+  Клиент: CLIENT OK (568 с), ошибок по `mod_lavacow` нет (модели и рендеры пекутся при загрузке ресурсов).
+- Biome modifier `forge:add_spawns`: несколько тегов в `biomes` — только через `{"type": "forge:or", "values": [...]}`;
+  JSON-массив тегов не парсится, и мир не загружается вовсе («Failed to parse … biome_modifier», сервер висит до таймаута).
+- Спавн мобов в строениях — свой structure modifier `mod_lavacow:add_spawns` (в Forge 1.20.1 своего типа нет).
+- test-client: если Xvfb прошлого запуска умер, а `/tmp/.X11-unix/X99` остался — «glfwInit failed»; удалить
+  `/tmp/.X99-lock` и `/tmp/.X11-unix/X99`.
+- Предметы приручения Salamander/Weta/Mimic падают с мобов FUR, которых нет в порте, — пока только в творческом разделе.
+
 ### Bosses of Mass Destruction + Cerbon's API (поток 9, 2026-10-12, решение владельца В12 «а»)
 Владелец ответил «оба», затем «а»: вернуть Cerbon's API и добавить BoMD, с регрессионной проверкой спавна; если у владельца
 спавн мобов снова пропадёт — **сразу убрать оба мода** (`mr cerbons-api`, `mr bosses-of-mass-destruction-forge` и Cloth Config,
@@ -912,6 +925,7 @@ CurseForge 1460238, файл 9130290, Astryxion, All Rights Reserved. Jar `pack/
   дадут настоящие «Incorrect key» (устаревшие ключи); к тому же `packwiz` перезаписывал бы у игроков их правки.
 - Если понадобится менять значения Ars (стоимость глифов и т. п.) — править через KubeJS/датапак либо класть в `pack/config/` только нужные файлы целиком (Forge допишет недостающие ключи с одним WARN «from null»).
 
+<<<<<<< HEAD
 ## Клиентские удобства: mm-perf 0.2.0, Controlling, Potato Craft 8x (поток 28, решения владельца В27/В28/В30)
 Всё в клиентском моде `mods-src/mm-perf` (`pack/mods/mm-perf-0.2.0-client.jar`, на сервер не попадает: серверный zip и `test-server` его не содержат).
 - **Режим слабого ПК** (`LowSpecMode`): кнопка «Режим слабого ПК» / «Вернуть как было» внизу слева на экранах настроек видео (ваниль и Embeddium) и «Настройки»; клавиша `key.mm_perf.lowspec`
@@ -932,3 +946,27 @@ CurseForge 1460238, файл 9130290, Astryxion, All Rights Reserved. Jar `pack/
 Второй прогон (`-Dmm_perf.selftest.assign=key.create_sa.flying` — клавиша, «назначенная игроком» F9): остаётся F9, отвязано 239 остальных. `test-server.sh`: `SERVER OK: Done (29.0s)`.
 **Не проверено:** нажатие кнопки мышью и горячей клавиши (нет `xdotool`; логика та же `LowSpecMode.toggle()`, вызывается из самотеста); тосты на экране; применение Embeddium/Oculus/DH в реальном рендере (без GPU) —
 ошибок отражения в логе нет, но DH к меню ещё не запущен (шаг пропускается, как задумано); вид Controlling-экрана.
+=======
+## Первый тик после Done ≈ 2 минуты — виновник WorldEdit (поток 28, 2026-10-17)
+Метод: `scripts`-стенд без репозитория — сервер `run.sh` на готовом мире, сразу после `Done` `jstack` потока `Server thread` каждые 5 с (40 дампов, 3,5 мин).
+- `Done (29.9s)` в 18:18:37; поток сервера занят до ≈18:20:50 (**≈130 с**), затем первые нормальные тики (Northstar `PlanetTracker.updateOrbits` — доли секунды, остальное ожидание).
+- **Все 25 дампов с 18:18:38 по 18:20:46 — один и тот же стек:** `ForgeWorldEdit.serverStarted` (ServerStartedEvent) → `PlatformManager.handleNewPlatformReady` → `Capability$4.ready` (WORLD_EDITING)
+  → для каждого `BlockType` из реестра `getAllStates()` → `BlockType.getBlockStatesMap` → `BlockState.generateStateMap/populate/withValue` (Guava `ImmutableMap.build/equals`, `HashMap$TreeNode.find` — коллизии хэшей карт состояний) →
+  `BlockStateIdAccess.register(state, id)` для каждого состояния. Это построение таблицы состояний блоков **всех модов** (десятки тысяч блоков × состояния), целиком на главном потоке, до обработки тиков.
+  Мы уже встречали то же как «WorldEdit делает первый тик >60 с, сторож убивает сервер» (`max-tick-time=-1`, PR #52) — причина та же.
+- Других заметных потребителей в первом тике нет: OreSpawn/DH/Spore/KubeJS в дампах не встречаются.
+- Версия WorldEdit 7.2.15 — последняя для 1.20.1 Forge на Modrinth; обновлять нечем.
+Варианты (не применены, нужен выбор):
+1. **Оставить** (сервер всё равно запускается; игроки ждут «Done» и первые 2 мин сервер не отвечает на тики — вход возможен только после; на сильном железе время меньше).
+2. **Убрать WorldEdit** с сервера/из сборки (схематики нужны администратору — `docs/friends.md`; можно держать как отдельный серверный мод, включаемый вручную) — выигрыш 130 с на каждый запуск сервера и встроенного сервера клиента.
+3. **Миксин в `mm-compat`** на `Capability$4.ready`: выполнить обход в фоновом потоке (после Done сервер сразу тикает). Риск: `BlockStateIdAccess.TO_STATE` (`Int2ObjectOpenHashMap`) и `LazyReference` не потокобезопасны; команда WorldEdit в первые 2 минуты (или WE-код, читающий таблицу) может увидеть недостроенную таблицу.
+   Защита: подставить блокировку/ожидание завершения в `//`-команды (`ForgeWorldEdit` `PlatformManager.getPlatformManager().getPlatformCommandManager()`), либо `synchronized` вокруг `register`. Средний объём, нужен тест `//set` под нагрузкой.
+
+**Решение (Координатор, 2026-10-17): вариант 2.** WorldEdit — необязательный мод, по умолчанию выключен у клиента (в одиночной игре встроенный сервер тратил бы те же ≈130 с на каждый вход в мир):
+`pack/mods/worldedit.pw.toml` — `[option] optional = true, default = false` (packwiz-installer спрашивает пользователя); формат `.mrpack` не знает «выключено по умолчанию», а Prism/Modrinth App ставят и optional-моды,
+поэтому `scripts/mrpack-optional.py` (вызывается из `export-pack.sh`) ставит таким модам `env.client = unsupported` в `modrinth.index.json`. Сервер (`fetch-mods.py`, серверный zip) WorldEdit получает как раньше.
+Включение у администратора — `docs/friends.md`, «Администратору: перенос построек».
+Проверка: `export-pack.sh` — в `.mrpack` WorldEdit с `env.client = unsupported`, в серверном zip он есть; `test-server.sh` — `SERVER OK: Done (28.6s)`, WorldEdit загружен;
+`test-client.sh` из нового `.mrpack` — `CLIENT OK` (582 с), `worldedit` в `game/mods` нет. **Не измерено:** вход в одиночный мир без 130 с — в стенде нет `xdotool`, а `--quickPlaySingleplayer` мир не создал
+(клиент остался в меню); ожидание следует из стека (всё время первого тика — WorldEdit).
+>>>>>>> origin/claude/affectionate-davinci-4gddoh
