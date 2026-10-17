@@ -4,6 +4,9 @@
 # TEST_COMMANDS=<файл> — команды консоли, которые выполнить после запуска (строка «#sleep N» — пауза).
 # EXTRA_SERVER_SCRIPTS=<папка> — тестовые KubeJS-скрипты (например scripts/tests), только для этого запуска.
 # EXTRA_MODS=<папка> — дополнительные jar (свой мод до включения в сборку), только для этого запуска.
+# EXTRA_CONFIG=<папка> — файлы, которые кладутся в config/ поверх конфигов сборки (например ускоренный конфиг для нагрузочного теста).
+# SERVER_JVM_EXTRA="..." — доп. аргументы JVM сервера (например JFR для профиля: -XX:StartFlightRecording=filename=/path/x.jfr,settings=profile).
+# SERVER_XMX=8G — куча сервера (по умолчанию 8G).
 set -eu
 dir="$1"; tmo="${2:-900}"
 root="$(cd "$(dirname "$0")/.." && pwd)"
@@ -18,9 +21,10 @@ python3 "$root/scripts/fetch-mods.py" server mods | grep -v '^got' || true
 # конфиги сборки поверх сгенерированных
 for d in config defaultconfigs kubejs; do [ -d "$root/pack/$d" ] && mkdir -p "$d" && cp -r "$root/pack/$d/." "$d/"; done
 [ -n "${EXTRA_SERVER_SCRIPTS:-}" ] && mkdir -p kubejs/server_scripts && cp "$EXTRA_SERVER_SCRIPTS"/*.js kubejs/server_scripts/
+[ -n "${EXTRA_CONFIG:-}" ] && cp -r "$EXTRA_CONFIG"/. config/
 echo eula=true > eula.txt
 [ -f server.properties ] || printf 'online-mode=false\nlevel-seed=12345\nmax-tick-time=-1\n' > server.properties   # max-tick-time=-1: WorldEdit на старте делает тик >60 с, иначе сторож убивает сервер (docs/hosting.md)
-echo "-Xmx8G" > user_jvm_args.txt
+echo "-Xmx${SERVER_XMX:-8G} ${SERVER_JVM_EXTRA:-}" > user_jvm_args.txt
 rm -rf crash-reports
 rm -f logs/latest.log
 # "stop" отправляем, как только сервер написал Done; выходим сразу, если сервер упал
