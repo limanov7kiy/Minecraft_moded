@@ -295,6 +295,11 @@ mr natural_disasters              # Natural Disasters! 2.0.0 (MCreator, YouTuber
 #jar disaster-ward                # наш мод (mods-src/disaster-ward): «Оберег от катаклизмов» (только креатив; зона без бедствий Weather2/Natural Disasters!) и редкий случайный спавн бедствий
 #removed extreme-natural-disasters  # не ставим (поток 15): землетрясения/провалы/метеориты дублируют Natural Disasters!, остальное — WIP-апокалипсисы и вулканы; бедствия не сущности (защиту пришлось бы делать миксинами)
 
+## Паразиты (поток 22, решение владельца В24; docs/compat.md «Паразиты»)
+mr fungal-infectionspore          # Fungal Infection: Spore 2.2.0j (Harbinger, ARR, both): заражение мицелием, эволюция, ульи/Протомозг; распространение ОГРАНИЧЕНО — pack/config/sporeconfig.toml; заражение мобов наших модов — pack/kubejs/data/spore/spore_mob_conversion
+mr srpsystem                      # SRP System 0.0.1 (MIT, both — регистрирует эффекты и звуки, без клиента вход на сервер не пройдёт): «вселение в любых» (эффект заражения → превращение при 30 % HP); опасные части выключены — pack/config/srpsystem-common.toml
+#removed fungal-infection-mini-additions  # не ставим (поток 22): 16 tick-функций с @e каждый тик и «ордалии»-рейды Протомозга (против ограниченного распространения); его идея карты заражения перенесена в наш datapack
+
 ## Строительство (администратору; WorldEdit — команды только для OP)
 mr worldedit                      # WorldEdit 7.2.15 (Forge 1.20.1): перенос построек схематиками, см. docs/friends.md
 
@@ -309,3 +314,6 @@ rp russian-delight                # дополнения Farmer's Delight (MIT)
 mr the-lost-cities                # The Lost Cities (McJty, MIT): города в обычном Overworld; профиль — pack/defaultconfigs/lostcities-server.toml
 
 #jar ru-lang                      # наш клиентский мод (mods-src/ru-lang): всегда включённый верхний ресурспак russian-moded; пересобирать scripts/build-ru-pack.sh после правок переводов
+
+## Хранилища (поток 26; решение владельца: «Надо добавить Iron Chest на будущее», именно оригинал)
+mr iron-chests                    # Iron Chests 14.4.4 (alexbegt, GPL-3.0, both): сундуки медь/железо/серебро/золото/алмаз/кристалл/обсидиан + улучшения; ru_ru в jar полный
