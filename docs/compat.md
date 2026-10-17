@@ -846,3 +846,11 @@ CurseForge 1460238, файл 9130290, Astryxion, All Rights Reserved. Jar `pack/
 Первый тик после Done ~136 с (WorldEdit + 6 новых измерений; `max-tick-time=-1` обязателен).
 Не проверено: клиент, измерения и бои в игре, HP боссов в бою.
 
+
+## Iron Chests 14.4.4 (поток 26, 2026-10-17, решение владельца)
+Оригинал alexbegt (Modrinth `iron-chests`, GPL-3.0, both, `ironchest-1.20.1-14.4.4.jar`): сундуки медь/железо/серебро/золото/алмаз/кристалл/обсидиан и улучшения.
+- Зависимости только Forge ≥47 и Minecraft 1.20.1; ошибок и предупреждений от `ironchest` в логе нет.
+- Дублей нет: Iron Chests: Restocked, Upgraded Iron Chests, Metal Barrels, Sophisticated Storage в сборке не стоят; Quark добавляет только сундуки по породам дерева. Аддонов-связок под 1.20.1 Forge не найдено — не добавляли.
+- Русский перевод: `ru_ru.json` внутри jar покрывает все 36 ключей en_us — наш пак не менялся.
+- `test-server.sh`: `SERVER OK: Done (50.9s)`, 153 ERROR в логе — как до мода (ни одной от ironchest).
+- Не проверено: крафт улучшений сундуков и рецепты с серебром (зависят от тегов `forge:ingots/silver`, Almost Unified) — в игре.
