@@ -33,6 +33,7 @@ public class WardMod {
         ITEMS.register(modBus);
         modBus.addListener(WardMod::onTab);
         context.registerConfig(ModConfig.Type.COMMON, WardConfig.SPEC);
+        modBus.addListener((net.minecraftforge.fml.event.config.ModConfigEvent.Reloading e) -> WardGuard.resetKinds());
         MinecraftForge.EVENT_BUS.register(WardEvents.class);
     }
 

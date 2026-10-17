@@ -8,7 +8,8 @@ version = "${mod_version}"
 displayName = "Оберег от катаклизмов (Disaster Ward)"
 authors = "Minecraft_moded"
 description = '''
-Блок-оберег (только креатив): в его зоне не бушуют катаклизмы Weather2 и Natural Disasters!. Редкий случайный спавн бедствий Natural Disasters! и отключение его дублей.
+Блок-оберег (только креатив): в его зоне (один радиус) не бушуют катаклизмы Weather2 и Natural Disasters!, не распространяется заражение Fungal Infection: Spore
+и SRP System, пришедшие снаружи бедствия не ломают блоки внутри. Редкий случайный спавн бедствий Natural Disasters! и отключение его дублей.
 '''
 
 [[dependencies.${mod_id}]]
