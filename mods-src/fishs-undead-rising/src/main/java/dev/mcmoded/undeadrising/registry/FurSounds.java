@@ -41,6 +41,18 @@ public final class FurSounds {
     public static final RegistryObject<SoundEvent> BANSHEE_HURT = register("banshee_hurt");
     public static final RegistryObject<SoundEvent> BANSHEE_DEATH = register("banshee_death");
 
+    public static final RegistryObject<SoundEvent> SALAMANDER_AMBIENT = register("salamander_ambient");
+    public static final RegistryObject<SoundEvent> SALAMANDER_HURT = register("salamander_hurt");
+    public static final RegistryObject<SoundEvent> SALAMANDER_DEATH = register("salamander_death");
+    public static final RegistryObject<SoundEvent> WETA_AMBIENT = register("weta_ambient");
+    public static final RegistryObject<SoundEvent> WETA_HURT = register("weta_hurt");
+    public static final RegistryObject<SoundEvent> WETA_DEATH = register("weta_death");
+    public static final RegistryObject<SoundEvent> MIMIC_AMBIENT = register("mimic_ambient");
+    public static final RegistryObject<SoundEvent> MIMIC_HURT = register("mimic_hurt");
+    public static final RegistryObject<SoundEvent> MIMIC_DEATH = register("mimic_death");
+    /// Щелчок клешни (в оригинале — общий звук укуса Swarmer, им щёлкает мимикраб).
+    public static final RegistryObject<SoundEvent> SWARMER_ATTACK = register("swarmer_attack");
+
     private static RegistryObject<SoundEvent> register(String name) {
         return SOUNDS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(UndeadRising.MOD_ID, name)));
     }

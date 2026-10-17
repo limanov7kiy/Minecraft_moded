@@ -4,6 +4,13 @@ import dev.mcmoded.undeadrising.UndeadRising;
 import dev.mcmoded.undeadrising.client.layer.LayerMycosis;
 import dev.mcmoded.undeadrising.client.model.BansheeModel;
 import dev.mcmoded.undeadrising.client.model.BoneWormModel;
+import dev.mcmoded.undeadrising.client.model.MimicModel;
+import dev.mcmoded.undeadrising.client.model.SalamanderModel;
+import dev.mcmoded.undeadrising.client.model.SalamanderNymphModel;
+import dev.mcmoded.undeadrising.client.model.WetaModel;
+import dev.mcmoded.undeadrising.client.renderer.MimicRenderer;
+import dev.mcmoded.undeadrising.client.renderer.SalamanderRenderer;
+import dev.mcmoded.undeadrising.client.renderer.WetaRenderer;
 import dev.mcmoded.undeadrising.client.model.ParasiteModel;
 import dev.mcmoded.undeadrising.client.model.UnburiedModel;
 import dev.mcmoded.undeadrising.client.model.VespaCocoonModel;
@@ -49,6 +56,10 @@ public final class ClientSetup {
     public static final ModelLayerLocation BANSHEE_LAYER = layer("banshee");
     public static final ModelLayerLocation PARASITE_LAYER = layer("parasite");
     public static final ModelLayerLocation BONEWORM_LAYER = layer("boneworm");
+    public static final ModelLayerLocation SALAMANDER_LAYER = layer("salamander");
+    public static final ModelLayerLocation SALAMANDER_NYMPH_LAYER = layer("salamander_nymph");
+    public static final ModelLayerLocation WETA_LAYER = layer("weta");
+    public static final ModelLayerLocation MIMIC_LAYER = layer("mimic");
 
     private static ModelLayerLocation layer(String name) {
         return new ModelLayerLocation(new ResourceLocation(UndeadRising.MOD_ID, name), "main");
@@ -63,6 +74,10 @@ public final class ClientSetup {
         event.registerLayerDefinition(BANSHEE_LAYER, BansheeModel::createBodyLayer);
         event.registerLayerDefinition(PARASITE_LAYER, ParasiteModel::createBodyLayer);
         event.registerLayerDefinition(BONEWORM_LAYER, BoneWormModel::createBodyLayer);
+        event.registerLayerDefinition(SALAMANDER_LAYER, SalamanderModel::createBodyLayer);
+        event.registerLayerDefinition(SALAMANDER_NYMPH_LAYER, SalamanderNymphModel::createBodyLayer);
+        event.registerLayerDefinition(WETA_LAYER, WetaModel::createBodyLayer);
+        event.registerLayerDefinition(MIMIC_LAYER, MimicModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -80,6 +95,10 @@ public final class ClientSetup {
         event.registerEntityRenderer(FurEntities.BONEWORM.get(), BoneWormRenderer::new);
         event.registerEntityRenderer(FurEntities.ACIDJET.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(FurEntities.FLAMEJET.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(FurEntities.SALAMANDER.get(), SalamanderRenderer::new);
+        event.registerEntityRenderer(FurEntities.WETA.get(), WetaRenderer::new);
+        event.registerEntityRenderer(FurEntities.MIMIC.get(), MimicRenderer::new);
+        event.registerEntityRenderer(FurEntities.WARSMALLFIREBALL.get(), ctx -> new ThrownItemRenderer<>(ctx, 0.75F, true));
     }
 
     @SubscribeEvent

@@ -160,8 +160,11 @@ public class FURTameableEntity extends TamableAnimal {
                     if (stack.getItem() instanceof BucketItem) {
                         stack.shrink(1);
                         player.setItemInHand(hand, new ItemStack(Items.BUCKET));
+                    } else if (stack.getItem() instanceof dev.mcmoded.undeadrising.item.BowlFoodTooltipItem) {
+                        // NetherStewItem оригинала: блюдо в миске → миска остаётся.
+                        stack.shrink(1);
+                        if (!player.getInventory().add(new ItemStack(Items.BOWL))) player.drop(new ItemStack(Items.BOWL), false);
                     } else {
-                        // В оригинале ещё NetherStewItem → миска; суп-предметы FUR не перенесены.
                         stack.shrink(1);
                     }
                 }

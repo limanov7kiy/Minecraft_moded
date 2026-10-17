@@ -1218,7 +1218,7 @@ metafile = true
 
 [[files]]
 file = "mods/fishs-undead-rising-port-0.2.0.jar"
-hash = "ce89dd8449c4c7a3653a748b27927f48c1437e0475dea862b8444ffe955e6cce"
+hash = "c73d54f57799bf9d3202e30b72d03a5c707ad2ef3f4e52596223f664c060b7ac"
 
 [[files]]
 file = "mods/gaboulibs-shim-1.0.0.jar"
@@ -1672,7 +1672,7 @@ metafile = true
 
 [[files]]
 file = "mods/ru-lang-1.0.0-client.jar"
-hash = "8a2a76b829102c67c9dd9ae17e7c8e8b5cf9192e06e7f552fa204ec62563289a"
+hash = "44fbd949d3399d52cb350740f6098987411d24ecc3f0ac6c7c0162a68faa47aa"
 
 [[files]]
 file = "mods/sarkazs_furnace_side_fables-0.2.3-forge-1.20.1.jar"

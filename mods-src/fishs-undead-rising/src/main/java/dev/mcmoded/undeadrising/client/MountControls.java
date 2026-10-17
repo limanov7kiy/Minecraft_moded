@@ -1,6 +1,7 @@
 package dev.mcmoded.undeadrising.client;
 
 import com.mojang.blaze3d.platform.InputConstants;
+import dev.mcmoded.undeadrising.entity.SalamanderEntity;
 import dev.mcmoded.undeadrising.entity.flying.RidableFlyingMobEntity;
 import dev.mcmoded.undeadrising.network.FurNetwork;
 import net.minecraft.client.KeyMapping;
@@ -20,6 +21,16 @@ public final class MountControls {
     public static void onRegisterKeys(RegisterKeyMappingsEvent event) {
         event.register(MOUNT_SPECIAL);
         event.register(MOUNT_DOWN);
+    }
+
+    /// Саламандра (наземная, оригинал `SalamanderEntity#ClientControl`): только «особая способность» — залп.
+    public static void tickSalamander(SalamanderEntity mount) {
+        Minecraft game = Minecraft.getInstance();
+        if (game.player == null || !mount.isRidingPlayer(game.player)) return;
+        if (mount.barrageCD == 0 && MOUNT_SPECIAL.isDown()) {
+            mount.barrageCD = 80;
+            FurNetwork.CHANNEL.sendToServer(new FurNetwork.MountSpecial(mount.getId()));
+        }
     }
 
     /// Вызывается из `aiStep` ездового на клиенте.

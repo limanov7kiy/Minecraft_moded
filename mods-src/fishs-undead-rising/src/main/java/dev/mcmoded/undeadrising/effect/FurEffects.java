@@ -12,7 +12,9 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.item.PotionItem;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingHealEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -40,6 +42,34 @@ public final class FurEffects {
     /// Fragile («Смертное касание»): пока здоровье ниже 5% × (уровень + 1) от максимума — мгновенная смерть
     /// (оригинал: `effect/EffectFragile`). Накладывают Forsaken и «Кольцо смерти».
     public static final RegistryObject<MobEffect> FRAGILE = EFFECTS.register("fragile", Fragile::new);
+
+    /// Immolation («Самосожжение»): раз в секунду поджигает всех чужих в радиусе 2 блоков (на 2 + уровень с), сам
+    /// носитель не получает урона от огня ({@link #onAttack}); над ним — языки пламени. Даёт Kung Pao Chicken
+    /// (оригинал: `effect/EffectImmolation` + `events/EventHandler`; зелья Immolation не перенесены).
+    public static final RegistryObject<MobEffect> IMMOLATION = EFFECTS.register("immolation", Immolation::new);
+
+    static final class Immolation extends MobEffect {
+        Immolation() {
+            super(MobEffectCategory.BENEFICIAL, 15371285);
+        }
+
+        @Override
+        public void applyEffectTick(LivingEntity entity, int amplifier) {
+            for (LivingEntity other : entity.level().getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(2.0))) {
+                if (other != entity && !other.isAlliedTo(entity)) other.setSecondsOnFire(2 + amplifier);
+            }
+            if (entity.level() instanceof net.minecraft.server.level.ServerLevel level) {
+                var r = entity.getRandom();
+                level.sendParticles(net.minecraft.core.particles.ParticleTypes.FLAME, entity.getRandomX(1.0), entity.getRandomY() + 1.0,
+                        entity.getRandomZ(1.0), 15, r.nextGaussian() * 0.02, r.nextGaussian() * 0.02, r.nextGaussian() * 0.02, 0.0);
+            }
+        }
+
+        @Override
+        public boolean isDurationEffectTick(int duration, int amplifier) {
+            return duration % 20 == 0;
+        }
+    }
 
     static final class Fragile extends MobEffect {
         Fragile() {
@@ -100,6 +130,12 @@ public final class FurEffects {
     public static void onHeal(LivingHealEvent event) {
         var soiled = event.getEntity().getEffect(SOILED.get());
         if (soiled != null) event.setAmount(event.getAmount() * Math.max(0, 1 - 0.25f * (1 + soiled.getAmplifier())));
+    }
+
+    /// Под Immolation урон от огня не проходит.
+    @SubscribeEvent
+    public static void onAttack(LivingAttackEvent event) {
+        if (event.getSource().is(DamageTypeTags.IS_FIRE) && event.getEntity().hasEffect(IMMOLATION.get())) event.setCanceled(true);
     }
 
     @SubscribeEvent

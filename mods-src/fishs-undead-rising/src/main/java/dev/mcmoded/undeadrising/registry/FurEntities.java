@@ -4,7 +4,12 @@ import dev.mcmoded.undeadrising.UndeadRising;
 import dev.mcmoded.undeadrising.entity.FURTameableEntity;
 import dev.mcmoded.undeadrising.entity.ForsakenEntity;
 import dev.mcmoded.undeadrising.entity.BoneWormEntity;
+import dev.mcmoded.undeadrising.entity.MimicEntity;
 import dev.mcmoded.undeadrising.entity.ParasiteEntity;
+import dev.mcmoded.undeadrising.entity.SalamanderEntity;
+import dev.mcmoded.undeadrising.entity.WetaEntity;
+import dev.mcmoded.undeadrising.entity.projectile.WarSmallFireballEntity;
+import net.minecraft.world.level.block.Blocks;
 import dev.mcmoded.undeadrising.entity.VespaCocoonEntity;
 import dev.mcmoded.undeadrising.entity.floating.BansheeEntity;
 import dev.mcmoded.undeadrising.entity.floating.FloatingMobEntity;
@@ -64,6 +69,14 @@ public final class FurEntities {
     public static final RegistryObject<EntityType<BansheeEntity>> BANSHEE = ENTITIES.register("banshee",
             () -> EntityType.Builder.<BansheeEntity>of(BansheeEntity::new, MobCategory.MONSTER).sized(0.75F, 1.75F).build(id("banshee")));
 
+    public static final RegistryObject<EntityType<SalamanderEntity>> SALAMANDER = ENTITIES.register("salamander",
+            () -> EntityType.Builder.<SalamanderEntity>of(SalamanderEntity::new, MobCategory.MONSTER).sized(1.95F, 1.6F).fireImmune().build(id("salamander")));
+    public static final RegistryObject<EntityType<WetaEntity>> WETA = ENTITIES.register("weta",
+            () -> EntityType.Builder.<WetaEntity>of(WetaEntity::new, MobCategory.MONSTER).sized(0.8F, 0.5F)
+                    .immuneTo(Blocks.SWEET_BERRY_BUSH, Blocks.CACTUS).build(id("weta")));
+    public static final RegistryObject<EntityType<MimicEntity>> MIMIC = ENTITIES.register("mimic",
+            () -> EntityType.Builder.<MimicEntity>of(MimicEntity::new, MobCategory.MONSTER).sized(1.0F, 1.0F).build(id("mimic")));
+
     // --- Снаряды ---
     public static final RegistryObject<EntityType<DeathCoilEntity>> DEATHCOIL = ENTITIES.register("deathcoil",
             () -> EntityType.Builder.<DeathCoilEntity>of(DeathCoilEntity::new, MobCategory.MISC).sized(0.3125F, 0.3125F)
@@ -74,6 +87,10 @@ public final class FurEntities {
     public static final RegistryObject<EntityType<FlameJetEntity>> FLAMEJET = ENTITIES.register("flamejet",
             () -> EntityType.Builder.<FlameJetEntity>of(FlameJetEntity::new, MobCategory.MISC).sized(0.25F, 0.25F)
                     .clientTrackingRange(4).updateInterval(10).build(id("flamejet")));
+
+    public static final RegistryObject<EntityType<WarSmallFireballEntity>> WARSMALLFIREBALL = ENTITIES.register("warsmallfireball",
+            () -> EntityType.Builder.<WarSmallFireballEntity>of(WarSmallFireballEntity::new, MobCategory.MISC).sized(0.3125F, 0.3125F)
+                    .clientTrackingRange(4).updateInterval(1).build(id("warsmallfireball")));
 
     private static String id(String name) {
         return UndeadRising.MOD_ID + ":" + name;
@@ -92,6 +109,9 @@ public final class FurEntities {
         event.put(VESPACOCOON.get(), VespaCocoonEntity.createAttributes().build());
         event.put(BONEWORM.get(), BoneWormEntity.createAttributes().build());
         event.put(BANSHEE.get(), BansheeEntity.createAttributes().build());
+        event.put(SALAMANDER.get(), SalamanderEntity.createAttributes().build());
+        event.put(WETA.get(), WetaEntity.createAttributes().build());
+        event.put(MIMIC.get(), MimicEntity.createAttributes().build());
     }
 
     /// Правила естественного появления (MOD-шина) — как `EntitySpawnPlacementRegistry` оригинала.
@@ -107,5 +127,8 @@ public final class FurEntities {
         event.register(VESPA.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING, FlyingMobEntity::checkFlyerSpawnRules, replace);
         event.register(BONEWORM.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, replace);
         event.register(BANSHEE.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, replace);
+        event.register(SALAMANDER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FURTameableEntity::checkMonsterSpawnRules, replace);
+        event.register(WETA.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FURTameableEntity::checkMonsterSpawnRules, replace);
+        event.register(MIMIC.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MimicEntity::checkMimicSpawnRules, replace);
     }
 }

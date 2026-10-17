@@ -2,7 +2,10 @@ package dev.mcmoded.undeadrising.registry;
 
 import dev.mcmoded.undeadrising.UndeadRising;
 import dev.mcmoded.undeadrising.effect.FurEffects;
+import dev.mcmoded.undeadrising.item.BowlFoodTooltipItem;
 import dev.mcmoded.undeadrising.item.CrownItem;
+import dev.mcmoded.undeadrising.item.MoltenBeefItem;
+import dev.mcmoded.undeadrising.item.SalamanderBucketItem;
 import dev.mcmoded.undeadrising.item.ForsakenStaffItem;
 import dev.mcmoded.undeadrising.item.TooltipItem;
 import dev.mcmoded.undeadrising.item.FrozenThighItem;
@@ -80,6 +83,53 @@ public final class FurItems {
     public static final RegistryObject<Item> STAINED_KINGS_CROWN = ITEMS.register("stained_kings_crown",
             () -> new CrownItem(new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(1), 0));
 
+    /// Salamander: раскалённое мясо — поджигает как огниво (тратится), топливо.
+    public static final RegistryObject<Item> MOLTENBEEF = ITEMS.register("moltenbeef", () -> new MoltenBeefItem(new Item.Properties().fireResistant()));
+    /// Salamander (редко): обугленный яйцеклад.
+    public static final RegistryObject<Item> BURNTOVIPOSITOR = simple("burntovipositor", new Item.Properties().rarity(Rarity.RARE).fireResistant());
+    /// Нимфа саламандры в ведре (прирученную нимфу — ведром лавы).
+    public static final RegistryObject<Item> SALAMANDER_BUCKET = ITEMS.register("salamander_bucket", () -> new SalamanderBucketItem(new Item.Properties().stacksTo(1)));
+    /// Приручение саламандры (1 к 3). В оригинале падает с Imp (не перенесён).
+    public static final RegistryObject<Item> IMP_HORN = simple("imp_horn", new Item.Properties());
+    /// Приручение саламандры (сразу); при еде — Immolation II на минуту. Рецепт оригинала требует сковороду (не перенесена).
+    public static final RegistryObject<Item> KUNG_PAO_CHICKEN = ITEMS.register("kung_pao_chicken", () -> new BowlFoodTooltipItem(new Item.Properties()
+            .food(new FoodProperties.Builder().nutrition(8).saturationMod(0.8F).alwaysEat().meat()
+                    .effect(() -> new MobEffectInstance(FurEffects.IMMOLATION.get(), 1200, 1), 1.0F).build())));
+    /// Weta: хитин (ещё — из панциря Vespa или клешни мимикраба).
+    public static final RegistryObject<Item> CHITIN = simple("chitin", new Item.Properties());
+    /// Weta (редко): жвало — перемалывается в костную муку.
+    public static final RegistryObject<Item> WETA_JAW = simple("weta_jaw", new Item.Properties());
+    /// Больная вета, объедая пшеницу, роняет больную пшеницу.
+    public static final RegistryObject<Item> DISEASED_WHEAT = simple("diseased_wheat", new Item.Properties());
+    /// Хлеб из больной пшеницы: им вету делают больной (нежить, удар — «Загрязнение»). Обращение жителя в зомби не перенесено.
+    public static final RegistryObject<Item> DISEASED_BREAD = simple("diseased_bread", new Item.Properties().food(new FoodProperties.Builder()
+            .nutrition(5).saturationMod(0.6F)
+            .effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 160, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.POISON, 160, 1), 0.3F)
+            .effect(() -> new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 600, 1), 0.3F)
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 320, 1), 0.3F)
+            .effect(() -> new MobEffectInstance(FurEffects.INFESTED.get(), 320, 2), 0.3F).build()));
+    /// Приручение веты (1 к 3). В оригинале падает с Undead Swine и пугал (не перенесены).
+    public static final RegistryObject<Item> PLAGUED_PORKCHOP = simple("plagued_porkchop", new Item.Properties().food(new FoodProperties.Builder()
+            .nutrition(3).saturationMod(0.3F).meat().effect(() -> new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 600, 0), 0.8F).build()));
+    /// Приручение веты (сразу); при еде — Спешка на минуту. Рецепт оригинала требует сковороду (не перенесена).
+    public static final RegistryObject<Item> GREEN_BACON_AND_EGGS = ITEMS.register("green_bacon_and_eggs", () -> new BowlFoodTooltipItem(new Item.Properties()
+            .food(new FoodProperties.Builder().nutrition(10).saturationMod(1.2F).meat().alwaysEat()
+                    .effect(() -> new MobEffectInstance(MobEffects.DIG_SPEED, 1200, 0), 1.0F).build())));
+    /// Mimicrab: сырая клешня (с шансом тошнота), с горящего — сразу печёная.
+    public static final RegistryObject<Item> MIMIC_CLAW = simple("mimic_claw", new Item.Properties().food(new FoodProperties.Builder()
+            .nutrition(3).saturationMod(0.3F).meat().effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 1200, 0), 0.3F).build()));
+    public static final RegistryObject<Item> MIMIC_CLAW_COOKED = simple("mimic_claw_cooked", new Item.Properties().food(new FoodProperties.Builder()
+            .nutrition(8).saturationMod(0.8F).meat().build()));
+    /// Приручение мимикраба (и его еда). В оригинале падает с Ptera (не перенесена).
+    public static final RegistryObject<Item> PTERA_WING = simple("ptera_wing", new Item.Properties().food(new FoodProperties.Builder()
+            .nutrition(4).saturationMod(0.1F).meat().alwaysEat().effect(() -> new MobEffectInstance(MobEffects.HUNGER, 600, 2), 0.8F).build()));
+    public static final RegistryObject<Item> PTERA_WING_COOKED = simple("ptera_wing_cooked", new Item.Properties().food(new FoodProperties.Builder()
+            .nutrition(8).saturationMod(0.8F).meat().build()));
+    /// Расплавленное сердце: делает прирученного мимикраба адским (огнестойкий, поджигает). В оригинале — с Moogma
+    /// (не перенесена); своё свойство «−% урона от огня» здесь не перенесено.
+    public static final RegistryObject<Item> MOOTENHEART = simple("mootenheart", new Item.Properties().rarity(Rarity.RARE));
+
     // --- Яйца призыва (цвета — из оригинала) ---
     public static final RegistryObject<Item> SPAWN_EGG_UNBURIED = egg("unburied", FurEntities.UNBURIED, 13949370, 2698290);
     public static final RegistryObject<Item> SPAWN_EGG_MUMMY = egg("mummy", FurEntities.MUMMY, 15325870, 10125655);
@@ -90,6 +140,9 @@ public final class FurItems {
     public static final RegistryObject<Item> SPAWN_EGG_VESPA = egg("vespa", FurEntities.VESPA, 8774164, 14299417);
     public static final RegistryObject<Item> SPAWN_EGG_BONEWORM = egg("boneworm", FurEntities.BONEWORM, 10000536, 4263438);
     public static final RegistryObject<Item> SPAWN_EGG_BANSHEE = egg("banshee", FurEntities.BANSHEE, 10659725, 3421754);
+    public static final RegistryObject<Item> SPAWN_EGG_SALAMANDER = egg("salamander", FurEntities.SALAMANDER, 2491910, 16052546);
+    public static final RegistryObject<Item> SPAWN_EGG_WETA = egg("weta", FurEntities.WETA, 8672054, 15387303);
+    public static final RegistryObject<Item> SPAWN_EGG_MIMIC = egg("mimic", FurEntities.MIMIC, 14772479, 458752);
 
     private static RegistryObject<Item> simple(String name, Item.Properties props) {
         return ITEMS.register(name, () -> new Item(props));

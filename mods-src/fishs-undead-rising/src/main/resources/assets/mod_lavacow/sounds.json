@@ -207,5 +207,97 @@
         "stream": true
       }
     ]
+  },
+  "salamander_ambient": {
+    "category": "hostile",
+    "subtitle": "subtitles.mod_lavacow.salamander_ambient",
+    "sounds": [
+      "mod_lavacow:entity/salamander/ambient0",
+      "mod_lavacow:entity/salamander/ambient1",
+      "mod_lavacow:entity/salamander/ambient2"
+    ]
+  },
+  "salamander_hurt": {
+    "category": "hostile",
+    "subtitle": "subtitles.mod_lavacow.salamander_hurt",
+    "sounds": [
+      {
+        "name": "mod_lavacow:entity/salamander/hurt",
+        "stream": true
+      }
+    ]
+  },
+  "salamander_death": {
+    "category": "hostile",
+    "subtitle": "subtitles.mod_lavacow.salamander_death",
+    "sounds": [
+      "mod_lavacow:entity/salamander/death0",
+      "mod_lavacow:entity/salamander/death1",
+      "mod_lavacow:entity/salamander/death2"
+    ]
+  },
+  "weta_ambient": {
+    "category": "neutral",
+    "subtitle": "subtitles.mod_lavacow.weta_ambient",
+    "sounds": [
+      "mod_lavacow:entity/weta/ambient"
+    ]
+  },
+  "weta_hurt": {
+    "category": "neutral",
+    "subtitle": "subtitles.mod_lavacow.weta_hurt",
+    "sounds": [
+      "mod_lavacow:entity/weta/hurt"
+    ]
+  },
+  "weta_death": {
+    "category": "neutral",
+    "subtitle": "subtitles.mod_lavacow.weta_death",
+    "sounds": [
+      {
+        "name": "mod_lavacow:entity/weta/death",
+        "stream": true
+      }
+    ]
+  },
+  "mimic_ambient": {
+    "category": "hostile",
+    "subtitle": "subtitles.mod_lavacow.mimic_ambient",
+    "sounds": [
+      {
+        "name": "mod_lavacow:entity/mimic/ambient",
+        "stream": true
+      }
+    ]
+  },
+  "mimic_hurt": {
+    "category": "hostile",
+    "subtitle": "subtitles.mod_lavacow.mimic_hurt",
+    "sounds": [
+      {
+        "name": "mod_lavacow:entity/mimic/hurt",
+        "stream": true
+      }
+    ]
+  },
+  "mimic_death": {
+    "category": "hostile",
+    "subtitle": "subtitles.mod_lavacow.mimic_death",
+    "sounds": [
+      {
+        "name": "mod_lavacow:entity/mimic/death",
+        "stream": true
+      }
+    ]
+  },
+  "swarmer_attack": {
+    "category": "hostile",
+    "subtitle": "subtitles.mod_lavacow.swarmer_attack",
+    "sounds": [
+      {
+        "name": "mod_lavacow:entity/swarmer/attack",
+        "stream": true
+      }
+    ]
   }
 }

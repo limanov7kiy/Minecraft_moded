@@ -1,6 +1,14 @@
 package dev.mcmoded.undeadrising.event;
 
 import dev.mcmoded.undeadrising.effect.FurEffects;
+import dev.mcmoded.undeadrising.entity.MimicEntity;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.util.Mth;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.AreaEffectCloud;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.phys.AABB;
 import dev.mcmoded.undeadrising.entity.ParasiteEntity;
 import dev.mcmoded.undeadrising.entity.flying.VespaEntity;
 import dev.mcmoded.undeadrising.entity.unburied.UnburiedEntity;
@@ -152,5 +160,52 @@ public final class FurEntityEvents {
     @SubscribeEvent
     public static void onDrops(LivingDropsEvent event) {
         if (event.getEntity().getTags().contains("FUR_noLoot")) event.setCanceled(true);
+    }
+
+    /// Тотем бессмертия в инвентаре мимикраба спасает его от смерти (как у игрока).
+    @SubscribeEvent
+    public static void onMimicDeath(LivingDeathEvent event) {
+        if (!(event.getEntity() instanceof MimicEntity mimic)) return;
+        int slot = mimic.containsItem(Items.TOTEM_OF_UNDYING);
+        if (slot == -1) return;
+        mimic.setHealth(1.0F);
+        mimic.removeAllEffects();
+        mimic.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 900, 1));
+        mimic.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 100, 1));
+        mimic.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 800, 0));
+        mimic.level().broadcastEntityEvent(mimic, (byte) 35);
+        event.setCanceled(true);
+        mimic.inventory.getItem(slot).shrink(1);
+    }
+
+    /// pSpawnRate_DeathMimic по умолчанию (из 1000).
+    public static final int DEATH_MIMIC_RATE = 250;
+
+    /// С шансом 25% у места гибели игрока (если рядом нет других мимикрабов) из облака появляется мимикраб — и
+    /// собирает выпавшие вещи. В 1.16.5 оригинал создавал облако, но забывал добавить мимикраба в мир; здесь он появляется.
+    @SubscribeEvent
+    public static void onPlayerDrops(LivingDropsEvent event) {
+        if (event.isCanceled() || !(event.getEntity() instanceof Player player) || !(player.level() instanceof ServerLevel level)) return;
+        RandomSource random = level.random;
+        if (random.nextInt(1000) > DEATH_MIMIC_RATE) return;
+        if (!level.getEntitiesOfClass(MimicEntity.class, new AABB(player.blockPosition()).inflate(16.0)).isEmpty()) return;
+        int x = Mth.floor(player.getX() + random.nextInt(8) - 4.0);
+        int z = Mth.floor(player.getZ() + random.nextInt(8) - 4.0);
+        BlockPos spawn = new BlockPos(x, level.getHeight(Heightmap.Types.WORLD_SURFACE, x, z), z);
+        AreaEffectCloud cloud = new AreaEffectCloud(level, x, spawn.getY(), z);
+        cloud.setRadius(5.0F);
+        cloud.setRadiusOnUse(-0.5F);
+        cloud.setWaitTime(5);
+        cloud.setDuration(20);
+        cloud.setRadiusPerTick(-cloud.getRadius() / cloud.getDuration());
+        cloud.setParticle(ParticleTypes.ENTITY_EFFECT);
+        cloud.setFixedColor(7297852);
+        level.addFreshEntity(cloud);
+        MimicEntity mimic = FurEntities.MIMIC.get().create(level);
+        if (mimic == null) return;
+        mimic.setPersistenceRequired();
+        mimic.moveTo(spawn.getX() + 0.5, spawn.getY(), spawn.getZ() + 0.5, 0.0F, 0.0F);
+        level.addFreshEntity(mimic);
+        mimic.playAmbientSound();
     }
 }
