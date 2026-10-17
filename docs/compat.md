@@ -310,6 +310,26 @@ Northstar/CS выживает на Луне, воздух тратится ~1/с
 Ванильный `/locate` в сборке асинхронный (Async Locator) — результат команды всегда 0, ответ приходит позже.
 План и ход работ — `docs/galacticraft.md`.
 
+## Falling Tree (поток 18)
+Falling Tree 1.20.1-4.3.4 (RakSrinaNa, LGPL-3.0; Modrinth `fallingtree`, сторона `both`): срубленное дерево падает целиком.
+- Конфиг `pack/config/fallingtree.json` (файл мода; в нём всё, что не перечислено ниже, — значения по умолчанию):
+  `trees.breakMode = FALL_BLOCK`, `sneakMode = SNEAK_DISABLE` (присед = рубить по одному блоку),
+  `tools.damageMultiplicand = 1` (1 прочности за бревно), `tools.preserve = true`, `tools.forceToolUsage = true`,
+  `trees.maxSize = 300`, `trees.maxSizeAction = ABORT` (дерево больше 300 брёвен — рубится один блок).
+- Миксин `FallingTreeDamageMixin` (`mods-src/mm-compat`, необязательный, `@Pseudo`): при `preserve = true` Falling Tree сам рубит
+  столько брёвен, на сколько хватает прочности. Миксин в конце конструктора `ToolDamageHandler` бросает то же
+  `BreakTreeTooBigException`, что мод бросает при превышении maxSize, если прочности не хватает на все брёвна дерева
+  (с `preserve` — так, чтобы топор не сломался на последнем бревне). `TreeHandler` ловит его и отвечает `TREE_TOO_BIG_BREAK`
+  (`cancel = false`) — событие не отменяется, игра ломает один блок. Исключение летит одинаково из всех трёх обработчиков
+  (Instantaneous, FallingAnimation, ShiftDown): все создают `ToolDamageHandler` и пропускают исключение наверх.
+  Параметры конструктора (javap): `int` №1 — число брёвен дерева (`Tree.getBreakableCount`), `int` №2 — `maxSize`.
+- Широкие стволы 2×2 не трогали (решение владельца).
+- Тест `scripts/tests/fallingtree.js` (фейковый игрок Forge, `ServerPlayerGameMode.destroyBlock`, железный топор 250 прочности;
+  запускать в чистом мире — брёвна прошлых прогонов остаются в мире и попадают в дерево). Результат на чистом мире, `Done`:
+  полная прочность (6 брёвен) — дерево целиком, −6 прочности; осталось 3 прочности — один блок (−1: 247 → 248);
+  присед — один блок; куб 384 бревна — один блок; осталось 7 на 6 брёвен — целиком, топор остаётся с 1; осталось 6 на 6 — один блок.
+  Не проверено: игра живым игроком и реальные деревья (листва `persistent=false` проверена справочно — тоже −6),
+  мод Falling Tree без миксина-цели (запуск без мода), клиент.
 ## Проверка клиента (поток 5, 2026-10-11)
 Клиент запускался в облаке: `scripts/test-client.sh` — Forge через portablemc, моды из `.mrpack` так же, как
 ставит Prism (только `env.client != unsupported` + `overrides/`), Xvfb + Mesa llvmpipe (OpenGL 4.5), без звука.
@@ -425,6 +445,28 @@ Arknights Weapon) применяются без ошибок. Микрофон, 
   `test-server.sh` и `export-pack.sh`. Тест `scripts/tests/lostcities.js` (`LCCHECK OK`), подробности и выбор — `docs/lost-cities.md`.
 - Не связано с мод-конфликтами: в логе `NoClassDefFoundError mcjty/theoneprobe` — от Ars Magica Legacy (необязательная связка с TOP), не от Lost Cities.
 
+## Находки клиентского лога при проверке книг (поток 11, 2026-10-12)
+
+Клиент (`test-client.sh`, Forge 47.4.26) доходит до главного меню; в логе модельные ошибки, **не наши и не чинились**:
+- `Model loader 'neoforge:composite' not found` — 4 модели **Mekanism More Machines** (`mekmm-1.20.1-1.2.1`): `mekmm:models/block/factory/painting/active/{basic,advanced,elite,ultimate}.json`
+  (активное состояние фабрик покраски). Мод собран под NeoForge-загрузчик моделей (`neoforge:composite`), у Forge он называется `forge:composite`. Ожидаемо: пока фабрика
+  покраски работает (активное состояние), блок рисуется как «потерянная» модель — **фиолетово-чёрная текстура**; в простое — нормально.
+  **Исправлено (поток 14):** в jar это единственные 4 модели с `neoforge:composite`; их копии с `"loader": "forge:composite"` (части те же) лежат в
+  `pack/kubejs/assets/mekmm/models/block/factory/painting/active/*.json` и перекрывают модели мода. Автор мода — Mekanism More Machines (jar не менялся).
+- `Failed to load model mna:models/block/eldrin/pylon_ring.json` (Mana and Artifice 3.1.11) — `pylon_ring.json` ссылается на `mna:models/block/obj/pylon/pylon_ring.obj`, а в jar лежит только
+  `pylon_ring_old.obj` (ошибка автора мода). Деталь «кольцо» пилона Элдрина не рисуется / рисуется как отсутствующая модель (фиолетово-чёрная). Обход — копия `pylon_ring_old.obj` под именем
+  `pylon_ring.obj` в нашем паке.
+  **Исправлено (поток 14):** `pack/kubejs/assets/mna/models/block/obj/pylon/pylon_ring.obj` — копия `pylon_ring_old.obj` (его `mtllib pylon_ring.mtl` в jar есть;
+  иных «ring»-моделей нет). Автор — Mana and Artifice (авторство модели сохранено, файл не менялся).
+  Проверка: `test-client.sh` — `CLIENT OK`, в `logs/latest.log` нет `neoforge:composite`, `pylon_ring` и «Failed to load model».
+- Patchouli-книга `ars_controle`: «use_resource_pack set to false» — у мода в jar только заглушка `book.json` (`extend: ars_nouveau:worn_notebook`) без содержимого; исправлено
+  kubejs-override `pack/kubejs/data/ars_controle/patchouli_books/ars_controle/book.json` (`use_resource_pack: true`, описание по-русски). Записей в книге у мода нет, переводить нечего.
+
+## Китайские литералы мод→Component.literal (поток 6, 2026-10-12)
+- Баг владельца «Талон Боба»: подсказки BOB's Originium Dream — китайские литералы в коде. Причина — не lang (аудит `cjk_nonlang_audit.py`: ≈ 880 строк в 13 jar).
+  Решение: миксин `LiteralContentsMixin` + словарь 953 строки в `ru-lang` (jar модов не патчим). Проверено: `test-client.sh` — `CLIENT OK`, в логе самопроверка `[OK]`;
+  миксин применился (ошибок `Mixin apply failed` от ru_lang нет; единственная — известная Lycanites К6).
+
 ## Открытые вопросы
 - Клиент в облаке проверяется `scripts/test-client.sh` (без GPU и звука); шейдеры, микрофон и macOS — только у игрока (`docs/client-checklist.md`).
 
@@ -503,9 +545,8 @@ Mass Destruction Forge 1.1.2. Cataclysm/Mowzie's/Lycanites не дублирую
   драконом на ноутбуке (i5-9/RTX 2060) пока нет — проверить в игре. «Dragons Despawn» оставлен `true` (иначе «SERIOUS lag»
   по описанию конфига).
 - **Боссы**: таблица обновлена (`docs/bosses.md`/`csv`).
-- ⚠ **Атлас текстур**: в логе клиента `Requested atlas size 32768x16384 exceeds maximum of 16384x16384` (программный
-  OpenGL llvmpipe, предел 16384; у RTX 2060 предел 32768). Меню запустилось. Без Ice and Fire на этом стенде не сравнивали;
-  если у игрока на слабой видеокарте будут «розовые» текстуры — это первое подозрение.
+- **Атлас текстур**: переполнение атласа блоков на видеокартах с пределом 16384 исправлено (поток 13) — см. раздел
+  «Атлас блоков не помещался в 16384×16384» ниже.
 
 ## Wizardry Golems — порт 1.12.2 (поток 12, 2026-10-12)
 Мод `mods-src/wizardry-golems` 0.1.0 (оригинал WinDanesz, GPL-3.0) + Extra Golems 20.1.0.2 (skyjay1, zlib; CF без
@@ -535,3 +576,166 @@ Mass Destruction Forge 1.1.2. Cataclysm/Mowzie's/Lycanites не дублирую
   163/463 из эпической выборки, кольцо в слоте Curios фейкового игрока → 2 бетонных голема).
 - Клиент: CLIENT OK (418 с), ошибок по `wizardrygolems` нет.
 - KubeJS/Rhino: `const` внутри блока `if`/`try` обработчика тика даёт «redeclaration» — в тестах только `let`.
+
+### Bosses of Mass Destruction + Cerbon's API (поток 9, 2026-10-12, решение владельца В12 «а»)
+Владелец ответил «оба», затем «а»: вернуть Cerbon's API и добавить BoMD, с регрессионной проверкой спавна; если у владельца
+спавн мобов снова пропадёт — **сразу убрать оба мода** (`mr cerbons-api`, `mr bosses-of-mass-destruction-forge` и Cloth Config,
+если его больше никто не использует).
+- BoMD Forge 1.1.2 жёстко требует **Cerbon's API ≥ 1.1.0** (`ModLoadingException: requires cerbons_api 1.1.0 or above`) и Cloth Config 11.x.
+  Cerbon's API поток 10 убирал из-за общих (не клиентских) миксинов коллизий (`AABB.intersects`, `Shapes.create`, `VoxelShape.collide`,
+  `Entity.getBoundingBox/setPosRaw`); теперь возвращён со стороной **both** (на сервере он обязателен для BoMD).
+- **Регрессия спавна** (`scripts/tests/spawncheck.js`, свежий мир, сид 12345): с Cerbon's API + BoMD + Cloth Config числа в пределах шума относительно базы —
+  summon cow/zombie/iceandfire:troll/alexsmobs:crow OK, яйцо овцы OK; места естественного спавна: зомби 62/200 (база 50), тролль 54/200 (база 47),
+  корова 200/200 (база 200); ошибок 0. Просадки нет. Тест проверяет место для моба (`checkSpawnRules` + `noCollision`), а не сам цикл
+  `NaturalSpawner` (на сервере без игроков он не работает) — жалобу «не спавнятся мобы» в игре это не исключает, поэтому условие выше остаётся.
+- `test-server.sh` — `SERVER OK` (Done за 91 с на свежем мире с генерацией). Параметры боссов в конфиге `bosses_of_mass_destruction.json5`
+  (замеры `bossdump.js`): Ночной лич 300 HP / ракета 9 / броня 0; Обсидилит 300 / 16 / 14 (4.4×2); Перчатка незера 250 / 16 / 8 (4×5);
+  Цветок пустоты 350 / 12 / 4 (10×8). В пределах Cataclysm-боссов (400–600 HP), отдельный баланс не нужен; конфиг оставлен по умолчанию.
+- Арены: `lich_tower` (Overworld), `gauntlet_arena` (Незер), `obsidilith_arena` (Край), Цветок пустоты — в пещере (блок-призыватель).
+  Лич включает «вечную ночь» на время боя (`eternalNighttime`), кометы и ракеты с замедлением рвут блоки (`comet.explosionStrength` 4).
+- Русификация: у мода `ru_ru` 98.7 %, недостающие 2 строки экрана конфига — в `pack/resourcepacks-src/russian-moded/assets/bosses_of_mass_destruction/`.
+- **Регрессионный тест спавна** `scripts/tests/spawncheck.js` (`EXTRA_SERVER_SCRIPTS`, поток 9): `/summon` ванильных и модовых мобов, яйцо
+  призыва фейковым игроком Forge, доля допустимых мест для естественного спавна (`SpawnPlacements.checkSpawnRules` +
+  `level.noCollision` — то, что ломают миксины коллизий) на тёмной и освещённой площадке. Настоящий `NaturalSpawner` на сервере без
+  игроков не работает (нужен ближайший игрок), поэтому проверяется место, а не сам цикл спавна.
+  **База (интегратор без Cerbon's API, 2026-10-12):** summon cow/zombie/iceandfire:troll/alexsmobs:crow — OK; яйцо овцы — OK (`CONSUME`);
+  места: зомби ночью на тёмной площадке 50/200, тролль 47/200 (остальное отсекает свет), корова на освещённой 200/200, ошибок 0.
+  После возврата Cerbon's API прогнать снова: заметное падение долей или ошибки — повод не возвращать.
+- **Клиент с BoMD + Cerbon's API**: `test-client.sh` — `CLIENT OK` (442 с). Ошибок BoMD и Cloth Config в логе клиента нет. В логе есть
+  `NetworkDirection channel cerbons_api:packets already registered` в `FMLCommonSetupEvent` — но то же самое (повторная регистрация
+  в `FMLCommonSetupEvent`) на этом тестовом клиенте происходит у 44 модов сразу (Forge, Aether, Ad Astra, Alex's Mobs, Mowzie's, Ice and Fire…),
+  то есть это особенность стенда (событие, похоже, отправляется дважды), а не конкретного мода; на сервере таких ошибок нет. Выше замечание про
+  `Duplicate registration … iceandfire:hippogryph` — из той же серии.
+
+## Атлас блоков не помещался в 16384×16384 (поток 13, 2026-10-13)
+**Симптом** (облачный `test-client.sh`, Mesa llvmpipe, `GL_MAX_TEXTURE_SIZE` 16384 — как у встроенной графики Intel/AMD APU):
+первая загрузка ресурсов падает `Requested atlas size 32768x16384 exceeds maximum of 16384x16384` →
+`StitcherException: Unable to fit: superbwarfare:item/lod/bocek`; Minecraft откатывается и грузит ресурсы **без пользовательских
+паков** (два «Reloading ResourceManager», в `options.txt` остаётся `resourcePacks:[]`) — слетают MPLOC/RTF+/RTF Extension.
+С принудительными паками (ветка `claude/ru-force-packs`, не слита) вместо отката — краш «Stitching». На RTX 2060 (предел 32768) помещалось.
+
+**Причина** — не моды с огромными текстурами сами по себе, а два чужих `assets/minecraft/atlases/blocks.json`, источники которых
+не ограничены своим namespace (тип `directory` сканирует папку во **всех** модах):
+- Mana and Artifice (`mna`): `{"type":"directory","source":"entity"}` — в атлас блоков попадают **все** `textures/entity/**`
+  всех модов: Lycanites Mobs 85 Мпкс (728 спрайтов, почти все 1024²), Alex's Caves 11,5, Cataclysm 8,9, Alex's Mobs 7,2 …;
+- Blood Magic: `{"type":"directory","source":"models"}` — все `textures/models/**`: Ice and Fire 48,8 Мпкс (631 спрайт), Blood Magic 10 …
+
+Собственные текстуры предметов/блоков (Superb Warfare 23 Мпкс, Arknights Endfield 19, Arknights Furniture 18) переполнения не дают:
+блоки+предметы всей сборки ≈ 97 Мпкс. Свой jar у Lycanites/Ice and Fire атласов не объявляет.
+
+**Исправление** — `pack/kubejs/assets/minecraft/atlases/blocks.json` (ресурс KubeJS; его пак стоит выше `mod_resources`, источники
+атласа складываются по всем пакам снизу вверх, поэтому наш `minecraft:filter` срабатывает после `mna` и Blood Magic):
+- убрать `entity/**` у `lycanitesmobs`, `alexscaves`, `alexsmobs`, `cataclysm`;
+- убрать `models/**` у `iceandfire`, кроме `models/ghost/ghost_chest` (частица блока «Призрачный сундук»).
+Эти моды рисуют мобов своими `RenderType` по прямому пути к png, а не из атласа: проверено, что ни одна модель предмета/блока во
+всех jar не ссылается на их `entity/`/`models/` (кроме сундука), и что их код не берёт такие спрайты из атласа блоков.
+Свои `entity/`-текстуры у `mna` и `models/` у Blood Magic не тронуты (им они нужны). Jar не правились, качество текстур не менялось.
+
+**Замеры** (сумма площадей спрайтов по списку из лога + итоговый размер):
+| | спрайтов | площадь | от 16384² | атлас |
+|---|---|---|---|---|
+| до (без пользовательских паков, после отката) | 35 715 | 285,7 Мпкс | 106 % | не помещается (32768×16384) |
+| до (с паками, данные потока 6) | 35 721 | 293,5 Мпкс | 109 % | не помещается |
+| после | ~33 440 | ~125 Мпкс | ~47 % | `Created: 16384x8192x2 minecraft:textures/atlas/blocks.png-atlas` |
+
+**Проверка**: `test-client.sh` — `CLIENT OK`, в логе 0 строк `Unable to fit`/`StitcherException`/`exceeds maximum`, одна загрузка
+ресурсов со всеми паками (`ru_lang`, just-some-translations, russian-delight, RTF, MPLOC, RTF Extension), `options.txt` сохраняет их
+список, меню по-русски. Сервер не менялся (атласы — только клиент).
+Если в игре у мобов этих модов, у предметов Ice and Fire или в эффектах Alex's/Cataclysm появится фиолетово-чёрная «missing»-текстура —
+это первое подозрение: вернуть нужный путь, сузив регулярное выражение в фильтре.
+Запас: новые моды с большими текстурами в `block/`/`item/` или новые «всеобщие» `directory`-источники снова увеличат атлас — после
+добавления модов смотреть в логе клиента строку `Created: …blocks.png-atlas` (должно быть ≤ 16384×16384).
+
+## Катаклизмы: Weather2 + CoroUtil, Natural Disasters!, «Оберег от катаклизмов» (поток 15, 2026-10-13)
+
+Идея владельца: «мод на катаклизмы — торнадо, цунами». Решение владельца (В15): первый вариант ставим, третий и четвёртый на усмотрение, нужны разные эффекты,
+дубли убрать, постройки **должны ломаться**, нужен блок защиты (только креатив), создающий зону без катаклизмов.
+Выбор из 4 вариантов — таблица в PR/докладе. Все моды — Modrinth (`url` в `.pw.toml`, сторона `both`), чужие jar в репозиторий не кладём.
+
+### Weather2 2.8.3 + CoroUtil 1.3.7 (Corosus / ProtoManly, All Rights Reserved)
+Штормовые фронты по температурам биомов, торнадо и циклоны F0–F5/C0–C5, град, песчаные и снежные бури, ветер, листопад, сирены, датчик торнадо,
+флюгер, анемометр, «Отражатель бурь». Заменяет ванильные облака, дождь и снег частицами (`lockServerWeatherMode = 0`, Serene Seasons работает по температуре биомов).
+**Настройки сборки** (`pack/config/Weather2/Tornado.toml`, `Storm.toml`; формат TOML, мод создаёт остальные файлы сам):
+- `Storm_Tornado_grabBlocks = true`, `GrabCond_List = true`: торнадо **рвут постройки** по списку (деревянное: заборы, двери, ступени, доски, шерсть, кровати, знаки,
+  листва + брёвна, стекло, кнопки, посевы, ковры), но **не** сундуки/бочки/печи/блоки земли и камня (содержимое не пропадает);
+- подхват игроков, мобов и жителей включён, урон от падения выключен; лимиты: 200 летящих блоков, 5 блоков за тик;
+- шансы F4/C4 = 10 %, F5/C5 = 5 % (в оригинале 20/10); частота — по умолчанию (шторм-«убийца» на сервер раз в час, без перепада климата — раз в ~3,3 часа), молнии огонь не ставят.
+Отключить разрушения: `Storm_Tornado_grabBlocks = false`; только ветер и листва: `Aesthetic_Only_Mode = true` (`Misc.toml`).
+
+### Natural Disasters! 2.0.0 (MCreator, YouTuber, All Rights Reserved)
+Бедствия — сущности `natural_disasters:*`: метеор и метеоритный дождь, цунами, лесной пожар, кислотный дождь, воронка, землетрясение (+ торнадо и песчаная буря).
+Настроек у мода нет (MCreator). Вручную: меню по клавише (**бинд «Открыть меню бедствий»**), яйца призыва, `/summon`.
+**Найдено**: «случайный спавн» (галка в меню, в мире по умолчанию выключена) бросает кубик **каждые ~100 тиков (5 с) на игрока** и спавнит бедствие в ±200 блоков — непригодно.
+Наш мод `disaster-ward` включает галку один раз при первом запуске мира (`WardData.naturalInit`) и управляет паузами: бросок раз в **36 000–96 000 тиков (30–80 мин) на игрока**
+(`naturalDisasters.minTicks/maxTicks`; механика: таймер `NaturalSpawningNaturalDisastersTimer` в данных игрока не даёт дойти до нуля, пока не прошла наша пауза; на отдельный бросок
+приходится одно из 10 бедствий, торнадо и песчаная буря отсеиваются). Выключить: `naturalDisasters.enabled = false`.
+**Дубли убраны**: `disabledEntities = [natural_disasters:tornado, natural_disasters:sandstorm]` — события `EntityJoinLevelEvent` отменяются везде (в меню мода кнопки «Торнадо»/«Песчаная буря» ничего не делают).
+Разрушение построек у его бедствий — встроенное (метеоры, цунами, пожар, землетрясение), отключить нельзя; содержимое контейнеров он может разрушить вместе с блоком.
+
+### Оберег от катаклизмов — `mods-src/disaster-ward` (наш мод, MIT)
+Блок `disaster_ward:ward`: **нет рецепта и лута** (`noLootTable`, при ломании ничего не падает), взрывоустойчив, свет 7; берётся только из творческой вкладки («Функциональные блоки»/«Операторские»)
+или `/give @s disaster_ward:ward`. Ставится и снимается кем угодно; позиции — `SavedData` мира (`data/disaster_ward.dat`, переживают рестарт).
+Зона — **квадрат по X/Z на всю высоту**, радиус `ward.radius` (по умолчанию 64, в `config/disaster_ward-common.toml`):
+- **Weather2**: оберег регистрируется как «Отражатель бурь» (`WeatherManagerServer.registerDeflector`, рефлексия, повтор раз в 5 с, `removeDeflector` при ломании); бури отводятся и **не рвут блоки**
+  в радиусе, который задаёт сам Weather2 (**128** блоков, не наш радиус);
+- **Natural Disasters!**: сущности пространства имён `natural_disasters` не появляются в радиусе `radius + edgeMargin` (16) и убираются, если зашли (проверка раз в 10 тиков);
+  уже сделанное (вода цунами, воронки, лава) остаётся;
+- Ограничение: «апокалипсисы»/вулканы Extreme Natural Disasters не ставим, поэтому ими не управляем.
+
+**Extreme Natural Disasters 1.5 НЕ ставим**: землетрясения, провалы и метеориты дублируют Natural Disasters!, остальное — вулканы и WIP-«апокалипсисы» (потоп, солнечный, снежный, помечены автором как лагучие);
+его бедствия — не сущности, защиту пришлось бы делать миксинами в чужой код. Если владелец захочет вулканы — отдельный шаг.
+Метеориты/цунами других авторов (Skyfall, This Tsunami) тоже не добавлены: Natural Disasters! уже даёт метеоры и цунами.
+
+**Нагрузка** (`disasterload.js`, тестовый сервер, свежий мир seed 12345, застройка The Lost Cities; машина медленная — базовый такт ~50–85 мс при догенерации, поэтому важна разница):
+| что идёт 600 тиков (30 с) | мс/тик среднее | p95 | вывод |
+|---|---|---|---|
+| торнадо Weather2 стадии F2 над городом (без Natural Disasters!) | 49,7 – 49,9 (до: 50,1 – 50,6) | 68 – 69 | **нагрузки нет**, сервер держит 20 TPS; торнадо за 30 с унёс 376 из 1352 досок 13×13×8 «домика» под собой |
+| метеоритный дождь + землетрясение + лесной пожар Natural Disasters! вместе | 205 (до: 67) | 450 | **~5 TPS**, из 128×128 выборки пропало ~13 % непустых блоков |
+| то же, но лимит `maxConcurrent = 2` (третье бедствие отклонено) | 163 (до: 87) | 383 | ~6 TPS |
+Вывод: Natural Disasters! тяжёлый — по умолчанию `maxConcurrent = 1` (одновременно идёт одно бедствие на измерение; для одного бедствия замер не делался), случайный бросок — раз в 30–80 мин на игрока.
+Админ, которому нужно больше, ставит `maxConcurrent = 0` (без лимита). Лимит действует и на ручной призыв. Торнадо Weather2 с этим лимитом не связан.
+Оба замера и схема прогона — в `scripts/tests/disasterload.js` (в «режимах» `weather2` / `nd` / `both`, константа `DL_MODE`).
+
+**Русификация**: `weather2`, `coroutil`, `natural_disasters` — `pack/resourcepacks-src/russian-moded/assets/…` (`lang_validate` 0 ошибок); оберег — собственный `ru_ru.json` в его jar.
+
+**Тест** `scripts/tests/disasterward.js` (+ `disasterload.js`; запуск: `EXTRA_SERVER_SCRIPTS=<папка только с этими двумя файлами> TEST_COMMANDS=<«#sleep 260»+list> scripts/test-server.sh <папка>`): оберег ставится; зона внутри/снаружи;
+бедствие у зоны не появляется; вне зоны появляется; `tornado`/`sandstorm` Natural Disasters! отключены; бедствие, телепортированное внутрь, исчезает; Weather2 видит отражатель (радиус 128) и перестаёт видеть после ломания;
+галка случайных бедствий включена; оберег ничего не роняет; после ломания зона пропадает. Все проверки `DWCHECK … OK`.
+
+**Проверка клиента** (поток 15, `test-client.sh`, сборка с Weather2, CoroUtil, Natural Disasters!, disaster-ward): `CLIENT OK` (492 с). В логе клиента нашлась единственная
+претензия к нашим модам — `Skipped language file: disaster_ward:lang/ru_ru.json` (лишняя запятая в JSON); исправлено после прогона (правка только файла перевода в jar оберега, повторный прогон клиента не делался).
+Предыдущий `Mixin apply failed lycanitesmobs.mixins.json:LightTextureMixin` — прежний (см. запись про Lycanites выше). Что смотреть глазами: `docs/client-checklist.md` + вид штормов Weather2 (облака-частицы, дождь) с шейдерами и Distant Horizons,
+блок «Оберег от катаклизмов» в творческой вкладке «Функциональные блоки» (текстура, русское название, подсказка с радиусом).
+
+## WorldEdit 7.2.15 (2026-10-13, решение владельца В18)
+Modrinth `1u6JkXh5`, версия `Wrlqaul6`, Forge 1.20.1, сторона `both`, в `pack/modlist.txt`. `test-server.sh`: `SERVER OK` (Done 32 с), в логе «WorldEdit for Forge (version 7.2.15) is loaded», команды зарегистрированы, ошибок нет.
+Команды `//…` — по правам OP (разрешений-мода в сборке нет, действует уровень оператора). Клиентский прогон не делался (мод серверный по сути, интерфейса нет). Инструкция переноса построек — `docs/friends.md` («Администратору»).
+
+## Clanging Howl 1.1.0 (поток 20, 2026-10-17, решение владельца В23)
+Автор — Mongoose_artist (владелец), Polarice3; CurseForge project 1367022, ModJam 2025, лицензия All Rights Reserved, **стороннее скачивание
+запрещено** (в API нет `downloadUrl`) → jar `pack/mods/clanging-howl-1.20.1-1.1.0.jar` лежит в репозитории (правило CLAUDE.md), строка `#jar` в
+`modlist.txt`. Единственный мод с таким названием; Forge 1.20.1, сторона **both**. Зависимости: GeckoLib (≥84) и Curios (≥5.3.4) — уже в сборке;
+JEI необязательна. Добавляет: метеоритные дожди, внеземные объекты/гнёзда/исследовательские станции, мобов-техноплоть (гематома, охотник, туша,
+кровораспространитель…), энергогаджеты (curios-слоты heart/legs/feet), броню-инструменты из внеземной стали.
+Конфликты: теги `forge:ingots`/`ores` содержат только свои предметы (Almost Unified не затрагивается — `steel` в `unify.json` это `forge:ingots/steel`);
+слоты Curios `replace:false` — с остальными модами складываются. Русификация — см. docs/russification.md.
+
+**Прогон `test-server.sh` (max-tick-time=-1): `Done (48.6s)`**, 152 ERROR в логе — фоновые, как у остальных модов; строк с `clanginghowl` уровня ERROR/exception нет.
+Единственное — WARN «config/clanginghowl.toml исправлен до значений по умолчанию» (первый запуск: метеоритный дождь включён, раз в 15 дней).
+Не проверено: клиент (рендер GeckoLib, перевод в игре), реальный метеоритный дождь и спавн мобов/структур в мире, поведение рядом с Lycanites/Cataclysm.
+
+## Chaos Persists 0.9.1 — ремейк OreSpawn (поток 23, 2026-10-17, решение владельца В16)
+CurseForge 1460238, файл 9130290, Astryxion, All Rights Reserved. Jar `pack/mods/chaospersists-1.20.1-0.9.1.jar`, сторона both, обязательных зависимостей нет.
+Полное сравнение с OreSpawn 1.7.10 и находки — **`docs/orespawn.md`**. Коротко:
+- потолок здоровья 1024 обрезал бы King, Queen, Mobzilla → добавлен **AttributeFix** (mr `attributefix`, both);
+- рецепты ремейка создаются в коде и не видны KubeJS и Almost Unified;
+- металлы (уран, титан, соль, рубин, аметист) не стоят в тегах `forge:` и **намеренно не объединяются**;
+- `chaospersists:utopia` добавлен в `#minecraft:is_overworld` — туда попадут мобы и руды других модов.
+
+**Прогоны `test-server.sh`:**
+- `Done (81.8s)` — первый запуск, 153 ERROR, от ремейка один (потолок здоровья);
+- с AttributeFix — `Done (35.3s)`, 152 ERROR.
+
+Первый тик после Done ~136 с (WorldEdit + 6 новых измерений; `max-tick-time=-1` обязателен).
+Не проверено: клиент, измерения и бои в игре, HP боссов в бою.
+

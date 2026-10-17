@@ -4,5 +4,11 @@
   "item.deep_aether.music_disc_cyclone.desc": "Quizzly - Циклон",
   "itemGroup.deep_aether.deep_aether_blocks": "Deep Aether Blocks",
   "itemGroup.deep_aether.deep_aether_items": "Deep Aether Items",
-  "itemGroup.tabdeep_aether_blocks_tab": "Deep Aether - Blocks"
+  "itemGroup.tabdeep_aether_blocks_tab": "Deep Aether - Blocks",
+  "aether.pro_tips.line.deep_aether.deep_aether_tips": "§bСоветы от Deep Aether — голубого цвета!",
+  "aether.pro_tips.line.deep_aether.poison_squashes": "§bТыквы-сквоши становятся фиолетовыми, если бросить их в яд.",
+  "aether.pro_tips.line.deep_aether.squashes": "§bПробовали ли вы зачаровывать тыквенные семена на алтаре?",
+  "aether.pro_tips.line.deep_aether.sterling_aercloud": "§bСтерлинговые аэрооблака изредка встречаются у предела высоты строительства.",
+  "gui.deep_aether.pro_tip": "§bСовет профессионала:",
+  "key.deep_aether.toggle_skyjade_transparency": "Прозрачность небесного камня"
 }

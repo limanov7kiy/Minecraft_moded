@@ -1,0 +1,13 @@
+name = "Natural Disasters!"
+filename = "Natural Disasters! - Forge 1.20.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/BoU05LAX/versions/ZaQXD79r/Natural%20Disasters%21%20-%20Forge%201.20.1.jar"
+hash-format = "sha512"
+hash = "f9e281f17f78d4d1d5bb8b99d02919dbe57cfb14dabd79ceb5c227282936a8a7b0f765a37de723ac17aff1fb3a0e474c3fc6ecbdd8da65539cc0535c376fbf90"
+
+[update]
+[update.modrinth]
+mod-id = "BoU05LAX"
+version = "ZaQXD79r"

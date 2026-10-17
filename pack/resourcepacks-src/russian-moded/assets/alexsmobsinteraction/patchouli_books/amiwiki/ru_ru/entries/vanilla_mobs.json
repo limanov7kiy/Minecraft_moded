@@ -1,0 +1,16 @@
+{
+  "category": "alexsmobsinteraction:mobs",
+  "icon": "minecraft:paper",
+  "name": "Ванильные мобы",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/mobs/witch_additions.png"
+      ],
+      "text": "Отравленные ведьмы используют зелье сопротивления яду",
+      "title": "Сопротивление яду"
+    }
+  ],
+  "sortnum": 0
+}

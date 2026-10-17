@@ -1,0 +1,15 @@
+{
+  "category": "alexsmobsinteraction:general",
+  "icon": "minecraft:paper",
+  "name": "Эффекты еды",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "alexsmobsinteraction:textures/gui/wiki/general/food_fx.png"
+      ],
+      "text": "Животные, съевшие брошенную еду, получают её эффекты",
+      "title": "Эффекты еды"
+    }
+  ]
+}

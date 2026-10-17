@@ -1,0 +1,29 @@
+{
+  "name": "Табличка шифров водоворота",
+  "icon": "caerula_arbor:whirl_eye",
+  "category": "caerula_arbor:mod_items",
+  "read_by_default": true,
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Табличка шифров водоворота",
+      "item": "caerula_arbor:whirl_eye",
+      "scale": 1,
+      "text": "Непрестанно пульсирующий предмет, хранящий тайну роста порождений моря.$(br)Пробуждает большинство предводителей; как именно, описано в записях о каждом из них.$(br2)Добывается из пучинного родильного пруда, выросшего в метке пучины."
+    },
+    {
+      "type": "crafting",
+      "recipe": "caerula_arbor:copy_fold"
+    },
+    {
+      "type": "relations",
+      "title": "Связанные статьи",
+      "text": "Ссылки на другие понятия, упомянутые в этой записи, приведены выше.",
+      "entries": [
+        "caerula_arbor:mod_items/ocarina",
+        "caerula_arbor:lead_in/nethersea_brand"
+      ]
+    }
+  ]
+}

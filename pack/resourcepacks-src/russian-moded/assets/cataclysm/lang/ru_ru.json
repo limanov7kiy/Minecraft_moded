@@ -57,5 +57,8 @@
   "scylla_music_disc.sub": "Играет оригинальная тема Сциллы",
   "scylla_roar.sub": "Сцилла воет",
   "super_lightning_strike.sub": "Бьёт молния",
-  "the_cataclysmfarer.sub": "Играет The Cataclysmfarer"
+  "the_cataclysmfarer.sub": "Играет The Cataclysmfarer",
+  "key.cataclysm.boots_ability": "Способность ботинок",
+  "key.cataclysm.chestplate_ability": "Способность нагрудника",
+  "key.cataclysm.helmet_ability": "Способность шлема"
 }

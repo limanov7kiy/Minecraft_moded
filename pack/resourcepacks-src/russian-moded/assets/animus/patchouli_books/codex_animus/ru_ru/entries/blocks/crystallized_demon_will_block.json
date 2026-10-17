@@ -1,0 +1,18 @@
+{
+  "name": "guide.animus.entry.crystallized_demon_will_block",
+  "icon": "animus:crystallized_demon_will_block",
+  "category": "animus:blocks",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "animus:crystallized_demon_will_block",
+      "text": "Затвердевшая демоническая воля в кристаллической форме. Эта декоративная колонна служит подходящим компонентом CRYSTAL для Кровавых алтарей 6-го уровня."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Применение",
+      "text": "$(bold)Компонент алтаря:$() Служит блоком CRYSTAL при постройке алтаря$(br2)$(bold)Алтарь 6-го уровня:$() Необходим для Кровавого алтаря высшего уровня$(br2)Полные подробности постройки — в статье $(l:animus:tier6_altar)Алтарь 6-го уровня$().$(br2)$(italic)Воля, ставшая явью.$()"
+    }
+  ]
+}

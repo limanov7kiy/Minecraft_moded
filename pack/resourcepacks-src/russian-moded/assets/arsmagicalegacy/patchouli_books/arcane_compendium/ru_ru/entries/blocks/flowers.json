@@ -1,0 +1,55 @@
+{
+  "category": "arsmagicalegacy:blocks",
+  "icon": "arsmagicalegacy:aum",
+  "name": "item.arsmagicalegacy.arcane_compendium.blocks.flowers.name",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "item.arsmagicalegacy.arcane_compendium.blocks.flowers.page0.text"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "aum",
+      "item": "arsmagicalegacy:aum",
+      "text": "Цветок с целебными свойствами, аум входит в состав многих заклинаний. Его можно найти в лесах."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "cerublossom",
+      "item": "arsmagicalegacy:cerublossom",
+      "text": "Цереблоссом хорошо растёт в густой зелёной местности. Это одно из первых открытых магических растений, его используют в зельях и заклинаниях света. Вскоре после открытия заметили, что цереблоссом можно применять и в $(l:items/purified_vinteum_dust)очистке пыли винтеума$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "desert_nova",
+      "item": "arsmagicalegacy:desert_nova",
+      "text": "Пустынная нова растёт в засушливых местах. Для пустынного растения она обладает необычайными магическими свойствами и очень ценится. Это одно из двух растений, используемых в $(l:items/purified_vinteum_dust)очистке пыли винтеума$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "tarma_root",
+      "item": "arsmagicalegacy:tarma_root",
+      "text": "Корень тармы легче, чем кажется, и растёт в горных биомах. Он входит в состав заклинаний и эссенций воздуха."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "wakebloom",
+      "item": "arsmagicalegacy:wakebloom",
+      "text": "Цветок пробуждения растёт на поверхности воды в тёплом климате. Его часто применяют в водных заклинаниях, а также в эссенциях сродства с водой."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "arsmagicalegacy:pink_dye_from_aum",
+      "recipe2": "arsmagicalegacy:blue_dye_from_cerublossom"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "arsmagicalegacy:red_dye_from_desert_nova",
+      "recipe2": "arsmagicalegacy:brown_dye_from_tarma_root"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "arsmagicalegacy:magenta_dye_from_wakebloom"
+    }
+  ]
+}

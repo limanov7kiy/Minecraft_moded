@@ -1,0 +1,42 @@
+{
+  "name": "Зов Многих",
+  "icon": "caerula_arbor:echo_starter",
+  "category": "caerula_arbor:lead_in",
+  "read_by_default": true,
+  "sortnum": 7,
+  "pages": [
+    {
+      "type": "image",
+      "title": "Зов Многих",
+      "border": true,
+      "images": [
+        "caerula_arbor:patchouli_books/image_sets/echos.png"
+      ],
+      "text": "Ночи больше не дарят покоя."
+    },
+    {
+      "type": "text",
+      "title": "Зов Многих",
+      "text": "Когда уровень огня игрока низок (на отметке $(a)«Мерцающий огонь»$() и ниже), каждый вечер он может услышать один из Зовов Многих.$(br)Полученный Зов Многих действует два игровых дня и несёт как положительные, так и отрицательные эффекты, которыми можно управлять с помощью устройств (они перечислены на следующей странице).$(br2)Полученные игроком Зовы Многих можно посмотреть в регистраторе Каэрулы."
+    },
+    {
+      "type": "crafting",
+      "recipe": "caerula_arbor:echo_starter",
+      "recipe2": "caerula_arbor:craft_echo_starter_gold"
+    },
+    {
+      "type": "crafting",
+      "recipe": "caerula_arbor:craft_echo_ender",
+      "recipe2": "caerula_arbor:craft_echo_ender_gold"
+    },
+    {
+      "type": "relations",
+      "title": "Связанные записи",
+      "text": "Ссылки на другие понятия, упомянутые в этой записи, приведены выше",
+      "entries": [
+        "caerula_arbor:lead_in/lights",
+        "caerula_arbor:mod_items/caerula_recorder"
+      ]
+    }
+  ]
+}

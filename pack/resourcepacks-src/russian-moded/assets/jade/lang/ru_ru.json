@@ -1,3 +1,4 @@
 {
-  "config.jade.item_mod_name_extra_msg": "ID мода"
+  "config.jade.item_mod_name_extra_msg": "ID мода",
+  "key.jade.show_details_alternative": "Показать детали (альтерн.)"
 }

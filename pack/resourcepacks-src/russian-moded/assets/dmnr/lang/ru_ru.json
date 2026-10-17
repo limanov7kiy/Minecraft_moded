@@ -75,5 +75,7 @@
   "tooltip.dmnr.faction_amulet": "Предотвращает рейды и нападения фракций, пока вы первым не начнёте войну и не объявите её.",
   "tooltip.dmnr.fallen_angel_ring": "Туманную форму можно переключать при применении как заклинания, и она увеличивает скорость полёта!",
   "tooltip.dmnr.glass_cannon_belt": "Удваивает весь входящий и исходящий урон.",
-  "tooltip.dmnr.sturdy_belt": "Уменьшает весь входящий и исходящий урон вдвое."
+  "tooltip.dmnr.sturdy_belt": "Уменьшает весь входящий и исходящий урон вдвое.",
+  "dmnr.key.use_spell_storing_ring": "DM&R: Браслет заклинаний",
+  "dmnr.key.togglenightvision": "DM&R: Ночное зрение"
 }

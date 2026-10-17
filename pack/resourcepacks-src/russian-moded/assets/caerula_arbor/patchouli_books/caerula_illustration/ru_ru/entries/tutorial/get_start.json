@@ -1,0 +1,45 @@
+{
+  "name": "С чего начать",
+  "icon": "caerula_arbor:caerula_recorder",
+  "category": "caerula_arbor:tutorial",
+  "read_by_default": true,
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Первые шаги",
+      "item": "caerula_arbor:ocean_cutin",
+      "scale": 1,
+      "text": "Чтобы узнавать о механиках мода, вам нужно сделать глубокосиний регистратор.$(br)Для него требуется кутиновая стеклянная панель, которую делают из глубоководного кутина; его добывают с карманных морских криперов или находят в некоторых структурах мода.$(br)Далее нужно перелистнуть страницу."
+    },
+    {
+      "type": "crafting",
+      "recipe": "caerula_arbor:craft_cutin_pane",
+      "recipe2": "caerula_arbor:caerula_rec"
+    },
+    {
+      "type": "spotlight",
+      "title": "Первые шаги",
+      "item": "caerula_arbor:block_recorder",
+      "scale": 1,
+      "text": "Глубокосиний терминал — блочная форма глубокосинего регистратора; крафтом их можно превращать друг в друга. Щелчок правой кнопкой по терминалу тоже открывает интерфейс.$(br)Терминал может встретиться в некоторых структурах.$(br)Он служит рабочим блоком жителя-хитрого торговца."
+    },
+    {
+      "type": "text",
+      "title": "Важные механики",
+      "text": "Убедитесь, что вы разобрались в механиках: $(a)целевая жизнь$(), $(1)нервное повреждение$(), $(6)огни$(), $(c)Зов Многих$() и $(d)реакция отторжения$() — с ними можно столкнуться уже в начале игры.$(br)Перейти к ним можно по связанным статьям на следующей странице."
+    },
+    {
+      "type": "relations",
+      "title": "Связанные статьи",
+      "text": "Ссылки на другие понятия, упомянутые в этой записи, приведены выше.",
+      "entries": [
+        "caerula_arbor:mod_items/caerula_recorder",
+        "caerula_arbor:lead_in/life_point",
+        "caerula_arbor:lead_in/nervous_density",
+        "caerula_arbor:lead_in/call_of_wemany",
+        "caerula_arbor:lead_in/rejections"
+      ]
+    }
+  ]
+}

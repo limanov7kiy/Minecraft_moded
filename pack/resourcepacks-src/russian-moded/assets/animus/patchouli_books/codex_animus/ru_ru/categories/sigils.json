@@ -1,0 +1,6 @@
+{
+  "name": "guide.animus.category.sigils",
+  "description": "Переносные инструменты силы, активируемые жизненной эссенцией. Каждый сигил даёт практику особые способности.",
+  "icon": "animus:sigil_storm",
+  "sortnum": 1
+}

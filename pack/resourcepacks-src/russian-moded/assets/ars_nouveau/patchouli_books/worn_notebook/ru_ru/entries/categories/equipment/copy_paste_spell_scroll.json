@@ -1,0 +1,15 @@
+{
+  "name": "Свиток переноса заклинания",
+  "category": "ars_nouveau:equipment",
+  "icon": "ars_instrumentum:copy_paste_spell_scroll",
+  "pages": [
+    {
+      "text": "Свиток переноса заклинания можно записать на Столе писца; он хранит одно заклинание. Shift + правый клик со свитком в основной руке и книгой заклинаний в другой применит записанное заклинание к выбранному слоту книги.",
+      "type": "patchouli:text"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ars_instrumentum:copy_paste_spell_scroll"
+    }
+  ]
+}

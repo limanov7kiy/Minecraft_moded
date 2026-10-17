@@ -8,5 +8,7 @@
   "item.gtbcs_spell_lib.treasure_pouch.more": "+%s ещё",
   "item.gtbcs_spell_lib.treasure_pouch.open": "[ПКМ, чтобы открыть]",
   "tooltip.gtbcs_spell_lib.painting.author": "Автор: %s",
-  "tooltip.gtbcs_spell_lib.painting.size": "%s × %s блоков"
+  "tooltip.gtbcs_spell_lib.painting.size": "%s × %s блоков",
+  "key.gtbcs_spell_lib.lore_item_next": "Лор: следующая страница",
+  "key.gtbcs_spell_lib.lore_item_previous": "Лор: предыдущая страница"
 }

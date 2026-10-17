@@ -1,0 +1,15 @@
+{
+  "name": "item.ars_instrumentum.wizards_armarium",
+  "category": "ars_nouveau:equipment",
+  "icon": "ars_instrumentum:wizards_armarium",
+  "pages": [
+    {
+      "text": "Маг всегда готов ко всему. С Гардеробом волшебника ваш гардероб путешествует с вами и позволяет переключаться между 3 наборами брони и панели быстрого доступа. Переключение предметов панели включается Shift + правым кликом с Гардеробом. При этом все сохранённые предметы выпадут на землю.",
+      "type": "patchouli:text"
+    },
+    {
+      "type": "ars_nouveau:apparatus_recipe",
+      "recipe": "ars_instrumentum:apparatus/wizards_armarium"
+    }
+  ]
+}

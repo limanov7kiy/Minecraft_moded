@@ -12,5 +12,10 @@
   "item.irons_spellbooks.ominous_bottle": "Зловещая склянка",
   "item.irons_spellbooks.prepared_ice_spider_egg": "Подготовленное яйцо ледяного паука",
   "jukebox_song.irons_spellbooks.flame_still_burns": "Caner Crebes - Пламя ещё горит",
-  "jukebox_song.irons_spellbooks.whispers_of_ice": "Caner Crebes - Шёпот льда"
+  "jukebox_song.irons_spellbooks.whispers_of_ice": "Caner Crebes - Шёпот льда",
+  "key.irons_spellbooks.group_1": "Iron's Spells: основное",
+  "key.irons_spellbooks.group_2": "Iron's Spells: быстрый вызов",
+  "key.irons_spellbooks.spell_bar_modifier": "Прокрутка панели заклинаний",
+  "key.irons_spellbooks.spell_wheel_toggle": "Колесо заклинаний",
+  "key.irons_spellbooks.spellbook_cast": "Применить заклинание"
 }

@@ -1,6 +1,6 @@
 # План работ и разделение по чатам
 
-Состояние на 2026-10-12 (актуальная сводка — раздел «Координация», раунд 4). Связка **1.20.1 + Forge 47.4.26**, сборка — `pack/` (packwiz).
+Состояние на 2026-10-12 (актуальная сводка — раздел «Координация», раунд 6). Связка **1.20.1 + Forge 47.4.26**, сборка — `pack/` (packwiz).
 Ветка-интегратор — `claude/affectionate-davinci-4gddoh` (на GitHub она стоит веткой по умолчанию).
 Каждый чат-поток работает в **своей** ветке от неё и вливается обратно через PR.
 
@@ -17,6 +17,7 @@
 | Кислород скафандров Northstar/CS в системе Ad Astra | `mods-src/mm-compat` |
 | Wizardry Restored 0.4.0: 38 из 61 недостающего заклинания + 4 SENSIBLE-заклинания Redux, тест в мире `castcheck.js` (42/42) | `mods-src/wizardry-restored`, `docs/wizardry-port.md` |
 | Lycanites Mobs: недостающий refmap миксинов (сделано в основном чате до разделения) | `patches/lycanites-refmap`, `docs/compat.md` |
+| Falling Tree 1.20.1-4.3.4: дерево падает целиком (FALL_BLOCK), присед = один блок, прочность «всё или ничего» (миксин в mm-compat), лимит 300 брёвен; тест на фейковом игроке | `docs/compat.md` «Falling Tree», `pack/config/fallingtree.json`, `scripts/tests/fallingtree.js` |
 | Серверные тесты: гравитация, маршруты, ракеты, кислород, руды, заклинания | `scripts/tests/` |
 
 ## В работе
@@ -188,7 +189,17 @@ JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.t
 ≈ 478 тыс. знаков книг; `pack/options.txt` — `lang:ru_ru` и порядок паков (`preserve`). `test-client.sh` не прогонялся.
 - [x] Этап 2 (строки): 11 485 строк переведены (`pack/resourcepacks-src/russian-moded` → `pack/resourcepacks/russian-moded.zip`, последним в `options.txt`), ветка `claude/russification-2`. Книги — по отзывам друзей (Ars Nouveau и Animus первыми).
 - [x] Заброшенные города (по просьбе владельца, 2026-10-12): The Lost Cities, профиль `rarecities`, `docs/lost-cities.md`.
+- [x] Китайские литералы кода/NBT (Талон Боба и др.): миксин LiteralContents + словарь 953 строки в `ru-lang`, `docs/russification.md`, `docs/compat.md`.
 - [ ] Прогнать `scripts/test-client.sh` и убедиться, что язык/паки подхватываются; строка в `docs/friends.md`.
+
+### Поток 11 — Перевод книг (ветка `claude/translate-books`, от `claude/abandoned-cities`)
+- [x] Кодекс **Mana and Artifice** (свой JSON `assets/mna/guide`, ≈ 246 тыс. знаков) + вычитка 660 названий MnA.
+- [x] **Animus**, **AMI Wiki**, **Dimensional Dungeons** (lang лежал как `ru_RU.json` — не грузился), **Ars Magica Legacy**, аддоны Ars, bobbook, exguide; Ars Nouveau (+18 ключей).
+- [x] Проверка всех jar на lang с неверным регистром/форматом (`ru_RU.json`) — только Dimensional Dungeons.
+- [x] Superb Warfare — переводить нечего (3 имени техники).
+- [ ] Приёмка в игре (кодекс MnA, Анимус, AMI Wiki, Dimensional Dungeons). Остальное — по отзывам.
+- [x] **Caerula Arbor** `caerula_illustration` (429 китайских строк, ≈14 тыс. знаков) — переведена целиком (ветка `claude/translate-caerula`).
+- PR в интегратор — после слияния #31 (пак внутри мода `ru-lang`).
 
 ## Интеграция (ревью PR, поток «Ревью и интеграция», ветка `claude/confident-hypatia-2zqr1t`)
 Цикл 1 — 2026-10-10:
@@ -224,9 +235,10 @@ JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.t
 - Galacticraft — **в работе отдельным потоком** (0.1.0 «лунный данж с боссом» в сборке) (ветка `claude/determined-sagan-51u10p`): свой мод поверх Ad Astra
   с портом недостающего из GC Legacy/GC5 (данжи, боссы, схемы, астероиды). План и точка остановки — `docs/galacticraft.md`.
 
-## Координация (поток «Координатор», session_015zoozt65pTMY4bR2XBFgb8)
+## Координация (поток «Координатор (2)», session_01TzhEBzXMNvkdaYhGJBCkDA; до 2026-10-12 22:10 — session_015zoozt65pTMY4bR2XBFgb8)
 Координатор раздаёт задачи потокам и выбирает модель; ревью и слияние — поток «Ревью и интеграция»;
-вопросы владельцу — только через «Связь с владельцем» (session_01TAw9QPkPRVtJZY37wFhBNv).
+вопросы владельцу — только через «Связь с владельцем (2)» (session_01Hncw6rYwbbT38frccVHWD8; прежняя session_01TAw9QPkPRVtJZY37wFhBNv архивирована).
+Правило владельца: при большом контексте сеанс заменяется свежим с коротким handoff и ссылками на `docs/`.
 
 Раунд 1 — 2026-10-11:
 | Задача | Поток (сеанс) | Модель — почему | Статус |
@@ -297,6 +309,71 @@ JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.t
 Тест владельца (Prism, офлайн-аккаунт, ссылка packwiz): установка 387/387, «Missing libraries» решено онлайн-запуском (friends.md, PR #24),
 главное меню без ошибок, одиночный мир создан, Origins и русский интерфейс работают.
 
+Раунд 6 — 2026-10-12 вечер → 2026-10-13 ночь (владелец спит; решения — по принятым правилам):
+| Задача | Поток (сеанс) | Модель — почему | Статус |
+|---|---|---|---|
+| Русификация: этап 2, мод `ru-lang` (русский пак всегда сверху), названия модов/Arknights английские; Lost Cities (В10 «а», `rarecities`) | Поток 6 (session_01QeeDTwLudyjkD12gbCa4Kp) | sonnet — строки, скрипты, конфиги | **влиты #27–#30, #31**; сеанс архивирован |
+| Подсказки загрузки мира по-английски (Aether Redux/Deep Aether, 21 строка) → ru_ru пака `ru-lang`; см. `docs/russification.md` §8а | Поток 16 | sonnet — разбор jar, lang | PR в `claude/affectionate-davinci-4gddoh` |
+| Длинные подписи клавиш уезжают за левый край на GUI x3+: префиксы зашиты в ключи Ars-модов; 100 строк сокращены в ru-lang (`scripts/lang_shorten_keys.py`), `docs/russification.md` §8б | Поток 17 | sonnet — разбор jar, lang | PR в `claude/affectionate-davinci-4gddoh` |
+| Китайские строки в коде модов («Талон Боба»): миксин `LiteralContents` в `ru-lang` + словарь 953 литералов, jar не патчены | Поток 6 | sonnet — по готовому плану, миксин маленький | **влит #39** |
+| Animus / «ключ разрешается в английский» | Поток 6 | — | закрыто без правок: из 72 тыс. ключей 742 английских — намеренные названия Arknights и имена собственные; Animus английский только при откате паков (см. Поток 13) |
+| JEI: аддоны, плагин Imbuement Altar | Поток 7 | sonnet | **влиты** (раунд 5) |
+| Производительность клиента | Поток 8 | sonnet | **влит #35**; дальше Поток 8 работал как «Ревью и интеграция (2)» |
+| Боссы: таблица `docs/bosses.md`, Ice and Fire CE (#34), Bosses of Mass Destruction + Cerbon's API (В12 «а») | Поток 9 (session_01WKtpNF9pEz1ZLSL76u21Qw) | sonnet — моды по образцу + тест спавна | **влиты #32, #34, #36**; сеанс архивирован |
+| Перевод книг: кодекс Mana and Artifice (+660 исправленных названий), Animus, AMI Wiki, Dimensional Dungeons, Ars и аддоны, bobbook | Поток 11 (session_01JahaRV9o4kKTT12dVPbUAf) | sonnet — перевод пачками + валидаторы | **влит #37**; Caerula Arbor (429 строк) — переведена (PR из claude/translate-caerula) |
+| Порт Wizardry Golems 0.2.0 (Extra Golems) → Necromancer's Delight (В13 «полный перенос», включая мобов Fish's Undead Rising) | Поток 12 (session_01Bg28XprSLsi1MoAEr25m4F) | opus — порт кода 1.12.2, низкий приоритет | #38 готов (golemcheck 13/13, CLIENT OK), **отложен по лимиту**; ND-1 — WIP `claude/necromancers-delight`, точка остановки в `docs/wizardry-port.md` |
+| Атлас текстур > 16384² (на слабых GPU слетали русские паки) | Поток 13 (session_01MpjMThXiMwvDnXrMqqdZXL) | opus — диагностика рендера | **влит #41** (~290 → ~125 Мпкс); сеанс архивирован |
+| Битые модели: Mekanism More Machines (`neoforge:composite`) и кольцо пилона Mana and Artifice (нет `pylon_ring.obj`) | Поток 14 | sonnet — разбор jar, KubeJS-ассеты | PR в `claude/affectionate-davinci-4gddoh`; `CLIENT OK`, подробности — `docs/compat.md` |
+| Ревью и слияние: #35, #31, #36, #39, #41, #37 | Ревью и интеграция (2) (session_01AtTBE2K9ovNYSKAU4EMyda) | sonnet — ревью по чек-листу | работает; при сильном росте контекста — замена свежим сеансом |
+
+Порядок слияния PR, которые все трогают jar `ru-lang` и `index.toml`: следующий автор подтягивает интегратор и пересобирает
+`scripts/build-ru-pack.sh` (бинарный jar — только пересборкой); повторный `test-client` не нужен, если влитое не пересекается с PR.
+Ветка `claude/ru-force-packs` (принудительное включение MPLOC/RTF+) не слита: до #41 при переполнении атласа давала краш вместо отката;
+после #41 — можно вернуться.
+
+Лимиты: 2026-10-13 00:00 UTC `seven_day` 75% (порог владельца на эту неделю), расход ночью ~2,5%/ч → режим «2 рабочих потока»
+(Ревью + Поток 13), Поток 12 остановлен с WIP, Поток 11 — после #37. Вопрос В14 владельцу: держать режим до сброса 17.10 06:00 UTC
+или поднять порог.
+Ждёт владельца (13.10): русские паки включены сразу; мобы Lycanites и драконы Ice and Fire без «missing»-текстур; книги
+(MnA, Animus, AMI, Dimensional Dungeons, bobbook) открываются по-русски; спавн мобов после BoMD; ModernFix-текстуры; В2 Millida; В14.
+
+Раунд 7 — 2026-10-13 (день; владелец на связи; лимит: «2 потока», стоп на 85% недели):
+| Задача | Поток (сеанс) | Модель — почему | Статус |
+|---|---|---|---|
+| #38 Wizardry Golems 0.2.0 — довести и слить вместо остановленного Потока 12 | Ревью и интеграция (2) | sonnet — слияние + тесты по образцу | **влит**; Поток 12 архивирован (ND-1 — WIP `claude/necromancers-delight`) |
+| Книга Caerula Arbor (429 строк) | Поток 11 | sonnet — перевод пачками | **влит #43**; сеанс архивирован |
+| Битые модели: mekmm `neoforge:composite`, MnA `pylon_ring.obj` | Поток 14 (session_01GMirfF4NSv9aGz89BvsGpA) | sonnet — замена ассетов через KubeJS | **влит #44**; сеанс архивирован |
+| Катаклизмы (В15): Weather2 + CoroUtil, Natural Disasters!, свой мод «Оберег» `mods-src/disaster-ward`; постройки ломаются (уточнение владельца) | Поток 15 (session_016FK9FaQRGFk4kHRNy6PKCJ) | sonnet — моды + маленький мод по образцу | **влит #45** |
+| WorldEdit (В18) — перенос построек на сервер, только OP | Поток 15 | sonnet | **влит #46**; сеанс архивирован |
+
+Решения владельца: В14 — 2 потока до сброса; В15 — катаклизмы (вариант 1 + на усмотрение 3/4, дубли убрать, оберег только из креатива, постройки ломаются);
+В16 — OreSpawn: поставить ремейк Chaos Persists (1.20.1), сравнить с оригиналом 1.7.10 и доделать недостающее;
+В17 — перенос построек: WorldEdit; В18 — «Да, добавляй».
+
+Очередь после сброса лимита (17.10 06:00 UTC):
+- OreSpawn: Chaos Persists в тестовую сборку → совместимость/дубли (Ice and Fire, Lycanites, Mowzie's) → список недостающего из 1.7.10 → выбор владельца → порт отдельным модом (opus).
+  Этап 1 сделан (поток 23, ветка `claude/orespawn`): ремейк + AttributeFix в сборке, сравнение — `docs/orespawn.md` (из 1.7.10 не хватает только яйца Zombie Pigman); ждёт выбора владельца по списку в конце документа.
+- Necromancer's Delight ND-1: с WIP `claude/necromancers-delight` (точка остановки — `docs/wizardry-port.md`), свежий сеанс opus.
+- Оберег: единый радиус для Weather2 (у него 128) и Natural Disasters! (64); бедствие, прилетевшее снаружи, не ломает блоки в зоне.
+- Ветка `claude/ru-force-packs` (после #41 атлас помещается) — оценить.
+- Extreme Natural Disasters (вулканы) / This Tsunami — только по запросу владельца.
+
+Пауза 13–17.10 (неделя дошла до 96%: в основном тратили другие проекты аккаунта; стоп-порог владельца поднят до 95%):
+| Задача | Поток (сеанс) | Статус |
+|---|---|---|
+| Экран клавиш при GUI x3: 100 подписей сокращены (`scripts/lang_shorten_keys.py`) | Поток 17 | коммит 1b07f3d ушёл прямо в интегратор без PR; Ревью проверил постфактум — оставлен; сеанс архивирован |
+| Falling Tree (В20/В21) | Поток 18 (session_01JYt9eB41N7DcqRHeab2qLY) | PR #49, по статике чисто; тест на объединённой сборке не дошёл — сервер убивал WorldEdit (ниже) |
+| Находка: WorldEdit 7.2.15 делает первый тик сервера >60 с → ServerHangWatchdog убивает сервер | Ревью | нужен `max-tick-time=-1` (тест-сервер, серверный zip, docs) |
+
+Решения владельца: В19 — Lost Cities «Оставь как есть» (современный стиль, `rarecities`); В20/В21 — Falling Tree, Dynamic Trees не ставим:
+присед = по блоку, прочность за каждое бревно, при нехватке прочности — один блок (миксин mm-compat), `maxSize` 300 ABORT, широкие стволы не трогаем;
+В22 — фризы у игроков: скрипт сбора диагностики и анализ; В23 — Clanging Howl (мод на CurseForge, есть русский перевод на Modrinth) — **сделано, поток 20**;
+В24 — паразиты: Fungal Infection: Spore (+ SRP System, если совместим), Оберег не пускает заразу и заражённых в зону;
+В25 — разбор Embeddium/Oculus («Sodium на Forge») в рамках анализа фризов.
+
+Раунд 8 — 2026-10-17 (сброс лимита; порядок владельца): скрипт диагностики (Поток 19, session_01VBNcQCP282sjURUfRbitCD) → max-tick-time и #49 (Ревью) →
+анализ фризов + Embeddium/Oculus → Clanging Howl → паразиты + Оберег (единый радиус, бедствия снаружи, зараза) → OreSpawn, Necromancer's Delight.
+
 ### Поток 8 — Производительность
 Файлы: `docs/performance.md`, `mods-src/mm-perf/`, `pack/config/{modernfix-mixins.properties,DistantHorizons.toml,jei/,sound_physics_remastered/}`, `pack/options.txt` (только строки графики).
 Сделано (ветка `claude/perf-stream8`, подробности и замеры — `docs/performance.md`):
@@ -311,4 +388,19 @@ JustSomeTranslations; `pack/resourcepacks/`, источник `rp` в `modlist.t
 1. ~~Таблица боссов сборки~~ — **сделано** (PR #32): 212 записей, числа из живой сборки; правило ведения — в «Правилах для всех потоков».
 2. Новый мод с огромными боссами — **Ice and Fire CE 2.1.13** (по умолчанию; вопрос владельцу ушёл через «Связь», альтернатива —
    Bosses of Mass Destruction): в сборке, сервер/клиент ОК, русификация, `docs/compat.md` («Ice and Fire CE»).
-3. Дальше: описать остальные боссы в `boss_info.py` (Arknights-моды), проверка драконов в игре (нагрузка на ноутбуке), JEI-плагин IaF.
+3. **Bosses of Mass Destruction 1.1.2 + Cerbon's API** (решение владельца В12 «а», PR ветки `claude/boss-bmd`): в сборке, spawncheck без просадки,
+   SERVER/CLIENT OK; условие — если у владельца спавн мобов снова пропадёт, убрать оба мода (см. compat.md).
+4. Дальше: описать остальные боссы в `boss_info.py` (Arknights-моды), проверка драконов в игре (нагрузка на ноутбуке), JEI-плагин IaF.
+
+### Поток 13 — Атлас текстур на GPU с пределом 16384
+- [x] Диагноз: «всеобщие» источники атласа блоков у Mana and Artifice (`entity`) и Blood Magic (`models`) тянут в атлас
+  мобов Lycanites/Ice and Fire/Alex's/Cataclysm (293 Мпкс > 16384²). Фильтр `pack/kubejs/assets/minecraft/atlases/blocks.json`:
+  ~125 Мпкс, атлас 16384×8192, `CLIENT OK` без отката паков (подробности — `docs/compat.md`).
+- [ ] Владельцу/друзьям: проверить в игре мобов Lycanites и драконов Ice and Fire (нет ли «missing»-текстур).
+
+### Поток 15 — Катаклизмы (ветка `claude/thread15-disasters`)
+- [x] Выбор: **Weather2 + CoroUtil** (торнадо, бури, сирены; торнадо рвут постройки по списку блоков, сундуки не трогают) + **Natural Disasters!** (метеориты, цунами, пожары, землетрясения, кислотный дождь; торнадо и песчаная буря отключены как дубли) — решение владельца В15.
+- [x] Свой мод `mods-src/disaster-ward`: «Оберег от катаклизмов» (только креатив, без рецепта и лута; зона 64 блока без бедствий обоих модов), редкий случайный спавн бедствий (30–80 мин на игрока), лимит одновременных бедствий. Extreme Natural Disasters не ставим (дубли, WIP) — `docs/compat.md`.
+- [x] Тест `scripts/tests/disasterward.js` (все DWCHECK OK), замеры нагрузки `disasterload.js`, русификация, строка про бэкап в `docs/friends.md`.
+- [ ] Владельцу: PR не слит; проверить в игре вид штормов (с шейдерами/Distant Horizons), нужны ли вулканы (Extreme Natural Disasters) и цунами-вёдра (This Tsunami); сервер с Natural Disasters! просадил TPS до ~5 при трёх бедствиях сразу над городом — лимит `maxConcurrent` (по умолчанию 1).
+- [x] WorldEdit 7.2.15 (В18, ветка `claude/worldedit`): в сборке, сервер ОК, инструкция переноса построек в `docs/friends.md`.

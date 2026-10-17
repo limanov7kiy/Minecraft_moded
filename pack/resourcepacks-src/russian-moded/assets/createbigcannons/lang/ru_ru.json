@@ -27,5 +27,6 @@
   "tag.createbigcannons.sheet_brass": "Латунный лист",
   "tag.createbigcannons.sheet_copper": "Медный лист",
   "tag.createbigcannons.sheet_iron": "Железный лист",
-  "tag.createbigcannons.sheet_steel": "Стальной лист"
+  "tag.createbigcannons.sheet_steel": "Стальной лист",
+  "key.createbigcannons.pitch_mode": "Сменить режим лафета"
 }
