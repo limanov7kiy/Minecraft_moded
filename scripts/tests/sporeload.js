@@ -4,8 +4,8 @@
 // Вывод: «SLOAD phase=<фаза> …» — tickTimes сервера (мс, свои тайминги тика), wall-период между тиками, число сущностей Spore/SRP/всего, заражённые блоки;
 // «SLOAD T0 <фаза> <epoch мс>» — границы фаз для разбора профиля JFR (scripts/jfr/JfrTop.java).
 // Запуск — отдельный прогон, папка только с этим файлом; профиль: SERVER_JVM_EXTRA='-XX:StartFlightRecording=filename=<путь>.jfr,settings=profile'.
-var SL_PHASE = 4800            // тиков на фазу (4 мин)
-var SL_BASE = 2400             // фон (2 мин)
+var SL_PHASE = 3000            // тиков на фазу (2,5 мин)
+var SL_BASE = 1200             // фон (1 мин)
 var SL = { last: 0, samples: [], wall: [], phases: [], phase: 'pre', fakes: [], centers: [], blocksBase: {} }
 // 6 очагов 3x2 с шагом 160 блоков (чанки подгружаются заранее — иначе генерация попадёт в замер)
 var SL_C = []
