@@ -38,10 +38,12 @@ const ndTick = (event) => {
     let ready = arenas.every(x => level.isPositionEntityTicking(new BlockPos(x, 200, 0)) && level.isPositionEntityTicking(new BlockPos(x, 200, 6)))
     if (!ready) { if (t % 100 == 0) console.info(`NDDIAG waiting chunks t=${t}`); return }
     ND.phase = 2; ND.cast = t
+    // мир тестового сервера сохраняется между прогонами — убрать мобов и грибы прошлых запусков
+    server.runCommandSilent('kill @e[type=!minecraft:player,x=-310,y=190,z=-20,dx=140,dy=30,dz=40]')
     arenas.forEach(x => { server.runCommandSilent(`fill ${x - 8} 199 -8 ${x + 8} 199 8 minecraft:stone`); server.runCommandSilent(`fill ${x - 8} 200 -8 ${x + 8} 210 8 minecraft:air`) })
     ;[-200, -230, -260].forEach(x => server.runCommandSilent(`summon minecraft:husk ${x + 0.5} 200 4.5 {NoAI:1b,PersistenceRequired:1b}`))
-    // moveTo, а не setPos: MagicProjectileEntity.aim ставит снаряд в xo/yo/zo стрелка (позиция прошлого тика)
-    let aim = (x, pitch) => { fake.moveTo(x + 0.5, 200, 0.5, 0, pitch); fake.yHeadRot = 0; fake.setOnGround(true) }
+    // setOldPosAndRot: MagicProjectileEntity.aim ставит снаряд в xo/yo/zo стрелка (позиция прошлого тика)
+    let aim = (x, pitch) => { fake.setPos(x + 0.5, 200, 0.5); fake.yRot = 0; fake.xRot = pitch; fake.yHeadRot = 0; fake.setOldPosAndRot(); fake.setOnGround(true) }
     aim(-200, 10); report('stink_bomb_cast', cast('stink_bomb') === true, '')
     aim(-230, 10); report('frost_bomb_cast', cast('frost_bomb') === true, '')
     aim(-260, 10); report('corrode_cast', cast('corrode') === true, '')
