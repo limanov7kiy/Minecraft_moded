@@ -47,6 +47,7 @@ mr l_enders-cataclysm
 mr ice-and-fire-dragons    # both: Ice and Fire CE 2.1.13 — драконы (огненный/ледяной/молниевый), гидра, сирены и др.; зависимость Citadel (поток 9)
 mr cerbons-api             # both (решение владельца В12 «а»: вернуть ради BoMD; поток 10 убирал из-за миксинов коллизий — регрессионный тест spawncheck.js)
 mr bosses-of-mass-destruction-forge  # both: Bosses of Mass Destruction 1.1.2 — Лич, Обсидилит, Void Blossom, Гаунтлет с аренами (поток 9)
+#jar clanging-howl             # both: Clanging Howl 1.1.0 (Mongoose_artist, Polarice3; All Rights Reserved, CF без стороннего скачивания) — инопланетные падения метеоритов, техноплоть-мобы, энергоинструменты; зависимости GeckoLib и Curios уже в сборке (поток 20). Перевод — russian-moded/assets/clanginghowl (den1s64dev, CC-BY-NC-SA-4.0 + дописано нами)
 
 ## Ракеты, космос, техника
 mr create
