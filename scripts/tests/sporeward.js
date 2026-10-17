@@ -16,6 +16,7 @@ ServerEvents.tick(event => {
   const block = (x, y, z) => String(level.getBlockState(new BlockPos(x, y, z)).block.id)
   const has = (e, eff) => { let f = false; e.getActiveEffects().forEach(i => { if (String(i.getEffect().getDescriptionId()).includes(eff)) f = true }); return f }
   const R = 96
+  if (T % 100 == 0) console.info('SWCHECK debug T=' + T)
 
   if (T == 60) {
     server.runCommandSilent('forceload add -16 -16 16 16')

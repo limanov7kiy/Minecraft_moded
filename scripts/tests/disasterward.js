@@ -44,8 +44,8 @@ ServerEvents.tick(event => {
   }
   if (T == 170) {
     ok('entered-zone-removed', near('acidrain', 20, 20, 10) == 0, `acidrain in zone=${near('acidrain', 20, 20, 10)}`)
-    ok('weather2-deflector', Api().weatherDeflected(level, new BlockPos(0, 200, 0), 128), 'findWeatherDeflector(0,200,0,128)')
-    ok('weather2-deflector-far', !Api().weatherDeflected(level, new BlockPos(900, 200, 900), 128), 'x=900 — вне радиуса 128')
+    // с потока 22 оберег не регистрируется «Отражателем бурь» Weather2 (там радиус зашит, 128): бури разворачивает сам оберег по своему радиусу (sporeward.js)
+    ok('weather2-not-deflector', !Api().weatherDeflected(level, new BlockPos(0, 200, 0), 128), 'findWeatherDeflector(0,200,0,128) пуст')
     try {
       var V = Java.loadClass('net.mcreator.naturaldisasters.network.NaturalDisastersModVariables$WorldVariables')
       ok('natural-enabled', V.get(level).NaturalDisastersSpawningNaturalCheckBox, 'чекбокс случайных бедствий Natural Disasters!')
@@ -58,6 +58,5 @@ ServerEvents.tick(event => {
   if (T == 180) {
     ok('ward-no-drop', near('item', 0, 0, 8) == 0, `items=${near('item', 0, 0, 8)}`)
     ok('zone-gone', !Api().isProtected(level, 30, 30), '')
-    ok('weather2-deflector-removed', !Api().weatherDeflected(level, new BlockPos(0, 200, 0), 128), '')
   }
 })

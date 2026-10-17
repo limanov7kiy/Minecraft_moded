@@ -9,6 +9,10 @@ file = "config/DistantHorizons.toml"
 hash = "77155a1e8e79c1c932654c28d6c004325a296da837d768800cfd1733e349150e"
 
 [[files]]
+file = "config/Weather2/Misc.toml"
+hash = "48566ca0091a23ee20767fe8f0b59140106e96eaf0b99e381ebc895366de5a0e"
+
+[[files]]
 file = "config/Weather2/Storm.toml"
 hash = "d90d1cdabb978dba7833e8f9460e9941382ea3c9126c2bed06c84c8e0bf6fd87"
 
@@ -41,6 +45,10 @@ file = "config/canary.properties"
 hash = "8b34973d33381c95c7bb176234d5ed927110c5b81c0c0d82b5ebbf06dea97b81"
 
 [[files]]
+file = "config/disaster_ward-common.toml"
+hash = "4e9832f68b71d638c938b91fcf04cd02124e56255636d20ab480c4b2027077e4"
+
+[[files]]
 file = "config/iceandfire-common.toml"
 hash = "4e686e3616fc1885ce4380e95fe8c9d32be13536693da638e27b091372c0777b"
 
@@ -63,6 +71,14 @@ hash = "03774e9720dbb20d1054caf5ef3830e4f58bb3854035a3ad9b43d24a5aa76e08"
 [[files]]
 file = "config/sound_physics_remastered/soundphysics.properties"
 hash = "81511081d13eaf2cfcd6ae5fc95973e44bf7912543573ced691a218cceafd531"
+
+[[files]]
+file = "config/sporeconfig.toml"
+hash = "2ad6e7482e70f641102d77ade3dad0d55a71cd757853010d5aa14425e5b53de7"
+
+[[files]]
+file = "config/srpsystem-common.toml"
+hash = "00457ff2771a8b29b64bd7eca40b402a071d81a2a71c7bb52ced75c4f2c65ff7"
 
 [[files]]
 file = "config/vcinteraction/vcinteraction.properties"
@@ -267,6 +283,18 @@ hash = "5623b9dfc19c8c2c33475572fc36184f538a986fc151dd20c7d02036535a83ca"
 [[files]]
 file = "kubejs/data/dimdungeons/patchouli_books/guide_book/book.json"
 hash = "e486eaa37e89f8a264d01785307e2f0379ec6b5efb5df0afd843047c5720b23d"
+
+[[files]]
+file = "kubejs/data/disaster_ward/tags/entity_types/infection_immune.json"
+hash = "6095e66e44fd2c6a102cfcf2134555778a2649b71b8a8fd3cae06013a8da820e"
+
+[[files]]
+file = "kubejs/data/disaster_ward/tags/entity_types/spore_to_claw.json"
+hash = "3898dfe843b8616bfd4bdf45821503fe35b97189da61fdb9069433cdafa11e60"
+
+[[files]]
+file = "kubejs/data/disaster_ward/tags/entity_types/spore_to_licker.json"
+hash = "28939af178724af921c16b2de7b0acc0ee4c39c4d0e766974680991014488cdc"
 
 [[files]]
 file = "kubejs/data/irons_spellbooks/loot_tables/chests/catacombs/crypt_loot.json"
@@ -595,6 +623,10 @@ hash = "133759e34b7fe4947028331120afea1641f0f8299618776401f3c394c4074496"
 [[files]]
 file = "kubejs/data/northstar_structures/worldgen/structure/south_pole_aitken_basin.json"
 hash = "88fe83d6f47486f23745e3b3594c05667a7feedabfdb486d8f3590bb013bd3ab"
+
+[[files]]
+file = "kubejs/data/spore/spore_mob_conversion/mm_moded.json"
+hash = "e8a1c5f1d859c24104088b8abc0f482582bee196f1945e9952bb65c20bc2836f"
 
 [[files]]
 file = "kubejs/data/superbwarfare/forge/biome_modifier/deepslate_galena_ore_biome_modifier.json"
@@ -1647,7 +1679,7 @@ metafile = true
 
 [[files]]
 file = "mods/ru-lang-1.0.0-client.jar"
-hash = "16f4e503b9d9c5d9e666aa83bdd68fe1f401c493c4ae36a4dd34d7520fd6b1a2"
+hash = "d3507a940243ecc8cc08e3fb1948c0e2b939e5d984a169989feb661906ee2f49"
 
 [[files]]
 file = "mods/sarkazs_furnace_side_fables-0.2.3-forge-1.20.1.jar"
