@@ -329,6 +329,9 @@ Restored; namespace сохраняем оригинальный (`wizardrygolems
     `lang_validate` 0 ошибок.
   - Прогон: `TEST_COMMANDS=<файл «#sleep 420»> EXTRA_SERVER_SCRIPTS=<папка с копией ndcheck.js> scripts/test-server.sh <папка вне репо>`,
     ждать 11 строк `NDCHECK ... OK`.
+  - **Точка остановки потока 27 (2026-10-17, стоп по лимиту координатора):** ND-1 готов полностью — ndcheck 11/11,
+    SERVER OK, CLIENT OK (858 с), docs обновлены, ветка запушена; осталось только открыть PR в `claude/affectionate-davinci-4gddoh`
+    (если ещё не открыт). Следующий этап — ND-2 (мобы FUR).
   - Не перенесено в ND-1 (уходит в ND-2, нужны мобы/предметы FUR): Mana/Elemental Leech (пиявки FUR), 12 артефактов с
     эффектами через мобов FUR (лежат как предметы, без эффекта), остальные 16 заклинаний.
   - Рецепты бомб требуют предметов FUR (`foul_bristle`, `shattered_ice`) — вместе с мобами в ND-2.

@@ -582,7 +582,7 @@ Mass Destruction Forge 1.1.2. Cataclysm/Mowzie's/Lycanites не дублирую
 `mods-src/fishs-undead-rising` (`mod_lavacow` 0.1.0, порт нужных частей Fish's Undead Rising, автор Fish, ARR — NOTICE.md),
 решение владельца В13 «полный перенос». В ND-1 — то, что не требует мобов FUR: Stink/Frost Bomb, Corrode, Glowshroom,
 эффекты Soiled/Corroded/Infested/Poisonous Spore/Locusts, 17 артефактов (действуют 5), добыча.
-- Сервер: `scripts/tests/ndcheck.js` 11/11 OK, SERVER OK. Клиент: CLIENT OK.
+- Сервер: `scripts/tests/ndcheck.js` 11/11 OK, SERVER OK. Клиент: CLIENT OK (858 с), ошибок по `necromancersdelight`/`mod_lavacow` нет.
 - Снаряды Redux (`MagicProjectileEntity.aim`) вылетают из позиции стрелка прошлого тика (`xo/yo/zo`): в тестах фейкового
   игрока ставить `setPos` + `setOldPosAndRot()`, иначе бомба появляется там, где он стоял раньше.
 - Тестовый сервер: «Done» в логе выводится за ~3 мин до первого тика (ModernFix догружает мир после строки) — паузу
