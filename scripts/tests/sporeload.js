@@ -47,7 +47,7 @@ ServerEvents.tick(event => {
       for (var k = 0; k < SL_C.length; k++) { var c = SL_C[k]
         var fp = Fake.get(level, new GP(UUID.fromString('5a0e10ad-0000-4000-8000-00000000000' + k), 'sload' + k))
         fp.setPos(c[0] + 0.5, H(c[0], c[1]) + 1, c[1] + 0.5); level.addFreshEntity(fp); SL.fakes.push(fp) }
-      console.info('SLOAD fakeplayers=' + SL.fakes.length + ' level.players=' + level.players().size())
+      console.info('SLOAD fakeplayers=' + SL.fakes.length + ' level.players=' + level.players.size())
     } catch (e) { console.info('SLOAD fakeplayers FAIL ' + e) }
   }
   if (T > 330 && T % 20 == 0) SL.fakes.forEach(fp => { try { fp.setHealth(fp.getMaxHealth()); fp.removeAllEffects(); fp.getFoodData().setFoodLevel(20) } catch (e) {} })
