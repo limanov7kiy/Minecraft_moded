@@ -14,8 +14,11 @@
 		enableAntiAliasing = false
 
 		[client.advanced.graphics.quality]
-			# Радиус LOD в чанках (по умолчанию в этой версии DH — 256: слишком много для среднего ПК)
-			lodChunkRenderDistanceRadius = 64
+			# Радиус LOD в чанках (по умолчанию в этой версии DH — 256: слишком много для среднего ПК; 64 → 48 в потоке 28, В30)
+			lodChunkRenderDistanceRadius = 48
+			# Качество LOD пониже (по умолчанию MEDIUM): меньше памяти и нагрузки на видеокарту
+			horizontalQuality = "LOW"
+			verticalQuality = "LOW"
 
 [common]
 	[common.worldGenerator]
@@ -28,6 +31,7 @@
 		chunkGeneratorMode = "PRE_EXISTING_ONLY"
 
 	[common.multiThreading]
-		numberOfThreads = 2
+		# 2 → 1 (поток 28, В30): LOD строятся медленнее, но игре остаётся процессор; больше ядер — поднимите до 2–4 в настройках DH
+		numberOfThreads = 1
 		# потоки DH работают не постоянно, а ~половину времени — игре остаётся процессор
 		threadRunTimeRatio = "0.5"
