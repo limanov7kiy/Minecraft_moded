@@ -228,14 +228,7 @@ def m_head(w, h, face, s):
     """голова: лицо (4 px на блок): улыбка, румянец, тень от чёлки; остальное — волосы"""
     a = fill(w, h, P["skin"]) + noise(w, h, s, 2)
     if face == "north":
-        a[0:2] = P["skin_s"]  # тень от чёлки
-        cx = w // 2
-        my = int(h * 0.80)
-        # рот — отдельная плоская деталь (кость Mouth): короткая нейтральная линия, по образцу, одобренному владельцем
-        by = int(h * 0.66)
-        a[by:by + 2, 2:6] = a[by:by + 2, 2:6] * 0.4 + P["blush"] * 0.6
-        a[by:by + 2, w - 6:w - 2] = a[by:by + 2, w - 6:w - 2] * 0.4 + P["blush"] * 0.6
-        a[int(h * 0.68), cx] = P["skin_d"]  # нос
+        a[0:2] = P["skin_s"]  # тень от чёлки; на лице только глаза (решение владельца)
         a[-1, :] = P["skin_s"]
     elif face in ("east", "west", "south", "up"):
         a[:] = P["hair"]
@@ -572,58 +565,54 @@ def build_main(default_geo):
     cb("Head", (-3.5, 33.05, -3.5), (7, 7, 7), "head", dens=4, faces=["north"])
     cb("Head", (-3.5, 33.05, -3.5), (7, 7, 7), "head", faces=["south", "east", "west", "up", "down"])
     cb("AllHead", (-1.4, 31.9, -1.4), (2.8, 2.0, 2.8), "skin")
-    G.bone("Mouth", "Head", (0, 33.5, -3.52))
-    cb("Mouth", (-0.42, 33.42, -3.53), (0.84, 0.16, 0.02), "mouthflat", faces=["north"], share="swatch_mouthflat")
     for side in ("Right", "Left"):
         sg = -1 if side == "Right" else 1
         ex0 = -3.45 if side == "Right" else 1.05
-        cb(f"{side}Eyelid", (ex0, 33.9, -3.53), (2.4, 2.4, 0.1), "eye_white", dens=5, faces=["north"])
+        cb(f"{side}Eyelid", (ex0, 34.6, -3.53), (2.4, 2.4, 0.1), "eye_white", dens=5, faces=["north"])  # высота как у Irene
         cx = ex0 + 1.2 + 0.1 * sg   # зрачок чуть к носу
-        cb(f"{side}EyesBase", (cx - 0.85, 33.95, -3.58), (1.7, 1.95, 0.1), "iris", dens=5, faces=["north"])
-        cb(f"{side}EyesBase", (cx - 0.75, 35.35, -3.66), (0.4, 0.4, 0.05), "sparkle", dens=2, faces=["north"], share="swatch_sparkle")
-        pv = (cx, 34.85, -3.64)
+        cb(f"{side}EyesBase", (cx - 0.85, 34.65, -3.58), (1.7, 1.95, 0.1), "iris", dens=5, faces=["north"])
+        cb(f"{side}EyesBase", (cx - 0.75, 36.05, -3.66), (0.4, 0.4, 0.05), "sparkle", dens=2, faces=["north"], share="swatch_sparkle")
+        pv = (cx, 35.55, -3.64)
         for nm, sz, z, mat in (("Rim", 0.66, -3.63, "rim"), ("Pupil", 0.46, -3.65, "violet"), ("Hot", 0.2, -3.67, "hot")):
             G.bone(f"ysmGlow{side}{nm}", f"{side}EyesBase", pv)
-            cb(f"ysmGlow{side}{nm}", (cx - sz / 2, 34.85 - sz / 2, z), (sz, sz, 0.02), mat, rot=(0, 0, 45), pivot=pv,
+            cb(f"ysmGlow{side}{nm}", (cx - sz / 2, 35.55 - sz / 2, z), (sz, sz, 0.02), mat, rot=(0, 0, 45), pivot=pv,
                faces=["north"], share=f"swatch_{mat}")
-        bx = -3.35 if side == "Right" else 1.45
-        cb(f"{side}Eyebrow", (bx, 36.38, -3.62), (1.9, 0.28, 0.1), "brow", faces=["north"], share="swatch_brow")
 
     # ================= волосы: «шапка», чёлка-химэ прядями, боковые пряди, длинные пряди сзади
-    cb("Hair", (-3.9, 36.6, -3.9), (7.8, 4.0, 7.8), hair(0, True), dens=2, faces=["south", "east", "west", "up"])
-    cb("Hair", (-3.9, 36.6, -3.9), (7.8, 4.0, 7.8), hair(0, True), dens=4, faces=["north"])
-    cb("Hair", (-3.4, 40.55, -3.4), (6.8, 0.45, 6.8), hair(), dens=2)
-    cb("Hair", (-2.3, 40.95, -2.3), (4.6, 0.3, 4.6), hair(), dens=2)
-    cb("Hair", (-4.05, 32.4, -1.6), (0.45, 4.3, 5.5), hair(0.3))
-    cb("Hair", (3.6, 32.4, -1.6), (0.45, 4.3, 5.5), hair(0.3))
-    cb("Hair", (-4.0, 31.2, 3.85), (8.0, 9.4, 0.5), hair(0.15, True))
+    cb("Hair", (-4.1, 37.2, -4.1), (8.2, 4.0, 8.2), hair(0, True), dens=2, faces=["south", "east", "west", "up"])
+    cb("Hair", (-4.1, 37.2, -4.1), (8.2, 4.0, 8.2), hair(0, True), dens=4, faces=["north"])
+    cb("Hair", (-3.6, 41.15, -3.6), (7.2, 0.5, 7.2), hair(), dens=2)
+    cb("Hair", (-2.5, 41.6, -2.5), (5.0, 0.35, 5.0), hair(), dens=2)
+    cb("Hair", (-4.3, 32.4, -1.6), (0.6, 5.0, 5.9), hair(0.3))
+    cb("Hair", (3.7, 32.4, -1.6), (0.6, 5.0, 5.9), hair(0.3))
+    cb("Hair", (-4.2, 31.2, 3.9), (8.4, 10.0, 0.6), hair(0.15, True))
     # пряди поверх «шапки» по бокам и на затылке — рваный силуэт вместо коробки
     for sg in (-1, 1):
-        zs = [-2.6, -1.3, 0.0, 1.3, 2.6, 3.9]
+        zs = [-2.7, -1.35, 0.0, 1.35, 2.7, 4.1]
         for i in range(len(zs) - 1):
-            x0 = 3.88 if i % 2 else 3.95
+            x0 = 4.08 if i % 2 else 4.16
             yb = 32.8 - (i % 3) * 0.5
-            lo, hi = (-(x0 + 0.25), -x0) if sg < 0 else (x0, x0 + 0.25)
-            cb("Hair", (lo, yb, zs[i]), (0.25, 40.4 - yb, zs[i + 1] - zs[i]), hair(0.25, True), dens=2,
+            lo, hi = (-(x0 + 0.4), -x0) if sg < 0 else (x0, x0 + 0.4)
+            cb("Hair", (lo, yb, zs[i]), (0.4, 41.0 - yb, zs[i + 1] - zs[i]), hair(0.25, True), dens=2,
                faces=["east", "west", "north", "south", "down"], seed=60 + i + (10 if sg > 0 else 0))
-    for i, x in enumerate([-3.9, -2.6, -1.3, 0.0, 1.3, 2.6]):
+    for i, x in enumerate([-4.1, -2.75, -1.4, -0.05, 1.3, 2.65]):
         yb = 31.0 - (i % 2) * 0.6
-        cb("Hair", (x, yb, 4.35 + (0.12 if i % 2 else 0)), (1.3, 40.4 - yb, 0.25), hair(0.2, True), dens=2,
+        cb("Hair", (x, yb, 4.5 + (0.15 if i % 2 else 0)), (1.45, 41.0 - yb, 0.4), hair(0.2, True), dens=2,
            faces=["south", "east", "west", "down"], seed=80 + i)
     # чёлка: ровный срез, пряди разной глубины
-    bang_x = [-3.95, -3.05, -2.2, -1.3, -0.45, 0.45, 1.3, 2.2, 3.05, 3.95]
+    bang_x = [-4.15, -3.2, -2.3, -1.38, -0.46, 0.46, 1.38, 2.3, 3.2, 4.15]
     for i in range(len(bang_x) - 1):
-        z0 = -4.12 if i % 2 else -4.02
-        yb = 36.42 + (0.08 if i % 3 == 1 else 0)
-        cb("front_h1", (bang_x[i], yb, z0), (bang_x[i + 1] - bang_x[i], 40.5 - yb, 0.22), hair(0.0, True), dens=4,
+        z0 = -4.42 if i % 2 else -4.3
+        yb = 37.12 + (0.08 if i % 3 == 1 else 0)
+        cb("front_h1", (bang_x[i], yb, z0), (bang_x[i + 1] - bang_x[i], 41.1 - yb, 0.32), hair(0.0, True), dens=4,
            faces=["north", "east", "west", "down", "up"], seed=40 + i)
     # боковые пряди (химэ): до груди, три слоя на сторону
     for sg in (-1, 1):
         def X(a, b):
             return (min(sg * a, sg * b), max(sg * a, sg * b))
-        for (xa, xb), (yt, yb), (z0, z1), tip in ((X(3.55, 4.3), (37.8, 28.6), (-3.95, -2.85), 0.4),
-                                                  (X(3.6, 4.35), (37.6, 29.8), (-2.85, -1.75), 0.38),
-                                                  (X(3.65, 4.4), (37.2, 31.0), (-1.75, -0.4), 0.35)):
+        for (xa, xb), (yt, yb), (z0, z1), tip in ((X(3.7, 4.55), (38.4, 28.6), (-4.25, -3.05), 0.4),
+                                                  (X(3.75, 4.6), (38.2, 29.8), (-3.05, -1.85), 0.38),
+                                                  (X(3.8, 4.65), (37.8, 31.0), (-1.85, -0.45), 0.35)):
             strand(G, "corner_h1", xa, xb, yt, yb, z0, z1, tip)
     # пряди за плечами
     for sg in (-1, 1):
@@ -640,12 +629,12 @@ def build_main(default_geo):
         strand(G, "hl_m", xs[i] + 0.3, xs[i + 1] + 0.6, 31.4, lens[i] + 1.4, 4.75, 5.15, 0.45)
     # ободок: чёрная лента через макушку, белое кружево по переднему краю
     G.bone("Headband", "Hair", (0, 39, -1))
-    cb("Headband", (-3.5, 41.0, -1.3), (7.0, 0.35, 1.0), "black")
-    cb("Headband", (-4.25, 37.0, -1.3), (0.35, 4.1, 1.0), "black")
-    cb("Headband", (3.9, 37.0, -1.3), (0.35, 4.1, 1.0), "black")
-    cb("Headband", (-3.5, 41.05, -1.65), (7.0, 0.4, 0.35), "lace", dens=4)
-    cb("Headband", (-4.3, 37.0, -1.65), (0.45, 4.1, 0.35), "lace", dens=4)
-    cb("Headband", (3.85, 37.0, -1.65), (0.45, 4.1, 0.35), "lace", dens=4)
+    cb("Headband", (-3.7, 41.65, -1.3), (7.4, 0.35, 1.0), "black")
+    cb("Headband", (-4.85, 37.6, -1.3), (0.35, 4.1, 1.0), "black")
+    cb("Headband", (4.5, 37.6, -1.3), (0.35, 4.1, 1.0), "black")
+    cb("Headband", (-3.7, 41.7, -1.65), (7.4, 0.4, 0.35), "lace", dens=4)
+    cb("Headband", (-4.9, 37.6, -1.65), (0.45, 4.1, 0.35), "lace", dens=4)
+    cb("Headband", (4.45, 37.6, -1.65), (0.45, 4.1, 0.35), "lace", dens=4)
 
     # ================= корпус: свитер, высокий пояс юбки, ремень с ромбовой пряжкой
     cb("UpperBody", (-3.5, 23.9, -2.025), (7, 7.85, 4.05), "sweater")
@@ -739,12 +728,12 @@ def build_main(default_geo):
         cb(f"CapeSide{side}", (x, 27.2 - ln, -2.9), (0.16, ln, 5.75), cape(wedges(2, 0.4, 0.3 if side == "L" else 0.8)), faces=["east", "west"])
 
     # ================= нимб-ромб над головой (глитч) и осколок Originium у плеча
-    G.bone("ysmGlowHalo", "Head", (0, 44.6, 0.6))
-    halo(G, "ysmGlowHalo", (0, 44.6, 0.6), 1.9)
-    G.bone("ysmGlowHaloGlitch", "ysmGlowHalo", (0, 44.6, 0.6))
-    cb("ysmGlowHaloGlitch", (-2.9, 45.3, 0.5), (1.5, 0.3, 0.2), "glitch", share="swatch_glitch")
-    cb("ysmGlowHaloGlitch", (1.3, 43.4, 0.5), (1.9, 0.25, 0.2), "glitch", share="swatch_glitch")
-    cb("ysmGlowHaloGlitch", (-0.6, 47.1, 0.5), (1.1, 0.25, 0.2), "glitch", share="swatch_glitch")
+    G.bone("ysmGlowHalo", "Head", (0, 45.2, 0.6))
+    halo(G, "ysmGlowHalo", (0, 45.2, 0.6), 1.9)
+    G.bone("ysmGlowHaloGlitch", "ysmGlowHalo", (0, 45.2, 0.6))
+    cb("ysmGlowHaloGlitch", (-2.9, 45.9, 0.5), (1.5, 0.3, 0.2), "glitch", share="swatch_glitch")
+    cb("ysmGlowHaloGlitch", (1.3, 44.0, 0.5), (1.9, 0.25, 0.2), "glitch", share="swatch_glitch")
+    cb("ysmGlowHaloGlitch", (-0.6, 47.7, 0.5), (1.1, 0.25, 0.2), "glitch", share="swatch_glitch")
     # спутник: чёрный осколок с маленьким светящимся ядром, рой чёрных обломков вокруг; летит по наклонной орбите
     G.bone("ShardOrbit", "Root", (0, 30, 0))
     G.bone("Shard", "ShardOrbit", (-11, 30, 1.5))
