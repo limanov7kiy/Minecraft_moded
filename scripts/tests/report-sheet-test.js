@@ -342,12 +342,16 @@ assert.strictEqual(c.safeText_(3), 3);
   const before = sent.length;
   addRow('a@example.com', '[ЧЕРНОВИК] нужен ответ владельца');
   addRow('b@example.com', '   [черновик] с пробелами и регистром');
+  addRow('b2@example.com', '[ ЧЕРНОВИК ] пробелы внутри скобок');
+  addRow('b3@example.com', 'ЧЕРНОВИК: без скобок');
+  addRow('b4@example.com', '\u00a0\u200b[\u0427EPHOBИК] неразрывный пробел, невидимый символ и латинские E, P, H, O');
+  addRow('b5@example.com', 'DRAFT: english');
   addRow('c@example.com', '');
   addRow('d@example.com', '   ');
   addRow('e@example.com', 'уже ушло', new Date('2026-10-17'));
   const bad = addRow('нет адреса', 'текст');
   c.sendReplies_();
-  assert.strictEqual(sent.length, before, 'черновик/пусто/дата/плохой адрес — без отправки');
+  assert.strictEqual(sent.length, before, 'черновик (все варианты)/пусто/дата/плохой адрес — без отправки');
   assert.ok(/Ответ не отправлен: нет корректного адреса/.test(cell(bad, ci('Заметка') + 1)));
   c.sendReplies_();
   assert.strictEqual(cell(bad, ci('Заметка') + 1).split('нет корректного адреса').length, 2, 'заметка не дублируется при повторных запусках');
@@ -357,6 +361,27 @@ assert.strictEqual(c.safeText_(3), 3);
   assert.strictEqual(sent.length, before, 'выключатель SEND_REPLIES=false');
   c.CFG.SEND_REPLIES = true;
   grid.length = 1; sent.length = 0;
+
+  // сбой отправки: дата снята (повторится), других строк не касается; сбой после отправки не даёт дубль
+  {
+    const okRow = addRow('ok1@example.com', 'ответ ок');
+    const failRow = addRow('fail@example.com', 'ответ сбой');
+    const okRow2 = addRow('ok2@example.com', 'ответ ок 2');
+    const realSend = global.MailApp.sendEmail;
+    global.MailApp.sendEmail = (to, s2, b2) => { if (to === 'fail@example.com') throw new Error('Service invoked too many times'); return realSend(to, s2, b2); };
+    const n0 = sent.length;
+    c.sendReplies_();
+    assert.strictEqual(sent.length - n0, 2, 'сбой одной строки не роняет остальные');
+    assert.ok(!cell(failRow, stampCol), 'при сбое отправки дата снята: повторится на следующем запуске');
+    assert.ok(cell(okRow, stampCol) instanceof Date && cell(okRow2, stampCol) instanceof Date);
+    assert.ok(!/fail@/.test(cell(failRow, ci('Заметка') + 1)), 'адреса в «Заметке» нет');
+    global.MailApp.sendEmail = realSend;
+    c.sendReplies_();
+    assert.strictEqual(sent.length - n0, 3, 'повтор на следующем запуске после сбоя');
+    c.sendReplies_();
+    assert.strictEqual(sent.length - n0, 3, 'и дальше не повторяется');
+    grid.length = 1; sent.length = 0;
+  }
 
   // лимит за запуск
   for (let i = 0; i < 25; i++) addRow('u' + i + '@example.com', 'ответ ' + i);

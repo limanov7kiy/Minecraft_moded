@@ -417,7 +417,14 @@ function replyMail_(number, text) {
   };
 }
 
-function isDraftReply_(text) { return /^\s*\[ЧЕРНОВИК\]/i.test(String(text)); }
+// Черновик, если в начале (первые 40 знаков) есть «чернов…» в любом виде: «[ЧЕРНОВИК]», «[ черновик ]», «ЧЕРНОВИК:», с неразрывным пробелом,
+// невидимыми символами и латинскими двойниками букв (e, o, p, c, x, a, k…). Ошибка здесь — в сторону «не отправлять».
+var LATIN_LOOKALIKES_ = { a: 'а', b: 'в', c: 'с', e: 'е', h: 'н', k: 'к', m: 'м', o: 'о', p: 'р', t: 'т', x: 'х', y: 'у' };
+function isDraftReply_(text) {
+  var t = String(text).replace(/[\u00ad\u200b-\u200f\u2060\ufeff]/g, '').toLowerCase().substring(0, 40);
+  t = t.replace(/[a-z]/g, function (ch) { return LATIN_LOOKALIKES_[ch] || ch; });
+  return t.indexOf('чернов') >= 0 || /draft/i.test(String(text).substring(0, 40));
+}
 
 // Причина в «Заметку» без адреса; одну и ту же причину не дописываем при каждом запуске таймера.
 function noteReplyFail_(sh, row, reason) {
@@ -451,9 +458,16 @@ function sendReplies_() {
         if (!isValidEmail_(addr)) { noteReplyFail_(sh, row, 'нет корректного адреса'); continue; }
         if (!/^R-\d+$/.test(number)) { noteReplyFail_(sh, row, 'нет номера'); continue; }
         var m = replyMail_(number, text);
-        MailApp.sendEmail(addr, m.subject, m.body);
-        sentCount++;
+        // Дату ставим ДО отправки: если запись после отправки не удалась бы, следующий запуск прислал бы письмо второй раз.
+        // При сбое отправки дату снимаем, чтобы повторить на следующем запуске.
         sh.getRange(row, cSent).setValue(new Date());
+        try {
+          MailApp.sendEmail(addr, m.subject, m.body);
+        } catch (sendErr) {
+          sh.getRange(row, cSent).setValue('');
+          throw sendErr;
+        }
+        sentCount++;
       } catch (err) {
         Logger.log('sendReplies_: строка ' + row + ': ' + err);
         try { noteReplyFail_(sh, row, 'ошибка отправки (подробности в журнале выполнений)'); } catch (e2) { Logger.log('sendReplies_: заметка не записана: ' + e2); }
