@@ -1,0 +1,8 @@
+name = "0014_AL_AL_v1.1"
+filename = "0014_AL_AL_v1.1.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0014-%E5%93%88%E9%9B%B7%E6%B1%B0%E5%A4%9A/AL_%E5%B1%B1%E9%A3%8E/AL_%E5%B1%B1%E9%A3%8E_v1.1.ysm"
+hash-format = "sha256"
+hash = "67f1c150533387bcecab58645af68177ca3e770377ee55478bf26485473e44b3"

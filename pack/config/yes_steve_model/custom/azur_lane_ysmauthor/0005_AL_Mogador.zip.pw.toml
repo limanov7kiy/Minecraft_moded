@@ -1,0 +1,8 @@
+name = "0005_AL_Mogador"
+filename = "0005_AL_Mogador.zip"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0005-omo%E4%BB%99%E8%B4%9D2%E5%8F%B7%2Como%2Cmo%2CFujiwaranoMoku114514/AL_Mogador_%E8%8E%AB%E5%8A%A0%E5%A4%9A%E5%B0%94_LC/AL_%E8%8E%AB%E5%8A%A0%E5%A4%9A%E5%B0%94_Mogador.zip"
+hash-format = "sha256"
+hash = "80ed72caae238e88df534590e3d66b9d8e48799fbf705595301f4a69d34924d3"

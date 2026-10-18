@@ -1,0 +1,8 @@
+name = "0020_AL_LeMalin_v1.1"
+filename = "0020_AL_LeMalin_v1.1.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0020-%E5%B0%B1%E5%8F%AB%E7%BA%B8%E6%9D%BF%2C%E7%BA%B8%E6%9D%BF%2C%E6%9C%A8%E5%AE%81%E8%8B%92/AL_Lemalin_%E6%81%B6%E6%AF%92_%E6%87%92%E6%87%92%E7%9A%84%E7%99%BD%E5%85%94/AL_%E6%81%B6%E6%AF%92_%E6%87%92%E6%87%92%E7%9A%84%E7%99%BD%E5%85%94_LeMalin_v1.1.ysm"
+hash-format = "sha256"
+hash = "8fb69f60f8cb9de7bf1d8943762222310d58b7cb8e8415ade7754ced5a93962c"

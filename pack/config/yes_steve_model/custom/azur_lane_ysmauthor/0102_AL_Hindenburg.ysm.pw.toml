@@ -1,0 +1,8 @@
+name = "0102_AL_Hindenburg"
+filename = "0102_AL_Hindenburg.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0102-Dreamer%2C%E6%99%AE%E9%80%9A%E7%9A%84%E6%9C%A8%E5%B1%90/AL_Hindenburg_%E5%85%B4%E7%99%BB%E5%A0%A1_%E5%85%94%E5%A5%B3%E9%83%8E_LB/AL_%E5%85%B4%E7%99%BB%E5%A0%A1_%E5%85%94%E5%A5%B3%E9%83%8E_Hindenburg.ysm"
+hash-format = "sha256"
+hash = "5ae4b9292f5bfe1f4ae1b7be8b32cb0f37649afe1705a1dd9cadeb165a9cd53d"

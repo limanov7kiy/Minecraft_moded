@@ -1,0 +1,8 @@
+name = "AL_Kawakaze"
+filename = "AL_Kawakaze.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_AzurLane/AL_Kawakaze.ysm"
+hash-format = "sha256"
+hash = "913641816bdcef73d394f9a1bcfe4add6cd66a6c29ddb9d642acb04b59839fac"

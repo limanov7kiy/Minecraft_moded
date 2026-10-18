@@ -1,0 +1,8 @@
+name = "AL_Akashi(Lightweight)"
+filename = "AL_Akashi(Lightweight).ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_AzurLane/AL_Akashi%28Lightweight%29.ysm"
+hash-format = "sha256"
+hash = "2535565ae25f4bb1fb4df1c709916990e22a37fe284a6cb42e42e632ba5d9ffe"

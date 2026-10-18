@@ -1,0 +1,8 @@
+name = "0095_AL_Nsfw"
+filename = "0095_AL_Nsfw.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0095-%E6%BA%90%E7%9F%B3%E5%A7%AC%E5%8F%98%E4%BD%93%2Craw_chicken%2C%E9%B8%A1%E5%A7%AC/AL_%E8%8E%89%E8%8E%89%E5%A7%86_Nsfw_LA/AL_%E8%8E%89%E8%8E%89%E5%A7%86_Nsfw.ysm"
+hash-format = "sha256"
+hash = "f0e901b206d277295446a395ec8ffe487be80a348bac7efe74701c0557b6c527"

@@ -1,0 +1,8 @@
+name = "AL_Agir"
+filename = "AL_Agir.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_AzurLane/AL_Agir.ysm"
+hash-format = "sha256"
+hash = "4255b329ed4a790798030c5353f110bbbac895fe030cbc5843e0ef6b60ddf56e"

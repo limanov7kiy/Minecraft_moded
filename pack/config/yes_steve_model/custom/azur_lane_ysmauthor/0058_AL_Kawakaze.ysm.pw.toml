@@ -1,0 +1,8 @@
+name = "0058_AL_Kawakaze"
+filename = "0058_AL_Kawakaze.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0058-%E8%89%BA%E6%96%B9%E5%83%8F%E7%B4%A0%2C%E8%89%BA%E6%96%B9%E5%A0%82%2C%E5%B0%BB%2C%E8%89%BA%E6%96%B9%E5%9D%8A%2C%E8%89%BA%E6%96%B9%E9%98%81/AL_Kawakaze_%E6%B1%9F%E9%A3%8E_LB/AL_%E6%B1%9F%E9%A3%8E_Kawakaze.ysm"
+hash-format = "sha256"
+hash = "dddcb33309ae5be16374a5d1a876bdb1a58ea4390099503db458004e4291dca1"

@@ -1,0 +1,8 @@
+name = "0103_AL_Prinz-Eugen_LA"
+filename = "0103_AL_Prinz-Eugen_LA.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0103-%E6%B5%85%E9%99%8C%E8%8F%8C/AL_Prinz-Eugen_%E6%AC%A7%E6%A0%B9%E4%BA%B2%E7%8E%8B_LA/%E6%AC%A7%E6%A0%B9%E4%BA%B2%E7%8E%8B.ysm"
+hash-format = "sha256"
+hash = "c33d7d008b98abc1aa33778a3e40a11c3f179c6d18e2511cbdb10be94b91131e"
