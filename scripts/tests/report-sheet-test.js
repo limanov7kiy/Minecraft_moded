@@ -315,9 +315,9 @@ assert.strictEqual(c.safeText_(3), 3);
   global.PropertiesService = { getDocumentProperties: () => ({ getProperty: () => null, setProperty: () => {} }) };
   global.LockService = { getDocumentLock: () => ({ waitLock: () => {}, releaseLock: () => {} }) };
   const logs = []; global.Logger = { log: (m) => logs.push(m) };
-  global.SpreadsheetApp = { getActiveSpreadsheet: () => ss };
-  let quota = 100; const failTo = new Set(); const sent = [];
-  global.MailApp = { getRemainingDailyQuota: () => quota, sendEmail: (...a) => { assert.strictEqual(a.length, 3, 'только адрес, тема, тело: без cc/bcc/вложений/replyTo'); if (failTo.has(a[0])) throw new Error('fail ' + a[0]); sent.push({ to: a[0], subj: a[1], body: a[2] }); } };
+  global.SpreadsheetApp = { getActiveSpreadsheet: () => ss, flush: () => {} };
+  let quota = 100; const failTo = new Set(); const sent = []; let onSend = null;
+  global.MailApp = { getRemainingDailyQuota: () => quota, sendEmail: (...a) => { if (onSend) onSend(a); assert.strictEqual(a.length, 3, 'только адрес, тема, тело: без cc/bcc/вложений/replyTo'); if (failTo.has(a[0])) throw new Error('fail ' + a[0]); sent.push({ to: a[0], subj: a[1], body: a[2] }); } };
   const stampCol = ci('Ответ отправлен (дата)') + 1;   // номер колонки с 1
 
   const r1 = addRow('friend@example.com', 'Спасибо, исправим в 1.2.');
@@ -415,5 +415,56 @@ assert.strictEqual(c.safeText_(3), 3);
   addRow('long@example.com', 'x'.repeat(5000));
   c.sendReplies_();
   assert.strictEqual(sent[0].body, 'x'.repeat(4000) + '\n\nСтатус: ' + c.CFG.STATUS_URL);
+
+  // порядок: метка «отправляется …» ДО MailApp, затем настоящая дата
+  grid.length = 1; sent.length = 0;
+  const o1 = addRow('order@example.com', 'Проверка порядка');
+  let seen; onSend = () => { seen = cell(o1, stampCol); };
+  c.sendReplies_(); onSend = null;
+  assert.ok(typeof seen === 'string' && /^отправляется \d{4}-\d{2}-\d{2}T/.test(seen), 'до отправки в ячейке метка: ' + seen);
+  assert.ok(cell(o1, stampCol) instanceof Date, 'после успеха — дата');
+  // исключение: метка снимается, причина в «Заметке»
+  failTo.add('order2@example.com'); const o2 = addRow('order2@example.com', 'Ещё ответ');
+  c.sendReplies_(); failTo.clear();
+  assert.strictEqual(cell(o2, stampCol), '', 'при исключении метка очищена');
+  assert.ok(/Ответ не отправлен: ошибка отправки/.test(cell(o2, ci('Заметка') + 1)));
+  // застрявшая метка: свежая — молча пропускаем; старше часа — не шлём, только заметка (без дублей)
+  grid.length = 1; sent.length = 0;
+  const s1 = addRow('fresh@example.com', 'текст', 'отправляется ' + new Date().toISOString());
+  const s2 = addRow('stale@example.com', 'текст', 'отправляется ' + new Date(Date.now() - 2 * 3600 * 1000).toISOString());
+  c.sendReplies_(); c.sendReplies_();
+  assert.strictEqual(sent.length, 0, 'с меткой автоматически не повторяем');
+  assert.strictEqual(cell(s1, ci('Заметка') + 1), '', 'свежая метка — без заметки');
+  assert.strictEqual(cell(s2, ci('Заметка') + 1).split('отправка зависла').length, 2, 'старая метка — одна заметка');
+  assert.strictEqual(cell(s2, stampCol).slice(0, 12), 'отправляется', 'метку не трогаем');
+
+  // защита текста
+  grid.length = 1; sent.length = 0;
+  const nickCol = ci(c.CFG.NICK);
+  const mk = (email, text, nick) => { const r = addRow(email, text); grid[r - 1][nickCol] = nick || 'Ник=секрет'; return r; };
+  mk('maria@example.com', '', 'Мария Иванова');
+  mk('petr@example.com', '', 'Пётр_Вымышленный');
+  const bads = {
+    ник: 'Так же, как у Пётр_Вымышленный', падеж: 'Это видел Марии друг', адрес: 'Пишите petr@example.com',
+    ip: 'Сервер 198.51.100.7', win: 'Файл C:\\Users\\Ivan\\x', linux: 'См. /home/user/mods', at: 'Спросите @someone', url: 'Смотри https://evil.example/x',
+    www: 'Смотри www.evil.example', drive: 'drive.google.com/abc', ent: 'Вот &#64; тут', diag: 'Игрок Player-ab12',
+    urlprefix: 'https://github.com/limanov7kiy/Minecraft_moded_evil/x', http: 'http://github.com/limanov7kiy/Minecraft_moded/x',
+  };
+  const rows = {};
+  Object.keys(bads).forEach((k) => { rows[k] = addRow('to' + Object.keys(rows).length + '@example.org', bads[k]); });
+  c.sendReplies_();
+  assert.strictEqual(sent.length, 0, 'ни одно из запрещённых писем не ушло: ' + sent.map((x) => x.body));
+  Object.keys(rows).forEach((k) => {
+    const n = cell(rows[k], ci('Заметка') + 1);
+    assert.ok(/^Ответ не отправлен: в тексте/.test(n), k + ': ' + n);
+    assert.ok(!cell(rows[k], stampCol) && !/198\.51|Вымышл|evil|petr@|someone|Ivan/.test(n), k + ': без цитаты, дата пуста');
+  });
+  // разрешено: имя самого адресата, URL статуса и репозитория
+  const good1 = mk('masha@example.com', 'Здравствуйте, Маша! Статус: ' + c.CFG.STATUS_URL + ' и https://github.com/limanov7kiy/Minecraft_moded/pull/106 .', 'Маша');
+  const good2 = addRow('ivan@example.com', 'Привет, Иван. Версия 1.20.1, Forge 47.4.26, отдайте игре 4–6 ГБ.');
+  grid[good2 - 1][nickCol] = 'Иван';
+  c.sendReplies_();
+  assert.deepStrictEqual(sent.map((x) => x.to), ['masha@example.com', 'ivan@example.com'], 'имя адресата, разрешённые URL и версии проходят');
+  assert.ok(cell(good1, stampCol) instanceof Date);
 }
 console.log('report-sheet: OK');

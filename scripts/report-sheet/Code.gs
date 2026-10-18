@@ -433,6 +433,83 @@ function noteReplyFail_(sh, row, reason) {
   cell.setValue((old ? old + '; ' : '') + msg);
 }
 
+// ---- проверка текста ответа перед отправкой (порт защит scripts/report-status.py) ----
+var W_ = '\\p{L}\\p{N}_';
+var COMMON_WORDS_ = ['gmail', 'mail', 'yandex', 'example', 'telegram', 'discord', 'steam', 'email', 'tg', 'com'];
+var GUARD_TITLES_ = ['Контакт', 'Псевдоним из диагностики'];
+var ALLOWED_URL_PREFIXES_ = ['github.com/limanov7kiy/Minecraft_moded'];
+var DANGER_ = [
+  ['IP-адрес', /\b\d{1,3}(?:\.\d{1,3}){3}\b/],
+  ['IPv6', /\b(?:[0-9a-f]{1,4}:){3,}[0-9a-f]{1,4}\b/i],
+  ['путь Windows', /\b[A-Za-z]:[\\/]/],
+  ['путь Windows', /\\\\|\\Users\\|%\w+%/i],
+  ['путь Linux/macOS', /(?:^|[\s(])\/(?:home|Users|root|tmp|var|etc)\//],
+  ['ссылка Диска/spark/формы', /spark\.lucko|drive\.google|docs\.google|forms\.gle|forms\.google|dropbox|mega\.nz|mediafire|cdn\.discord|discord\.gg/i],
+  ['упоминание @', /@[\p{L}\p{N}_]/u],
+  ['ссылка на профиль/мессенджер', /t\.me\/|telegram\.(?:me|org)|discord\.com\/users|steamcommunity|vk\.com|wa\.me\//i],
+  ['HTML-сущность', /&#?[\p{L}\p{N}_]+;/u],
+  ['псевдоним диагностики', /\bPlayer-[0-9a-f]{3,}\b|\bPlayer-xxxx\b|diag-Player/i]
+];
+
+// Слова, которых не должно быть в публичном тексте: ники, контакты, адреса (токены от 3 знаков; из адреса — целиком, локальная часть и слова).
+function guardTokens_(values) {
+  var out = {};
+  values.forEach(function (v) {
+    v = String(v || '').trim().toLowerCase();
+    if (!v) return;
+    var pieces = [v].concat(v.split(/[\s,;@\/]+/));
+    pieces.slice().forEach(function (part) { pieces = pieces.concat(part.split(new RegExp('[^' + W_ + ']+', 'u'))); });
+    pieces.forEach(function (t) { if (t.length >= 3) out[t] = true; });
+  });
+  return out;
+}
+
+// Токены всех авторов (от 4 знаков, без почтовых доменов) минус токены адресата: его имя в обращении допустимо.
+function foreignTokens_(rowsValues, ownIdx) {
+  var own = {}, other = {};
+  rowsValues.forEach(function (vals, i) {
+    var t = guardTokens_(vals);
+    Object.keys(t).forEach(function (k) { (ownIdx[i] ? own : other)[k] = true; });
+  });
+  return Object.keys(other).filter(function (t) { return t.length >= 4 && COMMON_WORDS_.indexOf(t) < 0 && !own[t]; });
+}
+
+function hasToken_(text, tokens) {
+  var low = String(text).toLowerCase();
+  var words = {}, wordList = low.split(new RegExp('[^' + W_ + ']+', 'u'));
+  wordList.forEach(function (w) { if (w) words[w] = true; });
+  for (var i = 0; i < tokens.length; i++) {
+    var t = tokens[i];
+    if (new RegExp('[^' + W_ + ']', 'u').test(t)) {   // токен с пунктуацией (адрес целиком) — поиск подстроки по границам слов
+      if (new RegExp('(?<![' + W_ + '])' + t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(?![' + W_ + '])', 'u').test(low)) return true;
+      continue;
+    }
+    if (words[t]) return true;
+    if (t.length >= 4 && /[а-яё]/.test(t)) {   // падежи: основа без последней буквы + до двух букв
+      var stem = t.slice(0, -1);
+      for (var w = 0; w < wordList.length; w++) { var x = wordList[w]; if (x.length >= stem.length && x.length <= stem.length + 2 && x.indexOf(stem) === 0) return true; }
+    }
+  }
+  return false;
+}
+
+// Причина запрета (без цитаты) или ''. Разрешённые URL — CFG.STATUS_URL и репозиторий.
+function replyTextProblem_(text, tokens) {
+  var t = String(text);
+  var urls = t.match(/(?:https?|ftp):\/\/[^\s<>"')\]]+|\bwww\.[^\s<>"')\]]+/gi) || [];
+  for (var i = 0; i < urls.length; i++) {
+    var u = urls[i], bare = u.replace(/^(?:https?|ftp):\/\//i, '').replace(/^www\./i, '');
+    var ok = u.indexOf(CFG.STATUS_URL) === 0 || ALLOWED_URL_PREFIXES_.some(function (a) { var b = bare.toLowerCase(), pre = a.toLowerCase(); return /^https:\/\//i.test(u) && b.indexOf(pre) === 0 && /^[\/?#.,;:!)]?$|^[\/?#]/.test(b.substring(pre.length)); });
+    if (!ok) return 'в тексте посторонняя ссылка';
+  }
+  for (var j = 0; j < DANGER_.length; j++) if (DANGER_[j][1].test(t)) return 'в тексте похоже на ' + DANGER_[j][0];
+  if (hasToken_(t, tokens)) return 'в тексте найден ник/контакт/адрес другого автора';
+  return '';
+}
+
+var SENDING_ = 'отправляется ';
+var STALE_SENDING_MS_ = 60 * 60 * 1000;
+
 // Триггер по времени (sendReplies, раз в 15 минут). Ответ уходит один раз: после отправки ставится «Ответ отправлен (дата)»;
 // правка текста потом письма не повторяет — чтобы ответить снова, очистите эту ячейку вручную.
 function sendReplies_() {
@@ -449,28 +526,47 @@ function sendReplies_() {
     var cReply = h.indexOf('Ответ автору') + 1, cSent = h.indexOf('Ответ отправлен (дата)') + 1, cNum = h.indexOf('№') + 1, cE = emailColIndex_(h);
     if (!cReply || !cSent || !cNum || !cE) { Logger.log('sendReplies_: нет нужных колонок (запустите setup())'); return; }
     var data = sh.getRange(2, 1, last - 1, h.length).getValues();
+    var guardCols = [h.indexOf(CFG.NICK)].concat(CFG.EMAIL_TITLES.map(function (x) { return h.indexOf(x); }), GUARD_TITLES_.map(function (x) { return h.indexOf(x); })).filter(function (x) { return x >= 0; });
+    var guardVals = null;   // лениво: нужны только если есть что слать
     var sentCount = 0;
     for (var i = 0; i < data.length && sentCount < limit; i++) {
-      var row = i + 2, text = data[i][cReply - 1];
-      if (!text || !String(text).trim() || isDraftReply_(text) || data[i][cSent - 1]) continue;
+      var row = i + 2, text = data[i][cReply - 1], mark = data[i][cSent - 1];
+      if (!text || !String(text).trim() || isDraftReply_(text)) continue;
+      if (mark) {   // «отправляется …» старше часа — сбой посреди отправки: автоматически не повторяем, только заметка для ручной проверки
+        if (typeof mark === 'string' && mark.indexOf(SENDING_) === 0) {
+          var started = Date.parse(mark.substring(SENDING_.length));
+          if (!(Date.now() - started < STALE_SENDING_MS_)) { try { noteReplyFail_(sh, row, 'отправка зависла (письмо могло уйти) — проверьте вручную и очистите «Ответ отправлен»'); } catch (e3) { Logger.log('sendReplies_: заметка не записана: ' + e3); } }
+        }
+        continue;
+      }
+      var marked = false;
       try {
         var addr = data[i][cE - 1], number = String(data[i][cNum - 1]);
         if (!isValidEmail_(addr)) { noteReplyFail_(sh, row, 'нет корректного адреса'); continue; }
         if (!/^R-\d+$/.test(number)) { noteReplyFail_(sh, row, 'нет номера'); continue; }
+        if (!guardVals) guardVals = data.map(function (r) { return guardCols.map(function (c) { return r[c]; }); });
+        var me = String(addr).toLowerCase();
+        var ownIdx = data.map(function (r, k) { return k === i || String(r[cE - 1]).toLowerCase() === me; });
+        var problem = replyTextProblem_(text, foreignTokens_(guardVals, ownIdx));
+        if (problem) { noteReplyFail_(sh, row, problem); continue; }
         var m = replyMail_(number, text);
-        // Дату ставим ДО отправки: если запись после отправки не удалась бы, следующий запуск прислал бы письмо второй раз.
-        // При сбое отправки дату снимаем, чтобы повторить на следующем запуске.
-        sh.getRange(row, cSent).setValue(new Date());
+        var stampCell = sh.getRange(row, cSent);
+        stampCell.setValue(SENDING_ + new Date().toISOString());   // метка ДО отправки: сбой после неё не приведёт к повтору
+        marked = true;
+        SpreadsheetApp.flush();
         try {
           MailApp.sendEmail(addr, m.subject, m.body);
         } catch (sendErr) {
-          sh.getRange(row, cSent).setValue('');
+          stampCell.setValue('');   // не ушло — снимаем метку, причина в «Заметку»
+          marked = false;
           throw sendErr;
         }
         sentCount++;
+        stampCell.setValue(new Date());
+        marked = false;
       } catch (err) {
         Logger.log('sendReplies_: строка ' + row + ': ' + err);
-        try { noteReplyFail_(sh, row, 'ошибка отправки (подробности в журнале выполнений)'); } catch (e2) { Logger.log('sendReplies_: заметка не записана: ' + e2); }
+        try { noteReplyFail_(sh, row, marked ? 'письмо ушло, но дата не записана — проверьте «Ответ отправлен» вручную' : 'ошибка отправки (подробности в журнале выполнений)'); } catch (e2) { Logger.log('sendReplies_: заметка не записана: ' + e2); }
       }
     }
   } finally { lock.releaseLock(); }
@@ -574,4 +670,4 @@ function setup() {
   fillMissing();
 }
 
-if (typeof module !== 'undefined') { module.exports = { setupThenStart_: setupThenStart_, formatNumber: formatNumber, isStale: isStale, needsReply: needsReply, FORM: FORM, ensureForm_: ensureForm_, pickNewSheet: pickNewSheet, startRows: startRows, safeText_: safeText_, isValidEmail_: isValidEmail_, confirmationMail_: confirmationMail_, sendReplies_: sendReplies_, replyMail_: replyMail_, writeFormulas_: writeFormulas_, onFormSubmit: onFormSubmit, fillMissing: fillMissing, rebuildPeople_: rebuildPeople_, setup: setup, writeStart_: writeStart_, addFormItem_: addFormItem_, bootstrap: bootstrap, buildQueries: buildQueries, groupPeople: groupPeople, emailColIndex_: emailColIndex_, summarize: summarize, letter_: letter_, CFG: CFG }; }
+if (typeof module !== 'undefined') { module.exports = { setupThenStart_: setupThenStart_, formatNumber: formatNumber, isStale: isStale, needsReply: needsReply, FORM: FORM, ensureForm_: ensureForm_, pickNewSheet: pickNewSheet, startRows: startRows, safeText_: safeText_, isValidEmail_: isValidEmail_, confirmationMail_: confirmationMail_, sendReplies_: sendReplies_, replyTextProblem_: replyTextProblem_, replyMail_: replyMail_, writeFormulas_: writeFormulas_, onFormSubmit: onFormSubmit, fillMissing: fillMissing, rebuildPeople_: rebuildPeople_, setup: setup, writeStart_: writeStart_, addFormItem_: addFormItem_, bootstrap: bootstrap, buildQueries: buildQueries, groupPeople: groupPeople, emailColIndex_: emailColIndex_, summarize: summarize, letter_: letter_, CFG: CFG }; }
