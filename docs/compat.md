@@ -1073,3 +1073,9 @@ CurseForge 1460238, файл 9130290, Astryxion, All Rights Reserved. Jar `pack/
 сработать (сигнал редстоуна / звук). Если не реагирует — проверить, что микрофон не выключен (M) и порог
 активации голосом не слишком высок.
 Voice Chat Interaction (наш порт) остаётся `enabled=false` в `pack/config/vcinteraction/`, чтобы не было двойных вибраций.
+
+## WorldEdit выключен по умолчанию и на сервере (поток 36, 2026-10-18, решение владельца В36)
+- `scripts/fetch-mods.py`: моды с `[option] optional=true, default=false` кладутся в `mods/optional/` (Forge вложенные папки не читает). Это попадает и в `server.zip` (`mods/optional/worldedit-mod-7.2.15.jar`), и в `test-server.sh`. Включить = перенести jar в `mods/`.
+- `test-server.sh` без WorldEdit: **SERVER OK** (Done 58,9 с на холодном старте; в логе WorldEdit не упоминается).
+- `EXTRA_MODS=<папка с worldedit-mod-7.2.15.jar> test-server.sh` (WorldEdit включён): **SERVER OK** (Done 25,7 с, кэши уже тёплые; в логе WorldEdit есть). Тяжёлый тик WorldEdit (~2 мин, +2,7 ГБ) идёт после `Done`, поэтому время `Done` его не показывает.
+- Инструкция «включить на время» — `docs/hosting.md` («Необязательные моды») и `docs/friends.md` («Перенос построек»).
