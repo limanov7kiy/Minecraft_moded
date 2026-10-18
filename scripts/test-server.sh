@@ -7,6 +7,7 @@
 # EXTRA_CONFIG=<папка> — файлы, которые кладутся в config/ поверх конфигов сборки (например ускоренный конфиг для нагрузочного теста).
 # SERVER_JVM_EXTRA="..." — доп. аргументы JVM сервера (например JFR для профиля: -XX:StartFlightRecording=filename=/path/x.jfr,settings=profile).
 # SERVER_XMX=8G — куча сервера (по умолчанию 8G).
+# EXCLUDE_MODS="worldedit ..." — убрать jar с такими началами имён только на этот запуск (как у клиента без необязательных модов).
 set -eu
 dir="$1"; tmo="${2:-900}"
 root="$(cd "$(dirname "$0")/.." && pwd)"
@@ -18,6 +19,7 @@ if [ ! -f run.sh ]; then
 fi
 python3 "$root/scripts/fetch-mods.py" server mods | grep -v '^got' || true
 [ -n "${EXTRA_MODS:-}" ] && cp "$EXTRA_MODS"/*.jar mods/
+for m in ${EXCLUDE_MODS:-}; do rm -f mods/"$m"*.jar; done
 # конфиги сборки поверх сгенерированных
 for d in config defaultconfigs kubejs; do [ -d "$root/pack/$d" ] && mkdir -p "$d" && cp -r "$root/pack/$d/." "$d/"; done
 python3 "$root/scripts/fetch-config-files.py" .   # модели YSM и др. файлы по url из config/**/*.pw.toml
@@ -40,8 +42,9 @@ while kill -0 $pid 2>/dev/null; do
   if [ $still -ge 180 ]; then echo "log stalled"; pkill -9 -f unix_args.txt || true; break; fi
   if grep -qs 'Done (' logs/latest.log; then
     # проверочные команды консоли (по одной в строке), затем stop
-    [ -n "${TEST_COMMANDS:-}" ] && { while read -r c; do case "$c" in "#sleep "*) sleep "${c#\#sleep }" ;; ''|\#*) ;; *) echo "$c" >&3; sleep 2 ;; esac; done < "$TEST_COMMANDS"; sleep 5; }
-    echo stop >&3; break
+    # паузы — по 5 с с проверкой, что сервер жив: иначе этот скрипт отправил бы stop в FIFO следующего запуска
+    [ -n "${TEST_COMMANDS:-}" ] && { while read -r c; do case "$c" in "#sleep "*) n="${c#\#sleep }"; while [ "$n" -gt 0 ] && kill -0 $pid 2>/dev/null; do sleep 5; n=$((n-5)); done ;; ''|\#*) ;; *) echo "$c" >&3; sleep 2 ;; esac; kill -0 $pid 2>/dev/null || break; done < "$TEST_COMMANDS"; sleep 5; }
+    kill -0 $pid 2>/dev/null && echo stop >&3; break
   fi
   # после падения сторонние потоки могут держать JVM живой — добиваем
   if grep -qs 'Failed to start the minecraft server\|Crash report saved\|crash report has been saved' logs/latest.log; then sleep 5; pkill -9 -f unix_args.txt || true; break; fi
