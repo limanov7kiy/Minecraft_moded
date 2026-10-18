@@ -1,0 +1,8 @@
+name = "AL_Ping-Hai_v1.0"
+filename = "AL_Ping-Hai_v1.0.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_AzurLane/AL_Ping-Hai_v1.0.ysm"
+hash-format = "sha256"
+hash = "05f04e3e22c20b82f47b261ce4cccd595865e2827dcfda427a96763f96c04d39"

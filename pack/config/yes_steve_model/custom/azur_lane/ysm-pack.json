@@ -1,0 +1,10 @@
+{
+  "name": "Azur Lane",
+  "description": "Модели шипгёрл Azur Lane. Источник: github.com/Elaina69/Yes-Steve-Model-Repo, авторы — в карточке модели и docs/ysm-models.md",
+  "lang": {
+    "en_us": {
+      "name": "Azur Lane",
+      "description": "From github.com/Elaina69/Yes-Steve-Model-Repo (_AzurLane)"
+    }
+  }
+}

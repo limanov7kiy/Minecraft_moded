@@ -410,6 +410,105 @@ file = "config/yes_steve_model/custom/arknights_endfield/ysm-pack.json"
 hash = "5b1cb1d1d5ba1b9a94cf60310df926c8018f20eefc8db5818d25db4216802c2c"
 
 [[files]]
+file = "config/yes_steve_model/custom/azur_lane/AL_Agir.ysm.pw.toml"
+hash = "222b097740c1143f8f9d4a625b9686ef0b0188b34b1ee4a6969d81e3ad3b6809"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane/AL_Akashi(Lightweight).ysm.pw.toml"
+hash = "d95bf859c792bf0b074ec8c721e51fb2797dca94720fc092dfb5790031285606"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane/AL_Akashi.ysm.pw.toml"
+hash = "ce8a122b8aec6a6664c742289cb12240f0f8be9249a74d732caa5957dce5e905"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane/AL_Alsace.ysm.pw.toml"
+hash = "305e29eda737e5993bd0795bb0f38ac134677c65bd2cade53f047b75aff87331"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane/AL_Amagi(Summer)_v1.0.ysm.pw.toml"
+hash = "dadaf0583f950c0939f44178934aa1925fd46c283e840e5219a30fd535aa974d"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane/AL_ChangChun.ysm.pw.toml"
+hash = "fa65ee7382b435f3d9dd71458c973593a6322d4449b123470ec7e070872dba1f"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane/AL_Helena.ysm.pw.toml"
+hash = "2bf5a3cc3978089b5961429d96e0f0e93c4aff137ebbf14deab8a74db81515d4"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane/AL_Kawakaze.ysm.pw.toml"
+hash = "2669240598689e83548d5cce6e3ec212d222667c97a30fa44ee4b478df876ab5"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane/AL_Littorio(With_arm)_v1.0.ysm.pw.toml"
+hash = "50113ebeb07aac8139d284907ad9714b9af39b41557552815768726101f4a460"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane/AL_Littorio(With_arm)_v1.1.ysm.pw.toml"
+hash = "719cc73023174f25954ff2201ef7ab9f16c9b2155774196da01581d88af6a7ea"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane/AL_Littorio.ysm.pw.toml"
+hash = "69eb02b70c7ed5612554fd5530f1bddf030f51ecfba93f4a7ea70123334b937b"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane/AL_Littorio_v1.1.ysm.pw.toml"
+hash = "52e765b1e2039acfc4394bd4b96401031b8ec254c1ef58253703ab7cbb27e11e"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane/AL_Nagato.ysm.pw.toml"
+hash = "8035b508622b9beccec1028710afc8628a04ffb858432e23ff5e31fb66aa50cd"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane/AL_Nautilus.ysm.pw.toml"
+hash = "f2c90d654733a12a77f90e464562cd82bdc311aa076e8c3e0c3e7f563a6208b7"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane/AL_Ping-Hai_v1.0.ysm.pw.toml"
+hash = "5d8165fb5b3baf319966dacdc67c0a0028ec22d92ccb7859e8802ae27f851394"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane/AL_Tashkent_1.5.ysm.pw.toml"
+hash = "603a7ff6dc32d8b6750f0a45d44aa874b6ac683af44ae3d2cc9428ff7c24437c"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane/AL_Yamashiro_2.3.2.1.ysm.pw.toml"
+hash = "e39e818b83b77db309750319e99ad45580eb0efb04e9e5271a090c1e9952e46c"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane/AL_Yamashiro_2.4.3.ysm.pw.toml"
+hash = "06aa456059484ead169e69ae4848a72cf0d56ad6d96b27c6c75db3f2f0212926"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane/AL_Yukikaze_2.4.1.ysm.pw.toml"
+hash = "c84871bacda72769a24d6d6e9b6a366fb14fe4c54b1a633cb2c6d4793218e2f7"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane/ysm-pack.json"
+hash = "ef9162c80a3f59dbd29a05494c18cafc5ab9beb01fe9955a9a20177aa6fd5f96"
+
+[[files]]
 file = "config/yes_steve_model/custom/priestess/animations/arm.animation.json"
 hash = "239e2dadcc57f8fa08e8087c9eb2e3db9fafef289c787421caa77f2dce09538e"
 

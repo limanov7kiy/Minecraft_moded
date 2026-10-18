@@ -1,0 +1,8 @@
+name = "AL_Littorio(With_arm)_v1.0"
+filename = "AL_Littorio(With_arm)_v1.0.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_AzurLane/AL_Littorio%28With_arm%29_v1.0.ysm"
+hash-format = "sha256"
+hash = "e6921844ecdd82c88f0123e4335187fab61a81cd8585c450c8220565ef6f9a29"

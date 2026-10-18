@@ -1,0 +1,8 @@
+name = "AL_Nautilus"
+filename = "AL_Nautilus.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_AzurLane/AL_Nautilus.ysm"
+hash-format = "sha256"
+hash = "b823c427817f260eea899fc007a069de84f84caa7b9460bfd826995aa964151a"
