@@ -53,7 +53,7 @@ function Get-Sha1([string]$p) {
 $script:MaskExt = '^\.(log|txt|json|cfg|toml|properties|ini|xml|yml|yaml|md|snbt|json5)$|^[^.]*$'
 $script:MaskSkip = '^(mods\.csv|pack\.toml|index\.toml)$'   # версии модов выглядят как IP; личного там нет
 
-function Get-Alias([string]$nick) {
+function Get-NickAlias([string]$nick) {
     $sha = [Security.Cryptography.SHA1]::Create()
     $h = ($sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($nick.ToLowerInvariant())) | ForEach-Object { $_.ToString('x2') }) -join ''
     return 'Player-' + $h.Substring(0, 4)
@@ -73,24 +73,65 @@ function Mask-Text([string]$t, [object[]]$rules) {
     return $t
 }
 
-# Прочитать файл как UTF-8; если не UTF-8 — как Latin1 (байты сохраняются без потерь).
-function Mask-File([string]$path, [object[]]$rules) {
-    $bytes = [IO.File]::ReadAllBytes($path)
+# Замаскировать байты текстового файла. UTF-16 (dxdiag.txt: BOM FF FE / FE FF) — как UTF-16, иначе UTF-8; если не UTF-8 — как Latin1
+# (байты сохраняются без потерь). Возвращает $null, если менять нечего, иначе новые байты.
+function Mask-Bytes([byte[]]$bytes, [object[]]$rules) {
+    if ($bytes.Length -ge 2 -and (($bytes[0] -eq 0xFF -and $bytes[1] -eq 0xFE) -or ($bytes[0] -eq 0xFE -and $bytes[1] -eq 0xFF))) {
+        $u16 = New-Object Text.UnicodeEncoding(($bytes[0] -eq 0xFE), $true)
+        $text = $u16.GetString($bytes, 2, $bytes.Length - 2)
+        $new = Mask-Text $text $rules
+        if ($new -eq $text) { return $null }
+        return ($u16.GetPreamble() + $u16.GetBytes($new))
+    }
     $enc = New-Object Text.UTF8Encoding($false, $true)
     try { $text = $enc.GetString($bytes); $out = New-Object Text.UTF8Encoding($false) }
     catch { $out = [Text.Encoding]::GetEncoding(28591); $text = $out.GetString($bytes) }
     $new = Mask-Text $text $rules
-    if ($new -ne $text) { [IO.File]::WriteAllBytes($path, $out.GetBytes($new)); return $true }
-    return $false
+    if ($new -eq $text) { return $null }
+    return $out.GetBytes($new)
+}
+
+function Mask-File([string]$path, [object[]]$rules) {
+    $nb = Mask-Bytes ([IO.File]::ReadAllBytes($path)) $rules
+    if ($null -eq $nb) { return $false }
+    [IO.File]::WriteAllBytes($path, $nb)
+    return $true
+}
+
+# Старые логи logs\*.log.gz: распаковать, замаскировать, упаковать обратно (в архиве те же ник и IP, что в latest.log).
+function Mask-Gz([string]$path, [object[]]$rules) {
+    $ms = New-Object IO.MemoryStream(, [IO.File]::ReadAllBytes($path))
+    $gs = New-Object IO.Compression.GZipStream($ms, [IO.Compression.CompressionMode]::Decompress)
+    $raw = New-Object IO.MemoryStream
+    $gs.CopyTo($raw); $gs.Dispose()
+    $nb = Mask-Bytes $raw.ToArray() $rules
+    if ($null -eq $nb) { return $false }
+    $o = New-Object IO.MemoryStream
+    $gw = New-Object IO.Compression.GZipStream($o, [IO.Compression.CompressionMode]::Compress)
+    $gw.Write($nb, 0, $nb.Length); $gw.Dispose()
+    [IO.File]::WriteAllBytes($path, $o.ToArray())
+    return $true
 }
 
 function Mask-Stage([string]$dir, [object[]]$rules) {
     $changed = 0; $total = 0
     Get-ChildItem -LiteralPath $dir -Recurse -File -Force -ErrorAction SilentlyContinue | ForEach-Object {
-        if (($_.Name -match $script:MaskSkip) -or ($_.Extension -notmatch $script:MaskExt)) { return }
+        $f = $_   # в catch $_ — это ошибка, а не файл
+        if ($f.Name -match $script:MaskSkip) { return }
+        if ($f.Extension -ieq '.gz') {
+            $total++
+            try { if (Mask-Gz $f.FullName $rules) { $changed++ } }
+            catch {   # не удалось распаковать — не отдаём в архив неотмаскированное
+                $err = $_.Exception.Message
+                Remove-Item -LiteralPath $f.FullName -Force -ErrorAction SilentlyContinue
+                Note "ПРОПУЩЕНО (не удалось замаскировать, убрано из архива): $($f.Name) — $err"
+            }
+            return
+        }
+        if ($f.Extension -notmatch $script:MaskExt) { return }
         $total++
-        try { if (Mask-File $_.FullName $rules) { $changed++ } }
-        catch { Note "ОШИБКА маскировки: $($_.Name) — $($_.Exception.Message)" }
+        try { if (Mask-File $f.FullName $rules) { $changed++ } }
+        catch { $err = $_.Exception.Message; Note "ОШИБКА маскировки: $($f.Name) — $err" }
     }
     Note "OK: маскировка личных данных — изменено файлов: $changed из $total"
 }
@@ -233,7 +274,7 @@ try {
     $nick = ($nick -replace '[\\/:*?"<>|\s]', '_')
     if (-not $nick) { $nick = 'player' }
     $rawNick = $nick
-    $alias = Get-Alias $nick
+    $alias = Get-NickAlias $nick
 
     Write-Host ''
     Write-Host "Ваш ник, имя Windows, имя ПК и IP-адреса в архиве будут заменены: ник -> $alias, имя Windows -> USER, имя ПК -> HOST, IP -> x.x.x.x." -ForegroundColor Yellow

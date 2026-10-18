@@ -4,7 +4,7 @@ $ErrorActionPreference = 'Stop'
 $src = Join-Path (Split-Path -Parent $PSScriptRoot) 'collect-diagnostics.ps1'
 $ast = [Management.Automation.Language.Parser]::ParseFile((Resolve-Path $src), [ref]$null, [ref]$null)
 $ast.FindAll({ param($n) $n -is [Management.Automation.Language.FunctionDefinitionAst] }, $true) |
-    Where-Object { $_.Name -in 'Note', 'Get-Alias', 'Mask-Text', 'Mask-File', 'Mask-Stage' } |
+    Where-Object { $_.Name -in 'Note', 'Get-NickAlias', 'Mask-Text', 'Mask-Bytes', 'Mask-File', 'Mask-Gz', 'Mask-Stage' } |
     ForEach-Object { Invoke-Expression $_.Extent.Text }
 $script:Manifest = New-Object System.Collections.Generic.List[string]
 Get-Content $src | Where-Object { $_ -match '^\$script:Mask(Ext|Skip) =' } | ForEach-Object { Invoke-Expression $_ }
@@ -14,8 +14,8 @@ function Check([string]$name, $got, $want) {
     if ($got -ceq $want) { Write-Host "ok   $name" } else { Write-Host "FAIL $name`n  got:  $got`n  want: $want"; $script:fail++ }
 }
 
-$alias = Get-Alias 'Vasya_Pupkin'
-Check 'alias стабилен' (Get-Alias 'vasya_pupkin') $alias
+$alias = Get-NickAlias 'Vasya_Pupkin'
+Check 'alias стабилен' (Get-NickAlias 'vasya_pupkin') $alias
 Check 'alias формат' ($alias -match '^Player-[0-9a-f]{4}$') $true
 $names = @(@{ n = 'Vasya_Pupkin'; r = $alias }, @{ n = 'ivan'; r = 'USER' }, @{ n = 'DESKTOP-ABC123'; r = 'HOST' }, @{ n = 'me'; r = 'USER' })
 $m = { param($t) Mask-Text $t $names }
@@ -41,18 +41,31 @@ Check 'чужой UUID остаётся' (& $m 'entity 123e4567-e89b-12d3-a456-4
 # Файлы: UTF-8 с кириллицей, не-UTF-8 (cp1251), пропуски, бинарное расширение
 $dir = Join-Path ([IO.Path]::GetTempPath()) ('diagtest-' + [guid]::NewGuid().ToString('N'))
 $dLogs = Join-Path $dir 'logs'
-$fLatest = Join-Path $dLogs 'latest.log'; $fOld = Join-Path $dLogs 'old.log'; $fGz = Join-Path $dLogs 'x.gz'; $fMods = Join-Path $dir 'mods.csv'
+$fLatest = Join-Path $dLogs 'latest.log'; $fOld = Join-Path $dLogs 'old.log'; $fGz = Join-Path $dLogs 'old.log.gz'; $fBadGz = Join-Path $dLogs 'bad.log.gz'; $fDx = Join-Path $dir 'dxdiag.txt'; $fMods = Join-Path $dir 'mods.csv'
 New-Item -ItemType Directory -Path $dLogs -Force | Out-Null
 [IO.File]::WriteAllText($fLatest, "Привет Vasya_Pupkin 203.0.113.45`n", (New-Object Text.UTF8Encoding($false)))
 [IO.File]::WriteAllBytes($fOld, ([Text.Encoding]::GetEncoding(28591).GetBytes("Vasya_Pupkin ") + [byte[]](0xCF, 0xF0, 0xE8, 0xE2, 0xE5, 0xF2)))
 [IO.File]::WriteAllText($fMods, "mod-1.2.3.4.jar,Vasya_Pupkin`n")
-[IO.File]::WriteAllBytes($fGz, [Text.Encoding]::ASCII.GetBytes('Vasya_Pupkin'))
+# .gz: настоящий gzip с ником и IP; битый .gz убирается из архива; dxdiag.txt — UTF-16 LE с BOM (как у Windows)
+$gzOut = New-Object IO.MemoryStream
+$gzW = New-Object IO.Compression.GZipStream($gzOut, [IO.Compression.CompressionMode]::Compress)
+$gzB = [Text.Encoding]::UTF8.GetBytes("Vasya_Pupkin 203.0.113.45 joined`n"); $gzW.Write($gzB, 0, $gzB.Length); $gzW.Dispose()
+[IO.File]::WriteAllBytes($fGz, $gzOut.ToArray())
+[IO.File]::WriteAllBytes($fBadGz, [Text.Encoding]::ASCII.GetBytes('Vasya_Pupkin не gzip'))
+$u16 = New-Object Text.UnicodeEncoding($false, $true)
+[IO.File]::WriteAllBytes($fDx, ($u16.GetPreamble() + $u16.GetBytes("Machine name: DESKTOP-ABC123`r`n")))
 Mask-Stage $dir $names
 Check 'latest.log (UTF-8)' ([IO.File]::ReadAllText($fLatest).TrimEnd()) "Привет $alias x.x.x.x"
 $b = [IO.File]::ReadAllBytes($fOld)
 Check 'old.log (cp1251) байты' (($b | ForEach-Object { $_.ToString('x2') }) -join '') ((([Text.Encoding]::ASCII.GetBytes("$alias ") + [byte[]](0xCF, 0xF0, 0xE8, 0xE2, 0xE5, 0xF2)) | ForEach-Object { $_.ToString('x2') }) -join '')
 Check 'mods.csv пропущен' ([IO.File]::ReadAllText($fMods).TrimEnd()) 'mod-1.2.3.4.jar,Vasya_Pupkin'
-Check '.gz пропущен' ([IO.File]::ReadAllText($fGz)) 'Vasya_Pupkin'
-Check 'манифест' ($script:Manifest[-1]) 'OK: маскировка личных данных — изменено файлов: 2 из 2'
+$gzIn = New-Object IO.Compression.GZipStream((New-Object IO.MemoryStream(, [IO.File]::ReadAllBytes($fGz))), [IO.Compression.CompressionMode]::Decompress)
+$gzR = New-Object IO.StreamReader($gzIn, [Text.Encoding]::UTF8); $gzText = $gzR.ReadToEnd(); $gzR.Dispose()
+Check '.gz замаскирован' $gzText.TrimEnd() "$alias x.x.x.x joined"
+Check 'битый .gz убран из архива' (Test-Path -LiteralPath $fBadGz) $false
+$dxB = [IO.File]::ReadAllBytes($fDx)
+Check 'dxdiag UTF-16: BOM сохранён' (($dxB[0] -eq 0xFF) -and ($dxB[1] -eq 0xFE)) $true
+Check 'dxdiag UTF-16: имя ПК' ($u16.GetString($dxB, 2, $dxB.Length - 2).TrimEnd()) 'Machine name: HOST'
+Check 'манифест' ($script:Manifest[-1]) 'OK: маскировка личных данных — изменено файлов: 4 из 5'
 Remove-Item -LiteralPath $dir -Recurse -Force
 if ($fail) { Write-Host "$fail ПРОВАЛЕНО"; exit 1 } else { Write-Host 'ВСЕ ТЕСТЫ ПРОШЛИ' }
