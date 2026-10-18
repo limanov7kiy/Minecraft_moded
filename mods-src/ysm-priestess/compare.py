@@ -84,3 +84,17 @@ def face_sheet(out):
             items.append((R.render(m, seq, 1.0, v, ctx, world=0.82, bg=(118, 150, 104, 255), scale=34, size=(460, 420),
                                    center=(0, 35.5, 0)), f'лицо: {n}'))
     row(items, out)
+
+
+def companion_sheet(out):
+    """осколок-спутник крупно с разных сторон"""
+    me = HERE.parent.parent / 'pack/config/yes_steve_model/custom/priestess'
+    m, seq = load(me)
+    items = []
+    for t, v in ((0.0, 0), (1.5, 30), (3.0, -30), (4.5, 0)):
+        W = m.world(seq, t, {})
+        c = (W['Shard'] @ [*m.bones['Shard']['pivot'], 1])[:3]
+        with contextlib.redirect_stderr(io.StringIO()):
+            items.append((R.render(m, seq, t, v, {}, world=0.82, pitch=8, bg=(118, 150, 104, 255), scale=26, size=(360, 420),
+                                   center=tuple(c)), f'осколок, t={t:g} с'))
+    row(items, out)

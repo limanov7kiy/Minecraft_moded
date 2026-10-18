@@ -415,7 +415,7 @@ hash = "239e2dadcc57f8fa08e8087c9eb2e3db9fafef289c787421caa77f2dce09538e"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/animations/extra.animation.json"
-hash = "09ed412f9bdcee63e697884578b09e4033d97ee867fca8da2ff53c0a6784182a"
+hash = "7413901265c69fd8e8dd3ff8a39b0eb1ad8438cd1731890c1dd503b30ad5a618"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/animations/fp.arm.animation.json"
@@ -427,7 +427,7 @@ hash = "37cc6952c62fbe24376a1effdca702a015ae224c4cde5c042e2ed70a94987fb9"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/animations/main.animation.json"
-hash = "51f026938b1158a34204bfd1ebdf5f9724b7fcad0c5d6bb0af26ef70ff73601a"
+hash = "578d078527580b1c7f44fb526668fab1a87120de9091b31d4847a135ce35120a"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/animations/tac.animation.json"
@@ -447,15 +447,15 @@ hash = "3ac7b04dcac9e6ecd2079112055fbd62adbafb4578a71b5d8e0ae26f7492b9f2"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/models/arm.json"
-hash = "13a76f2817a63c758eb69b5f25effa91900b9b26a4cb17214e008ce8a4558d5d"
+hash = "647191c0cdc6e37af522ab5fc38c8b1cfe4aa3118139738dda8d58285f09867f"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/models/main.json"
-hash = "497f0fb6dac4c56fde81f373c107d2e038c7713bbb7080fe13b94e487a0dfd6c"
+hash = "c0ff853406a2e772ff450a2778e4b0b02eeaae74c97f0a3577b037fae4560e21"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/textures/priestess.png"
-hash = "8d2121ddd41cb6da477563b7bf1337264325ab42adc516993ec5b8b9b1aa74f9"
+hash = "5cf5b46d138e8295aa3c1a7c9853ed2dfbc45d20fd9daf0dcc6bc889c0ea2fed"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/ysm.json"

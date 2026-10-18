@@ -54,6 +54,8 @@ P = {
     "tights": C("3e2a58"), "tights_l": C("5d437e"), "tights_hi": C("7a5d9c"), "tights_d": C("261836"), "tights_skin": C("7a6178"),
     "red": C("e0243f"), "red_l": C("ff6378"), "red_d": C("8e1028"), "core": C("fff4f6"),
     "violet": C("b36cff"), "violet_l": C("ead2ff"), "eye": C("9a90b6"), "eye_d": C("4f4668"), "eye_l": C("c9c0e0"),
+    "obs": C("17151c"), "obs_l": C("3a3644"), "obs_hi": C("5a5468"), "obs_d": C("0a090d"), "obs_glint": C("4b3f63"),
+    "ember": C("e8401c"), "ember_l": C("ff7a3a"), "ember_hi": C("ffd2a8"), "smoke": C("2e2b33"),
     "yellow": C("f1d04a"), "silver": C("d4d1e0"), "silver_d": C("8f8b9e"),
 }
 
@@ -229,8 +231,8 @@ def m_head(w, h, face, s):
         a[0:2] = P["skin_s"]  # тень от чёлки
         cx = w // 2
         my = int(h * 0.80)
-        a[my, cx - 1:cx + 1] = P["mouth"]
-        a[my - 1, cx - 2] = P["mouth"] * 0.7 + P["skin"] * 0.3; a[my - 1, cx + 1] = P["mouth"] * 0.7 + P["skin"] * 0.3
+        a[my, cx - 1:cx + 1] = P["mouth"] * 0.45 + P["skin"] * 0.55  # спокойная, едва заметная улыбка
+        a[my - 1, cx - 2] = P["mouth"] * 0.25 + P["skin"] * 0.75; a[my - 1, cx + 1] = P["mouth"] * 0.25 + P["skin"] * 0.75
         by = int(h * 0.66)
         a[by:by + 2, 2:6] = a[by:by + 2, 2:6] * 0.4 + P["blush"] * 0.6
         a[by:by + 2, w - 6:w - 2] = a[by:by + 2, w - 6:w - 2] * 0.4 + P["blush"] * 0.6
@@ -291,23 +293,35 @@ def m_brow(w, h, face, s):
 
 
 def m_crystal(w, h, face, s):
-    """Originium: красный кристалл, светлые грани, белая сердцевина-блик"""
-    a = fill(w, h, P["red"])
-    a[0, :] = P["red_l"]; a[:, 0] = P["red_l"]
-    a[-1, :] = P["red_d"]; a[:, -1] = P["red_d"]
+    """осколок Originium по референсу владельца: чёрный обсидиан, светлые рёбра сверху-слева, тёмные снизу-справа"""
+    a = fill(w, h, P["obs"])
+    a[0, :] = P["obs_l"]; a[:, 0] = P["obs_l"]
+    a[-1, :] = P["obs_d"]; a[:, -1] = P["obs_d"]
     if w >= 4 and h >= 4:
-        a[1, 1:3] = P["core"]; a[1:3, 1] = P["core"]
-        a[h // 2, w // 2] = P["core"]
-        a[h - 2, w - 3:w - 1] = P["red_d"]
+        a[1, 1] = P["obs_hi"]; a[h // 2, 1:w // 2] = P["obs_l"]
+        a[h - 2, w - 3] = P["obs_glint"]
     return a
 
 
 def m_core(w, h, face, s):
-    a = fill(w, h, P["core"]); a[-1, :] = P["red_l"]; return a
+    """светящееся ядро: оранжево-красное, к центру светлее"""
+    a = fill(w, h, P["ember"])
+    if w >= 3 and h >= 3:
+        a[1:-1, 1:-1] = P["ember_l"]
+        a[h // 2, w // 2] = P["ember_hi"]
+    return a
+
+
+def m_smoke(w, h, face, s):
+    """дымчатые края внизу кристалла: тёмно-серый полупрозрачный"""
+    a = fill(w, h, P["smoke"])
+    a[..., 3] = 120
+    a[::2, 1::2, 3] = 70
+    return a
 
 
 def m_glitch(w, h, face, s):
-    a = fill(w, h, P["red_l"]); a[::2, :] = P["white"]; return a
+    a = fill(w, h, P["ember_l"]); a[::2, :] = P["ember_hi"]; return a
 
 
 def m_cape(w, h, face, s, trim=(True, True, True), hem=None, inner=False):
@@ -563,7 +577,7 @@ def build_main(default_geo):
         cb(f"{side}EyesBase", (cx - 0.85, 33.95, -3.58), (1.7, 1.95, 0.1), "iris", dens=5, faces=["north"])
         cb(f"{side}EyesBase", (cx - 0.75, 35.35, -3.66), (0.4, 0.4, 0.05), "sparkle", dens=2, faces=["north"], share="swatch_sparkle")
         pv = (cx, 34.85, -3.64)
-        for nm, sz, z, mat in (("Rim", 1.4, -3.63, "rim"), ("Pupil", 1.05, -3.65, "violet"), ("Hot", 0.45, -3.67, "hot")):
+        for nm, sz, z, mat in (("Rim", 0.66, -3.63, "rim"), ("Pupil", 0.46, -3.65, "violet"), ("Hot", 0.2, -3.67, "hot")):
             G.bone(f"ysmGlow{side}{nm}", f"{side}EyesBase", pv)
             cb(f"ysmGlow{side}{nm}", (cx - sz / 2, 34.85 - sz / 2, z), (sz, sz, 0.02), mat, rot=(0, 0, 45), pivot=pv,
                faces=["north"], share=f"swatch_{mat}")
@@ -726,18 +740,11 @@ def build_main(default_geo):
     cb("ysmGlowHaloGlitch", (-2.9, 45.3, 0.5), (1.5, 0.3, 0.2), "glitch", share="swatch_glitch")
     cb("ysmGlowHaloGlitch", (1.3, 43.4, 0.5), (1.9, 0.25, 0.2), "glitch", share="swatch_glitch")
     cb("ysmGlowHaloGlitch", (-0.6, 47.1, 0.5), (1.1, 0.25, 0.2), "glitch", share="swatch_glitch")
-    # спутник: крупный осколок на наклонной орбите + глитч-фрагменты + «свита» из 4 осколков, отстающих по дуге
+    # спутник: чёрный осколок с маленьким светящимся ядром, рой чёрных обломков вокруг; летит по наклонной орбите
     G.bone("ShardOrbit", "Root", (0, 30, 0))
-    G.bone("ysmGlowShard", "ShardOrbit", (-11, 30, 1.5))
-    shard(G, "ysmGlowShard", (-11, 30, 1.5), 1.8)
-    G.bone("ysmGlowShardGlitch", "ysmGlowShard", (-11, 30, 1.5))
-    cb("ysmGlowShardGlitch", (-13.4, 31.6, 1.4), (1.6, 0.25, 0.2), "glitch", share="swatch_glitch")
-    cb("ysmGlowShardGlitch", (-10.0, 28.2, 1.4), (2.0, 0.25, 0.2), "glitch", share="swatch_glitch")
-    cb("ysmGlowShardGlitch", (-11.6, 33.6, 1.4), (1.0, 0.25, 0.2), "glitch", share="swatch_glitch")
-    for i, k in enumerate((0.75, 0.6, 0.48, 0.36)):
-        G.bone(f"ShardTrail{i}", "Root", (0, 30, 0))
-        G.bone(f"ysmGlowTrail{i}", f"ShardTrail{i}", (-11, 30, 1.5))
-        diamond(G, f"ysmGlowTrail{i}", (-11, 30, 1.5), 1.5 * k, 3.0 * k, 1.2 * k)
+    G.bone("Shard", "ShardOrbit", (-11, 30, 1.5))
+    shard(G, "Shard", (-11, 30, 1.5), 1.3)
+    swarm(G, "Shard", (-11, 30, 1.5), 1.0)
 
     # ================= формы осколка в руках
     for side in ("R", "L"):
@@ -746,19 +753,20 @@ def build_main(default_geo):
         root = f"Forms{side}"
         G.bone(root, hand, hp)
         for f in FORMS:
-            G.bone(f"ysmGlow{side}_{f}", root, hp)
+            G.bone(f"Pr{side}_{f}", root, hp)
+            G.bone(f"ysmGlow{side}_{f}Core", f"Pr{side}_{f}", hp)
         if side == "R":
             forms(G, "R", hp)
         else:
             for f in FORMS:
-                G.mirror(f"ysmGlowR_{f}", f"ysmGlowL_{f}")
+                G.mirror(f"PrR_{f}", f"PrL_{f}"); G.mirror(f"ysmGlowR_{f}Core", f"ysmGlowL_{f}Core")
 
     # ================= реквизит поз
     lp = G.byname["LeftHand"]["pivot"]; rp = G.byname["RightHand"]["pivot"]
     G.bone("Clipboard", "LeftHand", lp)
     cb("Clipboard", (lp[0] - 2.2, lp[1] - 1.2, lp[2] - 3.6), (3.4, 0.3, 4.4), "clip_board", dens=3)
-    G.bone("ysmGlowOfferShard", "RightHand", (rp[0], rp[1] + 3.2, rp[2] - 2.6))
-    shard(G, "ysmGlowOfferShard", (rp[0], rp[1] + 3.2, rp[2] - 2.6), 1.0)
+    G.bone("OfferShard", "RightHand", (rp[0], rp[1] + 3.2, rp[2] - 2.6))
+    shard(G, "OfferShard", (rp[0], rp[1] + 3.2, rp[2] - 2.6), 0.7)
     G.bone("Pencil", "RightHand", rp)
     cb("Pencil", (rp[0] - 0.15, rp[1] - 1.0, rp[2] - 3.2), (0.3, 0.3, 3.0), "pencil", share="swatch_pencil")
     return G
@@ -775,32 +783,67 @@ def diamond(G, bone, c, w, h, d, mat="crystal", share="swatch_crystal", tilt=0):
         G.cube(bone, (x - s / 2, y - k * 0.8 - s / 2, z - d / 2 * 0.8), (s, s, d * 0.8), mat, rot=(0, tilt, 45), pivot=(x, y - k * 0.8, z), share=share)
 
 
-def halo(G, bone, c, r):
+def core(G, parent, c, k, name=None):
+    """светящееся ядро: белый ромб-контур и оранжево-красное свечение внутри (кость ysmGlow…)"""
     x, y, z = c
-    diamond(G, bone, c, r * 1.4, r * 1.4, 0.35)
-    G.cube(bone, (x - 0.35, y - 0.35, z - 0.3), (0.7, 0.7, 0.6), "core", rot=(0, 0, 45), pivot=c, share="swatch_core")
+    bn = name or f"ysmGlow{parent}Core"
+    G.bone(bn, parent, c)
+    G.cube(bn, (x - 0.5 * k, y - 0.5 * k, z - 0.04), (k, k, 0.08), "rim", rot=(0, 0, 45), pivot=c, share="swatch_rim")
+    G.cube(bn, (x - 0.33 * k, y - 0.33 * k, z - 0.08), (0.66 * k, 0.66 * k, 0.16), "core", rot=(0, 0, 45), pivot=c, share="swatch_core")
+    return bn
+
+
+def halo(G, bone, c, r):
+    """нимб: ромб-контур с оранжево-красным свечением (глитч — в parallel-анимации)"""
+    x, y, z = c
+    G.cube(bone, (x - 0.6 * r, y - 0.6 * r, z - 0.05), (1.2 * r, 1.2 * r, 0.1), "rim", rot=(0, 0, 45), pivot=c, share="swatch_rim")
+    G.cube(bone, (x - 0.45 * r, y - 0.45 * r, z - 0.1), (0.9 * r, 0.9 * r, 0.2), "crystal", rot=(0, 0, 45), pivot=c, share="swatch_crystal")
+    G.cube(bone, (x - 0.22 * r, y - 0.22 * r, z - 0.15), (0.44 * r, 0.44 * r, 0.3), "core", rot=(0, 0, 45), pivot=c, share="swatch_core")
 
 
 def shard(G, bone, c, k):
+    """осколок Originium: чёрный угловатый кристалл (высота ≈2× ширины, зазубренный силуэт), дымка внизу,
+    маленькое светящееся ядро спереди и сзади; сам кристалл не светится"""
     x, y, z = c
-    diamond(G, bone, c, 1.5 * k, 3.4 * k, 1.5 * k)
-    diamond(G, bone, c, 1.5 * k, 1.5 * k, 1.5 * k, tilt=45)
-    G.cube(bone, (x - 0.3, y - 0.3, z - 0.95), (0.6, 0.6, 1.9), "core", rot=(0, 0, 45), pivot=c, share="swatch_core")
+    S = "swatch_crystal"
+    G.cube(bone, (x - 0.75 * k, y - 1.6 * k, z - 0.75 * k), (1.5 * k, 3.2 * k, 1.5 * k), "crystal", rot=(0, 45, 6), pivot=c, share=S)
+    G.cube(bone, (x - 0.45 * k, y + 1.2 * k, z - 0.45 * k), (0.9 * k, 0.9 * k, 0.9 * k), "crystal", rot=(35, 45, 0), pivot=(x, y + 1.6 * k, z), share=S)
+    G.cube(bone, (x - 1.2 * k, y + 0.2 * k, z - 0.35 * k), (0.7 * k, 1.9 * k, 0.7 * k), "crystal", rot=(0, 45, 28), pivot=(x - 0.6 * k, y + 0.4 * k, z), share=S)
+    G.cube(bone, (x + 0.5 * k, y - 1.0 * k, z - 0.3 * k), (0.6 * k, 1.5 * k, 0.6 * k), "crystal", rot=(0, 45, -32), pivot=(x + 0.6 * k, y - 0.6 * k, z), share=S)
+    G.cube(bone, (x - 0.2 * k, y - 2.2 * k, z - 0.2 * k), (0.4 * k, 0.9 * k, 0.4 * k), "crystal", rot=(0, 45, 12), pivot=(x, y - 1.6 * k, z), share=S)
+    G.cube(bone, (x - 0.9 * k, y - 2.3 * k, z - 0.9 * k), (1.8 * k, 0.8 * k, 1.8 * k), "smoke", share="swatch_smoke")
+    G.cube(bone, (x - 0.6 * k, y - 2.8 * k, z - 0.6 * k), (1.2 * k, 0.6 * k, 1.2 * k), "smoke", share="swatch_smoke")
+    core(G, bone, (x, y + 0.1 * k, z - 1.1 * k), 0.75 * k, f"ysmGlow{bone}CoreF")
+    core(G, bone, (x, y + 0.1 * k, z + 1.1 * k), 0.75 * k, f"ysmGlow{bone}CoreB")
+
+
+def swarm(G, parent, c, k):
+    """рой мелких чёрных обломков вокруг осколка"""
+    x, y, z = c
+    G.bone("ShardSwarm", parent, c)
+    for i, (r, a, dy, sz) in enumerate(((2.6, 0, 0.8, 0.5), (3.0, 50, -0.6, 0.35), (2.3, 105, 1.6, 0.3), (3.3, 160, -1.4, 0.45),
+                                        (2.8, 215, 0.2, 0.28), (3.4, 260, 1.1, 0.38), (2.4, 305, -1.0, 0.25), (3.1, 340, -2.0, 0.3))):
+        px, pz = x + r * k * math.cos(math.radians(a)), z + r * k * math.sin(math.radians(a))
+        s2 = sz * k
+        G.cube("ShardSwarm", (px - s2 / 2, y + dy * k - s2, pz - s2 / 2), (s2, s2 * 2, s2), "crystal",
+               rot=(20 * (i % 3), 45, 15 * (i % 4)), pivot=(px, y + dy * k, pz), share="swatch_crystal")
 
 
 def forms(G, side, hp):
     """Формы осколка в правой руке. Локальная система: рукоять в кулаке, предмет вперёд (−Z) и вверх (+Y)."""
     hx, hy, hz = hp
     cr = "crystal"; S = "swatch_crystal"
+    def B(f, mat):  # тёмные грани — в кости формы, светящееся ядро — в её ysmGlow-кости
+        return f"ysmGlow{side}_{f}Core" if mat == "core" else f"Pr{side}_{f}"
     def cube(f, lo, hi, mat=cr, share=S, rot=None, piv=None):
         o, s = box((hx + lo[0], hy + lo[1], hz + lo[2]), (hx + hi[0], hy + hi[1], hz + hi[2]))
-        G.cube(f"ysmGlow{side}_{f}", o, s, mat, share=share, rot=rot,
+        G.cube(B(f, mat), o, s, mat, share=share, rot=rot,
                pivot=(hx + piv[0], hy + piv[1], hz + piv[2]) if piv else None)
     def dia(f, c, w, d, tilt=0):
-        G.cube(f"ysmGlow{side}_{f}", (hx + c[0] - w / 2, hy + c[1] - w / 2, hz + c[2] - d / 2), (w, w, d), cr, share=S,
+        G.cube(B(f, cr), (hx + c[0] - w / 2, hy + c[1] - w / 2, hz + c[2] - d / 2), (w, w, d), cr, share=S,
                rot=(0, tilt, 45), pivot=(hx + c[0], hy + c[1], hz + c[2]))
     def rhx(f, c, w, d):  # ромб в плоскости YZ (поворот вокруг X)
-        G.cube(f"ysmGlow{side}_{f}", (hx + c[0] - d / 2, hy + c[1] - w / 2, hz + c[2] - w / 2), (d, w, w), cr, share=S,
+        G.cube(B(f, cr), (hx + c[0] - d / 2, hy + c[1] - w / 2, hz + c[2] - w / 2), (d, w, w), cr, share=S,
                rot=(45, 0, 0), pivot=(hx + c[0], hy + c[1], hz + c[2]))
     g = (-0.3, -1.4, -0.3)  # рукоять сквозь кулак
     # меч: рукоять, гарда, клинок вдоль −Z, острие-ромб
@@ -844,21 +887,21 @@ def forms(G, side, hp):
     dia("crossbow", (0, -0.7, -5.4), 1.0, 0.4)
     cube("crossbow", (-2.6, -0.85, -4.55), (2.6, -0.55, -4.75), "core", "swatch_core")
     # щит: ромб-кристалл перед рукой
-    G.cube(f"ysmGlow{side}_shield", (hx - 0.4 - 1.0, hy - 0.5 - 2.6, hz - 2.6 - 2.6), (0.5, 5.2, 5.2), cr, share=S, rot=(45, 0, 0),
+    G.cube(B("shield", cr), (hx - 0.4 - 1.0, hy - 0.5 - 2.6, hz - 2.6 - 2.6), (0.5, 5.2, 5.2), cr, share=S, rot=(45, 0, 0),
            pivot=(hx - 0.9, hy - 0.5, hz - 2.6))
-    G.cube(f"ysmGlow{side}_shield", (hx - 0.45 - 1.1, hy - 0.5 - 1.2, hz - 2.6 - 1.2), (0.3, 2.4, 2.4), "core", share="swatch_core",
+    G.cube(B("shield", "core"), (hx - 0.45 - 1.1, hy - 0.5 - 1.2, hz - 2.6 - 1.2), (0.3, 2.4, 2.4), "core", share="swatch_core",
            rot=(45, 0, 0), pivot=(hx - 0.9, hy - 0.5, hz - 2.6))
     # копьё
     cube("spear", (-0.22, -1.0, 4.0), (0.22, -0.56, -11.0), "black", "swatch_grip")
     rhx("spear", (0, -0.78, -11.6), 1.4, 0.35)
     cube("spear", (-0.15, 0.0, -10.4), (0.15, 0.4, -12.2)); cube("spear", (-0.15, -1.9, -10.4), (0.15, -1.5, -12.2))
-    G.cube(f"ysmGlow{side}_spear", (hx - 0.3, hy - 0.78 - 0.3, hz - 11.6 - 0.3), (0.6, 0.6, 0.6), "core", share="swatch_core", rot=(45, 0, 0),
+    G.cube(B("spear", "core"), (hx - 0.3, hy - 0.78 - 0.3, hz - 11.6 - 0.3), (0.6, 0.6, 0.6), "core", share="swatch_core", rot=(45, 0, 0),
            pivot=(hx, hy - 0.78, hz - 11.6))
     # посох/жезл: вертикальное древко, большой ромб наверху и два спутника
     cube("staff", (-1.85, -8.0, -2.1), (-1.35, 9.5, -1.6), "black", "swatch_grip")
-    G.cube(f"ysmGlow{side}_staff", (hx - 1.6 - 1.2, hy + 11.4 - 1.2, hz - 1.85 - 0.4), (2.4, 2.4, 0.8), cr, share=S, rot=(0, 0, 45),
+    G.cube(B("staff", cr), (hx - 1.6 - 1.2, hy + 11.4 - 1.2, hz - 1.85 - 0.4), (2.4, 2.4, 0.8), cr, share=S, rot=(0, 0, 45),
            pivot=(hx - 1.6, hy + 11.4, hz - 1.85))
-    G.cube(f"ysmGlow{side}_staff", (hx - 1.6 - 0.5, hy + 11.4 - 0.5, hz - 1.85 - 0.5), (1.0, 1.0, 1.0), "core", share="swatch_core", rot=(0, 0, 45),
+    G.cube(B("staff", "core"), (hx - 1.6 - 0.5, hy + 11.4 - 0.5, hz - 1.85 - 0.5), (1.0, 1.0, 1.0), "core", share="swatch_core", rot=(0, 0, 45),
            pivot=(hx - 1.6, hy + 11.4, hz - 1.85))
     cube("staff", (-2.4, 9.3, -2.25), (-0.8, 9.7, -1.45))
     dia("staff", (-3.6, 12.8, -1.85), 0.7, 0.3); dia("staff", (0.4, 10.0, -1.85), 0.7, 0.3)
@@ -899,41 +942,33 @@ def parallels():
             "position": ["math.mod(math.floor(q.anim_time * 10), 7) == 0 ? 0.6 : (math.mod(math.floor(q.anim_time * 10), 11) == 0 ? -0.5 : 0)", 0, 0],
             "scale": "math.mod(math.floor(q.anim_time * 10), 5) < 2 ? 1 : 0"},
         "ShardOrbit": {
-            "rotation": ["math.sin(q.anim_time * 60) * 14", "q.anim_time * 60", 0],
+            "rotation": ["math.sin(q.anim_time * 60) * 14", "90 + math.sin(q.anim_time * 30) * 95", 0],  # дуга: правое плечо → спина → левое, не перед лицом
             "position": [0, "math.sin(q.anim_time * 120) * 1.4", 0]},
-        "ysmGlowShard": {
-            "rotation": ["math.sin(q.anim_time * 90) * 10", "q.anim_time * -90", 0],
+        "Shard": {
+            "rotation": ["math.sin(q.anim_time * 90) * 8", "q.anim_time * -45", 0],
             "scale": f"ysm.second_order('pr_shard', {shard_on}, 3, 1, 0)"},
-        "ysmGlowShardGlitch": {
-            "position": ["math.mod(math.floor(q.anim_time * 12), 5) == 0 ? 0.8 : 0", 0, 0],
-            "scale": "math.mod(math.floor(q.anim_time * 10), 4) < 1 ? 1 : 0"},
+        "ShardSwarm": {
+            "rotation": ["math.sin(q.anim_time * 60) * 10", "q.anim_time * 120", 0],
+            "position": [0, "math.sin(q.anim_time * 180) * 0.3", 0]},
     }}
-    for i in range(4):  # «свита»: та же орбита с отставанием по фазе, меньше и тусклее к хвосту
-        lag = (i + 1) * 0.35
-        A["parallel1"]["bones"][f"ShardTrail{i}"] = {
-            "rotation": [f"math.sin((q.anim_time - {lag}) * 60) * 14", f"(q.anim_time - {lag}) * 60", 0],
-            "position": [0, f"math.sin((q.anim_time - {lag}) * 120) * 1.4", 0]}
-        A["parallel1"]["bones"][f"ysmGlowTrail{i}"] = {
-            "rotation": [0, f"q.anim_time * {120 + 30 * i}", 0],
-            "scale": f"ysm.second_order('pr_shard', {shard_on}, 3, 1, 0)"}
     # parallel2: формы осколка в руках вместо ванильного предмета
     bones = {}
     for side, loc in (("R", "RightHandLocator"), ("L", "LeftHandLocator")):
         v = f"v.form_{side.lower()}"
         bones[loc] = {"scale": f"(({v} ?? 0) > 0 && !(v.roaming.pr_vanilla ?? 0)) ? 0 : 1"}
         for i, f in enumerate(FORMS, 1):
-            bones[f"ysmGlow{side}_{f}"] = {"scale": f"(v.roaming.pr_vanilla ?? 0) ? 0 : {form_vis(side, i)}"}
+            bones[f"Pr{side}_{f}"] = {"scale": f"(v.roaming.pr_vanilla ?? 0) ? 0 : {form_vis(side, i)}"}
         bones[f"Forms{side}"] = {"position": [0, "math.sin(q.anim_time * 120) * 0.15", 0], "scale": 1.25}
     # лук: при натяжении «тетива» отходит назад
-    bones["ysmGlowR_bow"]["position"] = [0, 0, "q.is_using_item ? math.min(q.item_in_use_duration, 1) * 0.8 : 0"]
+    bones["PrR_bow"]["position"] = [0, 0, "q.is_using_item ? math.min(q.item_in_use_duration, 1) * 0.8 : 0"]
     A["parallel2"] = {"loop": True, "animation_length": T, "bones": bones}
     # parallel3: глаза-ромбы — ярче/крупнее при атаке, использовании, ломании блока, сообщении в чат
     g = GLOW
     eye = {}
     for s in ("Right", "Left"):
-        eye[f"ysmGlow{s}Pupil"] = {"scale": f"1 + 0.45 * {g}"}
-        eye[f"ysmGlow{s}Rim"] = {"scale": f"1 + 0.4 * {g}"}  # белая обводка ромба видна всегда, при вспышке шире
-        eye[f"ysmGlow{s}Hot"] = {"scale": f"{g} > 0.05 ? (0.6 + 0.9 * {g}) : 0"}
+        eye[f"ysmGlow{s}Pupil"] = {"scale": f"1 + 0.3 * {g}"}
+        eye[f"ysmGlow{s}Rim"] = {"scale": f"1 + 0.3 * {g}"}  # тонкая белая обводка ромба видна всегда, при вспышке чуть шире
+        eye[f"ysmGlow{s}Hot"] = {"scale": f"{g} > 0.05 ? (0.5 + 0.7 * {g}) : 0"}
     A["parallel3"] = {"loop": True, "bones": eye}
     # parallel4: физика плаща (как у волос default: скорость, вертикаль, поворот), ремешки
     sp = "math.clamp(q.ground_speed + (v.hg ?? 0), 0, 20)"
@@ -954,7 +989,7 @@ def parallels():
 
 def pre_parallels():
     # реквизит позы «записи» скрыт везде, кроме своей позы (pre_parallel ниже приоритетом, чем поза колеса)
-    return {"pre_parallel2": {"loop": True, "bones": {"Clipboard": {"scale": 0}, "Pencil": {"scale": 0}, "ysmGlowOfferShard": {"scale": 0}}}}
+    return {"pre_parallel2": {"loop": True, "bones": {"Clipboard": {"scale": 0}, "Pencil": {"scale": 0}, "OfferShard": {"scale": 0}}}}
 
 
 def kf(d):
@@ -976,7 +1011,7 @@ def extras():
         "RightArm": {"rotation": [-72, -12, 6]}, "RightForeArm": {"rotation": [-12, 0, 0]},
         "LeftArm": {"rotation": [0, 0, -6]},
         "Head": {"rotation": [6, -10, 0]},
-        "ysmGlowOfferShard": {"scale": 1, "position": kf({0: [0, 0, 0], 2: [0, 0.8, 0], 4: [0, 0, 0]}),
+        "OfferShard": {"scale": 1, "position": kf({0: [0, 0, 0], 2: [0, 0.8, 0], 4: [0, 0, 0]}),
                               "rotation": [0, "q.anim_time * 90", 0]},
     }}
     E["pr_curtsy"] = {"loop": "hold_on_last_frame", "animation_length": 2.0, "bones": {
