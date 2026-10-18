@@ -2,5 +2,6 @@
   "parent": "minecraft:block/cross",
   "textures": {
     "cross": "mod_lavacow:block/glowshroom_m"
-  }
+  },
+  "render_type": "minecraft:cutout"
 }

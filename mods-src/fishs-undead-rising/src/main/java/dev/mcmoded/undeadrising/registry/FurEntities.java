@@ -1,5 +1,8 @@
 package dev.mcmoded.undeadrising.registry;
 
+import dev.mcmoded.undeadrising.entity.projectile.CactusThornEntity;
+import dev.mcmoded.undeadrising.entity.projectile.FurBombEntity;
+
 import dev.mcmoded.undeadrising.UndeadRising;
 import dev.mcmoded.undeadrising.entity.FURTameableEntity;
 import dev.mcmoded.undeadrising.entity.ForsakenEntity;
@@ -91,6 +94,18 @@ public final class FurEntities {
     public static final RegistryObject<EntityType<WarSmallFireballEntity>> WARSMALLFIREBALL = ENTITIES.register("warsmallfireball",
             () -> EntityType.Builder.<WarSmallFireballEntity>of(WarSmallFireballEntity::new, MobCategory.MISC).sized(0.3125F, 0.3125F)
                     .clientTrackingRange(4).updateInterval(1).build(id("warsmallfireball")));
+
+    public static final RegistryObject<EntityType<FurBombEntity>> HOLY_GRENADE = bomb("holy_grenade");
+    public static final RegistryObject<EntityType<FurBombEntity>> GHOSTBOMB = bomb("ghostbomb");
+    public static final RegistryObject<EntityType<FurBombEntity>> SONICBOMB = bomb("sonicbomb");
+    public static final RegistryObject<EntityType<CactusThornEntity>> CACTUS_THORN = ENTITIES.register("cactus_thorn",
+            () -> EntityType.Builder.<CactusThornEntity>of(CactusThornEntity::new, MobCategory.MISC).sized(0.5F, 0.5F)
+                    .clientTrackingRange(4).updateInterval(20).build(id("cactus_thorn")));
+
+    private static RegistryObject<EntityType<FurBombEntity>> bomb(String name) {
+        return ENTITIES.register(name, () -> EntityType.Builder.<FurBombEntity>of(FurBombEntity::new, MobCategory.MISC).sized(0.25F, 0.25F)
+                .clientTrackingRange(4).updateInterval(10).build(id(name)));
+    }
 
     private static String id(String name) {
         return UndeadRising.MOD_ID + ":" + name;

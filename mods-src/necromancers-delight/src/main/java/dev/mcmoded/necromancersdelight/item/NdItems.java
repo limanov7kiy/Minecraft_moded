@@ -12,8 +12,8 @@ import java.util.List;
 
 import static dev.mcmoded.necromancersdelight.NecromancersDelight.ITEMS;
 
-/// Артефакты Necromancer's Delight (оригинал — `NDItems`, WinDanesz): Curios-предметы Redux. Эффекты — `NdArtifacts`;
-/// часть артефактов (мумии, Forsaken, Unburied, Weta, шипы, пиявки) заработает с мобами Fish's Undead Rising (ND-2).
+/// Артефакты Necromancer's Delight (оригинал — `NDItems`, WinDanesz): Curios-предметы Redux. Эффекты — `NdArtifacts`
+/// (мобы и предметы — из порта Fish's Undead Rising), пиявок — `ManaLeech`/заклинания, амулет кристалла — свой класс.
 public final class NdItems {
     private NdItems() {}
 
@@ -35,12 +35,21 @@ public final class NdItems {
     public static final RegistryObject<Item> BELT_THORNS = artifact("belt_thorns", Rarity.RARE);
     public static final RegistryObject<Item> HEAD_PEST_CROWN = artifact("head_pest_crown", Rarity.EPIC);
     public static final RegistryObject<Item> CHARM_SPELLVENOM = artifact("charm_spellvenom", Rarity.RARE);
-    public static final RegistryObject<Item> AMULET_LEECH_CRYSTAL = artifact("amulet_leech_crystal", Rarity.UNCOMMON);
+    public static final RegistryObject<Item> AMULET_LEECH_CRYSTAL = register("amulet_leech_crystal", () -> new LeechCrystalAmulet(Rarity.UNCOMMON));
 
     private static RegistryObject<Item> artifact(String id, Rarity rarity) {
-        RegistryObject<Item> item = ITEMS.register(id, () -> ArtifactChannel.createArtifact(rarity, new IArtifactEffect() {}));
+        return register(id, () -> ArtifactChannel.createArtifact(rarity, new IArtifactEffect() {}));
+    }
+
+    private static RegistryObject<Item> register(String id, java.util.function.Supplier<Item> factory) {
+        RegistryObject<Item> item = ITEMS.register(id, factory);
         ARTIFACTS.add(item);
         return item;
+    }
+
+    /// Надет ли артефакт (слот Curios).
+    public static boolean has(net.minecraft.world.entity.player.Player player, RegistryObject<Item> artifact) {
+        return ArtifactChannel.isEquipped(player, artifact.get());
     }
 
     public static void init() {}

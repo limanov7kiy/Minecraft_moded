@@ -235,7 +235,7 @@ More Backpack Upgrades (+ Refined Storage). Сервер — `Done`, новый 
 | Simple Radio (+ Lexiconfig) | both | рации, радио, микрофоны/динамики; связки с Create, Valkyrien Skies, Curios, Vibrative Voice включились сами |
 | Sound Physics Remastered | client | реверберация и заглушение звуков и голосов стенами |
 | Talking Heads, Let Them Talk | client | анимация говорящего, приглушение музыки при речи (VoiceChatProfiles убран — К2 «Проверки клиента») |
-| Vibrative Voice | server | голос — вибрация для скалк-сенсоров/Хранителя |
+| Vibrative Voice | both | голос — вибрация для скалк-сенсоров/Хранителя (в одиночке — через встроенный сервер, см. «Моды side=server и одиночная игра») |
 | VC Admin, SimpleVoiceChat Broadcast | server | модерация групп и вещание на всех для OP |
 
 | Voice Chat Interaction, AudioPlayer, Enhanced Groups (+ Admiral) | both | **свой порт на Forge** (`mods-src/voicechat-addons`): голос будит скалк, свои звуки на пластинках/рогах/нотных блоках/головах, постоянные и авто-группы |
@@ -630,6 +630,33 @@ Mimic; снаряды Death Coil, Acid/Flame Jet, War Small Fireball; эффек
   `/tmp/.X99-lock` и `/tmp/.X11-unix/X99`.
 - Предметы приручения Salamander/Weta/Mimic падают с мобов FUR, которых нет в порте, — пока только в творческом разделе.
 
+### Necromancer's Delight — ND-3 (поток 29, 2026-10-17)
+`mods-src/necromancers-delight` 0.2.0 (15 заклинаний и 12 артефактов на мобах/предметах FUR, пиявки-миньоны) и
+`mods-src/fishs-undead-rising` 0.3.0 (оружие, бомбы, кактусовый шип, грибы-блоки с генерацией). Подробности — docs/wizardry-port.md «ND-3».
+- Сервер: `scripts/tests/nd3check.js` 55/55 OK (касты 15 заклинаний и эффекты в мире: призванное оружие, морозный кинжал,
+  три бомбы FUR, 6 миньонов с хозяином, грибы, мимикраб из сундука, подмены зомби/скелетов, Bone Bag, грибной талисман,
+  мана-пиявка ворует ману и делится с хозяином, цена ×2 и Venom ×0,6, амулет кристалла, корона, пояс шипов, генерация гриба)
+  + ndcheck 11/11 + furcheck 13/13, SERVER OK. Прогон: `TEST_COMMANDS=<«#sleep 480»> EXTRA_SERVER_SCRIPTS=<копии трёх скриптов>`.
+- Один раз JVM тестового сервера не завершилась после «All dimensions are saved» (висела 10+ мин) — результаты в логе уже есть, убит вручную.
+- Миньоны Redux (`MinionData`) телепортируются к хозяину; не приручённые мобы FUR (`removeWhenFarAway`) **деспавнились**, когда хозяин
+  уходил дальше 128 блоков (оригинальный `ISummonedCreature` не исчезал) — ND помечает призванных мобов FUR и пиявок
+  `setPersistenceRequired()`, убирает их время жизни. Пиявкам следование выключено (как в оригинале), иначе телепорт к хозяину
+  снимает их с носителя.
+- Тесты с фейковым игроком: хозяин миньонов ищется по UUID в мире (`ServerLevel.getEntity`) — фейкового игрока надо добавить
+  в мир (`level.addFreshEntity(fake)`), в конце убрать (`remove(CHANGED_DIMENSION)`). Он не тикает (нет `PlayerTickEvent`) и не
+  выбирается командой `/damage`; прямой `spell.cast(...)` не шлёт `SpellCastEvent` Redux — для проверки слать вручную.
+- KubeJS/Rhino: у `ItemStack` не видны `getTag()`/`hasTag()` — свойство `stack.nbt`; у сущностей не виден `getUUID()`;
+  `new SimpleContainer(2)` Rhino вызывает как varargs `ItemStack...` (контейнер на 1 ячейку).
+- «Грибной мертвец» (Mycosis, ND-2) с фиолетово-чёрными кубами над головой и на спине (жалоба владельца): слой `LayerMycosis`
+  брал модели грибов как «дополнительные» (`ModelEvent.RegisterAdditional` + `getModel(ResourceLocation)`) — с ModernFix
+  `mixin.perf.dynamic_resources=true` (наш конфиг) такая модель приходила missing model. В 0.3.0 грибы — настоящие блоки,
+  слой рисует блок-состояние `age=1` (`renderSingleBlock`), как оригинал. В test-client.sh добавлен вывод
+  «Unable to load model/Missing textures» по своим модам-портам (в логе этой ошибки не было — missing model молчит).
+- Клиент: CLIENT OK (481 с), ошибок по `mod_lavacow`/`necromancersdelight` в логе нет.
+  Глазами исправление Mycosis не проверено: в одиночном мире облачного клиента (YSM убран, мир создан кнопками) вход
+  обрывается «Сервер отправил неверный пакет» сразу после входа; клиентская причина в latest.log не пишется — осмотр
+  Mycosis (оба варианта) остаётся владельцу/следующему потоку.
+
 ### Bosses of Mass Destruction + Cerbon's API (поток 9, 2026-10-12, решение владельца В12 «а»)
 Владелец ответил «оба», затем «а»: вернуть Cerbon's API и добавить BoMD, с регрессионной проверкой спавна; если у владельца
 спавн мобов снова пропадёт — **сразу убрать оба мода** (`mr cerbons-api`, `mr bosses-of-mass-destruction-forge` и Cloth Config,
@@ -1002,3 +1029,35 @@ CurseForge 1460238, файл 9130290, Astryxion, All Rights Reserved. Jar `pack/
 - Spore/SRP/Chaos пересоздали свои конфиги при первом запуске (`Incorrect key … corrected from null`) — нормально для нового клиента.
 Не проверено: звук (в стенде без звука), поведение мобов (призывались без ИИ), анимации ходьбы/атаки, шейдеры, настоящая видеокарта (llvmpipe). В логе клиента есть и чужие «Missing textures»
 (Create Big Cannons Additional Types, Refined Storage, Wizardry, Ars Additions, Deep Aether — к Spore/OreSpawn не относятся, не разбирались).
+
+
+## Моды side=server и одиночная игра (поток 31, 2026-10-17, баг владельца «скалк не реагирует на голос»)
+Причина: одиночная игра — это встроенный сервер клиента, а моды `side = "server"` в `.mrpack` получают
+`env.client=unsupported` и в клиентский экземпляр не ставятся. Значит Vibrative Voice в одиночке просто не было.
+Разбор по jar (мод, нужен ли в одиночке, безопасен ли на клиенте):
+| Мод | Решение | Обоснование |
+|---|---|---|
+| Vibrative Voice 1.2.0 | **both** | плагин SVC + миксины Хранителя; клиентских классов и своих сетевых каналов нет. Зависимости (SVC, Lexiconfig) уже both |
+| BaguetteLib 2.0.7 | **both** | библиотека событий (смерть, инвентарь, подбор); все миксины в общей секции, нужна Gravestone x Curios (mandatory-зависимость); `displayTest=IGNORE_ALL_VERSION` |
+| Gravestone x Curios API Compat 4.0.2 | **both** | аксессуары Curios попадают в гроб; в одиночке без него гроб теряет их. Зависимости (Gravestone, Curios, BaguetteLib) — both |
+| Blue Skies Gravestones Compat 0.1 | **both** | миксин смерти игрока (`SkiesPlayerMixin`); единственный клиентский класс — пустой `onClientSetup` под `Dist.CLIENT`, безопасен |
+| Twilight Cave Fix 1.0.0 | **both** | миксин генерации пещер Twilight Forest (`TFCavesCarverMixin`); мир одиночки генерирует встроенный сервер — без мода там нет фикса |
+| Sol's AuthLogin | **server** (оставлен) | есть клиентский код (`com.forgeauth.client`) и сетевой канал `AuthNetworkHandler`: на клиенте — экран логина и токены; в одиночке пароль не нужен, а канал мог бы ломать вход. Мод про офлайн-ники на публичном сервере |
+| VC Admin, SimpleVoiceChat Broadcast | **server** (оставлены) | чисто административные команды OP для групп/вещания; в одиночке бессмысленны |
+Тесты: `scripts/test-server.sh` — `SERVER OK` (Done за 48 с), SVC загрузил плагин `vibrativevoice`; клиент из нового `.mrpack` дошёл до `CLIENT OK`; в его логе Vibrative Voice загружен, SVC зарегистрировал события плагина `vibrativevoice` («Vibrative Voice is present!»), `config/vibrativevoice.toml` создан. Одиночный мир автотестом не открывался (`--quickPlaySingleplayer` в облаке мир не запустил), поэтому «голос → сенсор в одиночке» глазами не проверен — это ручная проверка по инструкции ниже.
+Проверка: `packwiz refresh`, `scripts/export-pack.sh` → в `modrinth.index.json` у пяти модов `env.client=required`,
+у AuthLogin/VC Admin/Broadcast — `unsupported`; серверный zip содержит все 8 (`fetch-mods.py` берёт `server`+`both`).
+`mrpack-optional.py` не затронут (трогает только `option.optional`).
+
+### Vibrative Voice: пороги и как проверить
+Конфиг `config/vibrativevoice.toml` создаётся Lexiconfig при первом запуске (в репозитории его нет, действуют значения по умолчанию):
+- `weakVibrationThreshold = 400` — громкость пика, с которой идёт слабая вибрация (будит скалк-сенсор и Хранителя), `strongVibrationThreshold = 1500` — сильная (скалк-крикун без сенсора), `cooldownDuration = 20` тиков между сигналами, `peakDuration = 20`, `frequency = 7`;
+- `restrictions.whispering = true`, `whisperFactor = 0.8` — шёпот снижает громкость до 80 %;
+- `restrictions.sneaking = true`, `sneakFactor = 0.7` — приседание снижает до 70 %;
+- `warden.loudnessFactor = 200`, `loudnessRemembrance = 300` тиков — Хранитель переключается на более громкого.
+Как проверить игроку (одиночная игра или сервер): подключить голосовой чат (в одиночке SVC работает через
+встроенный сервер, порт 24454 локально), поставить рядом скалк-сенсор (калиброванный или обычный) и **громко**
+сказать в микрофон стоя рядом, не приседая и не в режиме шёпота (оба режима глушат голос); сенсор должен
+сработать (сигнал редстоуна / звук). Если не реагирует — проверить, что микрофон не выключен (M) и порог
+активации голосом не слишком высок.
+Voice Chat Interaction (наш порт) остаётся `enabled=false` в `pack/config/vcinteraction/`, чтобы не было двойных вибраций.

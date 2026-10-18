@@ -1,6 +1,6 @@
 name = "Twilight Forest Cave Fix"
 filename = "TwilightCaveFix-1.0.0.jar"
-side = "server"
+side = "both"
 
 [download]
 url = "https://cdn.modrinth.com/data/hRxKc8ZK/versions/3r7FahQ4/TwilightCaveFix-1.0.0.jar"

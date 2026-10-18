@@ -78,6 +78,7 @@ public final class ClientSetup {
         event.registerLayerDefinition(SALAMANDER_NYMPH_LAYER, SalamanderNymphModel::createBodyLayer);
         event.registerLayerDefinition(WETA_LAYER, WetaModel::createBodyLayer);
         event.registerLayerDefinition(MIMIC_LAYER, MimicModel::createBodyLayer);
+        event.registerLayerDefinition(VespaShieldRenderer.LAYER, VespaShieldRenderer::createLayer);
     }
 
     @SubscribeEvent
@@ -99,6 +100,26 @@ public final class ClientSetup {
         event.registerEntityRenderer(FurEntities.WETA.get(), WetaRenderer::new);
         event.registerEntityRenderer(FurEntities.MIMIC.get(), MimicRenderer::new);
         event.registerEntityRenderer(FurEntities.WARSMALLFIREBALL.get(), ctx -> new ThrownItemRenderer<>(ctx, 0.75F, true));
+        event.registerEntityRenderer(FurEntities.HOLY_GRENADE.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(FurEntities.GHOSTBOMB.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(FurEntities.SONICBOMB.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(FurEntities.CACTUS_THORN.get(), ctx -> new net.minecraft.client.renderer.entity.ArrowRenderer<>(ctx) {
+            private static final net.minecraft.resources.ResourceLocation TEXTURE =
+                    new net.minecraft.resources.ResourceLocation(UndeadRising.MOD_ID, "textures/mobs/projectile/cactus_thorn.png");
+
+            @Override
+            public net.minecraft.resources.ResourceLocation getTextureLocation(dev.mcmoded.undeadrising.entity.projectile.CactusThornEntity e) {
+                return TEXTURE;
+            }
+        });
+    }
+
+    /// Щит Vespa в стойке блока — модель `vespa_shield_blocking` (свойство `blocking`, как у ванильного щита).
+    @SubscribeEvent
+    public static void onClientSetup(net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent event) {
+        event.enqueueWork(() -> net.minecraft.client.renderer.item.ItemProperties.register(dev.mcmoded.undeadrising.registry.FurItems.VESPA_SHIELD.get(),
+                new net.minecraft.resources.ResourceLocation("blocking"),
+                (stack, level, entity, seed) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F));
     }
 
     @SubscribeEvent
@@ -112,12 +133,5 @@ public final class ClientSetup {
         event.registerSpriteSet(FurParticles.WITHER_FLAME.get(), FlameParticle.Provider::new);
         event.registerSpriteSet(FurParticles.GASTRO_ACID.get(), GastroAcidParticle.Provider::new);
         event.registerSpriteSet(FurParticles.FEAR.get(), FearParticle.Provider::new);
-    }
-
-    /// Модели блоков-грибов для {@link LayerMycosis} (сами блоки не зарегистрированы).
-    @SubscribeEvent
-    public static void onRegisterModels(ModelEvent.RegisterAdditional event) {
-        event.register(LayerMycosis.GLOWSHROOM_MODEL);
-        event.register(LayerMycosis.CORDY_SHROOM_MODEL);
     }
 }

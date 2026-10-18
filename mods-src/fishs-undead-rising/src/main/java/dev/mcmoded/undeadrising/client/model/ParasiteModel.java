@@ -2,7 +2,6 @@ package dev.mcmoded.undeadrising.client.model;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import dev.mcmoded.undeadrising.entity.ParasiteEntity;
 import net.minecraft.client.model.HeadedModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -15,7 +14,8 @@ import net.minecraft.util.Mth;
 
 /// Модель паразита: шесть сегментов-колец и жвалы; на носителе изгибается. Текстура 64×32.
 /// Оригинал: Fish's Undead Rising (Fish), `client/model/entity/ParasiteModel`.
-public class ParasiteModel<T extends ParasiteEntity> extends FURBaseModel<T> implements HeadedModel {
+/// Тип — любой `LivingEntity`: модель берут и пиявки-миньоны Necromancer's Delight.
+public class ParasiteModel<T extends net.minecraft.world.entity.LivingEntity> extends FURBaseModel<T> implements HeadedModel {
     public final ModelPart Parasite_Seg_4;
     public final ModelPart Parasite_Seg_0;
     public final ModelPart Mandible0;
