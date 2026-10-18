@@ -1122,3 +1122,38 @@ DH на выделенном сервере сам ничего не генер�
 ### mm-compat 0.5.6 — Origin Furs: кэш списка ресурсов (поток 33, 2026-10-18)
 `OriginFursReloadCacheMixin` (клиент, `require` по умолчанию 0): `OriginalFurClient.reload` каждые ≈25 с вызывал `ResourceManager.listResources("furs", …)` по всем пакам и zip-модам (≈4 с на ПК игрока, spark клиента);
 результат кэшируется до перезагрузки ресурсов. Origin Furs — pandaismyname1 (MIT), здесь только перехват вызова. `CLIENT OK`, миксин применился. Подробности — `docs/performance.md`, «Разбор двух spark-отчётов игрока».
+
+## Вопросы игрока: агрессия мобов, урон от падения, «квадратные» грибы (поток 35, 2026-10-18)
+Тесты — `scripts/tests/mobaggro.js`, `falldamage.js` (через `EXTRA_SERVER_SCRIPTS`, `TEST_COMMANDS` с `#sleep`), `scripts/check_mod_models.py`.
+
+**1. «Крейки, Пугало, Большая Летучая Мышь не бьют в выживании».**
+- **Крейк** (`lycanitesmobs:krake`, Lycanites Mobs): в `config/lycanitesmobs/creatures/krake.json` `"peaceful": true`, в описании мода
+  «Крейки нейтральны и атакуют только в возбуждённом состоянии» (если бить или бегать рядом). **По задумке не нападает**, баг не найден.
+- **Большая летучая мышь** — по описанию это Lycanites **Эпион** (`epion`, «гигантские теневые кровавые летучие мыши», плюются
+  пиявками, выходят в полнолуние, на солнце падают и взрываются) или **Балаянг** (`balayang`, «циклопические летучие мыши с клыками»).
+  Оба **агрессивны** и на тесте выбирают игрока целью (survival, normal, ночь, 20 с). Если днём «не бьют» — это ИИ Эпиона/ночной спавн.
+- **Пугало**: сущности с таким названием **нет** ни в одном ru/en-lang серверных и клиентских jar сборки и ни в `pack/resourcepacks-src`
+  (есть лишь предметы «Шляпа/Накидка/Штаны/Ботинки пугала» Iron's Spells). Нужно точное название (англ. из Jade/подсказки) или мод.
+- Общий прогон (469 видов мобов Lycanites, FUR, Alex's Mobs/Caves, Spore, Chaos Persists; фейковый игрок survival, normal, ночь, 20 с,
+  моб в 6 блоках): выбрали игрока целью 242 (Lycanites 90 из 122, Spore 59/81, Chaos Persists 51/116, Alex's Caves 15/44, FUR 8/13,
+  Alex's Mobs 19/91). Ожидаемо не нападают: 14 Lycanites с `peaceful: true` (крейк, ика, висп, аризавр, аспид…) и мирные/водные/дневные виды.
+  Не разбирали: Lycanites с `peaceful: false`, но IDLE (barghest, warg, kobold, vespid, wildkin…) — вероятно, условия суши/дня/стаи;
+  FUR `mimic`/`mummy`/`weta`. Урон не измеряется (**FakePlayer Forge неуязвим**), признак — `getTarget()`.
+  Контроль: ваниль (husk, skeleton, spider), mycosis, unburied, ghoul, wraith — TARGET.
+
+**2. «Урона от падения нет».** Не баг сборки. Расы Arknights Races **Cautus, Feline (`arks:feline`) и Aslan** имеют силу
+  `origins:modify_falling` с `take_fall_damage: false` (`data/arks/powers/{cautus,feline,aslan}/modify.json`): `LivingFallEvent` получает
+  множитель 0, `causeFallDamage` возвращает false. Без расы / human / `arks:seahunter` / `arks:agir` / `origins:feline` множитель 1 и урон
+  проходит (событие `dist=20 mult=1`). Класс **«Авангард»** (Arknights Skills: Charger/Pioneer/Tactician) падение не меняет — только
+  `puffish_attributes:jump` (высота прыжка), скорость, добыча. Ни KubeJS, ни наш ASM-патч прыжка (#65), ни конфиги падение не отключают.
+  Проверка — `falldamage.js` (ServerPlayer без соединения; замер здоровья у него шумит, надёжны `event mult` и `causeFallDamage`).
+  Правок нет: «особенность» трёх рас; чтобы включить падение им, надо править `data/arks/powers/*` датапаком (по решению владельца).
+
+**3. «Грибы иногда превращаются в квадрат».** «Гриб-покров» (`mod_lavacow:veil_shroom`) — **блок-растение**, не моб (как `cordy_shroom`,
+  `glowshroom`, `bloodtooth_shroom`; у Mycosis на голове/спине — кордицепс или светящийся гриб). Фикс #71 (слой Mycosis рисует
+  блок-состояния через `renderSingleBlock`, а не «дополнительные» модели) относится к мобу; сами блоки-грибы всегда шли обычными
+  blockstate-моделями, которым ModernFix `dynamic_resources` не мешает. `check_mod_models.py` по `fishs-undead-rising-port-0.3.0.jar`
+  и `necromancers-delight-0.2.0.jar`: blockstate → модель → текстура — 0 проблем (все `age=0/1` у четырёх грибов, предметные модели).
+  Воспроизвести фиолетово-чёрный куб **не удалось и в клиенте не проверялось** (облачный клиент входит в мир только с долгой пересборкой
+  JEI-индекса, см. «Проверка клиента»). Если у игрока повторится — нужны скриншот, F3 (что за блок/моб) и строки `Unable to load model`
+  / `Missing textures` из `logs/latest.log` клиента.
