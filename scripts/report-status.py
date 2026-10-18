@@ -64,6 +64,7 @@ DANGER = [
     ('ссылка на профиль/мессенджер', re.compile(
         r't\.me/|telegram\.(?:me|org)|discord\.com/users|steamcommunity|vk\.com|wa\.me/|\bsteamcommunity', re.I)),
     ('markdown-ссылка', re.compile(r'\]\(')),
+    ('HTML-сущность', re.compile(r'&#?\w+;')),
     ('e-mail', re.compile(r'\b[\w.+-]+@[\w-]+\.[\w.-]+\b')),
     ('псевдоним диагностики', re.compile(r'\bPlayer-[0-9a-f]{3,}\b|\bPlayer-xxxx\b|diag-Player', re.I)),
 ]
@@ -104,8 +105,27 @@ def guard_tokens(values):
 
 
 def has_token(text, tokens):
+    """Слово из tokens есть в тексте без учёта регистра. У кириллических токенов от 4 знаков ловим и падежи
+    («Маша» → «Маше», «Машу», «Машей»): основа без последней буквы + до двух букв."""
     low = text.lower()
-    return any(re.search(r'(?<!\w)' + re.escape(t) + r'(?!\w)', low) for t in tokens)
+    for t in tokens:
+        if re.search(r'(?<!\w)' + re.escape(t) + r'(?!\w)', low):
+            return True
+        if len(t) >= 4 and re.search('[а-яё]', t) and re.search(r'(?<!\w)' + re.escape(t[:-1]) + r'\w{0,2}(?!\w)', low):
+            return True
+    return False
+
+
+# Слова, которые не считаем «чужим ником» при проверке по всем строкам (почтовые домены и т. п.).
+COMMON_WORDS = frozenset(('gmail', 'mail', 'yandex', 'example', 'telegram', 'discord', 'steam', 'email', 'tg', 'com'))
+
+
+def all_authors_tokens(rows):
+    """Слова ников/контактов/адресов ВСЕХ авторов (от 4 знаков): имя другого автора в описании тоже не публикуем."""
+    out = set()
+    for row in rows:
+        out |= guard_tokens((row.get(gc) or '').strip() for gc in GUARD_COLUMNS)
+    return {t for t in out if len(t) >= 4 and t not in COMMON_WORDS}
 
 
 def cell(s):
@@ -139,6 +159,7 @@ def build(rows):
     warnings = []
     records = []
     counts = Counter()
+    everyone = all_authors_tokens(rows)
     for i, row in enumerate(rows, start=2):
         g = lambda c: (row.get(c) or '').strip()
         number = g(COL_NUMBER)
@@ -171,7 +192,7 @@ def build(rows):
             if cat:
                 warnings.append('%s: категория не из списка — показана как «другое»' % number)
             cat = 'другое'
-        tokens = guard_tokens(g(gc) for gc in GUARD_COLUMNS)
+        tokens = guard_tokens(g(gc) for gc in GUARD_COLUMNS) | everyone
         fields = {'описание': desc, 'мод': g(COL_MOD), 'версия/PR': version, 'пояснение': g(COL_NOTE)}
         bad = None
         for name, v in fields.items():
