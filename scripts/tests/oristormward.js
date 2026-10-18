@@ -91,6 +91,15 @@ ServerEvents.tick(event => {
     var avg = a => a.length ? (a.reduce((x, y) => x + y, 0) / a.length).toFixed(1) : '-'
     console.info(`OSW tick до бури ${avg(OSW.ticks)} мс (${OSW.ticks.length} замеров), во время бури ${avg(OSW.stormTicks)} мс (${OSW.stormTicks.length} замеров, макс ${OSW.stormTicks.length ? Math.max.apply(null, OSW.stormTicks).toFixed(1) : '-'})`)
   }
+  // случайные тики ядер без живого игрока не идут — вызываем их сами: 20 ядер снаружи и 10 в зоне, по 10 тиков
+  if (T == GROW_END - 300) {
+    var RS = Java.loadClass('net.minecraft.util.RandomSource')
+    var rnd = RS.create()
+    for (var k = 0; k < 10; k++) {
+      for (var i2 = 0; i2 < 20; i2++) { var p1 = new BlockPos(392 + i2 * 2, 152, 445); level.getBlockState(p1).randomTick(level, p1, rnd) }
+      for (var j2 = 0; j2 < 10; j2++) { var p2 = new BlockPos(10 + j2 * 2, 150, -20); level.getBlockState(p2).randomTick(level, p2, rnd) }
+    }
+  }
   if (T == GROW_END) {
     var blockAt = (x, y, z) => String(level.getBlockState(new BlockPos(x, y, z)).block.id)
     var inZone = 0, edge = 0, maxX = -1e9
@@ -110,9 +119,11 @@ ServerEvents.tick(event => {
     console.info(`OSW grow поле 100 семян за ${(GROW_END - 200) / 1200} мин (${Math.floor((GROW_END - 200) / 2400)} тиков роста): шагов роста (oldoriblock) ${old}, активных oriblockb ${bb}, новых ядер ${cores}; ≈ ${(old / 100 / hours).toFixed(1)} шага на семя в час`)
     console.info(`OSW grow счётчики: попыток роста ${G.growTried}, пропущено броском ${G.growSkipped}, ядро: тиков ${G.coreTried}, пропущено ${G.coreSkipped}, отменено в зоне ${G.zoneDenied}`)
     var zoneMobs = ents(0, 0, 112, (t, e) => ORI_MOBS.some(m => t.indexOf(m) >= 0)).length
-    var outMobs = ents(420, 445, 40, (t, e) => ORI_MOBS.some(m => t.indexOf(m) >= 0)).length
+    var outMobs = ents(412, 445, 40, (t, e) => ORI_MOBS.some(m => t.indexOf(m) >= 0)).length
     ok('core-zone-quiet', zoneMobs == 0, `монстров ориджиниума в зоне: ${zoneMobs}, у ядер снаружи: ${outMobs}`)
     ok('growth-happens', old > 0, `шагов роста в поле: ${old}`)
+    ok('core-throttled', G.coreTried >= 300 && G.coreSkipped > 0 && G.coreSkipped < G.coreTried, `тиков ядер ${G.coreTried}, пропущено ${G.coreSkipped}`)
+    ok('core-outside-spawns', outMobs > 0, `монстров у ядер снаружи: ${outMobs}`)
     var avg2 = a => a.length ? (a.reduce((x, y) => x + y, 0) / a.length).toFixed(1) : '-'
     console.info(`OSW tick после бури (рост включён) ${avg2(OSW.after)} мс (${OSW.after.length} замеров, макс ${OSW.after.length ? Math.max.apply(null, OSW.after).toFixed(1) : '-'})`)
     console.info('OSW done')
