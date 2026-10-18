@@ -232,7 +232,12 @@ function rebuildPeople_() {
              statusChanged: r[col('Статус изменён (дата)')], replySent: r[col('Ответ отправлен (дата)')] };
   });
   var res = groupPeople(rows);
-  if (res.length) t.getRange(2, 1, res.length, 7).setValues(res);
+  if (res.length) {
+    // Ник и адрес приходят из публичной формы: «=IMPORTDATA(…)» в нике стал бы живой формулой. Текстовый формат до записи — значения остаются текстом.
+    t.getRange(2, 1, res.length, 2).setNumberFormat('@');
+    t.getRange(2, 5, res.length, 1).setNumberFormat('@');
+    t.getRange(2, 1, res.length, 7).setValues(res);
+  }
   t.autoResizeColumns(1, 7);
 }
 
