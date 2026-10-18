@@ -30,6 +30,11 @@ var CFG = {
   MAX_ROWS: 2000,
   // Решение владельца (В43 «а»): письмо автору сразу после отправки отчёта. false — выключить письма.
   SEND_CONFIRMATION: true,
+  // Решение владельца (В44 «б»): текст из «Ответ автору» уходит автору сам, без одобрения владельца. false — выключить.
+  SEND_REPLIES: true,
+  MAX_REPLIES_PER_RUN: 20,   // писем за один запуск таймера (раз в 15 минут)
+  QUOTA_RESERVE: 10,         // запас дневной квоты MailApp под письма-подтверждения
+  MAX_REPLY_CHARS: 4000,
   STATUS_URL: 'https://github.com/limanov7kiy/Minecraft_moded/blob/HEAD/docs/report-status.md'
 };
 
@@ -146,6 +151,7 @@ function startRows(publishedUrl, editUrl) {
     ['Ручной шаг 2 (по желанию)', 'Редактор формы → «+» (Добавить вопрос) → тип «Загрузка файла» → название «Файлы», «Необязательный вопрос». Скрипт не умеет создавать этот вопрос. Включает вход в Google (адрес и так собирается). Без него остаётся поле «Ссылка на файлы».'],
     ['Ручной шаг 3', 'Ответы → ⋮ → «Получать уведомления о новых ответах по электронной почте».'],
     ['Письмо автору', 'После отправки отчёта скрипт шлёт автору короткое письмо с номером R-### (только номер и ссылка на report-status, без ника и текста отчёта). При первом запуске Google спросит разрешение «Отправлять письма от вашего имени». Лимит — около 100 писем в день. Выключить: CFG.SEND_CONFIRMATION = false в Code.gs.'],
+    ['Ответ автору', 'Раз в 15 минут скрипт шлёт автору текст из колонки «Ответ автору» (если он не начинается с [ЧЕРНОВИК], «Ответ отправлен (дата)» пусто и адрес корректен) и ставит дату. Не больше 20 писем за запуск. Выключить: CFG.SEND_REPLIES = false. Подробности — docs/report-form.md.'],
     ['', ''],
     ['Что делает скрипт сам', 'Номера R-###, статусы, подсветка, листы «Сводка», «По номеру», «По автору», «По людям», «Кто что ждёт», триггеры. Повторный запуск bootstrap() форму не дублирует.'],
     ['Приватность', 'Таблица и этот лист содержат ники и адреса. Не делитесь Таблицей и не публикуйте листы. Ссылки на форму и Таблицу в git не вписываются. Публичная страница: python3 -I scripts/report-status.py <csv>.']
@@ -403,6 +409,74 @@ function sendConfirmation_(sh, row) {
   }
 }
 
+// Тема только с номером R-###; тело — текст ответа (plain text, ≤ MAX_REPLY_CHARS) и ссылка на статус. Ника и адреса нет.
+function replyMail_(number, text) {
+  return {
+    subject: 'Ответ по отчёту ' + number + ' — Minecraft_moded',
+    body: String(text).substring(0, CFG.MAX_REPLY_CHARS) + '\n\nСтатус: ' + CFG.STATUS_URL
+  };
+}
+
+// Черновик, если в начале (первые 40 знаков) есть «чернов…» в любом виде: «[ЧЕРНОВИК]», «[ черновик ]», «ЧЕРНОВИК:», с неразрывным пробелом,
+// невидимыми символами и латинскими двойниками букв (e, o, p, c, x, a, k…). Ошибка здесь — в сторону «не отправлять».
+var LATIN_LOOKALIKES_ = { a: 'а', b: 'в', c: 'с', e: 'е', h: 'н', k: 'к', m: 'м', o: 'о', p: 'р', t: 'т', x: 'х', y: 'у' };
+function isDraftReply_(text) {
+  var t = String(text).replace(/[\u00ad\u200b-\u200f\u2060\ufeff]/g, '').toLowerCase().substring(0, 40);
+  t = t.replace(/[a-z]/g, function (ch) { return LATIN_LOOKALIKES_[ch] || ch; });
+  return t.indexOf('чернов') >= 0 || /draft/i.test(String(text).substring(0, 40));
+}
+
+// Причина в «Заметку» без адреса; одну и ту же причину не дописываем при каждом запуске таймера.
+function noteReplyFail_(sh, row, reason) {
+  var cell = sh.getRange(row, colIndex_(sh, 'Заметка')), old = String(cell.getValue() || ''), msg = 'Ответ не отправлен: ' + reason;
+  if (old.indexOf(msg) >= 0) return;
+  cell.setValue((old ? old + '; ' : '') + msg);
+}
+
+// Триггер по времени (sendReplies, раз в 15 минут). Ответ уходит один раз: после отправки ставится «Ответ отправлен (дата)»;
+// правка текста потом письма не повторяет — чтобы ответить снова, очистите эту ячейку вручную.
+function sendReplies_() {
+  if (!CFG.SEND_REPLIES) return;
+  var lock = LockService.getDocumentLock();
+  try { lock.waitLock(30000); } catch (e) { Logger.log('sendReplies_: занято, пропуск запуска'); return; }
+  try {
+    var sh = responsesSheet_();
+    var last = sh.getLastRow();
+    if (last < 2) return;
+    var limit = Math.min(CFG.MAX_REPLIES_PER_RUN, MailApp.getRemainingDailyQuota() - CFG.QUOTA_RESERVE);
+    if (limit <= 0) { Logger.log('sendReplies_: квота писем почти исчерпана'); return; }
+    var h = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0];
+    var cReply = h.indexOf('Ответ автору') + 1, cSent = h.indexOf('Ответ отправлен (дата)') + 1, cNum = h.indexOf('№') + 1, cE = emailColIndex_(h);
+    if (!cReply || !cSent || !cNum || !cE) { Logger.log('sendReplies_: нет нужных колонок (запустите setup())'); return; }
+    var data = sh.getRange(2, 1, last - 1, h.length).getValues();
+    var sentCount = 0;
+    for (var i = 0; i < data.length && sentCount < limit; i++) {
+      var row = i + 2, text = data[i][cReply - 1];
+      if (!text || !String(text).trim() || isDraftReply_(text) || data[i][cSent - 1]) continue;
+      try {
+        var addr = data[i][cE - 1], number = String(data[i][cNum - 1]);
+        if (!isValidEmail_(addr)) { noteReplyFail_(sh, row, 'нет корректного адреса'); continue; }
+        if (!/^R-\d+$/.test(number)) { noteReplyFail_(sh, row, 'нет номера'); continue; }
+        var m = replyMail_(number, text);
+        // Дату ставим ДО отправки: если запись после отправки не удалась бы, следующий запуск прислал бы письмо второй раз.
+        // При сбое отправки дату снимаем, чтобы повторить на следующем запуске.
+        sh.getRange(row, cSent).setValue(new Date());
+        try {
+          MailApp.sendEmail(addr, m.subject, m.body);
+        } catch (sendErr) {
+          sh.getRange(row, cSent).setValue('');
+          throw sendErr;
+        }
+        sentCount++;
+      } catch (err) {
+        Logger.log('sendReplies_: строка ' + row + ': ' + err);
+        try { noteReplyFail_(sh, row, 'ошибка отправки (подробности в журнале выполнений)'); } catch (e2) { Logger.log('sendReplies_: заметка не записана: ' + e2); }
+      }
+    }
+  } finally { lock.releaseLock(); }
+}
+function sendReplies() { sendReplies_(); }
+
 // Установленный триггер «при отправке формы».
 function onFormSubmit(e) {
   var lock = LockService.getDocumentLock();
@@ -460,6 +534,7 @@ function setup() {
   ScriptApp.getProjectTriggers().forEach(function (t) { ScriptApp.deleteTrigger(t); });
   ScriptApp.newTrigger('onFormSubmit').forSpreadsheet(ss).onFormSubmit().create();
   ScriptApp.newTrigger('fillMissing').timeBased().everyDays(1).atHour(9).create();
+  ScriptApp.newTrigger('sendReplies').timeBased().everyMinutes(15).create();
 
   var sL = letter_(cS), dL = letter_(cD), chL = letter_(colIndex_(sh, 'Статус изменён (дата)')), rL = letter_(colIndex_(sh, 'Ответ отправлен (дата)')), nL = letter_(cN);
   optional_('закрепление строки', function () { sh.setFrozenRows(1); });
@@ -499,4 +574,4 @@ function setup() {
   fillMissing();
 }
 
-if (typeof module !== 'undefined') { module.exports = { setupThenStart_: setupThenStart_, formatNumber: formatNumber, isStale: isStale, needsReply: needsReply, FORM: FORM, ensureForm_: ensureForm_, pickNewSheet: pickNewSheet, startRows: startRows, safeText_: safeText_, isValidEmail_: isValidEmail_, confirmationMail_: confirmationMail_, writeFormulas_: writeFormulas_, onFormSubmit: onFormSubmit, fillMissing: fillMissing, rebuildPeople_: rebuildPeople_, setup: setup, writeStart_: writeStart_, addFormItem_: addFormItem_, bootstrap: bootstrap, buildQueries: buildQueries, groupPeople: groupPeople, emailColIndex_: emailColIndex_, summarize: summarize, letter_: letter_, CFG: CFG }; }
+if (typeof module !== 'undefined') { module.exports = { setupThenStart_: setupThenStart_, formatNumber: formatNumber, isStale: isStale, needsReply: needsReply, FORM: FORM, ensureForm_: ensureForm_, pickNewSheet: pickNewSheet, startRows: startRows, safeText_: safeText_, isValidEmail_: isValidEmail_, confirmationMail_: confirmationMail_, sendReplies_: sendReplies_, replyMail_: replyMail_, writeFormulas_: writeFormulas_, onFormSubmit: onFormSubmit, fillMissing: fillMissing, rebuildPeople_: rebuildPeople_, setup: setup, writeStart_: writeStart_, addFormItem_: addFormItem_, bootstrap: bootstrap, buildQueries: buildQueries, groupPeople: groupPeople, emailColIndex_: emailColIndex_, summarize: summarize, letter_: letter_, CFG: CFG }; }
