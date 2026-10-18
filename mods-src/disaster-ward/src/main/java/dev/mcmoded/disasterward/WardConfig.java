@@ -30,6 +30,9 @@ public final class WardConfig {
     public static final ForgeConfigSpec.DoubleValue ORI_ROLL_CHANCE;
     public static final ForgeConfigSpec.ConfigValue<List<? extends String>> ORI_DIMENSIONS;
     public static final ForgeConfigSpec.BooleanValue ORI_FIX_STUCK;
+    public static final ForgeConfigSpec.BooleanValue ORI_GROWTH_PROTECT;
+    public static final ForgeConfigSpec.DoubleValue ORI_GROW_CHANCE;
+    public static final ForgeConfigSpec.DoubleValue ORI_CORE_CHANCE;
 
     static {
         ForgeConfigSpec.Builder b = new ForgeConfigSpec.Builder();
@@ -99,6 +102,15 @@ public final class WardConfig {
         ORI_FIX_STUCK = b.comment("При старте сервера снимать «зависший» запуск бури: мод ждёт oriwait тиков в памяти, и если сервер выключили в это время,",
                         "флаг oristorm_begin остаётся в сохранении навсегда и буря в этом измерении больше не начинается.")
                 .define("fixStuckStart", true);
+        b.pop();
+        b.push("oriGrowth");
+        ORI_GROWTH_PROTECT = b.comment("Ориджиниум Bob's Originium Dream (игровое правило alloworigrow) не растёт в зоне и у её края (radius + edgeMargin);",
+                        "там же не срабатывают ядра (урон и призыв монстров), жидкость пылевого червя, ядро на месте заражённого и ломание блоков ориджиниевым мутантом.")
+                .define("protect", true);
+        ORI_GROW_CHANCE = b.comment("Шанс шага роста oriblockb (у мода — каждые 2400 тиков = 2 мин, если игрок ближе 50 блоков). 0.25 — в среднем раз в 8 минут.")
+                .defineInRange("growChance", 0.25, 0.0, 1.0);
+        ORI_CORE_CHANCE = b.comment("Шанс срабатывания случайного тика ядра ориджиниума (у мода — ~раз в 68 с: урон 8 в радиусе 4 и призыв монстров). 0.1 — ~раз в 11 минут.")
+                .defineInRange("coreChance", 0.1, 0.0, 1.0);
         b.pop();
         SPEC = b.build();
     }

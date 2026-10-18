@@ -8,7 +8,7 @@ const ORISTORM_RULES = [
   ['oristorm', 'true'],
   ['oristormfrequency', '100000'],
   ['oristormsummon', '200'],
-  ['alloworigrow', 'false'],   // рост ориджиниума портит постройки (решение владельца)
+  ['alloworigrow', 'true'],    // рост ориджиниума — «потихоньку» (шансы в [oriGrowth] оберега), в зону оберега не заходит (решение владельца)
   ['oribreak', 'false'],       // снаряды сарказа-заклинателя ломают блоки, куда попали
 ]
 ServerEvents.loaded(event => {

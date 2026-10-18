@@ -95,7 +95,8 @@ public final class WardGuard {
     public static boolean deny(Level level, BlockPos pos) {
         if (!active() || level.isClientSide()) return false;
         if (scopeOwn != null && current == null && scopeOwn.equals(pos)) return false;
-        if (!WardIndex.inZone(WardIndex.get(level), pos.getX() + 0.5, pos.getZ() + 0.5, 0) || !WardConfig.PROTECT_BLOCKS.get()) return false;
+        int margin = current == null ? WardConfig.EDGE_MARGIN.get() : 0;   // буря Bob's (контекст без сущности) — зона с полосой у края
+        if (!WardIndex.inZone(WardIndex.get(level), pos.getX() + 0.5, pos.getZ() + 0.5, margin) || !WardConfig.PROTECT_BLOCKS.get()) return false;
         denied++;
         return true;
     }

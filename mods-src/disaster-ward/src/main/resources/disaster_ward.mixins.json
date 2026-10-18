@@ -3,6 +3,19 @@
   "minVersion": "0.8",
   "package": "dev.mcmoded.disasterward.mixin",
   "compatibilityLevel": "JAVA_17",
-  "mixins": ["LevelMixin", "ServerLevelMixin"],
-  "injectors": { "defaultRequire": 1 }
+  "mixins": [
+    "LevelMixin",
+    "ServerLevelMixin",
+    "OriGrowMixin",
+    "OriCoreMixin",
+    "OriWormSkillMixin",
+    "OriLiquidBreakMixin",
+    "OriInfectMixin",
+    "OriInfectNormalMixin",
+    "OriInfectManMixin",
+    "OriMutantBreakMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
 }
