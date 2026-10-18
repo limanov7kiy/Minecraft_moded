@@ -164,7 +164,18 @@ function bootstrap() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var r = ensureForm_();
   linkDestination_(r.form, ss);
-  try { setup(); } finally { writeStart_(ss, r.form); }  // «Начало» пишем, даже если setup() упал; повторный запуск идемпотентен
+  setupThenStart_(ss, r.form);
+}
+
+// «Начало» пишем, даже если setup() упал; повторный запуск идемпотентен. Ошибка setup() не теряется: если сбой writeStart_
+// случился уже после неё, наружу уходит исходная ошибка setup(); если setup() прошёл, а writeStart_ упал — бросаем его ошибку.
+function setupThenStart_(ss, form) {
+  var failed = true;
+  try { setup(); failed = false; }
+  finally {
+    try { writeStart_(ss, form); }
+    catch (e2) { if (!failed) throw e2; Logger.log('bootstrap: «Начало» не записано (setup тоже упал): ' + e2); }
+  }
 }
 
 // Необязательное оформление: сбой (например, лист стал «Таблицей» Google) не обрывает setup().
@@ -403,4 +414,4 @@ function setup() {
   fillMissing();
 }
 
-if (typeof module !== 'undefined') { module.exports = { formatNumber: formatNumber, isStale: isStale, needsReply: needsReply, FORM: FORM, ensureForm_: ensureForm_, pickNewSheet: pickNewSheet, startRows: startRows, setup: setup, writeStart_: writeStart_, addFormItem_: addFormItem_, bootstrap: bootstrap, buildQueries: buildQueries, groupPeople: groupPeople, emailColIndex_: emailColIndex_, summarize: summarize, letter_: letter_, CFG: CFG }; }
+if (typeof module !== 'undefined') { module.exports = { setupThenStart_: setupThenStart_, formatNumber: formatNumber, isStale: isStale, needsReply: needsReply, FORM: FORM, ensureForm_: ensureForm_, pickNewSheet: pickNewSheet, startRows: startRows, setup: setup, writeStart_: writeStart_, addFormItem_: addFormItem_, bootstrap: bootstrap, buildQueries: buildQueries, groupPeople: groupPeople, emailColIndex_: emailColIndex_, summarize: summarize, letter_: letter_, CFG: CFG }; }

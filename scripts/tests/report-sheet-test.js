@@ -134,4 +134,20 @@ function runSetup(failFilter) {
   c.setup();   // повторный запуск (идемпотентность) не падает
   assert.ok(env.logs.some((m) => /фильтр/.test(m) && /таблиц/.test(m)), 'причина записана в Logger');
 }
+// ---- bootstrap: сбой setup() не маскируется сбоем writeStart_, а сбой writeStart_ после удачного setup() не глотается ----
+{
+  const form = { getPublishedUrl: () => 'PUB', getEditUrl: () => 'EDIT' };
+  let env = runSetup(false);
+  const boom = new Error('setup упал по-настоящему');
+  global.ScriptApp.getProjectTriggers = () => { throw boom; };          // setup() падает на первом же шаге
+  env.ss.getSheetByName = () => { throw new Error('и «Начало» тоже не записалось'); };
+  assert.throws(() => c.setupThenStart_(env.ss, form), (e) => e === boom, 'наружу — исходная ошибка setup()');
+  assert.ok(env.logs.some((m) => /Начало/.test(m)), 'вторичный сбой записан в Logger');
+  env = runSetup(false);                                                 // setup() проходит, writeStart_ падает
+  env.ss.getSheetByName = () => { throw new Error('нет доступа к листу'); };
+  assert.throws(() => c.setupThenStart_(env.ss, form), /нет доступа к листу/, 'сбой «Начала» после удачного setup() не глотается');
+  env = runSetup(false);                                                 // всё хорошо
+  c.setupThenStart_(env.ss, form);
+  assert.ok(env.written.some((v) => v.some((r) => r[1] === 'PUB')), '«Начало» записано');
+}
 console.log('report-sheet: OK');
