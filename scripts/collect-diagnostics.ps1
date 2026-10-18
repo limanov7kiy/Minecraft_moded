@@ -48,7 +48,7 @@ function Get-Sha1([string]$p) {
 }
 
 # ---------- Маскировка личных данных (только копии в временной папке, оригиналы игры не трогаем) ----------
-# Что маскируется: ник/имя Windows/имя ПК -> псевдоним, IPv4 -> x.x.x.x, MAC -> xx:xx:xx:xx:xx:xx,
+# Что маскируется: ник -> псевдоним, имя Windows -> USER, имя ПК -> HOST, IPv4 -> x.x.x.x, MAC -> xx:xx:xx:xx:xx:xx,
 # C:\Users\<имя> -> C:\Users\USER, UUID игрока в строке "UUID of player ...". Чаты, координаты и т. п. НЕ маскируются.
 $script:MaskExt = '^\.(log|txt|json|cfg|toml|properties|ini|xml|yml|yaml|md|snbt|json5)$|^[^.]*$'
 $script:MaskSkip = '^(mods\.csv|pack\.toml|index\.toml)$'   # версии модов выглядят как IP; личного там нет
@@ -59,10 +59,12 @@ function Get-Alias([string]$nick) {
     return 'Player-' + $h.Substring(0, 4)
 }
 
-function Mask-Text([string]$t, [string[]]$names, [string]$alias) {
-    foreach ($n in $names) {
-        if (-not $n -or $n.Length -lt 3 -or $n -eq $alias) { continue }
-        $t = [regex]::Replace($t, '(?<![\p{L}\p{N}_])' + [regex]::Escape($n) + '(?![\p{L}\p{N}_])', $alias, 'IgnoreCase')
+# $rules — список @{ n = 'что искать'; r = 'на что заменить' }: ник -> псевдоним, имя Windows -> USER, имя ПК -> HOST.
+function Mask-Text([string]$t, [object[]]$rules) {
+    foreach ($rule in ($rules | Sort-Object { $_.n.Length } -Descending)) {
+        $n = [string]$rule.n
+        if (-not $n -or $n.Length -lt 3 -or $n -ceq $rule.r) { continue }
+        $t = [regex]::Replace($t, '(?<![\p{L}\p{N}_])' + [regex]::Escape($n) + '(?![\p{L}\p{N}_])', [string]$rule.r, 'IgnoreCase')
     }
     $t = [regex]::Replace($t, '(?i)([A-Za-z]:(?:\\+|/+)Users(?:\\+|/+))[^\\/\r\n"''<>|:*?]+', '${1}USER')
     $t = [regex]::Replace($t, '(?i)(UUID of player \S+ is )[0-9a-f]{8}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{12}', '${1}xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')
@@ -72,22 +74,22 @@ function Mask-Text([string]$t, [string[]]$names, [string]$alias) {
 }
 
 # Прочитать файл как UTF-8; если не UTF-8 — как Latin1 (байты сохраняются без потерь).
-function Mask-File([string]$path, [string[]]$names, [string]$alias) {
+function Mask-File([string]$path, [object[]]$rules) {
     $bytes = [IO.File]::ReadAllBytes($path)
     $enc = New-Object Text.UTF8Encoding($false, $true)
     try { $text = $enc.GetString($bytes); $out = New-Object Text.UTF8Encoding($false) }
     catch { $out = [Text.Encoding]::GetEncoding(28591); $text = $out.GetString($bytes) }
-    $new = Mask-Text $text $names $alias
+    $new = Mask-Text $text $rules
     if ($new -ne $text) { [IO.File]::WriteAllBytes($path, $out.GetBytes($new)); return $true }
     return $false
 }
 
-function Mask-Stage([string]$dir, [string[]]$names, [string]$alias) {
+function Mask-Stage([string]$dir, [object[]]$rules) {
     $changed = 0; $total = 0
     Get-ChildItem -LiteralPath $dir -Recurse -File -Force -ErrorAction SilentlyContinue | ForEach-Object {
         if (($_.Name -match $script:MaskSkip) -or ($_.Extension -notmatch $script:MaskExt)) { return }
         $total++
-        try { if (Mask-File $_.FullName $names $alias) { $changed++ } }
+        try { if (Mask-File $_.FullName $rules) { $changed++ } }
         catch { Note "ОШИБКА маскировки: $($_.Name) — $($_.Exception.Message)" }
     }
     Note "OK: маскировка личных данных — изменено файлов: $changed из $total"
@@ -234,7 +236,7 @@ try {
     $alias = Get-Alias $nick
 
     Write-Host ''
-    Write-Host "Ваш ник, имя Windows, имя ПК и IP-адреса в архиве будут заменены: ник -> $alias, IP -> x.x.x.x." -ForegroundColor Yellow
+    Write-Host "Ваш ник, имя Windows, имя ПК и IP-адреса в архиве будут заменены: ник -> $alias, имя Windows -> USER, имя ПК -> HOST, IP -> x.x.x.x." -ForegroundColor Yellow
     Write-Host 'Чат, координаты и скриншоты не маскируются. Пароли, токены и данные аккаунтов НЕ собираются.' -ForegroundColor Yellow
     Write-Host 'Zip вы сможете открыть и посмотреть до отправки.' -ForegroundColor Yellow
     $ok = (Read-Host 'Продолжить? [Enter — да, N — отмена]').Trim()
@@ -470,11 +472,14 @@ try {
     } else { Note 'ПРОПУЩЕНО: dxdiag (отказались)' }
 
     # ---------- маскировка ----------
-    $maskNames = @($rawNick, $nick, $env:USERNAME, $env:COMPUTERNAME) | Where-Object { $_ } | Select-Object -Unique
-    try { Mask-Stage $script:Stage $maskNames $alias } catch { Note "ОШИБКА: маскировка — $($_.Exception.Message)" }
+    $maskRules = @()
+    foreach ($x in @($rawNick, $nick) | Where-Object { $_ } | Select-Object -Unique) { $maskRules += @{ n = $x; r = $alias } }
+    if ($env:USERNAME) { $maskRules += @{ n = $env:USERNAME; r = 'USER' } }
+    if ($env:COMPUTERNAME) { $maskRules += @{ n = $env:COMPUTERNAME; r = 'HOST' } }
+    try { Mask-Stage $script:Stage $maskRules } catch { Note "ОШИБКА: маскировка — $($_.Exception.Message)" }
 
     # ---------- manifest + zip ----------
-    $head = @("manifest — что собрано; создан $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss'), псевдоним: $alias (ник и имя ПК заменены)", '')
+    $head = @("manifest — что собрано; создан $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss'), псевдоним: $alias (ник, имя Windows и имя ПК заменены)", '')
     ($head + $script:Manifest) | Set-Content -LiteralPath (Join-Path $script:Stage 'manifest.txt') -Encoding UTF8
 
     $desktop = [Environment]::GetFolderPath('Desktop')

@@ -17,17 +17,18 @@ function Check([string]$name, $got, $want) {
 $alias = Get-Alias 'Vasya_Pupkin'
 Check 'alias стабилен' (Get-Alias 'vasya_pupkin') $alias
 Check 'alias формат' ($alias -match '^Player-[0-9a-f]{4}$') $true
-$names = @('Vasya_Pupkin', 'ivan', 'DESKTOP-ABC123', 'me')
-$m = { param($t) Mask-Text $t $names $alias }
+$names = @(@{ n = 'Vasya_Pupkin'; r = $alias }, @{ n = 'ivan'; r = 'USER' }, @{ n = 'DESKTOP-ABC123'; r = 'HOST' }, @{ n = 'me'; r = 'USER' })
+$m = { param($t) Mask-Text $t $names }
 Check 'ник в чате' (& $m '[Server thread/INFO]: <Vasya_Pupkin> hi') "[Server thread/INFO]: <$alias> hi"
 Check 'ник без учёта регистра' (& $m 'vasya_pupkin joined the game') "$alias joined the game"
 Check 'ник внутри слова не трогаем' (& $m 'Vasya_PupkinX') 'Vasya_PupkinX'
 Check 'короткое имя пропущено' (& $m 'me and you') 'me and you'
+Check 'имя Windows вне пути' (& $m 'user ivan logged in') 'user USER logged in'
 Check 'путь Windows' (& $m 'C:\Users\ivan\AppData\Roaming\PrismLauncher') 'C:\Users\USER\AppData\Roaming\PrismLauncher'
 Check 'путь с чужим именем' (& $m 'C:\Users\Anna Karenina\Desktop') 'C:\Users\USER\Desktop'
 Check 'путь в JSON' (& $m '"C:\\Users\\ivan\\x"') '"C:\\Users\\USER\\x"'
 Check 'путь через /' (& $m 'c:/users/ivan/x') 'c:/users/USER/x'
-Check 'имя ПК' (& $m 'Machine name: DESKTOP-ABC123') "Machine name: $alias"
+Check 'имя ПК' (& $m 'Machine name: DESKTOP-ABC123') 'Machine name: HOST'
 Check 'IPv4' (& $m 'Connecting to 203.0.113.45, 25565') 'Connecting to x.x.x.x, 25565'
 Check 'IPv4 с портом' (& $m '/192.168.1.7:51234 lost connection') '/x.x.x.x:51234 lost connection'
 Check '127.0.0.1 остаётся' (& $m 'bind 127.0.0.1:25565') 'bind 127.0.0.1:25565'
@@ -46,7 +47,7 @@ New-Item -ItemType Directory -Path $dLogs -Force | Out-Null
 [IO.File]::WriteAllBytes($fOld, ([Text.Encoding]::GetEncoding(28591).GetBytes("Vasya_Pupkin ") + [byte[]](0xCF, 0xF0, 0xE8, 0xE2, 0xE5, 0xF2)))
 [IO.File]::WriteAllText($fMods, "mod-1.2.3.4.jar,Vasya_Pupkin`n")
 [IO.File]::WriteAllBytes($fGz, [Text.Encoding]::ASCII.GetBytes('Vasya_Pupkin'))
-Mask-Stage $dir $names $alias
+Mask-Stage $dir $names
 Check 'latest.log (UTF-8)' ([IO.File]::ReadAllText($fLatest).TrimEnd()) "Привет $alias x.x.x.x"
 $b = [IO.File]::ReadAllBytes($fOld)
 Check 'old.log (cp1251) байты' (($b | ForEach-Object { $_.ToString('x2') }) -join '') ((([Text.Encoding]::ASCII.GetBytes("$alias ") + [byte[]](0xCF, 0xF0, 0xE8, 0xE2, 0xE5, 0xF2)) | ForEach-Object { $_.ToString('x2') }) -join '')
