@@ -451,11 +451,11 @@ hash = "647191c0cdc6e37af522ab5fc38c8b1cfe4aa3118139738dda8d58285f09867f"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/models/main.json"
-hash = "c0ff853406a2e772ff450a2778e4b0b02eeaae74c97f0a3577b037fae4560e21"
+hash = "d9d78d933892ce549e8b72b55b6ce2790ce9854757e212cd82e5cc05f0ce8fbb"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/textures/priestess.png"
-hash = "ebc7a9afe89f9fe2fed82ab91b0f30d92bd22ab3df02494497bf1b502a4e79b4"
+hash = "8c762ff23bfbfe54c8ec91906f8d0248b25339c3c62adb0820898932acb9f551"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/ysm.json"

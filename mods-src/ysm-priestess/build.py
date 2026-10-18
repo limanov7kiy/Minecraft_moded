@@ -231,7 +231,7 @@ def m_head(w, h, face, s):
         a[0:2] = P["skin_s"]  # тень от чёлки
         cx = w // 2
         my = int(h * 0.80)
-        # рта нет (решение владельца: улыбка дважды «глупая» — убрать)
+        # рот — отдельная плоская деталь (кость Mouth): короткая нейтральная линия, по образцу, одобренному владельцем
         by = int(h * 0.66)
         a[by:by + 2, 2:6] = a[by:by + 2, 2:6] * 0.4 + P["blush"] * 0.6
         a[by:by + 2, w - 6:w - 2] = a[by:by + 2, w - 6:w - 2] * 0.4 + P["blush"] * 0.6
@@ -285,6 +285,10 @@ def m_hot(w, h, face, s):
 
 def m_sparkle(w, h, face, s):
     return fill(w, h, P["white"])
+
+
+def m_mouthflat(w, h, face, s):
+    return fill(w, h, P["skin_d"] * 0.6 + P["mouth"] * 0.4)
 
 
 def m_brow(w, h, face, s):
@@ -568,6 +572,8 @@ def build_main(default_geo):
     cb("Head", (-3.5, 33.05, -3.5), (7, 7, 7), "head", dens=4, faces=["north"])
     cb("Head", (-3.5, 33.05, -3.5), (7, 7, 7), "head", faces=["south", "east", "west", "up", "down"])
     cb("AllHead", (-1.4, 31.9, -1.4), (2.8, 2.0, 2.8), "skin")
+    G.bone("Mouth", "Head", (0, 33.5, -3.52))
+    cb("Mouth", (-0.42, 33.42, -3.53), (0.84, 0.16, 0.02), "mouthflat", faces=["north"], share="swatch_mouthflat")
     for side in ("Right", "Left"):
         sg = -1 if side == "Right" else 1
         ex0 = -3.45 if side == "Right" else 1.05
