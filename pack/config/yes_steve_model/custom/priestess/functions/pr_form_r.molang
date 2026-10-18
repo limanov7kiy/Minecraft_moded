@@ -1,4 +1,3 @@
-// форма осколка для mainhand: 0 — пусто, 1..13 — sword, axe, pickaxe, shovel, hoe, bow, crossbow, shield, spear, staff, tome, food, other
 !ysm.has_mainhand ? { return 0; };
 (q.equipped_item_any_tag('mainhand', 'mm:ysm_form/sword', 'minecraft:swords', 'forge:tools/swords')) ? { return 1; };
 (q.equipped_item_any_tag('mainhand', 'mm:ysm_form/axe', 'minecraft:axes', 'forge:tools/axes')) ? { return 2; };

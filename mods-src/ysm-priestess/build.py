@@ -903,8 +903,9 @@ def form_functions():
            "food": ["minecraft:potion", "minecraft:milk_bucket", "minecraft:honey_bottle"]}
     out = {}
     for slot, var in (("mainhand", "r"), ("offhand", "l")):
-        lines = [f"// форма осколка для {slot}: 0 — пусто, 1..{len(FORMS)} — {', '.join(FORMS)}",
-                 f"!ysm.has_{slot} ? {{ return 0; }};"]
+        # результат: 0 — пусто, 1..N — FORMS по порядку. Комментариев в .molang не пишем: с ними YSM 2.6.5 отвергает
+        # модель целиком (проверено на сервере, docs/ysm-models.md)
+        lines = [f"!ysm.has_{slot} ? {{ return 0; }};"]
         for i, f in enumerate(FORMS, 1):
             if f == "other":
                 continue
@@ -917,7 +918,6 @@ def form_functions():
         lines.append(f"return {FORMS.index('other') + 1};")
         out[f"pr_form_{var}.molang"] = "\n".join(lines) + "\n"
     out["pr_update@player_update.molang"] = (
-        "// каждый кадр перед анимацией: формы осколка в руках\n"
         "v.form_r = fn.pr_form_r;\n"
         "v.form_l = fn.pr_form_l;\n")
     return out

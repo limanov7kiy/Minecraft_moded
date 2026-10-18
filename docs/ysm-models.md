@@ -147,6 +147,8 @@ macOS: YSM на Mac не работает. В облаке (виртуальна
   плюс подменю «Ещё позы (default)» — 8 поз встроенной модели (танцы, жесты).
 - **Плащ, волосы, ремешки** — «физика» по скорости, вертикали и повороту (как волосы default).
 
+Важно для правок: в `functions/*.molang` **нельзя комментарии `//`** — YSM 2.6.5 тогда молча отвергает всю модель (`docs/compat.md`); проверка — серверный кэш YSM (+1 запись на модель).
+
 Сборка: `python3 mods-src/ysm-priestess/build.py` (качает jar YSM по ссылке из `pack/mods/yes-steve-model.pw.toml` в
 `mods-src/ysm-priestess/build/`, берёт оттуда скелет/анимации default и пишет модель в `pack/config/.../priestess/`), затем
 `packwiz refresh`. Превью без игры: `mods-src/ysm-priestess/ysmrender.py` (свой рендер Bedrock-геометрии с анимациями
