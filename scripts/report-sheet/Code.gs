@@ -1,6 +1,6 @@
 /**
  * Учёт отчётов игроков в Google Таблице, привязанной к форме (Расширения → Apps Script).
- * Вставляется целиком; один раз запустить setup(). Личных данных и секретов здесь нет —
+ * Вставляется целиком; один раз запустить bootstrap() — он сам создаёт форму, связывает её с этой Таблицей и вызывает setup(). Личных данных и секретов здесь нет —
  * данные живут только в Таблице владельца. Инструкция — docs/report-form.md.
  *
  * Что делает:
@@ -52,6 +52,120 @@ function buildQueries(sheet, c) {
       ' is not null and ' + notDone + ' group by ' + c.nick + ' order by count(' + c.num + ') desc label ' + c.nick +
       " 'Автор', count(" + c.num + ") 'Открытых отчётов'" + '", 0)'
   };
+}
+
+// ---------- Форма: создаётся и связывается скриптом (bootstrap) ----------
+var FORM = {
+  TITLE: 'Minecraft_moded — отчёт о проблеме',
+  DESCRIPTION: 'Опишите проблему. Логи и скриншоты — по желанию: лучше архив diag-Player-….zip от collect-diagnostics.bat (ник и IP в нём заменены), ' +
+    'ссылкой в поле «Ссылка на файлы». Не вставляйте пароли, адрес дома, реальное имя и IP в текст. Ответы видит только хост. ' +
+    'Адрес виден только хосту, не публикуется; нужен вход в Google.',
+  CONFIRMATION: 'Спасибо! Номер отчёта и ответ пришлём в чат в течение суток; статус — на странице report-status',
+  // type: text | paragraph | list | choice. Вопроса «Загрузка файла» здесь нет: FormApp не умеет его создавать (см. docs/report-form.md, ручной шаг).
+  FIELDS: [
+    { title: 'Ник / имя для связи', type: 'text', required: true, help: 'Как к вам обратиться. Ник виден только хосту. Отчёты без имени не принимаются' },
+    { title: 'Псевдоним из диагностики', type: 'text', help: 'Player-xxxx из конца окна скрипта диагностики (по нему сопоставим архив с вами)' },
+    { title: 'Версия сборки', type: 'text', required: true, help: 'Дата последнего обновления сборки или номер из Prism. Не знаете — «не знаю»' },
+    { title: 'Пункт «Что нового»', type: 'list', help: 'W1…W10 из docs/whats-new-check.md', choices: ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8', 'W9', 'W10', 'другое'] },
+    { title: 'Где играли', type: 'choice', required: true, choices: ['Одиночная игра', 'Сервер друзей'] },
+    { title: 'Мод или предмет', type: 'text', help: 'Подсказка Jade при наведении или вкладка Mods. Не знаете — «не знаю»' },
+    { title: 'Что не работает', type: 'paragraph', required: true, help: 'Что делали, что ожидали, что получилось' },
+    { title: 'Шаги, чтобы повторить', type: 'paragraph', help: '1–2–3. Не повторяется — напишите' },
+    { title: 'Как часто', type: 'choice', choices: ['Один раз', 'Иногда', 'Каждый раз'] },
+    { title: 'Категория', type: 'choice', help: 'Что ближе всего', choices: null },   // choices = CFG.CATEGORIES
+    { title: 'Ссылка spark', type: 'text', help: 'При лагах: в мире /spark profiler start, 2–3 минуты игры, /spark profiler stop, ссылку из чата сюда' },
+    { title: 'Ссылка на файлы', type: 'text', help: 'Если файл большой: ссылка на облако «доступ по ссылке», срок — неделя' },
+    { title: 'ОС, видеокарта, память для игры', type: 'text', help: 'Например: Windows 11, RTX 2060, 8192 МБ' }
+  ]
+};
+
+function addFormItem_(form, f) {
+  var item;
+  if (f.type === 'text') item = form.addTextItem();
+  else if (f.type === 'paragraph') item = form.addParagraphTextItem();
+  else if (f.type === 'list') item = form.addListItem().setChoiceValues(f.choices || CFG.CATEGORIES);
+  else item = form.addMultipleChoiceItem().setChoiceValues(f.choices || CFG.CATEGORIES);
+  item.setTitle(f.title);
+  if (f.help) item.setHelpText(f.help);
+  item.setRequired(!!f.required);
+  return item;
+}
+
+// Создаёт форму один раз: id в свойствах документа; повторный запуск открывает ту же форму и заново ставит настройки.
+function ensureForm_() {
+  var props = PropertiesService.getDocumentProperties();
+  var id = props.getProperty('formId'), form = null, created = false;
+  if (id) { try { form = FormApp.openById(id); } catch (err) { form = null; } }
+  if (!form) {
+    form = FormApp.create(FORM.TITLE);
+    FORM.FIELDS.forEach(function (f) { addFormItem_(form, f); });
+    // FormApp умеет только включить сбор адресов; тип «Подтверждённые» ставится вручную (лист «Начало», docs/report-form.md).
+    // Только при создании: повторный запуск не должен сбрасывать то, что владелец выставил руками.
+    form.setCollectEmail(true);
+    props.setProperty('formId', form.getId());
+    created = true;
+  }
+  form.setTitle(FORM.TITLE).setDescription(FORM.DESCRIPTION).setConfirmationMessage(FORM.CONFIRMATION);
+  form.setAllowResponseEdits(false).setLimitOneResponsePerUser(false).setProgressBar(false);
+  return { form: form, created: created };
+}
+
+// Какой из листов появился после связывания формы: before — id листов до, sheets — [{id, name}] после.
+function pickNewSheet(before, sheets) {
+  for (var i = 0; i < sheets.length; i++) if (before.indexOf(sheets[i].id) < 0) return sheets[i];
+  return null;
+}
+
+function linkDestination_(form, ss) {
+  var props = PropertiesService.getDocumentProperties();
+  if (props.getProperty('responsesSheetId')) return;
+  var before = ss.getSheets().map(function (x) { return x.getSheetId(); });
+  form.setDestination(FormApp.DestinationType.SPREADSHEET, ss.getId());
+  var found = null;
+  for (var k = 0; k < 10 && !found; k++) {   // лист появляется не сразу
+    SpreadsheetApp.flush();
+    found = pickNewSheet(before, ss.getSheets().map(function (x) { return { id: x.getSheetId(), name: x.getName() }; }));
+    if (!found) Utilities.sleep(1000);
+  }
+  if (!found) throw new Error('Лист ответов не появился. Свяжите форму вручную (вкладка «Ответы» → Связать с Таблицами → выбрать эту Таблицу) и запустите bootstrap() ещё раз.');
+  props.setProperty('responsesSheetId', String(found.id));
+  // Пустой «Лист1» до формы больше не нужен.
+  ss.getSheets().forEach(function (x) { if (x.getSheetId() !== found.id && x.getLastRow() === 0 && x.getName() === 'Лист1' && ss.getSheets().length > 1) ss.deleteSheet(x); });
+}
+
+// Тексты листа «Начало» (строки A:B). Ссылки видны только владельцу Таблицы.
+function startRows(publishedUrl, editUrl) {
+  return [
+    ['Ссылка на форму для друзей', publishedUrl],
+    ['Редактор формы (только владельцу)', editUrl],
+    ['', ''],
+    ['Ручной шаг 1 (обязательно)', 'Редактор формы → вкладка «Настройки» → «Ответы» → «Собирать адреса электронной почты» → «Подтверждённые». Скрипт может только включить сбор адресов, тип выбирается руками.'],
+    ['Ручной шаг 2 (по желанию)', 'Редактор формы → «+» (Добавить вопрос) → тип «Загрузка файла» → название «Файлы», «Необязательный вопрос». Скрипт не умеет создавать этот вопрос. Включает вход в Google (адрес и так собирается). Без него остаётся поле «Ссылка на файлы».'],
+    ['Ручной шаг 3', 'Ответы → ⋮ → «Получать уведомления о новых ответах по электронной почте».'],
+    ['', ''],
+    ['Что делает скрипт сам', 'Номера R-###, статусы, подсветка, листы «Сводка», «По номеру», «По автору», «По людям», «Кто что ждёт», триггеры. Повторный запуск bootstrap() форму не дублирует.'],
+    ['Приватность', 'Таблица и этот лист содержат ники и адреса. Не делитесь Таблицей и не публикуйте листы. Ссылки на форму и Таблицу в git не вписываются. Публичная страница: python3 -I scripts/report-status.py <csv>.']
+  ];
+}
+
+function writeStart_(ss, form) {
+  var t = ss.getSheetByName('Начало') || ss.insertSheet('Начало');
+  t.clear();
+  var rows = startRows(form.getPublishedUrl(), form.getEditUrl());
+  t.getRange(1, 1, rows.length, 2).setValues(rows);
+  t.setColumnWidth(1, 260); t.setColumnWidth(2, 700);
+  t.getRange(1, 2, rows.length, 1).setWrap(true);
+  ss.setActiveSheet(t);
+  ss.moveActiveSheet(1);
+}
+
+// ОДИН раз: создать пустую Таблицу → Расширения → Apps Script → вставить этот файл → запустить bootstrap() и разрешить доступ.
+function bootstrap() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var r = ensureForm_();
+  linkDestination_(r.form, ss);
+  setup();
+  writeStart_(ss, r.form);
 }
 
 // Колонка адреса: номер (с 1) или 0, если её нет.
@@ -131,7 +245,18 @@ function summarize(rows, now, days) {
   return r;
 }
 
-function responsesSheet_() { return SpreadsheetApp.getActiveSpreadsheet().getSheets()[0]; }
+// Лист ответов формы: id хранится в свойствах (bootstrap); без него — первый лист, у которого в A1 «Отметка времени»/Timestamp, иначе первый.
+function responsesSheet_() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var id = PropertiesService.getDocumentProperties().getProperty('responsesSheetId');
+  var sheets = ss.getSheets();
+  for (var i = 0; i < sheets.length; i++) if (id && String(sheets[i].getSheetId()) === id) return sheets[i];
+  for (var j = 0; j < sheets.length; j++) {
+    var a1 = sheets[j].getLastRow() ? String(sheets[j].getRange(1, 1).getValue()) : '';
+    if (a1 === 'Отметка времени' || a1 === 'Timestamp') return sheets[j];
+  }
+  return sheets[0];
+}
 
 function colIndex_(sh, title) {
   var h = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0];
@@ -181,7 +306,7 @@ function fillMissing() {
 // Простой триггер: правка рабочих колонок обновляет «Дату изменения».
 function onEdit(e) {
   var sh = e.range.getSheet();
-  if (sh.getIndex() !== 1 || e.range.getRow() < 2) return;
+  if (sh.getSheetId() !== responsesSheet_().getSheetId() || e.range.getRow() < 2) return;
   var h = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0];
   var cols = CFG.EDIT_TRIGGERS.map(function (t) { return h.indexOf(t) + 1; });
   if (cols.indexOf(e.range.getColumn()) < 0) return;
@@ -266,4 +391,4 @@ function setup() {
   fillMissing();
 }
 
-if (typeof module !== 'undefined') { module.exports = { formatNumber: formatNumber, isStale: isStale, needsReply: needsReply, buildQueries: buildQueries, groupPeople: groupPeople, emailColIndex_: emailColIndex_, summarize: summarize, letter_: letter_, CFG: CFG }; }
+if (typeof module !== 'undefined') { module.exports = { formatNumber: formatNumber, isStale: isStale, needsReply: needsReply, FORM: FORM, ensureForm_: ensureForm_, pickNewSheet: pickNewSheet, startRows: startRows, addFormItem_: addFormItem_, bootstrap: bootstrap, buildQueries: buildQueries, groupPeople: groupPeople, emailColIndex_: emailColIndex_, summarize: summarize, letter_: letter_, CFG: CFG }; }

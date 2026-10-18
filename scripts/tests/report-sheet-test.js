@@ -59,4 +59,45 @@ assert.deepStrictEqual(people[1].slice(2, 4).concat(people[1][6]), [2, 0, 'не�
 assert.strictEqual(+people[1][5], +d2('2026-10-11'));
 assert.strictEqual(c.emailColIndex_(['a', 'Адрес электронной почты']), 2);
 assert.strictEqual(c.emailColIndex_(['a']), 0);
+// ---- форма и bootstrap с заглушками (в настоящем Google не запускалось) ----
+function fakeForm(id) {
+  const f = { id, items: [], calls: [], dest: null };
+  const item = (kind) => { const it = { kind, title: '', help: '', required: false, choices: null };
+    it.setTitle = (t) => { it.title = t; return it; }; it.setHelpText = (t) => { it.help = t; return it; };
+    it.setRequired = (r) => { it.required = r; return it; }; it.setChoiceValues = (v) => { it.choices = v; return it; };
+    f.items.push(it); return it; };
+  f.addTextItem = () => item('text'); f.addParagraphTextItem = () => item('paragraph');
+  f.addListItem = () => item('list'); f.addMultipleChoiceItem = () => item('choice');
+  ['setTitle', 'setDescription', 'setConfirmationMessage', 'setAllowResponseEdits', 'setLimitOneResponsePerUser', 'setProgressBar', 'setCollectEmail']
+    .forEach((m) => { f[m] = (v) => { f.calls.push([m, v]); return f; }; });
+  f.getId = () => id; f.getPublishedUrl = () => 'PUB'; f.getEditUrl = () => 'EDIT';
+  return f;
+}
+const forms = {}; let created = 0;
+global.FormApp = { create: () => { created++; return (forms['f' + created] = fakeForm('f' + created)); }, openById: (id) => { if (!forms[id]) throw new Error('no form'); return forms[id]; } };
+const store = {};
+global.PropertiesService = { getDocumentProperties: () => ({ getProperty: (k) => store[k] || null, setProperty: (k, v) => { store[k] = v; } }) };
+const r1 = c.ensureForm_();
+assert.strictEqual(r1.created, true);
+const it = r1.form.items;
+assert.strictEqual(it.length, c.FORM.FIELDS.length);
+assert.strictEqual(it.filter((x) => x.required).length, 4);   // ник, версия, где играли, что не работает
+assert.deepStrictEqual(it.find((x) => x.title === 'Категория').choices, c.CFG.CATEGORIES);
+assert.ok(it.every((x) => x.kind !== 'file'), 'вопроса «Загрузка файла» нет (FormApp не умеет)');
+const call = (f, m) => f.calls.filter((x) => x[0] === m).map((x) => x[1]);
+assert.deepStrictEqual(call(r1.form, 'setConfirmationMessage'), ['Спасибо! Номер отчёта и ответ пришлём в чат в течение суток; статус — на странице report-status']);
+assert.ok(call(r1.form, 'setDescription')[0].includes('Адрес виден только хосту, не публикуется; нужен вход в Google.'));
+assert.deepStrictEqual(call(r1.form, 'setCollectEmail'), [true]);
+// повторный запуск: та же форма, второй не создаётся, сбор адресов заново не трогается
+const r2 = c.ensureForm_();
+assert.strictEqual(r2.created, false); assert.strictEqual(created, 1); assert.strictEqual(r2.form.items.length, it.length);
+assert.deepStrictEqual(call(r2.form, 'setCollectEmail'), [true]);
+// форма пропала → создаётся новая
+delete forms.f1; assert.strictEqual(c.ensureForm_().created, true);
+assert.deepStrictEqual(c.pickNewSheet([1, 2], [{ id: 1 }, { id: 2 }]), null);
+assert.deepStrictEqual(c.pickNewSheet([1], [{ id: 1 }, { id: 7, name: 'x' }]), { id: 7, name: 'x' });
+const sr = c.startRows('PUB', 'EDIT');
+assert.strictEqual(sr[0][1], 'PUB'); assert.strictEqual(sr[1][1], 'EDIT');
+assert.ok(sr.some((x) => /Подтверждённые/.test(x[1])) && sr.some((x) => /Загрузка файла/.test(x[1])));
+assert.strictEqual(typeof c.bootstrap, 'function');
 console.log('report-sheet: OK');
