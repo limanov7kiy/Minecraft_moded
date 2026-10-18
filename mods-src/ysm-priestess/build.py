@@ -903,8 +903,7 @@ def form_functions():
            "food": ["minecraft:potion", "minecraft:milk_bucket", "minecraft:honey_bottle"]}
     out = {}
     for slot, var in (("mainhand", "r"), ("offhand", "l")):
-        # результат: 0 — пусто, 1..N — FORMS по порядку. Комментариев в .molang не пишем: с ними YSM 2.6.5 отвергает
-        # модель целиком (проверено на сервере, docs/ysm-models.md)
+        # результат: 0 — пусто, 1..N — FORMS по порядку
         lines = [f"!ysm.has_{slot} ? {{ return 0; }};"]
         for i, f in enumerate(FORMS, 1):
             if f == "other":
@@ -937,7 +936,7 @@ def build_arm(default_arm, G):
     cb("LeftForeArm", (2.625 + dx, 18.075 + dy, -1.475), (3, 2.4, 3), "skin")
     cb("LeftForeArm", (2.35 + dx, 19.75 + dy, -1.75), (3.55, 0.9, 3.55), "cuff", dens=2)
     A.mirror("LeftArm", "RightArm"); A.mirror("LeftForeArm", "RightForeArm")
-    # куб 1×1×1 в локаторах рук, как у default: без него YSM 2.6.5 молча отвергает модель (проверено на сервере)
+    # куб 1×1×1 в локаторах рук и границы — как в arm.json модели default
     for loc in ("LeftHandLocator", "RightHandLocator"):
         x, y, z = A.byname[loc]["pivot"]
         cb(loc, (x - 0.5, y - 0.5, z - 0.5), (1, 1, 1), "skin")

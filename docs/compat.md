@@ -1016,8 +1016,6 @@ CurseForge 1460238, файл 9130290, Astryxion, All Rights Reserved. Jar `pack/
 - `AK_Rosmontis_v0.9.ysm` (Elaina69, формат 26) не читается вовсе — не раздаём; остальные 65 из `_Arknights`,
   `_ArknightsEndfield`, `_PunishingGrayRaven` грузятся. Файлы качаются по ссылкам из packwiz-метафайлов в `config/`
   (`scripts/fetch-config-files.py` для сервера; `test-server.sh` и `export-pack.sh` его вызывают).
-- **Комментарий `//` в `functions/*.molang` модели-папки — YSM отвергает всю модель** (Priestess пропадала, без
-  комментариев грузится; проверено вариантами на сервере). Одна строка `return <тернарник>;` тоже отвергается,
-  форма `cond ? { return N; };` — работает. Генератор `mods-src/ysm-priestess/build.py` пишет функции без комментариев.
+- Модели-папки (как Priestess) в этот кэш не попадают — их загрузку проверять командой `/ysm export <id>` из консоли (файл появляется в `config/yes_steve_model/export/` только у загруженной модели; зашифрованные `.ysm` не экспортируются). Priestess: `[YSM] Saved as 'export/priestess.ysm'`. Тест `scripts/tests/ysmcheck.js`: теги форм собираются (посохи Iron's/Cataclysm Spellbooks, палочки Wizardry, жезлы Botania → staff; книги Ars → tome; еда → food), команда `ysm molang execute` сервером принимается.
 - Клиент YSM в облаке не запускается (К7) — внешний вид и molang-логика Priestess проверены своим рендером
   (`mods-src/ysm-priestess/ysmrender.py`), в игре — по чек-листу в `docs/ysm-models.md`.
