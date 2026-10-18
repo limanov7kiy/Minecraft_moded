@@ -82,9 +82,17 @@ def parse_date(s):
     return None
 
 
+# Опасные признаки, которые нельзя «разрезать» переносом строки или пробелом (адрес, ссылка, @): проверяем и на тексте без пробелов.
+JOINABLE = ('URL', 'ссылка Диска/spark/формы', 'ссылка на профиль/мессенджер', 'markdown-ссылка', 'e-mail', 'упоминание @')
+
+
 def danger_reason(value):
+    """Проверка по тексту как есть, с переносами строк, заменёнными пробелом, и (для адресов/ссылок) без пробелов вообще:
+    «masha@\nexample.com» или «ht tp://…» в многострочном пояснении не должны пройти."""
+    spaced = re.sub(r'\s+', ' ', value)
+    joined = re.sub(r'\s+', '', value)
     for name, rx in DANGER:
-        if rx.search(value):
+        if rx.search(value) or rx.search(spaced) or (name in JOINABLE and rx.search(joined)):
             return name
     return None
 
