@@ -308,11 +308,60 @@ function stamp_(sh, row) {
   if (!sh.getRange(row, cD).getValue()) sh.getRange(row, cD).setValue(new Date());
 }
 
+// Формулы «Сводки», «По номеру», «По автору», «Кто что ждёт». Идемпотентно и дёшево: листы не очищаются, формулы просто перезаписываются
+// (перезапись заставляет Таблицу пересчитать их; сами по себе они после записи формы показывали старые значения).
+// Колонки ищутся по заголовкам, диапазон QUERY — по текущему числу колонок листа ответов (после ручного вопроса «Файлы» их стало больше).
+function writeFormulas_() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet(), sh = responsesSheet_();
+  var cS = colIndex_(sh, 'Статус'), cN = colIndex_(sh, '№'), cNick = colIndex_(sh, CFG.NICK);
+  var sL = letter_(cS), nL = letter_(cN), dL = letter_(colIndex_(sh, 'Дата изменения'));
+  var chL = letter_(colIndex_(sh, 'Статус изменён (дата)')), rL = letter_(colIndex_(sh, 'Ответ отправлен (дата)'));
+  var sum = ss.getSheetByName('Сводка') || ss.insertSheet('Сводка');
+  var q = "'" + sh.getName() + "'!";
+  var sR = q + sL + '2:' + sL, dR = q + dL + '2:' + dL, nR = q + nL + '2:' + nL, aR = q + 'A2:A';
+  var staleSum = CFG.OPEN.map(function (s) { return 'COUNTIFS(' + sR + ',"' + s + '",' + dR + ',"<"&(TODAY()-' + CFG.STALE_DAYS + '))'; }).join('+');
+  var cL = q + chL + '2:' + chL, pR = q + rL + '2:' + rL;
+  // Подписи — значениями (иначе «=Получено» → #NAME?), формулы — отдельно.
+  var sumRows = [
+    ['Получено', '=COUNTA(' + aR + ')'],
+    ['Обработано (исправлено, дубль, не баг)', '=COUNTIF(' + sR + ',"исправлено")+COUNTIF(' + sR + ',"дубль")+COUNTIF(' + sR + ',"не баг")'],
+    ['Висит', '=B1-B2'],
+    ['Висит дольше ' + CFG.STALE_DAYS + ' дней', '=' + staleSum],
+    ['Без номера (должно быть 0)', '=B1-COUNTA(' + nR + ')'],
+    ['Отложено', '=COUNTIF(' + sR + ',"отложено")'],
+    ['Ждут ответа автору', '=COUNTIFS(' + nR + ',"<>",' + pR + ',"")+SUMPRODUCT((' + nR + '<>"")*(' + pR + '<>"")*(' + pR + '<' + cL + '))'],
+    ['На дату', '=TODAY()']
+  ];
+
+  sum.getRange(1, 1, 8, 1).setValues(sumRows.map(function (x) { return [x[0]]; }));   // подписи — значениями (иначе «=Получено» → #NAME?)
+  sum.getRange(1, 2, 8, 1).setFormulas(sumRows.map(function (x) { return [x[1]]; }));
+  sum.autoResizeColumns(1, 2);
+
+  // Служебные листы (заголовки копируются из листа ответов). Содержат ники — только владельцу.
+  var lastCol = sh.getLastColumn();
+  var qs = buildQueries(sh.getName(), { last: letter_(lastCol), num: nL, nick: letter_(cNick), status: sL });
+  [['По номеру', qs.byNumber], ['По автору', qs.byAuthor]].forEach(function (x) {
+    var t = ss.getSheetByName(x[0]) || ss.insertSheet(x[0]);
+    sh.getRange(1, 1, 1, lastCol).copyTo(t.getRange(1, 1), SpreadsheetApp.CopyPasteType.PASTE_VALUES, false);
+    t.getRange(2, 1).setFormula(x[1]);
+    t.setFrozenRows(1);
+  });
+  var who = ss.getSheetByName('Кто что ждёт') || ss.insertSheet('Кто что ждёт');
+  who.getRange(1, 1).setFormula(qs.pending);
+  who.autoResizeColumns(1, 2);
+  SpreadsheetApp.flush();
+}
+
+// Пересчёт не должен ломать главное (номер уже выставлен): сбой пишем в журнал.
+function refreshFormulas_() {
+  try { writeFormulas_(); } catch (e) { Logger.log('writeFormulas_: ' + e); }
+}
+
 // Установленный триггер «при отправке формы».
 function onFormSubmit(e) {
   var lock = LockService.getDocumentLock();
   lock.waitLock(30000);
-  try { stamp_(responsesSheet_(), e.range.getRow()); rebuildPeople_(); } finally { lock.releaseLock(); }
+  try { stamp_(responsesSheet_(), e.range.getRow()); rebuildPeople_(); refreshFormulas_(); } finally { lock.releaseLock(); }
 }
 
 // Ежедневная сверка: у каждой строки с отметкой времени есть номер и статус.
@@ -326,6 +375,7 @@ function fillMissing() {
       if (sh.getRange(r, 1).getValue()) stamp_(sh, r);
     }
     rebuildPeople_();
+    refreshFormulas_();
   } finally { lock.releaseLock(); }
 }
 
@@ -383,42 +433,8 @@ function setup() {
   sh.setConditionalFormatRules([reply, stale, done]);
   });
 
-  var sum = ss.getSheetByName('Сводка') || ss.insertSheet('Сводка');
-  sum.clear();
-  var q = "'" + sh.getName() + "'!";
-  var sR = q + sL + '2:' + sL, dR = q + dL + '2:' + dL, nR = q + letter_(cN) + '2:' + letter_(cN), aR = q + 'A2:A';
-  var staleSum = CFG.OPEN.map(function (s) { return 'COUNTIFS(' + sR + ',"' + s + '",' + dR + ',"<"&(TODAY()-' + CFG.STALE_DAYS + '))'; }).join('+');
-  var cL = q + chL + '2:' + chL, pR = q + rL + '2:' + rL;
-  // Подписи — значениями (иначе «=Получено» → #NAME?), формулы — отдельно.
-  var sumRows = [
-    ['Получено', '=COUNTA(' + aR + ')'],
-    ['Обработано (исправлено, дубль, не баг)', '=COUNTIF(' + sR + ',"исправлено")+COUNTIF(' + sR + ',"дубль")+COUNTIF(' + sR + ',"не баг")'],
-    ['Висит', '=B1-B2'],
-    ['Висит дольше ' + CFG.STALE_DAYS + ' дней', '=' + staleSum],
-    ['Без номера (должно быть 0)', '=B1-COUNTA(' + nR + ')'],
-    ['Отложено', '=COUNTIF(' + sR + ',"отложено")'],
-    ['Ждут ответа автору', '=COUNTIFS(' + nR + ',"<>",' + pR + ',"")+SUMPRODUCT((' + nR + '<>"")*(' + pR + '<>"")*(' + pR + '<' + cL + '))'],
-    ['На дату', '=TODAY()']
-  ];
-  sum.getRange(1, 1, 8, 1).setValues(sumRows.map(function (x) { return [x[0]]; }));
-  sum.getRange(1, 2, 8, 1).setFormulas(sumRows.map(function (x) { return [x[1]]; }));
-
-  sum.autoResizeColumns(1, 2);
-
-  // Служебные листы (формулы; заголовки копируются из листа ответов). Содержат ники — только владельцу.
-  var cNick = colIndex_(sh, CFG.NICK), cCat = colIndex_(sh, 'Категория');
-  var qs = buildQueries(sh.getName(), { last: letter_(sh.getLastColumn()), num: nL, nick: letter_(cNick), status: sL });
-  [['По номеру', qs.byNumber], ['По автору', qs.byAuthor]].forEach(function (x) {
-    var t = ss.getSheetByName(x[0]) || ss.insertSheet(x[0]);
-    t.clear();
-    sh.getRange(1, 1, 1, sh.getLastColumn()).copyTo(t.getRange(1, 1), SpreadsheetApp.CopyPasteType.PASTE_VALUES, false);
-    t.getRange(2, 1).setFormula(x[1]);
-    t.setFrozenRows(1);
-  });
-  var who = ss.getSheetByName('Кто что ждёт') || ss.insertSheet('Кто что ждёт');
-  who.clear();
-  who.getRange(1, 1).setFormula(qs.pending);
-  who.autoResizeColumns(1, 2);
+  var cCat = colIndex_(sh, 'Категория');
+  writeFormulas_();
   rebuildPeople_();
 
   optional_('список категорий', function () {
@@ -432,4 +448,4 @@ function setup() {
   fillMissing();
 }
 
-if (typeof module !== 'undefined') { module.exports = { setupThenStart_: setupThenStart_, formatNumber: formatNumber, isStale: isStale, needsReply: needsReply, FORM: FORM, ensureForm_: ensureForm_, pickNewSheet: pickNewSheet, startRows: startRows, safeText_: safeText_, rebuildPeople_: rebuildPeople_, setup: setup, writeStart_: writeStart_, addFormItem_: addFormItem_, bootstrap: bootstrap, buildQueries: buildQueries, groupPeople: groupPeople, emailColIndex_: emailColIndex_, summarize: summarize, letter_: letter_, CFG: CFG }; }
+if (typeof module !== 'undefined') { module.exports = { setupThenStart_: setupThenStart_, formatNumber: formatNumber, isStale: isStale, needsReply: needsReply, FORM: FORM, ensureForm_: ensureForm_, pickNewSheet: pickNewSheet, startRows: startRows, safeText_: safeText_, writeFormulas_: writeFormulas_, onFormSubmit: onFormSubmit, fillMissing: fillMissing, rebuildPeople_: rebuildPeople_, setup: setup, writeStart_: writeStart_, addFormItem_: addFormItem_, bootstrap: bootstrap, buildQueries: buildQueries, groupPeople: groupPeople, emailColIndex_: emailColIndex_, summarize: summarize, letter_: letter_, CFG: CFG }; }

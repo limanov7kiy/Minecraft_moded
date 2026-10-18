@@ -118,13 +118,13 @@ function runSetup(failFilter) {
     clear: () => {}, setColumnWidth: () => {}, autoResizeColumns: () => {}, getDataRange: () => ({ getValues: () => [head.slice()] }),
   };
   const ss = { setSpreadsheetLocale: (l) => { order.push('locale:' + l); }, setActiveSheet: () => {}, moveActiveSheet: () => {}, getSheets: () => [sheet], getSheetByName: () => sheet, insertSheet: () => sheet };
-  global.SpreadsheetApp = { getActiveSpreadsheet: () => ss, newDataValidation: chain, newConditionalFormatRule: chain, CopyPasteType: { PASTE_VALUES: 0 } };
+  global.SpreadsheetApp = { getActiveSpreadsheet: () => ss, newDataValidation: chain, newConditionalFormatRule: chain, CopyPasteType: { PASTE_VALUES: 0 }, flush: () => { order.push('flush'); } };
   const trig = (name) => { const t = { name }; const b = new Proxy(t, { get: (o, k) => (k === 'create' ? () => triggers.push(name) : () => b) }); return b; };
   global.ScriptApp = { getProjectTriggers: () => [], deleteTrigger: () => {}, newTrigger: trig };
   global.LockService = { getDocumentLock: () => ({ waitLock: () => {}, releaseLock: () => {} }) };
   global.Logger = { log: (m) => logs.push(m) };
   global.PropertiesService = { getDocumentProperties: () => ({ getProperty: () => null, setProperty: () => {} }) };
-  return { triggers, logs, written, ss, order, formulas };
+  return { triggers, logs, written, ss, order, formulas, head };
 }
 {
   const env = runSetup(true);
@@ -154,6 +154,35 @@ function runSetup(failFilter) {
   assert.ok(singles.length >= 3 && singles.every((f) => /^=IFERROR\(QUERY\(/.test(f) && /, "Нет отчётов"\)$/.test(f)), 'QUERY обёрнут в IFERROR');
 }
 ['byNumber', 'byAuthor', 'pending'].forEach((k) => assert.ok(/^=IFERROR\(QUERY\(/.test(q[k]) && q[k].endsWith('0), "Нет отчётов")'), k));
+// ---- пересчёт: writeFormulas_ из onFormSubmit/fillMissing, диапазон QUERY растёт с числом колонок ----
+{
+  const env = runSetup(false);
+  c.setup();
+  const queryOf = () => env.formulas.filter((x) => x.single).map((x) => x.single);
+  const before = queryOf();
+  assert.ok(before.every((f) => f.includes('!A2:' + c.letter_(env.head.length))), 'диапазон = число колонок');
+  env.order.length = 0; env.formulas.length = 0;
+  c.onFormSubmit({ range: { getRow: () => 2 } });
+  assert.ok(env.order.includes('setFormulas') && env.order.filter((x) => x === 'setFormula').length === 3, 'onFormSubmit перезаписывает формулы');
+  assert.strictEqual(env.order[env.order.length - 1], 'flush', 'flush в конце');
+  env.order.length = 0; env.formulas.length = 0;
+  c.fillMissing();
+  assert.ok(env.order.includes('setFormulas') && env.order[env.order.length - 1] === 'flush', 'fillMissing тоже');
+  // ручной вопрос «Файлы» → 28 колонок: диапазон пересобирается
+  while (env.head.length < 28) env.head.push('Файлы ' + env.head.length);
+  env.formulas.length = 0;
+  c.onFormSubmit({ range: { getRow: () => 2 } });
+  const after = queryOf();
+  assert.strictEqual(after.length, 3);
+  assert.ok(after.every((f) => f.includes('!A2:AB')), 'при 28 колонках диапазон A2:AB');
+  // идемпотентность: повторный вызов даёт те же формулы
+  env.formulas.length = 0; c.writeFormulas_();
+  assert.deepStrictEqual(queryOf(), after);
+  // сбой пересчёта не ломает onFormSubmit
+  const bad = runSetup(false); global.SpreadsheetApp.flush = () => { throw new Error('сбой пересчёта'); };
+  c.onFormSubmit({ range: { getRow: () => 2 } });
+  assert.ok(bad.logs.some((m) => /writeFormulas_/.test(m)), 'сбой записан в Logger');
+}
 // ---- bootstrap: сбой setup() не маскируется сбоем writeStart_, а сбой writeStart_ после удачного setup() не глотается ----
 {
   const form = { getPublishedUrl: () => 'PUB', getEditUrl: () => 'EDIT' };
