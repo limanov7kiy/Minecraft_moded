@@ -7,6 +7,7 @@
 # EXTRA_CONFIG=<папка> — файлы, которые кладутся в config/ поверх конфигов сборки (например ускоренный конфиг для нагрузочного теста).
 # SERVER_JVM_EXTRA="..." — доп. аргументы JVM сервера (например JFR для профиля: -XX:StartFlightRecording=filename=/path/x.jfr,settings=profile).
 # SERVER_XMX=8G — куча сервера (по умолчанию 8G).
+# EXCLUDE_MODS="worldedit ..." — убрать jar с такими началами имён только на этот запуск (как у клиента без необязательных модов).
 set -eu
 dir="$1"; tmo="${2:-900}"
 root="$(cd "$(dirname "$0")/.." && pwd)"
@@ -18,6 +19,7 @@ if [ ! -f run.sh ]; then
 fi
 python3 "$root/scripts/fetch-mods.py" server mods | grep -v '^got' || true
 [ -n "${EXTRA_MODS:-}" ] && cp "$EXTRA_MODS"/*.jar mods/
+for m in ${EXCLUDE_MODS:-}; do rm -f mods/"$m"*.jar; done
 # конфиги сборки поверх сгенерированных
 for d in config defaultconfigs kubejs; do [ -d "$root/pack/$d" ] && mkdir -p "$d" && cp -r "$root/pack/$d/." "$d/"; done
 python3 "$root/scripts/fetch-config-files.py" .   # модели YSM и др. файлы по url из config/**/*.pw.toml
