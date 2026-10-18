@@ -131,7 +131,7 @@ function runSetup(failFilter) {
   c.setup();   // не должен бросить
   c.writeStart_(env.ss, { getPublishedUrl: () => 'PUB', getEditUrl: () => 'EDIT' });
   assert.ok(env.written.some((v) => v.some((r) => r[1] === 'PUB')), '«Начало» записано');
-  assert.deepStrictEqual(env.triggers, ['onFormSubmit', 'fillMissing']);
+  assert.deepStrictEqual(env.triggers, ['onFormSubmit', 'fillMissing', 'sendReplies']);
   c.setup();   // повторный запуск (идемпотентность) не падает
   assert.ok(env.logs.some((m) => /фильтр/.test(m) && /таблиц/.test(m)), 'причина записана в Logger');
 }
@@ -297,5 +297,98 @@ assert.strictEqual(c.safeText_(3), 3);
   const r7 = addRow('off@example.com'); submit(r7);
   assert.strictEqual(sent.length, 1, 'при SEND_CONFIRMATION=false не шлётся');
   c.CFG.SEND_CONFIRMATION = true;
+}
+// ---- автоответ автору (sendReplies_, решение владельца В44 «б») ----
+{
+  const head = ['Timestamp', 'Адрес электронной почты', c.CFG.NICK].concat(c.CFG.EXTRA);
+  const ci = (t) => head.indexOf(t);
+  const grid = [head.slice()];
+  const addRow = (email, reply, sentDate, num) => { const r = head.map(() => ''); r[0] = new Date('2026-10-18'); r[1] = email; r[2] = 'Ник=секрет'; r[ci('№')] = num || 'R-0' + (10 + grid.length); r[ci('Ответ автору')] = reply; r[ci('Ответ отправлен (дата)')] = sentDate || ''; grid.push(r); return grid.length; };
+  const cell = (r, col) => (grid[r - 1] || [])[col - 1] === undefined ? '' : grid[r - 1][col - 1];
+  const sheet = {
+    getLastColumn: () => head.length, getLastRow: () => grid.length, getName: () => 'Ответы', getSheetId: () => 1,
+    getRange: (r, col, nr, nc) => { nr = nr || 1; nc = nc || 1; return {
+      getValue: () => cell(r, col), setValue: (v) => { grid[r - 1][col - 1] = v; },
+      getValues: () => { const o = []; for (let i = 0; i < nr; i++) { const row = []; for (let j = 0; j < nc; j++) row.push(cell(r + i, col + j)); o.push(row); } return o; }, }; },
+  };
+  const ss = { getSheetByName: () => sheet, insertSheet: () => sheet, getSheets: () => [sheet] };
+  global.PropertiesService = { getDocumentProperties: () => ({ getProperty: () => null, setProperty: () => {} }) };
+  global.LockService = { getDocumentLock: () => ({ waitLock: () => {}, releaseLock: () => {} }) };
+  const logs = []; global.Logger = { log: (m) => logs.push(m) };
+  global.SpreadsheetApp = { getActiveSpreadsheet: () => ss };
+  let quota = 100; const failTo = new Set(); const sent = [];
+  global.MailApp = { getRemainingDailyQuota: () => quota, sendEmail: (...a) => { assert.strictEqual(a.length, 3, 'только адрес, тема, тело: без cc/bcc/вложений/replyTo'); if (failTo.has(a[0])) throw new Error('fail ' + a[0]); sent.push({ to: a[0], subj: a[1], body: a[2] }); } };
+  const stampCol = ci('Ответ отправлен (дата)') + 1;   // номер колонки с 1
+
+  const r1 = addRow('friend@example.com', 'Спасибо, исправим в 1.2.');
+  c.sendReplies_();
+  assert.strictEqual(sent.length, 1);
+  assert.strictEqual(sent[0].to, 'friend@example.com');
+  assert.strictEqual(sent[0].subj, 'Ответ по отчёту R-011 — Minecraft_moded', 'тема: только номер');
+  assert.ok(!/секрет|friend@|исправим/.test(sent[0].subj), 'пользовательского текста в теме нет');
+  assert.strictEqual(sent[0].body, 'Спасибо, исправим в 1.2.\n\nСтатус: ' + c.CFG.STATUS_URL, 'тело: ответ, пустая строка, ссылка');
+  assert.ok(cell(r1, stampCol) instanceof Date, 'дата отправки записана');
+  c.sendReplies_(); c.sendReplies_();
+  assert.strictEqual(sent.length, 1, 'повторно не шлётся');
+  grid[r1 - 1][ci('Ответ автору')] = 'Новый текст';
+  c.sendReplies_();
+  assert.strictEqual(sent.length, 1, 'правка текста после отправки не шлёт повторно');
+  grid[r1 - 1][stampCol - 1] = '';
+  c.sendReplies_();
+  assert.strictEqual(sent.length, 2, 'после ручной очистки даты — шлётся снова');
+  assert.ok(sent[1].body.startsWith('Новый текст'));
+
+  // без отправки
+  const before = sent.length;
+  addRow('a@example.com', '[ЧЕРНОВИК] нужен ответ владельца');
+  addRow('b@example.com', '   [черновик] с пробелами и регистром');
+  addRow('c@example.com', '');
+  addRow('d@example.com', '   ');
+  addRow('e@example.com', 'уже ушло', new Date('2026-10-17'));
+  const bad = addRow('нет адреса', 'текст');
+  c.sendReplies_();
+  assert.strictEqual(sent.length, before, 'черновик/пусто/дата/плохой адрес — без отправки');
+  assert.ok(/Ответ не отправлен: нет корректного адреса/.test(cell(bad, ci('Заметка') + 1)));
+  c.sendReplies_();
+  assert.strictEqual(cell(bad, ci('Заметка') + 1).split('нет корректного адреса').length, 2, 'заметка не дублируется при повторных запусках');
+  c.CFG.SEND_REPLIES = false;
+  addRow('off@example.com', 'выключено');
+  c.sendReplies_();
+  assert.strictEqual(sent.length, before, 'выключатель SEND_REPLIES=false');
+  c.CFG.SEND_REPLIES = true;
+  grid.length = 1; sent.length = 0;
+
+  // лимит за запуск
+  for (let i = 0; i < 25; i++) addRow('u' + i + '@example.com', 'ответ ' + i);
+  c.sendReplies_();
+  assert.strictEqual(sent.length, c.CFG.MAX_REPLIES_PER_RUN, 'не больше MAX_REPLIES_PER_RUN за запуск');
+  c.sendReplies_();
+  assert.strictEqual(sent.length, 25, 'остальные уходят в следующем запуске');
+  assert.strictEqual(new Set(sent.map((x) => x.to)).size, 25);
+  grid.length = 1; sent.length = 0;
+
+  // квота с запасом
+  for (let i = 0; i < 8; i++) addRow('q' + i + '@example.com', 'ответ');
+  quota = 15; c.sendReplies_();
+  assert.strictEqual(sent.length, 5, 'квота 15 − запас 10 = 5 писем');
+  quota = 10; c.sendReplies_();
+  assert.strictEqual(sent.length, 5, 'квота ≤ запаса — не шлём');
+  quota = 100; grid.length = 1; sent.length = 0;
+
+  // сбой одной строки
+  const f1 = addRow('ok1@example.com', 'раз'), f2 = addRow('boom@example.com', 'два'), f3 = addRow('ok3@example.com', 'три');
+  failTo.add('boom@example.com');
+  c.sendReplies_();
+  assert.deepStrictEqual(sent.map((x) => x.to), ['ok1@example.com', 'ok3@example.com'], 'остальные строки продолжаются');
+  assert.ok(cell(f1, stampCol) instanceof Date && cell(f3, stampCol) instanceof Date && !cell(f2, stampCol), 'у упавшей строки даты нет');
+  assert.ok(/Ответ не отправлен: ошибка отправки/.test(cell(f2, ci('Заметка') + 1)) && !/boom@/.test(cell(f2, ci('Заметка') + 1)), 'заметка без адреса');
+  assert.ok(logs.some((l) => /строка \d+/.test(l)), 'и в Logger');
+  failTo.clear();
+
+  // обрезка
+  grid.length = 1; sent.length = 0;
+  addRow('long@example.com', 'x'.repeat(5000));
+  c.sendReplies_();
+  assert.strictEqual(sent[0].body, 'x'.repeat(4000) + '\n\nСтатус: ' + c.CFG.STATUS_URL);
 }
 console.log('report-sheet: OK');
