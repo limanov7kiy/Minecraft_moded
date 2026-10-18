@@ -34,6 +34,7 @@ public final class MmPerf {
 
     public MmPerf() {
         if (FMLEnvironment.dist != Dist.CLIENT) return;
+        MemoryWatch.earlyCheck();   // до загрузки ресурсов: если ПК зависнет, диагностика уже в логе
         FMLJavaModLoadingContext.get().getModEventBus().addListener(MmPerf::registerKeys);
         MinecraftForge.EVENT_BUS.addListener(MmPerf::onClientTick);
         MinecraftForge.EVENT_BUS.addListener(MmPerf::onScreenInit);
