@@ -258,9 +258,12 @@ def interp(track, t, ev):
     def val(v):
         if isinstance(v, dict):
             v = v.get("post", v.get("pre", v.get("vector", [0, 0, 0])))
+        def f(x):
+            r = num(ev(x))
+            return r if math.isfinite(r) else 0.0
         if isinstance(v, (int, float, str)):
-            x = ev(v); return [x, x, x]
-        return [ev(x) for x in v]
+            x = f(v); return [x, x, x]
+        return [f(x) for x in v]
     if isinstance(track, dict) and track and all(re.match(r"^\d+(\.\d+)?$", k) for k in track):
         keys = sorted(track, key=float)
         ts = [float(k) for k in keys]
@@ -282,6 +285,8 @@ class Model:
         self.bones = {b["name"]: b for b in g["bones"]}
         self.order = [b["name"] for b in g["bones"]]
         self.tex = np.asarray(Image.open(tex_path).convert("RGBA")).astype(np.float32) / 255.0
+        # PNG может быть крупнее UV-сетки (например 512 px при texture_width 256 — 2 px на единицу UV)
+        self.ks = (self.tex.shape[1] / self.tw, self.tex.shape[0] / self.th)
 
     def world(self, anims, t, ctx):
         """Мировые матрицы костей с учётом анимаций (список dict-анимаций, применяются по порядку)."""
@@ -341,8 +346,19 @@ class Model:
                     "down": [(x0, y0, z0), (x1, y0, z0), (x1, y0, z1), (x0, y0, z1)],
                 }
                 uvs = c.get("uv", {})
-                if isinstance(uvs, list):
-                    continue  # box UV у своих моделей не используем
+                if isinstance(uvs, list):  # box UV (раскладка Blockbench)
+                    bu, bv = uvs; w_, h_, d_ = s
+                    m_ = c.get("mirror", False)
+                    e_, w2 = ("west", "east") if m_ else ("east", "west")
+                    uvs = {e_: {"uv": [bu, bv + d_], "uv_size": [d_, h_]},
+                           "north": {"uv": [bu + d_, bv + d_], "uv_size": [w_, h_]},
+                           w2: {"uv": [bu + d_ + w_, bv + d_], "uv_size": [d_, h_]},
+                           "south": {"uv": [bu + 2 * d_ + w_, bv + d_], "uv_size": [w_, h_]},
+                           "up": {"uv": [bu + d_, bv], "uv_size": [w_, d_]},
+                           "down": {"uv": [bu + d_ + w_, bv + d_], "uv_size": [w_, -d_]}}
+                    if m_:
+                        for f_ in uvs.values():
+                            f_["uv"] = [f_["uv"][0] + f_["uv_size"][0], f_["uv"][1]]; f_["uv_size"] = [-f_["uv_size"][0], f_["uv_size"][1]]
                 for f, corners in F.items():
                     u = uvs.get(f)
                     if not u or u.get("uv_size", [0, 0]) == [0, 0]:
@@ -357,8 +373,14 @@ class Model:
 VIEWS = {"front": 0, "left": 90, "back": 180, "right": 270, "34": 35, "34b": 215}
 
 
+L0 = np.array([0.2, 1.0, -0.7]) / np.linalg.norm([0.2, 1.0, -0.7])  # два «солнца» освещения сущностей Minecraft
+L1 = np.array([-0.2, 1.0, 0.7]) / np.linalg.norm([-0.2, 1.0, 0.7])
+
+
 def render(model, anims, t=0.0, view="front", ctx=None, scale=12, size=(520, 640), pitch=0.0, bg=(46, 44, 56, 255),
-           center=(0, 20, 0)):
+           center=(0, 20, 0), light="mc", world=1.0):
+    """light="mc": затенение граней как у сущностей в Minecraft (0.4 + 0.6·(n·L0 + n·L1)), world — освещённость места
+    (1 — день на открытом месте, ~0.7 — тень леса); ysmGlow… — всегда полная яркость."""
     ctx = dict(ctx or {})
     W = model.world(anims, t, ctx)
     yaw = math.radians(VIEWS.get(view, view) if not isinstance(view, (int, float)) else view)
@@ -370,8 +392,11 @@ def render(model, anims, t=0.0, view="front", ctx=None, scale=12, size=(520, 640
     w, h = size
     img = np.zeros((h, w, 4), np.float32); img[:] = np.array(bg, np.float32) / 255
     zb = np.full((h, w), np.inf, np.float32)
-    light = np.array([0.35, 0.8, -0.5]); light /= np.linalg.norm(light)
+    if light != "mc":
+        light = np.array([0.35, 0.8, -0.5]); light /= np.linalg.norm(light)
     for P, tc, bone in model.quads(W):
+        if not np.isfinite(P).all():
+            continue
         Q = (P - np.array(center)) @ V.T
         sx = w / 2 + Q[:, 0] * scale; sy = h / 2 - Q[:, 1] * scale; sz = Q[:, 2]
         n = np.cross(Q[1] - Q[0], Q[3] - Q[0])
@@ -380,7 +405,13 @@ def render(model, anims, t=0.0, view="front", ctx=None, scale=12, size=(520, 640
             continue
         n /= nl
         # грани рисуем с обеих сторон (плоскости толщиной 0), освещение по модулю
-        shade = 0.62 + 0.38 * abs(float(n @ (V @ light)))
+        if light == "mc":
+            nw = np.cross(P[1] - P[0], P[3] - P[0]); nw /= max(np.linalg.norm(nw), 1e-9)
+            if float(nw @ (np.array(center) - P.mean(0))) > 0:
+                nw = -nw  # нормаль наружу (грань смотрит от центра модели)
+            shade = min(1.0, 0.4 + 0.6 * (max(0.0, nw @ L0) + max(0.0, nw @ L1))) * world
+        else:
+            shade = 0.62 + 0.38 * abs(float(n @ (V @ light)))
         if bone.lower().startswith("ysmglow"):
             shade = 1.0
         for tri in ((0, 1, 2), (0, 2, 3)):
@@ -408,8 +439,9 @@ def raster(img, zb, xs, ys, zs, tc, model, shade):
     z = l1 * zs[0] + l2 * zs[1] + l3 * zs[2]
     u = l1 * tc[0, 0] + l2 * tc[1, 0] + l3 * tc[2, 0]
     v = l1 * tc[0, 1] + l2 * tc[1, 1] + l3 * tc[2, 1]
-    ui = np.clip(np.floor(u - 1e-4 * np.sign(tc[1, 0] - tc[0, 0] + 1e-9)).astype(int), 0, model.tw - 1)
-    vi = np.clip(np.floor(v - 1e-4 * np.sign(tc[2, 1] - tc[1, 1] + 1e-9)).astype(int), 0, model.th - 1)
+    kx, ky = model.ks
+    ui = np.clip(np.floor(u * kx - 1e-4 * np.sign(tc[1, 0] - tc[0, 0] + 1e-9)).astype(int), 0, model.tex.shape[1] - 1)
+    vi = np.clip(np.floor(v * ky - 1e-4 * np.sign(tc[2, 1] - tc[1, 1] + 1e-9)).astype(int), 0, model.tex.shape[0] - 1)
     col = model.tex[vi, ui]
     sub = zb[y0:y1 + 1, x0:x1 + 1]
     m &= (col[..., 3] > 0.05) & (z < sub)

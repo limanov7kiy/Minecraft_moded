@@ -1079,3 +1079,94 @@ Voice Chat Interaction (наш порт) остаётся `enabled=false` в `pa
 - `test-server.sh` без WorldEdit: **SERVER OK** (Done 58,9 с на холодном старте; в логе WorldEdit не упоминается).
 - `EXTRA_MODS=<папка с worldedit-mod-7.2.15.jar> test-server.sh` (WorldEdit включён): **SERVER OK** (Done 25,7 с, кэши уже тёплые; в логе WorldEdit есть). Тяжёлый тик WorldEdit (~2 мин, +2,7 ГБ) идёт после `Done`, поэтому время `Done` его не показывает.
 - Инструкция «включить на время» — `docs/hosting.md` («Необязательные моды») и `docs/friends.md` («Перенос построек»).
+
+## OOM «Java heap space» при полёте над новыми чанками (поток 34, 2026-10-18, краш у игрока)
+Жалоба: одиночная игра, новый мир, Xmx 8 ГБ (ноутбук, 16 ГБ ОЗУ), около (-700, 96, 300) — `Exception in server tick loop` →
+`OutOfMemoryError: Java heap space` в `ChunkGenerator.createStructures → JigsawStructure → SinglePoolElement.getTemplate →
+ModernFix CachingStructureManager.readStructure → StructureTemplate.load`. Место падения — не виновник: куча была уже забита.
+Логи игрока (`Logs.rar`) разобрать не удалось (распаковка RAR в облаке заблокирована) — выводы по воспроизведению.
+
+**Воспроизведение.** `scripts/tests/memroute.js`: область forceload 9×9 чанков летит от (0,0) к (-700,300) и дальше по квадрату
+со стороной 3000 (шаг 64 блока, следующий — когда центр предыдущей области сгенерирован), куча — `scripts/memwatch.sh`
+(jstat каждые 30 с, `GC.class_histogram` каждые 3 мин). Сервер Xmx 6G (быстрее упирается), новый мир, без WorldEdit (`EXCLUDE_MODS=worldedit`, как у клиента).
+DH на выделенном сервере сам ничего не генерирует; в сборке у клиента `generatorPlan = "DISABLED"`, так что DH в одиночке не нагружает генерацию, если игрок не включал её сам.
+
+**Виновники (по убыванию):**
+1. **The Lost Cities 1.20-7.5.7 — утечка `BuildingInfo`.** `getXmin/getXmax/getZmin/getZmax` запоминают соседа в полях; все
+   BuildingInfo сгенерированных чанков сцепляются в одну сетку, и любой живой держит её целиком — TTL-кэш `ChunkPlanner`
+   (`cacheCleanupSeconds`) ничего не освобождает. Без исправления: BuildingInfo 47 тыс. (3 мин) → 306 тыс. (6 мин) → 550 тыс. → **705 тыс.** (12,5 мин),
+   `HashMap$Node` 0,23 → 1,6 ГБ, old gen **6,1 / 6,1 ГБ, 52 полные сборки** к 14-й минуте (тики по несколько секунд, до OOM — минуты).
+   `cacheCleanupSeconds = 60` не помогает (замерено: рост тот же). **Исправление — `LostCitiesNeighborMixin` (mm-compat 0.5.5)**: сосед не запоминается,
+   каждый раз берётся из кэша Lost Cities. Работает и на уже созданных мирах (конфиг мира не нужен).
+2. **WorldEdit 7.2.15 — ~2,7 ГБ постоянно** (живая куча после старта 5,4 ГБ против 2,67 ГБ без него): таблицы Guava по каждому из
+   **841 тыс. состояний блоков** сборки (Quark 145 тыс., VS Sails 65 тыс., bobsoriginiumdream 59 тыс. — один `plantbox` 57 тыс., Ad Astra 59 тыс.).
+   С ним при Xmx 6G OOM тем же стеком, что у игрока, — через 3 минуты маршрута. У клиентов WorldEdit по умолчанию выключен
+   (решение от 2026-10-17); на выделенном сервере он есть — рекомендация ниже, решение за Координатором/владельцем.
+3. **Гигантские шаблоны структур** (`bobsoriginiumdream`: `orilabortory_key` 2,1 млн блоков, `kingtemple` 1,5 млн, `ori_stele`;
+   `caerula_arbor`: `iberiaeye_looted_1` 2,0 млн, `abyssal_lab_2`, `izumik_island`, `drilling_platform`, `cloister`; Aether Villages `olympic_citadel_main_0` 1,4 млн) —
+   кубы до 128³, на 86–98 % из воздуха. Загруженный шаблон ~100 МБ (держится в мягком кэше ModernFix `dynamic_structure_manager` — при нехватке
+   памяти выгружается), но `StructureTemplate.placeInWorld` для **каждого** чанка структуры копирует все блоки шаблона в `processBlockInfos`
+   (BlockPos + StructureBlockInfo + списки — 100+ МБ мусора на чанк на поток генерации). **`StructureTemplatePlaceMixin`** (mm-compat 0.5.5):
+   шаблонам от 65 536 блоков в чанк передаются только блоки его коробки по X/Z (то, что placeInWorld всё равно поставил бы; Y не трогаем).
+   Отдельно этот миксин не замерялся (выигрыш — пиковый мусор и CPU, не удерживаемая куча).
+4. Невиновны по замерам: кэш шаблонов ModernFix (мягкие ссылки), Valkyrien Skies/Bumblezone/Alex's Caves/Lycanites (их классы не растут), Spore.
+
+**Замер «после»** (тот же маршрут, Xmx 6G, без WorldEdit, `cacheCleanupSeconds` по умолчанию 300):
+| Время маршрута | без исправлений | mm-compat 0.5.5 |
+|---|---|---|
+| ~3 мин | old gen растёт, BuildingInfo 47 тыс. | живая куча 2,58 ГБ |
+| ~6 мин | BuildingInfo 306 тыс. | 2,76 ГБ |
+| ~12,5 мин | BuildingInfo 705 тыс., old gen 6,1/6,1 ГБ, 35 полных сборок | 3,48 ГБ, BuildingInfo нет в топ-45 |
+| ~15 мин | 52 полные сборки, сервер почти не тикает | 3,54 ГБ, old gen 3,6/3,8 ГБ, **7** полных сборок, OOM нет |
+Прогон с TTL 60 до 19-й минуты: живая куча 3,5–4,6 ГБ, плато (остаток — данные чанков и шаблоны в мягком кэше).
+
+**Что делать игроку:** обновить сборку (mm-compat 0.5.5) — мир пересоздавать не нужно. Xmx 8 ГБ при 16 ГБ ОЗУ остаётся верным.
+**Рекомендация по WorldEdit на сервере:** сделать его необязательным и на сервере (класть в `mods/` только на время переноса построек) —
+это −2,7 ГБ кучи и −2 мин первого тика; либо оставить и давать серверу Xmx ≥ 10 ГБ (как сейчас в `docs/friends.md`).
+Инструменты: `scripts/tests/memroute.js`, `scripts/memwatch.sh`, `scripts/tests/templload.js` (сколько кучи держит шаблон), `test-server.sh` `EXCLUDE_MODS=`.
+
+### mm-compat 0.5.6 — Origin Furs: кэш списка ресурсов (поток 33, 2026-10-18)
+`OriginFursReloadCacheMixin` (клиент, `require` по умолчанию 0): `OriginalFurClient.reload` каждые ≈25 с вызывал `ResourceManager.listResources("furs", …)` по всем пакам и zip-модам (≈4 с на ПК игрока, spark клиента);
+результат кэшируется до перезагрузки ресурсов. Origin Furs — pandaismyname1 (MIT), здесь только перехват вызова. `CLIENT OK`, миксин применился. Подробности — `docs/performance.md`, «Разбор двух spark-отчётов игрока».
+
+## Вопросы игрока: агрессия мобов, урон от падения, «квадратные» грибы (поток 35, 2026-10-18)
+Тесты — `scripts/tests/mobaggro.js`, `falldamage.js` (через `EXTRA_SERVER_SCRIPTS`, `TEST_COMMANDS` с `#sleep`), `scripts/check_mod_models.py`.
+
+**1. «Крейки, Пугало, Большая Летучая Мышь не бьют в выживании».**
+- **Крейк** (`lycanitesmobs:krake`, Lycanites Mobs): в `config/lycanitesmobs/creatures/krake.json` `"peaceful": true`, в описании мода
+  «Крейки нейтральны и атакуют только в возбуждённом состоянии» (если бить или бегать рядом). **По задумке не нападает**, баг не найден.
+- **Большая летучая мышь** — по описанию это Lycanites **Эпион** (`epion`, «гигантские теневые кровавые летучие мыши», плюются
+  пиявками, выходят в полнолуние, на солнце падают и взрываются) или **Балаянг** (`balayang`, «циклопические летучие мыши с клыками»).
+  Оба **агрессивны** и на тесте выбирают игрока целью (survival, normal, ночь, 20 с). Если днём «не бьют» — это ИИ Эпиона/ночной спавн.
+- **Пугало**: сущности с таким названием **нет** ни в одном ru/en-lang серверных и клиентских jar сборки и ни в `pack/resourcepacks-src`
+  (есть лишь предметы «Шляпа/Накидка/Штаны/Ботинки пугала» Iron's Spells). Нужно точное название (англ. из Jade/подсказки) или мод.
+- Общий прогон (469 видов мобов Lycanites, FUR, Alex's Mobs/Caves, Spore, Chaos Persists; фейковый игрок survival, normal, ночь, 20 с,
+  моб в 6 блоках): выбрали игрока целью 242 (Lycanites 90 из 122, Spore 59/81, Chaos Persists 51/116, Alex's Caves 15/44, FUR 8/13,
+  Alex's Mobs 19/91). Ожидаемо не нападают: 14 Lycanites с `peaceful: true` (крейк, ика, висп, аризавр, аспид…) и мирные/водные/дневные виды.
+  Не разбирали: Lycanites с `peaceful: false`, но IDLE (barghest, warg, kobold, vespid, wildkin…) — вероятно, условия суши/дня/стаи;
+  FUR `mimic`/`mummy`/`weta`. Урон не измеряется (**FakePlayer Forge неуязвим**), признак — `getTarget()`.
+  Контроль: ваниль (husk, skeleton, spider), mycosis, unburied, ghoul, wraith — TARGET.
+
+**2. «Урона от падения нет».** Не баг сборки. Расы Arknights Races **Cautus, Feline (`arks:feline`) и Aslan** имеют силу
+  `origins:modify_falling` с `take_fall_damage: false` (`data/arks/powers/{cautus,feline,aslan}/modify.json`): `LivingFallEvent` получает
+  множитель 0, `causeFallDamage` возвращает false. Без расы / human / `arks:seahunter` / `arks:agir` / `origins:feline` множитель 1 и урон
+  проходит (событие `dist=20 mult=1`). Класс **«Авангард»** (Arknights Skills: Charger/Pioneer/Tactician) падение не меняет — только
+  `puffish_attributes:jump` (высота прыжка), скорость, добыча. Ни KubeJS, ни наш ASM-патч прыжка (#65), ни конфиги падение не отключают.
+  Проверка — `falldamage.js` (ServerPlayer без соединения; замер здоровья у него шумит, надёжны `event mult` и `causeFallDamage`).
+  Правок нет: «особенность» трёх рас; чтобы включить падение им, надо править `data/arks/powers/*` датапаком (по решению владельца).
+
+**3. «Грибы иногда превращаются в квадрат».** «Гриб-покров» (`mod_lavacow:veil_shroom`) — **блок-растение**, не моб (как `cordy_shroom`,
+  `glowshroom`, `bloodtooth_shroom`; у Mycosis на голове/спине — кордицепс или светящийся гриб). Фикс #71 (слой Mycosis рисует
+  блок-состояния через `renderSingleBlock`, а не «дополнительные» модели) относится к мобу; сами блоки-грибы всегда шли обычными
+  blockstate-моделями, которым ModernFix `dynamic_resources` не мешает. `check_mod_models.py` по `fishs-undead-rising-port-0.3.0.jar`
+  и `necromancers-delight-0.2.0.jar`: blockstate → модель → текстура — 0 проблем (все `age=0/1` у четырёх грибов, предметные модели).
+  Воспроизвести фиолетово-чёрный куб **не удалось и в клиенте не проверялось** (облачный клиент входит в мир только с долгой пересборкой
+  JEI-индекса, см. «Проверка клиента»). Если у игрока повторится — нужны скриншот, F3 (что за блок/моб) и строки `Unable to load model`
+  / `Missing textures` из `logs/latest.log` клиента.
+
+### «Игрок не получает урон вообще» (поток 35, 2026-10-18, жалоба владельца: сложность «Сложная», урон потом «появился» без правки файлов) — **причина не найдена**
+- **SRP DamageLimitHandler — не виноват**: слушает `LivingHurtEvent` и режет урон только если *получатель* урона из `[damage_limit].entities` (у нас `spore:proto`) до `maxHealth / min_kill_count`; на игрока не действует.
+- HUD «Сложность:» — Contingency Contract (его `ZbHbFuncProcedure` на `EntityJoinLevelEvent` лишь усиливает мобов: зомби/утопленники получают эффекты/атрибуты), «Мысль / Спокойно» — Sarkaz's Furnace Side Fables (HUD «нагрузки мысли», хроника); обнуления входящего урона у них не найдено (Sarkaz `CombatEventHandler`: срезы ×0.88/0.8/0.65 за открытые «концовки», отмена урона между «нарраторами» и ударами Амии).
+- `scripts/tests/hurtcheck.js`: события Attack/Hurt/Damage (generic, fall, удар зомби, magic, огонь) через `EVENT_BUS` для свежего `ServerPlayer` на hard — **ни один слушатель не отменяет и не режет** (amount 5 → 5). Постоянного глобального блокера нет; исключения от Mahou Tsukai/Caerula Arbor в тесте — только из-за отсутствия сетевого соединения у тестового игрока.
+- Значит, это **временное/условное состояние игрока**. Кандидаты (не подтверждены): расовые силы Arknights Races — Griffin (`arks:griffin`: обнуляет один удар раз в 10 с, ресурс `arks:griffin/time`), Anasa (переключаемый навык, множитель −1), Cautus/Feline/Aslan (только падение); броня Finale/Wuzhou (Sarkaz); эффекты длительностью в десятки минут (Contingency Contract, Mahou Tsukai); ваниль: 60 тиков неуязвимости после входа.
+- Что снять у владельца в момент «нет урона» (F3 не нужен): `/effect give` не трогать; `/data get entity @s ActiveEffects`, `/data get entity @s Attributes`, `/data get entity @s abilities`, `/data get entity @s Invulnerable`, `/data get entity @s ForgeCaps` (раса/ресурсы Origins в `ForgeCaps`), `/origin get @s origins:origin`; какая надета броня; вернулась ли вода/Эндер и т. п.
