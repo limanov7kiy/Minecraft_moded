@@ -45,7 +45,8 @@ REQUIRED = (COL_NUMBER, COL_STATUS, COL_DATE, COL_DESC, COL_NOTE)
 
 STATUSES = ('новый', 'принят', 'в работе', 'исправлено', 'не баг', 'нужны данные', 'отложено', 'дубль')
 OPEN_STATUSES = ('новый', 'принят', 'в работе', 'нужны данные', 'отложено')
-MAX_LEN = 400
+MAX_LEN = 400          # описание, мод, версия/PR
+MAX_NOTE_LEN = 1500    # пояснение (рекомендации из ответов авторам); длиннее — обрезка по предложению с «…»
 
 NUMBER_RE = re.compile(r'^R-\d{3,}$')
 PR_RE = re.compile(r'^(PR\s*)?#\d+$', re.I)
@@ -81,9 +82,17 @@ def parse_date(s):
     return None
 
 
+# Опасные признаки, которые нельзя «разрезать» переносом строки или пробелом (адрес, ссылка, @): проверяем и на тексте без пробелов.
+JOINABLE = ('URL', 'ссылка Диска/spark/формы', 'ссылка на профиль/мессенджер', 'markdown-ссылка', 'e-mail', 'упоминание @')
+
+
 def danger_reason(value):
+    """Проверка по тексту как есть, с переносами строк, заменёнными пробелом, и (для адресов/ссылок) без пробелов вообще:
+    «masha@\nexample.com» или «ht tp://…» в многострочном пояснении не должны пройти."""
+    spaced = re.sub(r'\s+', ' ', value)
+    joined = re.sub(r'\s+', '', value)
     for name, rx in DANGER:
-        if rx.search(value):
+        if rx.search(value) or rx.search(spaced) or (name in JOINABLE and rx.search(joined)):
             return name
     return None
 
@@ -132,6 +141,26 @@ def cell(s):
     """Один безопасный фрагмент для ячейки markdown-таблицы."""
     s = re.sub(r'\s+', ' ', s or '').strip()
     return s.replace('|', '/').replace('<', '‹').replace('>', '›').replace('`', "'")
+
+
+def note_cell(s):
+    """Пояснение для ячейки: строки сохраняются как <br> (каждая строка экранируется как обычная ячейка), пустые строки отбрасываются."""
+    lines = [cell(x) for x in re.split(r'\r\n|\r|\n', s or '')]
+    return '<br>'.join(x for x in lines if x)
+
+
+def truncate_note(s, limit=MAX_NOTE_LEN):
+    """Возвращает (текст, обрезан_ли). Длиннее limit — режем по границе предложения (или строки), иначе по слову, и ставим «…»."""
+    if len(s) <= limit:
+        return s, False
+    head = s[:limit - 1]
+    cut = max(head.rfind(m) for m in ('. ', '! ', '? ', '.\n', '!\n', '?\n', '\n'))
+    if cut > 0:
+        head = head[:cut + 1]
+    else:
+        sp = head.rfind(' ')
+        head = head[:sp] if sp > 0 else head
+    return head.rstrip() + '…', True
 
 
 def refuse_inside_repo(path):
@@ -196,8 +225,8 @@ def build(rows):
         fields = {'описание': desc, 'мод': g(COL_MOD), 'версия/PR': version, 'пояснение': g(COL_NOTE)}
         bad = None
         for name, v in fields.items():
-            if len(v) > MAX_LEN:
-                bad = 'поле «%s» длиннее %d знаков' % (name, MAX_LEN)
+            if len(v) > (MAX_NOTE_LEN * 4 if name == 'пояснение' else MAX_LEN):   # защита от мусора; обычная длина пояснения обрезается ниже
+                bad = 'поле «%s» длиннее %d знаков' % (name, MAX_NOTE_LEN * 4 if name == 'пояснение' else MAX_LEN)
                 break
             r = danger_reason(v)
             if r:
@@ -211,8 +240,11 @@ def build(rows):
             continue
         if status in ('не баг', 'отложено', 'нужны данные') and not fields['пояснение']:
             warnings.append('%s: для статуса «%s» нет публичного пояснения — опубликована без него' % (number, status))
+        note_text, cut = truncate_note(fields['пояснение'])
+        if cut:
+            warnings.append('%s: пояснение длиннее %d знаков — обрезано по границе предложения' % (number, MAX_NOTE_LEN))
         records.append({'cat': cat, 'number': number, 'desc': cell(desc), 'mod': cell(fields['мод']) or '—', 'status': status,
-                        'date': changed, 'ver': cell(version) or '—', 'note': cell(fields['пояснение']) or '—'})
+                        'date': changed, 'ver': cell(version) or '—', 'note': note_cell(note_text) or '—'})
     return records, counts, warnings
 
 
