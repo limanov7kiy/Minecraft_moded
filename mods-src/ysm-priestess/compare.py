@@ -38,16 +38,6 @@ def row(items, out):
     S.save(out)
 
 
-if __name__ == '__main__':
-    out = pathlib.Path(sys.argv[1]); out.mkdir(parents=True, exist_ok=True)
-    me = HERE.parent.parent / 'pack/config/yes_steve_model/custom/priestess'
-    refs = sys.argv[2:]
-    for view, tag in ((35, '34'), (0, 'front'), (200, 'back')):
-        row([(shot(me, view), 'Priestess v2')] + [(shot(r, view), pathlib.Path(r).name) for r in refs], out / f'cmp_{tag}.png')
-    row([(shot(me, v, scale=30, size=(420, 420), center=(0, 34, 0)), f'Priestess v2, лицо {n}') for v, n in ((0, 'спереди'), (30, '3/4'))],
-        out / 'cmp_face.png')
-
-
 def forms_sheet(out):
     """13 форм осколка в правой руке, крупно, игровое освещение; позы удержания из arm.animation default."""
     me = HERE.parent.parent / 'pack/config/yes_steve_model/custom/priestess'
@@ -98,3 +88,12 @@ def companion_sheet(out):
             items.append((R.render(m, seq, t, v, {}, world=0.82, pitch=8, bg=(118, 150, 104, 255), scale=26, size=(360, 420),
                                    center=tuple(c)), f'осколок, t={t:g} с'))
     row(items, out)
+
+
+if __name__ == '__main__':
+    out = pathlib.Path(sys.argv[1]); out.mkdir(parents=True, exist_ok=True)
+    me = HERE.parent.parent / 'pack/config/yes_steve_model/custom/priestess'
+    refs = sys.argv[2:]
+    for view, tag in ((35, '34'), (0, 'front'), (200, 'back')):
+        row([(shot(me, view), 'Priestess')] + [(shot(r, view), pathlib.Path(r).name) for r in refs], out / f'cmp_{tag}.png')
+    face_sheet(out / 'cmp_face.png'); forms_sheet(out / 'cmp_forms.png'); companion_sheet(out / 'cmp_shard.png')
