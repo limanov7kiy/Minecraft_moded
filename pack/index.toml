@@ -50,7 +50,7 @@ hash = "5ea39f6c26890141c0c72ced22d00b8154753aed32847412dc5decfaf2735fe8"
 
 [[files]]
 file = "config/disaster_ward-common.toml"
-hash = "4e9832f68b71d638c938b91fcf04cd02124e56255636d20ab480c4b2027077e4"
+hash = "7a98eaa32af83836ff8af3e3d2895b81f63c271aefe29843240fc9e3005a3eac"
 
 [[files]]
 file = "config/fallingtree.json"
@@ -1773,6 +1773,10 @@ file = "kubejs/server_scripts/orespawn_spawn_thin.js"
 hash = "9d58de2ac8432902fb858bebe2431a54c6fd40cb690b09769a64befd342aa6e7"
 
 [[files]]
+file = "kubejs/server_scripts/oristorm_rules.js"
+hash = "f3859126a5b1e6f398fb699a8c26394af40744cd3dbba1673807c8368045558f"
+
+[[files]]
 file = "kubejs/server_scripts/space_rockets.js"
 hash = "d35a677aabcb95f98027c73562f8fe5c4ccf01c5996ae81107ca840a0cbf1397"
 
@@ -2279,8 +2283,8 @@ hash = "f2d6e4f93abbd4efdad16d85653a878415a43a7f389d12c3f0a4afdb5d002745"
 metafile = true
 
 [[files]]
-file = "mods/disaster-ward-1.1.0.jar"
-hash = "35ed2bcbdd38c46a6d594fbfc387170f1f069204ac39e2b8a324d709be98ed3d"
+file = "mods/disaster-ward-1.2.0.jar"
+hash = "ae0512008040d76be294b469bfc6747c61e767cb4a40136780559a70ce620a1d"
 
 [[files]]
 file = "mods/distanthorizons.pw.toml"
