@@ -1,0 +1,145 @@
+/**
+ * Учёт отчётов игроков в Google Таблице, привязанной к форме (Расширения → Apps Script).
+ * Вставляется целиком; один раз запустить setup(). Личных данных и секретов здесь нет —
+ * данные живут только в Таблице владельца. Инструкция — docs/report-form.md.
+ *
+ * Что делает:
+ *  - при новом ответе присваивает номер R-001, R-002… (счётчик в свойствах документа, не зависит от удаления строк),
+ *    ставит статус «новый» и дату изменения;
+ *  - раз в день проверяет, что у всех строк есть номер (на случай сбоя триггера);
+ *  - при правке статуса/ответственного/версии/заметки обновляет «Дату изменения»;
+ *  - список статусов, подсветка зависших отчётов и лист «Сводка» (получено / обработано / висит / старше N дней).
+ */
+var CFG = {
+  STATUSES: ['новый', 'принят', 'в работе', 'исправлено', 'дубль', 'не баг', 'нужны данные'],
+  OPEN: ['новый', 'принят', 'в работе', 'нужны данные'],
+  STALE_DAYS: 7,
+  EXTRA: ['№', 'Статус', 'Ответственный (поток/PR)', 'Исправлено в версии', 'Дата изменения', 'Заметка'],
+  MAX_ROWS: 2000
+};
+
+// Номер R-### : минимум три цифры, дальше без обрезки (R-1000).
+function formatNumber(n) { var s = String(n); while (s.length < 3) s = '0' + s; return 'R-' + s; }
+
+// Зависший отчёт: открытый статус и последнее изменение старше days дней.
+function isStale(status, changed, now, days) {
+  if (status && CFG.OPEN.indexOf(status) < 0) return false;   // пустой статус = ещё не разобран
+  if (!changed) return true;
+  return (now.getTime() - new Date(changed).getTime()) > days * 86400000;
+}
+
+// rows — массив {status, number, changed}. Возвращает числа для сводки.
+function summarize(rows, now, days) {
+  var r = { received: rows.length, noNumber: 0, done: 0, open: 0, stale: 0 };
+  rows.forEach(function (x) {
+    if (!x.number) r.noNumber++;
+    if (['исправлено', 'дубль', 'не баг'].indexOf(x.status) >= 0) r.done++;
+    else r.open++;
+    if (isStale(x.status, x.changed, now, days)) r.stale++;
+  });
+  return r;
+}
+
+function responsesSheet_() { return SpreadsheetApp.getActiveSpreadsheet().getSheets()[0]; }
+
+function colIndex_(sh, title) {
+  var h = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0];
+  var i = h.indexOf(title);
+  if (i < 0) throw new Error('Нет колонки «' + title + '». Запустите setup().');
+  return i + 1;
+}
+
+function letter_(n) { var s = ''; while (n > 0) { var m = (n - 1) % 26; s = String.fromCharCode(65 + m) + s; n = Math.floor((n - 1) / 26); } return s; }
+
+function nextNumber_() {
+  var p = PropertiesService.getDocumentProperties();
+  var n = Number(p.getProperty('lastReportNumber') || 0) + 1;
+  p.setProperty('lastReportNumber', String(n));
+  return n;
+}
+
+function stamp_(sh, row) {
+  var cN = colIndex_(sh, '№'), cS = colIndex_(sh, 'Статус'), cD = colIndex_(sh, 'Дата изменения');
+  if (!sh.getRange(row, cN).getValue()) sh.getRange(row, cN).setValue(formatNumber(nextNumber_()));
+  if (!sh.getRange(row, cS).getValue()) sh.getRange(row, cS).setValue('новый');
+  if (!sh.getRange(row, cD).getValue()) sh.getRange(row, cD).setValue(new Date());
+}
+
+// Установленный триггер «при отправке формы».
+function onFormSubmit(e) {
+  var lock = LockService.getDocumentLock();
+  lock.waitLock(30000);
+  try { stamp_(responsesSheet_(), e.range.getRow()); } finally { lock.releaseLock(); }
+}
+
+// Ежедневная сверка: у каждой строки с отметкой времени есть номер и статус.
+function fillMissing() {
+  var lock = LockService.getDocumentLock();
+  lock.waitLock(30000);
+  try {
+    var sh = responsesSheet_();
+    var last = sh.getLastRow();
+    for (var r = 2; r <= last; r++) {
+      if (sh.getRange(r, 1).getValue()) stamp_(sh, r);
+    }
+  } finally { lock.releaseLock(); }
+}
+
+// Простой триггер: правка рабочих колонок обновляет «Дату изменения».
+function onEdit(e) {
+  var sh = e.range.getSheet();
+  if (sh.getIndex() !== 1 || e.range.getRow() < 2) return;
+  var titles = ['Статус', 'Ответственный (поток/PR)', 'Исправлено в версии', 'Заметка'];
+  var h = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0];
+  var cols = titles.map(function (t) { return h.indexOf(t) + 1; });
+  if (cols.indexOf(e.range.getColumn()) < 0) return;
+  sh.getRange(e.range.getRow(), h.indexOf('Дата изменения') + 1).setValue(new Date());
+}
+
+// Один раз: колонки, списки, подсветка, сводка, триггеры.
+function setup() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sh = responsesSheet_();
+  var h = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0];
+  CFG.EXTRA.forEach(function (t) {
+    if (h.indexOf(t) < 0) { sh.getRange(1, sh.getLastColumn() + 1).setValue(t); h = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0]; }
+  });
+  sh.setFrozenRows(1);
+  var cS = colIndex_(sh, 'Статус'), cD = colIndex_(sh, 'Дата изменения'), cN = colIndex_(sh, '№');
+
+  var rule = SpreadsheetApp.newDataValidation().requireValueInList(CFG.STATUSES, true).setAllowInvalid(false).build();
+  sh.getRange(2, cS, CFG.MAX_ROWS, 1).setDataValidation(rule);
+
+  var rng = sh.getRange(2, 1, CFG.MAX_ROWS, sh.getLastColumn());
+  var sL = letter_(cS), dL = letter_(cD);
+  var openCond = 'OR($' + sL + '2="",' + CFG.OPEN.map(function (s) { return '$' + sL + '2="' + s + '"'; }).join(',') + ')';
+  var stale = SpreadsheetApp.newConditionalFormatRule()
+    .whenFormulaSatisfied('=AND($A2<>"",' + openCond + ',OR($' + dL + '2="",TODAY()-$' + dL + '2>' + CFG.STALE_DAYS + '))')
+    .setBackground('#f4c7c3').setRanges([rng]).build();
+  var done = SpreadsheetApp.newConditionalFormatRule()
+    .whenFormulaSatisfied('=OR($' + sL + '2="исправлено",$' + sL + '2="дубль",$' + sL + '2="не баг")')
+    .setBackground('#d9ead3').setRanges([rng]).build();
+  sh.setConditionalFormatRules([stale, done]);
+
+  var sum = ss.getSheetByName('Сводка') || ss.insertSheet('Сводка');
+  sum.clear();
+  var q = "'" + sh.getName() + "'!";
+  var sR = q + sL + '2:' + sL, dR = q + dL + '2:' + dL, nR = q + letter_(cN) + '2:' + letter_(cN), aR = q + 'A2:A';
+  var staleSum = CFG.OPEN.map(function (s) { return 'COUNTIFS(' + sR + ',"' + s + '",' + dR + ',"<"&(TODAY()-' + CFG.STALE_DAYS + '))'; }).join('+');
+  sum.getRange(1, 1, 6, 2).setFormulas([
+    ['Получено', '=COUNTA(' + aR + ')'],
+    ['Обработано (исправлено, дубль, не баг)', '=COUNTIF(' + sR + ',"исправлено")+COUNTIF(' + sR + ',"дубль")+COUNTIF(' + sR + ',"не баг")'],
+    ['Висит', '=B1-B2'],
+    ['Висит дольше ' + CFG.STALE_DAYS + ' дней', '=' + staleSum],
+    ['Без номера (должно быть 0)', '=B1-COUNTA(' + nR + ')'],
+    ['На дату', '=TODAY()']
+  ]);
+  sum.autoResizeColumns(1, 2);
+
+  ScriptApp.getProjectTriggers().forEach(function (t) { ScriptApp.deleteTrigger(t); });
+  ScriptApp.newTrigger('onFormSubmit').forSpreadsheet(ss).onFormSubmit().create();
+  ScriptApp.newTrigger('fillMissing').timeBased().everyDays(1).atHour(9).create();
+  fillMissing();
+}
+
+if (typeof module !== 'undefined') { module.exports = { formatNumber: formatNumber, isStale: isStale, summarize: summarize, letter_: letter_, CFG: CFG }; }
