@@ -1073,3 +1073,9 @@ CurseForge 1460238, файл 9130290, Astryxion, All Rights Reserved. Jar `pack/
 сработать (сигнал редстоуна / звук). Если не реагирует — проверить, что микрофон не выключен (M) и порог
 активации голосом не слишком высок.
 Voice Chat Interaction (наш порт) остаётся `enabled=false` в `pack/config/vcinteraction/`, чтобы не было двойных вибраций.
+
+## mm-compat 0.5.4 — фон тика сервера (поток 33, 2026-10-18)
+Три миксина с `require = 0` (подробности и замер — `docs/performance.md`, «Фон тика сервера без Spore»): `ArknightsTickThrottleMixin` (Arknights Weapon, `Fire2Procedure`/`Apoptoic3Procedure` раз в 4 тика на существо),
+`TorchesMegaStructureSyncMixin` (Torches Become Sunlight: `MegaStructureManager.syncState` не чаще раза в секунду, дописывается при остановке), `TorchesMegaStructureLoadMixin` (бюджет постройки мегаструктур
+вчетверо меньше, пока средний тик сервера > 35 мс). `test-server.sh` — `SERVER OK`, миксины применены (счётчики профиля упали), в логе ошибок миксинов нет. Авторство: код модов — их авторов (Torches Become Sunlight — FreeFish и др.,
+Arknights Weapon — MCreator-автор), здесь только перехват вызовов.
