@@ -102,28 +102,29 @@ assert.ok(sr.some((x) => /Подтверждённые/.test(x[1])) && sr.some((
 assert.strictEqual(typeof c.bootstrap, 'function');
 // ---- setup() на листе-«Таблице»: createFilter бросает исключение, остальное должно дойти до конца ----
 function runSetup(failFilter) {
-  const triggers = []; const logs = []; const written = [];
+  const triggers = []; const logs = []; const written = []; const order = []; const formulas = [];
   const head = ['Отметка времени', 'Адрес электронной почты', c.CFG.NICK].concat(c.CFG.EXTRA);
   const chain = () => new Proxy(function () {}, { get: (_, k) => (k === 'then' ? undefined : chain()), apply: () => chain() });
   const rangeOf = (r, col) => ({
+    setFormulas: (v) => { order.push('setFormulas'); formulas.push({ col, v }); },
     getValues: () => [head.slice()], setValue: (v) => { if (r === 1) head[col - 1] = v; return rangeOf(r, col); },
     getValue: () => head[0],
     createFilter: () => { if (failFilter) throw new Error('Нельзя применить фильтр к диапазону, который частично пересекается с таблицей'); },
-    setValues: (v) => { written.push(v); }, setWrap: () => {}, setDataValidation: () => {}, setFormula: () => {}, setFormulas: () => {}, copyTo: () => {},
+    setValues: (v) => { written.push(v); order.push('setValues'); if (col === 1 && v.length === 8) formulas.push({ labels: v }); }, setWrap: () => {}, setDataValidation: () => {}, setFormula: (f) => { order.push('setFormula'); formulas.push({ single: f }); }, copyTo: () => {},
   });
   const sheet = {
     getLastColumn: () => head.length, getLastRow: () => 1, getName: () => 'Ответы', getSheetId: () => 1,
     getRange: (r, c) => rangeOf(r, c), getFilter: () => null, setFrozenRows: () => {}, setConditionalFormatRules: () => {},
     clear: () => {}, setColumnWidth: () => {}, autoResizeColumns: () => {}, getDataRange: () => ({ getValues: () => [head.slice()] }),
   };
-  const ss = { setActiveSheet: () => {}, moveActiveSheet: () => {}, getSheets: () => [sheet], getSheetByName: () => sheet, insertSheet: () => sheet };
+  const ss = { setSpreadsheetLocale: (l) => { order.push('locale:' + l); }, setActiveSheet: () => {}, moveActiveSheet: () => {}, getSheets: () => [sheet], getSheetByName: () => sheet, insertSheet: () => sheet };
   global.SpreadsheetApp = { getActiveSpreadsheet: () => ss, newDataValidation: chain, newConditionalFormatRule: chain, CopyPasteType: { PASTE_VALUES: 0 } };
   const trig = (name) => { const t = { name }; const b = new Proxy(t, { get: (o, k) => (k === 'create' ? () => triggers.push(name) : () => b) }); return b; };
   global.ScriptApp = { getProjectTriggers: () => [], deleteTrigger: () => {}, newTrigger: trig };
   global.LockService = { getDocumentLock: () => ({ waitLock: () => {}, releaseLock: () => {} }) };
   global.Logger = { log: (m) => logs.push(m) };
   global.PropertiesService = { getDocumentProperties: () => ({ getProperty: () => null, setProperty: () => {} }) };
-  return { triggers, logs, written, ss };
+  return { triggers, logs, written, ss, order, formulas };
 }
 {
   const env = runSetup(true);
@@ -134,6 +135,25 @@ function runSetup(failFilter) {
   c.setup();   // повторный запуск (идемпотентность) не падает
   assert.ok(env.logs.some((m) => /фильтр/.test(m) && /таблиц/.test(m)), 'причина записана в Logger');
 }
+// ---- локаль, подписи «Сводки», IFERROR вокруг QUERY ----
+{
+  const env = runSetup(false);
+  c.setup();
+  const iLoc = env.order.indexOf('locale:en_US');
+  assert.ok(iLoc >= 0, 'локаль en_US установлена');
+  assert.ok(env.order.slice(0, iLoc).every((x) => !/^setFormula/.test(x)), 'локаль — до первой записи формул');
+  assert.ok(env.logs.some((m) => /en_US/.test(m)), 'смена локали записана в Logger');
+  const labels = env.formulas.find((x) => x.labels).labels.map((r) => r[0]);
+  assert.strictEqual(labels.length, 8);
+  assert.ok(labels.every((t) => !String(t).startsWith('=')), 'подписи — значения, не формулы');
+  const colA = env.formulas.filter((x) => x.col === 1 && x.v);
+  assert.strictEqual(colA.length, 0, 'в колонку A формулы не пишутся');
+  const colB = env.formulas.find((x) => x.col === 2);
+  assert.ok(colB && colB.v.length === 8 && colB.v.every((r) => r.length === 1 && r[0].startsWith('=')), 'колонка B — формулы');
+  const singles = env.formulas.filter((x) => x.single).map((x) => x.single);
+  assert.ok(singles.length >= 3 && singles.every((f) => /^=IFERROR\(QUERY\(/.test(f) && /, "Нет отчётов"\)$/.test(f)), 'QUERY обёрнут в IFERROR');
+}
+['byNumber', 'byAuthor', 'pending'].forEach((k) => assert.ok(/^=IFERROR\(QUERY\(/.test(q[k]) && q[k].endsWith('0), "Нет отчётов")'), k));
 // ---- bootstrap: сбой setup() не маскируется сбоем writeStart_, а сбой writeStart_ после удачного setup() не глотается ----
 {
   const form = { getPublishedUrl: () => 'PUB', getEditUrl: () => 'EDIT' };

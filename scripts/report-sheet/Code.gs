@@ -46,11 +46,11 @@ function buildQueries(sheet, c) {
   var q = "'" + sheet + "'!A2:" + c.last;
   var notDone = CFG.DONE.map(function (x) { return c.status + " <> '" + x + "'"; }).join(' and ');
   return {
-    byNumber: '=QUERY(' + q + ', "select * where ' + c.num + ' is not null order by ' + c.num + '", 0)',
-    byAuthor: '=QUERY(' + q + ', "select * where ' + c.num + ' is not null order by ' + c.nick + ', ' + c.num + '", 0)',
-    pending: '=QUERY(' + q + ', "select ' + c.nick + ', count(' + c.num + ') where ' + c.num + ' is not null and ' + c.nick +
+    byNumber: '=IFERROR(QUERY(' + q + ', "select * where ' + c.num + ' is not null order by ' + c.num + '", 0), "Нет отчётов")',
+    byAuthor: '=IFERROR(QUERY(' + q + ', "select * where ' + c.num + ' is not null order by ' + c.nick + ', ' + c.num + '", 0), "Нет отчётов")',
+    pending: '=IFERROR(QUERY(' + q + ', "select ' + c.nick + ', count(' + c.num + ') where ' + c.num + ' is not null and ' + c.nick +
       ' is not null and ' + notDone + ' group by ' + c.nick + ' order by count(' + c.num + ') desc label ' + c.nick +
-      " 'Автор', count(" + c.num + ") 'Открытых отчётов'" + '", 0)'
+      " 'Автор', count(" + c.num + ") 'Открытых отчётов'" + '", 0), "Нет отчётов")'
   };
 }
 
@@ -232,7 +232,12 @@ function rebuildPeople_() {
              statusChanged: r[col('Статус изменён (дата)')], replySent: r[col('Ответ отправлен (дата)')] };
   });
   var res = groupPeople(rows);
-  if (res.length) t.getRange(2, 1, res.length, 7).setValues(res);
+  if (res.length) {
+    // Ник и адрес приходят из публичной формы: «=IMPORTDATA(…)» в нике стал бы живой формулой. Текстовый формат до записи — значения остаются текстом.
+    t.getRange(2, 1, res.length, 2).setNumberFormat('@');
+    t.getRange(2, 5, res.length, 1).setNumberFormat('@');
+    t.getRange(2, 1, res.length, 7).setValues(res);
+  }
   t.autoResizeColumns(1, 7);
 }
 
@@ -333,6 +338,9 @@ function onEdit(e) {
 // Один раз: колонки, списки, подсветка, сводка, триггеры.
 function setup() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
+  // Формулы ниже написаны с запятой-разделителем (en_US); в русской локали (разделитель «;») они дают #ERROR!. Не optional_: до записи формул.
+  ss.setSpreadsheetLocale('en_US');
+  Logger.log('setup: локаль Таблицы сменена на en_US (разделитель аргументов в формулах — запятая)');
   var sh = responsesSheet_();
   var h = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0];
   CFG.EXTRA.forEach(function (t) {
@@ -375,7 +383,8 @@ function setup() {
   var sR = q + sL + '2:' + sL, dR = q + dL + '2:' + dL, nR = q + letter_(cN) + '2:' + letter_(cN), aR = q + 'A2:A';
   var staleSum = CFG.OPEN.map(function (s) { return 'COUNTIFS(' + sR + ',"' + s + '",' + dR + ',"<"&(TODAY()-' + CFG.STALE_DAYS + '))'; }).join('+');
   var cL = q + chL + '2:' + chL, pR = q + rL + '2:' + rL;
-  sum.getRange(1, 1, 8, 2).setFormulas([
+  // Подписи — значениями (иначе «=Получено» → #NAME?), формулы — отдельно.
+  var sumRows = [
     ['Получено', '=COUNTA(' + aR + ')'],
     ['Обработано (исправлено, дубль, не баг)', '=COUNTIF(' + sR + ',"исправлено")+COUNTIF(' + sR + ',"дубль")+COUNTIF(' + sR + ',"не баг")'],
     ['Висит', '=B1-B2'],
@@ -384,7 +393,10 @@ function setup() {
     ['Отложено', '=COUNTIF(' + sR + ',"отложено")'],
     ['Ждут ответа автору', '=COUNTIFS(' + nR + ',"<>",' + pR + ',"")+SUMPRODUCT((' + nR + '<>"")*(' + pR + '<>"")*(' + pR + '<' + cL + '))'],
     ['На дату', '=TODAY()']
-  ]);
+  ];
+  sum.getRange(1, 1, 8, 1).setValues(sumRows.map(function (x) { return [x[0]]; }));
+  sum.getRange(1, 2, 8, 1).setFormulas(sumRows.map(function (x) { return [x[1]]; }));
+
   sum.autoResizeColumns(1, 2);
 
   // Служебные листы (формулы; заголовки копируются из листа ответов). Содержат ники — только владельцу.
