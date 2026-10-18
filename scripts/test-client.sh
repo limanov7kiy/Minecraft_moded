@@ -20,8 +20,8 @@ pack="${2:-$(ls -t "$root"/dist/*.mrpack | head -1)}"; tmo="${3:-1500}"
 forge="$(sed -n 's/^forge = "\(.*\)"/\1/p' "$root/pack/pack.toml")"
 mc="$(sed -n 's/^minecraft = "\(.*\)"/\1/p' "$root/pack/pack.toml")"
 cd "$dir"
-# portablemc в своём venv: системный certifi не знает CA прокси, а без certifi берётся SSL_CERT_FILE
-[ -x venv/bin/portablemc ] || { python3 -m venv venv && venv/bin/pip install -q --no-deps portablemc; }
+# portablemc в своём venv: системный certifi не знает CA прокси, а без certifi берётся SSL_CERT_FILE; версия закреплена: у 5.x нет --work-dir
+[ -x venv/bin/portablemc ] || { python3 -m venv venv && venv/bin/pip install -q --no-deps portablemc==4.4.1; }
 pmc() { venv/bin/portablemc --main-dir "$dir/.mc" --work-dir "$dir/game" "$@"; }
 pmc start --dry "forge:$mc-$forge" >/dev/null
 python3 -I "$root/scripts/mrpack-install.py" "$pack" "$dir/game" client
