@@ -1119,6 +1119,10 @@ DH на выделенном сервере сам ничего не генер�
 это −2,7 ГБ кучи и −2 мин первого тика; либо оставить и давать серверу Xmx ≥ 10 ГБ (как сейчас в `docs/friends.md`).
 Инструменты: `scripts/tests/memroute.js`, `scripts/memwatch.sh`, `scripts/tests/templload.js` (сколько кучи держит шаблон), `test-server.sh` `EXCLUDE_MODS=`.
 
+### mm-compat 0.5.6 — Origin Furs: кэш списка ресурсов (поток 33, 2026-10-18)
+`OriginFursReloadCacheMixin` (клиент, `require` по умолчанию 0): `OriginalFurClient.reload` каждые ≈25 с вызывал `ResourceManager.listResources("furs", …)` по всем пакам и zip-модам (≈4 с на ПК игрока, spark клиента);
+результат кэшируется до перезагрузки ресурсов. Origin Furs — pandaismyname1 (MIT), здесь только перехват вызова. `CLIENT OK`, миксин применился. Подробности — `docs/performance.md`, «Разбор двух spark-отчётов игрока».
+
 ## Вопросы игрока: агрессия мобов, урон от падения, «квадратные» грибы (поток 35, 2026-10-18)
 Тесты — `scripts/tests/mobaggro.js`, `falldamage.js` (через `EXTRA_SERVER_SCRIPTS`, `TEST_COMMANDS` с `#sleep`), `scripts/check_mod_models.py`.
 

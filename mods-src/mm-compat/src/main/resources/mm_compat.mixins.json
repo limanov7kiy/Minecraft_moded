@@ -4,6 +4,6 @@
   "package": "dev.mcmoded.compat.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": ["SbwShipHitMixin", "FallingTreeDamageMixin", "MnaChunkTickMixin", "NorthstarCraterJoinMixin", "StructureTemplatePlaceMixin", "LostCitiesNeighborMixin"],
-  "client": ["LycanitesFearLightMixin"],
+  "client": ["LycanitesFearLightMixin", "OriginFursReloadCacheMixin"],
   "injectors": { "defaultRequire": 0 }
 }
