@@ -868,7 +868,8 @@ Alex's Mobs/Caves, Twilight Forest, Undergarden, Blue Skies, Quark, Bumblezone, 
 
 ## Ориджиниумная буря Bob's Originium Dream + оберег 1.2.0 (поток 32, 2026-10-18, решение владельца)
 Владелец: «пусть буря имеет небольшой шанс произойти, однако монстры не могут появляться на территории оберега, но проходить могут сквозь неё»;
-рост ориджиниума выключить (портит постройки), постройки в зоне от падающих блоков и молний бури защитить, ночь от бури не трогать.
+постройки в зоне от падающих блоков и молний бури защитить, ночь от бури не трогать. Позже (по #89): «Правила на рост ореджиниума включи, пусть растёт
+потихоньку, медленно не заходя на зону оберега».
 
 **Как устроена буря** (код 1.1.1, MCreator; переменные `bobsoriginiumdream_worldvars` — отдельно на каждое измерение):
 - Запуск — `OristormpredictProcedure` на `PlayerXpEvent.XpChange`: каждое получение опыта (каждая сфера) +1 к счётчику `ori_storm`; при
@@ -891,7 +892,7 @@ Alex's Mobs/Caves, Twilight Forest, Undergarden, Blue Skies, Quark, Bumblezone, 
 
 **Настройки сборки** (`pack/kubejs/server_scripts/oristorm_rules.js`, один раз на мир, флаг `mm_oristorm_rules` в persistentData сервера —
 потом правила можно менять вручную): `oristorm=true`, `oristormfrequency=100000` (опытом бурю практически не вызвать), `oristormsummon=200`,
-`alloworigrow=false`, `oribreak=false`. Поручение предлагало `oristormsummon≈10` — по коду это в ~40 раз больше призывов (таблица выше), поэтому 200.
+`alloworigrow=true` (рост — «потихоньку», см. ниже), `oribreak=false`. Поручение предлагало `oristormsummon≈10` — по коду это в ~40 раз больше призывов (таблица выше), поэтому 200.
 
 **Оберег 1.2.0** (`mods-src/disaster-ward`, `OriStorm.java`, раздел `[oriStorm]` в `disaster_ward-common.toml`):
 - **Шанс вместо счётчика** (`roll`): раз в `rollTicks` (12000 = 10 мин) в Overworld, если там есть игрок в выживании, бросок с шансом
@@ -907,7 +908,7 @@ Alex's Mobs/Caves, Twilight Forest, Undergarden, Blue Skies, Quark, Bumblezone, 
 - **Зависший запуск** (`fixStuckStart`): при старте сервера снимается `oristorm_begin` без идущей бури.
 - Ночь во всём измерении от бури не трогаем.
 
-**Тест** `scripts/tests/oristormward.js` (`EXTRA_SERVER_SCRIPTS=<папка только с ним> TEST_COMMANDS=<файл «#sleep 780»> scripts/test-server.sh <папка>`):
+**Тест** `scripts/tests/oristormward.js` (`EXTRA_SERVER_SCRIPTS=<папка только с ним> TEST_COMMANDS=<файл «#sleep 1080»> scripts/test-server.sh <папка>`):
 ward в (0,200,0), фейковый игрок в центре зоны, `OriStorm.start`, `oriwait 100`. Все проверки `OSW … OK`: правила мира выставлены скриптом;
 блок бури в зоне не ставит шип (0 блоков Bob's), снаружи — ставит (2802 блока); буря идёт 3000 тиков, призывов 172: **26 отменено в зоне**,
 112 пропущено в незагруженных чанках (в тесте нет игроков — загружены только чанки `forceload`); после бури в зоне 0 червей/падающих блоков бури;

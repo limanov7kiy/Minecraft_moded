@@ -1,6 +1,6 @@
 // Тест (поток 32): ориджиниумная буря Bob's Originium Dream и оберег (mods-src/disaster-ward 1.2, OriStorm.java), правила — oristorm_rules.js.
 // Вывод: OSW <проверка> OK|FAIL <подробности>; OSW tick … — средний тик сервера (мс) до бури и во время неё.
-// Запуск: EXTRA_SERVER_SCRIPTS=<папка только с этим файлом>, TEST_COMMANDS с «#sleep 420» (буря идёт 3000 тиков). См. docs/compat.md «Ориджиниумная буря».
+// Запуск: EXTRA_SERVER_SCRIPTS=<папка только с этим файлом>, TEST_COMMANDS с «#sleep 1080» (буря 3000 тиков, рост до T=7650). См. docs/compat.md «Ориджиниумная буря».
 const OSW = { t0: -1, ticks: [], stormTicks: [], after: [] }
 // Рост ориджиниума (поток 32, alloworigrow=true, шансы [oriGrowth]): ряд семян oriblockb у края зоны снаружи (x=115; зона+полоса = 112),
 // поле из 100 семян вдали (скорость), ядра в зоне и снаружи. redstoneaction=true — рост без игрока рядом. Итог — на T = GROW_END.
@@ -38,7 +38,7 @@ ServerEvents.tick(event => {
     ok('rule-oristorm', server.runCommandSilent('gamerule oristorm') == 1, 'oristorm=' + server.runCommandSilent('gamerule oristorm'))
     ok('rule-frequency', server.runCommandSilent('gamerule oristormfrequency') == 100000, '' + server.runCommandSilent('gamerule oristormfrequency'))
     ok('rule-summon', server.runCommandSilent('gamerule oristormsummon') == 200, '' + server.runCommandSilent('gamerule oristormsummon'))
-    ok('rule-origrow', server.runCommandSilent('gamerule alloworigrow') == 0, '' + server.runCommandSilent('gamerule alloworigrow'))
+    ok('rule-origrow', server.runCommandSilent('gamerule alloworigrow') == 1, '' + server.runCommandSilent('gamerule alloworigrow'))
     ok('rule-oribreak', server.runCommandSilent('gamerule oribreak') == 0, '' + server.runCommandSilent('gamerule oribreak'))
   }
   if (T == 200) {
