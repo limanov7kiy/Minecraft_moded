@@ -100,4 +100,54 @@ const sr = c.startRows('PUB', 'EDIT');
 assert.strictEqual(sr[0][1], 'PUB'); assert.strictEqual(sr[1][1], 'EDIT');
 assert.ok(sr.some((x) => /Подтверждённые/.test(x[1])) && sr.some((x) => /Загрузка файла/.test(x[1])));
 assert.strictEqual(typeof c.bootstrap, 'function');
+// ---- setup() на листе-«Таблице»: createFilter бросает исключение, остальное должно дойти до конца ----
+function runSetup(failFilter) {
+  const triggers = []; const logs = []; const written = [];
+  const head = ['Отметка времени', 'Адрес электронной почты', c.CFG.NICK].concat(c.CFG.EXTRA);
+  const chain = () => new Proxy(function () {}, { get: (_, k) => (k === 'then' ? undefined : chain()), apply: () => chain() });
+  const rangeOf = (r, col) => ({
+    getValues: () => [head.slice()], setValue: (v) => { if (r === 1) head[col - 1] = v; return rangeOf(r, col); },
+    getValue: () => head[0],
+    createFilter: () => { if (failFilter) throw new Error('Нельзя применить фильтр к диапазону, который частично пересекается с таблицей'); },
+    setValues: (v) => { written.push(v); }, setWrap: () => {}, setDataValidation: () => {}, setFormula: () => {}, setFormulas: () => {}, copyTo: () => {},
+  });
+  const sheet = {
+    getLastColumn: () => head.length, getLastRow: () => 1, getName: () => 'Ответы', getSheetId: () => 1,
+    getRange: (r, c) => rangeOf(r, c), getFilter: () => null, setFrozenRows: () => {}, setConditionalFormatRules: () => {},
+    clear: () => {}, setColumnWidth: () => {}, autoResizeColumns: () => {}, getDataRange: () => ({ getValues: () => [head.slice()] }),
+  };
+  const ss = { setActiveSheet: () => {}, moveActiveSheet: () => {}, getSheets: () => [sheet], getSheetByName: () => sheet, insertSheet: () => sheet };
+  global.SpreadsheetApp = { getActiveSpreadsheet: () => ss, newDataValidation: chain, newConditionalFormatRule: chain, CopyPasteType: { PASTE_VALUES: 0 } };
+  const trig = (name) => { const t = { name }; const b = new Proxy(t, { get: (o, k) => (k === 'create' ? () => triggers.push(name) : () => b) }); return b; };
+  global.ScriptApp = { getProjectTriggers: () => [], deleteTrigger: () => {}, newTrigger: trig };
+  global.LockService = { getDocumentLock: () => ({ waitLock: () => {}, releaseLock: () => {} }) };
+  global.Logger = { log: (m) => logs.push(m) };
+  global.PropertiesService = { getDocumentProperties: () => ({ getProperty: () => null, setProperty: () => {} }) };
+  return { triggers, logs, written, ss };
+}
+{
+  const env = runSetup(true);
+  c.setup();   // не должен бросить
+  c.writeStart_(env.ss, { getPublishedUrl: () => 'PUB', getEditUrl: () => 'EDIT' });
+  assert.ok(env.written.some((v) => v.some((r) => r[1] === 'PUB')), '«Начало» записано');
+  assert.deepStrictEqual(env.triggers, ['onFormSubmit', 'fillMissing']);
+  c.setup();   // повторный запуск (идемпотентность) не падает
+  assert.ok(env.logs.some((m) => /фильтр/.test(m) && /таблиц/.test(m)), 'причина записана в Logger');
+}
+// ---- bootstrap: сбой setup() не маскируется сбоем writeStart_, а сбой writeStart_ после удачного setup() не глотается ----
+{
+  const form = { getPublishedUrl: () => 'PUB', getEditUrl: () => 'EDIT' };
+  let env = runSetup(false);
+  const boom = new Error('setup упал по-настоящему');
+  global.ScriptApp.getProjectTriggers = () => { throw boom; };          // setup() падает на первом же шаге
+  env.ss.getSheetByName = () => { throw new Error('и «Начало» тоже не записалось'); };
+  assert.throws(() => c.setupThenStart_(env.ss, form), (e) => e === boom, 'наружу — исходная ошибка setup()');
+  assert.ok(env.logs.some((m) => /Начало/.test(m)), 'вторичный сбой записан в Logger');
+  env = runSetup(false);                                                 // setup() проходит, writeStart_ падает
+  env.ss.getSheetByName = () => { throw new Error('нет доступа к листу'); };
+  assert.throws(() => c.setupThenStart_(env.ss, form), /нет доступа к листу/, 'сбой «Начала» после удачного setup() не глотается');
+  env = runSetup(false);                                                 // всё хорошо
+  c.setupThenStart_(env.ss, form);
+  assert.ok(env.written.some((v) => v.some((r) => r[1] === 'PUB')), '«Начало» записано');
+}
 console.log('report-sheet: OK');

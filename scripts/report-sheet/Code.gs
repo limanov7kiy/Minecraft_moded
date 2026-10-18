@@ -164,8 +164,23 @@ function bootstrap() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var r = ensureForm_();
   linkDestination_(r.form, ss);
-  setup();
-  writeStart_(ss, r.form);
+  setupThenStart_(ss, r.form);
+}
+
+// «Начало» пишем, даже если setup() упал; повторный запуск идемпотентен. Ошибка setup() не теряется: если сбой writeStart_
+// случился уже после неё, наружу уходит исходная ошибка setup(); если setup() прошёл, а writeStart_ упал — бросаем его ошибку.
+function setupThenStart_(ss, form) {
+  var failed = true;
+  try { setup(); failed = false; }
+  finally {
+    try { writeStart_(ss, form); }
+    catch (e2) { if (!failed) throw e2; Logger.log('bootstrap: «Начало» не записано (setup тоже упал): ' + e2); }
+  }
+}
+
+// Необязательное оформление: сбой (например, лист стал «Таблицей» Google) не обрывает setup().
+function optional_(name, fn) {
+  try { fn(); } catch (e) { Logger.log('setup: «' + name + '» пропущено: ' + e); }
 }
 
 // Колонка адреса: номер (с 1) или 0, если её нет.
@@ -324,16 +339,22 @@ function setup() {
     if (h.indexOf(t) < 0) { sh.getRange(1, sh.getLastColumn() + 1).setValue(t); h = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0]; }
   });
   if (!emailColIndex_(h)) sh.getRange(1, sh.getLastColumn() + 1).setValue(CFG.EMAIL_TITLES[1]);
-  sh.setFrozenRows(1);
   var cS = colIndex_(sh, 'Статус'), cD = colIndex_(sh, 'Дата изменения'), cN = colIndex_(sh, '№');
 
+  // Главное — сначала: триггеры. Остальное (оформление) необязательно.
+  ScriptApp.getProjectTriggers().forEach(function (t) { ScriptApp.deleteTrigger(t); });
+  ScriptApp.newTrigger('onFormSubmit').forSpreadsheet(ss).onFormSubmit().create();
+  ScriptApp.newTrigger('fillMissing').timeBased().everyDays(1).atHour(9).create();
+
+  var sL = letter_(cS), dL = letter_(cD), chL = letter_(colIndex_(sh, 'Статус изменён (дата)')), rL = letter_(colIndex_(sh, 'Ответ отправлен (дата)')), nL = letter_(cN);
+  optional_('закрепление строки', function () { sh.setFrozenRows(1); });
+  optional_('список статусов', function () {
   var rule = SpreadsheetApp.newDataValidation().requireValueInList(CFG.STATUSES, true).setAllowInvalid(false).build();
   sh.getRange(2, cS, CFG.MAX_ROWS, 1).setDataValidation(rule);
+  });
 
+  optional_('подсветка', function () {
   var rng = sh.getRange(2, 1, CFG.MAX_ROWS, sh.getLastColumn());
-  var sL = letter_(cS), dL = letter_(cD);
-  var cC = colIndex_(sh, 'Статус изменён (дата)'), cR = colIndex_(sh, 'Ответ отправлен (дата)');
-  var chL = letter_(cC), rL = letter_(cR), nL = letter_(cN);
   // Оранжевым: есть номер, а ответ автору не отправлен или отправлен раньше последней смены статуса.
   var reply = SpreadsheetApp.newConditionalFormatRule()
     .whenFormulaSatisfied('=AND($' + nL + '2<>"",OR($' + rL + '2="",AND($' + chL + '2<>"",$' + rL + '2<$' + chL + '2)))')
@@ -346,6 +367,7 @@ function setup() {
     .whenFormulaSatisfied('=OR($' + sL + '2="исправлено",$' + sL + '2="дубль",$' + sL + '2="не баг")')
     .setBackground('#d9ead3').setRanges([rng]).build();
   sh.setConditionalFormatRules([reply, stale, done]);
+  });
 
   var sum = ss.getSheetByName('Сводка') || ss.insertSheet('Сводка');
   sum.clear();
@@ -381,14 +403,15 @@ function setup() {
   who.autoResizeColumns(1, 2);
   rebuildPeople_();
 
-  sh.getRange(2, cCat, CFG.MAX_ROWS, 1).setDataValidation(
-    SpreadsheetApp.newDataValidation().requireValueInList(CFG.CATEGORIES, true).setAllowInvalid(true).build());
-  if (!sh.getFilter()) sh.getRange(1, 1, Math.max(sh.getLastRow(), 2), sh.getLastColumn()).createFilter();
-
-  ScriptApp.getProjectTriggers().forEach(function (t) { ScriptApp.deleteTrigger(t); });
-  ScriptApp.newTrigger('onFormSubmit').forSpreadsheet(ss).onFormSubmit().create();
-  ScriptApp.newTrigger('fillMissing').timeBased().everyDays(1).atHour(9).create();
+  optional_('список категорий', function () {
+    sh.getRange(2, cCat, CFG.MAX_ROWS, 1).setDataValidation(
+      SpreadsheetApp.newDataValidation().requireValueInList(CFG.CATEGORIES, true).setAllowInvalid(true).build());
+  });
+  // Лист ответов — «Таблица» Google: createFilter на нём падает. Фильтр необязателен; вручную: Данные → Создать фильтр.
+  optional_('фильтр', function () {
+    if (!sh.getFilter()) sh.getRange(1, 1, Math.max(sh.getLastRow(), 2), sh.getLastColumn()).createFilter();
+  });
   fillMissing();
 }
 
-if (typeof module !== 'undefined') { module.exports = { formatNumber: formatNumber, isStale: isStale, needsReply: needsReply, FORM: FORM, ensureForm_: ensureForm_, pickNewSheet: pickNewSheet, startRows: startRows, addFormItem_: addFormItem_, bootstrap: bootstrap, buildQueries: buildQueries, groupPeople: groupPeople, emailColIndex_: emailColIndex_, summarize: summarize, letter_: letter_, CFG: CFG }; }
+if (typeof module !== 'undefined') { module.exports = { setupThenStart_: setupThenStart_, formatNumber: formatNumber, isStale: isStale, needsReply: needsReply, FORM: FORM, ensureForm_: ensureForm_, pickNewSheet: pickNewSheet, startRows: startRows, setup: setup, writeStart_: writeStart_, addFormItem_: addFormItem_, bootstrap: bootstrap, buildQueries: buildQueries, groupPeople: groupPeople, emailColIndex_: emailColIndex_, summarize: summarize, letter_: letter_, CFG: CFG }; }
