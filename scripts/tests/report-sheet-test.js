@@ -22,5 +22,19 @@ const r = c.summarize([
   { status: 'нужны данные', number: 'R-003', changed: d('2026-10-17') },
   { status: '', number: '', changed: null },
 ], now, 7);
-assert.deepStrictEqual(r, { received: 4, noNumber: 1, done: 1, open: 3, stale: 2 });
+assert.deepStrictEqual(r, { received: 4, noNumber: 1, done: 1, open: 3, stale: 2, postponed: 0 });
+// «отложено»: не красится как зависшее, считается висящим, учитывается отдельно
+assert.strictEqual(c.isStale('отложено', d('2026-01-01'), now, 7), false);
+assert.ok(c.CFG.STATUSES.includes('отложено'));
+assert.deepStrictEqual(c.summarize([{ status: 'отложено', number: 'R-004', changed: d('2026-01-01') }], now, 7),
+  { received: 1, noNumber: 0, done: 0, open: 1, stale: 0, postponed: 1 });
+// ответ автору: нет номера — не нужен; не отправлен — нужен; отправлен раньше смены статуса — нужен; позже — нет
+assert.strictEqual(c.needsReply('', null, null), false);
+assert.strictEqual(c.needsReply('R-001', d('2026-10-10'), null), true);
+assert.strictEqual(c.needsReply('R-001', d('2026-10-10'), d('2026-10-09')), true);
+assert.strictEqual(c.needsReply('R-001', d('2026-10-10'), d('2026-10-11')), false);
+assert.strictEqual(c.needsReply('R-001', null, d('2026-10-11')), false);
+// новые колонки на месте
+['Описание для публичной страницы', 'Пояснение для публичной страницы', 'Ответ автору', 'Ответ отправлен (дата)']
+  .forEach((t) => assert.ok(c.CFG.EXTRA.includes(t), t));
 console.log('report-sheet: OK');

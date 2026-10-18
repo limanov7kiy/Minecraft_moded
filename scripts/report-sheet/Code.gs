@@ -8,13 +8,20 @@
  *    ставит статус «новый» и дату изменения;
  *  - раз в день проверяет, что у всех строк есть номер (на случай сбоя триггера);
  *  - при правке статуса/ответственного/версии/заметки обновляет «Дату изменения»;
- *  - список статусов, подсветка зависших отчётов и лист «Сводка» (получено / обработано / висит / старше N дней).
+ *  - список статусов, подсветка зависших отчётов и лист «Сводка» (получено / обработано / висит / старше N дней);
+ *  - колонки для публичной страницы (заполняются вручную, без ников; сборка — scripts/report-status.py) и для ответов авторам;
+ *    строка с оранжевой подсветкой = статус сменился, а ответ автору не отправлен.
  */
 var CFG = {
-  STATUSES: ['новый', 'принят', 'в работе', 'исправлено', 'дубль', 'не баг', 'нужны данные'],
-  OPEN: ['новый', 'принят', 'в работе', 'нужны данные'],
+  STATUSES: ['новый', 'принят', 'в работе', 'исправлено', 'дубль', 'не баг', 'нужны данные', 'отложено'],
+  OPEN: ['новый', 'принят', 'в работе', 'нужны данные'],   // «отложено» не краснеет: ждёт сознательно
+  DONE: ['исправлено', 'дубль', 'не баг'],
   STALE_DAYS: 7,
-  EXTRA: ['№', 'Статус', 'Ответственный (поток/PR)', 'Исправлено в версии', 'Дата изменения', 'Заметка'],
+  EXTRA: ['№', 'Статус', 'Ответственный (поток/PR)', 'Исправлено в версии', 'Дата изменения', 'Заметка',
+          'Статус изменён (дата)', 'Мод для публичной страницы', 'Описание для публичной страницы',
+          'Пояснение для публичной страницы', 'Ответ автору', 'Ответ отправлен (дата)'],
+  EDIT_TRIGGERS: ['Статус', 'Ответственный (поток/PR)', 'Исправлено в версии', 'Заметка',
+                  'Мод для публичной страницы', 'Описание для публичной страницы', 'Пояснение для публичной страницы'],
   MAX_ROWS: 2000
 };
 
@@ -28,13 +35,22 @@ function isStale(status, changed, now, days) {
   return (now.getTime() - new Date(changed).getTime()) > days * 86400000;
 }
 
+// Нужен ли ответ автору: статус менялся (или отчёт новый), а ответ не отправлен или отправлен раньше смены статуса.
+function needsReply(number, statusChanged, replySent) {
+  if (!number) return false;
+  if (!replySent) return true;
+  if (!statusChanged) return false;
+  return new Date(replySent).getTime() < new Date(statusChanged).getTime();
+}
+
 // rows — массив {status, number, changed}. Возвращает числа для сводки.
 function summarize(rows, now, days) {
-  var r = { received: rows.length, noNumber: 0, done: 0, open: 0, stale: 0 };
+  var r = { received: rows.length, noNumber: 0, done: 0, open: 0, stale: 0, postponed: 0 };
   rows.forEach(function (x) {
     if (!x.number) r.noNumber++;
-    if (['исправлено', 'дубль', 'не баг'].indexOf(x.status) >= 0) r.done++;
+    if (CFG.DONE.indexOf(x.status) >= 0) r.done++;
     else r.open++;
+    if (x.status === 'отложено') r.postponed++;
     if (isStale(x.status, x.changed, now, days)) r.stale++;
   });
   return r;
@@ -59,7 +75,8 @@ function nextNumber_() {
 }
 
 function stamp_(sh, row) {
-  var cN = colIndex_(sh, '№'), cS = colIndex_(sh, 'Статус'), cD = colIndex_(sh, 'Дата изменения');
+  var cN = colIndex_(sh, '№'), cS = colIndex_(sh, 'Статус'), cD = colIndex_(sh, 'Дата изменения'), cC = colIndex_(sh, 'Статус изменён (дата)');
+  if (!sh.getRange(row, cC).getValue()) sh.getRange(row, cC).setValue(new Date());
   if (!sh.getRange(row, cN).getValue()) sh.getRange(row, cN).setValue(formatNumber(nextNumber_()));
   if (!sh.getRange(row, cS).getValue()) sh.getRange(row, cS).setValue('новый');
   if (!sh.getRange(row, cD).getValue()) sh.getRange(row, cD).setValue(new Date());
@@ -89,11 +106,12 @@ function fillMissing() {
 function onEdit(e) {
   var sh = e.range.getSheet();
   if (sh.getIndex() !== 1 || e.range.getRow() < 2) return;
-  var titles = ['Статус', 'Ответственный (поток/PR)', 'Исправлено в версии', 'Заметка'];
   var h = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0];
-  var cols = titles.map(function (t) { return h.indexOf(t) + 1; });
+  var cols = CFG.EDIT_TRIGGERS.map(function (t) { return h.indexOf(t) + 1; });
   if (cols.indexOf(e.range.getColumn()) < 0) return;
-  sh.getRange(e.range.getRow(), h.indexOf('Дата изменения') + 1).setValue(new Date());
+  var now = new Date();
+  sh.getRange(e.range.getRow(), h.indexOf('Дата изменения') + 1).setValue(now);
+  if (e.range.getColumn() === h.indexOf('Статус') + 1) sh.getRange(e.range.getRow(), h.indexOf('Статус изменён (дата)') + 1).setValue(now);
 }
 
 // Один раз: колонки, списки, подсветка, сводка, триггеры.
@@ -112,6 +130,12 @@ function setup() {
 
   var rng = sh.getRange(2, 1, CFG.MAX_ROWS, sh.getLastColumn());
   var sL = letter_(cS), dL = letter_(cD);
+  var cC = colIndex_(sh, 'Статус изменён (дата)'), cR = colIndex_(sh, 'Ответ отправлен (дата)');
+  var chL = letter_(cC), rL = letter_(cR), nL = letter_(cN);
+  // Оранжевым: есть номер, а ответ автору не отправлен или отправлен раньше последней смены статуса.
+  var reply = SpreadsheetApp.newConditionalFormatRule()
+    .whenFormulaSatisfied('=AND($' + nL + '2<>"",OR($' + rL + '2="",AND($' + chL + '2<>"",$' + rL + '2<$' + chL + '2)))')
+    .setBackground('#fce5cd').setRanges([rng]).build();
   var openCond = 'OR($' + sL + '2="",' + CFG.OPEN.map(function (s) { return '$' + sL + '2="' + s + '"'; }).join(',') + ')';
   var stale = SpreadsheetApp.newConditionalFormatRule()
     .whenFormulaSatisfied('=AND($A2<>"",' + openCond + ',OR($' + dL + '2="",TODAY()-$' + dL + '2>' + CFG.STALE_DAYS + '))')
@@ -119,19 +143,22 @@ function setup() {
   var done = SpreadsheetApp.newConditionalFormatRule()
     .whenFormulaSatisfied('=OR($' + sL + '2="исправлено",$' + sL + '2="дубль",$' + sL + '2="не баг")')
     .setBackground('#d9ead3').setRanges([rng]).build();
-  sh.setConditionalFormatRules([stale, done]);
+  sh.setConditionalFormatRules([reply, stale, done]);
 
   var sum = ss.getSheetByName('Сводка') || ss.insertSheet('Сводка');
   sum.clear();
   var q = "'" + sh.getName() + "'!";
   var sR = q + sL + '2:' + sL, dR = q + dL + '2:' + dL, nR = q + letter_(cN) + '2:' + letter_(cN), aR = q + 'A2:A';
   var staleSum = CFG.OPEN.map(function (s) { return 'COUNTIFS(' + sR + ',"' + s + '",' + dR + ',"<"&(TODAY()-' + CFG.STALE_DAYS + '))'; }).join('+');
-  sum.getRange(1, 1, 6, 2).setFormulas([
+  var cL = q + chL + '2:' + chL, pR = q + rL + '2:' + rL;
+  sum.getRange(1, 1, 8, 2).setFormulas([
     ['Получено', '=COUNTA(' + aR + ')'],
     ['Обработано (исправлено, дубль, не баг)', '=COUNTIF(' + sR + ',"исправлено")+COUNTIF(' + sR + ',"дубль")+COUNTIF(' + sR + ',"не баг")'],
     ['Висит', '=B1-B2'],
     ['Висит дольше ' + CFG.STALE_DAYS + ' дней', '=' + staleSum],
     ['Без номера (должно быть 0)', '=B1-COUNTA(' + nR + ')'],
+    ['Отложено', '=COUNTIF(' + sR + ',"отложено")'],
+    ['Ждут ответа автору', '=COUNTIFS(' + nR + ',"<>",' + pR + ',"")+SUMPRODUCT((' + nR + '<>"")*(' + pR + '<>"")*(' + pR + '<' + cL + '))'],
     ['На дату', '=TODAY()']
   ]);
   sum.autoResizeColumns(1, 2);
@@ -142,4 +169,4 @@ function setup() {
   fillMissing();
 }
 
-if (typeof module !== 'undefined') { module.exports = { formatNumber: formatNumber, isStale: isStale, summarize: summarize, letter_: letter_, CFG: CFG }; }
+if (typeof module !== 'undefined') { module.exports = { formatNumber: formatNumber, isStale: isStale, needsReply: needsReply, summarize: summarize, letter_: letter_, CFG: CFG }; }
