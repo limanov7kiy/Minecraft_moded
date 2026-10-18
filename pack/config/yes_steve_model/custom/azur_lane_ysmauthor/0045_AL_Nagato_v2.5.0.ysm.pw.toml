@@ -1,8 +1,0 @@
-name = "0045_AL_Nagato_v2.5.0"
-filename = "0045_AL_Nagato_v2.5.0.ysm"
-side = "both"
-
-[download]
-url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0045-%E9%9B%BE%E9%9B%A8%E6%B3%A2%E6%B3%A2%E6%B2%99/AL_Nagato_%E9%95%BF%E9%97%A8_LA/AL_%E9%95%BF%E9%97%A8_Nagato_v2.5.0.ysm"
-hash-format = "sha256"
-hash = "f982583acbfab02fc4a99ad437dee3673dc96ed54f47bb4a5ee0ded16cfea6a0"

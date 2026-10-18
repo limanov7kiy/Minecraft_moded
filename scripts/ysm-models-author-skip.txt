@@ -1,0 +1,13 @@
+# не читаются YSM 2.6.5 (проверено по одному в минимальном сервере: кэш моделей не растёт; см. docs/ysm-models.md)
+0045_AL_Fusou.ysm
+0045_AL_LC_AL_v2.4.1.ysm
+0045_AL_Nagato_v2.4.2.ysm
+0045_AL_Nagato_v2.4.3.ysm
+0045_AL_Nagato_v2.5.0.ysm
+0045_AL_Yamashiro_v2.4.3_1.ysm
+0045_AL_Yamashiro_v2.4.4.zip
+0045_AL_Yamashiro_v2.5.4.ysm
+0045_AL_Yamashiro_v2.5.6.1.ysm
+0045_AL_Yamashiro_v2.5.6.zip
+0055_AL_Kms-gir_v3.2.ysm
+0105_AL_KanCollect-Yukikaze_v2.4.1_1.ysm
