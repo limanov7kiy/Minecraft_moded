@@ -1968,8 +1968,8 @@ hash = "c25495262a852dc02886ec8c4b695f30e53264a2e3d881dd36ee9de16a1ef499"
 metafile = true
 
 [[files]]
-file = "mods/mm-compat-0.5.4.jar"
-hash = "ef996aa3cec62fe2ad062679c435ecd1bd74c2ac3be8622ead9ec433c0e476e2"
+file = "mods/mm-compat-0.5.5.jar"
+hash = "90cee5e8770a6f57bfe2f51501b9da8babcc5059567190378dcf5cfd595f154a"
 
 [[files]]
 file = "mods/mm-perf-0.2.0-client.jar"

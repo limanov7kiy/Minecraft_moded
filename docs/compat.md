@@ -1079,3 +1079,7 @@ Voice Chat Interaction (наш порт) остаётся `enabled=false` в `pa
 `TorchesMegaStructureSyncMixin` (Torches Become Sunlight: `MegaStructureManager.syncState` не чаще раза в секунду, дописывается при остановке), `TorchesMegaStructureLoadMixin` (бюджет постройки мегаструктур
 вчетверо меньше, пока средний тик сервера > 35 мс). `test-server.sh` — `SERVER OK`, миксины применены (счётчики профиля упали), в логе ошибок миксинов нет. Авторство: код модов — их авторов (Torches Become Sunlight — FreeFish и др.,
 Arknights Weapon — MCreator-автор), здесь только перехват вызовов.
+
+### mm-compat 0.5.5 — Origin Furs: кэш списка ресурсов (поток 33, 2026-10-18)
+`OriginFursReloadCacheMixin` (клиент, `require` по умолчанию 0): `OriginalFurClient.reload` каждые ≈25 с вызывал `ResourceManager.listResources("furs", …)` по всем пакам и zip-модам (≈4 с на ПК игрока, spark клиента);
+результат кэшируется до перезагрузки ресурсов. Origin Furs — pandaismyname1 (MIT), здесь только перехват вызова. `CLIENT OK` на сборке 0.5.5, миксин применился. Подробности — `docs/performance.md`, «Разбор двух spark-отчётов игрока».
