@@ -24,6 +24,7 @@ public final class WardConfig {
     public static final ForgeConfigSpec.BooleanValue ORI_PROTECT;
     public static final ForgeConfigSpec.ConfigValue<List<? extends String>> ORI_ENTITIES;
     public static final ForgeConfigSpec.ConfigValue<List<? extends String>> ORI_BLOCKS;
+    public static final ForgeConfigSpec.BooleanValue ORI_SKIP_UNLOADED;
     public static final ForgeConfigSpec.BooleanValue ORI_ROLL;
     public static final ForgeConfigSpec.IntValue ORI_ROLL_TICKS;
     public static final ForgeConfigSpec.DoubleValue ORI_ROLL_CHANCE;
@@ -82,6 +83,9 @@ public final class WardConfig {
                         o -> o instanceof String);
         ORI_BLOCKS = b.comment("Блоки бури: пока они тикают, блоки в зоне не меняются (шип 50×53×57 из блока бури).")
                 .defineList("stormBlocks", List.of("bobsoriginiumdream:oristormblock"), o -> o instanceof String);
+        ORI_SKIP_UNLOADED = b.comment("Пропускать призывы бури в незагруженных чанках (буря бросает их в квадрате ±400 от игрока; сам мод при этом",
+                        "грузит и генерирует чанк прямо в тике — замер: средний тик 400 мс, пики 2 с). Игроки этих призывов всё равно не видят.")
+                .define("skipUnloaded", true);
         ORI_ROLL = b.comment("Запускать бурю случайно по времени: раз в rollTicks в измерении из dimensions, где есть игрок в выживании, бросок с шансом rollChance.",
                         "Сам мод запускает бурю по счётчику получений опыта (игровое правило oristormfrequency) — в сборке оно поднято до 100000,",
                         "чтобы фермы опыта не вызывали бурю. Выключить бури совсем: /gamerule oristorm false.")

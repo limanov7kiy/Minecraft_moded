@@ -4,14 +4,17 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,14 +24,15 @@ import net.minecraftforge.registries.ForgeRegistries;
  * Ориджиниумная буря Bob's Originium Dream (мягкая связь, рефлексия).
  * Буря тикает в OristormbeginProcedure (LevelTickEvent, фаза END, обычный приоритет) и призывает в квадрате ±300 вокруг своего центра
  * червей evildustoriworm, огненные шары, молнии и падающие блоки (ядро ориджиниума и блок бури, который через 100 тиков ставит шип 50×53×57).
- * Мы окружаем её тик своим контекстом (HIGHEST … LOWEST): то, что появляется в это время в зоне, отменяется, а блоки в зоне не меняются.
+ * Мы окружаем её тик своим контекстом (HIGHEST … LOWEST): то, что появляется в это время в зоне, отменяется, а блоки в зоне не меняются;
+ * призывы в незагруженных чанках пропускаются (иначе мод синхронно грузит/генерирует чанк в тике).
  * Запуск — OristormpredictProcedure по счётчику получений опыта; вместо него бросаем шанс по времени (см. WardConfig.ORI_ROLL).
  */
 public final class OriStorm {
     private OriStorm() {}
 
     /** Сколько призывов бури было за время тика бури и сколько из них отменено в зоне (для теста). */
-    public static long spawnsSeen, spawnsDenied;
+    public static long spawnsSeen, spawnsDenied, spawnsUnloaded;
     /** Сколько бурь запущено броском (для теста). */
     public static long rolled;
 
@@ -36,7 +40,10 @@ public final class OriStorm {
     private static Method varsGet, varsSync, predict;
     private static Field fStorm, fBegin, fCounter;
     private static GameRules.Key<GameRules.IntegerValue> freqKey;
-    private static boolean inTick;
+    /** Измерение, чья буря сейчас тикает (между нашими обработчиками HIGHEST и LOWEST), и серверный поток. */
+    private static ServerLevel tickLevel;
+    private static Thread tickThread;
+    private static boolean scoped;
     private static List<Block> stormBlocks;
 
     @SuppressWarnings("unchecked")
@@ -73,33 +80,52 @@ public final class OriStorm {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onTickFirst(TickEvent.LevelTickEvent e) {
-        if (e.phase != TickEvent.Phase.END || !(e.level instanceof ServerLevel level) || !WardConfig.ORI_PROTECT.get()) return;
-        if (!WardIndex.has(level) || !init()) return;
+        if (e.phase != TickEvent.Phase.END || !(e.level instanceof ServerLevel level)) return;
+        boolean protect = WardConfig.ORI_PROTECT.get() && WardIndex.has(level);
+        if (!protect && !WardConfig.ORI_SKIP_UNLOADED.get() || !init()) return;
         try {
             if (!fStorm.getBoolean(vars(level))) return;
         } catch (ReflectiveOperationException e2) {
             return;
         }
-        inTick = true;
-        WardGuard.enterScope(null);
+        tickLevel = level;
+        tickThread = Thread.currentThread();
+        if (protect) { scoped = true; WardGuard.enterScope(null); }
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onTickLast(TickEvent.LevelTickEvent e) {
-        if (e.phase != TickEvent.Phase.END || !inTick) return;
-        inTick = false;
-        WardGuard.exitScope();
+        if (e.phase != TickEvent.Phase.END || tickLevel == null) return;
+        tickLevel = null;
+        if (scoped) { scoped = false; WardGuard.exitScope(); }
     }
 
-    /** Отменить ли появление сущности: идёт тик бури, это её призыв, и он в зоне или у её края. */
-    static boolean denySpawn(ServerLevel level, Entity en) {
-        if (!inTick) return false;
+    private static boolean inTick(Object level) {
+        return tickLevel == level && Thread.currentThread() == tickThread;
+    }
+
+    /** Призыв бури (во время её тика): в незагруженном чанке — пропускаем, в зоне и у её края — отменяем. Раньше остальных обработчиков. */
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onJoin(EntityJoinLevelEvent e) {
+        if (!inTick(e.getLevel())) return;
+        Entity en = e.getEntity();
         ResourceLocation id = ForgeRegistries.ENTITY_TYPES.getKey(en.getType());
-        if (id == null || !WardConfig.ORI_ENTITIES.get().contains(id.toString())) return false;
+        if (id == null || !WardConfig.ORI_ENTITIES.get().contains(id.toString())) return;
         spawnsSeen++;
-        if (!WardApi.isProtected(level, en.getX(), en.getZ(), WardConfig.EDGE_MARGIN.get())) return false;
-        spawnsDenied++;
-        return true;
+        ServerLevel level = (ServerLevel) e.getLevel();
+        if (WardConfig.ORI_SKIP_UNLOADED.get() && !level.getChunkSource().hasChunk(en.getBlockX() >> 4, en.getBlockZ() >> 4)) {
+            spawnsUnloaded++;
+            e.setCanceled(true);
+        } else if (WardConfig.ORI_PROTECT.get() && WardApi.isProtected(level, en.getX(), en.getZ(), WardConfig.EDGE_MARGIN.get())) {
+            spawnsDenied++;
+            e.setCanceled(true);
+        }
+    }
+
+    /** Миксин на Level.setBlock: падающий блок бури сначала ставит воздух в точке появления — в незагруженном чанке это синхронная загрузка/генерация. */
+    public static boolean denyUnloaded(Level level, BlockPos pos) {
+        if (!inTick(level) || !WardConfig.ORI_SKIP_UNLOADED.get()) return false;
+        return !((ServerLevel) level).getChunkSource().hasChunk(pos.getX() >> 4, pos.getZ() >> 4);
     }
 
     /** Блок бури тикает (миксин на ServerLevel.tickBlock): пока он ставит шип, блоки в зоне не меняются. */

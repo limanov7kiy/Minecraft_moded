@@ -67,7 +67,7 @@ ServerEvents.tick(event => {
   if (OSW.t0 > 0 && !OSW.done && T > OSW.t0 + 600 && !stormOn()) {
     OSW.done = true
     var S = Storm()
-    console.info(`OSW stat призывов бури при обереге: ${S.spawnsSeen}, отменено в зоне: ${S.spawnsDenied}, длительность ≈ ${T - OSW.t0 - 100} тиков`)
+    console.info(`OSW stat призывов бури при обереге: ${S.spawnsSeen}, отменено в зоне: ${S.spawnsDenied}, пропущено в незагруженных чанках: ${S.spawnsUnloaded}, длительность ≈ ${T - OSW.t0 - 100} тиков`)
     ok('storm-spawns', S.spawnsSeen > 50, 'всего ' + S.spawnsSeen)
     ok('zone-denied', S.spawnsDenied > 0, 'отменено ' + S.spawnsDenied)
     var stray = ents(0, 0, 96, (id, e) => (id.indexOf('evildustoriworm') >= 0 && !e.getTags().contains('osw_walk') && !e.getTags().contains('osw_cmd')) || id.indexOf('falling_block') >= 0)
