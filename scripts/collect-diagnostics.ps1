@@ -47,6 +47,52 @@ function Get-Sha1([string]$p) {
     } finally { $fs.Dispose() }
 }
 
+# ---------- Маскировка личных данных (только копии в временной папке, оригиналы игры не трогаем) ----------
+# Что маскируется: ник/имя Windows/имя ПК -> псевдоним, IPv4 -> x.x.x.x, MAC -> xx:xx:xx:xx:xx:xx,
+# C:\Users\<имя> -> C:\Users\USER, UUID игрока в строке "UUID of player ...". Чаты, координаты и т. п. НЕ маскируются.
+$script:MaskExt = '^\.(log|txt|json|cfg|toml|properties|ini|xml|yml|yaml|md|snbt|json5)$|^[^.]*$'
+$script:MaskSkip = '^(mods\.csv|pack\.toml|index\.toml)$'   # версии модов выглядят как IP; личного там нет
+
+function Get-Alias([string]$nick) {
+    $sha = [Security.Cryptography.SHA1]::Create()
+    $h = ($sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($nick.ToLowerInvariant())) | ForEach-Object { $_.ToString('x2') }) -join ''
+    return 'Player-' + $h.Substring(0, 4)
+}
+
+function Mask-Text([string]$t, [string[]]$names, [string]$alias) {
+    foreach ($n in $names) {
+        if (-not $n -or $n.Length -lt 3 -or $n -eq $alias) { continue }
+        $t = [regex]::Replace($t, '(?<![\p{L}\p{N}_])' + [regex]::Escape($n) + '(?![\p{L}\p{N}_])', $alias, 'IgnoreCase')
+    }
+    $t = [regex]::Replace($t, '(?i)([A-Za-z]:(?:\\+|/+)Users(?:\\+|/+))[^\\/\r\n"''<>|:*?]+', '${1}USER')
+    $t = [regex]::Replace($t, '(?i)(UUID of player \S+ is )[0-9a-f]{8}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{12}', '${1}xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')
+    $t = [regex]::Replace($t, '(?<![\d.])(?!127\.0\.0\.1(?![\d.]))(?!0\.0\.0\.0(?![\d.]))(?:(?:25[0-5]|2[0-4]\d|1?\d?\d)\.){3}(?:25[0-5]|2[0-4]\d|1?\d?\d)(?![\d.]*\d)', 'x.x.x.x')
+    $t = [regex]::Replace($t, '(?i)(?<![0-9a-f:-])(?:[0-9a-f]{2}[:-]){5}[0-9a-f]{2}(?![0-9a-f:-])', 'xx:xx:xx:xx:xx:xx')
+    return $t
+}
+
+# Прочитать файл как UTF-8; если не UTF-8 — как Latin1 (байты сохраняются без потерь).
+function Mask-File([string]$path, [string[]]$names, [string]$alias) {
+    $bytes = [IO.File]::ReadAllBytes($path)
+    $enc = New-Object Text.UTF8Encoding($false, $true)
+    try { $text = $enc.GetString($bytes); $out = New-Object Text.UTF8Encoding($false) }
+    catch { $out = [Text.Encoding]::GetEncoding(28591); $text = $out.GetString($bytes) }
+    $new = Mask-Text $text $names $alias
+    if ($new -ne $text) { [IO.File]::WriteAllBytes($path, $out.GetBytes($new)); return $true }
+    return $false
+}
+
+function Mask-Stage([string]$dir, [string[]]$names, [string]$alias) {
+    $changed = 0; $total = 0
+    Get-ChildItem -LiteralPath $dir -Recurse -File -Force -ErrorAction SilentlyContinue | ForEach-Object {
+        if (($_.Name -match $script:MaskSkip) -or ($_.Extension -notmatch $script:MaskExt)) { return }
+        $total++
+        try { if (Mask-File $_.FullName $names $alias) { $changed++ } }
+        catch { Note "ОШИБКА маскировки: $($_.Name) — $($_.Exception.Message)" }
+    }
+    Note "OK: маскировка личных данных — изменено файлов: $changed из $total"
+}
+
 # Добавить один файл в набор. $rel — путь внутри zip.
 function Add-File([string]$src, [string]$rel, [long]$max = 0) {
     if (-not $src -or -not (Test-Path -LiteralPath $src -PathType Leaf)) { Note "ПРОПУЩЕНО (нет файла): $rel"; return $false }
@@ -184,10 +230,13 @@ try {
     if (-not $nick) { $nick = $env:COMPUTERNAME }
     $nick = ($nick -replace '[\\/:*?"<>|\s]', '_')
     if (-not $nick) { $nick = 'player' }
+    $rawNick = $nick
+    $alias = Get-Alias $nick
 
     Write-Host ''
-    Write-Host 'ВНИМАНИЕ: в логах есть ваш ник и адрес сервера (IP). Пароли, токены и данные аккаунтов' -ForegroundColor Yellow
-    Write-Host 'НЕ собираются. Zip вы сможете открыть и посмотреть до отправки.' -ForegroundColor Yellow
+    Write-Host "Ваш ник, имя Windows, имя ПК и IP-адреса в архиве будут заменены: ник -> $alias, IP -> x.x.x.x." -ForegroundColor Yellow
+    Write-Host 'Чат, координаты и скриншоты не маскируются. Пароли, токены и данные аккаунтов НЕ собираются.' -ForegroundColor Yellow
+    Write-Host 'Zip вы сможете открыть и посмотреть до отправки.' -ForegroundColor Yellow
     $ok = (Read-Host 'Продолжить? [Enter — да, N — отмена]').Trim()
     if ($ok -match '^(n|no|н|нет)$') { Write-Host 'Отменено.'; Pause-Key; exit 0 }
 
@@ -420,14 +469,18 @@ try {
         } catch { Note "ОШИБКА: dxdiag — $($_.Exception.Message)" }
     } else { Note 'ПРОПУЩЕНО: dxdiag (отказались)' }
 
+    # ---------- маскировка ----------
+    $maskNames = @($rawNick, $nick, $env:USERNAME, $env:COMPUTERNAME) | Where-Object { $_ } | Select-Object -Unique
+    try { Mask-Stage $script:Stage $maskNames $alias } catch { Note "ОШИБКА: маскировка — $($_.Exception.Message)" }
+
     # ---------- manifest + zip ----------
-    $head = @("manifest — что собрано; создан $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss'), ник/ПК: $nick", '')
+    $head = @("manifest — что собрано; создан $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss'), псевдоним: $alias (ник и имя ПК заменены)", '')
     ($head + $script:Manifest) | Set-Content -LiteralPath (Join-Path $script:Stage 'manifest.txt') -Encoding UTF8
 
     $desktop = [Environment]::GetFolderPath('Desktop')
     if (-not $desktop -or -not (Test-Path -LiteralPath $desktop)) { $desktop = Join-Path $env:USERPROFILE 'Desktop' }
     if (-not (Test-Path -LiteralPath $desktop)) { $desktop = $env:USERPROFILE }
-    $zip = Join-Path $desktop ("diag-{0}-{1}.zip" -f $nick, (Get-Date -Format 'yyyyMMdd-HHmm'))
+    $zip = Join-Path $desktop ("diag-{0}-{1}.zip" -f $alias, (Get-Date -Format 'yyyyMMdd-HHmm'))
     if (Test-Path -LiteralPath $zip) { Remove-Item -LiteralPath $zip -Force }
     Add-Type -AssemblyName System.IO.Compression.FileSystem
     [IO.Compression.ZipFile]::CreateFromDirectory($script:Stage, $zip, [IO.Compression.CompressionLevel]::Optimal, $false)
@@ -435,6 +488,7 @@ try {
     Write-Host ''
     Write-Host 'ГОТОВО!' -ForegroundColor Green
     Write-Host "Файл для отправки: $zip" -ForegroundColor Green
+    Write-Host "Ваш псевдоним для формы отчёта: $alias" -ForegroundColor Green
     Write-Host ("Размер: {0:N1} МБ. Пропущенное и ошибки — в manifest.txt внутри архива." -f ((Get-Item -LiteralPath $zip).Length / 1MB))
     try { Start-Process explorer.exe -ArgumentList "/select,`"$zip`"" } catch {}
 } catch {
