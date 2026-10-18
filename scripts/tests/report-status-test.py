@@ -53,6 +53,10 @@ ROWS = [
     row('R-023', 'принят', 'Почта masha.k@example.com'),                     # любой e-mail
     row('R-024', 'принят', 'Ссылка t.me/someone в чате'),
     row('R-025', 'принят', 'Нормальное описание без личного', email='masha.k@example.com', nick='Маша К'),
+    row('R-026', 'принят', 'Маше такой же вылет', nick='Маша К'),            # падеж ника
+    row('R-027', 'принят', 'Пишите на masha&#64;mail.example'),              # HTML-сущность вместо @
+    row('R-028', 'принят', 'Лагает так же, как у ЧужойНик'),                 # ник другого автора
+    row('R-029', 'принят', 'Другое нормальное описание', nick='ЧужойНик'),
     row('', 'принят', 'Без номера'),
 ]
 
@@ -76,16 +80,16 @@ def main():
         text = out.read_text(encoding='utf-8')
         err = p.stderr + p.stdout
         # никаких секретов ни в странице, ни в предупреждениях
-        for secret in (SECRET_NICK, SECRET_NICK.lower(), SECRET_TEXT, 'vasya_p', 'masha.k', 'example.com', 'someone', 'SECRETSPARK1', '198.51.100.7', 'C:\\Users', 'Player-ab12', 'drive.google'):
+        for secret in (SECRET_NICK, SECRET_NICK.lower(), SECRET_TEXT, 'vasya_p', 'masha.k', 'example.com', 'someone', 'ЧужойНик', 'Маше', 'SECRETSPARK1', '198.51.100.7', 'C:\\Users', 'Player-ab12', 'drive.google'):
             assert secret not in text, 'в странице: ' + secret
             assert secret not in err, 'в предупреждениях: ' + secret
         for ok in ('R-001', 'R-002', 'R-003', 'R-004', 'R-005', 'R-006', 'R-007', 'R-015'):
             assert '| %s |' % ok not in text.split('## Что ещё открыто')[0], ok
-        for bad in ('R-009', 'R-010', 'R-011', 'R-012', 'R-013', 'R-014', 'R-016', 'R-017', 'R-018', 'R-019', 'R-020', 'R-021', 'R-022', 'R-023', 'R-024'):
+        for bad in ('R-009', 'R-010', 'R-011', 'R-012', 'R-013', 'R-014', 'R-016', 'R-017', 'R-018', 'R-019', 'R-020', 'R-021', 'R-022', 'R-023', 'R-024', 'R-026', 'R-027', 'R-028'):
             assert '| %s |' % bad not in text, 'опубликована: ' + bad
             assert bad in err, 'нет предупреждения: ' + bad
         assert 'R-021: непонятная дата' in err and 'Вася' not in err
-        assert '| R-025 |' in text
+        assert '| R-025 |' in text and '| R-029 |' in text
         assert 'R-008' in err and 'R-008 |' not in text
         assert 'Без номера' not in text and 'нет номера' in err
         # разделы: открытое и решённое
@@ -97,7 +101,7 @@ def main():
         assert '| R-003 | Краш при входе | краш/вылет | Мод Х | в работе | 2026-10-16 | #97 | — |' in open_part
         assert 'Строка / с трубой и переносом' in text
         # сводка: все 15 пронумерованных (R-001…R-015) считаются
-        assert '| 25 | 19 | 1 | 1 | 1 | 1 | 1 | 1 |' in text, [l for l in text.splitlines() if l.startswith('| 25')]
+        assert '| 29 | 23 | 1 | 1 | 1 | 1 | 1 | 1 |' in text, [l for l in text.splitlines() if l.startswith('| 2')]
         # группы по статусам и сводка по категориям/модам
         for h in ('### новый (', '### в работе (', '### отложено (', '### исправлено (', '### дубль ('):
             assert h in text, h
