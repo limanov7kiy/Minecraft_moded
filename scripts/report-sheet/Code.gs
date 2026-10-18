@@ -409,8 +409,9 @@ function onFormSubmit(e) {
   lock.waitLock(30000);
   try {
     var sh = responsesSheet_(), row = e.range.getRow();
-    stamp_(sh, row); rebuildPeople_(); refreshFormulas_();
-    sendConfirmation_(sh, row);
+    stamp_(sh, row);
+    sendConfirmation_(sh, row);   // письмо с номером — сразу после нумерации, до листов-зеркал: их сбой не должен лишать автора письма
+    rebuildPeople_(); refreshFormulas_();
   } finally { lock.releaseLock(); }
 }
 
