@@ -1,0 +1,8 @@
+name = "AL_ChangChun"
+filename = "AL_ChangChun.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_AzurLane/AL_ChangChun.ysm"
+hash-format = "sha256"
+hash = "ed75c545ce9a984e3551ad0662804914b1974fc469656ff7d35c236d7600708b"

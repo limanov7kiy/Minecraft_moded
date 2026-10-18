@@ -1009,13 +1009,15 @@ CurseForge 1460238, файл 9130290, Astryxion, All Rights Reserved. Jar `pack/
 Тесты: `scripts/tests/spawnnat.js` (диагностика + яйца/summon/естественный спавн, два фейковых игрока; `culprit` перебирает слушателей), `scripts/tests/explorecheck.js` (тики при исследовании нового мира).
 Побочно: `scripts/test-server.sh` — переменные `EXTRA_CONFIG`, `SERVER_JVM_EXTRA`, `SERVER_XMX`.
 
-## Модели Yes Steve Model: 65 готовых + Priestess (поток 32, 2026-10-18, решение владельца В33)
+## Модели Yes Steve Model: 65 готовых + Priestess, + 19 Azur Lane (поток 32, 2026-10-18, решение владельца В33)
 Подробно — `docs/ysm-models.md`. Находки:
 - YSM 2.6.5 не пишет в лог, какие модели загрузил и почему отверг. Счёт — по числу записей в серверном кэше
-  `config/yes_steve_model/cache/server` (27 встроенных + свои); неподходящая модель тихо пропадает.
+  `config/yes_steve_model/cache/server` (встроенные + свои; базу мерить прогоном с пустым `custom/` — 2026-10-18 было 26);
+  неподходящая модель тихо пропадает.
 - `AK_Rosmontis_v0.9.ysm` (Elaina69, формат 26) не читается вовсе — не раздаём; остальные 65 из `_Arknights`,
   `_ArknightsEndfield`, `_PunishingGrayRaven` грузятся. Файлы качаются по ссылкам из packwiz-метафайлов в `config/`
   (`scripts/fetch-config-files.py` для сервера; `test-server.sh` и `export-pack.sh` его вызывают).
+- Azur Lane (`_AzurLane`, 19 файлов, 2026-10-18): прогон только с ними — кэш 45 = 26 + 19, читаются все; полный `test-server.sh` — `fetch-config-files: 84 файлов`, кэш 111 (было 92), `SERVER OK`.
 - Модели-папки (как Priestess) в этот кэш не попадают — их загрузку проверять командой `/ysm export <id>` из консоли (файл появляется в `config/yes_steve_model/export/` только у загруженной модели; зашифрованные `.ysm` не экспортируются). Priestess: `[YSM] Saved as 'export/priestess.ysm'`. Тест `scripts/tests/ysmcheck.js`: теги форм собираются (посохи Iron's/Cataclysm Spellbooks, палочки Wizardry, жезлы Botania → staff; книги Ars → tome; еда → food), команда `ysm molang execute` сервером принимается.
 - Клиент YSM в облаке не запускается (К7) — внешний вид и molang-логика Priestess проверены своим рендером
   (`mods-src/ysm-priestess/ysmrender.py`), в игре — по чек-листу в `docs/ysm-models.md`.

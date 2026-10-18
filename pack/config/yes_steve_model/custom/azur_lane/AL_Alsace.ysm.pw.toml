@@ -1,0 +1,8 @@
+name = "AL_Alsace"
+filename = "AL_Alsace.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_AzurLane/AL_Alsace.ysm"
+hash-format = "sha256"
+hash = "cf54c534667ff42447b8e86167267ec518e605ae817388e4b71646a66e9d3cb3"

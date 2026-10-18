@@ -1,0 +1,8 @@
+name = "AL_Nagato"
+filename = "AL_Nagato.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_AzurLane/AL_Nagato.ysm"
+hash-format = "sha256"
+hash = "7015f8607bbdac5d77aa912afbfa76f2b13aaf0ac4a542573b7ffd2edfcb182e"

@@ -5,7 +5,7 @@ pack/config/yes_steve_model/custom/<пакет>/<файл>.pw.toml (url на raw
 сервер — scripts/fetch-config-files.py (test-server.sh, export-pack.sh).
 Использование: ysm-models.py <клон Elaina69/Yes-Steve-Model-Repo>
 Клон: GIT_LFS_SKIP_SMUDGE=1 git clone --filter=blob:none --no-checkout https://github.com/Elaina69/Yes-Steve-Model-Repo
-      git sparse-checkout set --no-cone /_Arknights/ /_ArknightsEndfield/ /_PunishingGrayRaven/ && git checkout
+      git sparse-checkout set --no-cone /_Arknights/ /_ArknightsEndfield/ /_PunishingGrayRaven/ /_AzurLane/ && git checkout
 Список моделей и авторов — docs/ysm-models.md."""
 import hashlib, json, pathlib, subprocess, sys, urllib.parse
 
@@ -18,6 +18,7 @@ packs = {
     "_Arknights": ("arknights", "Arknights", "Модели операторов Arknights"),
     "_ArknightsEndfield": ("arknights_endfield", "Arknights: Endfield", "Модели Arknights: Endfield"),
     "_PunishingGrayRaven": ("punishing_gray_raven", "Punishing: Gray Raven", "Модели Punishing: Gray Raven"),
+    "_AzurLane": ("azur_lane", "Azur Lane", "Модели шипгёрл Azur Lane"),
 }
 # не открываются в YSM 2.6.5 (лог сервера) — не раздаём; причины — docs/ysm-models.md
 skip = {"AK_Rosmontis_v0.9.ysm"}  # YSM 2.6.5 не читает (сервер: 0 моделей из этого файла); есть v1.0 той же модели
