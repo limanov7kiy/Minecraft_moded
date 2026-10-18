@@ -170,4 +170,30 @@ function runSetup(failFilter) {
   c.setupThenStart_(env.ss, form);
   assert.ok(env.written.some((v) => v.some((r) => r[1] === 'PUB')), '«Начало» записано');
 }
+// ---- защита от формул в тексте из формы: «По людям» ----
+['=IMPORTDATA("x")', '+1', '-1', '@a', '\tx', '\rx'].forEach((v) => assert.strictEqual(c.safeText_(v), "'" + v, JSON.stringify(v)));
+['Маша', 'R-001 (новый)', '', 'a=b'].forEach((v) => assert.strictEqual(c.safeText_(v), v));
+assert.strictEqual(c.safeText_(3), 3);
+{
+  const head = ['Отметка времени', 'Адрес электронной почты', c.CFG.NICK, '№', 'Статус', 'Статус изменён (дата)', 'Ответ отправлен (дата)'];
+  const data = [
+    [new Date('2026-10-01'), '=IMPORTDATA("x")', '+1', 'R-001', 'новый', new Date('2026-10-02'), ''],
+    [new Date('2026-10-01'), 'a@b.c', '@a', 'R-002', 'новый', new Date('2026-10-02'), ''],
+  ];
+  const written = []; const formats = [];
+  const sheet = {
+    getLastColumn: () => head.length, getLastRow: () => 3, getName: () => 'Ответы', getSheetId: () => 1,
+    getRange: (r, col, nr) => ({ getValue: () => 'Timestamp', getValues: () => (r === 1 ? [head] : data), setValues: (v) => { written.push(v); }, setNumberFormat: (f) => { formats.push(f); } }),
+    clear: () => {}, setFrozenRows: () => {}, autoResizeColumns: () => {},
+  };
+  const ss = { getSheetByName: () => sheet, insertSheet: () => sheet, getSheets: () => [sheet] };
+  global.SpreadsheetApp = { getActiveSpreadsheet: () => ss };
+  global.PropertiesService = { getDocumentProperties: () => ({ getProperty: () => null }) };
+  c.rebuildPeople_();
+  const body = written[written.length - 1];
+  const cells = [].concat.apply([], body).filter((x) => typeof x === 'string');
+  assert.ok(cells.includes("'=IMPORTDATA(\"x\")") && cells.includes("'+1") && cells.includes("'@a"), 'опасные значения ушли с апострофом');
+  assert.ok(!cells.some((x) => /^[=+\-@\t\r]/.test(x)), 'нет строк, начинающихся с формульного символа');
+  assert.ok(formats.includes('@'), 'формат «текст» тоже стоит');
+}
 console.log('report-sheet: OK');
