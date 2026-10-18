@@ -447,7 +447,7 @@ hash = "3ac7b04dcac9e6ecd2079112055fbd62adbafb4578a71b5d8e0ae26f7492b9f2"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/models/arm.json"
-hash = "8deb021b0646dc12d72506eaab838996ecd052ac259f52c0c93e416f6cce40ef"
+hash = "1aef07689b02793e66b5eae414856501df07d2be73f5cf2faba6edade45b88ab"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/models/main.json"
@@ -455,7 +455,7 @@ hash = "ceaba5085b0f196387c16efe0cd55d118e6835ae232789050307dc5854392c49"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/textures/priestess.png"
-hash = "d2d53bcb08dbf74f3f69f41979a3105c8eb9db2eee134a26b18475e2fabe3f96"
+hash = "e31f1ac51e723a5952868e245e9e059488fb5afff3b4c52f00d29b21d8e4542f"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/ysm.json"

@@ -468,10 +468,10 @@ class Geo:
         img = np.clip(img, 0, 255).astype(np.uint8)
         return Image.fromarray(img, "RGBA"), used
 
-    def json(self, ident="geometry.priestess"):
+    def json(self, ident="geometry.priestess", bounds=(7, 9, [0, 1.5, 0])):
         return {"format_version": "1.12.0", "minecraft:geometry": [{
             "description": {"identifier": ident, "texture_width": TEX, "texture_height": TEX,
-                            "visible_bounds_width": 7, "visible_bounds_height": 9, "visible_bounds_offset": [0, 1.5, 0]},
+                            "visible_bounds_width": bounds[0], "visible_bounds_height": bounds[1], "visible_bounds_offset": bounds[2]},
             "bones": self.bones}]}
 
 
@@ -937,6 +937,10 @@ def build_arm(default_arm, G):
     cb("LeftForeArm", (2.625 + dx, 18.075 + dy, -1.475), (3, 2.4, 3), "skin")
     cb("LeftForeArm", (2.35 + dx, 19.75 + dy, -1.75), (3.55, 0.9, 3.55), "cuff", dens=2)
     A.mirror("LeftArm", "RightArm"); A.mirror("LeftForeArm", "RightForeArm")
+    # куб 1×1×1 в локаторах рук, как у default: без него YSM 2.6.5 молча отвергает модель (проверено на сервере)
+    for loc in ("LeftHandLocator", "RightHandLocator"):
+        x, y, z = A.byname[loc]["pivot"]
+        cb(loc, (x - 0.5, y - 0.5, z - 0.5), (1, 1, 1), "skin")
     return A
 
 
@@ -959,7 +963,7 @@ def main():
     (out / "models").mkdir(parents=True, exist_ok=True)
     (out / "textures").mkdir(exist_ok=True); (out / "animations").mkdir(exist_ok=True); (out / "functions").mkdir(exist_ok=True)
     (out / "models" / "main.json").write_text(json.dumps(G.json(), ensure_ascii=False, separators=(",", ":")))
-    (out / "models" / "arm.json").write_text(json.dumps(A.json("geometry.priestess_arm"), ensure_ascii=False, separators=(",", ":")))
+    (out / "models" / "arm.json").write_text(json.dumps(A.json("geometry.priestess_arm", (3, 4.5, [0, 1.75, 0])), ensure_ascii=False, separators=(",", ":")))
     img.save(out / "textures" / "priestess.png")
     # анимации: default (CC 0) + свои parallel/pre_parallel/extra
     main_an = json.loads(rd("animations/main.animation.json"))
