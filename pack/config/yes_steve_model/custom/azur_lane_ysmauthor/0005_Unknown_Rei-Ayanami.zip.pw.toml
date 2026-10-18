@@ -1,0 +1,8 @@
+name = "0005_Unknown_Rei-Ayanami"
+filename = "0005_Unknown_Rei-Ayanami.zip"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0005-omo%E4%BB%99%E8%B4%9D2%E5%8F%B7%2Como%2Cmo%2CFujiwaranoMoku114514/AL_Ayanami_rei_%E7%BB%AB%E6%B3%A2_LD/Unknown_Rei-Ayanami.zip"
+hash-format = "sha256"
+hash = "d17db63e854f6e524f1985724334f9de2ec7c4d2d90b369292df1d4e7efe38a1"

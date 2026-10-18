@@ -1,0 +1,8 @@
+name = "0058_AL_Vampire"
+filename = "0058_AL_Vampire.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0058-%E8%89%BA%E6%96%B9%E5%83%8F%E7%B4%A0%2C%E8%89%BA%E6%96%B9%E5%A0%82%2C%E5%B0%BB%2C%E8%89%BA%E6%96%B9%E5%9D%8A%2C%E8%89%BA%E6%96%B9%E9%98%81/AL_Vampire_%E5%90%B8%E8%A1%80%E9%AC%BC_LB/AL_%E5%90%B8%E8%A1%80%E9%AC%BC_Vampire.ysm"
+hash-format = "sha256"
+hash = "c6b99c8e52cd73a98e5a81a451e8701b0fb116ffa8a31762d1b20a62a968d6ba"

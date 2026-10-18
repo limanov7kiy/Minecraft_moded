@@ -1,0 +1,8 @@
+name = "0083_AL_Fusou"
+filename = "0083_AL_Fusou.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0083-%E9%BC%A0%E6%A0%87%E4%BC%9A%E6%A2%A6%E5%88%B0%E5%85%89%E7%8C%AB%E5%90%97/AL_%E6%89%B6%E6%A1%91_Fusou/AL_%E6%89%B6%E6%A1%91_Fusou.ysm"
+hash-format = "sha256"
+hash = "72eac034313b062d16a2b923cae6a7b1134263af7d644257a070499796c4ae72"

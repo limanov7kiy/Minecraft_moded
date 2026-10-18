@@ -1,0 +1,8 @@
+name = "0105_AL_Kancollectyukikaze_LA_2.6.3"
+filename = "0105_AL_Kancollectyukikaze_LA_2.6.3.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0105-%E8%B6%85%E7%BA%A7%E5%A4%A7%E9%B8%A1%E8%85%BF%E4%B8%B6%2CNss/AL_Kancollect%E2%80%91yukikaze_%E9%9B%AA%E9%A3%8E_LA/%E9%9B%AA%E9%A3%8E2.6.3.ysm"
+hash-format = "sha256"
+hash = "9d848b7a5f4130356f3d9f2c99127c00b6deb7a45f04386f23de7fdbfb87a5be"

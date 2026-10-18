@@ -1,0 +1,8 @@
+name = "0101_AL_Ii-Lexington-Ii"
+filename = "0101_AL_Ii-Lexington-Ii.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0101-%E7%8D%92%E5%AD%90coco%2C%E7%8D%92%E5%AD%90%E9%85%B1%E7%9A%84%E6%9D%82%E8%B4%A7%E5%BA%97%2C%E7%8D%92%E5%AD%90%E7%8D%92%E5%AD%90%E7%8D%92/AL_%E5%88%97%E5%85%8B%E6%98%9F%E6%95%A6_Ii-Lexington-Ii/AL_%E5%88%97%E5%85%8B%E6%98%9F%E6%95%A6_Ii-Lexington-Ii.ysm"
+hash-format = "sha256"
+hash = "166573d7d5abf13c87de2b2031b93bbe7738c3c47e097053bd72448edf7902a8"

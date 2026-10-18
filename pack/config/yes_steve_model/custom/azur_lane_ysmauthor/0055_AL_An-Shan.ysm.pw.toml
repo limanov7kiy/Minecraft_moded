@@ -1,0 +1,8 @@
+name = "0055_AL_An-Shan"
+filename = "0055_AL_An-Shan.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0055-%E4%BC%8A%E8%95%BE%E5%A8%9C%E5%AE%B6%E7%9A%84%E5%92%B8%E9%B1%BC/AL_An%E2%80%91shan_%E9%9E%8D%E5%B1%B1_LB/AL_%E9%9E%8D%E5%B1%B1_An-Shan.ysm"
+hash-format = "sha256"
+hash = "db26d091c3960dc09880a4238da771b7b4a650447209eb4520e988ce18b14df3"

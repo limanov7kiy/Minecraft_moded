@@ -1,0 +1,8 @@
+name = "0103_AL_Taihou_v2.2"
+filename = "0103_AL_Taihou_v2.2.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0103-%E6%B5%85%E9%99%8C%E8%8F%8C/AL_Taihou_%E5%A4%A7%E5%87%A4_LA/AL_%E5%A4%A7%E5%87%A4_Taihou_v2.2.ysm"
+hash-format = "sha256"
+hash = "a8b12d62e43e8bc75ab98ec47cb097bd81cd0c62007d8ceb4f1b565f187f7257"
