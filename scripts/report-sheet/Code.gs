@@ -448,6 +448,8 @@ var DANGER_ = [
   ['упоминание @', /@[\p{L}\p{N}_]/u],
   ['ссылка на профиль/мессенджер', /t\.me\/|telegram\.(?:me|org)|discord\.com\/users|steamcommunity|vk\.com|wa\.me\//i],
   ['HTML-сущность', /&#?[\p{L}\p{N}_]+;/u],
+  ['e-mail', /\b[\w.+-]+@[\w-]+\.[\w.-]+\b/],
+  ['markdown-ссылка', /\]\(/],
   ['псевдоним диагностики', /\bPlayer-[0-9a-f]{3,}\b|\bPlayer-xxxx\b|diag-Player/i]
 ];
 
@@ -494,15 +496,32 @@ function hasToken_(text, tokens) {
 }
 
 // Причина запрета (без цитаты) или ''. Разрешённые URL — CFG.STATUS_URL и репозиторий.
-function replyTextProblem_(text, tokens) {
-  var t = String(text);
+// Какие признаки нельзя «разрезать» переносом строки или пробелом (как в report-status.py): проверяем и на тексте без пробелов вообще.
+var JOINABLE_ = ['ссылка Диска/spark/формы', 'упоминание @', 'ссылка на профиль/мессенджер', 'e-mail', 'markdown-ссылка'];
+
+// Посторонняя ссылка в тексте: любая, кроме CFG.STATUS_URL и репозитория проекта.
+function badUrl_(t) {
   var urls = t.match(/(?:https?|ftp):\/\/[^\s<>"')\]]+|\bwww\.[^\s<>"')\]]+/gi) || [];
   for (var i = 0; i < urls.length; i++) {
     var u = urls[i], bare = u.replace(/^(?:https?|ftp):\/\//i, '').replace(/^www\./i, '');
-    var ok = u.indexOf(CFG.STATUS_URL) === 0 || ALLOWED_URL_PREFIXES_.some(function (a) { var b = bare.toLowerCase(), pre = a.toLowerCase(); return /^https:\/\//i.test(u) && b.indexOf(pre) === 0 && /^[\/?#.,;:!)]?$|^[\/?#]/.test(b.substring(pre.length)); });
-    if (!ok) return 'в тексте посторонняя ссылка';
+    var ok = u.indexOf(CFG.STATUS_URL) === 0 || ALLOWED_URL_PREFIXES_.some(function (a) {
+      var b = bare.toLowerCase(), pre = a.toLowerCase();
+      return /^https:\/\//i.test(u) && b.indexOf(pre) === 0 && /^[\/?#.,;:!)]?$|^[\/?#]/.test(b.substring(pre.length));
+    });
+    if (!ok) return true;
   }
-  for (var j = 0; j < DANGER_.length; j++) if (DANGER_[j][1].test(t)) return 'в тексте похоже на ' + DANGER_[j][0];
+  return false;
+}
+
+// Причина запрета (без цитаты) или ''. Разрешённые URL — CFG.STATUS_URL и репозиторий. Текст проверяется как есть, с переносами,
+// заменёнными пробелом, и (для адресов и ссылок) без пробелов: «masha@\nexample.com» или «ht\ntps://…» не проходят.
+function replyTextProblem_(text, tokens) {
+  var t = String(text), spaced = t.replace(/\s+/g, ' '), joined = t.replace(/\s+/g, '');
+  if (badUrl_(t) || badUrl_(joined)) return 'в тексте посторонняя ссылка';
+  for (var j = 0; j < DANGER_.length; j++) {
+    var rx = DANGER_[j][1];
+    if (rx.test(t) || rx.test(spaced) || (JOINABLE_.indexOf(DANGER_[j][0]) >= 0 && rx.test(joined))) return 'в тексте похоже на ' + DANGER_[j][0];
+  }
   if (hasToken_(t, tokens)) return 'в тексте найден ник/контакт/адрес другого автора';
   return '';
 }

@@ -428,6 +428,7 @@ assert.strictEqual(c.safeText_(3), 3);
     ip: 'Сервер 198.51.100.7', win: 'Файл C:\\Users\\Ivan\\x', linux: 'См. /home/user/mods', at: 'Спросите @someone', url: 'Смотри https://evil.example/x',
     www: 'Смотри www.evil.example', drive: 'drive.google.com/abc', ent: 'Вот &#64; тут', diag: 'Игрок Player-ab12',
     urlprefix: 'https://github.com/limanov7kiy/Minecraft_moded_evil/x', http: 'http://github.com/limanov7kiy/Minecraft_moded/x',
+    cutmail: 'Пишите masha\n@example.net', cutmail2: 'Пишите vasya@\nmail.example', cuturl: 'Смотри ht\ntps://evil.example/x', md: 'Подробнее [тут](x)', email: 'Пишите anna@mail.example',
   };
   const rows = {};
   Object.keys(bads).forEach((k) => { rows[k] = addRow('to' + Object.keys(rows).length + '@example.org', bads[k]); });
