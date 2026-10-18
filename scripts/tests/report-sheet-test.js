@@ -415,5 +415,36 @@ assert.strictEqual(c.safeText_(3), 3);
   addRow('long@example.com', 'x'.repeat(5000));
   c.sendReplies_();
   assert.strictEqual(sent[0].body, 'x'.repeat(4000) + '\n\nСтатус: ' + c.CFG.STATUS_URL);
+
+  grid.length = 1; sent.length = 0;
+  // защита текста
+  grid.length = 1; sent.length = 0;
+  const nickCol = ci(c.CFG.NICK);
+  const mk = (email, text, nick) => { const r = addRow(email, text); grid[r - 1][nickCol] = nick || 'Ник=секрет'; return r; };
+  mk('maria@example.com', '', 'Мария Иванова');
+  mk('petr@example.com', '', 'Пётр_Вымышленный');
+  const bads = {
+    ник: 'Так же, как у Пётр_Вымышленный', падеж: 'Это видел Марии друг', адрес: 'Пишите petr@example.com',
+    ip: 'Сервер 198.51.100.7', win: 'Файл C:\\Users\\Ivan\\x', linux: 'См. /home/user/mods', at: 'Спросите @someone', url: 'Смотри https://evil.example/x',
+    www: 'Смотри www.evil.example', drive: 'drive.google.com/abc', ent: 'Вот &#64; тут', diag: 'Игрок Player-ab12',
+    urlprefix: 'https://github.com/limanov7kiy/Minecraft_moded_evil/x', http: 'http://github.com/limanov7kiy/Minecraft_moded/x',
+    cutmail: 'Пишите masha\n@example.net', cutmail2: 'Пишите vasya@\nmail.example', cuturl: 'Смотри ht\ntps://evil.example/x', md: 'Подробнее [тут](x)', email: 'Пишите anna@mail.example',
+  };
+  const rows = {};
+  Object.keys(bads).forEach((k) => { rows[k] = addRow('to' + Object.keys(rows).length + '@example.org', bads[k]); });
+  c.sendReplies_();
+  assert.strictEqual(sent.length, 0, 'ни одно из запрещённых писем не ушло: ' + sent.map((x) => x.body));
+  Object.keys(rows).forEach((k) => {
+    const n = cell(rows[k], ci('Заметка') + 1);
+    assert.ok(/^Ответ не отправлен: в тексте/.test(n), k + ': ' + n);
+    assert.ok(!cell(rows[k], stampCol) && !/198\.51|Вымышл|evil|petr@|someone|Ivan/.test(n), k + ': без цитаты, дата пуста');
+  });
+  // разрешено: имя самого адресата, URL статуса и репозитория
+  const good1 = mk('masha@example.com', 'Здравствуйте, Маша! Статус: ' + c.CFG.STATUS_URL + ' и https://github.com/limanov7kiy/Minecraft_moded/pull/106 .', 'Маша');
+  const good2 = addRow('ivan@example.com', 'Привет, Иван. Версия 1.20.1, Forge 47.4.26, отдайте игре 4–6 ГБ.');
+  grid[good2 - 1][nickCol] = 'Иван';
+  c.sendReplies_();
+  assert.deepStrictEqual(sent.map((x) => x.to), ['masha@example.com', 'ivan@example.com'], 'имя адресата, разрешённые URL и версии проходят');
+  assert.ok(cell(good1, stampCol) instanceof Date);
 }
 console.log('report-sheet: OK');
