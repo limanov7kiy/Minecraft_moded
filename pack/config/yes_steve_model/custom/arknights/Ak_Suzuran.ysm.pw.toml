@@ -1,0 +1,8 @@
+name = "Ak_Suzuran"
+filename = "Ak_Suzuran.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Suzuran.ysm"
+hash-format = "sha256"
+hash = "f34f3dc64e02fbdc90ee62cf012dc4a56eb6387e9f285ab3e2ac3a3d6f27e6d0"

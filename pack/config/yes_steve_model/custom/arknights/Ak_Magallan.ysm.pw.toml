@@ -1,0 +1,8 @@
+name = "Ak_Magallan"
+filename = "Ak_Magallan.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Magallan.ysm"
+hash-format = "sha256"
+hash = "f570da3f3565e113cffbc7472c2b80d55fd4a906473785f26d7f6d8970e83977"

@@ -1,0 +1,8 @@
+name = "Endfield_Rossi_v1.1"
+filename = "Endfield_Rossi_v1.1.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_ArknightsEndfield/Endfield_Rossi_v1.1.ysm"
+hash-format = "sha256"
+hash = "1fc6a630a16e69d043e0d1c6990abaa86ab73b80f93c565d1684e612f9b9fa91"

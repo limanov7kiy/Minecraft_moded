@@ -1,0 +1,8 @@
+name = "AK_Rosmontis_v1.0"
+filename = "AK_Rosmontis_v1.0.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/AK_Rosmontis_v1.0.ysm"
+hash-format = "sha256"
+hash = "72935c9f7847f916623a59b6f5b9df8ef7131c8bc2c20b57f29e91185c20bce0"

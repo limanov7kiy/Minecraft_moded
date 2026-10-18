@@ -1,0 +1,8 @@
+name = "Ak_Rosmontis_0"
+filename = "Ak_Rosmontis_0.zip"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Rosmontis_0.zip"
+hash-format = "sha256"
+hash = "79dab22ef5309c1ac939e7a0784e2c571f7afde96bdd1a7ce5befaa435f45954"

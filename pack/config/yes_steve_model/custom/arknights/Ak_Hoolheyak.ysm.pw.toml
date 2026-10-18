@@ -1,0 +1,8 @@
+name = "Ak_Hoolheyak"
+filename = "Ak_Hoolheyak.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Hoolheyak.ysm"
+hash-format = "sha256"
+hash = "5d3d5b2be8c7a1029dc82443e56f1646a4733722b20d2c1349cd17b05fe2181b"

@@ -1,0 +1,8 @@
+name = "Ak_Mudrock_0"
+filename = "Ak_Mudrock_0.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Mudrock_0.ysm"
+hash-format = "sha256"
+hash = "5a44bbc317526f17e57f50ebf63d3dd5430a3b414a88d1f6ad797f7107fc7859"

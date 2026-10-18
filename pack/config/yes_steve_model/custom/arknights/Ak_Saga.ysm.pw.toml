@@ -1,0 +1,8 @@
+name = "Ak_Saga"
+filename = "Ak_Saga.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Saga.ysm"
+hash-format = "sha256"
+hash = "212dd96896fd69e14b91165bd9f457ac54d095f6dc52c30c8b96323fc515bb3e"

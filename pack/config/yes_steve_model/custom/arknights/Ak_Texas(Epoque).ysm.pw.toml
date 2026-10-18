@@ -1,0 +1,8 @@
+name = "Ak_Texas(Epoque)"
+filename = "Ak_Texas(Epoque).ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Texas%28Epoque%29.ysm"
+hash-format = "sha256"
+hash = "70ac9c26068e8b3f0be87ff097ebea6cd78cc8f09b9e630e50b81ac52c9e053f"

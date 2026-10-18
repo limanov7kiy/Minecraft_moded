@@ -1,0 +1,8 @@
+name = "PGR_Lucia_1"
+filename = "PGR_Lucia_1.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_PunishingGrayRaven/PGR_Lucia_1.ysm"
+hash-format = "sha256"
+hash = "69152d6a34a6d871d4fad54da87268a57b7440012a1d11fe1f2a093db3d91ca0"

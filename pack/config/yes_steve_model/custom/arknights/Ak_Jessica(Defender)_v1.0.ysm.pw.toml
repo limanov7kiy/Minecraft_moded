@@ -1,0 +1,8 @@
+name = "Ak_Jessica(Defender)_v1.0"
+filename = "Ak_Jessica(Defender)_v1.0.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Jessica%28Defender%29_v1.0.ysm"
+hash-format = "sha256"
+hash = "db92cb862ffef011860dafc4da6a038642d30dd1a8bd3d1a8fd20c58bc98b423"

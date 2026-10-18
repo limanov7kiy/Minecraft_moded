@@ -1,0 +1,8 @@
+name = "Ak_Penance_0"
+filename = "Ak_Penance_0.zip"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Penance_0.zip"
+hash-format = "sha256"
+hash = "dcb2c1e9910c5b7e8afa6103afdc463a805b5b9823891c336e8ea37d8bcf5c1a"

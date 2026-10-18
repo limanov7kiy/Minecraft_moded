@@ -1,0 +1,8 @@
+name = "Ak_Irene"
+filename = "Ak_Irene.zip"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Irene.zip"
+hash-format = "sha256"
+hash = "e50c586dd8afa9719768a1099d7032d55a8f2bb9ff98e4e62a7f86c374358781"

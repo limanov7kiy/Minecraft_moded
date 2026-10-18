@@ -1,0 +1,8 @@
+name = "AK_Sora_v1.0_Fllz"
+filename = "AK_Sora_v1.0_Fllz.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/AK_Sora_v1.0_Fllz.ysm"
+hash-format = "sha256"
+hash = "7432ad49316b4a62c18fca125a5044f8c00859c59a5cf8f49d6f6ffba5d5e421"

@@ -1,0 +1,8 @@
+name = "Ak_Kaltsit"
+filename = "Ak_Kaltsit.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Kaltsit.ysm"
+hash-format = "sha256"
+hash = "c78a7fbfa6d06d65cdd560c0572a2fd0a4330f5b03bfc6241a640b7ac197a04f"

@@ -1,0 +1,8 @@
+name = "Ak_Eyjafjalla(Medic)_v1.0"
+filename = "Ak_Eyjafjalla(Medic)_v1.0.zip"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Eyjafjalla%28Medic%29_v1.0.zip"
+hash-format = "sha256"
+hash = "7b69f7b33b5aac9640aa16f97c7285ca4fb406f30ec0c33be0ab916d8f941bef"

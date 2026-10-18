@@ -36,6 +36,7 @@ stage="$out/$base-server"
 rm -rf "$stage" && mkdir -p "$stage"
 cp -r "$out/.server-mods" "$stage/mods"
 for d in config defaultconfigs kubejs; do [ -d "$root/pack/$d" ] && cp -r "$root/pack/$d" "$stage/"; done
+python3 "$root/scripts/fetch-config-files.py" "$stage"   # config/**/*.pw.toml (модели YSM) → сами файлы
 curl -sSLo "$stage/forge-installer.jar" \
   "https://maven.minecraftforge.net/net/minecraftforge/forge/$mc-$forge/forge-$mc-$forge-installer.jar"
 echo "-Xms4G

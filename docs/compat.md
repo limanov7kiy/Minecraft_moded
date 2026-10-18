@@ -1008,6 +1008,18 @@ CurseForge 1460238, файл 9130290, Astryxion, All Rights Reserved. Jar `pack/
 Кратеры и бассейн (структуры, фичи) — только на Луне, их это не затрагивает. После исправления корова добавляется во всех семи точках, в логе: «mm_compat: Northstar Structures onEntityJoinLevel — только на Луне».
 Тесты: `scripts/tests/spawnnat.js` (диагностика + яйца/summon/естественный спавн, два фейковых игрока; `culprit` перебирает слушателей), `scripts/tests/explorecheck.js` (тики при исследовании нового мира).
 Побочно: `scripts/test-server.sh` — переменные `EXTRA_CONFIG`, `SERVER_JVM_EXTRA`, `SERVER_XMX`.
+
+## Модели Yes Steve Model: 65 готовых + Priestess (поток 32, 2026-10-18, решение владельца В33)
+Подробно — `docs/ysm-models.md`. Находки:
+- YSM 2.6.5 не пишет в лог, какие модели загрузил и почему отверг. Счёт — по числу записей в серверном кэше
+  `config/yes_steve_model/cache/server` (27 встроенных + свои); неподходящая модель тихо пропадает.
+- `AK_Rosmontis_v0.9.ysm` (Elaina69, формат 26) не читается вовсе — не раздаём; остальные 65 из `_Arknights`,
+  `_ArknightsEndfield`, `_PunishingGrayRaven` грузятся. Файлы качаются по ссылкам из packwiz-метафайлов в `config/`
+  (`scripts/fetch-config-files.py` для сервера; `test-server.sh` и `export-pack.sh` его вызывают).
+- Модели-папки (как Priestess) в этот кэш не попадают — их загрузку проверять командой `/ysm export <id>` из консоли (файл появляется в `config/yes_steve_model/export/` только у загруженной модели; зашифрованные `.ysm` не экспортируются). Priestess: `[YSM] Saved as 'export/priestess.ysm'`. Тест `scripts/tests/ysmcheck.js`: теги форм собираются (посохи Iron's/Cataclysm Spellbooks, палочки Wizardry, жезлы Botania → staff; книги Ars → tome; еда → food), команда `ysm molang execute` сервером принимается.
+- Клиент YSM в облаке не запускается (К7) — внешний вид и molang-логика Priestess проверены своим рендером
+  (`mods-src/ysm-priestess/ysmrender.py`), в игре — по чек-листу в `docs/ysm-models.md`.
+
 **ModernFix не виноват** (проверено): со старым mm-compat 0.5.2 и `remove_spawn_chunks=false` корова так же удаляется в (600,600), (-600,-600), в Энде (-400,400) и в Нижнем мире (-600,-600); с mm-compat 0.5.3 и `remove_spawn_chunks=true` (как в паке) во всех точках Земли, Энда и Нижнего мира сущность добавляется. «Помогло» у владельца — совпадение: «мёртвые зоны» считаются по зерну, новый мир даёт другие. `modernfix-mixins.properties` не менялся.
 
 ### Нагрузка Spore + SRP System на сервере (поток 30, 2026-10-17)

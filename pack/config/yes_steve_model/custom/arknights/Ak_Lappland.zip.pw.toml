@@ -1,0 +1,8 @@
+name = "Ak_Lappland"
+filename = "Ak_Lappland.zip"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Lappland.zip"
+hash-format = "sha256"
+hash = "aff0bcdb57515a1e3ff79a5cd74abbcc007cf8e23682fae1a67acb944466f65e"

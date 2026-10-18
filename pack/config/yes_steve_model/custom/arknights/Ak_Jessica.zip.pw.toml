@@ -1,0 +1,8 @@
+name = "Ak_Jessica"
+filename = "Ak_Jessica.zip"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Jessica.zip"
+hash-format = "sha256"
+hash = "505ae910aab15b98e2f5805ab656fa3881d081f4e68fcb3e72138a9a05ddc68a"

@@ -1,0 +1,8 @@
+name = "Ak_Skadi(Sleepwear)"
+filename = "Ak_Skadi(Sleepwear).ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Skadi%28Sleepwear%29.ysm"
+hash-format = "sha256"
+hash = "d5ea4095dea91199b9e65cbe6e51d8692873add2c1fd0f4078901a3e0a684768"

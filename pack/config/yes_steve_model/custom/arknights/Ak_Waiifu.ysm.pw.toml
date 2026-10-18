@@ -1,0 +1,8 @@
+name = "Ak_Waiifu"
+filename = "Ak_Waiifu.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Waiifu.ysm"
+hash-format = "sha256"
+hash = "77041402c52e6610038ad3d3bc1bb508073994ce31690c4fa798c0aef11437db"

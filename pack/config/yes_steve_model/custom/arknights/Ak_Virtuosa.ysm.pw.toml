@@ -1,0 +1,8 @@
+name = "Ak_Virtuosa"
+filename = "Ak_Virtuosa.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Virtuosa.ysm"
+hash-format = "sha256"
+hash = "f6cbb3db8d7aa37fbeda5212d03ad38294166960574c9883ab2e89d405efacbf"

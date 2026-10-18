@@ -1,0 +1,8 @@
+name = "Ak_Kaltsit_0"
+filename = "Ak_Kaltsit_0.zip"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Kaltsit_0.zip"
+hash-format = "sha256"
+hash = "39f99a822c62357271483415b040e6b3fceaeab8389e4f77cd0b8f6afdec80df"

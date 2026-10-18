@@ -20,6 +20,7 @@ python3 "$root/scripts/fetch-mods.py" server mods | grep -v '^got' || true
 [ -n "${EXTRA_MODS:-}" ] && cp "$EXTRA_MODS"/*.jar mods/
 # конфиги сборки поверх сгенерированных
 for d in config defaultconfigs kubejs; do [ -d "$root/pack/$d" ] && mkdir -p "$d" && cp -r "$root/pack/$d/." "$d/"; done
+python3 "$root/scripts/fetch-config-files.py" .   # модели YSM и др. файлы по url из config/**/*.pw.toml
 [ -n "${EXTRA_SERVER_SCRIPTS:-}" ] && mkdir -p kubejs/server_scripts && cp "$EXTRA_SERVER_SCRIPTS"/*.js kubejs/server_scripts/
 [ -n "${EXTRA_CONFIG:-}" ] && cp -r "$EXTRA_CONFIG"/. config/
 echo eula=true > eula.txt

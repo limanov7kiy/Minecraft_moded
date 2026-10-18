@@ -1,0 +1,8 @@
+name = "PGR_Adolf2"
+filename = "PGR_Adolf2.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_PunishingGrayRaven/PGR_Adolf2.ysm"
+hash-format = "sha256"
+hash = "9a85dbb467a819251ad64dde79a6a8d99e6a15e24f49635a28e7dafaa337da8b"

@@ -1,0 +1,8 @@
+name = "Ak_Shamare(WitchFeast)_v1.0_Fllz"
+filename = "Ak_Shamare(WitchFeast)_v1.0_Fllz.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_Arknights/Ak_Shamare%28WitchFeast%29_v1.0_Fllz.ysm"
+hash-format = "sha256"
+hash = "19d394c1c1c5c8ce9d1bb1e2f222a39401337640a7f4ca2cc487cf3fa94833f0"
