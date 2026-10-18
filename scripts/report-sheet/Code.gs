@@ -215,6 +215,12 @@ function groupPeople(rows) {
   return out.map(function (x) { return x.row; });
 }
 
+// Текст из публичной формы, который уходит на другие листы через setValues: «=…», «+…», «-…», «@…», табуляция и \r в начале
+// разобрались бы как формула — ставим впереди апостроф (экранирование Таблиц).
+function safeText_(v) {
+  return (typeof v === 'string' && /^[=+\-@\t\r]/.test(v)) ? "'" + v : v;
+}
+
 function rebuildPeople_() {
   var ss = SpreadsheetApp.getActiveSpreadsheet(), sh = responsesSheet_();
   var h = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0];
@@ -236,7 +242,7 @@ function rebuildPeople_() {
     // Ник и адрес приходят из публичной формы: «=IMPORTDATA(…)» в нике стал бы живой формулой. Текстовый формат до записи — значения остаются текстом.
     t.getRange(2, 1, res.length, 2).setNumberFormat('@');
     t.getRange(2, 5, res.length, 1).setNumberFormat('@');
-    t.getRange(2, 1, res.length, 7).setValues(res);
+    t.getRange(2, 1, res.length, 7).setValues(res.map(function (row) { return row.map(safeText_); }));
   }
   t.autoResizeColumns(1, 7);
 }
@@ -426,4 +432,4 @@ function setup() {
   fillMissing();
 }
 
-if (typeof module !== 'undefined') { module.exports = { setupThenStart_: setupThenStart_, formatNumber: formatNumber, isStale: isStale, needsReply: needsReply, FORM: FORM, ensureForm_: ensureForm_, pickNewSheet: pickNewSheet, startRows: startRows, setup: setup, writeStart_: writeStart_, addFormItem_: addFormItem_, bootstrap: bootstrap, buildQueries: buildQueries, groupPeople: groupPeople, emailColIndex_: emailColIndex_, summarize: summarize, letter_: letter_, CFG: CFG }; }
+if (typeof module !== 'undefined') { module.exports = { setupThenStart_: setupThenStart_, formatNumber: formatNumber, isStale: isStale, needsReply: needsReply, FORM: FORM, ensureForm_: ensureForm_, pickNewSheet: pickNewSheet, startRows: startRows, safeText_: safeText_, rebuildPeople_: rebuildPeople_, setup: setup, writeStart_: writeStart_, addFormItem_: addFormItem_, bootstrap: bootstrap, buildQueries: buildQueries, groupPeople: groupPeople, emailColIndex_: emailColIndex_, summarize: summarize, letter_: letter_, CFG: CFG }; }
