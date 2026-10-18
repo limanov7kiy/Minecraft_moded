@@ -1,26 +1,22 @@
 // Тест для модели YSM «Priestess» (docs/ysm-models.md): теги форм осколка mm:ysm_form/* (ysm_priestess_forms.js)
-// и команда «/ysm molang execute» на игроке (её шлёт ysm_chat_glow.js). Фейковый игрок Forge, тик 200.
-// Вывод: YSMCHECK tag <форма> <число> [примеры] | YSMCHECK cmd <команда> -> <результат> | YSMCHECK item <id> -> формы
+// и команда «/ysm molang execute» (её шлёт ysm_chat_glow.js). Первый тик после Done ≈ 2 мин — TEST_COMMANDS «#sleep 300».
+// Вывод: YSMCHECK tag <форма> <число> [примеры] | YSMCHECK item <id> -> формы | YSMCHECK cmd <команда> -> <результат>
+let ysmDone = false
 ServerEvents.tick(event => {
   const server = event.server
-  if (server.tickCount != 200) return
+  if (ysmDone || server.tickCount < 200) return
+  ysmDone = true
+  const say = s => console.info('YSMCHECK ' + s)
   const forms = ['sword', 'axe', 'pickaxe', 'shovel', 'hoe', 'bow', 'crossbow', 'shield', 'spear', 'staff', 'tome', 'food']
+  const idsOf = f => { const a = []; Ingredient.of('#mm:ysm_form/' + f).itemIds.forEach(x => a.push(String(x))); return a }
   forms.forEach(f => {
-    const ids = Ingredient.of(`#mm:ysm_form/${f}`).itemIds
-    console.info(`YSMCHECK tag ${f} ${ids.length} ${ids.slice(0, 8).join(' ')}`)
+    try { const a = idsOf(f); say('tag ' + f + ' ' + a.length + ' ' + a.slice(0, 8).join(' ')) } catch (e) { say('tag ' + f + ' ERR ' + e) }
   })
-  const probe = ['irons_spellbooks:blood_staff', 'ebwizardry:wand_master_fire', 'ars_nouveau:novice_spell_book', 'botania:fire_rod',
-    'minecraft:bow', 'minecraft:cooked_beef', 'minecraft:diamond_sword', 'minecraft:stone', 'cataclysm_spellbooks:void_staff']
-  probe.forEach(id => {
-    const tags = forms.filter(f => Ingredient.of(`#mm:ysm_form/${f}`).test(Item.of(id)))
-    console.info(`YSMCHECK item ${id} -> ${tags.join(',') || '-'}`)
+  ;['irons_spellbooks:blood_staff', 'ebwizardry:wand_master_fire', 'ars_nouveau:novice_spell_book', 'botania:fire_rod',
+    'minecraft:bow', 'minecraft:cooked_beef', 'minecraft:diamond_sword', 'minecraft:stone', 'cataclysm_spellbooks:void_staff'].forEach(id => {
+    try { say('item ' + id + ' -> ' + (forms.filter(f => idsOf(f).indexOf(id) >= 0).join(',') || '-')) } catch (e) { say('item ' + id + ' ERR ' + e) }
   })
-  const level = server.getLevel('minecraft:overworld')
-  const fake = Java.loadClass('net.minecraftforge.common.util.FakePlayerFactory').getMinecraft(level)
-  const name = fake.getGameProfile().getName()
-  ;[`ysm molang execute ${name} v.chat_glow=1`, `ysm molang execute ${name} v.chat_glow=0`].forEach(c => {
-    let r
-    try { r = server.runCommand(c) } catch (e) { r = 'ERR ' + e }
-    console.info(`YSMCHECK cmd ${c} -> ${r}`)
+  ;['ysm molang execute @a v.chat_glow=1', 'ysm molang execute @a v.chat_glow=0'].forEach(c => {
+    try { say('cmd ' + c + ' -> ' + server.runCommand(c)) } catch (e) { say('cmd ' + c + ' ERR ' + e) }
   })
 })

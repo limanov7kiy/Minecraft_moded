@@ -13,7 +13,7 @@
 Использование: python3 build.py [--out <папка>] [--preview <png>]
 Нужен jar YSM (ссылка — pack/mods/yes-steve-model.pw.toml), кэш — build/.
 """
-import argparse, copy, hashlib, io, json, math, pathlib, re, sys, tomllib, urllib.request, zipfile
+import argparse, copy, hashlib, io, json, math, pathlib, re, sys, tomllib, urllib.request, zipfile, zlib
 import numpy as np
 from PIL import Image
 
@@ -404,7 +404,7 @@ class Geo:
             key = None
             if share:  # общий участок текстуры (кристаллы и т.п.)
                 key = (share, f if share.endswith("@face") else "", pw, ph) if not share.startswith("swatch") else (share,)
-            self.faces.append([c, f, pw, ph, m, seed + hash(f) % 97, key, False])
+            self.faces.append([c, f, pw, ph, m, seed + zlib.crc32(f.encode()) % 97, key, False])
         return c
 
     def mirror(self, src_bone, dst_bone):
