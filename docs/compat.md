@@ -1074,6 +1074,51 @@ CurseForge 1460238, файл 9130290, Astryxion, All Rights Reserved. Jar `pack/
 активации голосом не слишком высок.
 Voice Chat Interaction (наш порт) остаётся `enabled=false` в `pack/config/vcinteraction/`, чтобы не было двойных вибраций.
 
+## OOM «Java heap space» при полёте над новыми чанками (поток 34, 2026-10-18, краш у игрока)
+Жалоба: одиночная игра, новый мир, Xmx 8 ГБ (ноутбук, 16 ГБ ОЗУ), около (-700, 96, 300) — `Exception in server tick loop` →
+`OutOfMemoryError: Java heap space` в `ChunkGenerator.createStructures → JigsawStructure → SinglePoolElement.getTemplate →
+ModernFix CachingStructureManager.readStructure → StructureTemplate.load`. Место падения — не виновник: куча была уже забита.
+Логи игрока (`Logs.rar`) разобрать не удалось (распаковка RAR в облаке заблокирована) — выводы по воспроизведению.
+
+**Воспроизведение.** `scripts/tests/memroute.js`: область forceload 9×9 чанков летит от (0,0) к (-700,300) и дальше по квадрату
+со стороной 3000 (шаг 64 блока, следующий — когда центр предыдущей области сгенерирован), куча — `scripts/memwatch.sh`
+(jstat каждые 30 с, `GC.class_histogram` каждые 3 мин). Сервер Xmx 6G (быстрее упирается), новый мир, без WorldEdit (`EXCLUDE_MODS=worldedit`, как у клиента).
+DH на выделенном сервере сам ничего не генерирует; в сборке у клиента `generatorPlan = "DISABLED"`, так что DH в одиночке не нагружает генерацию, если игрок не включал её сам.
+
+**Виновники (по убыванию):**
+1. **The Lost Cities 1.20-7.5.7 — утечка `BuildingInfo`.** `getXmin/getXmax/getZmin/getZmax` запоминают соседа в полях; все
+   BuildingInfo сгенерированных чанков сцепляются в одну сетку, и любой живой держит её целиком — TTL-кэш `ChunkPlanner`
+   (`cacheCleanupSeconds`) ничего не освобождает. Без исправления: BuildingInfo 47 тыс. (3 мин) → 306 тыс. (6 мин) → 550 тыс. → **705 тыс.** (12,5 мин),
+   `HashMap$Node` 0,23 → 1,6 ГБ, old gen **6,1 / 6,1 ГБ, 52 полные сборки** к 14-й минуте (тики по несколько секунд, до OOM — минуты).
+   `cacheCleanupSeconds = 60` не помогает (замерено: рост тот же). **Исправление — `LostCitiesNeighborMixin` (mm-compat 0.5.5)**: сосед не запоминается,
+   каждый раз берётся из кэша Lost Cities. Работает и на уже созданных мирах (конфиг мира не нужен).
+2. **WorldEdit 7.2.15 — ~2,7 ГБ постоянно** (живая куча после старта 5,4 ГБ против 2,67 ГБ без него): таблицы Guava по каждому из
+   **841 тыс. состояний блоков** сборки (Quark 145 тыс., VS Sails 65 тыс., bobsoriginiumdream 59 тыс. — один `plantbox` 57 тыс., Ad Astra 59 тыс.).
+   С ним при Xmx 6G OOM тем же стеком, что у игрока, — через 3 минуты маршрута. У клиентов WorldEdit по умолчанию выключен
+   (решение от 2026-10-17); на выделенном сервере он есть — рекомендация ниже, решение за Координатором/владельцем.
+3. **Гигантские шаблоны структур** (`bobsoriginiumdream`: `orilabortory_key` 2,1 млн блоков, `kingtemple` 1,5 млн, `ori_stele`;
+   `caerula_arbor`: `iberiaeye_looted_1` 2,0 млн, `abyssal_lab_2`, `izumik_island`, `drilling_platform`, `cloister`; Aether Villages `olympic_citadel_main_0` 1,4 млн) —
+   кубы до 128³, на 86–98 % из воздуха. Загруженный шаблон ~100 МБ (держится в мягком кэше ModernFix `dynamic_structure_manager` — при нехватке
+   памяти выгружается), но `StructureTemplate.placeInWorld` для **каждого** чанка структуры копирует все блоки шаблона в `processBlockInfos`
+   (BlockPos + StructureBlockInfo + списки — 100+ МБ мусора на чанк на поток генерации). **`StructureTemplatePlaceMixin`** (mm-compat 0.5.5):
+   шаблонам от 65 536 блоков в чанк передаются только блоки его коробки по X/Z (то, что placeInWorld всё равно поставил бы; Y не трогаем).
+   Отдельно этот миксин не замерялся (выигрыш — пиковый мусор и CPU, не удерживаемая куча).
+4. Невиновны по замерам: кэш шаблонов ModernFix (мягкие ссылки), Valkyrien Skies/Bumblezone/Alex's Caves/Lycanites (их классы не растут), Spore.
+
+**Замер «после»** (тот же маршрут, Xmx 6G, без WorldEdit, `cacheCleanupSeconds` по умолчанию 300):
+| Время маршрута | без исправлений | mm-compat 0.5.5 |
+|---|---|---|
+| ~3 мин | old gen растёт, BuildingInfo 47 тыс. | живая куча 2,58 ГБ |
+| ~6 мин | BuildingInfo 306 тыс. | 2,76 ГБ |
+| ~12,5 мин | BuildingInfo 705 тыс., old gen 6,1/6,1 ГБ, 35 полных сборок | 3,48 ГБ, BuildingInfo нет в топ-45 |
+| ~15 мин | 52 полные сборки, сервер почти не тикает | 3,54 ГБ, old gen 3,6/3,8 ГБ, **7** полных сборок, OOM нет |
+Прогон с TTL 60 до 19-й минуты: живая куча 3,5–4,6 ГБ, плато (остаток — данные чанков и шаблоны в мягком кэше).
+
+**Что делать игроку:** обновить сборку (mm-compat 0.5.5) — мир пересоздавать не нужно. Xmx 8 ГБ при 16 ГБ ОЗУ остаётся верным.
+**Рекомендация по WorldEdit на сервере:** сделать его необязательным и на сервере (класть в `mods/` только на время переноса построек) —
+это −2,7 ГБ кучи и −2 мин первого тика; либо оставить и давать серверу Xmx ≥ 10 ГБ (как сейчас в `docs/friends.md`).
+Инструменты: `scripts/tests/memroute.js`, `scripts/memwatch.sh`, `scripts/tests/templload.js` (сколько кучи держит шаблон), `test-server.sh` `EXCLUDE_MODS=`.
+
 ## Вопросы игрока: агрессия мобов, урон от падения, «квадратные» грибы (поток 35, 2026-10-18)
 Тесты — `scripts/tests/mobaggro.js`, `falldamage.js` (через `EXTRA_SERVER_SCRIPTS`, `TEST_COMMANDS` с `#sleep`), `scripts/check_mod_models.py`.
 

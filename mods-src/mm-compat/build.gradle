@@ -43,6 +43,8 @@ dependencies {
     modCompileOnly "maven.modrinth:jei:${jei_version}"
     // Electroblob's Wizardry Redux — тип рецепта и класс ImbuementAltarRecipe
     modCompileOnly "maven.modrinth:electroblobs-wizardry-redux:${redux_version}"
+    // The Lost Cities (McJty, MIT) — миксин LostCitiesNeighborMixin (утечка BuildingInfo)
+    modCompileOnly "maven.modrinth:the-lost-cities:${lostcities_version}"
 }
 
 processResources {
