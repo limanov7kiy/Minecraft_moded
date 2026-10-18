@@ -65,6 +65,14 @@ ServerEvents.tick(event => {
         console.info('SPAWNNAT culprit at ' + t + ': ' + culprit + ' (слушателей ' + ls.length + ')') })
     } catch (e) { console.info('SPAWNNAT listeners FAIL ' + e) }
   }
+
+  if (T == 208) {   // другие измерения: Энд и Нижний мир (жалоба: в Энде тоже не было мобов)
+    ['minecraft:the_end', 'minecraft:the_nether'].forEach(d => { var lv = server.getLevel(d); if (!lv) return
+      var ETd = Java.loadClass('net.minecraft.world.entity.EntityType')
+      var ptsd = d == 'minecraft:the_end' ? [[0, 100], [200, 0], [-400, 400], [1500, 1500]] : [[0, 0], [300, 300], [-600, -600]]
+      ptsd.forEach(p => { lv.getChunk(p[0] >> 4, p[1] >> 4); var y = d == 'minecraft:the_end' ? 70 : 70
+        var cow = ETd.COW.create(lv); cow.setPos(p[0] + 0.5, y, p[1] + 0.5); console.info('SPAWNNAT dim ' + d + ' at ' + p + ' added=' + lv.addFreshEntity(cow) + ' removed=' + cow.isRemoved()) }) })
+  }
   if (T == 206 || T == 260) SN.diag && SN.diag.forEach(d => console.info('SPAWNNAT diag t=' + T + ' at ' + d.p + ' y=' + d.y + ' biome=' + d.biome + ' added=' + d.added + ' entityTicking=' + d.tick + ' removed=' + d.cow.isRemoved() + ' reason=' + d.cow.getRemovalReason()))
   if (!SN.A) return
   if (T == 220) {

@@ -115,10 +115,10 @@ mr sound-physics-remastered # client: эхо и заглушение звука,
 mr talkingheads             # client: голова говорящего игрока покачивается
 mr let-them-talk            # client: приглушает музыку и другие звуки, пока кто-то говорит
 # mr voicechatprofiles      # ОТКЛЮЧЁН (поток 5): jar 1.0.1 под 1.20.1 Forge не перемаплен в SRG — вылет клиента на первом тике
-mr vibrative-voice          # server: голос — вибрация для скалк-сенсоров и Хранителя
-mr vc-admin-voice-chat-moderation-tool # server: OP заходят в запароленные группы (модерация)
-mr simplevoicechat-broadcast # server: OP вещает на всех (группа "broadcast")
-mr sols-authlogin         # server: пароль при входе (/register, /login) — офлайн-режим, защита ников; на клиенте не нужен
+mr vibrative-voice          # both: голос — вибрация для скалк-сенсоров и Хранителя; в одиночке нужен на клиенте (встроенный сервер), мод чисто серверной логики, клиентских классов и каналов нет
+mr vc-admin-voice-chat-moderation-tool # server (в одиночке не нужен — OP-модерация групп): OP заходят в запароленные группы (модерация)
+mr simplevoicechat-broadcast # server (в одиночке не нужен): OP вещает на всех (группа "broadcast")
+mr sols-authlogin         # server: пароль при входе (/register, /login) — офлайн-режим, защита ников; на клиенте не нужен и вреден (свои сетевые каналы и экран логина; в одиночке пароль не нужен) — остаётся server
 # Voice Chat Interaction, AudioPlayer, Enhanced Groups (Max Henkel) есть только под Fabric — свой порт на Forge:
 #   mods-src/voicechat-addons → pack/mods/voicechat-addons-forge-*.jar (both)
 mr admiral                  # both: библиотека команд Max Henkel, нужна порту AudioPlayer и Enhanced Groups
@@ -191,11 +191,11 @@ mr the-twilight-forest-dungeons-villages
 mr gtbcs-spelllib             # библиотека для GTBC Geomancy Plus (было CurseForge, теперь Modrinth)
 mr twilight-forest-the-lost-blocks
 #jar tw-resurrection                # повторный призыв боссов TF
-mr twilight-forest-cave-fix       # сервер
+mr twilight-forest-cave-fix       # both: миксин генерации пещер — в одиночке иначе мир генерируется без фикса
 #jar create-blue-skies-compat
 #jar blue-skies-tweaks
 mr farmers-cutting-blue-skies
-mr blue-skies-gravestones-compat  # сервер
+mr blue-skies-gravestones-compat  # both: миксин смерти игрока (гроб с Blue Skies) — в одиночке иначе не работает
 mr undergarden-delight
 mr deeper-and-darker-spellbooks   # Iron's Spells × Deeper and Darker
 #jar deeper-and-darker-to-cataclysm-progression
@@ -253,7 +253,7 @@ mr mekanism-curios
 mr just-enough-mekanism-multiblocks   # клиент
 mr sophisticated-backpacks-create-integration
 mr more-backpack-upgrades         # требует Refined Storage (одобрено пользователем)
-mr gravestone-x-curios-api-compat     # сервер
+mr gravestone-x-curios-api-compat     # both (+ baguettelib both — его зависимость): аксессуары Curios попадают в гроб, в одиночке тоже
 mr xaeros-minimap-world-map-waystones-compatibility-forge
 mr jade-addons-forge
 mr legendary-survival-addon       # Create × Legendary Survival Overhaul

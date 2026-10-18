@@ -235,7 +235,7 @@ More Backpack Upgrades (+ Refined Storage). Сервер — `Done`, новый 
 | Simple Radio (+ Lexiconfig) | both | рации, радио, микрофоны/динамики; связки с Create, Valkyrien Skies, Curios, Vibrative Voice включились сами |
 | Sound Physics Remastered | client | реверберация и заглушение звуков и голосов стенами |
 | Talking Heads, Let Them Talk | client | анимация говорящего, приглушение музыки при речи (VoiceChatProfiles убран — К2 «Проверки клиента») |
-| Vibrative Voice | server | голос — вибрация для скалк-сенсоров/Хранителя |
+| Vibrative Voice | both | голос — вибрация для скалк-сенсоров/Хранителя (в одиночке — через встроенный сервер, см. «Моды side=server и одиночная игра») |
 | VC Admin, SimpleVoiceChat Broadcast | server | модерация групп и вещание на всех для OP |
 
 | Voice Chat Interaction, AudioPlayer, Enhanced Groups (+ Admiral) | both | **свой порт на Forge** (`mods-src/voicechat-addons`): голос будит скалк, свои звуки на пластинках/рогах/нотных блоках/головах, постоянные и авто-группы |
@@ -1019,3 +1019,57 @@ CurseForge 1460238, файл 9130290, Astryxion, All Rights Reserved. Jar `pack/
 - Модели-папки (как Priestess) в этот кэш не попадают — их загрузку проверять командой `/ysm export <id>` из консоли (файл появляется в `config/yes_steve_model/export/` только у загруженной модели; зашифрованные `.ysm` не экспортируются). Priestess: `[YSM] Saved as 'export/priestess.ysm'`. Тест `scripts/tests/ysmcheck.js`: теги форм собираются (посохи Iron's/Cataclysm Spellbooks, палочки Wizardry, жезлы Botania → staff; книги Ars → tome; еда → food), команда `ysm molang execute` сервером принимается.
 - Клиент YSM в облаке не запускается (К7) — внешний вид и molang-логика Priestess проверены своим рендером
   (`mods-src/ysm-priestess/ysmrender.py`), в игре — по чек-листу в `docs/ysm-models.md`.
+
+**ModernFix не виноват** (проверено): со старым mm-compat 0.5.2 и `remove_spawn_chunks=false` корова так же удаляется в (600,600), (-600,-600), в Энде (-400,400) и в Нижнем мире (-600,-600); с mm-compat 0.5.3 и `remove_spawn_chunks=true` (как в паке) во всех точках Земли, Энда и Нижнего мира сущность добавляется. «Помогло» у владельца — совпадение: «мёртвые зоны» считаются по зерну, новый мир даёт другие. `modernfix-mixins.properties` не менялся.
+
+### Нагрузка Spore + SRP System на сервере (поток 30, 2026-10-17)
+Числа и вывод — `docs/performance.md`, «Нагрузка от Spore + SRP System». Коротко: без заразы нагрузки нет; один очаг (~50 существ) ≈ +10–25 % тика (11 % потока сервера),
+три очага (~70 существ — работает лимит деспавна) ≈ +45–50 % (20 %). Конфиг не меняли. Тест `scripts/tests/sporeload.js`.
+
+### Клиентская проверка Spore, SRP System, Chaos Persists (OreSpawn) (поток 30, 2026-10-17)
+Стенд `scripts/test-client.sh` (Xvfb + llvmpipe, без звука; YSM убран, как всегда) из свежего `.mrpack` (интегратор 4aaf3ad + mm-compat 0.5.3): **`CLIENT OK`, 785 с**.
+**В мир зашли** — GUI через `xdotool` (в стенд поставлен: `apt-get install xdotool`): Одиночная игра → «Создать новый мир» (тип по умолчанию, нормальная сложность) → окна Origin/Искусства/Класс → мир
+на встроенном сервере. Скрипт `scripts/clienttest/clientmobs.js` (кладётся в `<папка клиента>/game/kubejs/server_scripts/` перед запуском, в сборку не входит) призвал по одному мобу **каждого вида**
+из пространств имён `spore`, `chaospersists`, `srpsystem` — **254 вида, 0 ошибок призыва** — рядами на ровной площадке, игрок телепортировался вдоль рядов; скриншоты —
+`docs/client-check/spore-orespawn-chaos-row.jpg` (мобы Chaos Persists и Spore в ряду, Jade) и `docs/client-check/spore-verfaldrache.jpg` (босс Verfalldrache и заражённые, русские названия и подсказка Jade).
+Это же подтверждает фикс Northstar Structures: в новом обычном мире мобы появляются.
+**В логе клиента по Spore/SRP/Chaos Persists — без ошибок моделей, текстур, рендереров и lang.** Остались только безвредные предупреждения самих модов:
+- `srpsystem:sounds/nude.ogg` и `spore:sounds/bairn_ambient1.ogg` — файла звука нет (ошибка модов);
+- анимированные спрайты предметов Spore (`scythe`, `mace`, `great_sword`, `halberd`, `rapier`, `saber`, `armads`) — «Invalid frame index / Unused frames» (в `.mcmeta` лишние кадры);
+- `defineId called for …` (Spore: Spitter/Howler/Busser/Vigil/Hinderburg) — предупреждение о порядке регистрации данных сущностей, на работу не влияет;
+- `ChaosPersists: failed to raise generic.maxHealth cap` — известное, потолок здоровья снимает AttributeFix;
+- Spore/SRP/Chaos пересоздали свои конфиги при первом запуске (`Incorrect key … corrected from null`) — нормально для нового клиента.
+Не проверено: звук (в стенде без звука), поведение мобов (призывались без ИИ), анимации ходьбы/атаки, шейдеры, настоящая видеокарта (llvmpipe). В логе клиента есть и чужие «Missing textures»
+(Create Big Cannons Additional Types, Refined Storage, Wizardry, Ars Additions, Deep Aether — к Spore/OreSpawn не относятся, не разбирались).
+
+
+## Моды side=server и одиночная игра (поток 31, 2026-10-17, баг владельца «скалк не реагирует на голос»)
+Причина: одиночная игра — это встроенный сервер клиента, а моды `side = "server"` в `.mrpack` получают
+`env.client=unsupported` и в клиентский экземпляр не ставятся. Значит Vibrative Voice в одиночке просто не было.
+Разбор по jar (мод, нужен ли в одиночке, безопасен ли на клиенте):
+| Мод | Решение | Обоснование |
+|---|---|---|
+| Vibrative Voice 1.2.0 | **both** | плагин SVC + миксины Хранителя; клиентских классов и своих сетевых каналов нет. Зависимости (SVC, Lexiconfig) уже both |
+| BaguetteLib 2.0.7 | **both** | библиотека событий (смерть, инвентарь, подбор); все миксины в общей секции, нужна Gravestone x Curios (mandatory-зависимость); `displayTest=IGNORE_ALL_VERSION` |
+| Gravestone x Curios API Compat 4.0.2 | **both** | аксессуары Curios попадают в гроб; в одиночке без него гроб теряет их. Зависимости (Gravestone, Curios, BaguetteLib) — both |
+| Blue Skies Gravestones Compat 0.1 | **both** | миксин смерти игрока (`SkiesPlayerMixin`); единственный клиентский класс — пустой `onClientSetup` под `Dist.CLIENT`, безопасен |
+| Twilight Cave Fix 1.0.0 | **both** | миксин генерации пещер Twilight Forest (`TFCavesCarverMixin`); мир одиночки генерирует встроенный сервер — без мода там нет фикса |
+| Sol's AuthLogin | **server** (оставлен) | есть клиентский код (`com.forgeauth.client`) и сетевой канал `AuthNetworkHandler`: на клиенте — экран логина и токены; в одиночке пароль не нужен, а канал мог бы ломать вход. Мод про офлайн-ники на публичном сервере |
+| VC Admin, SimpleVoiceChat Broadcast | **server** (оставлены) | чисто административные команды OP для групп/вещания; в одиночке бессмысленны |
+Тесты: `scripts/test-server.sh` — `SERVER OK` (Done за 48 с), SVC загрузил плагин `vibrativevoice`; клиент из нового `.mrpack` дошёл до `CLIENT OK`; в его логе Vibrative Voice загружен, SVC зарегистрировал события плагина `vibrativevoice` («Vibrative Voice is present!»), `config/vibrativevoice.toml` создан. Одиночный мир автотестом не открывался (`--quickPlaySingleplayer` в облаке мир не запустил), поэтому «голос → сенсор в одиночке» глазами не проверен — это ручная проверка по инструкции ниже.
+Проверка: `packwiz refresh`, `scripts/export-pack.sh` → в `modrinth.index.json` у пяти модов `env.client=required`,
+у AuthLogin/VC Admin/Broadcast — `unsupported`; серверный zip содержит все 8 (`fetch-mods.py` берёт `server`+`both`).
+`mrpack-optional.py` не затронут (трогает только `option.optional`).
+
+### Vibrative Voice: пороги и как проверить
+Конфиг `config/vibrativevoice.toml` создаётся Lexiconfig при первом запуске (в репозитории его нет, действуют значения по умолчанию):
+- `weakVibrationThreshold = 400` — громкость пика, с которой идёт слабая вибрация (будит скалк-сенсор и Хранителя), `strongVibrationThreshold = 1500` — сильная (скалк-крикун без сенсора), `cooldownDuration = 20` тиков между сигналами, `peakDuration = 20`, `frequency = 7`;
+- `restrictions.whispering = true`, `whisperFactor = 0.8` — шёпот снижает громкость до 80 %;
+- `restrictions.sneaking = true`, `sneakFactor = 0.7` — приседание снижает до 70 %;
+- `warden.loudnessFactor = 200`, `loudnessRemembrance = 300` тиков — Хранитель переключается на более громкого.
+Как проверить игроку (одиночная игра или сервер): подключить голосовой чат (в одиночке SVC работает через
+встроенный сервер, порт 24454 локально), поставить рядом скалк-сенсор (калиброванный или обычный) и **громко**
+сказать в микрофон стоя рядом, не приседая и не в режиме шёпота (оба режима глушат голос); сенсор должен
+сработать (сигнал редстоуна / звук). Если не реагирует — проверить, что микрофон не выключен (M) и порог
+активации голосом не слишком высок.
+Voice Chat Interaction (наш порт) остаётся `enabled=false` в `pack/config/vcinteraction/`, чтобы не было двойных вибраций.

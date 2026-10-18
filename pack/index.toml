@@ -1311,7 +1311,7 @@ metafile = true
 
 [[files]]
 file = "mods/baguettelib.pw.toml"
-hash = "769bc03aef7bab6df224d019e861b2a3b9cc2e894f9bd4a0264d3b7b7c49a68f"
+hash = "f9129737a2d0e9c1ae7138ea7dda83847f884173603c855be16d1b10727db137"
 metafile = true
 
 [[files]]
@@ -1331,7 +1331,7 @@ metafile = true
 
 [[files]]
 file = "mods/blue-skies-gravestones-compat.pw.toml"
-hash = "0d077cb5c32ccbe31f5e7806ca98becba9c8aa5fb941933aa3233f381ac9eca4"
+hash = "edce3ee962bd3f9da820ccd5b5d4b5b5513642e485212fb4a30dbd616e811fd6"
 metafile = true
 
 [[files]]
@@ -1692,7 +1692,7 @@ metafile = true
 
 [[files]]
 file = "mods/gravestone-x-curios-api-compat.pw.toml"
-hash = "8d4571e084208f1ac5914d79293141615b6308f7dda215166e8c1f4aa2e3332f"
+hash = "145ff3819c1970dc2aec4cc0c2104e14dd7f63bdd737a1ff82ea81e7f1804b3c"
 metafile = true
 
 [[files]]
@@ -2322,7 +2322,7 @@ metafile = true
 
 [[files]]
 file = "mods/twilight-forest-cave-fix.pw.toml"
-hash = "0e0e8fc3ade4dfd91b9c5aeb6448b5ef039edf667a28ab8434c11e79d7053baa"
+hash = "f227d25f446ad27d0cc328afd2fc56b6e7ba982092f51e996b74b3b57f3eba28"
 metafile = true
 
 [[files]]
@@ -2360,7 +2360,7 @@ metafile = true
 
 [[files]]
 file = "mods/vibrative-voice.pw.toml"
-hash = "5194dedc1d09130cf3635ea8f32e8d95ce0615d08d9c60006ec94e512a01eb46"
+hash = "080c385ec5a987b7fa6df332e808f5c8cbfa6d4c49f0d7e806f201359cad484e"
 metafile = true
 
 [[files]]
