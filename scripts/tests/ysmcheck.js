@@ -10,7 +10,7 @@ ServerEvents.tick(event => {
   const forms = ['sword', 'axe', 'pickaxe', 'shovel', 'hoe', 'bow', 'crossbow', 'shield', 'spear', 'staff', 'tome', 'food']
   const idsOf = f => { const out = []; Ingredient.of('#mm:ysm_form/' + f).itemIds.forEach(x => out.push(String(x))); return out }
   forms.forEach(f => {
-    try { const lst = idsOf(f); say('tag ' + f + ' ' + lst.length + ' ' + lst.slice(0, 8).join(' ')) } catch (e) { say('tag ' + f + ' ERR ' + e) }
+    try { say('tag ' + f + ' ' + idsOf(f).length + ' ' + idsOf(f).slice(0, 8).join(' ')) } catch (e) { say('tag ' + f + ' ERR ' + e) }
   })
   ;['irons_spellbooks:blood_staff', 'ebwizardry:wand_master_fire', 'ars_nouveau:novice_spell_book', 'botania:fire_rod',
     'minecraft:bow', 'minecraft:cooked_beef', 'minecraft:diamond_sword', 'minecraft:stone', 'cataclysm_spellbooks:void_staff'].forEach(id => {
