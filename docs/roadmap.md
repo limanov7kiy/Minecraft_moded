@@ -443,6 +443,6 @@ Iron Chests — оригинал. Новая неделя с 17.10 06:00 UTC; р
 
 ### Поток 33 — Фон тика сервера (ветка `claude/server-bg-load`, PR **[НЕ СЛИВАТЬ до решения владельца]**)
 - [x] Профиль JFR фона без Spore, разбор обработчиков событий по модам (`scripts/jfr/JfrHandlers.java`, `JfrUnder.java`, тест `scripts/tests/bgload.js`) — `docs/performance.md`, «Фон тика сервера без Spore».
-- [x] mm-compat 0.5.4: Arknights Weapon (раз в 4 тика), Torches Become Sunlight (`syncState` раз в секунду, бюджет постройки вчетверо при тике > 35 мс). Доли потока: Torches 8,0 → 4,6 %, Arknights 5,9 → 2,1 %.
+- [x] mm-compat 0.5.7: Arknights Weapon (раз в 4 тика), Torches Become Sunlight (`syncState` раз в секунду, бюджет постройки вчетверо при тике > 35 мс). Доли потока: Torches 8,0 → 4,6 %, Arknights 5,9 → 2,1 %.
 - [x] Раздел «Как снять spark при фризах» для владельца. Ad Astra/Chaos Persists — не виновники при одном игроке (не воспроизвелось), не тронуты; The Masses Travels (2,6–3,8 %) — ждёт spark владельца.
 - [ ] Владельцу: решить слияние; прислать spark из своего мира во время фризов (инструкция в `performance.md`).
