@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """Скачивает jar-файлы модов из pack/mods/*.pw.toml в указанную папку.
+Моды с [option] optional=true, default=false кладутся не в <папка>, а в <папка>/optional/ (Forge вложенные папки не читает):
+включить = перенести jar на уровень выше, в mods/.
 Использование: fetch-mods.py <server|client> <папка>"""
 import hashlib, http.client, pathlib, sys, time, tomllib, urllib.request
 side, out = sys.argv[1], pathlib.Path(sys.argv[2])
@@ -11,7 +13,10 @@ for f in sorted(pack.glob("*.pw.toml")):
     m = tomllib.loads(f.read_text())
     if m.get("side", "both") not in want:
         continue
-    d = m["download"]; dst = out / m["filename"]; keep.add(dst.name)
+    o = m.get("option", {})
+    off = bool(o.get("optional")) and not o.get("default", True)
+    d = m["download"]; dst = (out / "optional" if off else out) / m["filename"]; keep.add(dst)
+    if off: dst.parent.mkdir(exist_ok=True)
     if dst.exists() and hashlib.new(d["hash-format"], dst.read_bytes()).hexdigest() == d["hash"]:
         continue
     url = d.get("url")
@@ -32,9 +37,9 @@ for f in sorted(pack.glob("*.pw.toml")):
 for j in pack.glob("*.jar"):  # собственные jar сборки (патчи, библиотеки-замены) — на обе стороны,
     if side == "server" and j.name.endswith("-client.jar"):  # кроме клиентских (*-client.jar)
         continue
-    keep.add(j.name)
+    keep.add(out / j.name)
     if not (out / j.name).exists() or (out / j.name).read_bytes() != j.read_bytes():
         (out / j.name).write_bytes(j.read_bytes()); print("copied", j.name)
-for j in out.glob("*.jar"):
-    if j.name not in keep:
+for j in [*out.glob("*.jar"), *(out / "optional").glob("*.jar")]:  # лишнее (и устаревшее в optional/) удаляем
+    if j not in keep:
         j.unlink(); print("removed", j.name)

@@ -57,7 +57,8 @@
     Сборка: `cd mods-src/wizardry-restored && ./gradlew build`, затем `cp build/libs/*.jar ../../pack/mods/`.
   - `mods-src/mm-compat` — кодовые связки и исправления сборки (кислород скафандров Northstar/Creating Space в Ad Astra,
     категория лучей Cataclysm Spellbooks, недостающий атрибут рас Arknights, JEI-категория Imbuement Altar (Redux), блок попадания Superb Warfare по кораблям VS, фриз сервера от Mana and Artifice (блокирующий getChunk в onWorldTick),
-    затемнение от страха Lycanites — их миксин в собранной игре не применяется).
+    затемнение от страха Lycanites — их миксин в собранной игре не применяется; утечка кучи The Lost Cities `BuildingInfo` и копирование
+    огромных шаблонов структур в каждый чанк — OOM при полёте, поток 34).
     Ad Astra в зависимостях — по Modrinth version id Forge-сборки (номер версии у Forge и Fabric одинаковый).
   - `mods-src/voicechat-addons` — порт на Forge аддонов Simple Voice Chat от Max Henkel (Voice Chat Interaction,
     AudioPlayer, Enhanced Groups; оригиналы только Fabric). Сборка: `./gradlew build`, в `pack/mods/` — jar без `-reobf`.
