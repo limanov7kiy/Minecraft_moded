@@ -225,4 +225,77 @@ assert.strictEqual(c.safeText_(3), 3);
   assert.ok(!cells.some((x) => /^[=+\-@\t\r]/.test(x)), 'нет строк, начинающихся с формульного символа');
   assert.ok(formats.includes('@'), 'формат «текст» тоже стоит');
 }
+// ---- письмо автору после отправки отчёта (MailApp) ----
+{
+  const head = ['Timestamp', 'Адрес электронной почты', c.CFG.NICK].concat(c.CFG.EXTRA);
+  const ci = (t) => head.indexOf(t);
+  const grid = [head.slice()];
+  const addRow = (email) => { const r = head.map(() => ''); r[0] = new Date('2026-10-18'); r[1] = email; r[2] = 'Ник=секрет'; grid.push(r); return grid.length; };
+  const sheet = {
+    getLastColumn: () => head.length, getLastRow: () => grid.length, getName: () => 'Ответы', getSheetId: () => 1,
+    getRange: (r, col, nr, nc) => { nr = nr || 1; nc = nc || 1; return {
+      getValue: () => (grid[r - 1] || [])[col - 1] === undefined ? '' : grid[r - 1][col - 1],
+      setValue: (v) => { grid[r - 1][col - 1] = v; },
+      getValues: () => { const o = []; for (let i = 0; i < nr; i++) { const row = []; for (let j = 0; j < nc; j++) row.push((grid[r - 1 + i] || [])[col - 1 + j] === undefined ? '' : grid[r - 1 + i][col - 1 + j]); o.push(row); } return o; },
+      setValues: () => {}, setNumberFormat: () => {}, setFormula: () => {}, setFormulas: () => {}, copyTo: () => {}, }; },
+    clear: () => {}, setFrozenRows: () => {}, autoResizeColumns: () => {},
+  };
+  const ss = { getSheetByName: () => sheet, insertSheet: () => sheet, getSheets: () => [sheet] };
+  const props = {};
+  global.PropertiesService = { getDocumentProperties: () => ({ getProperty: (k) => props[k] || null, setProperty: (k, v) => { props[k] = v; } }) };
+  global.LockService = { getDocumentLock: () => ({ waitLock: () => {}, releaseLock: () => {} }) };
+  global.Logger = { log: () => {} };
+  let quota = 100; let failSend = false; const sent = [];
+  global.MailApp = { getRemainingDailyQuota: () => quota, sendEmail: (to, subj, body) => { if (failSend) throw new Error('Invalid email: ' + to); sent.push({ to, subj, body }); } };
+  global.SpreadsheetApp = { getActiveSpreadsheet: () => ss, flush: () => {}, CopyPasteType: { PASTE_VALUES: 0 } };
+  const submit = (row) => c.onFormSubmit({ range: { getRow: () => row } });
+
+  // валидатор адреса
+  ['a@b.co', 'x.y_z+t@mail.example.com'].forEach((v) => assert.ok(c.isValidEmail_(v), v));
+  ['', 'a b@c.co', 'a@b.co\n', 'a@b', '=a@b.co', '+a@b.co', '-a@b.co', '@a.co', 'a@b.co,c@d.co', 'a@b.co\r', '<a@b.co>', 'a'.repeat(250) + '@b.co', null].forEach((v) => assert.ok(!c.isValidEmail_(v), JSON.stringify(v)));
+
+  const r1 = addRow('friend@example.com');
+  submit(r1);
+  assert.strictEqual(sent.length, 1, 'письмо ушло один раз');
+  assert.strictEqual(sent[0].to, 'friend@example.com');
+  assert.strictEqual(sent[0].subj, 'Отчёт R-001 принят — Minecraft_moded');
+  assert.ok(sent[0].body.includes('номер R-001') && sent[0].body.includes('report-status') && sent[0].body.includes(c.CFG.STATUS_URL));
+  assert.ok(!/секрет|friend@/.test(sent[0].subj + sent[0].body), 'ни ника, ни адреса в письме нет');
+  assert.ok(grid[r1 - 1][ci('Письмо отправлено (дата)')] instanceof Date, 'дата отправки записана');
+  submit(r1); c.fillMissing();
+  assert.strictEqual(sent.length, 1, 'повторно (колонка заполнена) и из fillMissing не шлётся');
+
+  const r2 = addRow('нет адреса');   // плохой адрес
+  submit(r2);
+  assert.strictEqual(sent.length, 1, 'при плохом адресе не уходит');
+  assert.ok(/Письмо не отправлено: нет корректного адреса/.test(grid[r2 - 1][ci('Заметка')]), 'причина в «Заметке»');
+  assert.ok(!/нет адреса/.test(grid[r2 - 1][ci('Заметка')]));
+
+  const r3 = addRow('=cmd@example.com');   // начинается с «=»
+  submit(r3);
+  assert.strictEqual(sent.length, 1, 'адрес с «=» не принимается');
+
+  // fillMissing сам писем не шлёт, даже для строки без письма
+  const r4 = addRow('later@example.com');
+  c.fillMissing();
+  assert.strictEqual(sent.length, 1, 'fillMissing писем не шлёт');
+  assert.ok(grid[r4 - 1][ci('№')], 'но номер он присвоил');
+
+  quota = 0; const r5 = addRow('quota@example.com'); submit(r5);
+  assert.strictEqual(sent.length, 1, 'квота исчерпана — не шлётся');
+  assert.ok(/лимит/.test(grid[r5 - 1][ci('Заметка')]));
+  quota = 100;
+
+  failSend = true; const r6 = addRow('boom@example.com');
+  submit(r6);   // не должен бросить
+  assert.ok(grid[r6 - 1][ci('№')], 'номер присвоен, несмотря на сбой отправки');
+  assert.ok(/ошибка отправки/.test(grid[r6 - 1][ci('Заметка')]) && !/boom@/.test(grid[r6 - 1][ci('Заметка')]), 'причина в «Заметке», без адреса');
+  assert.ok(!grid[r6 - 1][ci('Письмо отправлено (дата)')], 'при сбое дата отправки не ставится');
+  failSend = false;
+
+  c.CFG.SEND_CONFIRMATION = false;   // выключатель
+  const r7 = addRow('off@example.com'); submit(r7);
+  assert.strictEqual(sent.length, 1, 'при SEND_CONFIRMATION=false не шлётся');
+  c.CFG.SEND_CONFIRMATION = true;
+}
 console.log('report-sheet: OK');
