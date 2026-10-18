@@ -986,3 +986,19 @@ CurseForge 1460238, файл 9130290, Astryxion, All Rights Reserved. Jar `pack/
 ### Нагрузка Spore + SRP System на сервере (поток 30, 2026-10-17)
 Числа и вывод — `docs/performance.md`, «Нагрузка от Spore + SRP System». Коротко: без заразы нагрузки нет; один очаг (~50 существ) ≈ +10–25 % тика (11 % потока сервера),
 три очага (~70 существ — работает лимит деспавна) ≈ +45–50 % (20 %). Конфиг не меняли. Тест `scripts/tests/sporeload.js`.
+
+### Клиентская проверка Spore, SRP System, Chaos Persists (OreSpawn) (поток 30, 2026-10-17)
+Стенд `scripts/test-client.sh` (Xvfb + llvmpipe, без звука; YSM убран, как всегда) из свежего `.mrpack` (интегратор 4aaf3ad + mm-compat 0.5.3): **`CLIENT OK`, 785 с**.
+**В мир зашли** — GUI через `xdotool` (в стенд поставлен: `apt-get install xdotool`): Одиночная игра → «Создать новый мир» (тип по умолчанию, нормальная сложность) → окна Origin/Искусства/Класс → мир
+на встроенном сервере. Скрипт `scripts/clienttest/clientmobs.js` (кладётся в `<папка клиента>/game/kubejs/server_scripts/` перед запуском, в сборку не входит) призвал по одному мобу **каждого вида**
+из пространств имён `spore`, `chaospersists`, `srpsystem` — **254 вида, 0 ошибок призыва** — рядами на ровной площадке, игрок телепортировался вдоль рядов; скриншоты —
+`docs/client-check/spore-orespawn-chaos-row.jpg` (мобы Chaos Persists и Spore в ряду, Jade) и `docs/client-check/spore-verfaldrache.jpg` (босс Verfalldrache и заражённые, русские названия и подсказка Jade).
+Это же подтверждает фикс Northstar Structures: в новом обычном мире мобы появляются.
+**В логе клиента по Spore/SRP/Chaos Persists — без ошибок моделей, текстур, рендереров и lang.** Остались только безвредные предупреждения самих модов:
+- `srpsystem:sounds/nude.ogg` и `spore:sounds/bairn_ambient1.ogg` — файла звука нет (ошибка модов);
+- анимированные спрайты предметов Spore (`scythe`, `mace`, `great_sword`, `halberd`, `rapier`, `saber`, `armads`) — «Invalid frame index / Unused frames» (в `.mcmeta` лишние кадры);
+- `defineId called for …` (Spore: Spitter/Howler/Busser/Vigil/Hinderburg) — предупреждение о порядке регистрации данных сущностей, на работу не влияет;
+- `ChaosPersists: failed to raise generic.maxHealth cap` — известное, потолок здоровья снимает AttributeFix;
+- Spore/SRP/Chaos пересоздали свои конфиги при первом запуске (`Incorrect key … corrected from null`) — нормально для нового клиента.
+Не проверено: звук (в стенде без звука), поведение мобов (призывались без ИИ), анимации ходьбы/атаки, шейдеры, настоящая видеокарта (llvmpipe). В логе клиента есть и чужие «Missing textures»
+(Create Big Cannons Additional Types, Refined Storage, Wizardry, Ars Additions, Deep Aether — к Spore/OreSpawn не относятся, не разбирались).
