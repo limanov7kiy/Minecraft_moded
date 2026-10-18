@@ -20,14 +20,17 @@ var CFG = {
   STALE_DAYS: 7,
   EXTRA: ['№', 'Статус', 'Ответственный (поток/PR)', 'Исправлено в версии', 'Дата изменения', 'Заметка',
           'Статус изменён (дата)', 'Мод для публичной страницы', 'Описание для публичной страницы',
-          'Пояснение для публичной страницы', 'Ответ автору', 'Ответ отправлен (дата)', 'Категория'],
+          'Пояснение для публичной страницы', 'Ответ автору', 'Ответ отправлен (дата)', 'Категория', 'Письмо отправлено (дата)'],
   EDIT_TRIGGERS: ['Статус', 'Ответственный (поток/PR)', 'Исправлено в версии', 'Заметка',
                   'Мод для публичной страницы', 'Описание для публичной страницы', 'Пояснение для публичной страницы', 'Категория'],
   CATEGORIES: ['краш/вылет', 'фризы/лаги', 'мод/механика', 'модели/графика', 'звук/голос', 'сервер/вход', 'другое'],
   NICK: 'Ник / имя для связи',
   // Форма с «Собирать адреса эл. почты: Подтверждённые» сама добавляет колонку; название зависит от языка. Нет колонки — setup() создаёт первую.
   EMAIL_TITLES: ['Адрес электронной почты', 'Адрес эл. почты', 'Email Address'],
-  MAX_ROWS: 2000
+  MAX_ROWS: 2000,
+  // Решение владельца (В43 «а»): письмо автору сразу после отправки отчёта. false — выключить письма.
+  SEND_CONFIRMATION: true,
+  STATUS_URL: 'https://github.com/limanov7kiy/Minecraft_moded/blob/HEAD/docs/report-status.md'
 };
 
 // Номер R-### : минимум три цифры, дальше без обрезки (R-1000).
@@ -142,6 +145,7 @@ function startRows(publishedUrl, editUrl) {
     ['Ручной шаг 1 (обязательно)', 'Редактор формы → вкладка «Настройки» → «Ответы» → «Собирать адреса электронной почты» → «Подтверждённые». Скрипт может только включить сбор адресов, тип выбирается руками.'],
     ['Ручной шаг 2 (по желанию)', 'Редактор формы → «+» (Добавить вопрос) → тип «Загрузка файла» → название «Файлы», «Необязательный вопрос». Скрипт не умеет создавать этот вопрос. Включает вход в Google (адрес и так собирается). Без него остаётся поле «Ссылка на файлы».'],
     ['Ручной шаг 3', 'Ответы → ⋮ → «Получать уведомления о новых ответах по электронной почте».'],
+    ['Письмо автору', 'После отправки отчёта скрипт шлёт автору короткое письмо с номером R-### (только номер и ссылка на report-status, без ника и текста отчёта). При первом запуске Google спросит разрешение «Отправлять письма от вашего имени». Лимит — около 100 писем в день. Выключить: CFG.SEND_CONFIRMATION = false в Code.gs.'],
     ['', ''],
     ['Что делает скрипт сам', 'Номера R-###, статусы, подсветка, листы «Сводка», «По номеру», «По автору», «По людям», «Кто что ждёт», триггеры. Повторный запуск bootstrap() форму не дублирует.'],
     ['Приватность', 'Таблица и этот лист содержат ники и адреса. Не делитесь Таблицей и не публикуйте листы. Ссылки на форму и Таблицу в git не вписываются. Публичная страница: python3 -I scripts/report-status.py <csv>.']
@@ -308,11 +312,107 @@ function stamp_(sh, row) {
   if (!sh.getRange(row, cD).getValue()) sh.getRange(row, cD).setValue(new Date());
 }
 
+// Формулы «Сводки», «По номеру», «По автору», «Кто что ждёт». Идемпотентно и дёшево: листы не очищаются, формулы просто перезаписываются
+// (перезапись заставляет Таблицу пересчитать их; сами по себе они после записи формы показывали старые значения).
+// Колонки ищутся по заголовкам, диапазон QUERY — по текущему числу колонок листа ответов (после ручного вопроса «Файлы» их стало больше).
+function writeFormulas_() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet(), sh = responsesSheet_();
+  var cS = colIndex_(sh, 'Статус'), cN = colIndex_(sh, '№'), cNick = colIndex_(sh, CFG.NICK);
+  var sL = letter_(cS), nL = letter_(cN), dL = letter_(colIndex_(sh, 'Дата изменения'));
+  var chL = letter_(colIndex_(sh, 'Статус изменён (дата)')), rL = letter_(colIndex_(sh, 'Ответ отправлен (дата)'));
+  var sum = ss.getSheetByName('Сводка') || ss.insertSheet('Сводка');
+  var q = "'" + sh.getName() + "'!";
+  var sR = q + sL + '2:' + sL, dR = q + dL + '2:' + dL, nR = q + nL + '2:' + nL, aR = q + 'A2:A';
+  var staleSum = CFG.OPEN.map(function (s) { return 'COUNTIFS(' + sR + ',"' + s + '",' + dR + ',"<"&(TODAY()-' + CFG.STALE_DAYS + '))'; }).join('+');
+  var cL = q + chL + '2:' + chL, pR = q + rL + '2:' + rL;
+  // Подписи — значениями (иначе «=Получено» → #NAME?), формулы — отдельно.
+  var sumRows = [
+    ['Получено', '=COUNTA(' + aR + ')'],
+    ['Обработано (исправлено, дубль, не баг)', '=COUNTIF(' + sR + ',"исправлено")+COUNTIF(' + sR + ',"дубль")+COUNTIF(' + sR + ',"не баг")'],
+    ['Висит', '=B1-B2'],
+    ['Висит дольше ' + CFG.STALE_DAYS + ' дней', '=' + staleSum],
+    ['Без номера (должно быть 0)', '=B1-COUNTA(' + nR + ')'],
+    ['Отложено', '=COUNTIF(' + sR + ',"отложено")'],
+    ['Ждут ответа автору', '=COUNTIFS(' + nR + ',"<>",' + pR + ',"")+SUMPRODUCT((' + nR + '<>"")*(' + pR + '<>"")*(' + pR + '<' + cL + '))'],
+    ['На дату', '=TODAY()']
+  ];
+
+  sum.getRange(1, 1, 8, 1).setValues(sumRows.map(function (x) { return [x[0]]; }));   // подписи — значениями (иначе «=Получено» → #NAME?)
+  sum.getRange(1, 2, 8, 1).setFormulas(sumRows.map(function (x) { return [x[1]]; }));
+  sum.autoResizeColumns(1, 2);
+
+  // Служебные листы (заголовки копируются из листа ответов). Содержат ники — только владельцу.
+  var lastCol = sh.getLastColumn();
+  var qs = buildQueries(sh.getName(), { last: letter_(lastCol), num: nL, nick: letter_(cNick), status: sL });
+  [['По номеру', qs.byNumber], ['По автору', qs.byAuthor]].forEach(function (x) {
+    var t = ss.getSheetByName(x[0]) || ss.insertSheet(x[0]);
+    sh.getRange(1, 1, 1, lastCol).copyTo(t.getRange(1, 1), SpreadsheetApp.CopyPasteType.PASTE_VALUES, false);
+    t.getRange(2, 1).setFormula(x[1]);
+    t.setFrozenRows(1);
+  });
+  var who = ss.getSheetByName('Кто что ждёт') || ss.insertSheet('Кто что ждёт');
+  who.getRange(1, 1).setFormula(qs.pending);
+  who.autoResizeColumns(1, 2);
+  SpreadsheetApp.flush();
+}
+
+// Пересчёт не должен ломать главное (номер уже выставлен): сбой пишем в журнал.
+function refreshFormulas_() {
+  try { writeFormulas_(); } catch (e) { Logger.log('writeFormulas_: ' + e); }
+}
+
+// Подтверждённый адрес: простой email без пробелов/переводов строк/запятых (MailApp принимает список через запятую), ≤ 254,
+// первый символ — буква, цифра, «_» или «.» (не = + - @).
+function isValidEmail_(v) {
+  return typeof v === 'string' && v.length <= 254 && /^[A-Za-z0-9_.][A-Za-z0-9._%+'-]*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+$/.test(v);
+}
+
+// Тема и текст фиксированные: только номер R-###. Ник, текст отчёта и прочее в письмо не попадают.
+function confirmationMail_(number) {
+  return {
+    subject: 'Отчёт ' + number + ' принят — Minecraft_moded',
+    body: 'Спасибо! Ваш отчёт принят, номер ' + number + '. Статус — на странице report-status: ' + CFG.STATUS_URL + ' Хост ответит в чате.'
+  };
+}
+
+function noteMailFail_(sh, row, reason) {
+  var cNote = colIndex_(sh, 'Заметка'), cell = sh.getRange(row, cNote), old = cell.getValue();
+  cell.setValue((old ? old + '; ' : '') + 'Письмо не отправлено: ' + reason);
+}
+
+// Только из onFormSubmit (fillMissing писем не шлёт). Сбой не должен ронять триггер: причина — в «Заметку» (без адреса) и в Logger.
+function sendConfirmation_(sh, row) {
+  if (!CFG.SEND_CONFIRMATION) return;
+  try {
+    var h = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0];
+    var cMail = h.indexOf('Письмо отправлено (дата)') + 1;
+    if (!cMail) throw new Error('нет колонки «Письмо отправлено (дата)» (запустите setup())');
+    if (sh.getRange(row, cMail).getValue()) return;
+    var cE = emailColIndex_(h);
+    var addr = cE ? sh.getRange(row, cE).getValue() : '';
+    var number = String(sh.getRange(row, colIndex_(sh, '№')).getValue());
+    if (!isValidEmail_(addr)) { noteMailFail_(sh, row, 'нет корректного адреса'); return; }
+    if (!/^R-\d+$/.test(number)) { noteMailFail_(sh, row, 'нет номера'); return; }
+    if (MailApp.getRemainingDailyQuota() <= 0) { noteMailFail_(sh, row, 'исчерпан дневной лимит писем'); return; }
+    var m = confirmationMail_(number);
+    MailApp.sendEmail(addr, m.subject, m.body);
+    sh.getRange(row, cMail).setValue(new Date());
+  } catch (err) {
+    Logger.log('sendConfirmation_: ' + err);
+    try { noteMailFail_(sh, row, 'ошибка отправки (подробности в журнале выполнений)'); } catch (e2) { Logger.log('sendConfirmation_: заметка не записана: ' + e2); }
+  }
+}
+
 // Установленный триггер «при отправке формы».
 function onFormSubmit(e) {
   var lock = LockService.getDocumentLock();
   lock.waitLock(30000);
-  try { stamp_(responsesSheet_(), e.range.getRow()); rebuildPeople_(); } finally { lock.releaseLock(); }
+  try {
+    var sh = responsesSheet_(), row = e.range.getRow();
+    stamp_(sh, row);
+    sendConfirmation_(sh, row);   // письмо с номером — сразу после нумерации, до листов-зеркал: их сбой не должен лишать автора письма
+    rebuildPeople_(); refreshFormulas_();
+  } finally { lock.releaseLock(); }
 }
 
 // Ежедневная сверка: у каждой строки с отметкой времени есть номер и статус.
@@ -326,6 +426,7 @@ function fillMissing() {
       if (sh.getRange(r, 1).getValue()) stamp_(sh, r);
     }
     rebuildPeople_();
+    refreshFormulas_();
   } finally { lock.releaseLock(); }
 }
 
@@ -383,42 +484,8 @@ function setup() {
   sh.setConditionalFormatRules([reply, stale, done]);
   });
 
-  var sum = ss.getSheetByName('Сводка') || ss.insertSheet('Сводка');
-  sum.clear();
-  var q = "'" + sh.getName() + "'!";
-  var sR = q + sL + '2:' + sL, dR = q + dL + '2:' + dL, nR = q + letter_(cN) + '2:' + letter_(cN), aR = q + 'A2:A';
-  var staleSum = CFG.OPEN.map(function (s) { return 'COUNTIFS(' + sR + ',"' + s + '",' + dR + ',"<"&(TODAY()-' + CFG.STALE_DAYS + '))'; }).join('+');
-  var cL = q + chL + '2:' + chL, pR = q + rL + '2:' + rL;
-  // Подписи — значениями (иначе «=Получено» → #NAME?), формулы — отдельно.
-  var sumRows = [
-    ['Получено', '=COUNTA(' + aR + ')'],
-    ['Обработано (исправлено, дубль, не баг)', '=COUNTIF(' + sR + ',"исправлено")+COUNTIF(' + sR + ',"дубль")+COUNTIF(' + sR + ',"не баг")'],
-    ['Висит', '=B1-B2'],
-    ['Висит дольше ' + CFG.STALE_DAYS + ' дней', '=' + staleSum],
-    ['Без номера (должно быть 0)', '=B1-COUNTA(' + nR + ')'],
-    ['Отложено', '=COUNTIF(' + sR + ',"отложено")'],
-    ['Ждут ответа автору', '=COUNTIFS(' + nR + ',"<>",' + pR + ',"")+SUMPRODUCT((' + nR + '<>"")*(' + pR + '<>"")*(' + pR + '<' + cL + '))'],
-    ['На дату', '=TODAY()']
-  ];
-  sum.getRange(1, 1, 8, 1).setValues(sumRows.map(function (x) { return [x[0]]; }));
-  sum.getRange(1, 2, 8, 1).setFormulas(sumRows.map(function (x) { return [x[1]]; }));
-
-  sum.autoResizeColumns(1, 2);
-
-  // Служебные листы (формулы; заголовки копируются из листа ответов). Содержат ники — только владельцу.
-  var cNick = colIndex_(sh, CFG.NICK), cCat = colIndex_(sh, 'Категория');
-  var qs = buildQueries(sh.getName(), { last: letter_(sh.getLastColumn()), num: nL, nick: letter_(cNick), status: sL });
-  [['По номеру', qs.byNumber], ['По автору', qs.byAuthor]].forEach(function (x) {
-    var t = ss.getSheetByName(x[0]) || ss.insertSheet(x[0]);
-    t.clear();
-    sh.getRange(1, 1, 1, sh.getLastColumn()).copyTo(t.getRange(1, 1), SpreadsheetApp.CopyPasteType.PASTE_VALUES, false);
-    t.getRange(2, 1).setFormula(x[1]);
-    t.setFrozenRows(1);
-  });
-  var who = ss.getSheetByName('Кто что ждёт') || ss.insertSheet('Кто что ждёт');
-  who.clear();
-  who.getRange(1, 1).setFormula(qs.pending);
-  who.autoResizeColumns(1, 2);
+  var cCat = colIndex_(sh, 'Категория');
+  writeFormulas_();
   rebuildPeople_();
 
   optional_('список категорий', function () {
@@ -432,4 +499,4 @@ function setup() {
   fillMissing();
 }
 
-if (typeof module !== 'undefined') { module.exports = { setupThenStart_: setupThenStart_, formatNumber: formatNumber, isStale: isStale, needsReply: needsReply, FORM: FORM, ensureForm_: ensureForm_, pickNewSheet: pickNewSheet, startRows: startRows, safeText_: safeText_, rebuildPeople_: rebuildPeople_, setup: setup, writeStart_: writeStart_, addFormItem_: addFormItem_, bootstrap: bootstrap, buildQueries: buildQueries, groupPeople: groupPeople, emailColIndex_: emailColIndex_, summarize: summarize, letter_: letter_, CFG: CFG }; }
+if (typeof module !== 'undefined') { module.exports = { setupThenStart_: setupThenStart_, formatNumber: formatNumber, isStale: isStale, needsReply: needsReply, FORM: FORM, ensureForm_: ensureForm_, pickNewSheet: pickNewSheet, startRows: startRows, safeText_: safeText_, isValidEmail_: isValidEmail_, confirmationMail_: confirmationMail_, writeFormulas_: writeFormulas_, onFormSubmit: onFormSubmit, fillMissing: fillMissing, rebuildPeople_: rebuildPeople_, setup: setup, writeStart_: writeStart_, addFormItem_: addFormItem_, bootstrap: bootstrap, buildQueries: buildQueries, groupPeople: groupPeople, emailColIndex_: emailColIndex_, summarize: summarize, letter_: letter_, CFG: CFG }; }
