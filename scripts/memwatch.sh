@@ -15,7 +15,7 @@ while kill -0 "$pid" 2>/dev/null; do
   # OU — занято в old gen (КБ), OC — её размер; YGC/FGC — число сборок
   echo "$((now - t0)) $(jstat -gc "$pid" 2>/dev/null | tail -1)" >> "$out/jstat.log"
   if [ "$now" -ge "$next" ]; then
-    jcmd "$pid" GC.class_histogram 2>/dev/null | head -45 > "$out/histo-$((now - t0)).txt"
+    jcmd "$pid" GC.class_histogram 2>/dev/null | awk 'NR<=45 || /^Total/' > "$out/histo-$((now - t0)).txt"
     next=$((now + m))
   fi
   sleep "$n"
