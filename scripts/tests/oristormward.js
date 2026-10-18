@@ -92,10 +92,10 @@ ServerEvents.tick(event => {
     console.info(`OSW tick до бури ${avg(OSW.ticks)} мс (${OSW.ticks.length} замеров), во время бури ${avg(OSW.stormTicks)} мс (${OSW.stormTicks.length} замеров, макс ${OSW.stormTicks.length ? Math.max.apply(null, OSW.stormTicks).toFixed(1) : '-'})`)
   }
   if (T == GROW_END) {
-    const id = (x, y, z) => String(level.getBlockState(new BlockPos(x, y, z)).block.id)
+    var blockAt = (x, y, z) => String(level.getBlockState(new BlockPos(x, y, z)).block.id)
     var inZone = 0, edge = 0, maxX = -1e9
     for (var x = 100; x <= 135; x++) for (var z = -40; z <= 40; z++) for (var y = 149; y <= 152; y++) {
-      var b = id(x, y, z)
+      var b = blockAt(x, y, z)
       if (b.indexOf('bobsoriginiumdream:') != 0) continue
       if (x <= 112) inZone++; else edge++
       if (b != 'bobsoriginiumdream:oriblockb' || x != 115) maxX = Math.max(maxX, -x)
@@ -103,7 +103,7 @@ ServerEvents.tick(event => {
     ok('growth-edge-outside', inZone == 0, `блоков ориджиниума в зоне (x≤112): ${inZone}, у края снаружи: ${edge}, ближе всего к зоне x=${-maxX}`)
     var old = 0, bb = 0, cores = 0
     for (var x2 = 390; x2 <= 440; x2++) for (var z2 = 390; z2 <= 440; z2++) for (var y2 = 149; y2 <= 152; y2++) {
-      var b2 = id(x2, y2, z2)
+      var b2 = blockAt(x2, y2, z2)
       if (b2 == 'bobsoriginiumdream:oldoriblock') old++; else if (b2 == 'bobsoriginiumdream:oriblockb') bb++; else if (b2 == 'bobsoriginiumdream:oriblock_core') cores++
     }
     var G = Java.loadClass('dev.mcmoded.disasterward.OriGrowth'), hours = (GROW_END - 200) / 72000
