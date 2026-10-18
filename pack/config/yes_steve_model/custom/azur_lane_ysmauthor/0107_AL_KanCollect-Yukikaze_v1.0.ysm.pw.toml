@@ -1,0 +1,8 @@
+name = "0107_AL_KanCollect-Yukikaze_v1.0"
+filename = "0107_AL_KanCollect-Yukikaze_v1.0.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0107-%E5%AE%87%E5%AE%99%E5%BD%B1%E5%B8%9D%E3%81%AE%E7%BB%88%E7%84%89/AL_%E9%9B%AA%E9%A3%8E_KanCollect-Yukikaze/AL_%E9%9B%AA%E9%A3%8E_KanCollect-Yukikaze_v1.0.ysm"
+hash-format = "sha256"
+hash = "da1e22740acc9cbe787fb9a5c447adc33996ceb4acc8c13a4e1acf1dc0ed4172"

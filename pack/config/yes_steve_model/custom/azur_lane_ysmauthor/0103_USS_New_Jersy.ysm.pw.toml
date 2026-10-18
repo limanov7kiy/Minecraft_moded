@@ -1,0 +1,8 @@
+name = "0103_USS_New_Jersy"
+filename = "0103_USS_New_Jersy.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0103-%E6%B5%85%E9%99%8C%E8%8F%8C/AL_New-Jersey_%E6%96%B0%E6%B3%BD%E8%A5%BF_uss/%E6%96%B0%E6%B3%BD%E8%A5%BF_USS_New_Jersy.ysm"
+hash-format = "sha256"
+hash = "e333d688b01aa58495ac78f5b5ee16d2265caa9a59cf35c8be020c78cfac918e"

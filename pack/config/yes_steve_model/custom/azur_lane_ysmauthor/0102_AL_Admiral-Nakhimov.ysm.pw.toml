@@ -1,0 +1,8 @@
+name = "0102_AL_Admiral-Nakhimov"
+filename = "0102_AL_Admiral-Nakhimov.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0102-Dreamer%2C%E6%99%AE%E9%80%9A%E7%9A%84%E6%9C%A8%E5%B1%90/AL_Admiral-Nakhimov_%E7%BA%B3%E5%B8%8C%E8%8E%AB%E5%A4%AB%E6%B5%B7%E5%86%9B%E4%B8%8A%E5%B0%86_LB/AL_%E7%BA%B3%E5%B8%8C%E8%8E%AB%E5%A4%AB%E6%B5%B7%E5%86%9B%E4%B8%8A%E5%B0%86_Admiral-Nakhimov.ysm"
+hash-format = "sha256"
+hash = "6130902485bff7238e410add49eae0ac16f61244e402cc078a5fba5ded9f0dd2"

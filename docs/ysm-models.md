@@ -12,7 +12,7 @@ macOS: YSM на Mac не работает. В облаке (виртуальна
 1. В *Настройки → Управление* найти раздел **Yes Steve Model** и назначить клавиши — в сборке клавиши модов
    по умолчанию не назначены (если клавиш много — поиск по «Yes Steve» в Controlling). Нужны:
    **меню моделей** и **колесо анимаций** (позы, настройки модели).
-2. Меню моделей → слева разделы-«пакеты»: *Arknights*, *Arknights: Endfield*, *Punishing: Gray Raven*, *Azur Lane*,
+2. Меню моделей → слева разделы-«пакеты»: *Arknights*, *Arknights: Endfield*, *Punishing: Gray Raven*, *Azur Lane*, *Azur Lane (FREE-YSM-AUTHOR)* (124 модели, часть может быть 18+ — см. ниже),
    встроенные (Default, Wine Fox) и **Priestess** (наша). Выбрать модель и, если есть, вариант текстуры.
 3. Свою модель видно в виде от третьего лица (F5); друзья видят её на сервере сразу.
 4. Колесо анимаций: позы и кнопка настроек модели (у Priestess — пункт «Настройки»).
@@ -130,6 +130,157 @@ macOS: YSM на Mac не работает. В облаке (виртуальна
 | Azur Lane | `AL_Yamashiro_2.3.2.1.ysm` | 山城 | 星语 (动作), 雾雨波波沙 (模型), 秋枫落叶 (技术支持), Cosine_line (测试) | CC 0 | .ysm, формат 15 |
 | Azur Lane | `AL_Yamashiro_2.4.3.ysm` | 山城 | 星语 (动作), 雾雨波波沙 (模型), 秋枫落叶 (技术支持), Cosine_line (测试) | CC 0 | .ysm, формат 15 |
 | Azur Lane | `AL_Yukikaze_2.4.1.ysm` | 雪风 | 星语 (动作), Nss. (模型) | All Rights Reserved | .ysm, формат 15 |
+## Azur Lane из сборника FREE-YSM-AUTHOR (пакет «Azur Lane (FREE-YSM-AUTHOR)», поток 37, 2026-10-18, решение владельца В38)
+
+> **Предупреждение 18+.** Часть моделей этого пакета может быть 18+ (так пишет автор сборника): в имени файла есть метки
+> `Nsfw`/`NSFW` и `18plus` (так помечены файлы с «非公开» — «закрытая версия»; рядом у тех же авторов есть «全年龄» — «для всех возрастов», это `allages`, поэтому «закрытые», вероятно, 18+).
+> Метка в имени файла есть не у всех — полной уверенности, что остальные «чистые», нет. **Как убрать лишнее:** удалить соответствующий
+> метафайл `pack/config/yes_steve_model/custom/azur_lane_ysmauthor/<файл>.pw.toml` (в репозитории) — или у игрока файл
+> `config/yes_steve_model/custom/azur_lane_ysmauthor/<файл>` — и **на сервере тоже** (иначе модель останется в меню у всех), затем `/ysm model reload`.
+> Весь пакет целиком — удалить папку `azur_lane_ysmauthor`. Картинок моделей в репозитории нет.
+
+Источник: [nekohalawrence/FREE-YSM-AUTHOR](https://github.com/nekohalawrence/FREE-YSM-AUTHOR), ветка `main` (закреплён коммит `17db8b6b`);
+в ветке по умолчанию лежит только README. Сборник организован по **авторам** (папка `NNNN-<автор>/`), модели Azur Lane — подпапки `AL_*`
+(плюс «圣路易斯»; `BA_*` — это Blue Archive, не берём). Автор сборника сам пишет, что большая часть моделей в нём «повреждена» (только индекс авторов) —
+действительно, 12 файлов наш YSM 2.6.5 не читает.
+
+Как собрано (`scripts/ysm-models-author.py`, исключения — `scripts/ysm-models-author-skip.txt`, индекс — `scripts/pack-index-refresh.py`):
+- в сборнике 66 AL-папок, 148 файлов (142 `.ysm` + 6 `.zip`), 617 МБ; без дублей с Elaina69 (тот же sha256, 8 файлов) и внутренних дублей — **136 файлов, 590 МБ**;
+  из них YSM 2.6.5 не читает 12 → раздаётся **124 файлов, 501 МБ**. Владелец выбрал «всё уникальное» (В38), версии не отсеивались.
+- в папке модели лежат под **ASCII-именами** `<номер автора>_<латиница из имени>[_<6 hex sha256>]` (в сборнике одно и то же имя `AL_柴郡_Cheshire.ysm` у трёх авторов, а YSM берёт id модели
+  из имени файла); исходный путь в сборнике — в колонке «Исходный файл». Имя в меню — из метаданных самой модели.
+- не читаются (проверено по одному файлу в минимальном сервере с одной лишь YSM: кэш моделей не растёт): `0045_AL_Fusou.ysm`, `0045_AL_LC_AL_v2.4.1.ysm`, `0045_AL_Nagato_v2.4.2.ysm`, `0045_AL_Nagato_v2.4.3.ysm`, `0045_AL_Nagato_v2.5.0.ysm`, `0045_AL_Yamashiro_v2.4.3_1.ysm`, `0045_AL_Yamashiro_v2.4.4.zip`, `0045_AL_Yamashiro_v2.5.4.ysm`, `0045_AL_Yamashiro_v2.5.6.1.ysm`, `0045_AL_Yamashiro_v2.5.6.zip`, `0055_AL_Kms-gir_v3.2.ysm`, `0105_AL_KanCollect-Yukikaze_v2.4.1_1.ysm`.
+- кэш YSM: пустой набор 26 → с Elaina69 111 → **233** (+122 на 124 файлов: два файла делят с другими один внутренний id/хэш модели и в кэше сливаются).
+- **«Бесплатная» ли модель.** В метаданных многих файлов `free = false` (автор отмечает модель платной/для спонсоров, у «艺方» в описании — «после покупки модели»). Лицензии — по метаданным;
+  решение владельца (CLAUDE.md «Назначение и лицензии»): сборка некоммерческая, лицензии не мешают, авторство сохраняем. Если автор попросит убрать модель — удалить метафайл.
+
+| Файл (в `azur_lane_ysmauthor/`) | Имя в модели | Авторы (из файла) | Лицензия (из файла) | Бесплатная (`free`) | Исходный файл в сборнике (папка автора опущена) | МБ |
+|---|---|---|---|---|---|---|
+| `0005_Unknown_Rei-Ayanami.ysm` | | — | — | ? | `AL_Ayanami_rei_绫波_LD/Unknown_Rei-Ayanami.ysm` | 0.2 |
+| `0005_Unknown_Rei-Ayanami.zip` | | — | — | ? | `AL_Ayanami_rei_绫波_LD/Unknown_Rei-Ayanami.zip` | 0.2 |
+| `0005_AL_Cheshire.ysm` | 柴郡 HMS Cheshire丨【绚烂夜梦】 | omo仙贝2号！https://space.bilibili.com/1959304255?spm_id_from=333.1296.0.0 | CC BY-NC-SA 4.0 | да | `AL_Cheshire_柴郡_LC/AL_柴郡_Cheshire.ysm` | 0.2 |
+| `0005_AL_Cheshire.zip` | | — | — | ? | `AL_Cheshire_柴郡_LC/AL_柴郡_Cheshire.zip` | 0.2 |
+| `0005_AL_Ijn-Musashi-Bunngyirl.ysm` | 大和级战列舰二番舰 武藏 （鳄）「堇色兔的狙击游戏」 | — | All rights reserved | да | `AL_Ijn-Musashi_bunngyirl_武藏_兔女郎_LB/AL_武藏_兔女郎_Ijn-Musashi-Bunngyirl.ysm` | 0.2 |
+| `0005_AL_Mogador.ysm` | 莫加多尔丨静谧一隅的燥热 | omo仙贝2号！https://space.bilibili.com/1959304255?spm_id_from=333.1296.0.0 | CC BY-NC-SA 4.0 | да | `AL_Mogador_莫加多尔_LC/AL_莫加多尔_Mogador.ysm` | 0.1 |
+| `0005_AL_Mogador.zip` | | — | — | ? | `AL_Mogador_莫加多尔_LC/AL_莫加多尔_Mogador.zip` | 0.2 |
+| `0014_AL_AL_v1.1.ysm` | 山风_无保时 | 作者: 哈雷汰多 | CC 0 | да | `AL_山风/AL_山风_v1.1.ysm` | 0.5 |
+| `0014_AL_AL_v1.1_1.ysm` | 山风 | 作者: 哈雷汰多 | CC 0 | да | `AL_山风/AL_山风_v1.1_1.ysm` | 5.3 |
+| `0015_AL_Prinz-Adalbert.ysm` | 阿德莉娅亲王 | — | CC BY-NC-SA 4.0 | да | `AL_Prinz-Adalbert_阿达尔伯特亲王_LA/AL_阿达尔伯特亲王_Prinz-Adalbert.ysm` | 0.4 |
+| `0015_AL_Prinz-Adalbert_1.ysm` | 阿达尔伯特亲王Prinz Adalbert | — | CC BY-NC-SA 4.0 | да | `AL_Prinz-Adalbert_阿达尔伯特亲王_LA/AL_阿达尔伯特亲王_Prinz-Adalbert_1.ysm` | 0.4 |
+| `0020_AL_Laffey-Bunnygirl.ysm` | 拉菲2兔女郎 | — | CC BY-NC-SA 4.0 | **нет** | `AL_Laffey_bunnygirl_拉菲_兔女郎_LA/AL_拉菲_兔女郎_Laffey-Bunnygirl.ysm` | 4.5 |
+| `0020_AL_Laffey-Bunnygirl_1.ysm` | 拉菲2兔女郎 | — | CC BY-NC-SA 4.0 | **нет** | `AL_Laffey_bunnygirl_拉菲_兔女郎_LA/AL_拉菲_兔女郎_Laffey-Bunnygirl_1.ysm` | 4.4 |
+| `0020_AL_Laffey-Bunnygirl_v1.1.ysm` | 拉菲2兔女郎 | — | CC BY-NC-SA 4.0 | **нет** | `AL_Laffey_bunnygirl_拉菲_兔女郎_LA/AL_拉菲_兔女郎_Laffey-Bunnygirl_v1.1.ysm` | 4.5 |
+| `0020_AL_Laffey-Bunnygirl_v1.2.ysm` | 拉菲2兔女郎 | — | CC BY-NC-SA 4.0 | **нет** | `AL_Laffey_bunnygirl_拉菲_兔女郎_LA/AL_拉菲_兔女郎_Laffey-Bunnygirl_v1.2.ysm` | 5.0 |
+| `0020_AL_Laffey-Bunnygirl_v1.5.ysm` | 拉菲2兔女郎 | — | CC BY-NC-SA 4.0 | **нет** | `AL_Laffey_bunnygirl_拉菲_兔女郎_LA/AL_拉菲_兔女郎_Laffey-Bunnygirl_v1.5.ysm` | 5.3 |
+| `0020_AL_LeMalin_v1.1.ysm` | 恶毒「懒懒的白兔」 | — | CC BY-ND-SA 4.0 | **нет** | `AL_Lemalin_恶毒_懒懒的白兔/AL_恶毒_懒懒的白兔_LeMalin_v1.1.ysm` | 1.1 |
+| `0045_AL_Fusou_v2.4.9.ysm` | 扶桑SFW | — | All Rights Reserved | да | `AL_Fusou_扶桑_LA/AL_扶桑_Fusou_v2.4.9.ysm` | 7.5 |
+| `0045_AL_Fusou_v2.4.9_1.ysm` | 扶桑 | — | All Rights Reserved | да | `AL_Fusou_扶桑_LA/AL_扶桑_Fusou_v2.4.9_1.ysm` | 4.7 |
+| `0045_AL_Fusou_v2.5.0.ysm` | 扶桑 | — | All Rights Reserved | да | `AL_Fusou_扶桑_LA/AL_扶桑_Fusou_v2.5.0.ysm` | 5.0 |
+| `0045_AL_Fusou_v2.5.2.ysm` | 扶桑SFW | — | All Rights Reserved | да | `AL_Fusou_扶桑_LA/AL_扶桑_Fusou_v2.5.2.ysm` | 5.0 |
+| `0045_AL_Fusou_v2.5.2_1.ysm` | 扶桑 | — | All Rights Reserved | да | `AL_Fusou_扶桑_LA/AL_扶桑_Fusou_v2.5.2_1.ysm` | 5.5 |
+| `0045_AL_Fusou_v2.5.4.ysm` | 扶桑SFW | — | All Rights Reserved | да | `AL_Fusou_扶桑_LA/AL_扶桑_Fusou_v2.5.4.ysm` | 5.0 |
+| `0045_AL_Fusou_v2.5.5.ysm` | 扶桑 | — | All Rights Reserved | да | `AL_Fusou_扶桑_LA/AL_扶桑_Fusou_v2.5.5.ysm` | 5.5 |
+| `0045_AL_Fusou_v2.5.6.ysm` | 扶桑SFW | — | All Rights Reserved | да | `AL_Fusou_扶桑_LA/AL_扶桑_Fusou_v2.5.6.ysm` | 5.5 |
+| `0045_AL_Nagato_v2.4.2_1.ysm` | 长门 | — | All Rights Reserved | да | `AL_Nagato_长门_LA/AL_长门_Nagato_v2.4.2_1.ysm` | 5.7 |
+| `0045_AL_Nagato_v2.4.3_1.ysm` | 长门 | — | All Rights Reserved | да | `AL_Nagato_长门_LA/AL_长门_Nagato_v2.4.3_1.ysm` | 5.7 |
+| `0045_AL_Yamashiro_v2.3.2.1.ysm` | 山城 | — | All Rights Reserved | да | `AL_Yamashiro_山城_LA/AL_山城_Yamashiro_v2.3.2.1.ysm` | 5.4 |
+| `0045_AL_Yamashiro_v2.4.4.ysm` | 山城 | — | All Rights Reserved | да | `AL_Yamashiro_山城_LA/AL_山城_Yamashiro_v2.4.4.ysm` | 4.9 |
+| `0045_AL_Yamashiro_v2.4.4_1.ysm` | 山城 | — | All Rights Reserved | да | `AL_Yamashiro_山城_LA/AL_山城_Yamashiro_v2.4.4_1.ysm` | 5.6 |
+| `0045_AL_Yamashiro_v2.5.5.ysm` | 山城SFW | — | All Rights Reserved | да | `AL_Yamashiro_山城_LA/AL_山城_Yamashiro_v2.5.5.ysm` | 6.3 |
+| `0045_AL_Yamashiro_v2.5.6.ysm` | 山城SFW | — | All Rights Reserved | да | `AL_Yamashiro_山城_LA/AL_山城_Yamashiro_v2.5.6.ysm` | 6.8 |
+| `0045_AL_Yamashiro_v2.5.7.ysm` | 山城 | — | All Rights Reserved | да | `AL_Yamashiro_山城_LA/AL_山城_Yamashiro_v2.5.7.ysm` | 8.5 |
+| `0045_AL_LC_AL_v2.2.2.7.ysm` | 宁海 | — | CC 0 | да | `AL_宁海_LC/AL_宁海_v2.2.2.7.ysm` | 4.3 |
+| `0045_AL_LC_AL_v2.3.2.1.ysm` | 宁海 | — | All Rights Reserved | да | `AL_宁海_LC/AL_宁海_v2.3.2.1.ysm` | 4.7 |
+| `0045_AL_LC_AL_v2.4.2.ysm` | 宁海 | — | All Rights Reserved | да | `AL_宁海_LC/AL_宁海_v2.4.2.ysm` | 4.7 |
+| `0045_AL_LC_AL_v2.2.2.10.ysm` | 平海 | — | CC 0 | да | `AL_平海_LC/AL_平海_v2.2.2.10.ysm` | 4.3 |
+| `0045_AL_LC_AL_v2.2.3.ysm` | 平海 | — | CC 0 | да | `AL_平海_LC/AL_平海_v2.2.3.ysm` | 3.2 |
+| `0045_AL_LC_AL_v2.3.2.1_8d35bb.ysm` | 平海 | — | All Rights Reserved | да | `AL_平海_LC/AL_平海_v2.3.2.1.ysm` | 2.8 |
+| `0045_AL_LC_AL_v2.4.1_18ecbc.ysm` | 平海 | — | All Rights Reserved | да | `AL_平海_LC/AL_平海_v2.4.1.ysm` | 1.9 |
+| `0045_AL_LC_AL_v2.4.2_ed560c.ysm` | 平海 | — | All Rights Reserved | да | `AL_平海_LC/AL_平海_v2.4.2.ysm` | 2.8 |
+| `0055_AL_Alsace_v1.2.7.ysm` | 碧蓝航线——阿尔萨斯 | — | CC BY-NC-SA 4.0 | **нет** | `AL_Alsace_阿尔萨斯_LB/AL_阿尔萨斯_Alsace_v1.2.7.ysm` | 4.2 |
+| `0055_AL_An-Shan.ysm` | 鞍山·改 | 伊蕾娜家的咸鱼 & 星屑海螺 | CC BY-NC-SA 4.0 | **нет** | `AL_An‑shan_鞍山_LB/AL_鞍山_An-Shan.ysm` | 0.3 |
+| `0055_AL_Kancollect-Yukikaze_1.ysm` | 碧蓝航线——雪风Nanoda | — | CC BY-NC-SA 4.0 | **нет** | `AL_Kancollect‑yukikaze_雪风_LA/AL_雪风_Kancollect-Yukikaze_1.ysm` | 3.9 |
+| `0055_AL_Kancollect-Yukikaze.ysm` | 碧蓝航线——雪风Nanoda | — | CC BY-NC-SA 4.0 | **нет** | `AL_Kancollect‑yukikaze_雪风_LA/AL_雪风_Kancollect-Yukikaze_快修版.ysm` | 3.9 |
+| `0055_AL_Kearsarge_v1.13.ysm` | 碧蓝航线——奇尔沙治 | — | CC BY-NC-SA 4.0 | **нет** | `AL_Kearsarge_奇尔沙治_LA/AL_奇尔沙治_Kearsarge_v1.13.ysm` | 4.2 |
+| `0055_AL_Kms-gir_v3.5.1.ysm` | 碧蓝航线-埃吉尔 | — | CC BY-NC-SA 4.0 | **нет** | `AL_Kms‑ägir_埃吉尔_LA/AL_埃吉尔_Kms-ägir_v3.5.1.ysm` | 1.7 |
+| `0055_AL_Laffey_v1.1.ysm` | 拉菲2 | — | CC BY-ND-SA 4.0 | **нет** | `AL_Laffey_拉菲_LA/AL_拉菲_Laffey_v1.1.ysm` | 1.3 |
+| `0055_AL_Laffey_v1.2.ysm` | 拉菲2 | — | CC BY-ND-SA 4.0 | **нет** | `AL_Laffey_拉菲_LA/AL_拉菲_Laffey_v1.2.ysm` | 1.3 |
+| `0055_AL_Sirius_v1.1.ysm` | 天狼星 | — | All Rights Reserved | **нет** | `AL_Sirius_天狼星_LA/AL_天狼星_Sirius_v1.1.ysm` | 3.8 |
+| `0058_AL_Ch_ang_Feng_v1.ysm` | 昔涟 25.12.17 | — | All Rights Reserved | **нет** | `AL_Ch'ang-Feng_长风_LA/AL_长风_Ch'ang Feng_v1.ysm` | 0.8 |
+| `0058_AL_Ch_ang_Feng_v2.ysm` | 长风 25.11.22 | — | All Rights Reserved | **нет** | `AL_Ch'ang-Feng_长风_LA/AL_长风_Ch'ang Feng_v2.ysm` | 0.9 |
+| `0058_AL_Implacable-1_v1.ysm` | 怨仇·办公室的“意外” | — | All Rights Reserved | **нет** | `AL_Implacable_1_怨仇/AL_怨仇级航空母舰_Implacable-1_v1.ysm` | 4.6 |
+| `0058_AL_Implacable-1_v2.ysm` | 怨仇·办公室的“意外” | — | All Rights Reserved | **нет** | `AL_Implacable_1_怨仇/AL_怨仇级航空母舰_Implacable-1_v2.ysm` | 4.6 |
+| `0058_AL_Implacable.ysm` | 怨仇级航空母舰 | — | All Rights Reserved | **нет** | `AL_Implacable_怨仇/AL_怨仇级航空母舰_Implacable.ysm` | 4.7 |
+| `0058_AL_Implacable_1.ysm` | 怨仇级航空母舰 | — | All Rights Reserved | **нет** | `AL_Implacable_怨仇/AL_怨仇级航空母舰_Implacable_1.ysm` | 4.7 |
+| `0058_AL_Kawakaze.ysm` | 江风 | — | All Rights Reserved | **нет** | `AL_Kawakaze_江风_LB/AL_江风_Kawakaze.ysm` | 8.1 |
+| `0058_AL_Prinz-Rupprecht.ysm` | 鲁普雷希特亲王 | — | CC BY-NC-SA 4.0 | **нет** | `AL_Prinz‑rupprecht_鲁普雷希特亲王_LB/AL_鲁普雷希特亲王_Prinz-Rupprecht.ysm` | 4.3 |
+| `0058_AL_Vampire.ysm` | 吸血鬼 25.10.26 | — | All Rights Reserved | **нет** | `AL_Vampire_吸血鬼_LB/AL_吸血鬼_Vampire.ysm` | 7.4 |
+| `0083_AL_Fusou.ysm` | 扶桑 | — | CC BY | да | `AL_扶桑_Fusou/AL_扶桑_Fusou.ysm` | 0.2 |
+| `0094_AL_Shinano.ysm` | | — | — | ? | `AL_信浓_Shinano_LB/AL_信浓_Shinano.ysm` | 0.2 |
+| `0094_AL_Shinano_1.ysm` | | — | — | ? | `AL_信浓_Shinano_LB/AL_信浓_Shinano_1.ysm` | 0.2 |
+| `0094_AL_Shinano_2.ysm` | 信浓 | 模型: 墨染逝羽 | All Rights Reserved | **нет** | `AL_信浓_Shinano_LB/AL_信浓_Shinano_2.ysm` | 0.4 |
+| `0094_AL_Shinano_3.ysm` | 信浓 | 模型: 墨染逝羽 | All Rights Reserved | **нет** | `AL_信浓_Shinano_LB/AL_信浓_Shinano_3.ysm` | 0.4 |
+| `0095_AL_Ch_ang_Feng_v1.0.ysm` | 长风 | — | CC BY-NC SA | **нет** | `AL_Ch'ang Feng_长风_LA/AL_长风_Ch'ang Feng_v1.0.ysm` | 1.2 |
+| `0095_AL_Nsfw.ysm` 18+ | 莉莉姆 | 鸡姬(raw_chicken) | CC BY-NC_SA | **нет** | `AL_莉莉姆_Nsfw_LA/AL_莉莉姆_Nsfw.ysm` | 0.2 |
+| `0095_AL_Nsfw.zip` 18+ | | — | — | ? | `AL_莉莉姆_Nsfw_LA/AL_莉莉姆_Nsfw.zip` | 0.2 |
+| `0101_AL_Ii-Lexington-Ii.ysm` | 列克星敦 | — | CC BY-NC-SA 4.0 | **нет** | `AL_列克星敦_Ii-Lexington-Ii/AL_列克星敦_Ii-Lexington-Ii.ysm` | 0.2 |
+| `0102_AL_Admiral-Nakhimov.ysm` | 碧蓝航线-纳希莫夫海军上将 | Dreamer 如有定制需求请联系作者qq:1776296661 | All Rights Reserved | **нет** | `AL_Admiral-Nakhimov_纳希莫夫海军上将_LB/AL_纳希莫夫海军上将_Admiral-Nakhimov.ysm` | 0.2 |
+| `0102_AL_Cheshire_v2.0.ysm` | 柴郡-「绚烂夜梦」 | — | All Rights Reserved | 保留所有权利，其不得被自由复制 | да | `AL_Cheshire_柴郡_LB/AL_柴郡_Cheshire_v2.0.ysm` | 0.9 |
+| `0102_AL_HDN-Purple-Heart.ysm` | 涅普缇努-绀紫之心 | — | All Right Rrserved | да | `AL_Hdn-Purple-Heart_绀紫之心_LA/AL_绀紫之心_HDN-Purple-Heart.ysm` | 1.0 |
+| `0102_AL_Hindenburg.ysm` | 兴登堡 (希尔德加德)-女仆兔女郎 | — | All Right Rrserved | да | `AL_Hindenburg_兴登堡_兔女郎_LB/AL_兴登堡_兔女郎_Hindenburg.ysm` | 0.7 |
+| `0102_AL_Implacable_v1_1.ysm` | 碧蓝航线-怨仇 | Dreamer & 如有生物模型定制需求请联系作者qq:1776296661 | All Rights Reserved | **нет** | `AL_Implacable_怨仇_LB/AL_怨仇级航空母舰_Implacable_v1_1.ysm` | 0.3 |
+| `0102_AL_New-Jersey.ysm` | 新泽西(花园)-女仆兔女郎 | — | All Right Rrserved | да | `AL_New-Jersey_新泽西_兔女郎_LB/AL_新泽西_兔女郎_New-Jersey.ysm` | 0.7 |
+| `0102_AL_Owari.ysm` | 碧蓝航线-尾张（鳂） | Dreamer & 如有生物模型定制需求请联系作者qq:1776296661 | All Rights Reserved | **нет** | `AL_Owari_尾张_愿望为爱_LB/AL_尾张_愿望为爱_Owari.ysm` | 0.4 |
+| `0102_AL_Taihou.ysm` | 碧蓝航线-大凤（鹩） | — | All Right Rrserved | да | `AL_Taihou_大凤_LB/AL_大凤_Taihou.ysm` | 0.7 |
+| `0103_AL_Amagi-Summer.ysm` | 天城(空母) #24.9.9 | — | All Rights Reserved | да | `AL_Amagi_summer_天城_LA/AL_天城_Amagi-Summer.ysm` | 0.9 |
+| `0103_AL_Amagi-Summer_ce8f71.ysm` | 天城(泳装) #24.10.2 | — | All Rights Reserved | да | `AL_Amagi_summer_天城_泳装_LA/AL_天城_泳装_Amagi-Summer.ysm` | 0.4 |
+| `0103_AL_Amagi-Summer_1.ysm` | 天城(泳装) #24.10.2 | — | All Rights Reserved | да | `AL_Amagi_summer_天城_泳装_LA/AL_天城_泳装_Amagi-Summer_1.ysm` | 0.4 |
+| `0103_AL_II-Lexington-II.ysm` | 列克星敦II | — | All Rights Reserved | да | `AL_Ii-Lexington-Ii_列克星敦_LA/AL_列克星敦_II-Lexington-II.ysm` | 1.1 |
+| `0103_AL_Ijn-Musashi-Bunngyirl.ysm` | 武藏 #24.6.29 | — | All Rights Reserved | **нет** | `AL_Ijn-Musashi_bunngyirl_武藏_LA/AL_武藏_Ijn-Musashi-Bunngyirl.ysm` | 0.8 |
+| `0103_AL_Ijn-Musashi-Bunngyirl_v1.1.ysm` | 武藏 #24.6.29 | — | All Rights Reserved | **нет** | `AL_Ijn-Musashi_bunngyirl_武藏_LA/AL_武藏_Ijn-Musashi-Bunngyirl_v1.1.ysm` | 1.0 |
+| `0103_USS_New_Jersy.ysm` | 新泽西 | — | CC BY-NC-Sa 4.0 | да | `AL_New-Jersey_新泽西_uss/新泽西_USS_New_Jersy.ysm` | 1.1 |
+| `0103_AL_Prinz-Eugen_LA.ysm` | 欧根亲王 | — | CC BY-NC-Sa 4.0 | да | `AL_Prinz-Eugen_欧根亲王_LA/欧根亲王.ysm` | 1.6 |
+| `0103_AL_Prinz-Eugen_LA_AL.ysm` | 欧根亲王「微醺与试探的距离」 | — | All Rights Reserved | да | `AL_Prinz-Eugen_欧根亲王_微醺与试探的距离_LA/AL_欧根亲王「微醺与试探的距离」.ysm` | 1.2 |
+| `0103_AL_TAC_50.ysm` | TAC-50 #24.10.16 | — | All Rights Reserved | да | `AL_TAC_LA/AL_TAC_50.ysm` | 0.5 |
+| `0103_AL_Taihou_v2.2.ysm` | 大凤 完整版 #25.5.10 | — | All Rights Reserved | да | `AL_Taihou_大凤_LA/AL_大凤_Taihou_v2.2.ysm` | 1.4 |
+| `0103_AL_Taihou_v2.4.ysm` | 大凤 完整版 | — | All Rights Reserved | да | `AL_Taihou_大凤_LA/AL_大凤_Taihou_v2.4.ysm` | 1.7 |
+| `0103_AL_YorktownII_II_LA_AL_II.ysm` | 约克城II #24.12.12 | — | All Rights Reserved | да | `AL_Yorktown‑II_约克城II_LA/AL_约克城_II.ysm` | 1.1 |
+| `0103_AL_LA_AL.ysm` | 应瑞「松戏梅」 #25.2.5 | — | All Rights Reserved | **нет** | `AL_应瑞_LA/AL_应瑞.ysm` | 2.4 |
+| `0103_AL_LA_AL_c6ba8c.ysm` | 白凤 #25.9.12 | — | All Rights Reserved | да | `AL_白凤_LA/AL_白凤.ysm` | 1.4 |
+| `0103_AL_LA_AL_v2.0.ysm` | 能代 #24.10.10 | — | All Rights Reserved | **нет** | `AL_能代_LA/AL_能代_v2.0.ysm` | 2.8 |
+| `0105_AL_Ayanami_v2.6.1_2.ysm` | 绫波 | — | All Rights Reserved | да | `AL_Ayanami_绫波_LA/AL_绫波_Ayanami_v2.6.1_2.ysm` | 14.1 |
+| `0105_AL_Ayanami_v2.6.1_allages.ysm` | 绫波 | — | All Rights Reserved | да | `AL_Ayanami_绫波_LA/AL_绫波_Ayanami_全年龄_v2.6.1.ysm` | 14.1 |
+| `0105_AL_Ayanami_v2.6.3_allages.ysm` | 绫波 | — | All Rights Reserved | да | `AL_Ayanami_绫波_LA/AL_绫波_Ayanami_全年龄_v2.6.3.ysm` | 14.2 |
+| `0105_AL_Ayanami_v2.6.1_18plus.ysm` 18+ | 绫波 | — | All Rights Reserved | **нет** | `AL_Ayanami_绫波_LA/AL_绫波_Ayanami_非公开_v2.6.1.ysm` | 14.1 |
+| `0105_AL_Ayanami_LA_2.6.2.ysm` | 绫波 | — | All Rights Reserved | да | `AL_Ayanami_绫波_LA/绫波2.6.2.ysm` | 14.2 |
+| `0105_AL_Javelin_v2.6.12.ysm` | 标枪 | — | All Rights Reserved | да | `AL_Javelin_标枪_LA/AL_标枪_Javelin_v2.6.12.ysm` | 13.5 |
+| `0105_AL_Javelin_v2.6.2.ysm` | 标枪 | — | All Rights Reserved | да | `AL_Javelin_标枪_LA/AL_标枪_Javelin_v2.6.2.ysm` | 2.7 |
+| `0105_AL_Javelin_v2.6.3.ysm` | 标枪 | — | All Rights Reserved | да | `AL_Javelin_标枪_LA/AL_标枪_Javelin_v2.6.3.ysm` | 2.7 |
+| `0105_AL_Javelin_v2.6.6.ysm` | 标枪 | — | All Rights Reserved | да | `AL_Javelin_标枪_LA/AL_标枪_Javelin_v2.6.6.ysm` | 12.9 |
+| `0105_AL_Javelin_v2.6.8.ysm` | 标枪 | — | All Rights Reserved | да | `AL_Javelin_标枪_LA/AL_标枪_Javelin_v2.6.8.ysm` | 13.5 |
+| `0105_AL_Javelin_v2.6.12_allages.ysm` | 标枪 | — | All Rights Reserved | да | `AL_Javelin_标枪_LA/AL_标枪_Javelin_全年龄_v2.6.12.ysm` | 13.5 |
+| `0105_AL_Javelin_v2.6.9_allages.ysm` | 标枪 | — | All Rights Reserved | да | `AL_Javelin_标枪_LA/AL_标枪_Javelin_全年龄_v2.6.9.ysm` | 13.5 |
+| `0105_AL_Javelin_v2.6.12_18plus.ysm` 18+ | 标枪 | — | All Rights Reserved | **нет** | `AL_Javelin_标枪_LA/AL_标枪_Javelin_非公开_v2.6.12.ysm` | 13.5 |
+| `0105_AL_Javelin_v2.6.9_18plus.ysm` 18+ | 标枪 | — | All Rights Reserved | **нет** | `AL_Javelin_标枪_LA/AL_标枪_Javelin_非公开_v2.6.9.ysm` | 13.5 |
+| `0105_AL_Javelin_LA_-2.6.8_18plus.ysm` 18+ | 标枪 | — | All Rights Reserved | **нет** | `AL_Javelin_标枪_LA/标枪-非公开版2.6.8.ysm` | 13.5 |
+| `0105_AL_KanCollect-Yukikaze_v2.4.2.ysm` | 雪风 | — | All Rights Reserved | да | `AL_Kancollect‑yukikaze_雪风_LA/AL_雪风_KanCollect-Yukikaze_v2.4.2.ysm` | 1.3 |
+| `0105_AL_KanCollect-Yukikaze_v2.6.1.ysm` | 雪风 | — | All Rights Reserved | да | `AL_Kancollect‑yukikaze_雪风_LA/AL_雪风_KanCollect-Yukikaze_v2.6.1.ysm` | 7.7 |
+| `0105_AL_KanCollect-Yukikaze_v2.6.2.ysm` | 雪风 | — | All Rights Reserved | да | `AL_Kancollect‑yukikaze_雪风_LA/AL_雪风_KanCollect-Yukikaze_v2.6.2.ysm` | 7.7 |
+| `0105_AL_Kancollectyukikaze_LA_-2.6.3_18plus.ysm` 18+ | 雪风 | — | All Rights Reserved | **нет** | `AL_Kancollect‑yukikaze_雪风_LA/雪风-非公开2.6.3.ysm` | 7.7 |
+| `0105_AL_Kancollectyukikaze_LA_2.6.3.ysm` | 雪风 | — | All Rights Reserved | да | `AL_Kancollect‑yukikaze_雪风_LA/雪风2.6.3.ysm` | 7.7 |
+| `0105_AL_Z23_LA_AL_Z23_v2.4.1.ysm` | Z23 | — | All Rights Reserved | да | `AL_Z23_尼米_LA/AL_尼米_Z23_v2.4.1.ysm` | 1.5 |
+| `0105_AL_Z23_LA_AL_Z23_v2.6.1.ysm` | Z23 | — | All Rights Reserved | да | `AL_Z23_尼米_LA/AL_尼米_Z23_v2.6.1.ysm` | 10.9 |
+| `0105_AL_Z23_LA_AL_Z23_v2.6.1_1.ysm` | Z23 | — | All Rights Reserved | **нет** | `AL_Z23_尼米_LA/AL_尼米_Z23_v2.6.1_1.ysm` | 10.9 |
+| `0105_AL_Z23_LA_AL_Z23_v2.6.1_2.ysm` | Z23 | — | All Rights Reserved | да | `AL_Z23_尼米_LA/AL_尼米_Z23_v2.6.1_2.ysm` | 10.9 |
+| `0107_AL_KanCollect-Yukikaze_v1.0.ysm` | 雪风 | — | All Rights Reserved | да | `AL_雪风_KanCollect-Yukikaze/AL_雪风_KanCollect-Yukikaze_v1.0.ysm` | 0.7 |
+| `0107_AL_KanCollect-Yukikaze_v1.1.ysm` | 雪风 | — | All Rights Reserved | да | `AL_雪风_KanCollect-Yukikaze/AL_雪风_KanCollect-Yukikaze_v1.1.ysm` | 0.7 |
+| `0107_AL_KanCollect-Yukikaze_1.2.ysm` | 雪风 | — | All Rights Reserved | да | `AL_雪风_KanCollect-Yukikaze/雪风_1.2.ysm` | 0.7 |
+| `0111_AL_LA_AL.ysm` | 碧蓝航线-土佐 | — | All Rights Reserved | **нет** | `AL_士佐_水着_LA/AL_士佐_水着.ysm` | 0.3 |
+| `0116_AL_Cheshire.ysm` | 柴郡_绚烂夜梦 | 1111111re | CC BY-NC-SA 4.0 | **нет** | `AL_柴郡_Cheshire_LB/AL_柴郡_Cheshire.ysm` | 0.3 |
+| `0160_-_NSFW.ysm` 18+ | | — | — | ? | `圣路易斯/碧蓝航线-圣路易斯 NSFW.ysm` | 0.4 |
+| `0160__-.ysm` | | — | — | ? | `圣路易斯/碧蓝航线-圣路易斯.ysm` | 0.3 |
+| `0190_AL_Shinano.ysm` | 信浓 幻梦奇术 | 模型制作: 新隆肰懿 | All Rights Reserved | да | `AL_信浓_Shinano_LA/AL_信浓_Shinano.ysm` | 1.2 |
+
 ## Priestess (Arknights) — своя модель
 Авторство: Minecraft_moded (поток 32, Claude) — геометрия, текстура 256×256, осколок Originium, формы предметов,
 глаза, плащ, позы, логика. Скелет (имена и иерархия костей) и базовые анимации — встроенная модель YSM «default»

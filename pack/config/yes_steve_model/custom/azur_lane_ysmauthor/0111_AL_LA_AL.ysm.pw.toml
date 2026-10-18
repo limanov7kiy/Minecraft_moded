@@ -1,0 +1,8 @@
+name = "0111_AL_LA_AL"
+filename = "0111_AL_LA_AL.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0111-%E5%A5%B6%E6%B2%B9%E6%A1%83NaytoTime%2C%E5%A5%B6%E6%B2%B9%E6%A1%83/AL_%E5%A3%AB%E4%BD%90_%E6%B0%B4%E7%9D%80_LA/AL_%E5%A3%AB%E4%BD%90_%E6%B0%B4%E7%9D%80.ysm"
+hash-format = "sha256"
+hash = "cd636cc988cd2b0ca2b87372f22432eb9ed4945b82cd96129b6e59d69919b7ca"

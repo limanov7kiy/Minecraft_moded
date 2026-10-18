@@ -1,0 +1,8 @@
+name = "0102_AL_Taihou"
+filename = "0102_AL_Taihou.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0102-Dreamer%2C%E6%99%AE%E9%80%9A%E7%9A%84%E6%9C%A8%E5%B1%90/AL_Taihou_%E5%A4%A7%E5%87%A4_LB/AL_%E5%A4%A7%E5%87%A4_Taihou.ysm"
+hash-format = "sha256"
+hash = "fed335287b79bd4c848583bcc031e703639f916a2875c65463246e2c54c294c2"

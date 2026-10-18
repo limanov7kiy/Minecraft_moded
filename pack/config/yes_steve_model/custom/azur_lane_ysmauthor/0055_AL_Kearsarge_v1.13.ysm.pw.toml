@@ -1,0 +1,8 @@
+name = "0055_AL_Kearsarge_v1.13"
+filename = "0055_AL_Kearsarge_v1.13.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0055-%E4%BC%8A%E8%95%BE%E5%A8%9C%E5%AE%B6%E7%9A%84%E5%92%B8%E9%B1%BC/AL_Kearsarge_%E5%A5%87%E5%B0%94%E6%B2%99%E6%B2%BB_LA/AL_%E5%A5%87%E5%B0%94%E6%B2%99%E6%B2%BB_Kearsarge_v1.13.ysm"
+hash-format = "sha256"
+hash = "6a5a36eda0122fcfbe02d5706388274e092c9cbdf9b9e69248b3c4ffff2d2bf7"

@@ -1,0 +1,8 @@
+name = "0055_AL_Kms-gir_v3.5.1"
+filename = "0055_AL_Kms-gir_v3.5.1.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0055-%E4%BC%8A%E8%95%BE%E5%A8%9C%E5%AE%B6%E7%9A%84%E5%92%B8%E9%B1%BC/AL_Kms%E2%80%91%C3%A4gir_%E5%9F%83%E5%90%89%E5%B0%94_LA/AL_%E5%9F%83%E5%90%89%E5%B0%94_Kms-%C3%A4gir_v3.5.1.ysm"
+hash-format = "sha256"
+hash = "addce52d2d887fa2ca1d1dcb8ff356aba751dd505aaca4c450614bf029c448aa"

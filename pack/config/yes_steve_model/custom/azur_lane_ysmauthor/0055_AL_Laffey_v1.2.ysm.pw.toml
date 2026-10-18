@@ -1,0 +1,8 @@
+name = "0055_AL_Laffey_v1.2"
+filename = "0055_AL_Laffey_v1.2.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0055-%E4%BC%8A%E8%95%BE%E5%A8%9C%E5%AE%B6%E7%9A%84%E5%92%B8%E9%B1%BC/AL_Laffey_%E6%8B%89%E8%8F%B2_LA/AL_%E6%8B%89%E8%8F%B2_Laffey_v1.2.ysm"
+hash-format = "sha256"
+hash = "a3e606f3bcff013f12302daa52acaaf73b73423684ccf605679620635da8ea0f"

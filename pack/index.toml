@@ -509,6 +509,630 @@ file = "config/yes_steve_model/custom/azur_lane/ysm-pack.json"
 hash = "ef9162c80a3f59dbd29a05494c18cafc5ab9beb01fe9955a9a20177aa6fd5f96"
 
 [[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0005_AL_Cheshire.ysm.pw.toml"
+hash = "ab8cc905a5a4c8ff49cd84dda839f7d590026af1ab1e4d56a970f27ce4e4341e"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0005_AL_Cheshire.zip.pw.toml"
+hash = "71da8e0979345cc8e4e406d13b9d82afcf6ac165cf7d6cfd5925dab65f5e0565"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0005_AL_Ijn-Musashi-Bunngyirl.ysm.pw.toml"
+hash = "c3d13dc797b0cf5df2d5f669d0c6ba05f8bef688b1a59c20b307ab591aa699f6"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0005_AL_Mogador.ysm.pw.toml"
+hash = "1bec1634895e733576c8075446ef1bfb485b2e74a2d6edaf0b1f919256480b57"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0005_AL_Mogador.zip.pw.toml"
+hash = "3f6941d18dd12a05e88f20b28b6c358fe177a7874399768839ab92bf44986140"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0005_Unknown_Rei-Ayanami.ysm.pw.toml"
+hash = "eb56c5229ab1a81e32d62f8bf6a42731db1e2d68fc186c557dcda7991c0ccc9e"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0005_Unknown_Rei-Ayanami.zip.pw.toml"
+hash = "d94210d758d584b509af9c374d3cf4e886066ddf6cd08bed843f31dc91e5ea4b"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0014_AL_AL_v1.1.ysm.pw.toml"
+hash = "806d78946d16b7205def1102cf048122f31cbfa754e4b5158ca7e4af19f81bf0"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0014_AL_AL_v1.1_1.ysm.pw.toml"
+hash = "75bf2a160c23745f5d3338d43d437d497cef136e34702e5c9e4e2edf7e7c3602"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0015_AL_Prinz-Adalbert.ysm.pw.toml"
+hash = "42f12b08b412fcac986bce7de4d72db6d6bcf2ab8eacb1f5f2d647ce08a054f4"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0015_AL_Prinz-Adalbert_1.ysm.pw.toml"
+hash = "3d7aa4dc37d1ad4d59a73c32d48bb17db53f5138a26e38bb614c3e61066b866e"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0020_AL_Laffey-Bunnygirl.ysm.pw.toml"
+hash = "92cbfc1eec0dea813a6ad67874fb720a44daa7cd9badb7c2da0ce3593d1c93ff"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0020_AL_Laffey-Bunnygirl_1.ysm.pw.toml"
+hash = "daf84953f27309540811c9a8519ec9ae2f73f52166dc5599a7868bce8813d6ea"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0020_AL_Laffey-Bunnygirl_v1.1.ysm.pw.toml"
+hash = "cb927b8a2c35c37a4bf086e11eb3542b573cade58184feb609de0ea91e8bebbc"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0020_AL_Laffey-Bunnygirl_v1.2.ysm.pw.toml"
+hash = "85c74b444527638e2d17c6fe2ffdbb4d98a6025725d2e7648a4c5e3ccfe68e3d"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0020_AL_Laffey-Bunnygirl_v1.5.ysm.pw.toml"
+hash = "6f2f19959a9b617b999b1bafb8c08173b1a0eac5c0c04ded93f07b7411f8231c"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0020_AL_LeMalin_v1.1.ysm.pw.toml"
+hash = "90c9e00212bfeead0b3525f982b5f31e5068eea06b202e15250c6cf6a109b120"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0045_AL_Fusou_v2.4.9.ysm.pw.toml"
+hash = "adc599153b0329996e767d7f8bf574cc1a3e1431775f72419ad9412569b56d02"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0045_AL_Fusou_v2.4.9_1.ysm.pw.toml"
+hash = "4d3cb52d78a6debbd349a3d2db756130048277edf2a397fdce28ed7904b85523"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0045_AL_Fusou_v2.5.0.ysm.pw.toml"
+hash = "7bdec1f3146029f360c40ddc32824f5a62e686ad776ee47746f908ee9351a557"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0045_AL_Fusou_v2.5.2.ysm.pw.toml"
+hash = "9f41c959c3286a2bdb5c682b581951e181a45c1ddc3632b9e0944186eea1bbab"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0045_AL_Fusou_v2.5.2_1.ysm.pw.toml"
+hash = "4e1bcf9dbc134db4d7f1570a71bff8a33ba291d42a87ef834d84521fc946281e"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0045_AL_Fusou_v2.5.4.ysm.pw.toml"
+hash = "740c672706c9a0829690133c6fcece66f5284e55d13ce5d6523421e113fcbffc"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0045_AL_Fusou_v2.5.5.ysm.pw.toml"
+hash = "15ea7277bffcf2cb97489bf56b0e6f928482cf730427532cd24722c50d860674"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0045_AL_Fusou_v2.5.6.ysm.pw.toml"
+hash = "0177c65de043bf718b1004b307952cd2e532091b5dc0d4d552e362eaf718b03f"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0045_AL_LC_AL_v2.2.2.10.ysm.pw.toml"
+hash = "7f490ba9ca3e9ba39b8e1c1ac8d5f1c16216082889895a6e6edb3f17a3d926fb"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0045_AL_LC_AL_v2.2.2.7.ysm.pw.toml"
+hash = "be878b31b1bff7277eec1b5f1efd536826dfecc85ebae895d52d875ceca05e0b"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0045_AL_LC_AL_v2.2.3.ysm.pw.toml"
+hash = "78c6ac8764bb768c58dba7205b014511d70b962972e9872418c4212e68420272"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0045_AL_LC_AL_v2.3.2.1.ysm.pw.toml"
+hash = "d2ee82008eff18e1866df8af38514456b06ac05f0a128fac2218b12c33422bdf"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0045_AL_LC_AL_v2.3.2.1_8d35bb.ysm.pw.toml"
+hash = "e1b30a7f35f97e14e728e9befd60160c770f464b4dc12ef12c2304002631361e"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0045_AL_LC_AL_v2.4.1_18ecbc.ysm.pw.toml"
+hash = "da1f500a80d31e938565603900ea421a03da8971fb0e0b3942047ec73bca3a26"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0045_AL_LC_AL_v2.4.2.ysm.pw.toml"
+hash = "96b452b267a2a0b423b42eb055d4158a7272379a5b342c2924051a68533f958d"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0045_AL_LC_AL_v2.4.2_ed560c.ysm.pw.toml"
+hash = "619b1f39a41b54a0b30b20d4c982c4a7464d60f4a066c9908975204445fefac7"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0045_AL_Nagato_v2.4.2_1.ysm.pw.toml"
+hash = "c4ed909671341dc67306dbf0896012479469d8f2ec81248b0d808545efadf23d"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0045_AL_Nagato_v2.4.3_1.ysm.pw.toml"
+hash = "c98524643fc09483d7aadc54e008160aa62fdc154350cb2496c8e8e3986471e6"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0045_AL_Yamashiro_v2.3.2.1.ysm.pw.toml"
+hash = "1a5e66492adb4ca4fe8338b93b06df094c546a6d7afd08c4c0828f00b86fa7cd"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0045_AL_Yamashiro_v2.4.4.ysm.pw.toml"
+hash = "1c3cff04979e6661eca5700e977bbdc9388456e97063dc633749f525d1323d4a"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0045_AL_Yamashiro_v2.4.4_1.ysm.pw.toml"
+hash = "0f35bc0ef2c5dca41c78fd9f1c05ad2785332b3d41c229a88f41e9509ce39148"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0045_AL_Yamashiro_v2.5.5.ysm.pw.toml"
+hash = "db7c55740fb3e5032e74a716ae3522ff2b1008753a39c7f8e1851f39bb8c4c74"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0045_AL_Yamashiro_v2.5.6.ysm.pw.toml"
+hash = "c3f6cdf81ee206c17547d4c0fac510a1f5223fd20cb1bbfb944798e36cea95d7"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0045_AL_Yamashiro_v2.5.7.ysm.pw.toml"
+hash = "78d83201f4f3231e8605d9c4447ccea61e0f38260654701b0fd2b17e7c9086b1"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0055_AL_Alsace_v1.2.7.ysm.pw.toml"
+hash = "2f78fa78d50bcfa5f10c8f37600d1bfae781a8d14d2837bc861cc790e22c9ce6"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0055_AL_An-Shan.ysm.pw.toml"
+hash = "750dd7495c5644201bbfe3c9fc0d18fcdf71e8cdd446e87c27cd42c4ab21d59d"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0055_AL_Kancollect-Yukikaze.ysm.pw.toml"
+hash = "b52b2f5695adc87f28e7f6b50feee48f648d5c76ab1b66891478c3526a10724c"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0055_AL_Kancollect-Yukikaze_1.ysm.pw.toml"
+hash = "d72153643ff45bcb8186060ebf09865475a90538fc61672a889b4f2be2346279"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0055_AL_Kearsarge_v1.13.ysm.pw.toml"
+hash = "4d2239a023b4dae122c9496cbadf9221014490411ae33e239ab871a36f7226b1"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0055_AL_Kms-gir_v3.5.1.ysm.pw.toml"
+hash = "b59e99251f92d8f1f2110f53b8486cf891c1a539b38ff7da60887ae9cf5c0e98"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0055_AL_Laffey_v1.1.ysm.pw.toml"
+hash = "96e3235e4c75ce89b06ef6cf99ef72462e36e4aa2ecc3ec8b84dba93e2620b9a"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0055_AL_Laffey_v1.2.ysm.pw.toml"
+hash = "d355b72b22907fcf329be5ecc7f0416526821f8097c9ad30526e9b718f423db7"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0055_AL_Sirius_v1.1.ysm.pw.toml"
+hash = "96e86afa1c36ba179ff733ba07ed337285a502421196dbe54b36b17c4d0afd66"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0058_AL_Ch_ang_Feng_v1.ysm.pw.toml"
+hash = "ebfd4d60122470356062308e1322680cf09a68b0b26a1d7e1730128b3fa55962"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0058_AL_Ch_ang_Feng_v2.ysm.pw.toml"
+hash = "a2016b99a3aa9abeb8b496a78094f3a79355c257dde0888ef89b6f7c9b93aa31"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0058_AL_Implacable-1_v1.ysm.pw.toml"
+hash = "fdd820eeebd08ed783dedf601f963b84e338f6d2360cd1f2b6fc07674587b8bd"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0058_AL_Implacable-1_v2.ysm.pw.toml"
+hash = "760274d8ba52bdb56b924ad16001f5ace90e1d3e25741bc45bb49e7abac7464b"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0058_AL_Implacable.ysm.pw.toml"
+hash = "50dc7456084c5574bb0249094f65caacc71756831a71298b32a65ca6894486ac"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0058_AL_Implacable_1.ysm.pw.toml"
+hash = "4251f6a56c70b2c87559e973afcdc87ac7f3b1bef5e0dfa567077a325a88f636"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0058_AL_Kawakaze.ysm.pw.toml"
+hash = "bea7c83edfb790a7cf80791343696646ea98366402c8227b068715125842064f"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0058_AL_Prinz-Rupprecht.ysm.pw.toml"
+hash = "3e563c3c8f98e13179d8dea3345bcc7bf7daacca654cd7a11f0f03d2aa9bcfc2"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0058_AL_Vampire.ysm.pw.toml"
+hash = "a2f85f87a1d87eb56a667d8667fe08bbe3e0ed03b4c9db20650c95ac97b4190c"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0083_AL_Fusou.ysm.pw.toml"
+hash = "774d4405abfbda166f8648f1cbc11a84bd1c1539d7350d7ebc15849107809642"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0094_AL_Shinano.ysm.pw.toml"
+hash = "deba73582e9ea52dc323b089ea0868465b1952012ee1511088e5a3b60ec6217e"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0094_AL_Shinano_1.ysm.pw.toml"
+hash = "f51a112dbb9cc7ce9d88f32107af2ef4c2284860e32dbb7f9e78c069588e6492"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0094_AL_Shinano_2.ysm.pw.toml"
+hash = "9b6d92e53890415490cac51a4f2c7cc3eb745c1e1a11413b6523ae86a0c3994b"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0094_AL_Shinano_3.ysm.pw.toml"
+hash = "dafa918bf249a376a6567c47e8a01869d13634ca47303ae1216c632be886ad49"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0095_AL_Ch_ang_Feng_v1.0.ysm.pw.toml"
+hash = "8de16b3e485fb4b384c5a6a6b080661854ccfacf872e3bf849b64b43530153be"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0095_AL_Nsfw.ysm.pw.toml"
+hash = "cbd9c5cc8723b77212f82c37de9ae9231e4ca6cfbadb9516f7d2c168c605ecd3"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0095_AL_Nsfw.zip.pw.toml"
+hash = "48327540602b41af7e6a2b3a77f64a9b7587be708d281ec2c545bfa783936247"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0101_AL_Ii-Lexington-Ii.ysm.pw.toml"
+hash = "4825ab0c300d1d885b58e7b0aaaf12496e2df1c861c495a674288458b7df2ee3"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0102_AL_Admiral-Nakhimov.ysm.pw.toml"
+hash = "947a7123c3d609fdbb177020131abe3049bad3f7e4e0bfee16c7b4454ce45d39"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0102_AL_Cheshire_v2.0.ysm.pw.toml"
+hash = "1bbd6bfb6b5e90d81e689ae06db18b1859c8e80d304645600cd3bdb2993df376"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0102_AL_HDN-Purple-Heart.ysm.pw.toml"
+hash = "acc499649577f152795273f1f2c04578eef92528168ad28cc69d7d7235d89b73"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0102_AL_Hindenburg.ysm.pw.toml"
+hash = "544ad6258396d7d928db418f85089cf1b81d90e405471c6a233303eac8608696"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0102_AL_Implacable_v1_1.ysm.pw.toml"
+hash = "4e805541ebcaf1b86c37254c69e8ee7f57a172a0a1b2940f03e4161b3854e8d4"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0102_AL_New-Jersey.ysm.pw.toml"
+hash = "5cb2c30b2c41303adc46cb1bc8c08aa812ef06fe89d4974a1477b15bdf7a620c"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0102_AL_Owari.ysm.pw.toml"
+hash = "c9c9c341b9d652dd0484e99b639541bb55fd192b7ed1b4f3281c13f389e43e7e"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0102_AL_Taihou.ysm.pw.toml"
+hash = "e4f84029e5458f95cdd8bd51311102a3ec61065e0d456d844c90c5fba3d9e737"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0103_AL_Amagi-Summer.ysm.pw.toml"
+hash = "ae34ec1a44ab1d643b91cefbf106d330379a8de62b80e6791b16e7e7dc3be3d0"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0103_AL_Amagi-Summer_1.ysm.pw.toml"
+hash = "253376c4bbe7d46fede90d7767976000e798b8c69e4901075aba2bbff95382df"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0103_AL_Amagi-Summer_ce8f71.ysm.pw.toml"
+hash = "30f8a5a84c4812f59227273fc7d8b6085b1243ccc3f41e71a0aa0dc3151d477b"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0103_AL_II-Lexington-II.ysm.pw.toml"
+hash = "95ad6a27137c7556b4c772e022de07a9066d90e62eeb006830682e0ace54b1d9"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0103_AL_Ijn-Musashi-Bunngyirl.ysm.pw.toml"
+hash = "40464257e60fbf412c53540719798a6e058b19944f484d02d157f01a77393196"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0103_AL_Ijn-Musashi-Bunngyirl_v1.1.ysm.pw.toml"
+hash = "49e0dc3b57570720aba3ce1a064fb32a46bde0e197fc9746edef5747ea1d0c02"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0103_AL_LA_AL.ysm.pw.toml"
+hash = "a202c21d4139be774ade246f4d448184982a1a1bf9b6f0e865f3572ee71a8862"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0103_AL_LA_AL_c6ba8c.ysm.pw.toml"
+hash = "e7a5a2a677d1592de6e06129537a99f3f74001b94fc551413d5f84b83d2dba53"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0103_AL_LA_AL_v2.0.ysm.pw.toml"
+hash = "a3fbf7c9424ec460aa508d94b613b76c0e843932da9d1f0e28616b41b8323338"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0103_AL_Prinz-Eugen_LA.ysm.pw.toml"
+hash = "c63c5e73f37f388a3b1be70c9accba6c9f26b31cb3255441367675d9d1b395c4"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0103_AL_Prinz-Eugen_LA_AL.ysm.pw.toml"
+hash = "5a06ac2f1acd24763552bb3284ed1be34911825c025e376f23db193261286894"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0103_AL_TAC_50.ysm.pw.toml"
+hash = "4b5969934786630f71f0e6f11b10627eb93714c45c17c3349dcf6a137c85a111"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0103_AL_Taihou_v2.2.ysm.pw.toml"
+hash = "1fa74f8bc5e8766734ddfafeffe388c29f2915fd6ed91de56ad4059b42bd5912"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0103_AL_Taihou_v2.4.ysm.pw.toml"
+hash = "22dfcabeaf1cac4929a5ea36a54a56a4e92090b2419f3ccc837e2a8da0f8305b"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0103_AL_YorktownII_II_LA_AL_II.ysm.pw.toml"
+hash = "c1f3bc1d51113c6d125d57d890364203597a7531b2e8c28f3d0d116e4cd24a90"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0103_USS_New_Jersy.ysm.pw.toml"
+hash = "fc388a2c3ac05e6bff55cf52c55a582c48e836d3a9582009550f946654d3871b"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0105_AL_Ayanami_LA_2.6.2.ysm.pw.toml"
+hash = "9a0f4844ea889a4d5457983ef5e0c267f57175060c1a35ce5c4aa3c0da9f39d3"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0105_AL_Ayanami_v2.6.1_18plus.ysm.pw.toml"
+hash = "2f9b1cd791b8a25736c202690fbf8a2b2efdc4b9a0630d117527118bc9862fc0"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0105_AL_Ayanami_v2.6.1_2.ysm.pw.toml"
+hash = "cdadfed36b03100bf867666d7c8ffaaf25425acc7fa4a6df006b24a1b806fc72"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0105_AL_Ayanami_v2.6.1_allages.ysm.pw.toml"
+hash = "5953900a797707b0b445c947358f92003d0bf82c15e5494414d3fb449f31afcc"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0105_AL_Ayanami_v2.6.3_allages.ysm.pw.toml"
+hash = "9c6224456f508062e32901a5fb1977c72ddd7e62a8c8a19d04eb03c90950de44"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0105_AL_Javelin_LA_-2.6.8_18plus.ysm.pw.toml"
+hash = "8f8591bc98e2658885771c7beb6a7eda7f91a4f791f8a94f3d3b0f5d17957955"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0105_AL_Javelin_v2.6.12.ysm.pw.toml"
+hash = "14c5ebebfa73cd364a469ba922a96b194766431ed609353e28a924d69401f1ed"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0105_AL_Javelin_v2.6.12_18plus.ysm.pw.toml"
+hash = "dc015da0faa5b31434e9a1fe794ea6df1cdbc23f6e1b8c0c4bef522d382ead0a"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0105_AL_Javelin_v2.6.12_allages.ysm.pw.toml"
+hash = "e59d6b8e65e1dc2438485542182b49e8f3d530cca59ccf9ff0e6611c8a42a3f0"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0105_AL_Javelin_v2.6.2.ysm.pw.toml"
+hash = "88e2654d0a0bc7767d700148977bfeb14debc79cc0d8eb20a61b54e5102b87d4"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0105_AL_Javelin_v2.6.3.ysm.pw.toml"
+hash = "3e80ca37df0c31228255036be0c8e38dc68b298b7021cc372f29119b35dc3989"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0105_AL_Javelin_v2.6.6.ysm.pw.toml"
+hash = "95bedbc73fc91779e692cf8ee0a178d1e6473466e7b22bf213f2f43df4bb2633"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0105_AL_Javelin_v2.6.8.ysm.pw.toml"
+hash = "4aac4e1cfdc02fe077d9da943ea34c78cdbda5973ae746e53a3783da924d1b63"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0105_AL_Javelin_v2.6.9_18plus.ysm.pw.toml"
+hash = "40444398f6c6455ab6838a3b14539e3548defa8695fdf8099663bd2c2294ab5a"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0105_AL_Javelin_v2.6.9_allages.ysm.pw.toml"
+hash = "ea17b4195e2705cfbb28503386b3eb26f2afacfd50bee892625f673f524919e4"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0105_AL_KanCollect-Yukikaze_v2.4.2.ysm.pw.toml"
+hash = "491c9f510b619923e8e18097ee576d22d4b95354f5e4cb18f57ccf498dad89ab"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0105_AL_KanCollect-Yukikaze_v2.6.1.ysm.pw.toml"
+hash = "6165a9bf7c4c0fabb7c8805e25e02a067097522f8b96d2cfde1ef3826c4d32a3"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0105_AL_KanCollect-Yukikaze_v2.6.2.ysm.pw.toml"
+hash = "4186c8516f3c065c33cc706eff5218891ca915debd1400241d3c3089b4198dc0"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0105_AL_Kancollectyukikaze_LA_-2.6.3_18plus.ysm.pw.toml"
+hash = "539e26f7c9f0a3a465450876bb69fc52dbd27ab9fd13b7087c9b92ef040f713f"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0105_AL_Kancollectyukikaze_LA_2.6.3.ysm.pw.toml"
+hash = "43e12a5b8639878f067e38ff9448596cc95fa0dce69a5e8149624d8345cf202b"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0105_AL_Z23_LA_AL_Z23_v2.4.1.ysm.pw.toml"
+hash = "6293b47225c460e77dde51f70d60fd407f883dcb4225648baa7ffbf0b4b8b428"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0105_AL_Z23_LA_AL_Z23_v2.6.1.ysm.pw.toml"
+hash = "88064a45de0b1c4f8e080485b1bef4e1679d6814a0343eaaaf2fb011ad5a1040"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0105_AL_Z23_LA_AL_Z23_v2.6.1_1.ysm.pw.toml"
+hash = "7bfb87a306309016393cb2604adebcf1c76f1741876f7289788b31788e750cbb"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0105_AL_Z23_LA_AL_Z23_v2.6.1_2.ysm.pw.toml"
+hash = "061b9fedd00787f6ba461e438cf421a0d1f608396f975304d0647e53641facdc"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0107_AL_KanCollect-Yukikaze_1.2.ysm.pw.toml"
+hash = "b74c8f4dbea4e0a5b7d974ebc5379cae11dd5b136e12567de85f9edefa7635a5"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0107_AL_KanCollect-Yukikaze_v1.0.ysm.pw.toml"
+hash = "37bd3d0dc82f46752d316013c474aa443b3b2361716ab4334427a90e50fdca85"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0107_AL_KanCollect-Yukikaze_v1.1.ysm.pw.toml"
+hash = "91d6b74b2775ae2b703ed71e2ad670a6004d27bc5a0dcef777ae1ac7e148b5d3"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0111_AL_LA_AL.ysm.pw.toml"
+hash = "a41a82cc28c93e30df3aef71d6715d5b317f9919217ae9d18c5a368de17445b4"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0116_AL_Cheshire.ysm.pw.toml"
+hash = "296d5cc43f2d25e649898864925b3ade4a3e6576c86d811b20f366fd552d492a"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0160_-_NSFW.ysm.pw.toml"
+hash = "bcfb203aab7e035b161c056b5f19b340fa354fb0f53453cdcb54c8db3008d542"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0160__-.ysm.pw.toml"
+hash = "c1012c2b3c21b0812ee5edc9392ab639d6b757870712c85fc0e8e868da7237dc"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/0190_AL_Shinano.ysm.pw.toml"
+hash = "ff85a23eb1bde2bfd967c6afc7ba2bfcd4f5a07672cb0d51c79a1cf25f51d609"
+metafile = true
+
+[[files]]
+file = "config/yes_steve_model/custom/azur_lane_ysmauthor/ysm-pack.json"
+hash = "64b59734ac6be22295564113efdb4e3cd9a412d3ae316ac2b05bb2bedb222f8c"
+
+[[files]]
 file = "config/yes_steve_model/custom/priestess/animations/arm.animation.json"
 hash = "239e2dadcc57f8fa08e8087c9eb2e3db9fafef289c787421caa77f2dce09538e"
 

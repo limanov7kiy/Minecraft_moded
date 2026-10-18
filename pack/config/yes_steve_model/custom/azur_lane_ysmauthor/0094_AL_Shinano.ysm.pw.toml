@@ -1,0 +1,8 @@
+name = "0094_AL_Shinano"
+filename = "0094_AL_Shinano.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0094-%E5%A2%A8%E6%9F%93%E9%80%9D%E7%BE%BD%2CFeather_aya/AL_%E4%BF%A1%E6%B5%93_Shinano_LB/AL_%E4%BF%A1%E6%B5%93_Shinano.ysm"
+hash-format = "sha256"
+hash = "0841eb176e14b765ae43ac3dc4c38d987632ed97c5427a405642e000d8301db2"

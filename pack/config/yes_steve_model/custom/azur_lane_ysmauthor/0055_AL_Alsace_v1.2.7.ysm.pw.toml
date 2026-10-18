@@ -1,0 +1,8 @@
+name = "0055_AL_Alsace_v1.2.7"
+filename = "0055_AL_Alsace_v1.2.7.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0055-%E4%BC%8A%E8%95%BE%E5%A8%9C%E5%AE%B6%E7%9A%84%E5%92%B8%E9%B1%BC/AL_Alsace_%E9%98%BF%E5%B0%94%E8%90%A8%E6%96%AF_LB/AL_%E9%98%BF%E5%B0%94%E8%90%A8%E6%96%AF_Alsace_v1.2.7.ysm"
+hash-format = "sha256"
+hash = "1f1b7420631e02f1877225dd616c74436539e5a33a314553b1d4c52de257abf8"
