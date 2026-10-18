@@ -37,4 +37,10 @@ assert.strictEqual(c.needsReply('R-001', null, d('2026-10-11')), false);
 // новые колонки на месте
 ['Описание для публичной страницы', 'Пояснение для публичной страницы', 'Ответ автору', 'Ответ отправлен (дата)']
   .forEach((t) => assert.ok(c.CFG.EXTRA.includes(t), t));
+// служебные листы: сортировки и «кто что ждёт»
+const q = c.buildQueries('Ответы', { last: 'Z', num: 'F', nick: 'B', status: 'G' });
+assert.ok(q.byNumber.includes('order by F') && !q.byNumber.includes('order by B'));
+assert.ok(q.byAuthor.includes('order by B, F'));
+assert.ok(q.pending.includes("G <> 'исправлено'") && q.pending.includes("G <> 'не баг'") && q.pending.includes('group by B'));
+assert.ok(c.CFG.EXTRA.includes('Категория') && c.CFG.CATEGORIES.length === 7);
 console.log('report-sheet: OK');

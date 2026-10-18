@@ -19,9 +19,11 @@ var CFG = {
   STALE_DAYS: 7,
   EXTRA: ['№', 'Статус', 'Ответственный (поток/PR)', 'Исправлено в версии', 'Дата изменения', 'Заметка',
           'Статус изменён (дата)', 'Мод для публичной страницы', 'Описание для публичной страницы',
-          'Пояснение для публичной страницы', 'Ответ автору', 'Ответ отправлен (дата)'],
+          'Пояснение для публичной страницы', 'Ответ автору', 'Ответ отправлен (дата)', 'Категория'],
   EDIT_TRIGGERS: ['Статус', 'Ответственный (поток/PR)', 'Исправлено в версии', 'Заметка',
-                  'Мод для публичной страницы', 'Описание для публичной страницы', 'Пояснение для публичной страницы'],
+                  'Мод для публичной страницы', 'Описание для публичной страницы', 'Пояснение для публичной страницы', 'Категория'],
+  CATEGORIES: ['краш/вылет', 'фризы/лаги', 'мод/механика', 'модели/графика', 'звук/голос', 'сервер/вход', 'другое'],
+  NICK: 'Ник / имя для связи',
   MAX_ROWS: 2000
 };
 
@@ -33,6 +35,20 @@ function isStale(status, changed, now, days) {
   if (status && CFG.OPEN.indexOf(status) < 0) return false;   // пустой статус = ещё не разобран
   if (!changed) return true;
   return (now.getTime() - new Date(changed).getTime()) > days * 86400000;
+}
+
+// Формулы служебных листов. c — буквы колонок {last, num, nick, status}; sheet — имя листа ответов.
+// Только для владельца: на листах есть ники. Листы не публиковать, не делиться Таблицей.
+function buildQueries(sheet, c) {
+  var q = "'" + sheet + "'!A2:" + c.last;
+  var notDone = CFG.DONE.map(function (x) { return c.status + " <> '" + x + "'"; }).join(' and ');
+  return {
+    byNumber: '=QUERY(' + q + ', "select * where ' + c.num + ' is not null order by ' + c.num + '", 0)',
+    byAuthor: '=QUERY(' + q + ', "select * where ' + c.num + ' is not null order by ' + c.nick + ', ' + c.num + '", 0)',
+    pending: '=QUERY(' + q + ', "select ' + c.nick + ', count(' + c.num + ') where ' + c.num + ' is not null and ' + c.nick +
+      ' is not null and ' + notDone + ' group by ' + c.nick + ' order by count(' + c.num + ') desc label ' + c.nick +
+      " 'Автор', count(" + c.num + ") 'Открытых отчётов'" + '", 0)'
+  };
 }
 
 // Нужен ли ответ автору: статус менялся (или отчёт новый), а ответ не отправлен или отправлен раньше смены статуса.
@@ -163,10 +179,29 @@ function setup() {
   ]);
   sum.autoResizeColumns(1, 2);
 
+  // Служебные листы (формулы; заголовки копируются из листа ответов). Содержат ники — только владельцу.
+  var cNick = colIndex_(sh, CFG.NICK), cCat = colIndex_(sh, 'Категория');
+  var qs = buildQueries(sh.getName(), { last: letter_(sh.getLastColumn()), num: nL, nick: letter_(cNick), status: sL });
+  [['По номеру', qs.byNumber], ['По автору', qs.byAuthor]].forEach(function (x) {
+    var t = ss.getSheetByName(x[0]) || ss.insertSheet(x[0]);
+    t.clear();
+    sh.getRange(1, 1, 1, sh.getLastColumn()).copyTo(t.getRange(1, 1), SpreadsheetApp.CopyPasteType.PASTE_VALUES, false);
+    t.getRange(2, 1).setFormula(x[1]);
+    t.setFrozenRows(1);
+  });
+  var who = ss.getSheetByName('Кто что ждёт') || ss.insertSheet('Кто что ждёт');
+  who.clear();
+  who.getRange(1, 1).setFormula(qs.pending);
+  who.autoResizeColumns(1, 2);
+
+  sh.getRange(2, cCat, CFG.MAX_ROWS, 1).setDataValidation(
+    SpreadsheetApp.newDataValidation().requireValueInList(CFG.CATEGORIES, true).setAllowInvalid(true).build());
+  if (!sh.getFilter()) sh.getRange(1, 1, Math.max(sh.getLastRow(), 2), sh.getLastColumn()).createFilter();
+
   ScriptApp.getProjectTriggers().forEach(function (t) { ScriptApp.deleteTrigger(t); });
   ScriptApp.newTrigger('onFormSubmit').forSpreadsheet(ss).onFormSubmit().create();
   ScriptApp.newTrigger('fillMissing').timeBased().everyDays(1).atHour(9).create();
   fillMissing();
 }
 
-if (typeof module !== 'undefined') { module.exports = { formatNumber: formatNumber, isStale: isStale, needsReply: needsReply, summarize: summarize, letter_: letter_, CFG: CFG }; }
+if (typeof module !== 'undefined') { module.exports = { formatNumber: formatNumber, isStale: isStale, needsReply: needsReply, buildQueries: buildQueries, summarize: summarize, letter_: letter_, CFG: CFG }; }

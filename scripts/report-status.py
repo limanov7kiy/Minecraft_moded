@@ -33,6 +33,13 @@ COL_OWNER = 'Ответственный (поток/PR)'
 COL_DESC = 'Описание для публичной страницы'
 COL_MOD = 'Мод для публичной страницы'
 COL_NOTE = 'Пояснение для публичной страницы'
+COL_CAT = 'Категория'
+# Только с флагом --public-names (по умолчанию выключено, решение владельца ещё не принято). Ник из формы не публикуется никогда.
+COL_SHOW_NAME = 'Показывать моё имя'
+COL_PUBLIC_NAME = 'Публичное имя'
+CATEGORIES = ('краш/вылет', 'фризы/лаги', 'мод/механика', 'модели/графика', 'звук/голос', 'сервер/вход', 'другое')
+TRUE_VALUES = ('да', 'yes', 'true', '1', '✓', 'истина')
+MAX_NAME = 30
 # Колонки, которые нужны только чтобы убедиться, что их содержимое не просочилось в публичные поля. Не публикуются.
 GUARD_COLUMNS = ('Ник / имя для связи', 'Псевдоним из диагностики')
 
@@ -105,7 +112,7 @@ def load_rows(path):
         return list(reader)
 
 
-def build(rows):
+def build(rows, public_names=False):
     """Возвращает (публичные записи, число всех отчётов, предупреждения). Предупреждения без содержимого полей."""
     warnings = []
     records = []
@@ -137,6 +144,23 @@ def build(rows):
         version = g(COL_VERSION)
         if not version and PR_RE.match(g(COL_OWNER)):
             version = g(COL_OWNER)
+        cat = g(COL_CAT).lower()
+        if cat not in CATEGORIES:
+            if cat:
+                warnings.append('%s: категория не из списка — показана как «другое»' % number)
+            cat = 'другое'
+        author = None
+        if public_names:
+            author = 'аноним'
+            name = g(COL_PUBLIC_NAME)
+            if g(COL_SHOW_NAME).lower() in TRUE_VALUES and name:
+                nick = g(GUARD_COLUMNS[0]).lower()
+                if len(name) > MAX_NAME or danger_reason(name):
+                    warnings.append('%s: публичное имя не подошло — показано «аноним»' % number)
+                elif nick and (name.lower() == nick or nick in name.lower()):
+                    warnings.append('%s: публичное имя совпадает с ником из формы — показано «аноним»' % number)
+                else:
+                    author = cell(name)
         fields = {'описание': desc, 'мод': g(COL_MOD), 'версия/PR': version, 'пояснение': g(COL_NOTE)}
         bad = None
         for name, v in fields.items():
@@ -159,7 +183,7 @@ def build(rows):
             continue
         if status in ('не баг', 'отложено', 'нужны данные') and not fields['пояснение']:
             warnings.append('%s: для статуса «%s» нет публичного пояснения — опубликована без него' % (number, status))
-        records.append({'number': number, 'desc': cell(desc), 'mod': cell(fields['мод']) or '—', 'status': status,
+        records.append({'author': author, 'cat': cat, 'number': number, 'desc': cell(desc), 'mod': cell(fields['мод']) or '—', 'status': status,
                         'date': changed, 'ver': cell(version) or '—', 'note': cell(fields['пояснение']) or '—'})
     return records, counts, warnings
 
@@ -168,7 +192,7 @@ HEADER = """# Статус отчётов о проблемах
 
 Открытая страница: что игроки нашли, что решено, а что нет. Решение владельца (В41): «Мы работаем с ребятами открыто, пусть будет публичная страница, чтобы ребята видели процесс решения, что решено, а что нет».
 
-Здесь **только** номер отчёта, краткое описание проблемы, мод, статус, дата и номер PR или версия сборки. Ников, контактов, текстов игроков, логов и ссылок на файлы здесь нет и не будет.
+Здесь **только** номер отчёта, краткое описание проблемы, категория, мод, статус, дата и номер PR или версия сборки. Ников, контактов, текстов игроков, логов и ссылок на файлы здесь нет и не будет.
 Описания пишет хост или приёмщик своими словами; страница собирается скриптом `scripts/report-status.py` из приватной Таблицы (процесс — `docs/report-form.md`, раздел 8).
 
 - Как отправить отчёт — `docs/friends.md`, раздел «Нашёл баг». Ответ с номером R-### приходит автору лично в течение суток.
@@ -178,29 +202,61 @@ HEADER = """# Статус отчётов о проблемах
 
 """
 
-TABLE_HEAD = ('| № | Что за проблема | Мод | Статус | Изменено | PR / сборка | Пояснение |\n'
-              '|---|---|---|---|---|---|---|\n')
+TABLE_HEAD = ('| № | Что за проблема | Категория | Мод | Статус | Изменено | PR / сборка | Пояснение |\n'
+              '|---|---|---|---|---|---|---|---|\n')
 EMPTY_EXAMPLE = ('<!-- Пример строки:\n'
-                 '| R-012 | Фриз раз в полминуты при полёте над новыми чанками | The Lost Cities | в работе | 2026-10-20 | PR #96 | Ищем причину в генерации чанков |\n'
+                 '| R-012 | Фриз раз в полминуты при полёте над новыми чанками | фризы/лаги | The Lost Cities | в работе | 2026-10-20 | PR #96 | Ищем причину в генерации чанков |\n'
                  '-->\n')
 
 
-def table(recs, example=False):
+def table(recs, example=False, authors=False):
+    head = TABLE_HEAD
+    if authors:
+        head = head.replace('| № |', '| № | Автор |', 1).replace('|---|', '|---|---|', 1)
     if not recs:
-        return TABLE_HEAD + '| — | Пока пусто | | | | | |\n' + ('\n' + EMPTY_EXAMPLE if example else '')
-    out = TABLE_HEAD
+        return head + '| — | Пока пусто |' + ' |' * (6 + authors) + '\n' + ('\n' + EMPTY_EXAMPLE if example else '')
+    out = head
     for r in recs:
-        out += '| %s | %s | %s | %s | %s | %s | %s |\n' % (
-            r['number'], r['desc'], r['mod'], r['status'], r['date'].isoformat(), r['ver'], r['note'])
+        out += '| %s | %s%s | %s | %s | %s | %s | %s | %s |\n' % (
+            r['number'], r['author'] + ' | ' if authors else '', r['desc'], r['cat'], r['mod'], r['status'],
+            r['date'].isoformat(), r['ver'], r['note'])
     return out
 
 
-def render(records, counts):
+def grouped(recs, order, example=False, authors=False):
+    """Подразделы по статусам (порядок order), внутри — по номеру R. Если записей нет — одна пустая таблица."""
+    if not recs:
+        return table([], example, authors)
+    out = ''
+    for st in order:
+        part = [r for r in recs if r['status'] == st]
+        if part:
+            out += '### %s (%d)\n\n%s\n' % (st, len(part), table(part, authors=authors))
+    return out
+
+
+def breakdown(records):
+    def block(title, keys, getter):
+        rows = ''
+        for k in keys:
+            mine = [r for r in records if getter(r) == k]
+            if mine:
+                op = sum(1 for r in mine if r['status'] in OPEN_STATUSES)
+                rows += '| %s | %d | %d |\n' % (k, op, len(mine) - op)
+        return ('| %s | Открыто | Решено |\n|---|---|---|\n%s' % (title, rows)) if rows else ''
+    mods = sorted({r['mod'] for r in records if r['mod'] != '—'}, key=str.lower)
+    out = block('Категория', CATEGORIES, lambda r: r['cat'])
+    m = block('Мод', mods, lambda r: r['mod'])
+    return out + ('\n' + m if m else '')
+
+
+def render(records, counts, authors=False):
     total = sum(counts.values())
     last = max((r['date'] for r in records), default=None)
     key = lambda r: int(r['number'][2:])
-    still_open = sorted([r for r in records if r['status'] in OPEN_STATUSES], key=key)
-    solved = sorted([r for r in records if r['status'] not in OPEN_STATUSES], key=key)
+    records = sorted(records, key=key)
+    still_open = [r for r in records if r['status'] in OPEN_STATUSES]
+    solved = [r for r in records if r['status'] not in OPEN_STATUSES]
     c = lambda s: counts.get(s, 0)
     summary = ('| Всего | Открыто (новый, принят) | В работе | Исправлено | Не баг | Нужны данные | Отложено | Дубль |\n'
                '|---|---|---|---|---|---|---|---|\n'
@@ -211,19 +267,24 @@ def render(records, counts):
     note = ''
     if hidden > 0:
         note = '\n%d из них ещё без публичного описания и в таблицах ниже пока не показаны.\n' % hidden
+    bd = breakdown(records)
     return (HEADER + '## Сводка' + (' на %s' % last.isoformat() if last else '') + '\n\n' + summary + note +
-            '\n## Что ещё открыто\n\n' + table(still_open, example=True) +
-            '\n## Что решено\n\n' + table(solved))
+            ('\n### По категориям и модам\n\n' + bd if bd else '') +
+            '\n## Что ещё открыто\n\nГруппы по статусу, внутри — по номеру отчёта.\n\n' +
+            grouped(still_open, ('новый', 'принят', 'в работе', 'нужны данные', 'отложено'), True, authors) +
+            '\n## Что решено\n\n' + grouped(solved, ('исправлено', 'не баг', 'дубль'), False, authors))
 
 
 def main(argv):
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
     ap.add_argument('csv', help='CSV-выгрузка Таблицы (вне репозитория)')
     ap.add_argument('--out', default=str(DEFAULT_OUT), help='куда писать (по умолчанию docs/report-status.md)')
+    ap.add_argument('--public-names', action='store_true',
+                    help='ВЫКЛЮЧЕНО по умолчанию: показывать «Публичное имя» тем, кто поставил «Показывать моё имя»; остальные — «аноним»')
     a = ap.parse_args(argv)
     rows = load_rows(a.csv)
-    records, counts, warnings = build(rows)
-    text = render(records, counts)
+    records, counts, warnings = build(rows, a.public_names)
+    text = render(records, counts, a.public_names)
     out = Path(a.out)
     fd, tmp = tempfile.mkstemp(dir=str(out.parent), prefix='.report-status-', suffix='.tmp')
     with os.fdopen(fd, 'w', encoding='utf-8', newline='\n') as f:
