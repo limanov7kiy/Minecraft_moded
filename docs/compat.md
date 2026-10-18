@@ -1028,7 +1028,7 @@ CurseForge 1460238, файл 9130290, Astryxion, All Rights Reserved. Jar `pack/
 - Если понадобится менять значения Ars (стоимость глифов и т. п.) — править через KubeJS/датапак либо класть в `pack/config/` только нужные файлы целиком (Forge допишет недостающие ключи с одним WARN «from null»).
 
 ## Клиентские удобства: mm-perf 0.2.0, Controlling, Potato Craft 8x (поток 28, решения владельца В27/В28/В30)
-Всё в клиентском моде `mods-src/mm-perf` (`pack/mods/mm-perf-0.2.0-client.jar`, на сервер не попадает: серверный zip и `test-server` его не содержат).
+Всё в клиентском моде `mods-src/mm-perf` (`pack/mods/mm-perf-0.2.1-client.jar`, на сервер не попадает: серверный zip и `test-server` его не содержат).
 - **Режим слабого ПК** (`LowSpecMode`): кнопка «Режим слабого ПК» / «Вернуть как было» внизу слева на экранах настроек видео (ваниль и Embeddium) и «Настройки»; клавиша `key.mm_perf.lowspec`
   (не назначена). Ставит: дальность 5, симуляция 5, графика «Быстро», облака выкл., частицы «минимум», мягкий свет выкл., тени сущностей выкл., сглаживание биомов 0, mipmap 0, лимит 60 FPS, VSync выкл.;
   Embeddium — погода/листва «Быстро», виньетка выкл. (через `SodiumClientMod.options().quality`, `writeChanges`), Oculus — `Iris.toggleShaders(false)`, Distant Horizons — `DhApi.Delayed.configs.graphics().renderingEnabled(false)`
@@ -1256,3 +1256,12 @@ DH на выделенном сервере сам ничего не генер�
 - `scripts/tests/hurtcheck.js`: события Attack/Hurt/Damage (generic, fall, удар зомби, magic, огонь) через `EVENT_BUS` для свежего `ServerPlayer` на hard — **ни один слушатель не отменяет и не режет** (amount 5 → 5). Постоянного глобального блокера нет; исключения от Mahou Tsukai/Caerula Arbor в тесте — только из-за отсутствия сетевого соединения у тестового игрока.
 - Значит, это **временное/условное состояние игрока**. Кандидаты (не подтверждены): расовые силы Arknights Races — Griffin (`arks:griffin`: обнуляет один удар раз в 10 с, ресурс `arks:griffin/time`), Anasa (переключаемый навык, множитель −1), Cautus/Feline/Aslan (только падение); броня Finale/Wuzhou (Sarkaz); эффекты длительностью в десятки минут (Contingency Contract, Mahou Tsukai); ваниль: 60 тиков неуязвимости после входа.
 - Что снять у владельца в момент «нет урона» (F3 не нужен): `/effect give` не трогать; `/data get entity @s ActiveEffects`, `/data get entity @s Attributes`, `/data get entity @s abilities`, `/data get entity @s Invulnerable`, `/data get entity @s ForgeCaps` (раса/ресурсы Origins в `ForgeCaps`), `/origin get @s origins:origin`; какая надета броня; вернулась ли вода/Эндер и т. п.
+
+## R-003: ПК завис при загрузке ресурсов, mm-perf 0.2.1 (поток 41, 2026-10-18)
+Отчёт игрока (ник не приводим): компьютер завис при загрузке ресурсов, до главного меню; лог оборвался без ошибки, в нём не было ни Xmx, ни объёма ОЗУ.
+Вероятная причина — Xmx слишком близко к физической ОЗУ (своп), но по логу это не проверить. Что сделано:
+- `MemoryWatch.earlyCheck()` вызывается из конструктора мода (до загрузки ресурсов) и пишет `[mm_perf] память: Xmx …, Xms …, ОЗУ ПК …, свободно ОЗУ …, ядер …, GC …`
+  (из аргументов JVM берутся только `-Xmx/-Xms/-XX:+Use*GC`); при Xmx > 70 % ОЗУ или ОЗУ − Xmx < 4 ГБ — WARN по-русски с указанием, где уменьшить (Prism → Настройки → Java → Память).
+  Тост в главном меню остался, условие то же.
+- `pack/config/fml.toml`: `versionCheck = false` (Forge не ходит за обновлениями модов). Источник HTML-страницы GitHub в логе по jar не установлен; если после этого она останется — искать в конфиге Saturn/другого мода.
+- Рекомендация в `docs/friends.md`: Xmx не больше ~60 % ОЗУ, при 16 ГБ — не больше 8 ГБ.

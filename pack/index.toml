@@ -57,6 +57,10 @@ file = "config/fallingtree.json"
 hash = "e5ce3851728af563cb5b9bf8752dbb461b28340aec350d9b2fd8d9c9026c915f"
 
 [[files]]
+file = "config/fml.toml"
+hash = "c7936b1d0220c7b02546c2f6fae06e1e9fecb7f69eb47c2d394987141108ac56"
+
+[[files]]
 file = "config/iceandfire-common.toml"
 hash = "4e686e3616fc1885ce4380e95fe8c9d32be13536693da638e27b091372c0777b"
 
@@ -2699,8 +2703,8 @@ file = "mods/mm-compat-0.5.6.jar"
 hash = "2561a17122803e77a94146eacf89ec27b630d7ce160aaa8aa938ec52c5fd257f"
 
 [[files]]
-file = "mods/mm-perf-0.2.0-client.jar"
-hash = "12e174b7fa79ed79920e239516bf02ac287f0f25603d1e17868eb27e98913cfe"
+file = "mods/mm-perf-0.2.1-client.jar"
+hash = "254922e24275f8a4efc31b7008d2f384f171075863d3bd5d0081e57fcb1e53fe"
 
 [[files]]
 file = "mods/mnaoverpowered.pw.toml"
