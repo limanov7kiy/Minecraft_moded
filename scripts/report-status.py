@@ -34,14 +34,11 @@ COL_DESC = 'Описание для публичной страницы'
 COL_MOD = 'Мод для публичной страницы'
 COL_NOTE = 'Пояснение для публичной страницы'
 COL_CAT = 'Категория'
-# Только с флагом --public-names (по умолчанию выключено, решение владельца ещё не принято). Ник из формы не публикуется никогда.
-COL_SHOW_NAME = 'Показывать моё имя'
-COL_PUBLIC_NAME = 'Публичное имя'
 CATEGORIES = ('краш/вылет', 'фризы/лаги', 'мод/механика', 'модели/графика', 'звук/голос', 'сервер/вход', 'другое')
-TRUE_VALUES = ('да', 'yes', 'true', '1', '✓', 'истина')
-MAX_NAME = 30
 # Колонки, которые нужны только чтобы убедиться, что их содержимое не просочилось в публичные поля. Не публикуются.
-GUARD_COLUMNS = ('Ник / имя для связи', 'Псевдоним из диагностики')
+GUARD_COLUMNS = ('Ник / имя для связи', 'Псевдоним из диагностики', 'Адрес электронной почты', 'Адрес эл. почты',
+                 'Email Address', 'Контакт')
+MIN_TOKEN = 3
 
 PUBLIC_COLUMNS = (COL_NUMBER, COL_DESC, COL_MOD, COL_STATUS, COL_DATE, COL_VERSION, COL_NOTE)
 REQUIRED = (COL_NUMBER, COL_STATUS, COL_DATE, COL_DESC, COL_NOTE)
@@ -63,6 +60,10 @@ DANGER = [
     ('ссылка Диска/spark/формы', re.compile(
         r'spark\.lucko|drive\.google|docs\.google|forms\.gle|forms\.google|dropbox|mega\.nz|mediafire|'
         r'cdn\.discord|discord\.gg', re.I)),
+    ('упоминание @', re.compile(r'@\w')),
+    ('ссылка на профиль/мессенджер', re.compile(
+        r't\.me/|telegram\.(?:me|org)|discord\.com/users|steamcommunity|vk\.com|wa\.me/|\bsteamcommunity', re.I)),
+    ('markdown-ссылка', re.compile(r'\]\(')),
     ('e-mail', re.compile(r'\b[\w.+-]+@[\w-]+\.[\w.-]+\b')),
     ('псевдоним диагностики', re.compile(r'\bPlayer-[0-9a-f]{3,}\b|\bPlayer-xxxx\b|diag-Player', re.I)),
 ]
@@ -84,6 +85,27 @@ def danger_reason(value):
         if rx.search(value):
             return name
     return None
+
+
+def guard_tokens(values):
+    """Слова, которых не должно быть в публичных полях: ники, контакты, адреса.
+    Каждое значение режется по пробелам, запятым, @, / и прочей пунктуации; берутся токены от 3 знаков.
+    Из e-mail берутся адрес целиком, локальная часть и её слова."""
+    out = set()
+    for v in values:
+        v = (v or '').strip().lower()
+        if not v:
+            continue
+        pieces = [v] + re.split(r'[\s,;@/]+', v)
+        for part in list(pieces):
+            pieces += re.split(r'[^\w]+', part)
+        out.update(t for t in pieces if len(t) >= MIN_TOKEN)
+    return out
+
+
+def has_token(text, tokens):
+    low = text.lower()
+    return any(re.search(r'(?<!\w)' + re.escape(t) + r'(?!\w)', low) for t in tokens)
 
 
 def cell(s):
@@ -112,7 +134,7 @@ def load_rows(path):
         return list(reader)
 
 
-def build(rows, public_names=False):
+def build(rows):
     """Возвращает (публичные записи, число всех отчётов, предупреждения). Предупреждения без содержимого полей."""
     warnings = []
     records = []
@@ -149,18 +171,7 @@ def build(rows, public_names=False):
             if cat:
                 warnings.append('%s: категория не из списка — показана как «другое»' % number)
             cat = 'другое'
-        author = None
-        if public_names:
-            author = 'аноним'
-            name = g(COL_PUBLIC_NAME)
-            if g(COL_SHOW_NAME).lower() in TRUE_VALUES and name:
-                nick = g(GUARD_COLUMNS[0]).lower()
-                if len(name) > MAX_NAME or danger_reason(name):
-                    warnings.append('%s: публичное имя не подошло — показано «аноним»' % number)
-                elif nick and (name.lower() == nick or nick in name.lower()):
-                    warnings.append('%s: публичное имя совпадает с ником из формы — показано «аноним»' % number)
-                else:
-                    author = cell(name)
+        tokens = guard_tokens(g(gc) for gc in GUARD_COLUMNS)
         fields = {'описание': desc, 'мод': g(COL_MOD), 'версия/PR': version, 'пояснение': g(COL_NOTE)}
         bad = None
         for name, v in fields.items():
@@ -171,19 +182,15 @@ def build(rows, public_names=False):
             if r:
                 bad = 'в поле «%s» похоже на %s' % (name, r)
                 break
-            for gc in GUARD_COLUMNS:
-                secret = g(gc)
-                if len(secret) >= 3 and secret.lower() in v.lower():
-                    bad = 'в поле «%s» найден ник/псевдоним автора' % name
-                    break
-            if bad:
+            if has_token(v, tokens):
+                bad = 'в поле «%s» найден ник/контакт/адрес автора' % name
                 break
         if bad:
             warnings.append('%s: %s — не опубликована' % (number, bad))
             continue
         if status in ('не баг', 'отложено', 'нужны данные') and not fields['пояснение']:
             warnings.append('%s: для статуса «%s» нет публичного пояснения — опубликована без него' % (number, status))
-        records.append({'author': author, 'cat': cat, 'number': number, 'desc': cell(desc), 'mod': cell(fields['мод']) or '—', 'status': status,
+        records.append({'cat': cat, 'number': number, 'desc': cell(desc), 'mod': cell(fields['мод']) or '—', 'status': status,
                         'date': changed, 'ver': cell(version) or '—', 'note': cell(fields['пояснение']) or '—'})
     return records, counts, warnings
 
@@ -209,29 +216,27 @@ EMPTY_EXAMPLE = ('<!-- Пример строки:\n'
                  '-->\n')
 
 
-def table(recs, example=False, authors=False):
+def table(recs, example=False):
     head = TABLE_HEAD
-    if authors:
-        head = head.replace('| № |', '| № | Автор |', 1).replace('|---|', '|---|---|', 1)
     if not recs:
-        return head + '| — | Пока пусто |' + ' |' * (6 + authors) + '\n' + ('\n' + EMPTY_EXAMPLE if example else '')
+        return head + '| — | Пока пусто |' + ' |' * 6 + '\n' + ('\n' + EMPTY_EXAMPLE if example else '')
     out = head
     for r in recs:
-        out += '| %s | %s%s | %s | %s | %s | %s | %s | %s |\n' % (
-            r['number'], r['author'] + ' | ' if authors else '', r['desc'], r['cat'], r['mod'], r['status'],
+        out += '| %s | %s | %s | %s | %s | %s | %s | %s |\n' % (
+            r['number'], r['desc'], r['cat'], r['mod'], r['status'],
             r['date'].isoformat(), r['ver'], r['note'])
     return out
 
 
-def grouped(recs, order, example=False, authors=False):
+def grouped(recs, order, example=False):
     """Подразделы по статусам (порядок order), внутри — по номеру R. Если записей нет — одна пустая таблица."""
     if not recs:
-        return table([], example, authors)
+        return table([], example)
     out = ''
     for st in order:
         part = [r for r in recs if r['status'] == st]
         if part:
-            out += '### %s (%d)\n\n%s\n' % (st, len(part), table(part, authors=authors))
+            out += '### %s (%d)\n\n%s\n' % (st, len(part), table(part))
     return out
 
 
@@ -250,7 +255,7 @@ def breakdown(records):
     return out + ('\n' + m if m else '')
 
 
-def render(records, counts, authors=False):
+def render(records, counts):
     total = sum(counts.values())
     last = max((r['date'] for r in records), default=None)
     key = lambda r: int(r['number'][2:])
@@ -271,20 +276,18 @@ def render(records, counts, authors=False):
     return (HEADER + '## Сводка' + (' на %s' % last.isoformat() if last else '') + '\n\n' + summary + note +
             ('\n### По категориям и модам\n\n' + bd if bd else '') +
             '\n## Что ещё открыто\n\nГруппы по статусу, внутри — по номеру отчёта.\n\n' +
-            grouped(still_open, ('новый', 'принят', 'в работе', 'нужны данные', 'отложено'), True, authors) +
-            '\n## Что решено\n\n' + grouped(solved, ('исправлено', 'не баг', 'дубль'), False, authors))
+            grouped(still_open, ('новый', 'принят', 'в работе', 'нужны данные', 'отложено'), True) +
+            '\n## Что решено\n\n' + grouped(solved, ('исправлено', 'не баг', 'дубль'), False))
 
 
 def main(argv):
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
     ap.add_argument('csv', help='CSV-выгрузка Таблицы (вне репозитория)')
     ap.add_argument('--out', default=str(DEFAULT_OUT), help='куда писать (по умолчанию docs/report-status.md)')
-    ap.add_argument('--public-names', action='store_true',
-                    help='ВЫКЛЮЧЕНО по умолчанию: показывать «Публичное имя» тем, кто поставил «Показывать моё имя»; остальные — «аноним»')
     a = ap.parse_args(argv)
     rows = load_rows(a.csv)
-    records, counts, warnings = build(rows, a.public_names)
-    text = render(records, counts, a.public_names)
+    records, counts, warnings = build(rows)
+    text = render(records, counts)
     out = Path(a.out)
     fd, tmp = tempfile.mkstemp(dir=str(out.parent), prefix='.report-status-', suffix='.tmp')
     with os.fdopen(fd, 'w', encoding='utf-8', newline='\n') as f:

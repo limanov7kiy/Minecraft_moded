@@ -43,4 +43,20 @@ assert.ok(q.byNumber.includes('order by F') && !q.byNumber.includes('order by B'
 assert.ok(q.byAuthor.includes('order by B, F'));
 assert.ok(q.pending.includes("G <> 'исправлено'") && q.pending.includes("G <> 'не баг'") && q.pending.includes('group by B'));
 assert.ok(c.CFG.EXTRA.includes('Категория') && c.CFG.CATEGORIES.length === 7);
+// «По людям»: группировка по адресу (без регистра), без адреса — по нику; сначала у кого больше открытых
+const d2 = (x) => new Date(x);
+const people = c.groupPeople([
+  { email: 'Masha@example.com', nick: 'Маша', number: 'R-002', status: 'новый', statusChanged: d2('2026-10-10'), replySent: null },
+  { email: 'masha@example.com', nick: 'Маша К', number: 'R-001', status: 'исправлено', statusChanged: d2('2026-10-09'), replySent: d2('2026-10-12') },
+  { email: '', nick: 'Петя', number: 'R-003', status: 'исправлено', statusChanged: d2('2026-10-09'), replySent: d2('2026-10-10') },
+  { email: '', nick: 'петя', number: 'R-004', status: 'не баг', statusChanged: d2('2026-10-09'), replySent: d2('2026-10-11') },
+  { email: '', nick: 'Вова', number: '', status: '', statusChanged: null, replySent: null },
+]);
+assert.strictEqual(people.length, 2);
+assert.deepStrictEqual(people[0].slice(0, 5), ['Masha@example.com', 'Маша', 2, 1, 'R-001 (исправлено), R-002 (новый)']);
+assert.strictEqual(people[0][6], 'да');
+assert.deepStrictEqual(people[1].slice(2, 4).concat(people[1][6]), [2, 0, 'нет']);
+assert.strictEqual(+people[1][5], +d2('2026-10-11'));
+assert.strictEqual(c.emailColIndex_(['a', 'Адрес электронной почты']), 2);
+assert.strictEqual(c.emailColIndex_(['a']), 0);
 console.log('report-sheet: OK');

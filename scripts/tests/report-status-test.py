@@ -11,25 +11,25 @@ GEN = REPO / 'scripts' / 'report-status.py'
 H = ['Отметка времени', 'Ник / имя для связи', 'Псевдоним из диагностики', 'Что не работает', 'Ссылка spark', 'Ссылка на файлы',
      '№', 'Статус', 'Ответственный (поток/PR)', 'Исправлено в версии', 'Дата изменения',
      'Мод для публичной страницы', 'Описание для публичной страницы', 'Пояснение для публичной страницы', 'Категория',
-     'Показывать моё имя', 'Публичное имя']
+     'Адрес электронной почты']
 SECRET_NICK = 'ВымышленныйНикТест'
 SECRET_TEXT = 'ТекстАвтораСекрет'
 SECRET_LINK = 'spark.lucko.me/SECRETSPARK1'
 
 
-def row(num, status, desc, note='', mod='Мод Х', ver='', owner='', date='2026-10-17 10:00:00', nick=SECRET_NICK, diag='Player-ab12', cat='краш/вылет', show='', pub=''):
+def row(num, status, desc, note='', mod='Мод Х', ver='', owner='', date='2026-10-17 10:00:00', nick=SECRET_NICK, diag='Player-ab12', cat='краш/вылет', email=''):
     d = dict.fromkeys(H, '')
     d.update({'Отметка времени': '10/10/2026 12:00:00', 'Ник / имя для связи': nick, 'Псевдоним из диагностики': diag,
               'Что не работает': SECRET_TEXT, 'Ссылка spark': 'https://' + SECRET_LINK, 'Ссылка на файлы': 'https://drive.google.com/x',
               '№': num, 'Статус': status, 'Ответственный (поток/PR)': owner, 'Исправлено в версии': ver, 'Дата изменения': date,
               'Мод для публичной страницы': mod, 'Описание для публичной страницы': desc, 'Пояснение для публичной страницы': note,
-              'Категория': cat, 'Показывать моё имя': show, 'Публичное имя': pub})
+              'Категория': cat, 'Адрес электронной почты': email})
     return d
 
 
 ROWS = [
-    row('R-001', 'исправлено', 'Фриз при полёте', 'Обновитесь', ver='сборка от 2026-10-18', cat='фризы/лаги', show='да', pub='Лиса'),
-    row('R-002', 'новый', 'Пропадает предмет в сундуке', cat='мод/механика', show='да', pub=SECRET_NICK),
+    row('R-001', 'исправлено', 'Фриз при полёте', 'Обновитесь', ver='сборка от 2026-10-18', cat='фризы/лаги',),
+    row('R-002', 'новый', 'Пропадает предмет в сундуке', cat='мод/механика'),
     row('R-003', 'в работе', 'Краш при входе', owner='#97', date='10/16/2026 09:00:00'),
     row('R-004', 'не баг', 'Нет звука рации', 'Так задумано: рация включается клавишей'),
     row('R-005', 'отложено', 'Редкий мерцающий блок', 'Не сейчас, мало данных'),
@@ -43,6 +43,16 @@ ROWS = [
     row('R-013', 'принят', 'Ошибка в Player-ab12'),                          # псевдоним
     row('R-014', 'принят', 'Файл тут: https://drive.google.com/abc'),        # Диск
     row('R-015', 'принят', 'Строка | с трубой\nи переносом'),                # экранирование
+    row('R-016', 'принят', 'Вася нашёл краш', nick='Вася, tg @vasya_p'),     # слово из многословного контакта
+    row('R-017', 'принят', 'У аккаунта vasya_p вылет', nick='Вася, tg @vasya_p'),
+    row('R-018', 'принят', 'Пишет @someone про лаги'),                       # @handle
+    row('R-019', 'принят', 'Подробности [тут](mailto:a@b.example)'),         # markdown mailto
+    row('R-020', 'принят', 'Смотри [это](//evil.example/x)'),                # markdown без http
+    row('R-021', 'принят', 'Дата в чужом формате', date='18 Oct 2026'),
+    row('R-022', 'принят', 'У masha такой же вылет', email='masha.k@example.com'),   # локальная часть адреса
+    row('R-023', 'принят', 'Почта masha.k@example.com'),                     # любой e-mail
+    row('R-024', 'принят', 'Ссылка t.me/someone в чате'),
+    row('R-025', 'принят', 'Нормальное описание без личного', email='masha.k@example.com', nick='Маша К'),
     row('', 'принят', 'Без номера'),
 ]
 
@@ -66,14 +76,16 @@ def main():
         text = out.read_text(encoding='utf-8')
         err = p.stderr + p.stdout
         # никаких секретов ни в странице, ни в предупреждениях
-        for secret in (SECRET_NICK, SECRET_NICK.lower(), SECRET_TEXT, 'SECRETSPARK1', '198.51.100.7', 'C:\\Users', 'Player-ab12', 'drive.google'):
+        for secret in (SECRET_NICK, SECRET_NICK.lower(), SECRET_TEXT, 'vasya_p', 'masha.k', 'example.com', 'someone', 'SECRETSPARK1', '198.51.100.7', 'C:\\Users', 'Player-ab12', 'drive.google'):
             assert secret not in text, 'в странице: ' + secret
             assert secret not in err, 'в предупреждениях: ' + secret
         for ok in ('R-001', 'R-002', 'R-003', 'R-004', 'R-005', 'R-006', 'R-007', 'R-015'):
             assert '| %s |' % ok not in text.split('## Что ещё открыто')[0], ok
-        for bad in ('R-009', 'R-010', 'R-011', 'R-012', 'R-013', 'R-014'):
+        for bad in ('R-009', 'R-010', 'R-011', 'R-012', 'R-013', 'R-014', 'R-016', 'R-017', 'R-018', 'R-019', 'R-020', 'R-021', 'R-022', 'R-023', 'R-024'):
             assert '| %s |' % bad not in text, 'опубликована: ' + bad
             assert bad in err, 'нет предупреждения: ' + bad
+        assert 'R-021: непонятная дата' in err and 'Вася' not in err
+        assert '| R-025 |' in text
         assert 'R-008' in err and 'R-008 |' not in text
         assert 'Без номера' not in text and 'нет номера' in err
         # разделы: открытое и решённое
@@ -85,21 +97,13 @@ def main():
         assert '| R-003 | Краш при входе | краш/вылет | Мод Х | в работе | 2026-10-16 | #97 | — |' in open_part
         assert 'Строка / с трубой и переносом' in text
         # сводка: все 15 пронумерованных (R-001…R-015) считаются
-        assert '| 15 | 9 | 1 | 1 | 1 | 1 | 1 | 1 |' in text, [l for l in text.splitlines() if l.startswith('| 15')]
+        assert '| 25 | 19 | 1 | 1 | 1 | 1 | 1 | 1 |' in text, [l for l in text.splitlines() if l.startswith('| 25')]
         # группы по статусам и сводка по категориям/модам
         for h in ('### новый (', '### в работе (', '### отложено (', '### исправлено (', '### дубль ('):
             assert h in text, h
         assert text.index('### новый') < text.index('### принят') < text.index('### в работе')
         assert '| фризы/лаги | 0 | 1 |' in text and '| Мод Х |' in text
-        assert 'Автор' not in text.split('## Что ещё открыто')[1], 'имена выключены по умолчанию'
-        # --public-names: согласие + публичное имя; без согласия «аноним»; имя = ник форма не пропускает
-        out2 = t / 'out2.md'
-        p2 = run([str(src), '--out', str(out2), '--public-names'])
-        t2 = out2.read_text(encoding='utf-8')
-        assert '| R-001 | Лиса |' in t2 and '| R-003 | аноним |' in t2 and '| R-002 | аноним |' in t2
-        assert SECRET_NICK not in t2 and SECRET_NICK not in p2.stderr + p2.stdout
-        assert 'R-002: публичное имя совпадает с ником' in p2.stderr
-        # CSV внутри репозитория не принимается
+                # CSV внутри репозитория не принимается
         inside = REPO / 'scripts' / 'tests' / '_inside_test.csv'
         inside.write_text('x', encoding='utf-8')
         try:

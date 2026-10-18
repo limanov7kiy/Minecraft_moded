@@ -9,6 +9,7 @@
  *  - раз в день проверяет, что у всех строк есть номер (на случай сбоя триггера);
  *  - при правке статуса/ответственного/версии/заметки обновляет «Дату изменения»;
  *  - список статусов, подсветка зависших отчётов и лист «Сводка» (получено / обработано / висит / старше N дней);
+ *  - лист «По людям» (по адресу почты из формы, без адреса — по нику): сколько отчётов и открытых, номера, последний ответ, неотвеченные;
  *  - колонки для публичной страницы (заполняются вручную, без ников; сборка — scripts/report-status.py) и для ответов авторам;
  *    строка с оранжевой подсветкой = статус сменился, а ответ автору не отправлен.
  */
@@ -24,6 +25,8 @@ var CFG = {
                   'Мод для публичной страницы', 'Описание для публичной страницы', 'Пояснение для публичной страницы', 'Категория'],
   CATEGORIES: ['краш/вылет', 'фризы/лаги', 'мод/механика', 'модели/графика', 'звук/голос', 'сервер/вход', 'другое'],
   NICK: 'Ник / имя для связи',
+  // Форма с «Собирать адреса эл. почты: Подтверждённые» сама добавляет колонку; название зависит от языка. Нет колонки — setup() создаёт первую.
+  EMAIL_TITLES: ['Адрес электронной почты', 'Адрес эл. почты', 'Email Address'],
   MAX_ROWS: 2000
 };
 
@@ -50,6 +53,62 @@ function buildQueries(sheet, c) {
       " 'Автор', count(" + c.num + ") 'Открытых отчётов'" + '", 0)'
   };
 }
+
+// Колонка адреса: номер (с 1) или 0, если её нет.
+function emailColIndex_(header) {
+  for (var i = 0; i < CFG.EMAIL_TITLES.length; i++) { var k = header.indexOf(CFG.EMAIL_TITLES[i]); if (k >= 0) return k + 1; }
+  return 0;
+}
+
+// Лист «По людям»: группировка по адресу, а если адреса нет — по нику. Только для владельца.
+// rows — [{email, nick, number, status, statusChanged, replySent}]. Возвращает строки таблицы (без заголовка).
+function groupPeople(rows) {
+  var by = {}, order = [];
+  rows.forEach(function (x) {
+    if (!x.number) return;
+    var key = (x.email ? String(x.email).trim().toLowerCase() : '') || ('ник:' + String(x.nick || '').trim().toLowerCase());
+    if (!by[key]) { by[key] = { email: x.email ? String(x.email).trim() : '', nick: x.nick || '', items: [], lastReply: null, unanswered: false }; order.push(key); }
+    var g = by[key];
+    if (!g.nick && x.nick) g.nick = x.nick;
+    g.items.push(x);
+    if (x.replySent && (!g.lastReply || new Date(x.replySent) > new Date(g.lastReply))) g.lastReply = x.replySent;
+    if (needsReply(x.number, x.statusChanged, x.replySent)) g.unanswered = true;
+  });
+  var out = order.map(function (k) {
+    var g = by[k];
+    var open = g.items.filter(function (x) { return CFG.DONE.indexOf(x.status) < 0; }).length;
+    g.items.sort(function (a, b) { return a.number < b.number ? -1 : a.number > b.number ? 1 : 0; });
+    return { open: open, key: k, row: [g.email, g.nick, g.items.length, open,
+      g.items.map(function (x) { return x.number + ' (' + (x.status || 'без статуса') + ')'; }).join(', '),
+      g.lastReply || '', g.unanswered ? 'да' : 'нет'] };
+  });
+  out.sort(function (a, b) { return b.open - a.open || (a.key < b.key ? -1 : a.key > b.key ? 1 : 0); });
+  return out.map(function (x) { return x.row; });
+}
+
+function rebuildPeople_() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet(), sh = responsesSheet_();
+  var h = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0];
+  var last = sh.getLastRow();
+  var t = ss.getSheetByName('По людям') || ss.insertSheet('По людям');
+  t.clear();
+  t.getRange(1, 1, 1, 7).setValues([['Адрес эл. почты', 'Ник', 'Всего отчётов', 'Открытых', 'Отчёты и статусы', 'Последний ответ отправлен', 'Есть неотвеченные']]);
+  t.setFrozenRows(1);
+  if (last < 2) return;
+  var data = sh.getRange(2, 1, last - 1, sh.getLastColumn()).getValues();
+  var col = function (title) { return h.indexOf(title); };
+  var cE = emailColIndex_(h) - 1;
+  var rows = data.map(function (r) {
+    return { email: cE >= 0 ? r[cE] : '', nick: r[col(CFG.NICK)], number: r[col('№')], status: r[col('Статус')],
+             statusChanged: r[col('Статус изменён (дата)')], replySent: r[col('Ответ отправлен (дата)')] };
+  });
+  var res = groupPeople(rows);
+  if (res.length) t.getRange(2, 1, res.length, 7).setValues(res);
+  t.autoResizeColumns(1, 7);
+}
+
+// Меню для ручного обновления (на случай правок статусов): простой триггер, без прав.
+function onOpen() { SpreadsheetApp.getUi().createMenu('Отчёты').addItem('Обновить «По людям»', 'rebuildPeople_').addToUi(); }
 
 // Нужен ли ответ автору: статус менялся (или отчёт новый), а ответ не отправлен или отправлен раньше смены статуса.
 function needsReply(number, statusChanged, replySent) {
@@ -102,7 +161,7 @@ function stamp_(sh, row) {
 function onFormSubmit(e) {
   var lock = LockService.getDocumentLock();
   lock.waitLock(30000);
-  try { stamp_(responsesSheet_(), e.range.getRow()); } finally { lock.releaseLock(); }
+  try { stamp_(responsesSheet_(), e.range.getRow()); rebuildPeople_(); } finally { lock.releaseLock(); }
 }
 
 // Ежедневная сверка: у каждой строки с отметкой времени есть номер и статус.
@@ -115,6 +174,7 @@ function fillMissing() {
     for (var r = 2; r <= last; r++) {
       if (sh.getRange(r, 1).getValue()) stamp_(sh, r);
     }
+    rebuildPeople_();
   } finally { lock.releaseLock(); }
 }
 
@@ -138,6 +198,7 @@ function setup() {
   CFG.EXTRA.forEach(function (t) {
     if (h.indexOf(t) < 0) { sh.getRange(1, sh.getLastColumn() + 1).setValue(t); h = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0]; }
   });
+  if (!emailColIndex_(h)) sh.getRange(1, sh.getLastColumn() + 1).setValue(CFG.EMAIL_TITLES[1]);
   sh.setFrozenRows(1);
   var cS = colIndex_(sh, 'Статус'), cD = colIndex_(sh, 'Дата изменения'), cN = colIndex_(sh, '№');
 
@@ -193,6 +254,7 @@ function setup() {
   who.clear();
   who.getRange(1, 1).setFormula(qs.pending);
   who.autoResizeColumns(1, 2);
+  rebuildPeople_();
 
   sh.getRange(2, cCat, CFG.MAX_ROWS, 1).setDataValidation(
     SpreadsheetApp.newDataValidation().requireValueInList(CFG.CATEGORIES, true).setAllowInvalid(true).build());
@@ -204,4 +266,4 @@ function setup() {
   fillMissing();
 }
 
-if (typeof module !== 'undefined') { module.exports = { formatNumber: formatNumber, isStale: isStale, needsReply: needsReply, buildQueries: buildQueries, summarize: summarize, letter_: letter_, CFG: CFG }; }
+if (typeof module !== 'undefined') { module.exports = { formatNumber: formatNumber, isStale: isStale, needsReply: needsReply, buildQueries: buildQueries, groupPeople: groupPeople, emailColIndex_: emailColIndex_, summarize: summarize, letter_: letter_, CFG: CFG }; }
