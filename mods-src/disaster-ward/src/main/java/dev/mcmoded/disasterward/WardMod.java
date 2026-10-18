@@ -33,8 +33,9 @@ public class WardMod {
         ITEMS.register(modBus);
         modBus.addListener(WardMod::onTab);
         context.registerConfig(ModConfig.Type.COMMON, WardConfig.SPEC);
-        modBus.addListener((net.minecraftforge.fml.event.config.ModConfigEvent.Reloading e) -> WardGuard.resetKinds());
+        modBus.addListener((net.minecraftforge.fml.event.config.ModConfigEvent.Reloading e) -> { WardGuard.resetKinds(); OriStorm.resetConfig(); });
         MinecraftForge.EVENT_BUS.register(WardEvents.class);
+        MinecraftForge.EVENT_BUS.register(OriStorm.class);
     }
 
     private static void onTab(BuildCreativeModeTabContentsEvent e) {

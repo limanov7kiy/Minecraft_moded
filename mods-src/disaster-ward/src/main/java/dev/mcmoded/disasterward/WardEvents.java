@@ -52,6 +52,7 @@ public final class WardEvents {
             });
             if (n[0] >= max) { e.setCanceled(true); return; }
         }
+        if (OriStorm.denySpawn(level, e.getEntity())) { e.setCanceled(true); return; }
         if (WardGuard.kind(e.getEntity().getType()) != WardGuard.Kind.NONE
                 && WardApi.isProtected(level, e.getEntity().getX(), e.getEntity().getZ(), WardConfig.EDGE_MARGIN.get())) {
             e.setCanceled(true);
