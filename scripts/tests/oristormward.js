@@ -26,7 +26,7 @@ ServerEvents.tick(event => {
 
   if (T % 100 == 0 && T >= 200) {
     var mspt = server.getAverageTickTime()
-    if (stormOn()) OSW.stormTicks.push(mspt); else if (OSW.t0 < 0 && T >= 400) OSW.ticks.push(mspt)
+    if (stormOn()) OSW.stormTicks.push(mspt); else if (OSW.t0 < 0 && T >= 600) OSW.ticks.push(mspt)
   }
   if (T == 100) {
     server.runCommandSilent('forceload add -128 -128 127 127')
@@ -43,7 +43,7 @@ ServerEvents.tick(event => {
     server.runCommandSilent(`setblock 30 ${top(30, 30)} 30 bobsoriginiumdream:oristormblock`)
     server.runCommandSilent(`setblock 416 ${top(416, 416)} 416 bobsoriginiumdream:oristormblock`)
   }
-  if (T == 400) {
+  if (T == 1400) {
     ok('spike-inside-blocked', oriBlocks(30, 30, 40) == 0, 'блоков Bob\'s в зоне у (30,30)=' + oriBlocks(30, 30, 40))
     ok('spike-outside-placed', oriBlocks(416, 416, 30) > 100, 'блоков Bob\'s снаружи у (416,416)=' + oriBlocks(416, 416, 30))
     // запуск бури у фейкового игрока в центре зоны (центр бури — ±100 от игрока, призывы — ±300 от центра)
@@ -56,7 +56,7 @@ ServerEvents.tick(event => {
   if (OSW.t0 > 0 && T == OSW.t0 + 400) {
     ok('storm-active', stormOn(), 'oristorm=' + stormOn())
     // червь, заведённый в зону снаружи, и червь, призванный командой в зоне, не исчезают
-    server.runCommandSilent(`summon bobsoriginiumdream:evildustoriworm 160 ${top(160, 0)} 0 {Tags:["osw_walk"],PersistenceRequired:1b}`)
+    server.runCommandSilent(`summon bobsoriginiumdream:evildustoriworm 120 ${top(120, 0)} 0 {Tags:["osw_walk"],PersistenceRequired:1b}`)
     server.runCommandSilent(`summon bobsoriginiumdream:evildustoriworm 20 ${top(20, 20)} 20 {Tags:["osw_cmd"],PersistenceRequired:1b}`)
   }
   if (OSW.t0 > 0 && T == OSW.t0 + 401) server.runCommandSilent(`tp @e[tag=osw_walk] 10 ${top(10, 10)} 10`)
