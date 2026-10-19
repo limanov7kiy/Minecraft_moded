@@ -136,7 +136,7 @@ public final class WardEvents {
         if (t % 20 == 0 && WardConfig.STEER_STORMS.get()) WardApi.steerStorms(level, wards);
         int r = WardConfig.RADIUS.get(), m = WardConfig.EDGE_MARGIN.get(), reach = r + m;
         for (BlockPos p : wards) {
-            if (!level.isLoaded(p)) continue;
+            // чанк самого оберега может быть выгружен (его держат не игроки, а далёкий угол зоны с принудительной загрузкой) — зону проверяем всё равно
             AABB box = new AABB(p.getX() - reach, level.getMinBuildHeight(), p.getZ() - reach,
                     p.getX() + reach + 1, level.getMaxBuildHeight(), p.getZ() + reach + 1);
             for (Entity en : level.getEntities((Entity) null, box, x -> true)) {
