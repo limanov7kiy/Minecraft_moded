@@ -59,41 +59,9 @@ _Обзор категории — вручную, следующие этапы
 - **В сборке:** клиент
 <!-- auto:end card:aether-emissivity -->
 
-### Как играть
+### Что даёт игроку
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Только клиентский аддон к The Aether: добавляет светящиеся (эмиссивные) слои текстурам Эфира — амброзиевая руда и факел, алтарь Солнца, камни стражей и ангельский камень, а по настройкам клиентского конфига — фениксову броню, ботинки стража, Щит отталкивания (`emissive_phoenix_armor`, `emissive_sentry_boots`, `emissive_shield_of_repulsion`). Геймплей не меняет. Нужен только игроку (side `client`); наших конфигов в `pack/config` нет.
 
 ## Aether Addon: Enhanced Extinguishing
 
@@ -103,41 +71,9 @@ _Пока пусто — заполнит один из следующих эт�
 - **Что это:** Аддон к The Aether: единообразно запрещает огонь в Эфире — у блоков появляются «потушенные» варианты. _(источник: docs сборки)_
 <!-- auto:end card:aether-enhanced-extinguishing -->
 
-### Как играть
+### Что даёт игроку
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Аддон к The Aether: добавляет «потушенные» варианты блоков, чтобы запрет огня в Эфире действовал последовательно. Своих предметов, мобов и команд не добавляет; наших конфигов нет.
 
 ## Aether Addon: Protect Your Moa
 
@@ -147,41 +83,9 @@ _Пока пусто — заполнит один из следующих эт�
 - **Что это:** Аддон к The Aether: снаряжение для мо — сундуки на спину и крафтовая броня для мо. _(источник: docs сборки)_
 <!-- auto:end card:aether-protect-your-moa -->
 
-### Как играть
+### Что даёт игроку
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Аддон к The Aether (Protect Your Moa): снаряжение для моа — сундук на моа и **броня для моа** шести видов: `leather_moa_armor`, `iron_moa_armor`, `golden_moa_armor`, `diamond_moa_armor`, `zanite_moa_armor`, `gravitite_moa_armor` (6 предметов, 6 достижений). У Deep Aether есть дополнительная `skyjade_moa_armor` ([Deep Aether](#deep-aether)). Мобов и команд не добавляет; наших конфигов нет.
 
 ## Aether Addon: Treasure Reforging
 
@@ -191,41 +95,10 @@ _Пока пусто — заполнит один из следующих эт�
 - **Что это:** Аддон к The Aether: сокровищное снаряжение из данжей переплавляется в сырьё, из которого новыми шаблонами кузнеца куётся другое сокровищное снаряжение. _(источник: docs сборки)_
 <!-- auto:end card:aether-treasure-reforging -->
 
-### Как играть
+### Что даёт игроку
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Аддон к The Aether (Treasure Reforging): снаряжение из сокровищниц подземелий можно переплавить в сырьё — **Pyral** (`pyral_ingot`, `pyral_shard`, `pyral_block`), **Valkyrum** (`valkyrum_ingot`, `valkyrum_block`), **Neptune Mesh** (`neptune_mesh`) — и «перековать» через кузницу с шаблонами в другое снаряжение: улучшения `phoenix_upgrade` (к броне гравитита; ингредиент — Pyral), `valkyrie_upgrade` (к снаряжению гравитита; Valkyrum), `neptune_upgrade` (к броне зенита; Neptune Mesh). Достижений — 32.
+**Особенность сборки**: три рецепта крафта самих шаблонов (`valkyrie`/`phoenix`/`neptune_upgrade_smithing_template`) отключены нашим KubeJS (`forge:false`, ингредиенты из отсутствующих модов; [compat.md](../compat.md), [jei.md](../jei.md)) — остальная механика мода работает.
 
 ## Aether Villages
 
@@ -236,41 +109,11 @@ _Пока пусто — заполнит один из следующих эт�
 - **В наших docs:** [compat.md](../compat.md) (1)
 <!-- auto:end card:aether-villages -->
 
-### Как играть
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
+Аддон к The Aether (Aureljz, DiamondTown): «величественные храмы и деревни в небесах Эфира». Одна структура — `aether_villages:olympic_citadel` (Olympic Citadel), расстановка `random_spread`: шаг 70, разделение 65 чанков. Искать: `/locate structure aether_villages:olympic_citadel` (в Эфире). Лут и теги — свои (`aether_villages:collections/ancient_aether_biomes` убирается нашим KubeJS из недостающих ссылок, [compat.md](../compat.md)). Крупные шаблоны структуры тяжелы для генерации (`olympic_citadel_main_0` — 1,4 млн, [compat.md](../compat.md)).
 
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Главный шаблон `olympic_citadel_main_0` огромный (≈1,4 млн блоков, почти весь — воздух): для него в `mm-compat` стоит исправление копирования шаблонов при генерации (иначе мусор в куче на каждый чанк структуры), см. [compat.md](../compat.md).
 
 ## Aether: Lost Content Addon
 
@@ -283,39 +126,42 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Дополнение к The Aether: возвращает вырезанное из ранних версий содержимое (Lost Aether Content). Отдельного портала нет — играете в `aether:the_aether`.
+1. **Платиновое подземелье** (`lost_aether_content:platinum_dungeon`, ключ `platinum_key`, достижение «Ascended!») — четвёртое подземелье Эфира; босс **Король эрвалей** (`aerwhale_king`), HP — [bosses.md](../bosses.md#lost_aether_content).
+2. Через `forge/biome_modifier` `add_pink_aerclouds` в Эфире появляются розовые аэрклауды.
+3. Мобы и вещи этого мода участвуют в наших заражениях Spore (список `aether:*`, Redux/Deep/Ancient/Lost) — [compat.md](../compat.md).
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+| id | Что делает |
+|---|---|
+| `phoenix_sword`, `phoenix_pickaxe/axe/shovel/hoe`, `phoenix_cape` | Огненный набор |
+| `power_gloves`, `agility_boots`, `swetty_mask`, `invincibility_gem`, `flaming_gemstone` | Аксессуары и предметы |
+| `sentry_shield`, `zanite_shield`, `gravitite_shield`, `shield_of_emile` | Щиты |
+| `orange_moa_egg`, `brown_moa_egg` | Новые цвета моа |
+| `music_disc_legacy`, `music_disc_sovereign_of_the_skies` | Пластинки |
+
+Блоки (22) — материалы подземелья и платиновый декор.
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
+`aerwhale_king` (босс), `zephyroo`; снаряды `falling_rock`, `cloud_shot`.
 
 ### Эффекты
 
-_Пока пусто — заполнит один из следующих этапов._
+Своих нет.
 
 ### События
 
-_Пока пусто — заполнит один из следующих этапов._
+Своих нет.
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
+`/locate structure lost_aether_content:platinum_dungeon` (в Эфире).
 
 ### Команды/гамерулы
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Своих команд нет.
 
 ## Alex's Caves
 
@@ -393,39 +239,49 @@ Candy: `candicorn`, `caniac`, `caramel_cube`, `gingerbread_man`, `gum_worm`, `gu
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Дополнение к The Aether (Ancient Aether, Team Aether-аддон): новые «древние» регионы Эфира, структуры и материал валькирум. Отдельного портала нет — играете в `aether:the_aether`.
+1. **Биомы** (`ancient_aether:*`, 13): `skyroot_jungle`, `sakura_jungle`, `sun_forest`, `wyndcap_taiga`, `festive_wyndcap_taiga`, `wyndcap_highland`, `wyndcap_peaks`, `elevated_forest`, `elevated_clearing`, `elevated_caverns`, `frozen_caverns`, `holystone_caverns`, `sky_lake`.
+2. **Подземелья**: `ancient_dungeon` (Древнее; ключ `ancient_dungeon_key`, «Shut-Down»), Лаборатория стражей (`sentry_laboratory`; ключ `laboratory_dungeon_key`, босс **Мутировавший эхор**, «Peace, Love and Houseplants»). Прототип слайдера — достижение «Out of Order».
+3. **Валькирум** (`valkyrum`, «What Clouds are made of») — набор брони и инструментов, копьё `valkyrum_lance`; **божественные** инструменты `divine_*` («The Pickaxe of Gods»).
+4. Цвета моа: `*_moa_egg` (burgundy, lavender, sakura, sky_blue, teal, turquoise, violet) — достижение «Rainbow Omelette».
+5. Наш KubeJS отключает рецепт `ancient_aether:ancient_rune` (его ингредиент из отсутствующего мода) — см. [compat.md](../compat.md); босс — в [bosses.md](../bosses.md#ancient_aether).
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+| id | Что делает |
+|---|---|
+| `valkyrum`, `valkyrum_*` | Материал и комплект (меч, инструменты, броня, перчатки, кольцо, кулон, копьё) |
+| `divine_axe/hoe/pickaxe/shovel`, `ancient_sword` | Мощные инструменты и меч |
+| Кольца и кулоны: `ancient_`, `growth_`, `hermes_`, `warrior_`, `valkyrum_` | Аксессуары (Curios) |
+| `shield_of_inebriation`, `shield_of_remediation`, `pink_cape`, `strength_stone` | Щиты и прочее |
+| `aeronautic_dart_shooter`, `slammberry`, `grapes`, `festive_gummy_swet` | Оружие и еда |
+| `valkyrie_brick`, `valkyrie_clay_ball` | Стройматериалы |
+
+Блоки: 156 (деревья Sakura/Wyndcap, камни стражей, декор лагерей валькирий и др.).
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
+`aeronautic_leaper`, `fluffalo` (стригущийся), `festive_swet`, `slammroot`, `mutated_aechor_plant` (босс лаборатории), `mimic` (из Aether). Снаряды: `aeronautic_dart`, `mutated_aechor_needle`, `spore_bomb`, `wind_blow`, `remedy_crystal`.
 
 ### Эффекты
 
-_Пока пусто — заполнит один из следующих этапов._
+`ancient_aether:divine_protection`, `natures_boost`.
 
 ### События
 
-_Пока пусто — заполнит один из следующих этапов._
+Своих событий нет.
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
+`/locate structure ancient_aether:<id>` (в Эфире, 8 структур): `ancient_dungeon`, `holystone_ruin`, `mysterious_henge`, `sentry_laboratory`, `sun_well`, `valkyrie_camp_skyroot`, `valkyrie_camp_wyndcaps`, `valkyrie_settlement_skyroot`.
 
 ### Чары
 
-_Пока пусто — заполнит один из следующих этапов._
+Своих чар нет.
 
 ### Команды/гамерулы
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Своих команд нет. Конфиг мода: `ancient_aether_region_weight`, `wind_blow_duration`, подсказки (`rarity_system`, `moa_egg_tooltips`), подмена экрана заголовка. В `pack/config` нашего файла нет.
 
 ## Blue Skies
 
@@ -687,39 +543,51 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Большое дополнение к The Aether (Team Aether / Deep Aether): новые биомы Эфира, четвёртое подземелье с боссом, металлы и броня. Своего портала нет — играете в `aether:the_aether`.
+1. **Биомы** (`deep_aether:*`, 9): `aerglow_forest`, `blue_aerglow_forest`, `mystic_aerglow_forest`, `aerlavender_fields`, `golden_grove`, `golden_heights`, `luminescent_forest`, `yagroot_swamp`, `cloud`.
+2. **Подземелье** `deep_aether:brass_dungeon` (Латунное) — босс **Eye of the Storm** (`eots_controller`, достижение «Storm Ruler»), ключ `brass_dungeon_key`; запертые сундуки открываются латунным ключом. Боссы Эфира с HP — [bosses.md](../bosses.md#deep_aether).
+3. **Структурный компас** (shift+ПКМ — выбор структуры, ПКМ — поиск; клавиша переключает HUD) указывает на найденные структуры.
+4. **Материалы/ступени**: `skyjade` → `stratus` (ингот, шаблон кузницы `stratus_upgrade` к гравититу) → `stormforged` (шаблон `stormforged_upgrade`, броня `stormforged_*`); `oratie_ingot`, `squall_plate`, `afterburner`.
+5. Общая совместимость — [compat.md](../compat.md).
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+| id | Что делает |
+|---|---|
+| `skyjade_*`, `stratus_*`, `stormforged_*` | Наборы инструментов и брони (+ щиты, перчатки, кольца) |
+| `storm_sword`, `storm_bow`, `blade_of_luck` | Особое оружие |
+| `slider_eye` | Глаз Слайдера: способность «Slider Slam» (клавиша «Activate Slider Slam») |
+| `aercloud_necklace`, `cloud_cape`, `floaty_scarf`, `wind_shield`, `spooky_ring`, `medal_of_honor`, `sun_core` | Аксессуары и прочее |
+| `aerwhale_saddle`, `skyjade_moa_armor`, `moa_fodder` | Седло эрваля, броня и еда для моа |
+| `antidote`, `enchanted_antidote`, `poison_bucket`, `virulent_quicksand_bucket` | Яд/противоядие: ядовитая жидкость и зыбучий песок |
+| `raw_quail`/`cooked_quail`, `raw/cooked_aerglow_fish`, `*_squash_slice`, `goldenleaf_berries` | Еда |
+| `music_disc_*` | 7 пластинок |
+
+Блоки: `aseterite`, `clorite` (с полированными и кирпичными вариантами), `skyjade_ore`, дерево и растения новых биомов (всего 330 блоков).
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
+`quail` (перепёлка), `aerglow_fish`, `venomite`, `baby_zephyr`, `gentle_wind`, `wind_crystal`; босс `eots_controller` / `eots_segment` (Eye of the Storm).
 
 ### Эффекты
 
-_Пока пусто — заполнит один из следующих этапов._
+`deep_aether:valkyrie_valor` («Valkyries' Grace») и `deep_aether:moa_bonus_jumps`.
 
 ### События
 
-_Пока пусто — заполнит один из следующих этапов._
+Своих событий нет.
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
+`/locate structure deep_aether:brass_dungeon` (в Эфире). Прочие объекты генерируются как фичи (`forge/biome_modifier`: `aseterite`, `clorite`, `echaisy`, `golden_aspess`, `sky_tulips`, `skyjade_ore`, `sterling_aercloud`).
 
 ### Чары
 
-_Пока пусто — заполнит один из следующих этапов._
+`deep_aether:gloves_reach` («Gloves Block Reach» — дальность блоков перчатками).
 
 ### Команды/гамерулы
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Своих команд нет. Клавиши: «Activate Slider Slam», «Hide Tooltips», «Toggle Skyjade Transparency».
 
 ## Deeper and Darker
 
