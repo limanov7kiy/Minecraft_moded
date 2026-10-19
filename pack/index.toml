@@ -70,7 +70,7 @@ hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "b597a6e105f455c4a60a009148cde13f7c5d6cd6e13ad72561a22d0bf4a5030d"
+hash = "c4912291343a033098249adccab7bc8e3564e09bbc2a13e4c06558c8de11a746"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -2707,8 +2707,8 @@ file = "mods/mm-compat-0.5.6.jar"
 hash = "2561a17122803e77a94146eacf89ec27b630d7ce160aaa8aa938ec52c5fd257f"
 
 [[files]]
-file = "mods/mm-perf-0.3.0-client.jar"
-hash = "76e7bf3e96796579273a14801f0cfd85a80a8700eb0c488fc1bb957708eb20b8"
+file = "mods/mm-perf-0.3.1-client.jar"
+hash = "34b42507520be6f256fe2364a9fce77d3e07f8ccaa174c3af26122c579d794e0"
 
 [[files]]
 file = "mods/mnaoverpowered.pw.toml"
