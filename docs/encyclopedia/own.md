@@ -552,7 +552,7 @@ Soiled, Corroded, Infested, Fragile («Смертное касание»), Immol
 <a id="eso-forge"></a>
 - **Версия:** 1.2.2 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/eso-forge-1.20.1-1.2.2-mmport.jar`
 - **Что это:** Enchanting System Overhaul: стол зачарования без рандома — чары сначала изучают из найденных книг, потом накладывают за материалы; порт под моды брони сборки. _(источник: docs сборки)_
-- **В наших docs:** [enchanting-table.md](../enchanting-table.md) (3), [friends.md](../friends.md) (1), [roadmap.md](../roadmap.md) (1)
+- **В наших docs:** [enchanting-table.md](../enchanting-table.md) (3), [compat.md](../compat.md) (1), [friends.md](../friends.md) (1), [roadmap.md](../roadmap.md) (1)
 <!-- auto:end card:eso-forge -->
 
 ### Как играть
