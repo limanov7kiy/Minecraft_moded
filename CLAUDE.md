@@ -49,6 +49,12 @@
   После каждого изменения набора модов прогоняй его и записывай находки в `docs/compat.md`.
 - `scripts/test-client.sh <папка вне репо>` — клиент из `dist/*.mrpack` под Xvfb + llvmpipe до главного меню
   (`CLIENT OK`); вход на сервер и что смотреть глазами — `docs/client-checklist.md`, находки — compat.md «Проверка клиента».
+- **Версия сборки**: `pack/pack.toml` (`version`) и `pack/config/mm_pack_version.txt` — одна и та же строка вида `ГГГГ.ММ.ДД-N`
+  (дата + номер за день: `2026.10.19-1`, следующий PR того же дня — `-2`). **Каждый PR, меняющий `pack/` (моды, конфиги, скрипты KubeJS),
+  поднимает версию в обоих местах** (потом `packwiz refresh`); PR только с docs/scripts/mods-src версию не трогает. Файл версии — в `config/`,
+  потому что `pack.toml` до игрока не доходит (packwiz-installer его не кладёт в экземпляр, в `.mrpack` его нет), а `config/` идёт и клиенту, и серверу.
+  Клиентский мод mm-perf показывает версию в главном меню, в заголовке окна и в логе (`[mm_perf] версия сборки`); `scripts/check-pack-version.py`
+  (его зовут `export-pack.sh` и `test-server.sh`) падает, если версии разошлись или не вида `ГГГГ.ММ.ДД-N`.
 - `scripts/export-pack.sh` — раздача: `dist/*.mrpack` (клиент) и `dist/*-server.zip` (сервер); инструкция для друзей — `docs/friends.md`.
 - Сторону мода (`side` в `pack/mods/*.pw.toml`) packwiz берёт с Modrinth; если она неверна — поправь вручную.
 - Свои моды и патчи: `mods-src/` (Gradle, ModDevGradle legacyforge + Parchment, как у Redux) и `patches/`.

@@ -69,6 +69,10 @@ file = "config/jei/client/default/jei-client.ini"
 hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
 
 [[files]]
+file = "config/mm_pack_version.txt"
+hash = "d4fd5804329afc886b9c3f5e4b6f26565568da48d45bcc73a78f700acf570743"
+
+[[files]]
 file = "config/modernfix-mixins.properties"
 hash = "bc2e8a7a2f7a70796a6e2e97f3410275be73879cf576b463bcd3e429a5922a9f"
 
@@ -2703,8 +2707,8 @@ file = "mods/mm-compat-0.5.6.jar"
 hash = "2561a17122803e77a94146eacf89ec27b630d7ce160aaa8aa938ec52c5fd257f"
 
 [[files]]
-file = "mods/mm-perf-0.2.1-client.jar"
-hash = "254922e24275f8a4efc31b7008d2f384f171075863d3bd5d0081e57fcb1e53fe"
+file = "mods/mm-perf-0.3.0-client.jar"
+hash = "76e7bf3e96796579273a14801f0cfd85a80a8700eb0c488fc1bb957708eb20b8"
 
 [[files]]
 file = "mods/mnaoverpowered.pw.toml"
