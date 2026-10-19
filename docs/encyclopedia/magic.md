@@ -64,39 +64,30 @@ _Обзор категории — вручную, следующие этапы
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Версия 3.0.35: аддон к [Blood Magic](#blood-magic) (описание в мете: «new tools, mechanics, and automation to blood magic rituals and systems»). Требует Blood Magic.
+- Добавляет ступень **Transcendent Blood Orb** (`blood_orb_transcendent`) сверху обычных шаров, новые **Сигилы** и **Реагенты** (`reagent*` — вставляются в сигилы/ритуалы).
+- Оружие и снаряжение «воли»: копья (`spear_iron`, `spear_diamond`, `spear_bound`, `spear_sentient`), `sentient_bow`, `hellforged_bow`, `sentient_shield`, `runic_sentient_scythe`, `hand_of_death`.
+- Инструменты: `sanguine_diviner` (расширенный ритуальный диагност), `ritual_designer`, `key_binding`.
+- Растения и камни: Блод-вуд (`blood_wood`, `blood_sapling`, `blood_leaves`, `blood_core`), `willful_stone` во всех цветах, `crystallized_demon_will_block`, `diabolical_fungi`, `imperfect_ritual_stone`, `arcane_rune`, `rune_unleashed_nature`.
+- Добавляет атрибуты (`animus:`): `unarmed_damage`, `bonus_sacrifice`, `bonus_self_sacrifice`, `bonus_demon_will`, `sigil_cost_reduction`.
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+| id (`animus:…`) | Что даёт |
+|---|---|
+| `blood_orb_transcendent` | Шар высшей ступени |
+| `sigil_builder`, `sigil_chains`, `sigil_consumption`, `sigil_leach`, `sigil_storm`, `sigil_heavenly_wrath`, `sigil_remedium`, `sigil_reparare`, `sigil_transposition`, `sigil_free_soul`, `sigil_temporal_dominance`, `sigil_equivalency`, `sigil_boundless_nature`, `sigil_monk`, `sigil_crimson_will` | Новые Сигилы (названия — в ключах; описание — в игровых подсказках и в JEI) |
+| `reagent*` | Реагенты для этих сигилов |
+| `spear_*`, `sentient_bow`, `hellforged_bow`, `sentient_shield`, `hand_of_death` | Оружие |
+| `blood_apple`, `fragment_healing`, `blood_infused_spellbook`, `mob_soul` | Расходники и книги |
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
+Сущности — только снаряды: `animus:sentient_arrow`, `animus:hellforged_arrow`.
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+В `pack/config` отдельных файлов нет. Мод русифицирован — [russification.md](../russification.md), в JEI есть свой плагин — [jei.md](../jei.md).
 
 ## ArcaneAdditions
 
@@ -473,39 +464,66 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Мод (автор Bailey Holl, модид `ars_nouveau`, версия 4.12.7) строит магию на **Источнике (Source)** и конструкторе заклинаний из **глифов**. Книга-гид в игре — Worn Notebook (`worn_notebook`, «Потёртый блокнот»).
+- **Книга заклинаний** (`novice_spell_book` → `apprentice_spell_book` → `archmage_spell_book`) открывается клавишей «Open Book»; в ней заклинание собирается как цепочка: форма (проецирует: себя, прикосновение, снаряд…), эффекты и усилители (Amplify, AOE, Extend Time и т. д.). В jar 164 глифа с описаниями. Быстрый каст по слотам — клавиши `Quick Cast Slot 01…10`, переключение слотов — `Next/Previous Slot`.
+- **Изучение глифов** — на **Столе глифов** (`scribes_table`) и через **Стол изменений** (`alteration_table`); глифы добываются в основном крафтом из **Исходных самоцветов** (`source_gem`) и сущностей/материалов по ходу прогрессии.
+- **Источник** хранится в **Кувшинах** (`source_jar`), течёт по **Реле** (`relay`, `relay_splitter`, `relay_collector`, `relay_deposit`, `relay_warp`) и вырабатывается **Источниками-связями** (`agronomic_sourcelink`, `alchemical_sourcelink`, `mycelial_sourcelink` и др.) и ритуалами; питает **Зачаровывающий аппарат** (`enchanting_apparatus`) на **Арканных пьедесталах** (`arcane_pedestal`) — там делается снаряжение и усилители.
+- **Фамильяры и спутники:** Старбанкл, Виксен-кузнец (Wixie), Вирлиспрайт, Дрюгми, Книжный змей, Аметистовый голем — приручаются/создаются через амулеты-обереги (`*_charm`) и настраиваются **Жезлом Доминиона** (`dominion_wand`).
+- **Ритуалы** (`ritual_brazier` + `ritual_*`): проводятся на Ритуальной жаровне, список — см. ниже.
+- Как работает связка Ars Nouveau с аддонами сборки: Ars Elemental, Ars Technica, Ars Instrumentum, Ars Creo, Ars Controle, Ars Additions, Ars Artifice, Ars Ocultas, Too Many Glyphs — карточки на этой странице. Шум «Incorrect key … was corrected» при первом запуске — [compat.md](../compat.md), раздел «Ars Nouveau и аддоны».
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+| id | Что делает |
+|---|---|
+| `novice_spell_book`, `apprentice_spell_book`, `archmage_spell_book` | Книги заклинаний трёх ступеней (больше слотов и глифов). `caster_tome` — одноразовый свиток-заклинание |
+| `wand`, `dominion_wand` | Жезл зачарователя (кастует вписанное заклинание) и Жезл Доминиона (связывает фамильяров и механизмы, режим «строгий») |
+| `source_jar`, `relay*`, `*_sourcelink` | Хранение, передача и выработка Источника |
+| `enchanting_apparatus`, `arcane_pedestal`, `arcane_core`, `arcane_platform` | Алтарь усиления предметов |
+| `scribes_table`, `alteration_table`, `imbuement_chamber` | Изучение глифов, нити улучшений брони (`thread_*`), наполнение эссенциями |
+| `ritual_brazier`, `brazier_relay`, `runic_chalk` | Ритуалы (см. ниже) |
+| `basic_spell_turret`, `rotating_spell_turret`, `rune` | Башенки и руны, автоматически кастующие заклинание |
+| `scryers_oculus`, `scryers_crystal`, `scryer_scroll`, `repository`, `item_detector` | Логистика предметов и дальнее наблюдение |
+| `potion_jar`, `potion_melder`, `potion_diffuser`, `potion_flask`, `*_flask_cannon` | Зелья: хранение, смешивание, распыление, метание |
+| `mob_jar` | Контейнер для мобов (`Containment Jar`) |
+| `warp_scroll`, `stable_warp_scroll`, `mimic_scroll`, `allow_scroll`, `deny_scroll` | Свитки телепортации и фильтров |
+| Броня магов | `arcanist_*`/`battlemage_*`/`sorcerer_*` + нити `thread_*` (Spell Power, Magic Capacity, Warding, Undying, Life Drain…) |
+| Растения | `magebloom`, `sourceberry_bush`, `bombegranate_pod`, `frostaya_pod`, `bastion_pod`, `mendosteen_pod`, `lava_lily`; блоки архивуда (`archwood_*`) и всех видов камня источника (`sourcestone*`) |
+| Музыка | `music_disc_aria_biblio`, `music_disc_firel_the_wild_hunt`, `music_disc_thistle_the_sound_of_glass` |
+
+**Ритуалы** (`ars_nouveau:ritual_*`): `animal_summon`, `awakening`, `binding`, `burrowing`, `challenge`, `cloudshaping`, `conjure_island_desert`, `conjure_island_plains`, `containment`, `disintegration`, `fertility`, `flight`, `flowering`, `forestation`, `gravity`, `harvest`, `moonfall`, `overgrowth`, `restoration`, `sanctuary`, `scrying`, `sunrise`, `warping`, `wilden_summon`.
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
+| Моб (`ars_nouveau:…`) | Что |
+|---|---|
+| `starbuncle`, `whirlisprig`, `wixie`, `drygmy`, `bookwyrm`, `amethyst_golem` | Дружелюбные существа-помощники (переносят предметы, собирают ресурсы, крафтят зелья, чинят и т. п.) |
+| `wilden_hunter`, `wilden_stalker`, `wilden_guardian` | Дикари — стража лагерей |
+| `wilden_boss` | Дикий химера-босс (Wilden Chimera, 1000 HP) — [bosses.md](../bosses.md) |
+| `summon_wolf`, `summon_horse`, `summon_skeleton`, `ally_vex`, `animated_block`, `animated_head` | Призванные заклинаниями союзники |
+| `*_weald_walker` (blazing, cascading, flourishing, vexing) | Деревья-стражи биома «лес архивуда» |
+
+Предмет `wilden_tribute` и ритуал `wilden_summon` связаны с призывом Дикарей. Дропы: `wilden_horn`, `wilden_spike`, `wilden_wing` — материалы для верхних глифов/усилителей.
 
 ### Эффекты
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
+Эффекты в игре (`ars_nouveau:<id>`): `blasting`, `bounce`, `familiar_sickness`, `flight`, `freezing`, `glide`, `gravity`, `hex`, `immolate`, `magic_find`, `mana_regen`, `recovery`, `scrying`, `shield`, `shielding`, `shocked`, `snared`, `spell_damage`, `summoning_sickness`.
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
+Лагеря Дикарей: `ars_nouveau:guardian_wilden_den` (самый частый, вес 25), `ars_nouveau:hunter_wilden_den`, `ars_nouveau:stalker_wilden_den` (вес 1) — `/locate structure ars_nouveau:guardian_wilden_den`. Расстояние между лагерями 36 чанков с минимумом 10; рядом с деревнями не появляются (зона исключения 10 чанков). Биом: `ars_nouveau:archwood_forest` (`/locate biome ars_nouveau:archwood_forest`).
 
 ### Чары
 
-_Пока пусто — заполнит один из следующих этапов._
+`ars_nouveau:mana_boost`, `ars_nouveau:mana_regen`, `ars_nouveau:reactive`.
 
 ### Команды/гамерулы
 
-_Пока пусто — заполнит один из следующих этапов._
+`/ars-tome` (выдать том заклинаний), `/ars-reset`, `/ars-data` (выгрузка данных), `/ars-pathing`; регистрируются в `com.hollingsworth.arsnouveau.common.command`, нужны права оператора.
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+В `pack/config` отдельных файлов нет: Ars Nouveau сам создаёт `config/ars_nouveau/` (по файлу на глиф и ритуал) при первом запуске — см. [compat.md](../compat.md), раздел «Ars Nouveau и аддоны». Книга Patchouli аддона Ars Controle заглушена нашим датапаком (`pack/kubejs/data/ars_controle/patchouli_books/…`), см. [compat.md](../compat.md).
 
 ## Ars Ocultas
 
@@ -610,39 +628,52 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Версия в сборке — 3.3.8-50 (модид `bloodmagic`, WayofTime). Вся магия строится на **Сущностной сети (Soul Network)**: **Эссенция жизни (LP)** принадлежит игроку, к которому привязан предмет.
+- **Старт.** Ранний мини-путь: `sacrificialdagger` (Жертвенный нож) → **Кровавый алтарь** (`altar`, наполняется ножом/блоком) → Слабый кровавый шар (`weakbloodorb`) → Сигилы (`airsigil`, `watersigil`, `lavasigil`, `voidsigil`, `divinationsigil` и т. д.). Шары выше уровнем: `apprenticebloodorb`, `magicianbloodorb`, `masterbloodorb`, `archmagebloodorb` — повышают ёмкость сети и открывают рецепты.
+- **Руны алтаря** (`altarcapacityrune`, `accelerationrune`, `chargingrune`, `dislocationrune`, …) увеличивают ёмкость и скорость алтаря; есть усиленные варианты (`*2`).
+- **Ритуалы**: `masterritualstone` + камни стихий (`airritualstone`…) на подложке из рун; по числу — 41 ритуал в lang (`ritual.bloodmagic.*`, см. ниже). Проводится Диагностом ритуалов (`ritualdiviner`) и настраивается `ritualtinkerer`.
+- **Живая броня** (`livinghelmet`, `livingplate`, `livingleggings`, `livingboots`): растёт от действий игрока, улучшения (`living_armor/*.json` — 22 шт., например `arrow_protect`, `critical_strike`, `digging`, `elytra`, `jump`, `speed`, `repair`) ставятся томами (`upgradetome`) и Эволюционным ритуалом.
+- **Воля демонов (Demon Will)**: убийства мобов оружием/душами — собирается в кристаллы (`defaultcrystal`, `corrosivecrystal`, `destructivecrystal`), включает «чувствующее» снаряжение (`soulsword`, `soulaxe`, `soulpickaxe`, `soulshovel`, `soulscythe`), **Тартарические самоцветы** (`soulgem*`) и Крепость демонов (`demoncrucible`, `demoncrystallizer`, `demonpylon`).
+- **Алхимия**: `alchemytable`, `alchemicalreactionchamber`, `arcaneashes`, катализаторы (`*catalyst`) — для переработки руды (гравий/песок/фрагменты) и колб (`alchemy_flask*`).
+- Дополнение к моду — [Animus](#animus); текст мода в сборке русифицирован — [russification.md](../russification.md).
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+| id | Что делает |
+|---|---|
+| `sacrificialdagger`, `daggerofsacrifice` | Нож для получения LP с игрока; `daggerofsacrifice` — Кинжал жертвы (вариант для жертвы) |
+| `altar` | Кровавый алтарь: заполняет шары, делает предметы |
+| `weakbloodorb` … `archmagebloodorb` | Кровавые шары (ёмкость сети и ступени) |
+| `airsigil`, `watersigil`, `lavasigil`, `voidsigil`, `growthsigil`, `icesigil`, `miningsigil`, `bloodlightsigil`, `sigilofholding`, `sigilofmagnetism`, `sigilofsuppression`, `telepositionsigil`, `seersigil`, `divinationsigil` | Сигилы — переключаемые предметы, тратящие LP |
+| `livinghelmet`, `livingplate`, `livingleggings`, `livingboots`, `upgradetome` | Живая броня и том улучшения |
+| `soulsword`, `soulaxe`, `soulpickaxe`, `soulshovel`, `soulscythe`, `soulsnare`, `soulgem*` | Снаряжение «воли демонов», ловушка душ, Тартарические самоцветы |
+| `alchemytable`, `alchemicalreactionchamber` | Алхимия |
+| `demoncrucible`, `demoncrystallizer`, `demonpylon`, `dungeon_brick*`, `demonslate`, `etherealslate`, … | Крепость демонов и плиты-чертежи |
+| `bleedingedge`, `experiencebook` | Hellforged Record, Tome of Peritia |
+
+Помощники — `bow_power_anointment*`, `bow_velocity_anointment*`, `fortune_anointment*` и пр. (**помазания**, ложатся на оружие/инструмент; `data/bloodmagic/anointment`: `bow_power`, `bow_velocity`, `hidden_knowledge`, `holy_water`, `melee_damage`, `quick_draw`, `repairing`).
+
+**Ритуалы** (`ritual.bloodmagic.<id>`): `altarBuilderRitual`, `animalGrowthRitual`, `armourEvolveRitual`, `cobblestoneRitual`, `condorRitual`, `containmentRitual`, `craftingRitual`, `crushingRitual`, `crystalHarvestRitual`, `crystalSplitRitual`, `downgradeRitual`, `ellipseRitual`, `expulsionRitual`, `featheredKnifeRitual`, `fellingRitual`, `forsakenSoulRitual`, `fullStomachRitual`, `geode`, `greenGroveRitual`, `groundingRitual`, `harvestRitual`, `interdictionRitual`, `jumpRitual`, `lavaRitual`, `magneticRitual`, `meteorRitual`, `placerRitual`, `portalRitual`, `pumpRitual`, `regenerationRitual`, `simpleDungeonRitual`, `speedRitual`, `sphereRitual`, `standardDungeonRitual`, `suppressionRitual`, `upgradeRemoveRitual`, `waterRitual`, `wellOfSufferingRitual`, `yawningVoidRitual`, `zephyrRitual` (+ тестовый `testRitual`).
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
+Своих мобов в jar нет (в lang нет `entity.bloodmagic.*`): есть снаряды `EntitySoulSnare` и `EntityShapedCharge` (заряды `aug_shaped_charge`, `deforester_charge`).
 
 ### Эффекты
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
+`bloodmagic:` `bounce`, `flight`, `gravity`, `grounded`, `hard_cloak`, `heavy_heart`, `obsidian_cloak`, `passivity`, `soft_fall`, `spectral_sight`, `suspended`.
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
+Генерируемых в мире структур нет (`worldgen/structure` пуст). Есть измерение-подземелье `bloodmagic:dungeon`, связанное с ритуалами `portalRitual`, `simpleDungeonRitual`, `standardDungeonRitual`; его биом и настройки шума — `none`.
 
 ### Команды/гамерулы
 
-_Пока пусто — заполнит один из следующих этапов._
+`/bloodmagic …` (классы `CommandBloodMagic`: подкоманды привязки `bind` и управления Сущностной сетью `network`).
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+В `pack/config` файлов Blood Magic нет (используются значения по умолчанию).
 
 ## Botania
 
@@ -655,39 +686,50 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Botania 1.20.1 (сборка 456, модид `botania`, автор Vazkii; поддержка — Tristaccount/Artemis). Магия растений: энергия **маны** добывается **генерирующими цветами**, по воздуху передаётся **излучателями маны**, копится в **пулах** и тратится на крафт и снаряжение. Справочник в игре — книга **Lexicon Botania** (Patchouli: `data/botania/patchouli_books`); в сборке есть русская локаль.
+- **Старт.** Мистические цветы (`mystical_*`, генерируются патчами в мире: `black_mystical_flower_patch` … 16 цветов, плюс `mystical_mushrooms`) → лепестки → **Аптекарь** (`apothecary_*` — 11 биомных видов; лепестки + семена → цветы) → первый генерирующий цветок.
+- **Генерация маны:** `endoflame` (горение), `hydroangeas`, `thermalily` (лава), `rosa_arcana` (опыт), `munchdew`, `entropinnyum` (взрывы TNT), `kekimurus` (торт), `gourmaryllis` (еда), `narslimmus`, `spectrolus`, `dandelifeon`, `rafflowsia`, `shulk_me_not`. Функциональные: `pure_daisy` (превращает блоки в живой камень/древесину), `orechid`/`orechid_ignem` (руда из камня), `tigerseye`, `jaded_amaranthus`, `bellethorn`, `dreadthorn`, `heisei_dream`, `fallen_kanade`, `exoflame`, `agricarnation`, `hopperhock`. У каждого есть «летающий» вариант (`floating_*`) и горшочный.
+- **Передача и хранение:** `mana_spreader` (+ `redstone_`, `elven_`, `gaia_spreader`), `mana_pool` (+ `creative_pool`, `diluted_pool`, `fabulous_pool`), `mana_pylon` / `natura_pylon` / `gaia_pylon`, `mana_distributor`, `mana_void`, `mana_detector`, линзы `lens_*` (27 вариантов: скорость, мощность, отскок, огонь, поршень, магнит, свет, телепорт и др.), `spark` (искра-разветвитель).
+- **Крафт на мане:** `runic_altar` (руны `rune_*`), `terra_plate` (Терра-сталь), `enchanter` (Алтарь зачарования), `brewery` (зелья), `alfheim_portal` (портал в Альфхейм; в jar — структуры-шаблоны `alfheim_portal`, `enchanter`, `gaia_ritual`, `gog_island`), `alchemy_catalyst`/`conjuration_catalyst`.
+- **Снаряжение по ступеням:** манасталь → элементиум → терра-сталь (`terrasteel_*`, `terra_sword`, `terra_pick`, `terraform_rod`) → предметы Гайи; кольца (`mana_ring`, `aura_ring`, `magnet_ring`, `reach_ring`, `mining_ring`, `water_ring`, `pixie_ring`), подвески (`ice_pendant`, `lava_pendant`, `super_lava_pendant`).
+- Boss-вызов: ритуал «Страж Гайи» по структуре `gaia_ritual` (Гайя-пилоны + Гайя-голова).
+- Аддоны этой связки: [MythicBotany](#mythicbotany), [Extrabotany](#extrabotany), [Botanical Machinery](#botanical-machinery), [Botanical Machinery Extra](#botanical-machinery-extra), [Mechanical Botania](#mechanical-botania). Сравнение версии и доступности — [version-choice.md](../version-choice.md).
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+| id | Что делает |
+|---|---|
+| `twig_wand`, `dreamwood_wand` | Жезл Флоры: привязка передатчиков, настройка, взаимодействие с цветами |
+| `mana_tablet`, `mana_ring`, `aura_ring` | Хранение и подзарядка маны в предметах |
+| `livingrock`, `livingwood`, `dreamwood`, `shimmer*` | Строительные блоки и их версии (камень/дерево Botania) |
+| `corporea_index`, `corporea_funnel`, `corporea_crystal_cube`, `corporea_spark` | Корпореа — сеть хранения и запроса предметов |
+| `red_string_container`, `red_string_dispenser`, `red_string_fertilizer`, `red_string_comparator`, `red_string_relay`, `red_string_interceptor` | Красная нить: управление контейнерами и их автоматизацией |
+| `horn_grass`, `horn_leaves`, `horn_snow`, `drum_wild`, `drum_gathering`, `drum_canopy` | Рога и барабаны: добыча растительности |
+| `bifrost`, `bifrost_perm`, `prism`, `light_relay`, `light_launcher` | Радужные мосты и световые реле |
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
+Мобов в основном нет: босс **Страж Гайи** (`botania:doppleganger`, 320 HP) вызывается ритуалом — [bosses.md](../bosses.md), и **Розовый Иссушитель** (`botania:pink_wither`, 300 HP) — [bosses.md](../bosses.md). Вспомогательные сущности: `pixie` (пикси), `spark`, `corporea_spark`, `mana_burst`, `pool_minecart`, `magic_missile`, `falling_star`, `thorn_chakram`, `babylon_weapon` (Treasury Weapon).
 
 ### Эффекты
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
+`botania:` `soul_cross`, `feather_feet`, `emptiness`, `bloodthirst`, `allure`, `clear` (Absolution).
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
+Отдельных генерируемых структур у самого Botania нет: мир получает только цветы (`mystical_flowers`, `mystical_mushrooms`). Площадки игрок строит сам по шаблонам из jar (`data/botania/structures`: `alfheim_portal`, `enchanter`, `gaia_ritual`, `gog_island`). Цветок Loonium настраивается файлами `data/botania/loonium_config` (`default`, `ocean_ruins`, `village`).
 
 ### Чары
 
-_Пока пусто — заполнит один из следующих этапов._
+Своих чар в Botania нет.
 
 ### Команды/гамерулы
 
-_Пока пусто — заполнит один из следующих этапов._
+Особых команд в данных jar не найдено.
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+В `pack/config` файлов Botania нет (значения по умолчанию).
 
 ## Botanical Machinery
 
@@ -698,41 +740,13 @@ _Пока пусто — заполнит один из следующих эт�
 - **В наших docs:** [compat.md](../compat.md) (3), [roadmap.md](../roadmap.md) (2)
 <!-- auto:end card:botanical-machinery -->
 
-### Как играть
+### Что даёт игроку
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
+Botanical Machinery 3.0.10 (`botanicalmachinery`): «машинные» версии алтарей Botania, работающие на энергии/мане и автоматизируемые: `mechanical_mana_infuser`, `mechanical_brewery`, `mechanical_apothecary`, `mechanical_daisy`, `mechanical_mana_pool`, `mechanical_runic_altar`, `industrial_agglomeration_factory`, `alfheim_market`, `mana_battery` (+ `mana_battery_creative`), материал `mana_emerald`. Рецепты — в JEI ([jei.md](../jei.md)).
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+В `pack/config` файлов нет.
 
 ## Botanical Machinery Extra
 
@@ -744,41 +758,12 @@ _Пока пусто — заполнит один из следующих эт�
 - **В наших docs:** [compat.md](../compat.md) (2), [roadmap.md](../roadmap.md) (2)
 <!-- auto:end card:botanical-extra-machinery -->
 
-### Как играть
+### Что даёт игроку
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Botanical Extra Machinery 1.1.2 (`botanicalextramachinery`) — расширение Botanical Machinery с четырьмя ступенями машин: `base_*`, `upgraded_*`, `advanced_*`, `ultimate_*` — для `mana_pool`, `runic_altar`, `daisy`, `apothecary`, `industrial_agglomeration_factory`, `alfheim_market`, `orechid`; отдельно `greenhouse`, `jaded_amaranthus`.
+- Улучшения (`upgrade_*`: хранение маны/энергии, слоты, множители цветов 4×…64×, теплица, генерация маны) и катализаторы (`catalyst_*`: бесконечные вода, камень, дерево, семена, мана, живой камень; `catalyst_speed`).
+- Материалы: искры (`*_spark`), драконьи камни и слитки малахита/шафрана/тени/багрянца/кристалла.
+- Рецепты — в JEI ([jei.md](../jei.md)). В `pack/config` файлов нет.
 
 ## Create: Occult Engineering
 
@@ -1117,39 +1102,25 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
+ExtraBotany 1.9.2 (модид `extrabotany`) — большое расширение Botania: новые металлы, оружие, броня, цветы и боссы. Требует Botania.
+- **Металлы:** `aerialite_ingot`, `orichalcos_ingot`, `photonium_ingot`, `shadowium_ingot` (+ блоки/самородки) — для оружия и молотов (`*_hammer`: `manasteel` … `rhein_hammer`).
+- **Оружие и артефакты:** `excalibur`, `failnaught`, `the_chaos`, `the_origin`, `the_end`, `the_universe`, `zadkiel`, `camera` (Shameimaru's Camera), `feather_of_jingwei`, `magic_finger`, `walking_cane`, `core_of_the_void`, `void_archives`, `pandoras_box`.
+- **Боссы:** **Страж Гайи (старый вариант)** (`extrabotany:gaia_legacy`, 320 HP) и **Страж Гайи III** (`extrabotany:gaia_3rd`, 600 HP, награда `music_disc_gaia3`, мешки `eins_`…`vier_reward_bag`, `nine_and_three_quarters_reward_bag`) — [bosses.md](../bosses.md).
+- **Броня и наряды:** `starry_idol_*`, `pleiades_combat_maid_*`, `shadow_warrior_*`, `goblin_slayer_*`; щиты `manasteel_shield`, `elementium_shield`, `terrasteel_shield`, `achilles_shield`.
+- **Новые цветы:** `trade_orchid`, `woodienia`, `reikarlily`, `bellflower`, `annoyingflower`, `stonesia`, `edelweiss`, `resoncund`, `sunshine_lily`, `moonlight_lily`, `serenitian`, `twinstar`, `omniviolet`, `tinkle`, `blood_enchantress`, `mirrowtunia`, `necrofleur`, `manalink`.
+- **Кольца и линзы:** `frost_ring`, `dispersive_ring`, `curse_ring`, `spider_ring`, `parkour_ring`, `jackie_chan_ring`, `mana_ring_master`; `lens_push`, `lens_smelt`, `lens_mana`, `lens_potion`, `lens_trace`.
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
+`extrabotany:gaia_legacy`, `extrabotany:gaia_3rd`; снаряды и ловушки: `skull_missile`, `skull_landmine_red|blue|green`, `magic_landmine` (Gaia Trap), `aura_fire`, `holy_water_grenade`.
 
 ### Эффекты
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
+`extrabotany:` `immobilize`, `link`, `heal_reverse`, `discount`, `warm`, `thirror`.
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+В `pack/config` файлов нет. Событийная обёртка для мода упомянута в [compat.md](../compat.md) (ExtraBotany + Event Wrapper).
 
 ## Factions And Curiosities
 
@@ -1653,41 +1624,9 @@ _Пока пусто — заполнит один из следующих эт�
 - **В наших docs:** [compat.md](../compat.md) (3)
 <!-- auto:end card:mechanicalbotania -->
 
-### Как играть
+### Что даёт игроку
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Create: Mechanical Botania (`mechanicalbotania` 1.0.2) связывает Botania и Create: переводит ману в вращение (RPM). Блоки: `mana_motor` (мотор на мане), `spinerette` (+ `spinerette_floating`). В `pack/config` настроек нет; остаточные 2–3 строки в логе про `rpmvalues` — [compat.md](../compat.md).
 
 ## MNAOverpowered
 
@@ -1747,39 +1686,38 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+MythicBotany 4.0.4 (расширение Botania): после терра-ступени открывает **Альфхейм**, руны девяти миров и **Альфсталь**. Требует Botania.
+- Измерение `mythicbotany:alfheim` (биомы `alfheim_plains`, `alfheim_hills`, `alfheim_lakes`, `dreamwood_forest`, `golden_fields`), обратный портал — `return_portal`.
+- **Mana-Infuser** (`mana_infuser`) — основной крафтовый блок; для рун миров: `asgard_rune`, `vanaheim_rune`, `alfheim_rune`, `midgard_rune`, `joetunheim_rune`, `muspelheim_rune`, `niflheim_rune`, `nidavellir_rune`, `helheim_rune`; ставятся в `rune_holder`/`central_rune_holder`.
+- **Альфсталь** (`alfsteel_ingot`, `alfsteel_sword` Alf Blade, `alfsteel_pick`, `alfsteel_axe`, броня `alfsteel_*`, `alfsteel_pylon`). Кольца: `mana_ring_greatest`, `aura_ring_greatest`, `fire_ring` (Muspelheim), `ice_ring` (Niflheim), `andwari_ring` / `cursed_andwari_ring`.
+- Артефакты: `mjoellnir` (молот Мьёльнир; чары `hammer_mobility`), `fimbultyr_tablet`, `kvasir_blood`, `kvasir_mead`, `gjallar_horn_*`, `dream_cherry`.
+- Новые цветы: `exoblaze`, `wither_aconite`, `aquapanthus`, `hellebore`, `raindeletia`, `feysythia`, `petrunia`.
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+| id (`mythicbotany:…`) | Что даёт |
+|---|---|
+| `mana_infuser`, `mana_collector` | Алтарь-крафт на мане, сборщик |
+| `alfsteel_ingot` и снаряжение, `alfsteel_block`, `alfsteel_pylon` | Верхняя ступень снаряжения |
+| `*_rune`, `rune_holder`, `central_rune_holder` | Руны миров |
+| `elementium_ore`, `dragonstone_ore`, `gold_ore`, `raw_elementium` | Руды Альфхейма |
+| `yggdrasil_branch`, `dreamwood_leaves` | Ветвь Иггдрасиля, листва дримвуда |
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
+`mythicbotany:alf_pixie` (Alfheim Pixie, яйцо `alf_pixie_spawn_egg`), снаряд `mythicbotany:mjoellnir`.
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
+`mythicbotany:elven_house` (шаг 24 / минимум 6 чанков) и `mythicbotany:andwari_cave` (шаг 28 / 8, под землёй, высота -6): `/locate structure mythicbotany:elven_house`, `/locate structure mythicbotany:andwari_cave`.
 
 ### Чары
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
+`mythicbotany:hammer_mobility` — «Hammer Mobility» (скорость атаки молота).
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+В `pack/config` файлов нет.
 
 ## Occultism
 
