@@ -328,39 +328,59 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Мод Alex's Caves (Alexthe668) — не новое измерение, а шесть редких пещерных биомов, спрятанных глубоко под Верхним миром:
+1. Биомы (`alexscaves:*`): **Magnetic Caves** (`magnetic_caves`), **Primordial Caves** (`primordial_caves`), **Toxic Caves** (`toxic_caves`), **Abyssal Chasm** (`abyssal_chasm`), **Forlorn Hollows** (`forlorn_hollows`), **Candy Cavity** (`candy_cavity`). Поиск: `/locate biome alexscaves:toxic_caves` и т. п.
+2. Справочник — **Cave Compendium** (`cave_book`, «By Dr. Prof. Alexander Caverns, PhD»; разделы General, Resources, Inhabitants, Utilities, Secrets).
+3. Находить биомы помогает **Cave Biome Map** (`cave_map`): её делают в **Spelunkery Table** (`spelunkery_table`) из **Cave Tablet** (`cave_tablet`): табличка кладётся в слот и «исследуется» (после старта не вынуть; может треснуть/рассыпаться).
+4. Прогресс по каждому биому: добыть руду/материал (неодим, уран, полимер и пр.), сделать снаряжение и приручить/победить жителей. Основной документ сборки — [compat.md](../compat.md) (уран не объединяется Almost Unified, у мода своя радиация); боссы — [bosses.md](../bosses.md#alexscaves); руды ОреСпавна — [orespawn.md](../orespawn.md).
+5. Связка с Create — «Create: Alex's Caves Compat», с едой — Alex's Caves Delight (карточки ниже/на «Еде»).
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+| id | Что делает |
+|---|---|
+| `cave_book`, `cave_tablet`, `cave_map` | Справочник, табличка исследования, карта пещерного биома |
+| `raygun` | Лучемёт (заряд `Charge: x/y`) |
+| `galena_gauntlet`, `resistor_shield` (приседание — смена полярности), `heavy_bone`, `tectonic_shard`, `extinction_spear` | Оружие и предметы биомов |
+| `scarlet_neodymium_ingot`, `azure_neodymium_ingot` | Магнитные металлы Magnetic Caves |
+| `uranium`, `hazmat_mask/chestplate/leggings/boots` | Радиоактивный материал и защитный костюм Toxic Caves |
+| `sea_staff`, `dreadbow`, `pure_darkness` | Предметы Abyssal Chasm и Forlorn Hollows |
+| `nuclear_bomb`, `nuclear_furnace`, `nuclear_siren`, `hazmat_*_block` | Блоки радиации и «ядерки»; есть достижения «ride_nuclear_bomb», «stop_nuclear_furnace_meltdown» |
+| `abyssal_altar` | Алтарь для жемчуга (достижение «pearl_on_abyssal_altar»; в bosses.md — способ вызвать Hullbreaker) |
+
+Всего 351 блок и 308 предметов (сладости, кристаллы, обломки, лодки-субмарины и др.) — по lang.
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
+Из таблиц лута (43 моба; сгруппированы по биомам):
+Primordial: `grottoceratops`, `vallumraptor`, `subterranodon`, `tremorsaurus`, `relicheirus`, `trilocaris`, `atlatitan`, **`luxtructosaurus`** (достижение «summon_luxtructosaurus»), **`tremorzilla`** (яйцо и «tremorzilla_kill_beam»).
+Magnetic: `magnetron`, `boundroid`, `notor`, `teletor`, `ferrouslime`, `mine_guardian`.
+Toxic: `nucleeper`, `radgill`, `brainiac`, `gammaroach`, `raycat`.
+Abyssal: `deep_one`, `deep_one_mage`, `deep_one_knight`, `lanternfish`, `tripodfish`, `hullbreaker`, `sea_pig`, `gossamer_worm`.
+Forlorn: `forsaken`, `watcher`, `gloomoth`, `underzealot`, `vesper`, `corrodent`.
+Candy: `candicorn`, `caniac`, `caramel_cube`, `gingerbread_man`, `gum_worm`, `gumbeeper`, `gummy_bear`, `licowitch`, `sweetish_fish`.
+Данные по HP и силе — в [bosses.md](../bosses.md#alexscaves) (Luxtructosaurus 600, Tremorzilla 500, Atlatitan 400, Hullbreaker 400 — «сильные мобы»).
 
 ### Эффекты
 
-_Пока пусто — заполнит один из следующих этапов._
+`alexscaves:magnetizing`, `stunned`, `rage`, `irradiated`, `bubbled`, `deepsight`, `darkness_incarnate`, `sugar_rush` (8 эффектов).
 
 ### События
 
-_Пока пусто — заполнит один из следующих этапов._
+Своих событий нет (достижение «deep_ones_become_helpful» — реакция Deep Ones на игрока).
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
+`/locate structure alexscaves:<id>` (14 структур):
+`abyssal_ruins`, `ocean_trench`, `acid_pit`, `dino_bowl`, `donut_arch`, `ferrocave`, `forlorn_bridge`, `forlorn_canyon`, `volcano`, `underground_cabin`, `soda_bottle`, `cake_cave`, `gingerbread_town`, `licowitch_tower`.
 
 ### Чары
 
-_Пока пусто — заполнит один из следующих этапов._
+Чары мода (по lang) с префиксом `alexscaves:`, среди них `ferrous_haste`, `crystallization`, `heavy_slam`, `swiftwood`, `bonking`, `x_ray`, `gamma_ray`, `second_wave`, `tsunami`, `sea_swing`, `herd_phalanx`, `chomping_spirit`, `solar`, `plummeting_flight`, `field_extension`, `energy_efficiency` (полный список — `enchantment.alexscaves.*`).
 
 ### Команды/гамерулы
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Своих команд и гамерулов нет. Наших конфигов в `pack/config` для мода нет.
 
 ## Ancient Aether
 
@@ -712,39 +732,54 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Мод Deeper and Darker (Kyanite Team) добавляет измерение `deeperdarker:otherside` («Иной мир», биомы под скулком) и расширяет глубины Верхнего мира.
+1. Цепочка достижений: **Sculk Story** → найти Древний город (`find_ancient_city`, «A Metropolis of Restless Souls») → убить **Хранителя** («Phantom Thief»: из него падает `heart_of_the_deep`, Сердце Глубин) → **Below the Bedrock** (вход в Otherside). Иконка достижения входа — армированный глубинный сланец (`reinforced_deepslate`); сам портал — блок `deeperdarker:otherside_portal`.
+2. Из Хранителя ещё падает `warden_carapace` (панцирь; шанс также в сундуках Древнего города) — материал для брони и инструментов Хранителя (`warden_*`), улучшение по шаблону `warden_upgrade` и усиленному эхо-осколку (`reinforced_echo_shard`).
+3. Приручить звук: **Звуковой посох** (`sonorous_staff`, «Noise Complaint») стреляет волной, **Скалковый передатчик** (`sculk_transmitter`) связывается с ящиком и открывает его на расстоянии (клавиша «Use Sculk Transmitter»).
+4. Полёт: **Душевые надкрылья** (`soul_elytra`) с рывком (клавиша «Boost Soul Elytra»).
+5. Босс Otherside — **Сталкер** (`stalker`); подробности — [bosses.md](../bosses.md#deeperdarker). Совместимость и допы: «Deeper and Darker: Spellbooks» (Iron's Spells), «Deeper and Darker → Cataclysm», «Dungeons and Villages: Deeper and Darker» (см. карточки ниже и [compat.md](../compat.md)).
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+| id | Что делает |
+|---|---|
+| `sonorous_staff` | Звуковой посох (звуковая волна) |
+| `sculk_transmitter` | Передатчик: связывается с блоком и открывает хранилище издали |
+| `soul_elytra`, `soul_crystal`, `soul_dust` | Душевые надкрылья, кристалл и пыль душ |
+| `heart_of_the_deep`, `warden_carapace`, `reinforced_echo_shard` | Ключевые ресурсы после Хранителя |
+| `resonarium_*`, `warden_*` | Наборы брони и инструментов (резониум, Хранитель) |
+| `sculk_bone`, `grime_ball`, `grime_brick`, `bloom_berries` | Ресурсы и еда Otherside |
+
+Блоки: `sculk_stone`, `gloomslate` и руды в них (угольная, медная, железная, золотая, алмазная, изумрудная, ляпис, редстоун), эховое дерево (`echo_*`), цветущие блоки (`blooming_*`), `sculk_gleam`, `sculk_grime`, `gloomy_geyser`, «Древняя ваза» (`ancient_vase`), `crystallized_amber` (с запертой пиявкой), ледяная лилия (`ice_lily`).
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
+Скалковые мобы: Sculk Centipede (`sculk_centipede`), Sculk Leech (`sculk_leech`), Sculk Snapper (`sculk_snapper`), Shattered (`shattered`), Shriek Worm (`shriek_worm`), Sludge (`sludge`), Angler Fish (`angler_fish`). Достижение «Sculk Slayer» требует убить по одному из каждого. Босс: **Сталкер** (`stalker`).
 
 ### Эффекты
 
-_Пока пусто — заполнит один из следующих этапов._
+- `deeperdarker:sculk_affinity` («Родство со скалком») (в lang описания нет).
 
 ### События
 
-_Пока пусто — заполнит один из следующих этапов._
+Своих событий нет.
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
+| id | Что внутри |
+|---|---|
+| `deeperdarker:ancient_temple` | Древний храм в Otherside («Abyssal Descent») — `/locate structure deeperdarker:ancient_temple` |
+
+Биомы Otherside: `deeperdarker:blooming_caverns`, `deeplands`, `echoing_forest`, `overcast_columns` (достижение «Echolocation» — посетить все). Древний город — ванильная структура `minecraft:ancient_city`.
 
 ### Чары
 
-_Пока пусто — заполнит один из следующих этапов._
+- `deeperdarker:catalysis` — при убийстве моба разносит скалк;
+- `deeperdarker:sculk_smite` — урон по скалковым мобам (Shattered, Хранитель).
 
 ### Команды/гамерулы
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Своих команд нет. Клавиши: «Boost Soul Elytra», «Use Sculk Transmitter». Наших конфигов в `pack/config` для мода нет.
 
 ## Deeper and Darker to Cataclysm
 
@@ -1445,39 +1480,57 @@ HP, броня и слабые места — в [bosses.md](../bosses.md#twilig
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Измерение `undergarden:undergarden` («Подземный сад») — тёмный мир с густой растительностью, без неба.
+1. Постройте рамку портала (как у Незера) из блоков тега `undergarden:portal_frame_blocks`: каменные или глубинносланцевые кирпичи (`stone_bricks`, `mossy_stone_bricks`, `deepslate_bricks`, `deepslate_tiles`, `polished_deepslate`), а также `undergarden:depthrock_bricks`, `depthrock_tiles`, `polished_depthrock`, `shiverstone_bricks`.
+2. Сделайте **Катализатор** (`undergarden:catalyst`, достижение «One Ticket Please»): золото и железо вокруг алмаза (`GIG / IDI / GIG`, где G — слиток золота, I — железа, D — алмаз) — и активируйте им рамку; появляется `undergarden_portal`.
+3. Прогресс по металлам (руды в `depthrock`/`shiverstone`): клоггрум (`cloggrum`), froststeel, ригалий (`regalium`), утериум (`utherium`), затем «забытый металл» (`forgotten`); улучшение до забытого — через шаблон кузницы `forgotten_upgrade`.
+4. Оружие дальнего боя — **Рогатка** (`slingshot`); по достижениям ею стреляют камешками (`depthrock_pebble`), шариками Scintling Goo (`goo_ball`), Гронглетами и гнилыми ягодами блистерберри.
+5. Босс — **Забытый страж** (`forgotten_guardian`, достижение «Decommissioned»). Боссы и HP — [bosses.md](../bosses.md#undergarden); Undergarden Delight — карточка в странице «Еда и фермерство».
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+| id | Что делает |
+|---|---|
+| `catalyst` | Активатор портала |
+| `slingshot` | Рогатка; чары `ricochet`, `self_sling`, `longevity` |
+| `cloggrum_*`, `froststeel_*`, `utherium_*`, `forgotten_*` (меч, кирка, боевой топор `forgotten_battleaxe`) | Металлы и инструменты Подземного сада; у `cloggrum_boots` — не замедляют липкие «шарики слизи» |
+| `blisterberry`, `ditchbulb`, `dweller_steak`, `gloomper_leg`, `raw_gwibling`, `mogmoss` | Еда и растения |
+| `shard_torch`, `shard_o_lantern` | Осветители, отпугивающие часть мобов (достижение «Warding Device») |
+| `music_disc_gloomper_anthem`, `music_disc_gloomper_secret` | Диски (второй вместе с достижением «Death Gloomps») |
+| `masticator_scales`, `brute_tusk` | Дроп мобов |
+
+Блоки: `depthrock` и руды в ней (`depthrock_coal/iron/gold/diamond/cloggrum/regalium/utherium_ore`), `shiverstone` (руды `shiverstone_cloggrum/froststeel/regalium_ore`), сырые блоки `raw_cloggrum_block`, `raw_froststeel_block`, `forgotten_block`, бревна `smogstem_log`, `grongle_log`, `wigglewood_log`, грибы и т. д. (189 блоков в lang).
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
+Мирные/нейтральные: Gloomper (`gloomper`), Dweller (`dweller`), Gwib/Gwibling (`gwib`, `gwibling`), Mog (`mog`), S'Mog (`smog_mog`), Stoneborn (`stoneborn`, торгует — достижение «Interdimensional Business»).
+Враждебные: Brute (`brute`), Muncher (`muncher`), Nargoyle (`nargoyle`), Rotling/Rotwalker/Rotbeast (`rotling`, `rotwalker`, `rotbeast`; «rotspawn»), Scintling (`scintling`), Sploogie (`sploogie`), Forgotten (`forgotten`).
+Босс: **Забытый страж** (`forgotten_guardian`) — «Decommissioned»; из блока забытого металла и вырезанной «gloomgourd» собирается Забытый миньон (`minion`, достижение «Buildin' a Sentry»).
 
 ### Эффекты
 
-_Пока пусто — заполнит один из следующих этапов._
+`undergarden:brittleness`, `undergarden:chilly` (замедляет жертву), `undergarden:featherweight`, `undergarden:gooey` (слизь от Scintling), `undergarden:virulence` (аналог яда), `undergarden:virulent_resistance`.
 
 ### События
 
-_Пока пусто — заполнит один из следующих этапов._
+Своих событий нет.
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
+| id | Что внутри |
+|---|---|
+| `undergarden:forgotten_vestige` | Забытое пристанище — `/locate structure undergarden:forgotten_vestige` |
+| `undergarden:catacombs` | Катакомбы («Forgotten Halls») |
+
+Биомы (16): `smogstem_forest`, `wigglewood_forest`, `dense_forest`, `frostfields`, `frosty_smogstem_forest`, `forgotten_field`, `smog_spires`, `gronglegrowth`, `barren_abyss`, `indigo_mushroom_bog`, `veil_mushroom_bog`, `blood_mushroom_bog`, `ink_mushroom_bog`, `ancient_sea`, `dead_sea`, `icy_sea`.
 
 ### Чары
 
-_Пока пусто — заполнит один из следующих этапов._
+- `undergarden:longevity`, `undergarden:ricochet`, `undergarden:self_sling` — для Рогатки.
 
 ### Команды/гамерулы
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Своих команд и гамерулов нет.
 
 ## Twilight Forest - Dungeons & Villages
 
