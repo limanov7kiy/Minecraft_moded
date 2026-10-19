@@ -1229,39 +1229,92 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Это не отдельное измерение и не тип мира: города генерируются **в обычном Overworld** (биом-модификатор `lostcities:lostcities`, стадия `raw_generation`, биомы `#minecraft:is_overworld`). Рядом с городами обычный ландшафт и все остальные структурные моды сборки. Подробности выбора и замеров — [lost-cities.md](../lost-cities.md).
 
-### Предметы/блоки
+- **Профиль** читается из серверного конфига **при создании мира**; у нас `rarecities` ([Конфиги](#the-lost-cities)). На уже созданном мире профиль не меняют: новые чанки дадут резкую границу. Хотите города — новый мир (или другой `level-name`).
+- **Частота** (замер сетки ±1500 блоков, seed 12345): `default` — 37 % «городских» чанков, `rarecities` — 5,8 %. Города редкие, среди обычных биомов.
+- **Что внутри города:** улицы (в т. ч. широкие), парки и фонтаны, здания с подвалами, мосты, шоссе между городами, метро/рельсовые подземелья, одиночные постройки вне города (см. ниже). Здания частично разрушены (рубль `rubble`, паутина, цепи); в зданиях стоят спавнеры и сундуки.
+- **Жить и ехать/лететь без OOM:** в сборке уже стоят два исправления в `mm-compat` (утечка `BuildingInfo` и копирование огромных шаблонов структур); память и правила — в разделе «Конфиги». Тяжёлые профили (`tallbuildings`, `largecities`, `onlycities`) не включать.
+- Мод поставлен как `both`: сервер обязателен; клиенту нужен для экрана выбора профиля в одиночной игре (экран захардкожен по-английски).
 
-_Пока пусто — заполнит один из следующих этапов._
+#### Типы улиц и зданий (датапак `lostcities`)
+| Что | Состав |
+|---|---|
+| Стили города | `citystyle_standard` (основной), `citystyle_desert` (пустыня), `citystyle_border` (окраина); общие настройки — `citystyle_common`/`citystyle_config`; мировой стиль `standard` (`standard_everywhere` — для профилей «всё город») |
+| Улицы | `street_*` (прямая, поворот, Т-образная, перекрёсток, тупик, лестница) и широкие `street_large_*`; мосты `bridge_open`, `bridge_covered`, `bridge_large_open` |
+| Шоссе | `highway_open`, `highway_bridge`, `highway_tunnel` (+ `_bend`, `_bi`, `_t`); АЗС `highway_gas_station` и ресторан `highway_restaurant` с парковкой |
+| Обычные здания | `building1` … `building8` (этажи из частей `buildingN_M`, подвалы, крыши `top*`) |
+| Многоклеточные | `multi1` … `multi5`, `library` (библиотека), `center` (центр), `townhall` (ратуша), `shopping` и `shopping_open` (торговые центры), `huge1`, `huge2` |
+| Парки | `park_building`, `park_fountain1/2`, `park_plants`, `park_pool`, `park_trees`; фонтаны `fountain1..3` |
+| Подземелье | метро: `station_underground`, `station_open`, `station_staircase*`, `monorails_*`; рельсы `rails_*`; `rail_dungeon1`, `rail_dungeon2` (сундуки с отдельным лутом) |
+| Одиночные (`scattered`, вне города) | `cabin` (домик), `radiotower` (радиовышка), `oilrig` (нефтяная вышка), `highway_gas_station`, `highway_restaurant`; в мировом стиле шанс 0,7, зона 8 чанков |
+| Сферы | `lostcities:spheres` (биом-модификатор, стадия `top_layer_modification`) — стеклянные купола-«биосферы» профилей вроде `biosphere`; в `rarecities` не используются |
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
+Отдельных мобов мод не добавляет. В палитре зданий стоят ванильные спавнеры (`minecraft:spawner`) двух классов:
+- `easymobs` (лёгкие): `minecraft:zombie`, `minecraft:skeleton`, `minecraft:spider`;
+- `hardmobs` (тяжёлые): `minecraft:blaze`, `minecraft:witch`.
 
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
+Спавнеры находятся в зданиях и подвалах; зачищайте перед обустройством. Мобов других модов (Lycanites, Mowzie's и т. д.) город не спавнит, но они гуляют по окрестностям как обычно.
 
 ### События
 
-_Пока пусто — заполнит один из следующих этапов._
+Своих событий нет. Для безопасных зон можно использовать профиль `safe`, но в сборке он не включён.
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
+Города — не `structure` Minecraft, поэтому `/locate structure` их не находит. Искать так:
+- `/lostcities locate <здание>` — координаты ближайшего здания по имени (подсказка по `buildings`/`multibuildings`);
+- `/lostcities map` — текстовая карта окрестностей (город, улица, шоссе, рельсы и т. д.);
+- `/lostcities stats` — статистика генерации; `/lostcities debug` — отладочная информация о чанке (тип: `NORMAL_TERRAIN`, `BUILDING`, `MULTI_BUILDING`, `PLANNED_ROAD`…).
 
-### Чары
+Подземное `rail_dungeon1/2` ищется по городу: рельсовые подземелья идут под городами и шоссе.
+Структуры ванили (`mansion`, `pyramid`, `igloo`, `swamp_hut`, `outpost`) Lost Cities обходит сам (`avoidStructures`); для структур прочих модов (Cataclysm и др.) список не расширяли — не требовалось ([lost-cities.md](../lost-cities.md)).
 
-_Пока пусто — заполнит один из следующих этапов._
+### Лут (сундуки)
+
+Таблицы `lostcities:chests/…`; выбор таблицы для сундука задаёт условие `chestloot` (с весом):
+| Таблица | Где | Содержимое |
+|---|---|---|
+| `lostcities:chests/lostcitychest` | надземные этажи (высоты 4…100) и подвалы (-100…-3), вес 8 каждый | 2–4 броска: `diamond_sword`, `gold_ingot`, `diamond`, `emerald` |
+| `lostcities:chests/raildungeonchest` | части `rail_dungeon1/2`, вес 20 | 2–4 броска: `diamond_axe`, `gold_ingot`, `iron_ingot`, `diamond`, `emerald` |
+| ванильные таблицы | вес 1 каждая: закопанное сокровище, пирамида, иглу, храм джунглей, аванпост, корабли, город Энда, деревенские сундуки и др. | как в ванили |
+
+В палитре зданий есть декоративные блоки: случайные `diamond_block`/`gold_block`/`emerald_block`/`iron_block`, а также `furnace`, `crafting_table`, `brewing_stand`, `anvil`, редко `enchanting_table`.
 
 ### Команды/гамерулы
 
-_Пока пусто — заполнит один из следующих этапов._
+Корневая команда `/lostcities` (перенаправление `/lost`); команды требуют права оператора.
+| Команда | Что делает |
+|---|---|
+| `/lostcities locate <building>` | найти ближайшее здание |
+| `/lostcities locatepart <part>` | найти часть здания (только в мире с режимом редактирования) |
+| `/lostcities map` | карта окрестностей в чате |
+| `/lostcities stats` | статистика генерации |
+| `/lostcities debug` | отладка чанка/шоссе/кэша |
+| `/lostcities saveprofile <имя>` | сохранить текущий профиль в файл (для `selectedCustomJson`) |
+| `/lostcities testfill` | тестовая заливка |
+| `/lostcities listparts` | список частей (режим редактирования) |
+| `/lostcities createbuilding`, `createpart`, `editpart`, `exportpart`, `resumeedit` | редактор зданий (для авторов датапаков; нужен мир, созданный с включённым редактированием) |
+
+В измерении без Lost Cities команды отвечают «This dimension doesn't support Lost Cities!». Гамерулов мод не добавляет.
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+| Файл | Что |
+|---|---|
+| `pack/defaultconfigs/lostcities-server.toml` | **наша правка:** `[profiles] selectedProfile = "rarecities"`, `selectedCustomJson = ""`. Forge копирует файл в `<мир>/serverconfig/` новому миру; ключи обязаны лежать в таблице `[profiles]` (на верхнем уровне Forge стирает значение, и городов нет) |
+| `<мир>/serverconfig/lostcities-server.toml` | действующий профиль конкретного мира — менять после создания бессмысленно для старых чанков |
+
+Другие профили мода: `default`, `nodamage` (без разрушений), `safe`, `ancient`, `wasteland`, `tallbuildings`, `largecities`, `onlycities`, а также `cavern`, `floating`, `space`, `void_outside`, `biosphere_caves`, `bio_wasteland`, `atlantis` (иной ландшафт; для сборки не подходят).
+
+#### Наши исправления под нагрузку (`mods-src/mm-compat`)
+- `LostCitiesNeighborMixin` (mm-compat 0.5.5): `BuildingInfo.getXmin/getXmax/getZmin/getZmax` запоминали соседа в полях; вся сетка сгенерированных городов оставалась в куче (47 тыс. → 705 тыс. объектов за 12 мин полёта, old gen 6,1/6,1 ГБ, `OutOfMemoryError`). Теперь сосед берётся из кэша каждый раз. Действует и на уже созданных мирах ([compat.md](../compat.md), причина — запись H-002 в [issue-history.md](../issue-history.md)).
+- `StructureTemplatePlaceMixin` (там же): огромные шаблоны структур других модов (кубы до 128³) копировались целиком для каждого чанка; теперь шаблонам от 65 536 блоков передаются только блоки чанка по X/Z. Это не Lost Cities, но тот же сценарий полёта над новыми чанками.
+- Параметр `cacheCleanupSeconds` (по умолчанию 300) не лечит утечку — замером на 60 с рост тот же; без миксина менять его бесполезно.
+
+**Как ехать/лететь без OOM:** оставляйте `rarecities`; не включайте WorldEdit у клиента (≈ 2,7 ГБ постоянно); при лагах при подгрузке — `/spark profiler` ([performance.md](../performance.md)). Генерация одного городского чанка из скрипта на облачной ВМ ≈ 2,8 с (холодный старт), на обычном ноутбуке ощутимо меньше.
 
 ## The Twilight Forest
 
