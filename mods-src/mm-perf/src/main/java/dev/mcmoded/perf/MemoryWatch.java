@@ -64,16 +64,20 @@ final class MemoryWatch {
         MmPerf.LOGGER.info("[mm_perf] память: Xmx {} ({} ГБ), Xms {}, ОЗУ ПК {} ГБ, свободно ОЗУ {} ГБ, ядер {}, GC {}",
             xmxArg, String.format("%.1f", xmx), xmsArg, String.format("%.0f", phys), String.format("%.1f", free),
             Runtime.getRuntime().availableProcessors(), gc);
+        boolean forced = false;   // тест: свойство порога отключает защиту «штатной конфигурации»
         try {
             String t = System.getProperty("mm_perf.mem.threshold");
+            if (t != null) forced = true;
             if (t != null) threshold = Math.max(1, Math.min(100, Double.parseDouble(t))) / 100.0;
         } catch (RuntimeException ignored) {
         }
-        if (phys > 0 && xmx > phys * threshold) {
+        int rec = phys > 0 ? recommended(phys) : 0;
+        // штатная конфигурация по таблице (напр. 6 ГБ на ПК с 8 ГБ) — не повод ругаться, даже если она выше 60 %
+        if (phys > 0 && xmx > phys * threshold && (forced || xmx > rec + 0.5)) {
             overShare = true;
             shareXmx = xmx;
             sharePhys = phys;
-            shareRec = recommended(phys);
+            shareRec = rec;
             MmPerf.LOGGER.warn("[mm_perf] ВНИМАНИЕ: Xmx {} ГБ — это {} % физической ОЗУ ({} ГБ), больше порога {} %: возможны фризы из-за свопа. Рекомендуем не больше {} ГБ (docs/friends.md, «Память»).",
                 String.format("%.1f", xmx), Math.round(xmx / phys * 100), String.format("%.1f", phys), Math.round(threshold * 100), shareRec);
         }
@@ -88,10 +92,9 @@ final class MemoryWatch {
         }
     }
 
-    /** Рекомендуемый Xmx, ГБ — таблица «Память» в friends.md (16 ГБ → 8, 32 ГБ → 10, меньше — 6), но не больше половины ОЗУ и не меньше 4. */
+    /** Рекомендуемый Xmx, ГБ — таблица «Память» в friends.md (≥ 28 ГБ → 10, ≥ 15 → 8, иначе 6: ниже 6 сборка не тянет). */
     static int recommended(double phys) {
-        int table = phys >= 28 ? 10 : phys >= 15 ? 8 : 6;
-        return Math.max(4, Math.min(table, (int) Math.floor(phys * 0.5)));
+        return phys >= 28 ? 10 : phys >= 15 ? 8 : 6;
     }
 
     /** Красная строка для главного меню; null — предупреждать не о чем (или ОЗУ ПК неизвестна). */
