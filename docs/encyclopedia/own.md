@@ -82,7 +82,7 @@
 <a id="cataclysm_spellbooks"></a>
 - **Версия:** 1.2.9-1.20.1-mmport · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/cataclysm_spellbooks-1.2.9-1.20.1-mmport.jar`
 - **Что это:** Мод-связка Cataclysm и Iron's Spells: заклинания, книги, посохи, оружие и броня по мотивам боссов Cataclysm, две новые школы магии (Бездна и Техномантия); в сборке — наш порт под Cataclysm 3.31. _(источник: docs сборки)_
-- **В наших docs:** [bosses.md](../bosses.md) (32), [compat.md](../compat.md) (32), [roadmap.md](../roadmap.md) (12), [orespawn.md](../orespawn.md) (4), [jei.md](../jei.md) (3), [client-checklist.md](../client-checklist.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (35), [bosses.md](../bosses.md) (32), [roadmap.md](../roadmap.md) (12), [orespawn.md](../orespawn.md) (4), [jei.md](../jei.md) (3), [client-checklist.md](../client-checklist.md) (2)
 <!-- auto:end card:cataclysm_spellbooks -->
 
 Автор — Ace The Eldritch King и StarOcean (MIT). В сборке — наш порт `cataclysm_spellbooks-1.2.9-1.20.1-mmport.jar` (мод собран под другую версию Cataclysm; подробности порта — [compat.md](../compat.md), п. К4 и «Cataclysm: Spellbooks 1.2.9»). Требует [Iron's Spells 'n Spellbooks](magic.md#irons-spells-n-spellbooks), L_Ender's Cataclysm, AzureLib.
@@ -412,7 +412,7 @@ Soiled, Corroded, Infested, Fragile («Смертное касание»), Immol
 - **Версия:** 0.2.0 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/necromancers-delight-0.2.0.jar`
 - **Что это:** Порт Wizardry — Necromancer's Delight (WinDanesz): 15 заклинаний некромантии и 12 артефактов. _(источник: docs сборки)_
 - **В сборке:** свой мод (both): pack/mods/necromancers-delight-*.jar из mods-src/necromancers-delight — порт Necromancer's Delight 1.12.2 (WinDanesz, GPL-3.0), docs/wizardry-port.md
-- **В наших docs:** [wizardry-port.md](../wizardry-port.md) (28), [roadmap.md](../roadmap.md) (21), [compat.md](../compat.md) (14), [client-checklist.md](../client-checklist.md) (4), [jei.md](../jei.md) (4), [russification.md](../russification.md) (3)
+- **В наших docs:** [wizardry-port.md](../wizardry-port.md) (28), [roadmap.md](../roadmap.md) (21), [compat.md](../compat.md) (15), [client-checklist.md](../client-checklist.md) (4), [jei.md](../jei.md) (4), [russification.md](../russification.md) (3)
 <!-- auto:end card:necromancers-delight -->
 
 ### Как играть

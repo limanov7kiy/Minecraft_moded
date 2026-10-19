@@ -37,7 +37,7 @@ _Обзор категории — вручную, следующие этапы
 <a id="alexs-mobs"></a>
 - **Версия:** 1.22.9 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/alexs-mobs)
 - **Что это:** Больше 90 оригинальных животных и монстров с повадками, приручением и крафтом из дропа; всё описано во внутриигровой Книге о животных (Animal Dictionary), есть босс Червь Пустоты. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (14), [orespawn.md](../orespawn.md) (6), [roadmap.md](../roadmap.md) (6), [performance.md](../performance.md) (4), [russification.md](../russification.md) (4), [version-choice.md](../version-choice.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (16), [orespawn.md](../orespawn.md) (6), [roadmap.md](../roadmap.md) (6), [performance.md](../performance.md) (4), [russification.md](../russification.md) (4), [version-choice.md](../version-choice.md) (2)
 <!-- auto:end card:alexs-mobs -->
 
 ### Как играть
@@ -549,7 +549,7 @@ _Пока пусто — заполнит один из следующих эт�
 - **Версия:** 1.20.1-1.1.0 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/clanging-howl-1.20.1-1.1.0.jar`
 - **Что это:** Adds a lot of hostile mobs, with their own characteristics that can complicate your survival _(источник: mods.toml)_
 - **В сборке:** both: Clanging Howl 1.1.0 (Mongoose_artist, Polarice3; All Rights Reserved, CF без стороннего скачивания) — инопланетные падения метеоритов, техноплоть-мобы, энергоинструменты; зависимости GeckoLib и Curios уже в сборке (поток 20). Перевод — russian-moded/assets/clanginghowl (den1s64dev, CC-BY-NC-SA-4.0 + дописано нами)
-- **В наших docs:** [roadmap.md](../roadmap.md) (3), [compat.md](../compat.md) (2), [orespawn.md](../orespawn.md) (2), [russification.md](../russification.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (3), [roadmap.md](../roadmap.md) (3), [orespawn.md](../orespawn.md) (2), [russification.md](../russification.md) (2)
 <!-- auto:end card:clanging-howl -->
 
 ### Как играть
@@ -798,7 +798,7 @@ _Пока пусто — заполнит один из следующих эт�
 <a id="l_enders-cataclysm"></a>
 - **Версия:** 3.31 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/l_enders-cataclysm)
 - **Что это:** Cataclysm от L_Ender: восемь крупных структур-арен с боссами (Игнис, Левиафан, Сцилла, Предвестник и др.), мини-боссы и мобы Незера, пустыни, океана и Края, оружие и броня по ступеням (чёрная сталь, игнит, проклятый слиток) и аметистовые пещеры. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (29), [roadmap.md](../roadmap.md) (11), [client-checklist.md](../client-checklist.md) (2), [orespawn.md](../orespawn.md) (2), [version-choice.md](../version-choice.md) (2), [lost-cities.md](../lost-cities.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (31), [roadmap.md](../roadmap.md) (11), [client-checklist.md](../client-checklist.md) (2), [orespawn.md](../orespawn.md) (2), [version-choice.md](../version-choice.md) (2), [lost-cities.md](../lost-cities.md) (1)
 <!-- auto:end card:l_enders-cataclysm -->
 
 ### Как играть
@@ -989,7 +989,7 @@ _Пока пусто — заполнит один из следующих эт�
 - **Версия:** 0.1.0-alpha · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/lycanites-mobs)
 - **Что это:** Свыше 120 существ с тематическими данжами, мобовыми событиями и боссами (Раховарт, Асмодей, Амальгалич); приручение, камни души, призыв миньонов и Зверинец. _(источник: docs сборки)_
 - **В сборке:** + pack/mods/lycanites-refmap-fix (patches/lycanites-refmap): недостающий refmap миксинов
-- **В наших docs:** [compat.md](../compat.md) (29), [roadmap.md](../roadmap.md) (15), [performance.md](../performance.md) (7), [orespawn.md](../orespawn.md) (4), [issue-history.md](../issue-history.md) (3), [jei.md](../jei.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (32), [roadmap.md](../roadmap.md) (15), [performance.md](../performance.md) (7), [orespawn.md](../orespawn.md) (4), [issue-history.md](../issue-history.md) (3), [jei.md](../jei.md) (2)
 <!-- auto:end card:lycanites-mobs -->
 
 ### Как играть
@@ -1187,7 +1187,7 @@ _Пока пусто — заполнит один из следующих эт�
 <a id="mowzies-mobs"></a>
 - **Версия:** 1.8.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/mowzies-mobs)
 - **Что это:** Mowzie's Mobs adds a variety of fictional creatures to Minecraft, priding itself in unique AI, rich atmosphere, and fluid animations. Prove your might against new bosses and enemies and claim their magical abilities as your own. _(источник: Modrinth)_
-- **В наших docs:** [compat.md](../compat.md) (12), [roadmap.md](../roadmap.md) (9), [orespawn.md](../orespawn.md) (1), [performance.md](../performance.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (13), [roadmap.md](../roadmap.md) (9), [orespawn.md](../orespawn.md) (1), [performance.md](../performance.md) (1)
 <!-- auto:end card:mowzies-mobs -->
 
 ### Как играть
@@ -1233,7 +1233,7 @@ _Пока пусто — заполнит один из следующих эт�
 - **Версия:** 0.0.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/srpsystem)
 - **Что это:** Часть механик Scape and Run: Parasites для Spore: существо с мицелием получает «Заражение паразитом» и при 30 % здоровья превращается в паразита; перерождение, колонии «матери», ограничение урона Протомозга. _(источник: docs сборки)_
 - **В сборке:** SRP System 0.0.1 (MIT, both — регистрирует эффекты и звуки, без клиента вход на сервер не пройдёт): «вселение в любых» (эффект заражения → превращение при 30 % HP); опасные части выключены — pack/config/srpsystem-common.toml
-- **В наших docs:** [compat.md](../compat.md) (9), [performance.md](../performance.md) (1), [roadmap.md](../roadmap.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (13), [performance.md](../performance.md) (1), [roadmap.md](../roadmap.md) (1)
 <!-- auto:end card:srpsystem -->
 
 ### Как играть
