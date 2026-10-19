@@ -113,7 +113,7 @@ var FORM = {
     { title: WISH_QUESTION.title, type: 'paragraph', required: true, help: WISH_QUESTION.help },
     { title: 'Шаги, чтобы повторить', type: 'paragraph', help: '1–2–3. Не повторяется — напишите' },
     { title: 'Как часто', type: 'choice', choices: ['Один раз', 'Иногда', 'Каждый раз'] },
-    { title: 'Категория', type: 'choice', help: WISH_CATEGORY_HELP, choices: null },   // choices = CFG.FORM_CATEGORIES
+    { title: 'Категория', type: 'choice', required: true, help: WISH_CATEGORY_HELP, choices: null },   // choices = CFG.FORM_CATEGORIES
     { title: 'Ссылка spark', type: 'text', help: 'При лагах: в мире /spark profiler start, 2–3 минуты игры, /spark profiler stop, ссылку из чата сюда' },
     { title: 'Ссылка на файлы', type: 'text', help: 'Если файл большой: ссылка на облако «доступ по ссылке», срок — неделя' },
     { title: 'ОС, видеокарта, память для игры', type: 'text', help: 'Например: Windows 11, RTX 2060, 8192 МБ' }
@@ -152,7 +152,7 @@ function ensureForm_() {
   return { form: form, created: created };
 }
 
-// Добавляет в существующую форму пожелания: пункт «пожелание / идея» в «Категории» и новое название/подсказку общего вопроса.
+// Добавляет в существующую форму пожелания (и делает «Категорию» обязательной): пункт «пожелание / идея» в «Категории» и новое название/подсказку общего вопроса.
 // Ищет по заголовку; повторный запуск ничего не меняет. Бросает ошибку, если вопроса «Категория» нет (тогда пункт добавить руками, docs/report-form.md).
 function applyWish_(form) {
   var found = { question: false, category: false }, items = form.getItems();
@@ -168,6 +168,7 @@ function applyWish_(form) {
       var vals = q.getChoices().map(function (c) { return c.getValue(); });
       if (vals.indexOf(CFG.WISH_CHOICE) < 0) q.setChoiceValues(vals.concat([CFG.WISH_CHOICE]));
       q.setHelpText(WISH_CATEGORY_HELP);
+      q.setRequired(true);   // «Категория» обязательна; у уже созданной формы выставляется здесь (идемпотентно, ответы не затрагиваются)
       found.category = true;
     }
   });
