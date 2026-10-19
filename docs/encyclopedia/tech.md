@@ -256,7 +256,7 @@ Copycats+ (3.0.10) — блоки-«хамелеоны» для Create: любо
 - **Версия:** 0.4.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/create-propulsion)
 - **Что это:** Красные магниты, оптические датчики, двигатели и др. для Create; работает с Valkyrien Skies 2. _(источник: docs сборки)_
 - **В сборке:** Create × Valkyrien Skies (двигатели для кораблей)
-- **В наших docs:** [compat.md](../compat.md) (26), [version-choice.md](../version-choice.md) (9), [performance.md](../performance.md) (7), [russification.md](../russification.md) (6), [roadmap.md](../roadmap.md) (5), [russification-glossary.md](../russification-glossary.md) (4)
+- **В наших docs:** [compat.md](../compat.md) (26), [version-choice.md](../version-choice.md) (9), [performance.md](../performance.md) (7), [enchanting-table.md](../enchanting-table.md) (6), [russification.md](../russification.md) (6), [roadmap.md](../roadmap.md) (5)
 <!-- auto:end card:create-propulsion -->
 
 ### Как играть
@@ -282,7 +282,7 @@ Create: Propulsion (0.4.1) добавляет к Create двигатели, кр
 <a id="create-steam-n-rails"></a>
 - **Версия:** 1.7.3+forge-mc1.20.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/create-steam-n-rails)
 - **Что это:** Расширяет рельсы и паровую систему Create. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (26), [version-choice.md](../version-choice.md) (9), [performance.md](../performance.md) (7), [russification.md](../russification.md) (6), [roadmap.md](../roadmap.md) (5), [russification-glossary.md](../russification-glossary.md) (4)
+- **В наших docs:** [compat.md](../compat.md) (26), [version-choice.md](../version-choice.md) (9), [performance.md](../performance.md) (7), [enchanting-table.md](../enchanting-table.md) (6), [russification.md](../russification.md) (6), [roadmap.md](../roadmap.md) (5)
 <!-- auto:end card:create-steam-n-rails -->
 
 ### Как играть

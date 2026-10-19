@@ -37,7 +37,7 @@ _Обзор категории — вручную, следующие этапы
 <a id="alexs-mobs"></a>
 - **Версия:** 1.22.9 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/alexs-mobs)
 - **Что это:** Больше 90 оригинальных животных и монстров с повадками, приручением и крафтом из дропа; всё описано во внутриигровой Книге о животных (Animal Dictionary), есть босс Червь Пустоты. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (16), [roadmap.md](../roadmap.md) (8), [orespawn.md](../orespawn.md) (6), [performance.md](../performance.md) (4), [russification.md](../russification.md) (4), [version-choice.md](../version-choice.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (16), [roadmap.md](../roadmap.md) (8), [orespawn.md](../orespawn.md) (6), [performance.md](../performance.md) (4), [russification.md](../russification.md) (4), [enchanting-table.md](../enchanting-table.md) (2)
 <!-- auto:end card:alexs-mobs -->
 
 ### Как играть
@@ -755,7 +755,7 @@ Ice and Fire CE: **огненные, ледяные и молниевые дра
 <a id="l_enders-cataclysm"></a>
 - **Версия:** 3.31 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/l_enders-cataclysm)
 - **Что это:** Cataclysm от L_Ender: восемь крупных структур-арен с боссами (Игнис, Левиафан, Сцилла, Предвестник и др.), мини-боссы и мобы Незера, пустыни, океана и Края, оружие и броня по ступеням (чёрная сталь, игнит, проклятый слиток) и аметистовые пещеры. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (31), [roadmap.md](../roadmap.md) (12), [client-checklist.md](../client-checklist.md) (2), [orespawn.md](../orespawn.md) (2), [version-choice.md](../version-choice.md) (2), [lost-cities.md](../lost-cities.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (31), [roadmap.md](../roadmap.md) (12), [enchanting-table.md](../enchanting-table.md) (3), [client-checklist.md](../client-checklist.md) (2), [orespawn.md](../orespawn.md) (2), [version-choice.md](../version-choice.md) (2)
 <!-- auto:end card:l_enders-cataclysm -->
 
 ### Как играть
@@ -1143,7 +1143,7 @@ Seastorm, Shadow Games, Sharknado, Subzero, The Swarm, Tsunami, Windstorm, Winge
 - **Версия:** 0.0.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/srpsystem)
 - **Что это:** Часть механик Scape and Run: Parasites для Spore: существо с мицелием получает «Заражение паразитом» и при 30 % здоровья превращается в паразита; перерождение, колонии «матери», ограничение урона Протомозга. _(источник: docs сборки)_
 - **В сборке:** SRP System 0.0.1 (MIT, both — регистрирует эффекты и звуки, без клиента вход на сервер не пройдёт): «вселение в любых» (эффект заражения → превращение при 30 % HP); опасные части выключены — pack/config/srpsystem-common.toml
-- **В наших docs:** [compat.md](../compat.md) (13), [performance.md](../performance.md) (1), [roadmap.md](../roadmap.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (13), [roadmap.md](../roadmap.md) (2), [performance.md](../performance.md) (1)
 <!-- auto:end card:srpsystem -->
 
 ### Как играть
