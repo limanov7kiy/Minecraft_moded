@@ -3,7 +3,7 @@
 Aether, Twilight Forest, Blue Skies, Undergarden, пещеры, заброшенные города и аддоны к ним.
 
 <!-- auto:start toc -->
-Модов в категории: **34**.
+Модов в категории: **30**.
 
 - [Aether Addon: Emissivity](#aether-addon-emissivity)
 - [Aether Addon: Enhanced Extinguishing](#aether-addon-enhanced-extinguishing)
@@ -23,11 +23,7 @@ Aether, Twilight Forest, Blue Skies, Undergarden, пещеры, заброшен
 - [Deeper and Darker to Cataclysm](#deeper-and-darker-to-cataclysm)
 - [Dimensional Dungeons](#dimensional-dungeons)
 - [Dungeons And Villages: Deeper and Darker](#dungeons-and-villages-deeper-and-darker)
-- [Integrated API](#integrated-api)
 - [Integrated Mowzie's Mobs](#integrated-mowzies-mobs)
-- [Integrated Patches](#integrated-patches)
-- [Lootintegrations mod](#lootintegrations-mod)
-- [lootintegrations_cataclysm mod](#lootintegrations_cataclysm-mod)
 - [The Aether](#the-aether)
 - [The Aether: Redux](#the-aether-redux)
 - [The Bumblezone - NeoForge/Forge](#the-bumblezone---neoforgeforge)
@@ -600,20 +596,6 @@ Everdawn: хрустальный верблюд (`crystal_camel`), космич�
 
 Датапак Dungeons And Villages (Kononets) для Deeper and Darker: структуры в пространстве имён `pv` — `pv:dungeon_deeperdarker_gloom`, `pv:dungeon_deeperdarker_sculk`, `pv:dungeon_deeperdarker_hard` (подземелья из комнат) и `pv:village_deeperdarker_echoing` (поселение). Искать: `/locate structure pv:village_deeperdarker_echoing`. Предметов, мобов и команд не добавляет; требует Deeper and Darker.
 
-## Integrated API
-
-<!-- auto:start card:integrated-api -->
-<a id="integrated-api"></a>
-- **Версия:** 1.8.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/integrated-api)
-- **Что это:** Библиотека серии Integrated Structures (для генерации структур). _(источник: docs сборки)_
-- **В сборке:** подтянут как зависимость или связка (в modlist.txt отдельной строкой не указан).
-- **В наших docs:** [compat.md](../compat.md) (1), [roadmap.md](../roadmap.md) (1)
-<!-- auto:end card:integrated-api -->
-
-### Что даёт игроку
-
-Библиотека серии Integrated Structures: общий код (события торговцев, совместимость с Async Locator, обновление NBT структур) для дата-паков «Integrated …» — в сборке они переделывают структуры других модов. Сама по себе игроку ничего не добавляет.
-
 ## Integrated Mowzie's Mobs
 
 <!-- auto:start card:integrated-mowzies-mobs -->
@@ -627,44 +609,6 @@ Everdawn: хрустальный верблюд (`crystal_camel`), космич�
 ### Данжи/структуры (/locate)
 
 Дата-пак Integrated Mowzie's Mobs (Aarods) переделывает структуры Mowzie's Mobs: `mowziesmobs:frostmaw_spawn`, `mowziesmobs:monastery`, `mowziesmobs:umvuthana_grove`, `mowziesmobs:wrought_chamber` — новые NBT-постройки и спавнеры мобов (`integrated_structure_spawners`); структуры добавлены в тег `integrated_api:larger_locate_search` (шире радиус поиска `/locate`). Требует Integrated API; новых предметов и мобов нет. Боссы Mowzie's — [bosses.md](../bosses.md#mowziesmobs).
-
-## Integrated Patches
-
-<!-- auto:start card:integrated-patches -->
-<a id="integrated-patches"></a>
-- **Версия:** 1.2.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/integrated-patches)
-- **Что это:** Лёгкий фикс проблем генерации мира в Integrated API. _(источник: docs сборки)_
-- **В сборке:** подтянут как зависимость или связка (в modlist.txt отдельной строкой не указан).
-- **В наших docs:** [compat.md](../compat.md) (1)
-<!-- auto:end card:integrated-patches -->
-
-### Что даёт игроку
-
-Лёгкое исправление генерации мира для Integrated API (Integrated Patches): миксины `FixedJigsawManager`, `PieceLimitedJigsawManager`, `StructureStart`, `ChunkGenerator`, `EnhancedTerrainAdaptation` и очистка висящих лоз (`ProtectedVines`, `UnsupportedVineCleaner`) — лечат ошибки генерации интегрированных структур. Игровых предметов нет.
-
-## Lootintegrations mod
-
-<!-- auto:start card:lootintegrations -->
-<a id="lootintegrations"></a>
-- **Версия:** 1.20.1-4.7 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/lootintegrations-1.20.1-4.7.jar`
-- **Что это:** Подмешивает предметы одних таблиц добычи в другие — совместимость лута разных модов. _(источник: docs сборки)_
-<!-- auto:end card:lootintegrations -->
-
-### Что даёт игроку
-
-Библиотека-связка лута (мод `lootintegrations`): через миксины и глобальные лут-модификаторы подмешивает предметы из таблиц лута других модов в ванильные сундуки (`minecraft:chests/ancient_city`, пирамиды, крепости, шахты, лесные особняки, города Края и др.) по уровням сложности `easy`/`hard` (`lootintegrations:chests/hard`, лимит `max_result_itemcount`). Игроку даёт больше разнообразного лута в ванильных структурах; команд нет.
-
-## lootintegrations_cataclysm mod
-
-<!-- auto:start card:lootintegrations_cataclysm -->
-<a id="lootintegrations_cataclysm"></a>
-- **Версия:** 1 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/lootintegrations_cataclysm-1.2.jar`
-- **Что это:** Часть Loot Integrations: лут Cataclysm. _(источник: docs сборки)_
-<!-- auto:end card:lootintegrations_cataclysm -->
-
-### Что даёт игроку
-
-Расширение `lootintegrations` для Cataclysm: таблицы `loot_cataclysm_easy`, `loot_cataclysm_medium`, `loot_cataclysm_hard`, `loot_cataclysm_nether`, `loot_cataclysm_water` — добавляют вещи Cataclysm в сундуки ванильных структур по уровням сложности. Требует `lootintegrations`; своих предметов нет.
 
 ## The Aether
 
