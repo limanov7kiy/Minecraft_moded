@@ -923,7 +923,7 @@ _Пока пусто — заполнит один из следующих эт�
 <a id="electroblobs-wizardry-redux"></a>
 - **Версия:** 0.8.9-forge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/electroblobs-wizardry-redux)
 - **Что это:** Explore and discover an intuitive and big magic system with more than 180 spells. Recreation of the old RPG classic mod _(источник: Modrinth)_
-- **В наших docs:** [wizardry-port.md](../wizardry-port.md) (73), [compat.md](../compat.md) (30), [roadmap.md](../roadmap.md) (8), [jei.md](../jei.md) (7), [client-checklist.md](../client-checklist.md) (6), [russification.md](../russification.md) (5)
+- **В наших docs:** [wizardry-port.md](../wizardry-port.md) (73), [compat.md](../compat.md) (30), [roadmap.md](../roadmap.md) (9), [jei.md](../jei.md) (7), [client-checklist.md](../client-checklist.md) (6), [russification.md](../russification.md) (5)
 <!-- auto:end card:electroblobs-wizardry-redux -->
 
 ### Как играть

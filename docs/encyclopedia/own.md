@@ -85,7 +85,7 @@ _Пока пусто — заполнит один из следующих эт�
 <a id="cataclysm_spellbooks"></a>
 - **Версия:** 1.2.9-1.20.1-mmport · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/cataclysm_spellbooks-1.2.9-1.20.1-mmport.jar`
 - **Что это:** A compat mod for L_Ender's Cataclysm and Iron's Spells and Spellbooks Adds in a new armor set, spellbooks, and unique spells to the game _(источник: mods.toml)_
-- **В наших docs:** [bosses.md](../bosses.md) (32), [compat.md](../compat.md) (32), [roadmap.md](../roadmap.md) (11), [orespawn.md](../orespawn.md) (4), [jei.md](../jei.md) (3), [client-checklist.md](../client-checklist.md) (2)
+- **В наших docs:** [bosses.md](../bosses.md) (32), [compat.md](../compat.md) (32), [roadmap.md](../roadmap.md) (12), [orespawn.md](../orespawn.md) (4), [jei.md](../jei.md) (3), [client-checklist.md](../client-checklist.md) (2)
 <!-- auto:end card:cataclysm_spellbooks -->
 
 ### Как играть
@@ -669,7 +669,7 @@ _Пока пусто — заполнит один из следующих эт�
 - **Версия:** 0.2.0 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/necromancers-delight-0.2.0.jar`
 - **Что это:** Порт Wizardry - Necromancer's Delight 1.12.2 (https://github.com/WinDanesz/WizardryNecromancersDelight, GPL-3.0) на 1.20.1 Forge поверх Electroblob's Wizardry Redux и нашего порта Fish's Undead Rising (mod_lavacow). Код и ассеты оригинала — © WinDanesz, GPL-3.0; мобы и их ассеты — © Fish. _(источник: mods.toml)_
 - **В сборке:** свой мод (both): pack/mods/necromancers-delight-*.jar из mods-src/necromancers-delight — порт Necromancer's Delight 1.12.2 (WinDanesz, GPL-3.0), docs/wizardry-port.md
-- **В наших docs:** [wizardry-port.md](../wizardry-port.md) (28), [roadmap.md](../roadmap.md) (20), [compat.md](../compat.md) (14), [client-checklist.md](../client-checklist.md) (4), [jei.md](../jei.md) (4), [russification.md](../russification.md) (3)
+- **В наших docs:** [wizardry-port.md](../wizardry-port.md) (28), [roadmap.md](../roadmap.md) (21), [compat.md](../compat.md) (14), [client-checklist.md](../client-checklist.md) (4), [jei.md](../jei.md) (4), [russification.md](../russification.md) (3)
 <!-- auto:end card:necromancers-delight -->
 
 ### Как играть

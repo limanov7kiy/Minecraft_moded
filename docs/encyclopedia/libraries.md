@@ -161,7 +161,7 @@ _Пока пусто — заполнит один из следующих эт�
 - **Версия:** 1.20.1-0.11.0+forge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/almostunified)
 - **Что это:** Unify all resources. _(источник: Modrinth)_
 - **В сборке:** объединение дублей: один предмет на ресурс (config/almostunified)
-- **В наших docs:** [compat.md](../compat.md) (13), [roadmap.md](../roadmap.md) (4), [orespawn.md](../orespawn.md) (2), [jei.md](../jei.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (13), [roadmap.md](../roadmap.md) (5), [orespawn.md](../orespawn.md) (2), [jei.md](../jei.md) (1)
 <!-- auto:end card:almostunified -->
 
 ### Как играть
