@@ -1099,7 +1099,7 @@ CurseForge 1460238, файл 9130290, Astryxion, All Rights Reserved. Jar `pack/
 - Если понадобится менять значения Ars (стоимость глифов и т. п.) — править через KubeJS/датапак либо класть в `pack/config/` только нужные файлы целиком (Forge допишет недостающие ключи с одним WARN «from null»).
 
 ## Клиентские удобства: mm-perf 0.2.0, Controlling, Potato Craft 8x (поток 28, решения владельца В27/В28/В30)
-Всё в клиентском моде `mods-src/mm-perf` (`pack/mods/mm-perf-0.2.1-client.jar`, на сервер не попадает: серверный zip и `test-server` его не содержат).
+Всё в клиентском моде `mods-src/mm-perf` (`pack/mods/mm-perf-0.3.0-client.jar`, на сервер не попадает: серверный zip и `test-server` его не содержат).
 - **Режим слабого ПК** (`LowSpecMode`): кнопка «Режим слабого ПК» / «Вернуть как было» внизу слева на экранах настроек видео (ваниль и Embeddium) и «Настройки»; клавиша `key.mm_perf.lowspec`
   (не назначена). Ставит: дальность 5, симуляция 5, графика «Быстро», облака выкл., частицы «минимум», мягкий свет выкл., тени сущностей выкл., сглаживание биомов 0, mipmap 0, лимит 60 FPS, VSync выкл.;
   Embeddium — погода/листва «Быстро», виньетка выкл. (через `SodiumClientMod.options().quality`, `writeChanges`), Oculus — `Iris.toggleShaders(false)`, Distant Horizons — `DhApi.Delayed.configs.graphics().renderingEnabled(false)`
@@ -1336,3 +1336,18 @@ DH на выделенном сервере сам ничего не генер�
   Тост в главном меню остался, условие то же.
 - `pack/config/fml.toml`: `versionCheck = false` (Forge не ходит за обновлениями модов). Источник HTML-страницы GitHub в логе по jar не установлен; если после этого она останется — искать в конфиге Saturn/другого мода.
 - Рекомендация в `docs/friends.md`: Xmx не больше ~60 % ОЗУ, при 16 ГБ — не больше 8 ГБ.
+
+## Версия сборки для игрока: mm-perf 0.3.0, `config/mm_pack_version.txt` (поток 47, 2026-10-19)
+Зачем: в форме отчётов есть поле «Версия сборки», а игрок не знал, где её взять (`pack.toml` версию не менял, Prism пакет не показывает).
+- **Схема** `ГГГГ.ММ.ДД-N` (дата + номер за день), сейчас `2026.10.19-1`. Задаётся в `pack/pack.toml` (`version`) и в `pack/config/mm_pack_version.txt` — две одинаковые строки;
+  правило поднятия и проверка `scripts/check-pack-version.py` — CLAUDE.md, «Сборка (packwiz)». Имя `.mrpack`/`-server.zip` теперь тоже содержит версию.
+- **Почему файл в `config/`, а не `pack.toml`** (проверено на собранном `.mrpack` и серверном zip, `scripts/export-pack.sh`): в `.mrpack` `pack.toml` нет (только `modrinth.index.json`,
+  где `versionId` = версия пакета, но до игры она не доходит), packwiz-installer кладёт в экземпляр только файлы из `index.toml`, а не сам `pack.toml`/`index.toml`.
+  `config/mm_pack_version.txt` лежит в `overrides/config/` `.mrpack`, доставляется packwiz-installer'ом и попадает в `config/` серверного zip.
+- **Мод**: `PackVersion` (mm-perf 0.3.0-client) читает файл в конструкторе (до загрузки ресурсов) → строка `[mm_perf] версия сборки: …` в логе; «Minecraft_moded <версия>» — в левом верхнем углу
+  главного меню (`ScreenEvent.Render.Post` на `TitleScreen`) и в заголовке окна («Minecraft 1.20.1 | Minecraft_moded …», ставится раз в секунду: ваниль перезаписывает заголовок при смене экрана/мира,
+  `Minecraft.createTitle()` приватный — название мира/сервера в заголовке теряется). Нет файла, больше 255 байт или не `[0-9A-Za-z._+-]{1,32}` — «Minecraft_moded: версия неизвестна» + WARN, без падений.
+- **Проверка**: `test-client.sh` на собранном `.mrpack` — `CLIENT OK` (586 с), в логе `[mm_perf] версия сборки: 2026.10.19-1`, на скриншоте главного меню в левом верхнем углу «Minecraft_moded 2026.10.19-1»
+  (после нажатия «Перейти в главное меню» на экране предупреждений YSM — облачная особенность). Заголовок окна под Xvfb без оконного менеджера не проверялся (код: `Window.setTitle`).
+  `test-server.sh` — `SERVER OK: Done (86.5 с)`; файл версии в `config/` сервера есть, mm-perf на сервере нет (клиентский jar).
+- Форма отчётов: подсказка к «Версии сборки» теперь про угол меню; `bootstrap()` обновляет её у уже созданной формы (`applyVersionHelp_`, идемпотентно; тест `scripts/tests/report-sheet-test.js`).

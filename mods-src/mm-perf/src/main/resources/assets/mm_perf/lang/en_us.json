@@ -10,5 +10,7 @@
   "mm_perf.mem.title": "Memory",
   "mm_perf.mem.low": "The game has %s GB — that is too little. Raise memory in the launcher or enable Low-end PC mode.",
   "mm_perf.mem.high": "The game has %s GB of %s GB RAM — too much, the system will slow down. Lower memory in the launcher.",
-  "mm_perf.mem.full": "Memory is almost full — enable Low-end PC mode (Options → Video)."
+  "mm_perf.mem.full": "Memory is almost full — enable Low-end PC mode (Options → Video).",
+  "mm_perf.version.known": "Minecraft_moded %s",
+  "mm_perf.version.unknown": "Minecraft_moded: version unknown"
 }

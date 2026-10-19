@@ -57,7 +57,7 @@ _Обзор категории — вручную, следующие этапы
 <!-- auto:start card:animus -->
 <a id="animus"></a>
 - **Версия:** 1.20.1-3.0.35 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/animus)
-- **Что это:** Putting more Magic in your Blood Magic. _(источник: Modrinth)_
+- **Что это:** Добавка к Blood Magic: больше магии. _(источник: docs сборки)_
 - **В сборке:** Blood Magic
 - **В наших docs:** [russification.md](../russification.md) (9), [roadmap.md](../roadmap.md) (6), [compat.md](../compat.md) (2), [client-checklist.md](../client-checklist.md) (1), [jei.md](../jei.md) (1), [russification-audit.md](../russification-audit.md) (1)
 <!-- auto:end card:animus -->
@@ -103,7 +103,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:arcaneadditions -->
 <a id="arcaneadditions"></a>
 - **Версия:** forge-1.10.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/arcaneadditions)
-- **Что это:** Arcane Additions is a companion mod for Mana and Artifice, adding new spell components, rituals, and items to the game, some of which alter the balance of Mana and Artifice, or provide compatibility with other mods _(источник: Modrinth)_
+- **Что это:** Спутник Mana and Artifice: новые компоненты заклинаний, ритуалы и предметы; часть меняет баланс или даёт совместимость. _(источник: docs сборки)_
 - **В сборке:** дополнение M&A: компоненты заклинаний, ритуалы
 - **В наших docs:** [jei.md](../jei.md) (6), [compat.md](../compat.md) (2), [russification-audit.md](../russification-audit.md) (2), [russification.md](../russification.md) (2)
 <!-- auto:end card:arcaneadditions -->
@@ -149,7 +149,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:ars-additions -->
 <a id="ars-additions"></a>
 - **Версия:** 1.6.7 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/ars-additions)
-- **Что это:** An Ars Nouveau addon focused on small tweaks and quality of life additions. _(источник: Modrinth)_
+- **Что это:** Аддон Ars Nouveau: мелкие правки и удобства. _(источник: docs сборки)_
 - **В наших docs:** [russification.md](../russification.md) (3), [compat.md](../compat.md) (2)
 <!-- auto:end card:ars-additions -->
 
@@ -194,7 +194,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:ars-artifice -->
 <a id="ars-artifice"></a>
 - **Версия:** 2.0.4 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/ars-artifice)
-- **Что это:** An addon for Ars Nouveau to add an event based casting system _(источник: Modrinth)_
+- **Что это:** Аддон Ars Nouveau: система применения заклинаний по событиям. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (1)
 <!-- auto:end card:ars-artifice -->
 
@@ -239,7 +239,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:ars-controle -->
 <a id="ars-controle"></a>
 - **Версия:** 1.1.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/ars-controle)
-- **Что это:** Addon for Ars Nouveau focused on increasing control. _(источник: Modrinth)_
+- **Что это:** Аддон Ars Nouveau: больше контроля над заклинаниями. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (1)
 <!-- auto:end card:ars-controle -->
 
@@ -284,7 +284,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:ars-creo -->
 <a id="ars-creo"></a>
 - **Версия:** 4.3.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/ars-creo)
-- **Что это:** An addon for Ars Nouveau and Create _(источник: Modrinth)_
+- **Что это:** Связка Ars Nouveau и Create. _(источник: docs сборки)_
 - **В сборке:** Ars Nouveau × Create
 - **В наших docs:** [compat.md](../compat.md) (1), [russification.md](../russification.md) (1)
 <!-- auto:end card:ars-creo -->
@@ -330,7 +330,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:ars_elemental -->
 <a id="ars_elemental"></a>
 - **Версия:** 1.20.1-0.6.8.0 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/ars_elemental-1.20.1-0.6.8.0.jar`
-- **Что это:** This Ars Nouveau add-on is about the Elemental Schools. More spell foci and equips, powering up one of the elemental schools, as well as new glyphs and hidden combos. _(источник: mods.toml)_
+- **Что это:** Аддон Ars Nouveau о стихийных школах: фокусы, экипировка, новые глифы и скрытые комбинации. _(источник: docs сборки)_
 - **В сборке:** 4 стихийные школы Ars Nouveau
 - **В наших docs:** [compat.md](../compat.md) (4), [russification.md](../russification.md) (2)
 <!-- auto:end card:ars_elemental -->
@@ -376,7 +376,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:ars_instrumentum -->
 <a id="ars_instrumentum"></a>
 - **Версия:** 1.20.1-4.1.0 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/ars_instrumentum-1.20.1-4.1.0.jar`
-- **Что это:** Ars Instrumentum is a small set of magical utilities and tools that I wanted to have in addition to Ars Nouveau _(источник: mods.toml)_
+- **Что это:** Небольшой набор магических инструментов и утилит к Ars Nouveau. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (3), [russification.md](../russification.md) (3)
 <!-- auto:end card:ars_instrumentum -->
 
@@ -421,7 +421,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:ars-magica-legacy -->
 <a id="ars-magica-legacy"></a>
 - **Версия:** 1.20.1-1.5.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/ars-magica-legacy)
-- **Что это:** A legacy version of Mithion's Ars Magica 2, this mod features an exciting way of creating and casting spells. _(источник: Modrinth)_
+- **Что это:** Наследие Ars Magica 2 от Mithion: создание и применение заклинаний из частей. _(источник: docs сборки)_
 - **В сборке:** 1.20.1-1.5.0; зависимости GeckoLib, Patchouli уже в сборке; дополнений под 1.20.1 нет
 - **В наших docs:** [compat.md](../compat.md) (10), [roadmap.md](../roadmap.md) (6), [bosses.md](../bosses.md) (4), [russification.md](../russification.md) (4), [client-checklist.md](../client-checklist.md) (2)
 <!-- auto:end card:ars-magica-legacy -->
@@ -467,7 +467,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:ars-nouveau -->
 <a id="ars-nouveau"></a>
 - **Версия:** 4.12.7 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/ars-nouveau)
-- **Что это:** Craft spells and construct magical automations _(источник: Modrinth)_
+- **Что это:** Создание заклинаний из глифов и магическая автоматизация. _(источник: docs сборки)_
 - **В наших docs:** [russification.md](../russification.md) (18), [compat.md](../compat.md) (8), [roadmap.md](../roadmap.md) (8), [russification-glossary.md](../russification-glossary.md) (4), [bosses.md](../bosses.md) (2), [client-checklist.md](../client-checklist.md) (2)
 <!-- auto:end card:ars-nouveau -->
 
@@ -512,7 +512,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:ars-ocultas -->
 <a id="ars-ocultas"></a>
 - **Версия:** 1.20.1-1.2.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/ars-ocultas)
-- **Что это:** Ars Nouveau Integration for Occultism _(источник: Modrinth)_
+- **Что это:** Интеграция Ars Nouveau и Occultism. _(источник: docs сборки)_
 - **В сборке:** Ars Nouveau × Occultism
 - **В наших docs:** [russification.md](../russification.md) (1)
 <!-- auto:end card:ars-ocultas -->
@@ -558,7 +558,8 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:ars_technica -->
 <a id="ars_technica"></a>
 - **Версия:** 1.20.1-1.4.2 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/ars_technica-1.20.1-1.4.2.jar`
-- **Что это:** Ars Nouveau × Create
+- **Что это:** Связка Ars Nouveau и Create. _(источник: docs сборки)_
+- **В сборке:** Ars Nouveau × Create
 - **В наших docs:** [compat.md](../compat.md) (4), [russification.md](../russification.md) (1)
 <!-- auto:end card:ars_technica -->
 
@@ -603,7 +604,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:blood-magic -->
 <a id="blood-magic"></a>
 - **Версия:** 3.3.8-50 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/blood-magic)
-- **Что это:** An arcane art for ultimate power _(источник: Modrinth)_
+- **Что это:** Магия крови: алтари, ритуалы, сети души ради мощи. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (5), [russification.md](../russification.md) (4), [roadmap.md](../roadmap.md) (3), [russification-glossary.md](../russification-glossary.md) (2), [client-checklist.md](../client-checklist.md) (1), [issue-history.md](../issue-history.md) (1)
 <!-- auto:end card:blood-magic -->
 
@@ -648,7 +649,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:botania -->
 <a id="botania"></a>
 - **Версия:** 1.20.1-456-forge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/botania)
-- **Что это:** An innovative natural magic themed tech mod _(источник: Modrinth)_
+- **Что это:** Природная магия и техника: цветы-генераторы, мана, пестик и т. д. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (4), [russification.md](../russification.md) (4), [bosses.md](../bosses.md) (2), [roadmap.md](../roadmap.md) (2), [russification-glossary.md](../russification-glossary.md) (2), [client-checklist.md](../client-checklist.md) (1)
 <!-- auto:end card:botania -->
 
@@ -693,7 +694,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:botanical-machinery -->
 <a id="botanical-machinery"></a>
 - **Версия:** 1.20.1-3.0.10 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/botanical-machinery)
-- **Что это:** Automating Botania is easier than you think _(источник: Modrinth)_
+- **Что это:** Аддон Botania: автоматизация. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (3), [roadmap.md](../roadmap.md) (2)
 <!-- auto:end card:botanical-machinery -->
 
@@ -738,7 +739,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:botanical-extra-machinery -->
 <a id="botanical-extra-machinery"></a>
 - **Версия:** 1.20.1-1.1.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/botanical-extra-machinery)
-- **Что это:** Addon Botanical Machinery _(источник: Modrinth)_
+- **Что это:** Дополнение к Botanical Machinery. _(источник: docs сборки)_
 - **В сборке:** тянет Applied Energistics 2 (одобрено пользователем)
 - **В наших docs:** [compat.md](../compat.md) (2), [roadmap.md](../roadmap.md) (2)
 <!-- auto:end card:botanical-extra-machinery -->
@@ -784,7 +785,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:occult-engineering -->
 <a id="occult-engineering"></a>
 - **Версия:** 1.20.1-0.11.4 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/occult-engineering)
-- **Что это:** An integration mod between Create and Occultism. _(источник: Modrinth)_
+- **Что это:** Связка Create и Occultism. _(источник: docs сборки)_
 - **В сборке:** Occultism × Create
 - **В наших docs:** [compat.md](../compat.md) (27), [version-choice.md](../version-choice.md) (9), [performance.md](../performance.md) (7), [russification.md](../russification.md) (6), [roadmap.md](../roadmap.md) (5), [russification-glossary.md](../russification-glossary.md) (4)
 <!-- auto:end card:occult-engineering -->
@@ -830,7 +831,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:deeper-and-darker-spellbooks -->
 <a id="deeper-and-darker-spellbooks"></a>
 - **Версия:** 1.3.1-1.20.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/deeper-and-darker-spellbooks)
-- **Что это:** An Addon for Iron's Spells 'n Spellbooks and Deeper and Darker _(источник: Modrinth)_
+- **Что это:** Связка Iron's Spells 'n Spellbooks и Deeper and Darker. _(источник: docs сборки)_
 - **В сборке:** Iron's Spells × Deeper and Darker
 - **В наших docs:** [compat.md](../compat.md) (6), [bosses.md](../bosses.md) (1), [roadmap.md](../roadmap.md) (1), [version-choice.md](../version-choice.md) (1)
 <!-- auto:end card:deeper-and-darker-spellbooks -->
@@ -876,7 +877,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:dragon-magic-and-relics -->
 <a id="dragon-magic-and-relics"></a>
 - **Версия:** 3.2.14 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/dragon-magic-and-relics)
-- **Что это:** A extension for Mana and Artifice to expand your magic to compete with gods! _(источник: Modrinth)_
+- **Что это:** Расширение Mana and Artifice: драконья магия и реликвии. _(источник: docs сборки)_
 - **В сборке:** дополнение M&A
 - **В наших docs:** [compat.md](../compat.md) (1)
 <!-- auto:end card:dragon-magic-and-relics -->
@@ -923,7 +924,7 @@ _Пока пусто — заполнит один из следующих эт�
 <a id="electroblobs-wizardry-redux"></a>
 - **Версия:** 0.8.9-forge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/electroblobs-wizardry-redux)
 - **Что это:** Возрождение классического Electroblob's Wizardry для 1.20.1: семь стихий и четыре ступени заклинаний, посохи, кристаллы, броня и артефакты, Таинственный верстак и Алтарь наполнения, башни магов, святилища и обелиски; в сборке дополнен модом Wizardry Restored. _(источник: docs сборки)_
-- **В наших docs:** [wizardry-port.md](../wizardry-port.md) (73), [compat.md](../compat.md) (32), [roadmap.md](../roadmap.md) (9), [jei.md](../jei.md) (7), [client-checklist.md](../client-checklist.md) (6), [russification.md](../russification.md) (5)
+- **В наших docs:** [wizardry-port.md](../wizardry-port.md) (73), [compat.md](../compat.md) (32), [roadmap.md](../roadmap.md) (10), [jei.md](../jei.md) (7), [client-checklist.md](../client-checklist.md) (6), [russification.md](../russification.md) (5)
 <!-- auto:end card:electroblobs-wizardry-redux -->
 
 Автор порта Redux — Binaris (лицензия MIT/GPL-3.0, см. [wizardry-port.md](../wizardry-port.md)); оригинал 1.12.2 — Electroblob. Модид `ebwizardry`, сторона — both. Мана у мода своя (хранится в посохах и магической броне).
@@ -1064,7 +1065,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:extragolems -->
 <a id="extragolems"></a>
 - **Версия:** 20.1.0.2 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/extragolems-20.1.0.2.jar`
-- **Что это:** Adds dozens of golems with unique textures and abilities! _(источник: mods.toml)_
+- **Что это:** Десятки новых големов с уникальными текстурами и способностями. _(источник: docs сборки)_
 - **В сборке:** Extra Golems 20.1.0.2 (skyjay1, zlib, both): база для Wizardry Golems; CF без стороннего скачивания
 - **В наших docs:** [wizardry-port.md](../wizardry-port.md) (6), [compat.md](../compat.md) (4), [roadmap.md](../roadmap.md) (1)
 <!-- auto:end card:extragolems -->
@@ -1110,7 +1111,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:extrabotany -->
 <a id="extrabotany"></a>
 - **Версия:** 1.20.1-1.9.2-forge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/extrabotany)
-- **Что это:** A botania addition _(источник: Modrinth)_
+- **Что это:** Дополнение к Botania. _(источник: docs сборки)_
 - **В наших docs:** [bosses.md](../bosses.md) (12), [russification.md](../russification.md) (4), [client-checklist.md](../client-checklist.md) (2), [compat.md](../compat.md) (2), [jei.md](../jei.md) (2), [russification-audit.md](../russification-audit.md) (2)
 <!-- auto:end card:extrabotany -->
 
@@ -1155,7 +1156,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:factions-and-curiosities -->
 <a id="factions-and-curiosities"></a>
 - **Версия:** 1.3.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/factions-and-curiosities)
-- **Что это:** An addon mod for Mithion's Mana and Artifice that includes new additional factions! _(источник: Modrinth)_
+- **Что это:** Аддон Mana and Artifice: новые фракции. _(источник: docs сборки)_
 - **В сборке:** дополнение M&A: новые фракции
 - **В наших docs:** [compat.md](../compat.md) (1)
 <!-- auto:end card:factions-and-curiosities -->
@@ -1201,7 +1202,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:gtbcs_geomancy_plus -->
 <a id="gtbcs_geomancy_plus"></a>
 - **Версия:** 2.0.0-1.20.1 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/gtbcs_geomancy_plus-2.0.0-1.20.1.jar`
-- **Что это:** An addon for Iron's Spellbooks, adding spells inspired by Mowzie's Mobs, along with original magic that pushes the theme even further. _(источник: mods.toml)_
+- **Что это:** Аддон Iron's Spells: заклинания по мотивам Mowzie's Mobs и оригинальная магия земли. _(источник: docs сборки)_
 - **В сборке:** Iron's Spells × Mowzie's
 - **В наших docs:** [compat.md](../compat.md) (2)
 <!-- auto:end card:gtbcs_geomancy_plus -->
@@ -1247,7 +1248,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:irons_recipe_additions -->
 <a id="irons_recipe_additions"></a>
 - **Версия:** 1.0.0 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/irons_recipe_additions-2.7-forge-1.20.1.jar`
-- **Что это:** Adds a bunch of recipes to Iron's Spells 'n Spellbooks! _(источник: mods.toml)_
+- **Что это:** Добавляет множество рецептов к Iron's Spells 'n Spellbooks. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (2)
 <!-- auto:end card:irons_recipe_additions -->
 
@@ -1464,7 +1465,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:mahou-tsukai -->
 <a id="mahou-tsukai"></a>
 - **Версия:** 1.20.1-v1.34.74 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/mahou-tsukai)
-- **Что это:** A magic mod focused on special effects and spell uniqueness _(источник: Modrinth)_
+- **Что это:** Магия со спецэффектами и уникальными заклинаниями. _(источник: docs сборки)_
 - **В наших docs:** [roadmap.md](../roadmap.md) (3), [compat.md](../compat.md) (2), [orespawn.md](../orespawn.md) (1), [russification.md](../russification.md) (1)
 <!-- auto:end card:mahou-tsukai -->
 
@@ -1648,7 +1649,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:mechanicalbotania -->
 <a id="mechanicalbotania"></a>
 - **Версия:** 1.0.2 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/mechanicalbotania-1.0.2.jar`
-- **Что это:** This mod allows you to convert Botania mana to Create RPM _(источник: mods.toml)_
+- **Что это:** Превращает ману Botania в обороты Create. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (3)
 <!-- auto:end card:mechanicalbotania -->
 
@@ -1693,7 +1694,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:mnaoverpowered -->
 <a id="mnaoverpowered"></a>
 - **Версия:** 1.20.1-0.11.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/mnaoverpowered)
-- **Что это:** Another QoL addon containing small tweaks about easy gaming experiences for Mana and Artifice _(источник: Modrinth)_
+- **Что это:** Аддон Mana and Artifice: мелкие твики для облегчения игры. _(источник: docs сборки)_
 - **В сборке:** дополнение M&A: QoL-твики
 - **В наших docs:** [jei.md](../jei.md) (4), [compat.md](../compat.md) (2), [russification-audit.md](../russification-audit.md) (2)
 <!-- auto:end card:mnaoverpowered -->
@@ -1739,7 +1740,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:mythicbotany -->
 <a id="mythicbotany"></a>
 - **Версия:** 1.20.1-4.0.4 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/mythicbotany)
-- **Что это:** Dive deeper into the world of botania _(источник: Modrinth)_
+- **Что это:** Дополнение Botania: новые цветы, предметы и механики. _(источник: docs сборки)_
 - **В сборке:** Botania: руны, альфхейм
 - **В наших docs:** [jei.md](../jei.md) (4), [russification-audit.md](../russification-audit.md) (2)
 <!-- auto:end card:mythicbotany -->
@@ -1785,7 +1786,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:occultism -->
 <a id="occultism"></a>
 - **Версия:** 1.20.1-1.158.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/occultism)
-- **Что это:** A ritual magic system centered around summonable spirits allows you to automate various tasks, store vast amounts of items, let demons mine in void dimensions, create powerful enchanted tools and jewelry, get support from familiars, and much much more. _(источник: Modrinth)_
+- **Что это:** Ритуальная магия с призываемыми духами: автоматизация, хранение предметов, демоны, добывающие в пустоте, инструменты и украшения. _(источник: docs сборки)_
 - **В наших docs:** [jei.md](../jei.md) (10), [russification.md](../russification.md) (8), [compat.md](../compat.md) (4), [roadmap.md](../roadmap.md) (4), [russification-audit.md](../russification-audit.md) (4), [client-checklist.md](../client-checklist.md) (2)
 <!-- auto:end card:occultism -->
 
@@ -1830,7 +1831,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:occultism-ritual-satchel -->
 <a id="occultism-ritual-satchel"></a>
 - **Версия:** 1.0.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/occultism-ritual-satchel)
-- **Что это:** This mod backports​ the Ritual Satchel from Occultism 1.21.1 to 1.20.1. _(источник: Modrinth)_
+- **Что это:** Перенос Ritual Satchel из Occultism 1.21.1 в 1.20.1. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (1), [jei.md](../jei.md) (1), [russification-audit.md](../russification-audit.md) (1)
 <!-- auto:end card:occultism-ritual-satchel -->
 
@@ -1875,7 +1876,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:spellforge -->
 <a id="spellforge"></a>
 - **Версия:** 1.1.0 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/spellforge-1.1.0.jar`
-- **Что это:** Adds Spell Forge that lets you craft all spells from Electrloblob's Wizardry:Redux (similar to Iron's Spells spell forge mechanic). _(источник: mods.toml)_
+- **Что это:** Кузница заклинаний: позволяет крафтить все заклинания Electroblob's Wizardry Redux (по образцу Iron's Spells). _(источник: docs сборки)_
 - **В наших docs:** [wizardry-port.md](../wizardry-port.md) (1)
 <!-- auto:end card:spellforge -->
 
@@ -1920,7 +1921,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:tome-of-blood-rebirth -->
 <a id="tome-of-blood-rebirth"></a>
 - **Версия:** 1.20.1-0.4.5 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/tome-of-blood-rebirth)
-- **Что это:** Ars Nouveau Integration for Blood Magic. Spiritual successor of Tome of Blood by SadieLuna _(источник: Modrinth)_
+- **Что это:** Интеграция Ars Nouveau и Blood Magic; духовный преемник Tome of Blood. _(источник: docs сборки)_
 - **В сборке:** Ars Nouveau × Blood Magic
 - **В наших docs:** [russification.md](../russification.md) (2)
 <!-- auto:end card:tome-of-blood-rebirth -->
@@ -1966,7 +1967,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:toomanyglyphs -->
 <a id="toomanyglyphs"></a>
 - **Версия:** 1.20.1-2.3.2.12345 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/toomanyglyphs-1.20.1-2.3.2.12345.jar`
-- **Что это:** A mixed bag of add-ons to make Ars Nouveau spells more flexible, more intelligent, or maybe in a few cases just plain overpowered. _(источник: mods.toml)_
+- **Что это:** Набор дополнений: более гибкие, умные (а иногда просто сильные) заклинания Ars Nouveau. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (2), [russification.md](../russification.md) (1)
 <!-- auto:end card:toomanyglyphs -->
 

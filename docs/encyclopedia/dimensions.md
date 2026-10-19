@@ -55,7 +55,7 @@ _Обзор категории — вручную, следующие этапы
 <!-- auto:start card:aether-emissivity -->
 <a id="aether-emissivity"></a>
 - **Версия:** 1.20.1-1.0.0-neoforge · **Сторона:** client · **Источник:** [Modrinth](https://modrinth.com/mod/aether-emissivity)
-- **Что это:** An addon for The Aether, adding emissivity to various textures. _(источник: Modrinth)_
+- **Что это:** Аддон к The Aether: добавляет свечение (эмиссивные слои) ряду текстур. _(источник: docs сборки)_
 - **В сборке:** клиент
 <!-- auto:end card:aether-emissivity -->
 
@@ -100,7 +100,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:aether-enhanced-extinguishing -->
 <a id="aether-enhanced-extinguishing"></a>
 - **Версия:** 1.20.1-1.0.0-neoforge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/aether-enhanced-extinguishing)
-- **Что это:** Improves the consistency of fire being disallowed in the Aether by adding new extinguished variants of blocks. _(источник: Modrinth)_
+- **Что это:** Аддон к The Aether: единообразно запрещает огонь в Эфире — у блоков появляются «потушенные» варианты. _(источник: docs сборки)_
 <!-- auto:end card:aether-enhanced-extinguishing -->
 
 ### Как играть
@@ -144,7 +144,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:aether-protect-your-moa -->
 <a id="aether-protect-your-moa"></a>
 - **Версия:** 1.20.1-1.0.0-neoforge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/aether-protect-your-moa)
-- **Что это:** An addon centered around equipment for Moas, allowing them to be outfitted with chests and craftable Moa Armor. _(источник: Modrinth)_
+- **Что это:** Аддон к The Aether: снаряжение для мо — сундуки на спину и крафтовая броня для мо. _(источник: docs сборки)_
 <!-- auto:end card:aether-protect-your-moa -->
 
 ### Как играть
@@ -188,7 +188,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:aether-treasure-reforging -->
 <a id="aether-treasure-reforging"></a>
 - **Версия:** 1.20.1-1.0.1-neoforge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/aether-treasure-reforging)
-- **Что это:** Allows dungeon treasure equipment to be smelted down into raw materials, which can be smithed back into other treasure equipment using new templates. _(источник: Modrinth)_
+- **Что это:** Аддон к The Aether: сокровищное снаряжение из данжей переплавляется в сырьё, из которого новыми шаблонами кузнеца куётся другое сокровищное снаряжение. _(источник: docs сборки)_
 <!-- auto:end card:aether-treasure-reforging -->
 
 ### Как играть
@@ -232,7 +232,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:aether-villages -->
 <a id="aether-villages"></a>
 - **Версия:** 1.0.7 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/aether-villages)
-- **Что это:** Adds grandiose temples and villages to the Aether dimension! _(источник: Modrinth)_
+- **Что это:** Аддон к The Aether: добавляет в Эфир храмы и деревни. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (1)
 <!-- auto:end card:aether-villages -->
 
@@ -277,7 +277,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:aether-lost-content -->
 <a id="aether-lost-content"></a>
 - **Версия:** 1.2.3 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/aether-lost-content)
-- **Что это:** An addon that brings back, or gives life to a lot of scrapped, unused, and even concepted content and features from The Aether's past. _(источник: Modrinth)_
+- **Что это:** Аддон к The Aether: возвращает вырезанный, неиспользованный и концептуальный контент и механики прошлых версий Эфира. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (11), [russification.md](../russification.md) (9), [roadmap.md](../roadmap.md) (4), [bosses.md](../bosses.md) (3), [client-checklist.md](../client-checklist.md) (3), [jei.md](../jei.md) (1)
 <!-- auto:end card:aether-lost-content -->
 
@@ -322,7 +322,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:alexs-caves -->
 <a id="alexs-caves"></a>
 - **Версия:** 2.0.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/alexs-caves)
-- **Что это:** Explore six new rare cave biomes hidden under the surface of the Overworld... _(источник: Modrinth)_
+- **Что это:** Шесть редких пещерных биомов под поверхностью Верхнего мира, со своими мобами и предметами. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (7), [orespawn.md](../orespawn.md) (2), [client-checklist.md](../client-checklist.md) (1), [performance.md](../performance.md) (1), [roadmap.md](../roadmap.md) (1), [russification-glossary.md](../russification-glossary.md) (1)
 <!-- auto:end card:alexs-caves -->
 
@@ -367,7 +367,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:ancient-aether -->
 <a id="ancient-aether"></a>
 - **Версия:** 0.9.10 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/ancient-aether)
-- **Что это:** An Aether add-on that expands upon the concepts of the original mod _(источник: Modrinth)_
+- **Что это:** Аддон к The Aether: развивает идеи оригинального мода. _(источник: docs сборки)_
 - **В наших docs:** [bosses.md](../bosses.md) (1), [compat.md](../compat.md) (1)
 <!-- auto:end card:ancient-aether -->
 
@@ -412,7 +412,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:blue-skies -->
 <a id="blue-skies"></a>
 - **Версия:** 1.3.31 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/blue-skies)
-- **Что это:** Blue Skies is survival mod that adds aspects like dimensions, dungeons and more in a light and dark scenario. _(источник: Modrinth)_
+- **Что это:** Выживание с новыми измерениями (светлым и тёмным), данжами и боссами. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (18), [bosses.md](../bosses.md) (8), [roadmap.md](../roadmap.md) (8), [jei.md](../jei.md) (5), [client-checklist.md](../client-checklist.md) (2), [issue-history.md](../issue-history.md) (2)
 <!-- auto:end card:blue-skies -->
 
@@ -457,7 +457,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:blue-skies-gravestones-compat -->
 <a id="blue-skies-gravestones-compat"></a>
 - **Версия:** 0.1-1.20.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/blue-skies-gravestones-compat)
-- **Что это:** Enable compatibility between Blue Skies and any Gravestone like mod _(источник: Modrinth)_
+- **Что это:** Совместимость Blue Skies с модами-могилами: могила работает в его измерениях. _(источник: docs сборки)_
 - **В сборке:** both: миксин смерти игрока (гроб с Blue Skies) — в одиночке иначе не работает
 - **В наших docs:** [compat.md](../compat.md) (2), [roadmap.md](../roadmap.md) (1)
 <!-- auto:end card:blue-skies-gravestones-compat -->
@@ -548,7 +548,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:create_blue_skies_compat-forge -->
 <a id="create_blue_skies_compat-forge"></a>
 - **Версия:** 1.1.0 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/create_blue_skies_compat-forge-1.20.1-1.1.0.jar`
-- **Что это:** Compat recipes and items between Create and Blue Skies _(источник: mods.toml)_
+- **Что это:** Совместимые рецепты и предметы между Create и Blue Skies. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (2)
 <!-- auto:end card:create_blue_skies_compat-forge -->
 
@@ -593,7 +593,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:create-alexs-caves-compat -->
 <a id="create-alexs-caves-compat"></a>
 - **Версия:** 1.6.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/create-alexs-caves-compat)
-- **Что это:** Adds compatibility between Create and Alex's Caves _(источник: Modrinth)_
+- **Что это:** Совместимость Create и Alex's Caves. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (28), [version-choice.md](../version-choice.md) (9), [performance.md](../performance.md) (7), [russification.md](../russification.md) (6), [roadmap.md](../roadmap.md) (5), [russification-glossary.md](../russification-glossary.md) (4)
 <!-- auto:end card:create-alexs-caves-compat -->
 
@@ -638,7 +638,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:deep-aether -->
 <a id="deep-aether"></a>
 - **Версия:** 1.20.1-1.1.7 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/deep-aether)
-- **Что это:** Deep Aether is an addon for the original version of The Aether mod. It aims to add lots of new features to give players a chance to venture deeper into the Aether dimension, while also maintaining its original style. _(источник: Modrinth)_
+- **Что это:** Аддон к The Aether: много нового контента, чтобы глубже исследовать Эфир, сохраняя дух оригинала. _(источник: docs сборки)_
 - **В наших docs:** [russification.md](../russification.md) (2), [bosses.md](../bosses.md) (1), [client-checklist.md](../client-checklist.md) (1), [compat.md](../compat.md) (1), [roadmap.md](../roadmap.md) (1)
 <!-- auto:end card:deep-aether -->
 
@@ -683,7 +683,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:deeperdarker -->
 <a id="deeperdarker"></a>
 - **Версия:** 1.3.3-forge+1.20.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/deeperdarker)
-- **Что это:** A Minecraft mod which features more blocks, items, armors, and hidden mysteries to complement the Deep Dark biome. _(источник: Modrinth)_
+- **Что это:** Больше блоков, предметов, брони и тайн для биома Глубокая тьма: новое измерение «Иная сторона», стражи и древние города. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (6), [bosses.md](../bosses.md) (3), [jei.md](../jei.md) (2), [roadmap.md](../roadmap.md) (1), [russification-audit.md](../russification-audit.md) (1), [version-choice.md](../version-choice.md) (1)
 <!-- auto:end card:deeperdarker -->
 
@@ -773,7 +773,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:dimensional-dungeons -->
 <a id="dimensional-dungeons"></a>
 - **Версия:** 207 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/dimensional-dungeons)
-- **Что это:** A mod that adds a dimension full of endless and renewable dungeons to explore! This mod is extremely configurable and is designed for modpacks. _(источник: Modrinth)_
+- **Что это:** Измерение из бесконечных обновляемых данжей; гибко настраивается, рассчитано на сборки. _(источник: docs сборки)_
 - **В наших docs:** [roadmap.md](../roadmap.md) (5), [russification.md](../russification.md) (5)
 <!-- auto:end card:dimensional-dungeons -->
 
@@ -818,7 +818,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:dungeons-and-villages-deeper-and-darker -->
 <a id="dungeons-and-villages-deeper-and-darker"></a>
 - **Версия:** 1.3 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/dungeons-and-villages-deeper-and-darker)
-- **Что это:** Adds dungeons to the Deeper and Darker dimension _(источник: Modrinth)_
+- **Что это:** Добавляет данжи в измерение Deeper and Darker. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (2)
 <!-- auto:end card:dungeons-and-villages-deeper-and-darker -->
 
@@ -863,7 +863,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:integrated-api -->
 <a id="integrated-api"></a>
 - **Версия:** 1.8.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/integrated-api)
-- **Что это:** Library mod for the Integrated Structures series _(источник: Modrinth)_
+- **Что это:** Библиотека серии Integrated Structures (для генерации структур). _(источник: docs сборки)_
 - **В сборке:** подтянут как зависимость или связка (в modlist.txt отдельной строкой не указан).
 - **В наших docs:** [compat.md](../compat.md) (1), [roadmap.md](../roadmap.md) (1)
 <!-- auto:end card:integrated-api -->
@@ -909,7 +909,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:integrated-mowzies-mobs -->
 <a id="integrated-mowzies-mobs"></a>
 - **Версия:** 1.3.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/integrated-mowzies-mobs)
-- **Что это:** Integrated Mowzie's Mobs is a mod that revamps and integrates all the structures of the mod with many improvements. _(источник: Modrinth)_
+- **Что это:** Переработка всех структур Mowzie's Mobs с множеством улучшений. _(источник: docs сборки)_
 - **В сборке:** структуры Mowzie's; тянет Quark + Supplementaries + Amendments (одобрено пользователем)
 - **В наших docs:** [compat.md](../compat.md) (2), [roadmap.md](../roadmap.md) (2)
 <!-- auto:end card:integrated-mowzies-mobs -->
@@ -955,7 +955,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:integrated-patches -->
 <a id="integrated-patches"></a>
 - **Версия:** 1.2.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/integrated-patches)
-- **Что это:** A lightweight fix mod that resolves world generation issues with Integrated API. _(источник: Modrinth)_
+- **Что это:** Лёгкий фикс проблем генерации мира в Integrated API. _(источник: docs сборки)_
 - **В сборке:** подтянут как зависимость или связка (в modlist.txt отдельной строкой не указан).
 - **В наших docs:** [compat.md](../compat.md) (1)
 <!-- auto:end card:integrated-patches -->
@@ -1001,7 +1001,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:lootintegrations -->
 <a id="lootintegrations"></a>
 - **Версия:** 1.20.1-4.7 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/lootintegrations-1.20.1-4.7.jar`
-- **Что это:** Integrates items from loottables into other loottables for intermod loot compatibility _(источник: mods.toml)_
+- **Что это:** Подмешивает предметы одних таблиц добычи в другие — совместимость лута разных модов. _(источник: docs сборки)_
 <!-- auto:end card:lootintegrations -->
 
 ### Как играть
@@ -1045,7 +1045,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:lootintegrations_cataclysm -->
 <a id="lootintegrations_cataclysm"></a>
 - **Версия:** 1 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/lootintegrations_cataclysm-1.2.jar`
-- **Что это:** lootintegrations_cataclysm mod _(источник: mods.toml)_
+- **Что это:** Часть Loot Integrations: лут Cataclysm. _(источник: docs сборки)_
 <!-- auto:end card:lootintegrations_cataclysm -->
 
 ### Как играть
@@ -1089,7 +1089,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:aether -->
 <a id="aether"></a>
 - **Версия:** 1.20.1-1.5.2-neoforge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/aether)
-- **Что это:** The Aether Team presents the original Aether mod! Maintained and kept up to date for modern versions of Minecraft and fully compatible with multiplayer! _(источник: Modrinth)_
+- **Что это:** Оригинальный мод The Aether: небесное измерение с островами, мо, валькириями и боссами; для современных версий, с мультиплеером. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (11), [russification.md](../russification.md) (9), [roadmap.md](../roadmap.md) (4), [bosses.md](../bosses.md) (3), [client-checklist.md](../client-checklist.md) (3), [jei.md](../jei.md) (1)
 <!-- auto:end card:aether -->
 
@@ -1134,7 +1134,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:the-aether-redux -->
 <a id="the-aether-redux"></a>
 - **Версия:** 2.0.19-1.20.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/the-aether-redux)
-- **Что это:** An addon for the Aether, adding various improvements and changes _(источник: Modrinth)_
+- **Что это:** Аддон к The Aether: разные улучшения и изменения. _(источник: docs сборки)_
 <!-- auto:end card:the-aether-redux -->
 
 ### Как играть
@@ -1178,7 +1178,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:the-bumblezone -->
 <a id="the-bumblezone"></a>
 - **Версия:** 7.14.0+1.20.1-forge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/the-bumblezone)
-- **Что это:** An unBEElievable dimension full of bees that becomes REALLY angry if you take their honey! _(источник: Modrinth)_
+- **Что это:** Измерение, полное пчёл; пчёлы свирепеют, если брать их мёд. _(источник: docs сборки)_
 <!-- auto:end card:the-bumblezone -->
 
 ### Как играть
@@ -1224,7 +1224,7 @@ _Пока пусто — заполнит один из следующих эт�
 - **Версия:** 1.20-7.5.7 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/the-lost-cities)
 - **Что это:** Генерирует заброшенные города (улицы, шоссе, здания с подвалами, метро, спавнерами и сундуками) прямо в обычном Overworld; в сборке включён редкий профиль rarecities (≈6 % городских чанков), действует для нового мира. _(источник: docs сборки)_
 - **В сборке:** The Lost Cities (McJty, MIT): города в обычном Overworld; профиль — pack/defaultconfigs/lostcities-server.toml
-- **В наших docs:** [lost-cities.md](../lost-cities.md) (17), [compat.md](../compat.md) (9), [roadmap.md](../roadmap.md) (7), [issue-history.md](../issue-history.md) (3), [performance.md](../performance.md) (3), [friends.md](../friends.md) (2)
+- **В наших docs:** [lost-cities.md](../lost-cities.md) (17), [compat.md](../compat.md) (9), [roadmap.md](../roadmap.md) (8), [issue-history.md](../issue-history.md) (3), [performance.md](../performance.md) (3), [friends.md](../friends.md) (2)
 <!-- auto:end card:the-lost-cities -->
 
 ### Как играть
@@ -1321,7 +1321,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:twilightforest -->
 <a id="twilightforest"></a>
 - **Версия:** 1.20.1-4.3.2508-universal · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/twilightforest-1.20.1-4.3.2508-universal.jar`
-- **Что это:** An enchanted forest dimension. _(источник: mods.toml)_
+- **Что это:** Заколдованное лесное измерение Сумеречный лес: боссы, данжи, свои материалы. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (2)
 <!-- auto:end card:twilightforest -->
 
@@ -1366,7 +1366,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:the-undergarden -->
 <a id="the-undergarden"></a>
 - **Версия:** 0.8.14 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/the-undergarden)
-- **Что это:** Deep underground, a forgotten land awaits. _(источник: Modrinth)_
+- **Что это:** Подземное измерение с собственными биомами, мобами, материалами и боссами. _(источник: docs сборки)_
 <!-- auto:end card:the-undergarden -->
 
 ### Как играть
@@ -1410,7 +1410,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:the-twilight-forest-dungeons-villages -->
 <a id="the-twilight-forest-dungeons-villages"></a>
 - **Версия:** 1.2.3 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/the-twilight-forest-dungeons-villages)
-- **Что это:** Adds new content to The Twilight Forest mod, mainly villages. _(источник: Modrinth)_
+- **Что это:** Новый контент для Сумеречного леса, в основном деревни. _(источник: docs сборки)_
 - **В наших docs:** [bosses.md](../bosses.md) (8), [compat.md](../compat.md) (6), [roadmap.md](../roadmap.md) (2), [client-checklist.md](../client-checklist.md) (1), [version-choice.md](../version-choice.md) (1)
 <!-- auto:end card:the-twilight-forest-dungeons-villages -->
 
@@ -1455,7 +1455,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:tfbr -->
 <a id="tfbr"></a>
 - **Версия:** 4.2.2 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/tfbr-1.20.1-4.2.2.jar`
-- **Что это:** This mod adds ability to respawn Twilight Forest bosses. After killing boss (Naga, Lich, Hydra, Ur-Ghast, Snow Queen) special block (pedestal) will spawn You need to place a trophy of boss you killed on top of this block. Important: Trophy block must be faced north!!! Then you need to create a circ… _(источник: mods.toml)_
+- **Что это:** Позволяет повторно призывать боссов Сумеречного леса: после победы появляется пьедестал, на который кладётся трофей босса. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (1)
 <!-- auto:end card:tfbr -->
 
@@ -1500,7 +1500,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:twilight-forest-cave-fix -->
 <a id="twilight-forest-cave-fix"></a>
 - **Версия:** 1.0.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/twilight-forest-cave-fix)
-- **Что это:** Fixes the bug that causes Twilight Forest's caves to cut off when beneath water _(источник: Modrinth)_
+- **Что это:** Исправляет обрыв пещер Сумеречного леса под водой. _(источник: docs сборки)_
 - **В сборке:** both: миксин генерации пещер — в одиночке иначе мир генерируется без фикса
 <!-- auto:end card:twilight-forest-cave-fix -->
 
@@ -1545,7 +1545,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:twilight-forest-the-lost-blocks -->
 <a id="twilight-forest-the-lost-blocks"></a>
 - **Версия:** 1.20.1-1.5.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/twilight-forest-the-lost-blocks)
-- **Что это:** Adds missing blocks to Twilight Forest for the builders! _(источник: Modrinth)_
+- **Что это:** Добавляет в Сумеречный лес недостающие блоки для строителей. _(источник: docs сборки)_
 - **В наших docs:** [bosses.md](../bosses.md) (8), [compat.md](../compat.md) (6), [roadmap.md](../roadmap.md) (2), [client-checklist.md](../client-checklist.md) (1), [version-choice.md](../version-choice.md) (1)
 <!-- auto:end card:twilight-forest-the-lost-blocks -->
 
@@ -1590,7 +1590,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:umbral_skies -->
 <a id="umbral_skies"></a>
 - **Версия:** 1.3 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/umbral_skies-1.3.jar`
-- **Что это:** Find Twilight Forest features in The Aether! _(источник: mods.toml)_
+- **Что это:** Элементы Сумеречного леса в Эфире. _(источник: docs сборки)_
 - **В сборке:** Twilight Forest × Aether
 - **В наших docs:** [compat.md](../compat.md) (2)
 <!-- auto:end card:umbral_skies -->

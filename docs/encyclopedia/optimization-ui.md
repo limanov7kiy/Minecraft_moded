@@ -58,7 +58,7 @@ _Обзор категории — вручную, следующие этапы
 <!-- auto:start card:ai-improvements -->
 <a id="ai-improvements"></a>
 - **Версия:** 0.5.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/ai-improvements)
-- **Что это:** Performance improvements for vanilla AI, with the ability to turn off certain AI behaviors _(источник: Modrinth)_
+- **Что это:** Оптимизация ванильного ИИ с возможностью отключать некоторые его поведения. _(источник: docs сборки)_
 - **В сборке:** сервер
 - **В наших docs:** [performance.md](../performance.md) (2)
 <!-- auto:end card:ai-improvements -->
@@ -104,7 +104,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:appleskin -->
 <a id="appleskin"></a>
 - **Версия:** 2.5.1+mc1.20.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/appleskin)
-- **Что это:** Food/hunger-related HUD improvements _(источник: Modrinth)_
+- **Что это:** Подсказки сытости и насыщения на панели еды. _(источник: docs сборки)_
 <!-- auto:end card:appleskin -->
 
 ### Как играть
@@ -148,7 +148,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:async-locator -->
 <a id="async-locator"></a>
 - **Версия:** 1.20-1.3.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/async-locator)
-- **Что это:** Changes the searching of features to be asynchronous to mitigate associated lag _(источник: Modrinth)_
+- **Что это:** Асинхронный поиск структур — меньше лагов от /locate и карт. _(источник: docs сборки)_
 - **В сборке:** сервер
 - **В наших docs:** [performance.md](../performance.md) (2), [compat.md](../compat.md) (1), [galacticraft.md](../galacticraft.md) (1)
 <!-- auto:end card:async-locator -->
@@ -194,7 +194,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:canary -->
 <a id="canary"></a>
 - **Версия:** mc1.20.1-0.3.3 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/canary)
-- **Что это:** A performance mod designed to optimize Minecraft's general performance and unofficial fork of Lithium mod for Minecraft Forge. _(источник: Modrinth)_
+- **Что это:** Оптимизация общей производительности; неофициальный форк Lithium для Forge. _(источник: docs сборки)_
 - **В сборке:** порт Lithium (сервер+клиент)
 <!-- auto:end card:canary -->
 
@@ -239,7 +239,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:clumps -->
 <a id="clumps"></a>
 - **Версия:** 12.0.0.4 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/clumps)
-- **Что это:** Clumps XP orbs together to reduce lag _(источник: Modrinth)_
+- **Что это:** Склеивает шарики опыта, снижая лаги. _(источник: docs сборки)_
 <!-- auto:end card:clumps -->
 
 ### Как играть
@@ -283,7 +283,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:controlling -->
 <a id="controlling"></a>
 - **Версия:** 12.0.2 · **Сторона:** client · **Источник:** [Modrinth](https://modrinth.com/mod/controlling)
-- **Что это:** Adds a search bar to the Key-Bindings menu _(источник: Modrinth)_
+- **Что это:** Строка поиска в меню управления. _(источник: docs сборки)_
 - **В сборке:** client: поиск по названию и категории в экране «Управление» + кнопка «только конфликты»; зависимость Searchables
 <!-- auto:end card:controlling -->
 
@@ -328,7 +328,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:distanthorizons -->
 <a id="distanthorizons"></a>
 - **Версия:** 3.3.3-1.20.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/distanthorizons)
-- **Что это:** Massively increase render distance without harming performance. _(источник: Modrinth)_
+- **Что это:** Сильно увеличивает дальность прорисовки без потери производительности (упрощённые дальние чанки). _(источник: docs сборки)_
 - **В сборке:** дальняя прорисовка
 - **В наших docs:** [performance.md](../performance.md) (10), [friends.md](../friends.md) (6), [compat.md](../compat.md) (5), [roadmap.md](../roadmap.md) (4), [client-checklist.md](../client-checklist.md) (2), [orespawn.md](../orespawn.md) (1)
 <!-- auto:end card:distanthorizons -->
@@ -374,7 +374,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:embeddium -->
 <a id="embeddium"></a>
 - **Версия:** 0.3.31+mc1.20.1 · **Сторона:** client · **Источник:** [Modrinth](https://modrinth.com/mod/embeddium)
-- **Что это:** A powerful, mod-friendly, FOSS client performance mod for NeoForge _(источник: Modrinth)_
+- **Что это:** Клиентская оптимизация рендера (форк Rubidium/Sodium для Forge). _(источник: docs сборки)_
 - **В сборке:** клиент
 - **В наших docs:** [performance.md](../performance.md) (48), [compat.md](../compat.md) (8), [roadmap.md](../roadmap.md) (6), [client-checklist.md](../client-checklist.md) (4), [diagnostics.md](../diagnostics.md) (4), [version-choice.md](../version-choice.md) (4)
 <!-- auto:end card:embeddium -->
@@ -420,7 +420,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:entityculling -->
 <a id="entityculling"></a>
 - **Версия:** 1.11.3 · **Сторона:** client · **Источник:** [Modrinth](https://modrinth.com/mod/entityculling)
-- **Что это:** Using async path-tracing to hide Block-/Entities that are not visible _(источник: Modrinth)_
+- **Что это:** Скрывает невидимые блоки-сущности и существ, чтобы не рисовать их. _(источник: docs сборки)_
 - **В сборке:** клиент
 - **В наших docs:** [performance.md](../performance.md) (2), [russification-audit.md](../russification-audit.md) (1)
 <!-- auto:end card:entityculling -->
@@ -466,7 +466,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:fastfurnace -->
 <a id="fastfurnace"></a>
 - **Версия:** 8.0.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/fastfurnace)
-- **Что это:** Performance optimizations for the furnace _(источник: Modrinth)_
+- **Что это:** Оптимизация печей. _(источник: docs сборки)_
 - **В сборке:** сервер: кэш рецептов печей (поток 8)
 - **В наших docs:** [performance.md](../performance.md) (4), [roadmap.md](../roadmap.md) (2)
 <!-- auto:end card:fastfurnace -->
@@ -512,7 +512,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:fastworkbench -->
 <a id="fastworkbench"></a>
 - **Версия:** 8.0.4 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/fastworkbench)
-- **Что это:** A major optimization for the Crafting Table! _(источник: Modrinth)_
+- **Что это:** Оптимизация верстака. _(источник: docs сборки)_
 - **В сборке:** сервер: кэш рецептов верстака (поток 8)
 - **В наших docs:** [performance.md](../performance.md) (4), [roadmap.md](../roadmap.md) (2)
 <!-- auto:end card:fastworkbench -->
@@ -558,7 +558,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:ferrite-core -->
 <a id="ferrite-core"></a>
 - **Версия:** 6.0.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/ferrite-core)
-- **Что это:** Memory usage optimizations _(источник: Modrinth)_
+- **Что это:** Снижает потребление памяти. _(источник: docs сборки)_
 - **В наших docs:** [performance.md](../performance.md) (1), [version-choice.md](../version-choice.md) (1)
 <!-- auto:end card:ferrite-core -->
 
@@ -603,7 +603,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:immediatelyfast -->
 <a id="immediatelyfast"></a>
 - **Версия:** 1.5.5+1.20.4-forge · **Сторона:** client · **Источник:** [Modrinth](https://modrinth.com/mod/immediatelyfast)
-- **Что это:** Speed up immediate mode rendering in Minecraft _(источник: Modrinth)_
+- **Что это:** Ускоряет рендер в режиме немедленной отрисовки. _(источник: docs сборки)_
 - **В сборке:** клиент
 - **В наших docs:** [performance.md](../performance.md) (8), [compat.md](../compat.md) (2), [roadmap.md](../roadmap.md) (2), [russification.md](../russification.md) (2)
 <!-- auto:end card:immediatelyfast -->
@@ -649,7 +649,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:jade-addons-forge -->
 <a id="jade-addons-forge"></a>
 - **Версия:** 5.5.1+forge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/jade-addons-forge)
-- **Что это:** Jade 🔍's additional mod supports for Neo/Forge _(источник: Modrinth)_
+- **Что это:** Дополнительная поддержка модов в Jade. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (1)
 <!-- auto:end card:jade-addons-forge -->
 
@@ -694,7 +694,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:jade-vs -->
 <a id="jade-vs"></a>
 - **Версия:** 1.3.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/jade-vs)
-- **Что это:** Provides compatibility between Jade and Valkyrien Skies _(источник: Modrinth)_
+- **Что это:** Совместимость Jade и Valkyrien Skies. _(источник: docs сборки)_
 - **В сборке:** Jade × Valkyrien Skies
 - **В наших docs:** [jei.md](../jei.md) (1), [russification-audit.md](../russification-audit.md) (1)
 <!-- auto:end card:jade-vs -->
@@ -740,7 +740,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:jade -->
 <a id="jade"></a>
 - **Версия:** 11.13.3+forge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/jade)
-- **Что это:** Shows information about what you are looking at. (Hwyla/Waila fork for Minecraft 1.16+) _(источник: Modrinth)_
+- **Что это:** Показывает информацию о блоке или существе, на которое смотрите. _(источник: docs сборки)_
 <!-- auto:end card:jade -->
 
 ### Как играть
@@ -784,7 +784,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:jea -->
 <a id="jea"></a>
 - **Версия:** 1.20.1-5.0.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/jea)
-- **Что это:** An addon for JEI which let you search for advancements. This is pronounced like "yeah". _(источник: Modrinth)_
+- **Что это:** Аддон JEI: поиск достижений. _(источник: docs сборки)_
 - **В сборке:** поиск достижений в JEI (both)
 - **В наших docs:** [compat.md](../compat.md) (1), [jei.md](../jei.md) (1)
 <!-- auto:end card:jea -->
@@ -830,7 +830,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:justenoughbreeding -->
 <a id="justenoughbreeding"></a>
 - **Версия:** 3.1.2 · **Сторона:** client · **Источник:** [Modrinth](https://modrinth.com/mod/justenoughbreeding)
-- **Что это:** JEI/REI/EMI plugin that displays breeding information _(источник: Modrinth)_
+- **Что это:** Плагин JEI: показывает информацию о разведении животных. _(источник: docs сборки)_
 - **В сборке:** клиент: разведение мобов (Alex's Mobs, Mowzie's, ванилла) в JEI
 - **В наших docs:** [compat.md](../compat.md) (1), [jei.md](../jei.md) (1), [roadmap.md](../roadmap.md) (1)
 <!-- auto:end card:justenoughbreeding -->
@@ -876,7 +876,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:just-enough-effect-descriptions-jeed -->
 <a id="just-enough-effect-descriptions-jeed"></a>
 - **Версия:** 1.20-2.2.6 · **Сторона:** client · **Источник:** [Modrinth](https://modrinth.com/mod/just-enough-effect-descriptions-jeed)
-- **Что это:** JEI plugin that displays information on all status effects _(источник: Modrinth)_
+- **Что это:** Плагин JEI: описания всех эффектов. _(источник: docs сборки)_
 <!-- auto:end card:just-enough-effect-descriptions-jeed -->
 
 ### Как играть
@@ -920,7 +920,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:jei -->
 <a id="jei"></a>
 - **Версия:** 15.62.0.219 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/jei)
-- **Что это:** View Items and Recipes _(источник: Modrinth)_
+- **Что это:** Просмотр предметов и рецептов. _(источник: docs сборки)_
 <!-- auto:end card:jei -->
 
 ### Как играть
@@ -964,7 +964,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:just-enough-mekanism-multiblocks -->
 <a id="just-enough-mekanism-multiblocks"></a>
 - **Версия:** 4.25 · **Сторона:** client · **Источник:** [Modrinth](https://modrinth.com/mod/just-enough-mekanism-multiblocks)
-- **Что это:** Add JEI page for calculate mekanism multiblock cost _(источник: Modrinth)_
+- **Что это:** Страница JEI с расчётом стоимости мультиблоков Mekanism. _(источник: docs сборки)_
 - **В сборке:** клиент
 - **В наших docs:** [jei.md](../jei.md) (1)
 <!-- auto:end card:just-enough-mekanism-multiblocks -->
@@ -1010,7 +1010,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:just-enough-professions-jep -->
 <a id="just-enough-professions-jep"></a>
 - **Версия:** 3.0.1 · **Сторона:** client · **Источник:** [Modrinth](https://modrinth.com/mod/just-enough-professions-jep)
-- **Что это:** A JEI addon that adds profession workstations _(источник: Modrinth)_
+- **Что это:** Аддон JEI: рабочие места профессий жителей. _(источник: docs сборки)_
 - **В сборке:** рабочие места жителей в JEI
 - **В наших docs:** [compat.md](../compat.md) (1), [jei.md](../jei.md) (1)
 <!-- auto:end card:just-enough-professions-jep -->
@@ -1056,7 +1056,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:just-enough-resources-jer -->
 <a id="just-enough-resources-jer"></a>
 - **Версия:** 1.4.0.247 · **Сторона:** client · **Источник:** [Modrinth](https://modrinth.com/mod/just-enough-resources-jer)
-- **Что это:** JEI integration that adds info on mobs, world gen, villagers and many more! _(источник: Modrinth)_
+- **Что это:** Интеграция JEI: данные о мобах, генерации мира, жителях и др. _(источник: docs сборки)_
 <!-- auto:end card:just-enough-resources-jer -->
 
 ### Как играть
@@ -1100,7 +1100,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:lmd -->
 <a id="lmd"></a>
 - **Версия:** 1.5.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/lmd)
-- **Что это:** Improves performance by tweaking mob despawn rules. Say bye to pesky unintentional persistent mobs. _(источник: Modrinth)_
+- **Что это:** Правит условия исчезновения мобов — меньше случайно «вечных» мобов. _(источник: docs сборки)_
 - **В сборке:** Let Me Despawn (сервер): мобы с предметами/именами тоже деспавнятся — меньше мобов в мире (поток 8)
 - **В наших docs:** [performance.md](../performance.md) (2), [roadmap.md](../roadmap.md) (1)
 <!-- auto:end card:lmd -->
@@ -1146,7 +1146,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:memoryleakfix -->
 <a id="memoryleakfix"></a>
 - **Версия:** v1.1.5 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/memoryleakfix)
-- **Что это:** A mod that fixes random memory leaks for both the client and server _(источник: Modrinth)_
+- **Что это:** Исправляет случайные утечки памяти на клиенте и сервере. _(источник: docs сборки)_
 - **В наших docs:** [performance.md](../performance.md) (2)
 <!-- auto:end card:memoryleakfix -->
 
@@ -1191,7 +1191,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:modernfix -->
 <a id="modernfix"></a>
 - **Версия:** 5.27.87+mc1.20.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/modernfix)
-- **Что это:** All-in-one mod that improves performance, reduces memory usage, and fixes many bugs. Compatible with all your favorite performance mods! _(источник: Modrinth)_
+- **Что это:** Комплексная оптимизация производительности и памяти, исправляет баги. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (22), [performance.md](../performance.md) (10), [roadmap.md](../roadmap.md) (10), [friends.md](../friends.md) (2), [issue-history.md](../issue-history.md) (2), [jei.md](../jei.md) (2)
 <!-- auto:end card:modernfix -->
 
@@ -1236,7 +1236,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:oculus -->
 <a id="oculus"></a>
 - **Версия:** 1.20.1-1.8.0 · **Сторона:** client · **Источник:** [Modrinth](https://modrinth.com/mod/oculus)
-- **Что это:** Unofficial Fork of "Iris", made to work with FML _(источник: Modrinth)_
+- **Что это:** Неофициальный форк Iris для Forge: поддержка шейдеров. _(источник: docs сборки)_
 - **В сборке:** клиент, шейдеры
 - **В наших docs:** [performance.md](../performance.md) (22), [roadmap.md](../roadmap.md) (5), [compat.md](../compat.md) (4), [client-checklist.md](../client-checklist.md) (2), [diagnostics.md](../diagnostics.md) (2), [friends.md](../friends.md) (1)
 <!-- auto:end card:oculus -->
@@ -1282,7 +1282,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:potato-craft-8x -->
 <a id="potato-craft-8x"></a>
 - **Версия:** v1.4 · **Сторона:** client · **Источник:** [Modrinth](https://modrinth.com/resourcepack/potato-craft-8x)
-- **Что это:** PotatoCraft 8x is an 8x Texture Pack that significantly increases FPS in Low-End Devices. _(источник: Modrinth)_
+- **Что это:** Текстурпак 8x для слабых ПК, заметно повышает FPS. _(источник: docs сборки)_
 - **В сборке:** client: НЕОБЯЗАТЕЛЬНЫЙ ресурспак низких текстур 8x (CC-BY-4.0, автор — Modrinth «Potato Craft-8x»); в options.txt НЕ включён — игрок включает сам; ванильные текстуры, текстуры модов не меняет
 - **В наших docs:** [compat.md](../compat.md) (2), [roadmap.md](../roadmap.md) (1)
 <!-- auto:end card:potato-craft-8x -->
@@ -1374,7 +1374,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:russian-delight -->
 <a id="russian-delight"></a>
 - **Версия:** 1.0 · **Сторона:** client · **Источник:** [Modrinth](https://modrinth.com/resourcepack/russian-delight)
-- **Что это:** Adding Russian translation for most Farmer's Delight add-ons _(источник: Modrinth)_
+- **Что это:** Русский перевод большинства дополнений к Farmer's Delight. _(источник: docs сборки)_
 - **В сборке:** дополнения Farmer's Delight (MIT)
 - **В наших docs:** [russification.md](../russification.md) (6), [compat.md](../compat.md) (1), [roadmap.md](../roadmap.md) (1)
 <!-- auto:end card:russian-delight -->
@@ -1420,7 +1420,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:rtf -->
 <a id="rtf"></a>
 - **Версия:** 2.8.4 · **Сторона:** client · **Источник:** [Modrinth](https://modrinth.com/resourcepack/rtf)
-- **Что это:** Russian translations and text fixes for mods. | Переводы на русский язык и исправления текста. _(источник: Modrinth)_
+- **Что это:** Ресурспак: русские переводы и исправления текста модов сборки (Ad Astra, Twilight Delight и др.). _(источник: docs сборки)_
 - **В сборке:** RTF: Ad Astra, Twilight Delight и др. (MIT)
 <!-- auto:end card:rtf -->
 
@@ -1465,7 +1465,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:saturn -->
 <a id="saturn"></a>
 - **Версия:** mc1.20.1-0.1.3 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/saturn)
-- **Что это:** A performance mod designed to optimize Minecraft's memory usage. _(источник: Modrinth)_
+- **Что это:** Снижает потребление памяти. _(источник: docs сборки)_
 <!-- auto:end card:saturn -->
 
 ### Как играть
@@ -1509,7 +1509,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:smooth-boot-reloaded -->
 <a id="smooth-boot-reloaded"></a>
 - **Версия:** mc1.20.1-0.0.4 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/smooth-boot-reloaded)
-- **Что это:** Tweaks for Minecraft CPU scheduling and unofficial fork of Smooth Boot mod for Minecraft Forge 1.18.2+ _(источник: Modrinth)_
+- **Что это:** Правки планирования потоков CPU при загрузке; неофициальный форк Smooth Boot. _(источник: docs сборки)_
 - **В наших docs:** [performance.md](../performance.md) (2)
 <!-- auto:end card:smooth-boot-reloaded -->
 
@@ -1554,7 +1554,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:spark -->
 <a id="spark"></a>
 - **Версия:** 1.10.53-forge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/spark)
-- **Что это:** spark is a performance profiler for Minecraft clients, servers and proxies. _(источник: Modrinth)_
+- **Что это:** Профилировщик производительности клиентов и серверов. _(источник: docs сборки)_
 - **В сборке:** профайлер лагов
 <!-- auto:end card:spark -->
 
@@ -1599,7 +1599,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:xaeros-minimap -->
 <a id="xaeros-minimap"></a>
 - **Версия:** forge-1.20.1-26.6.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/xaeros-minimap)
-- **Что это:** Displays a map of the nearby world terrain, players, mobs, entities in the corner of your screen. Lets you create waypoints which help you find the locations you've marked. _(источник: Modrinth)_
+- **Что это:** Миникарта: рельеф, игроки, мобы, путевые точки. _(источник: docs сборки)_
 - **В сборке:** клиент
 - **В наших docs:** [compat.md](../compat.md) (1)
 <!-- auto:end card:xaeros-minimap -->
@@ -1645,7 +1645,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:xaeros-minimap-world-map-waystones-compatibility-forge -->
 <a id="xaeros-minimap-world-map-waystones-compatibility-forge"></a>
 - **Версия:** 1.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/xaeros-minimap-world-map-waystones-compatibility-forge)
-- **Что это:** Creates a Waypoint in Xaero's Minimap & World Map when activate a Waystone _(источник: Modrinth)_
+- **Что это:** Создаёт путевую точку на картах Xaero при активации вейстоуна. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (1)
 <!-- auto:end card:xaeros-minimap-world-map-waystones-compatibility-forge -->
 
@@ -1690,7 +1690,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:xaeros-world-map -->
 <a id="xaeros-world-map"></a>
 - **Версия:** forge-1.20.1-1.47.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/xaeros-world-map)
-- **Что это:** Adds a full screen world map which shows you what you have explored in the world. Works great together with Xaero's Minimap. _(источник: Modrinth)_
+- **Что это:** Полноэкранная карта исследованного мира; работает вместе с Xaero's Minimap. _(источник: docs сборки)_
 - **В сборке:** клиент
 - **В наших docs:** [russification.md](../russification.md) (1)
 <!-- auto:end card:xaeros-world-map -->

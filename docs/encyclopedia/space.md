@@ -183,7 +183,7 @@ Ad Astra (Terrarium, лицензия Terrarium License) даёт **планет
 <!-- auto:start card:create-ad-astra-recipes -->
 <a id="create-ad-astra-recipes"></a>
 - **Версия:** 1.0.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/create-ad-astra-recipes)
-- **Что это:** Adds recipes to make Create and Ad Astra more compatible _(источник: Modrinth)_
+- **Что это:** Рецепты, повышающие совместимость Create и Ad Astra. _(источник: docs сборки)_
 <!-- auto:end card:create-ad-astra-recipes -->
 
 ### Как играть
@@ -480,7 +480,7 @@ Creating Space (MIT; автор Real Ant Engineer) — ракеты на Create,
 <!-- auto:start card:mekanism-ad-astra-ores -->
 <a id="mekanism-ad-astra-ores"></a>
 - **Версия:** 1.1.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/mekanism-ad-astra-ores)
-- **Что это:** Adds Mekanism ores on Ad Astra planets. _(источник: Modrinth)_
+- **Что это:** Руды Mekanism на планетах Ad Astra. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (16), [jei.md](../jei.md) (10), [galacticraft.md](../galacticraft.md) (4), [orespawn.md](../orespawn.md) (3), [roadmap.md](../roadmap.md) (3), [russification-audit.md](../russification-audit.md) (3)
 <!-- auto:end card:mekanism-ad-astra-ores -->
 

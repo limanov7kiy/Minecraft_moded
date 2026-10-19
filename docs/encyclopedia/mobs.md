@@ -37,7 +37,7 @@ _Обзор категории — вручную, следующие этапы
 <a id="alexs-mobs"></a>
 - **Версия:** 1.22.9 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/alexs-mobs)
 - **Что это:** Больше 90 оригинальных животных и монстров с повадками, приручением и крафтом из дропа; всё описано во внутриигровой Книге о животных (Animal Dictionary), есть босс Червь Пустоты. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (16), [orespawn.md](../orespawn.md) (6), [roadmap.md](../roadmap.md) (6), [performance.md](../performance.md) (4), [russification.md](../russification.md) (4), [version-choice.md](../version-choice.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (16), [roadmap.md](../roadmap.md) (8), [orespawn.md](../orespawn.md) (6), [performance.md](../performance.md) (4), [russification.md](../russification.md) (4), [version-choice.md](../version-choice.md) (2)
 <!-- auto:end card:alexs-mobs -->
 
 ### Как играть
@@ -298,7 +298,7 @@ _Обзор категории — вручную, следующие этапы
 <!-- auto:start card:alexs-mobs-interaction -->
 <a id="alexs-mobs-interaction"></a>
 - **Версия:** 6.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/alexs-mobs-interaction)
-- **Что это:** An addon that adds tons of new features specifically for the mod Alex's Mobs _(источник: Modrinth)_
+- **Что это:** Дополнение с множеством новых возможностей именно для Alex's Mobs. _(источник: docs сборки)_
 - **В наших docs:** [russification.md](../russification.md) (2), [compat.md](../compat.md) (1)
 <!-- auto:end card:alexs-mobs-interaction -->
 
@@ -343,7 +343,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:bosses-of-mass-destruction-forge -->
 <a id="bosses-of-mass-destruction-forge"></a>
 - **Версия:** 1.1.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/bosses-of-mass-destruction-forge)
-- **Что это:** WIP mod that adds boss fights to Minecraft _(источник: Modrinth)_
+- **Что это:** Боссы-арены (Лич, Обсидилит, Пустотный цветок, Гаунтлет) — мод в разработке. _(источник: docs сборки)_
 - **В сборке:** both: Bosses of Mass Destruction 1.1.2 — Лич, Обсидилит, Void Blossom, Гаунтлет с аренами (поток 9)
 - **В наших docs:** [compat.md](../compat.md) (9), [roadmap.md](../roadmap.md) (5), [orespawn.md](../orespawn.md) (1)
 <!-- auto:end card:bosses-of-mass-destruction-forge -->
@@ -502,7 +502,7 @@ Id вида `chaospersists:<id>` (названия — наш перевод). �
 <!-- auto:start card:cinematic-cataclysm -->
 <a id="cinematic-cataclysm"></a>
 - **Версия:** 1.0.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/cinematic-cataclysm)
-- **Что это:** Adds intro cutscenes to some L_Ender's Cataclysm bosses _(источник: Modrinth)_
+- **Что это:** Вступительные ролики перед боями с некоторыми боссами L_Ender's Cataclysm. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (1)
 <!-- auto:end card:cinematic-cataclysm -->
 
@@ -547,7 +547,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:clanging-howl -->
 <a id="clanging-howl"></a>
 - **Версия:** 1.20.1-1.1.0 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/clanging-howl-1.20.1-1.1.0.jar`
-- **Что это:** Adds a lot of hostile mobs, with their own characteristics that can complicate your survival _(источник: mods.toml)_
+- **Что это:** Много враждебных мобов со своими особенностями, усложняющих выживание. _(источник: docs сборки)_
 - **В сборке:** both: Clanging Howl 1.1.0 (Mongoose_artist, Polarice3; All Rights Reserved, CF без стороннего скачивания) — инопланетные падения метеоритов, техноплоть-мобы, энергоинструменты; зависимости GeckoLib и Curios уже в сборке (поток 20). Перевод — russian-moded/assets/clanginghowl (den1s64dev, CC-BY-NC-SA-4.0 + дописано нами)
 - **В наших docs:** [compat.md](../compat.md) (3), [roadmap.md](../roadmap.md) (3), [orespawn.md](../orespawn.md) (2), [russification.md](../russification.md) (2)
 <!-- auto:end card:clanging-howl -->
@@ -751,7 +751,7 @@ Id `spore:<имя>`; накладываются на оружие и броню 
 <!-- auto:start card:ice-and-fire-dragons -->
 <a id="ice-and-fire-dragons"></a>
 - **Версия:** 2.1.13-1.20.1-beta-5 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/ice-and-fire-dragons)
-- **Что это:** Dragons and Mythical creatures in minecraft. _(источник: Modrinth)_
+- **Что это:** Драконы (огненные, ледяные, молниевые) и мифические существа. _(источник: docs сборки)_
 - **В сборке:** both: Ice and Fire CE 2.1.13 — драконы (огненный/ледяной/молниевый), гидра, сирены и др.; зависимость Citadel (поток 9)
 - **В наших docs:** [compat.md](../compat.md) (17), [roadmap.md](../roadmap.md) (14), [orespawn.md](../orespawn.md) (8), [performance.md](../performance.md) (4), [bosses.md](../bosses.md) (2), [issue-history.md](../issue-history.md) (2)
 <!-- auto:end card:ice-and-fire-dragons -->
@@ -798,7 +798,7 @@ _Пока пусто — заполнит один из следующих эт�
 <a id="l_enders-cataclysm"></a>
 - **Версия:** 3.31 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/l_enders-cataclysm)
 - **Что это:** Cataclysm от L_Ender: восемь крупных структур-арен с боссами (Игнис, Левиафан, Сцилла, Предвестник и др.), мини-боссы и мобы Незера, пустыни, океана и Края, оружие и броня по ступеням (чёрная сталь, игнит, проклятый слиток) и аметистовые пещеры. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (31), [roadmap.md](../roadmap.md) (11), [client-checklist.md](../client-checklist.md) (2), [orespawn.md](../orespawn.md) (2), [version-choice.md](../version-choice.md) (2), [lost-cities.md](../lost-cities.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (31), [roadmap.md](../roadmap.md) (12), [client-checklist.md](../client-checklist.md) (2), [orespawn.md](../orespawn.md) (2), [version-choice.md](../version-choice.md) (2), [lost-cities.md](../lost-cities.md) (1)
 <!-- auto:end card:l_enders-cataclysm -->
 
 ### Как играть
@@ -942,7 +942,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:lycaniteskin -->
 <a id="lycaniteskin"></a>
 - **Версия:** 1.1 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/lycaniteskin-1.1.jar`
-- **Что это:** Expands Lycanites Mobs: creature drop armor sets, full taming/summoning, and more. _(источник: mods.toml)_
+- **Что это:** Расширение Lycanites Mobs: броня из дропа существ, приручение и призыв. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (2)
 <!-- auto:end card:lycaniteskin -->
 
@@ -989,7 +989,7 @@ _Пока пусто — заполнит один из следующих эт�
 - **Версия:** 0.1.0-alpha · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/lycanites-mobs)
 - **Что это:** Свыше 120 существ с тематическими данжами, мобовыми событиями и боссами (Раховарт, Асмодей, Амальгалич); приручение, камни души, призыв миньонов и Зверинец. _(источник: docs сборки)_
 - **В сборке:** + pack/mods/lycanites-refmap-fix (patches/lycanites-refmap): недостающий refmap миксинов
-- **В наших docs:** [compat.md](../compat.md) (32), [roadmap.md](../roadmap.md) (15), [performance.md](../performance.md) (7), [orespawn.md](../orespawn.md) (4), [issue-history.md](../issue-history.md) (3), [jei.md](../jei.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (32), [roadmap.md](../roadmap.md) (16), [performance.md](../performance.md) (7), [orespawn.md](../orespawn.md) (4), [issue-history.md](../issue-history.md) (3), [jei.md](../jei.md) (2)
 <!-- auto:end card:lycanites-mobs -->
 
 ### Как играть
@@ -1140,7 +1140,7 @@ Seastorm, Shadow Games, Sharknado, Subzero, The Swarm, Tsunami, Windstorm, Winge
 <!-- auto:start card:mowzies-cataclysm -->
 <a id="mowzies-cataclysm"></a>
 - **Версия:** 1.2.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/mowzies-cataclysm)
-- **Что это:** Mowzie's Cataclysm adds features between Mowzie's Mobs and Cataclysm to fill in gaps _(источник: Modrinth)_
+- **Что это:** Связка Mowzie's Mobs и Cataclysm. _(источник: docs сборки)_
 - **В сборке:** Mowzie's × Cataclysm
 - **В наших docs:** [compat.md](../compat.md) (1)
 <!-- auto:end card:mowzies-cataclysm -->
@@ -1186,7 +1186,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:mowzies-mobs -->
 <a id="mowzies-mobs"></a>
 - **Версия:** 1.8.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/mowzies-mobs)
-- **Что это:** Mowzie's Mobs adds a variety of fictional creatures to Minecraft, priding itself in unique AI, rich atmosphere, and fluid animations. Prove your might against new bosses and enemies and claim their magical abilities as your own. _(источник: Modrinth)_
+- **Что это:** Вымышленные существа с уникальным ИИ и плавной анимацией; боссы (Ferrous Wroughtnaut, Frostmaw, Sculptor, Barako и др.) и их маски. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (13), [roadmap.md](../roadmap.md) (9), [orespawn.md](../orespawn.md) (1), [performance.md](../performance.md) (1)
 <!-- auto:end card:mowzies-mobs -->
 
