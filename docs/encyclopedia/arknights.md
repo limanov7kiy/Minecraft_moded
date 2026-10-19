@@ -166,7 +166,7 @@
 <a id="bobs-originium-dream"></a>
 - **Версия:** 1.1.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/bobs-originium-dream)
 - **Что это:** Мод Боба: ориджиниумные черви, бури и рост ориджиниума, биомы и структуры пустоши, десятки боссов, внутреннее измерение. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (2), [russification.md](../russification.md) (2), [friends.md](../friends.md) (1), [performance.md](../performance.md) (1), [version-choice.md](../version-choice.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (4), [russification.md](../russification.md) (2), [friends.md](../friends.md) (1), [performance.md](../performance.md) (1), [version-choice.md](../version-choice.md) (1)
 <!-- auto:end card:bobs-originium-dream -->
 
 ### Как играть
