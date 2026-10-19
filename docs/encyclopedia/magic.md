@@ -332,7 +332,7 @@ _Пока пусто — заполнит один из следующих эт�
 - **Версия:** 1.20.1-0.6.8.0 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/ars_elemental-1.20.1-0.6.8.0.jar`
 - **Что это:** Аддон Ars Nouveau о стихийных школах: фокусы, экипировка, новые глифы и скрытые комбинации. _(источник: docs сборки)_
 - **В сборке:** 4 стихийные школы Ars Nouveau
-- **В наших docs:** [compat.md](../compat.md) (3), [russification.md](../russification.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (4), [russification.md](../russification.md) (2)
 <!-- auto:end card:ars_elemental -->
 
 ### Как играть
@@ -924,7 +924,7 @@ _Пока пусто — заполнит один из следующих эт�
 <a id="electroblobs-wizardry-redux"></a>
 - **Версия:** 0.8.9-forge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/electroblobs-wizardry-redux)
 - **Что это:** Возрождение классического Electroblob's Wizardry для 1.20.1: семь стихий и четыре ступени заклинаний, посохи, кристаллы, броня и артефакты, Таинственный верстак и Алтарь наполнения, башни магов, святилища и обелиски; в сборке дополнен модом Wizardry Restored. _(источник: docs сборки)_
-- **В наших docs:** [wizardry-port.md](../wizardry-port.md) (73), [compat.md](../compat.md) (30), [roadmap.md](../roadmap.md) (10), [jei.md](../jei.md) (7), [client-checklist.md](../client-checklist.md) (6), [russification.md](../russification.md) (5)
+- **В наших docs:** [wizardry-port.md](../wizardry-port.md) (73), [compat.md](../compat.md) (32), [roadmap.md](../roadmap.md) (10), [jei.md](../jei.md) (7), [client-checklist.md](../client-checklist.md) (6), [russification.md](../russification.md) (5)
 <!-- auto:end card:electroblobs-wizardry-redux -->
 
 Автор порта Redux — Binaris (лицензия MIT/GPL-3.0, см. [wizardry-port.md](../wizardry-port.md)); оригинал 1.12.2 — Electroblob. Модид `ebwizardry`, сторона — both. Мана у мода своя (хранится в посохах и магической броне).
@@ -1294,7 +1294,7 @@ _Пока пусто — заполнит один из следующих эт�
 <a id="irons-spells-n-spellbooks"></a>
 - **Версия:** 1.20.1-3.16.3 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/irons-spells-n-spellbooks)
 - **Что это:** Магия в духе классических RPG: заклинания хранятся в свитках и книгах, колдуются за ману в школах (огонь, лёд, молния, свет, эндер, кровь, призыв, природа, потусторонье); добавляет посохи, броню магов, станции начертания и улучшения, магические структуры с боссами (Мёртвый король, Эхо Тироса). _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (16), [russification.md](../russification.md) (9), [performance.md](../performance.md) (8), [roadmap.md](../roadmap.md) (8), [ysm-models.md](../ysm-models.md) (6), [version-choice.md](../version-choice.md) (3)
+- **В наших docs:** [compat.md](../compat.md) (18), [russification.md](../russification.md) (9), [performance.md](../performance.md) (8), [roadmap.md](../roadmap.md) (8), [ysm-models.md](../ysm-models.md) (6), [version-choice.md](../version-choice.md) (3)
 <!-- auto:end card:irons-spells-n-spellbooks -->
 
 Автор — Iron431 (лицензия All Rights Reserved; в сборке — по решению пользователя, см. [CLAUDE.md](../../CLAUDE.md)). Модид `irons_spellbooks`, зависимости: `irons_lib`, `playeranimator`, GeckoLib, Curios ([compat.md](../compat.md), п. 1). Сторона — both.
