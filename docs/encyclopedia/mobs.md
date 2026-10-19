@@ -37,7 +37,7 @@ _Обзор категории — вручную, следующие этапы
 <a id="alexs-mobs"></a>
 - **Версия:** 1.22.9 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/alexs-mobs)
 - **Что это:** Больше 90 оригинальных животных и монстров с повадками, приручением и крафтом из дропа; всё описано во внутриигровой Книге о животных (Animal Dictionary), есть босс Червь Пустоты. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (14), [roadmap.md](../roadmap.md) (8), [orespawn.md](../orespawn.md) (6), [performance.md](../performance.md) (4), [russification.md](../russification.md) (4), [version-choice.md](../version-choice.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (16), [roadmap.md](../roadmap.md) (8), [orespawn.md](../orespawn.md) (6), [performance.md](../performance.md) (4), [russification.md](../russification.md) (4), [version-choice.md](../version-choice.md) (2)
 <!-- auto:end card:alexs-mobs -->
 
 ### Как играть
@@ -412,7 +412,7 @@ _Пока пусто — заполнит один из следующих эт�
 - **Версия:** 1.20.1-0.9.1 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/chaospersists-1.20.1-0.9.1.jar`
 - **Что это:** Ремейк OreSpawn 1.7.10 на 1.20.1: около 130 мобов и боссов (Король, Королева, Мобзилла, Кракен, Кошмар), шесть измерений, 54 структуры, руды, оружие и броня «Хаоса», питомцы и еда. _(источник: docs сборки)_
 - **В сборке:** both: Chaos Persists 0.9.1 (Astryxion; All Rights Reserved, CF 1460238) — ремейк OreSpawn 1.7.10 (В16, поток 23): ~130 мобов, King/Queen/Mobzilla, измерения Utopia/Mining/Village/Crystal/Chaos/Danger; зависимостей нет. Сравнение с оригиналом — docs/orespawn.md
-- **В наших docs:** [orespawn.md](../orespawn.md) (15), [compat.md](../compat.md) (6), [performance.md](../performance.md) (4), [roadmap.md](../roadmap.md) (4), [issue-history.md](../issue-history.md) (1)
+- **В наших docs:** [orespawn.md](../orespawn.md) (15), [compat.md](../compat.md) (7), [performance.md](../performance.md) (4), [roadmap.md](../roadmap.md) (4), [issue-history.md](../issue-history.md) (1)
 <!-- auto:end card:chaospersists -->
 
 ### Как играть
@@ -549,7 +549,7 @@ _Пока пусто — заполнит один из следующих эт�
 - **Версия:** 1.20.1-1.1.0 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/clanging-howl-1.20.1-1.1.0.jar`
 - **Что это:** Много враждебных мобов со своими особенностями, усложняющих выживание. _(источник: docs сборки)_
 - **В сборке:** both: Clanging Howl 1.1.0 (Mongoose_artist, Polarice3; All Rights Reserved, CF без стороннего скачивания) — инопланетные падения метеоритов, техноплоть-мобы, энергоинструменты; зависимости GeckoLib и Curios уже в сборке (поток 20). Перевод — russian-moded/assets/clanginghowl (den1s64dev, CC-BY-NC-SA-4.0 + дописано нами)
-- **В наших docs:** [roadmap.md](../roadmap.md) (3), [compat.md](../compat.md) (2), [orespawn.md](../orespawn.md) (2), [russification.md](../russification.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (3), [roadmap.md](../roadmap.md) (3), [orespawn.md](../orespawn.md) (2), [russification.md](../russification.md) (2)
 <!-- auto:end card:clanging-howl -->
 
 ### Как играть
@@ -638,7 +638,7 @@ _Пока пусто — заполнит один из следующих эт�
 - Не держаться рядом с очагами: курган/Протомозг ищите по заражённым блокам и щупальцам; убивайте **Курганы и Бегунов** в начале, пока они не выросли. Протомозга можно бить не быстрее 10 ударов — его защищает SRP System (`damage_limit`).
 - Защита: **Противогаз** (`gas_mask`) и **Живой шлем МК2** (`inf_up_helmet`) стоят в конфиге `Gas masks`; проверка такого шлема есть в коде существ-распылителей (Химик, Вздутый, Браиомил, Броткаце, Хозяин, выбросы бедствий) — то есть защищают от их газовых/споровых облаков. **Респиратор** (`respirator`) делают на хирургическом столе.
 - Заражённые слабы к **холоду** (`Should the infected be weak to cold? = true`, эффект «Обморожение»; чара «Криогенный аспект»).
-- Лечить инфекцию: специального лекарства мы в jar не нашли; общий способ в нашей сборке — **зона Оберега** (`disaster_ward:ward`, радиус 96): внутри мицелий и SRP-заражение снимаются, заражённые не заходят и блоки не заражаются (см. [compat.md](../compat.md), «Оберег»).
+- Лечить инфекцию: специального лекарства мы в jar не нашли; общий способ в нашей сборке — **зона Оберега** (`disaster_ward:ward`, радиус 96): внутри мицелий и SRP-заражение снимаются (игрок — за ≤ 5 тиков после входа; остальные эффекты Spore остаются), паразиты не заходят и блоки не заражаются (уже лежавшее заражение остаётся; в Нижнем мире и Энде нужен свой оберег) (см. [compat.md](../compat.md), «Оберег»).
 - Если вспышка тормозит сервер: [performance.md](../performance.md), раздел «Нагрузка от Spore + SRP System».
 
 ### Предметы/блоки
@@ -798,7 +798,7 @@ _Пока пусто — заполнит один из следующих эт�
 <a id="l_enders-cataclysm"></a>
 - **Версия:** 3.31 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/l_enders-cataclysm)
 - **Что это:** Cataclysm от L_Ender: восемь крупных структур-арен с боссами (Игнис, Левиафан, Сцилла, Предвестник и др.), мини-боссы и мобы Незера, пустыни, океана и Края, оружие и броня по ступеням (чёрная сталь, игнит, проклятый слиток) и аметистовые пещеры. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (29), [roadmap.md](../roadmap.md) (12), [client-checklist.md](../client-checklist.md) (2), [orespawn.md](../orespawn.md) (2), [version-choice.md](../version-choice.md) (2), [lost-cities.md](../lost-cities.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (31), [roadmap.md](../roadmap.md) (12), [client-checklist.md](../client-checklist.md) (2), [orespawn.md](../orespawn.md) (2), [version-choice.md](../version-choice.md) (2), [lost-cities.md](../lost-cities.md) (1)
 <!-- auto:end card:l_enders-cataclysm -->
 
 ### Как играть
@@ -989,7 +989,7 @@ _Пока пусто — заполнит один из следующих эт�
 - **Версия:** 0.1.0-alpha · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/lycanites-mobs)
 - **Что это:** Свыше 120 существ с тематическими данжами, мобовыми событиями и боссами (Раховарт, Асмодей, Амальгалич); приручение, камни души, призыв миньонов и Зверинец. _(источник: docs сборки)_
 - **В сборке:** + pack/mods/lycanites-refmap-fix (patches/lycanites-refmap): недостающий refmap миксинов
-- **В наших docs:** [compat.md](../compat.md) (29), [roadmap.md](../roadmap.md) (16), [performance.md](../performance.md) (7), [orespawn.md](../orespawn.md) (4), [issue-history.md](../issue-history.md) (3), [jei.md](../jei.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (32), [roadmap.md](../roadmap.md) (16), [performance.md](../performance.md) (7), [orespawn.md](../orespawn.md) (4), [issue-history.md](../issue-history.md) (3), [jei.md](../jei.md) (2)
 <!-- auto:end card:lycanites-mobs -->
 
 ### Как играть
@@ -1187,7 +1187,7 @@ _Пока пусто — заполнит один из следующих эт�
 <a id="mowzies-mobs"></a>
 - **Версия:** 1.8.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/mowzies-mobs)
 - **Что это:** Вымышленные существа с уникальным ИИ и плавной анимацией; боссы (Ferrous Wroughtnaut, Frostmaw, Sculptor, Barako и др.) и их маски. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (12), [roadmap.md](../roadmap.md) (9), [orespawn.md](../orespawn.md) (1), [performance.md](../performance.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (13), [roadmap.md](../roadmap.md) (9), [orespawn.md](../orespawn.md) (1), [performance.md](../performance.md) (1)
 <!-- auto:end card:mowzies-mobs -->
 
 ### Как играть
@@ -1233,7 +1233,7 @@ _Пока пусто — заполнит один из следующих эт�
 - **Версия:** 0.0.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/srpsystem)
 - **Что это:** Часть механик Scape and Run: Parasites для Spore: существо с мицелием получает «Заражение паразитом» и при 30 % здоровья превращается в паразита; перерождение, колонии «матери», ограничение урона Протомозга. _(источник: docs сборки)_
 - **В сборке:** SRP System 0.0.1 (MIT, both — регистрирует эффекты и звуки, без клиента вход на сервер не пройдёт): «вселение в любых» (эффект заражения → превращение при 30 % HP); опасные части выключены — pack/config/srpsystem-common.toml
-- **В наших docs:** [compat.md](../compat.md) (5), [performance.md](../performance.md) (1), [roadmap.md](../roadmap.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (13), [performance.md](../performance.md) (1), [roadmap.md](../roadmap.md) (1)
 <!-- auto:end card:srpsystem -->
 
 ### Как играть
