@@ -13,8 +13,9 @@ import net.minecraftforge.registries.RegistryObject;
 /**
  * Расы Arknights (силы arks:*\/thought) дают атрибут the_massestravels:thought_load_limit из мода
  * The Masses Travels, которого нет в открытом доступе. Без атрибута Apoli пишет ошибку загрузки силы.
- * Регистрируем пустой атрибут (его никто не читает), только если самого мода нет; сами силы скрыты
- * переопределением в pack/kubejs/data/arks/powers.
+ * Регистрируем пустой атрибут (его никто не читает), только если самого мода нет. Сами силы переопределены
+ * в pack/kubejs/data/arks/powers на sarkazs_furnace_side_fables:thought_load_limit (предел нагрузки мыслей
+ * Sarkaz's Furnace), так что этот атрибут остаётся только на случай чужих датапаков со старым id.
  */
 final class MissingAttributes {
     private static final String MOD = "the_massestravels";

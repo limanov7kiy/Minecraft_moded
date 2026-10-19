@@ -529,7 +529,7 @@ _Пока пусто — заполнит один из следующих эт�
 <a id="origins-forge"></a>
 - **Версия:** 1.20.1-1.10.0.9 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/origins-forge)
 - **Что это:** This is an unofficial forge port of the Origins mod for fabric _(источник: Modrinth)_
-- **В наших docs:** [compat.md](../compat.md) (2), [jei.md](../jei.md) (1), [performance.md](../performance.md) (1), [roadmap.md](../roadmap.md) (1), [russification-audit.md](../russification-audit.md) (1), [russification-glossary.md](../russification-glossary.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (3), [jei.md](../jei.md) (1), [performance.md](../performance.md) (1), [roadmap.md](../roadmap.md) (1), [russification-audit.md](../russification-audit.md) (1), [russification-glossary.md](../russification-glossary.md) (1)
 <!-- auto:end card:origins-forge -->
 
 ### Как играть
@@ -664,7 +664,7 @@ _Пока пусто — заполнит один из следующих эт�
 <a id="sarkazs_furnace_side_fables"></a>
 - **Версия:** 1.0.0 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/sarkazs_furnace_side_fables-0.2.3-forge-1.20.1.jar`
 - **Что это:** 死魂灵的声音将你引离现实。 一场仪式，一场沟通。 超脱大地的畅想即将开始。 _(источник: mods.toml)_
-- **В наших docs:** [compat.md](../compat.md) (3)
+- **В наших docs:** [compat.md](../compat.md) (4), [friends.md](../friends.md) (1)
 <!-- auto:end card:sarkazs_furnace_side_fables -->
 
 ### Как играть
