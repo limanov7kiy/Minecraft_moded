@@ -1354,15 +1354,15 @@ hash = "61c01488bd1bc9113ef1a64e626a0ba9dbbe7d4178d4d8767c0e9cb3d8cdf4a2"
 
 [[files]]
 file = "kubejs/data/arks/powers/human/thought.json"
-hash = "273e114088fab7cbdc0a45b60688cf892890a4bae627345e62d7cf3e782ad05e"
+hash = "34808717c95351e39e5f19cef471bdc0ad5f5fe8315b88290c5ab38893ec9a97"
 
 [[files]]
 file = "kubejs/data/arks/powers/sarkaz/thought.json"
-hash = "273e114088fab7cbdc0a45b60688cf892890a4bae627345e62d7cf3e782ad05e"
+hash = "34808717c95351e39e5f19cef471bdc0ad5f5fe8315b88290c5ab38893ec9a97"
 
 [[files]]
 file = "kubejs/data/arks/powers/sarkaz_nephesh/thought.json"
-hash = "273e114088fab7cbdc0a45b60688cf892890a4bae627345e62d7cf3e782ad05e"
+hash = "7ef3127aa09ec9db33ceceafe4e6ce6f9332a33785249f9ea874ae8b95bcc662"
 
 [[files]]
 file = "kubejs/data/ars_controle/patchouli_books/ars_controle/book.json"

@@ -81,24 +81,55 @@
 <!-- auto:start card:cataclysm_spellbooks -->
 <a id="cataclysm_spellbooks"></a>
 - **Версия:** 1.2.9-1.20.1-mmport · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/cataclysm_spellbooks-1.2.9-1.20.1-mmport.jar`
-- **Что это:** Связка L_Ender's Cataclysm × Iron's Spells: броня, книги и уникальные заклинания по мотивам боссов; порт под версию сборки. _(источник: docs сборки)_
+- **Что это:** Мод-связка Cataclysm и Iron's Spells: заклинания, книги, посохи, оружие и броня по мотивам боссов Cataclysm, две новые школы магии (Бездна и Техномантия); в сборке — наш порт под Cataclysm 3.31. _(источник: docs сборки)_
 - **В наших docs:** [bosses.md](../bosses.md) (32), [compat.md](../compat.md) (32), [roadmap.md](../roadmap.md) (12), [orespawn.md](../orespawn.md) (4), [jei.md](../jei.md) (3), [client-checklist.md](../client-checklist.md) (2)
 <!-- auto:end card:cataclysm_spellbooks -->
+
+Автор — Ace The Eldritch King и StarOcean (MIT). В сборке — наш порт `cataclysm_spellbooks-1.2.9-1.20.1-mmport.jar` (мод собран под другую версию Cataclysm; подробности порта — [compat.md](../compat.md), п. К4 и «Cataclysm: Spellbooks 1.2.9»). Требует [Iron's Spells 'n Spellbooks](magic.md#irons-spells-n-spellbooks), L_Ender's Cataclysm, AzureLib.
 
 ### Как играть
 Мод Ace The Eldritch King и StarOcean (MIT): совместимость **L_Ender's Cataclysm × Iron's Spells 'n Spellbooks** — броня, книги заклинаний и уникальные заклинания по мотивам боссов Cataclysm. Порт `*-mmport.jar` под Cataclysm 3.3x (частицы → `Options`, ракета Иссушителя, ожерелье для фантома Остатка).
 
+Дополнение к Iron's Spells: заклинания, книги, оружие и броня по мотивам боссов Cataclysm. Добавляет две **школы магии** — Бездна (`cataclysm_spellbooks:abyssal`, руна `abyssal_rune`, фокус `abyssal_focus`) и Техномантия (`technomancy`) — со своими атрибутами силы и сопротивления. Заклинания части боссовых наборов нужно **разблокировать**: специальный предмет в инвентаре открывает все заклинания набора (таблица ниже).
+
+| Предмет | Эффект | Откуда |
+|---|---|---|
+| `burning_manuscript` (из `burning_knowledge_fragment`) | открывает заклинания Игниса | фрагменты с Игниса (80%) |
+| `frozen_tablet` (из `frozen_knowledge_fragment`) | открывает заклинания Маледиктуса | фрагменты с Маледиктуса (80%) |
+| `strange_disc` | открывает заклинания Вестника (Harbinger) | Вестник (вместе с `mechanical_scrap` 95%, `mechanical_weapon_parts`, `burst_sheath`) |
+| `desert_spell_book` (Пустынный том) | уникальная книга | Древний остаток, 50% |
+| `abyss_spell_book` Фолиант Р'льеха | уникальная книга | рецепт `cataclysm:amethyst_bless` из `irons_spellbooks:ruined_book` |
+| `leviathans_blessing` | иммунитет к бездонным эффектам | Левиафан, 30% |
+| `fake_wudjets_staff` | посох | Уаджет, 50% |
+
 ### Предметы/блоки
-95 предметов (броня, книги, посохи), в т. ч. Curios-предметы (2 слота).
+
+- Книги: `abyss_spell_book`, `desert_spell_book`, `ignis_spell_book`, `codex_of_malice_spell_book`.
+- Посохи: `bloom_stone_staff`, `coral_staff`, `void_staff`, `fake_wudjets_staff`; оружие: `spirit_sunderer`, `the_nightstalker`, `the_berserker`, `the_combuster`, `monstrous_flamberge`, перчатки `gauntlet_of_power`/`gauntlet_of_gattling`, `engineers_power_glove`, `soul_brazier`.
+- Броня: Игнис (`ignis_*`, есть версия с элитрами), Бездонный чернокнижник (`abyssal_warlock_*`), Курсиум (`cursium_mage_*`), Фараон (`pharaoh_*`), Аметистовая (`bloom_stone_*`), Инженер (`engineer_*`), Экселсиус (`excelsius_*`, режимы Speed/Power/Resist), `monstrous_wizard_hat`; апгрейды `excel_upgrade_mana|resistence|cooldown`, сферы `abyssal_upgrade_orb`, `technomancy_upgrade_orb`.
+- Крафт: 35 рецептов + 28 кузнечных (Smithing) для улучшений оружия/брони.
 
 ### Мобы
-31 сущность (боссы-образы, фантом, лучи, снаряды).
+
+Своих мобов-врагов нет: добавляются **призываемые** существа (`summoned_ignited_revenant`, `summoned_ignited_berserker`, `summoned_koboldiator`, `summoned_koboleton`, `summoned_draugur`/`_royal_`/`_elite_`, `summoned_aptrgangr`, `summoned_amethyst_crab`, `summoned_coral_golem`, `summoned_coralssus`, `summoned_watcher`, `summoned_prowler`, `surveillance_drone`) и босс-призрак `cataclysm_spellbooks:phantom_ancient_remnant` (заклинание `thoths_witness`; 450 HP, [bosses.md](../bosses.md)). Лучи-сущности (`extended_laser_beam`) — служебные.
 
 ### Эффекты
-56 эффектов, 4 атрибута (категории «лучей» исправлены в `mm-compat`).
+
+`abyssal_predator_effect` (скорость, плавание и урон в воде/под дождём), `incapacitated_effect` (нельзя двигать головой, медленно), `wrathful_effect` (урон растёт с ударами), `shutdown_effect` (нельзя атаковать и использовать предметы, получает урон), `rewired_effect`, `hemophilia`, `sniper` (Глаз снайпера), `*_overcharged_effect` (заряженная мана, сопротивление, перезарядка), `hardware_update`/`software_update`, `intrusion_defense_system_software`, таймеры призыва (`abyssal_gnawer_timer`, `crab_timer`).
+
+### Данжи/структуры (/locate)
+
+Своих структур нет; дропы встроены в таблицы боссов Cataclysm через глобальные модификаторы добычи (`cataclysm_spellbooks:add_to_table`), ID структур Cataclysm — в [bosses.md](../bosses.md).
 
 ### Команды/гамерулы
-136 заклинаний (в т. ч. Thoth's Witness, Aerial Assault, Parting Shot, Cryopiercer, Scorched Earth, Laserbolt, Gravitational Pull); тест `scripts/tests/sbcastcheck.js` 10/10. См. [bosses.md](../bosses.md), [compat.md](../compat.md).
+
+Своих нет. Заклинания — через `/cast`, `/createScroll`, `/learnSpell` из [Iron's Spells](magic.md#irons-spells-n-spellbooks); id вида `cataclysm_spellbooks:void_beam`, `cataclysm_spellbooks:incineration`, `cataclysm_spellbooks:sandstorm`, `cataclysm_spellbooks:atomic_laser`, `cataclysm_spellbooks:comet_shower` и т. д. (около 65 заклинаний: Бездна — `void_beam`, `abyssal_blast`, `dimensional_rift`; Игнис — `incineration`, `bone_storm`, `hellish_blade`; Пустыня — `sandstorm`, `pharaohs_wrath`, `thoths_witness`; Техномантия — `laserbolt`, `emp_blast`, `ddos`, `missile_launch`).
+
+- Тест Потока 50: 136 заклинаний (в т. ч. Thoth's Witness, Aerial Assault, Parting Shot, Cryopiercer, Scorched Earth, Laserbolt, Gravitational Pull); тест `scripts/tests/sbcastcheck.js` 10/10. См. [bosses.md](../bosses.md), [compat.md](../compat.md).
+
+### Конфиги
+
+Наши правки в `mods-src/mm-compat` (0.2.0): лучи `cataclysm_spellbooks:extended_laser_beam` и `extended_death_laser_beam` переведены из категории `MONSTER` в `MISC` (убирает 368 строк «has no attributes» в логе и занятие лимита враждебных мобов; `EntityCategoryFix`). Остальное — порт `-mmport` (классы частиц, ракеты, рендер Древнего остатка). Проверка — `scripts/tests/sbcastcheck.js` (10/10).
 
 ## CBC: Nukes
 
