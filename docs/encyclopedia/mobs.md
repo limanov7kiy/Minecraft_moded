@@ -551,7 +551,7 @@ Id вида `chaospersists:<id>` (названия — наш перевод). �
 - **Версия:** 2.2.0j · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/fungal-infectionspore)
 - **Что это:** Зомби-апокалипсис поверх ванили: мицелий превращает мобов в заражённых, они эволюционируют, растут Курганы и Протомозг, а на высшей стадии приходят калимити-боссы. Есть оружие и броня из органов, Сканер и станции. _(источник: docs сборки)_
 - **В сборке:** Fungal Infection: Spore 2.2.0j (Harbinger, ARR, both): заражение мицелием, эволюция, ульи/Протомозг; распространение ОГРАНИЧЕНО — pack/config/sporeconfig.toml; заражение мобов наших модов — pack/kubejs/data/spore/spore_mob_conversion
-- **В наших docs:** [compat.md](../compat.md) (3), [roadmap.md](../roadmap.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (3), [roadmap.md](../roadmap.md) (2), [enchanting-table.md](../enchanting-table.md) (1)
 <!-- auto:end card:fungal-infectionspore -->
 
 ### Как играть
@@ -1143,7 +1143,7 @@ Seastorm, Shadow Games, Sharknado, Subzero, The Swarm, Tsunami, Windstorm, Winge
 - **Версия:** 0.0.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/srpsystem)
 - **Что это:** Часть механик Scape and Run: Parasites для Spore: существо с мицелием получает «Заражение паразитом» и при 30 % здоровья превращается в паразита; перерождение, колонии «матери», ограничение урона Протомозга. _(источник: docs сборки)_
 - **В сборке:** SRP System 0.0.1 (MIT, both — регистрирует эффекты и звуки, без клиента вход на сервер не пройдёт): «вселение в любых» (эффект заражения → превращение при 30 % HP); опасные части выключены — pack/config/srpsystem-common.toml
-- **В наших docs:** [compat.md](../compat.md) (13), [roadmap.md](../roadmap.md) (2), [performance.md](../performance.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (22), [roadmap.md](../roadmap.md) (4), [performance.md](../performance.md) (1)
 <!-- auto:end card:srpsystem -->
 
 ### Как играть

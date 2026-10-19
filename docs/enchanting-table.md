@@ -1,8 +1,148 @@
-# Чаровальный стол с выбором чар за большую стоимость (поток 54)
+# Чаровальный стол с выбором чар за большую стоимость (потоки 54, 57)
 
 Решение владельца (бэклог `docs/roadmap.md`): нужен мод, где за большую цену можно наложить **конкретные** чары.
-Это меняет баланс, поэтому здесь только исследование и варианты. **Мод в сборку не добавлен, `pack/` не менялся.**
-Вопрос владельцу — В47 (текст в конце). Дата исследования: 2026-10-19. Связка: 1.20.1 + Forge 47.4.26.
+Поток 54 исследовал варианты (разделы ниже «Что уже есть…» — «Вариант «в» подробно»), владелец выбрал **«в» — ESO**
+(В47: «Если получится починить и проверить все модовые чары на наличие книг (если нет, то добавить) В, если нет, то А»).
+Поток 57 поставил ESO в сборку — итог сразу ниже. Связка: 1.20.1 + Forge 47.4.26.
+
+## Итог (поток 57, 2026-10-19): ESO в сборке
+
+- **Мод:** Enchanting System Overhaul 1.2.2 (автор CmdrJane, MIT), сторона both, в сборке — наш порт
+  `pack/mods/eso-forge-1.20.1-1.2.2-mmport.jar` (`patches/jar-ports/eso`, переходник
+  `mods-src/jar-ports/.../eso/EsoPort.java`). Версия сборки с ESO — `2026.10.19-5`.
+- **Почему не запускался.** ESO при загрузке данных обходит все предметы и у брони зовёт `ArmorMaterial.getName()`
+  (`m_6082_`). Dragon Magic and Relics, Factions and Curiosities, Deep Aether, Ancient Aether (и, возможно, другие)
+  помечают свою реализацию `getName()` как `@OnlyIn(Dist.CLIENT)` — на выделенном сервере Forge
+  (RuntimeDistCleaner) вырезает метод, и вызов падает `AbstractMethodError`. Поэтому «метод в jar есть, а JVM его не
+  находит». На клиенте метод есть — там ESO работал бы и без порта.
+- **Порт:** оба вызова (`MaterialOverrides.<init>`, `ESOCommands`) переписаны на `EsoPort.materialName(material)`:
+  обычный `getName()`, а если его вырезали — имя константы enum (или класса) в нижнем регистре. Для такой брони лимит
+  чар берётся по умолчанию (`maxEnchantments` = 4), если в `config/eso/material-overrides` нет записи под этим именем.
+  Порт ловит ошибку на **любой** такой броне, а не только у четырёх найденных модов. Плюс `ru_ru.json` (в оригинале
+  нет русского), из `patches/jar-ports/eso/res`.
+- **Проверка:** сервер со всей сборкой — `SERVER OK` (Done ≈ 25 с, без ошибок ESO); клиент из `.mrpack` — см.
+  `docs/compat.md` («Проверка клиента», поток 57). `scripts/tests/esobooks.js`: фейковый игрок правым кликом «читает»
+  книгу Alex's Caves → книга исчезла, чара записана в изученные; команда `/eso` зарегистрирована.
+  Само меню стола глазами в игре **не проверено** (нужен живой клиент на сервере, `docs/client-checklist.md`).
+
+### Настройка («средний» режим) — `pack/config/eso/`
+
+| Что | Значение | Где |
+|---|---|---|
+| Изучение чар из книг | включено (`disableDiscoverySystem = false`): правый клик зачарованной книгой → чара изучена, книга рассыпается | `config.json` |
+| Уровни | изучение открывает все уровни чары (`enableEnchantmentsLeveling = false`) | `config.json` |
+| Цена чар без своего рецепта (почти все модовые) | ≈ в 2,5 раза выше стандартной; больше 64 штук не просим — вместо этого блоки | `default-recipe.json` |
+| Цена ванильных чар | своя у каждой (рецепты в jar ESO), не меняли — они и так дорогие (Острота V ≈ 108 предметов) | jar |
+| Лимит чар на предмет / наковальня | по умолчанию: 4 (`maxEnchantments`), материал-исключения ESO, наковальня и слияние книг включены | `config.json`, `material-overrides/` (генерируется) |
+| Знание от ведущего | команды `/eso` (оператор): см. ниже | — |
+
+Цена по умолчанию (за **одно** наложение указанного уровня):
+
+| Уровень чары | Было (ESO) | Стало |
+|---|---|---|
+| I–III | 12 лазурита, 3 аметиста, 6 золота, 3 алмаза | 30 лазурита, 8 аметистов, 15 золотых слитков, 8 алмазов |
+| IV–VII | 32 лазурита, 7 аметистов, 24 золота, 7 алмазов | 9 лазуритовых блоков, 18 аметистов, 60 золотых слитков, 18 алмазов |
+| VIII–X | 48 лазурита, 16 аметистов, 32 золота, 16 алмазов | 13 лазуритовых блоков, 40 аметистов, 9 золотых блоков, 40 алмазов |
+
+Команды ведущего (`/eso`, нужен уровень оператора):
+- `/eso learn <игрок> <чара>` — выдать знание (`<чара>` — id, например `alexscaves:tsunami`; `all` — все чары);
+- `/eso learn-leveled <игрок> <чара> add|set|sub <уровень>` — нужно только при `enableEnchantmentsLeveling = true`;
+- `/eso forget <игрок> <чара>` (или `all`) — забрать знание;
+- `/eso get-enchantment-id-in-hand`, `get-item-id-in-hand`, `get-mat-id-in-hand` — подсказки id для конфигов.
+
+Сверка с Quark и Apotheosis: Apotheosis в сборке нет. Quark Ancient Tomes остаются как были (лут + обмен у мастеров-
+библиотекарей, тома поднимают чару выше максимума на наковальне). Том — не зачарованная книга, **изучить его в ESO
+нельзя**; как ESO-наковальня обходится с томами, в игре не проверено. Ванильный стол заменён меню ESO — случайных
+книг со стола больше нет, остальные источники книг (лут, рыбалка, библиотекари) не менялись.
+
+### Книги модовых чар: проверка и что добавлено
+
+Всего чар в сборке **227** (39 ванильных, 188 модовых, 32 мода) — выгрузка `scripts/tests/enchdump.js` на тестовом
+сервере. Книга находится обычным путём, если чара `tradeable` (книги у библиотекарей — берутся из **всех** торгуемых
+чар, в том числе модовых) или `discoverable` и разрешена на книгах (`isAllowedOnBooks`) — тогда она попадает в случайные
+книги лута (сундуки, рыбалка). Кроме флагов проверены лут-таблицы, рецепты и код модов (поиск id чар по jar сервера).
+
+**Без книг было 84 чары** (теперь книги есть у всех):
+- **Alex's Caves — 51.** Чары `discoverable`, но запрещены на книгах, а миксин AC в `enchant_randomly` ещё и подменяет
+  их на случайные чужие (пока в конфиге AC `enchantments_in_loot = false`). Раньше их давал только ванильный стол на
+  оружии пещер — ESO его заменил. **Добавлено:** книга в сундуках своего биома — руины/постройки (`magnetic_ruins`,
+  `toxic_ruins`, `caveman_house`, `abyssal_ruins`, `forlorn_ruins`, `gingerbread_town`, `licowitch_tower(_secret)`):
+  обычная чара 25%, очень редкая 6% на сундук; хижины в биоме (`underground_cabin_*`) — только обычные, 12%.
+  Очень редкие: `bonking`, `seapairing`, `tsunami`, `relentless_darkness`, `shaded_respite`, `explosive_flavor`.
+- **Mana and Artifice — 22, M&A Witchcraft — 2.** У мода свой путь — руны manaweaving накладывают чару сразу на предмет;
+  книг нет вовсе. Путь через руны остаётся. **Добавлено:** книга в библиотеке крепости (обычная 15% / редкая 5%), древнем
+  городе (8/4), лесном особняке (8/3). Редкие: `aura-healing`, `aura-pilgrim`, `aura-repair`, `beheading`,
+  `transitorystep`, `mnaw:potion_immune`. Внимание: `mnaw:dedication` в M&A накладывается только фракцией Ковена —
+  через книгу и ESO это ограничение обходится (если не нужно — убрать id из `MNA_NORMAL`).
+- **Fungal Infection: Spore — 8** (в т.ч. проклятия `mutagenic_reactant`, `unwavering_nature`). Флагов нет.
+  **Добавлено:** сундуки Spore `document_chest` (25% / редкая 5%), `equipment_chest` (15/5); редкая — `symbiotic_reconstitution`.
+- **Sarkaz's Furnace-side Fables — `annihilation`** (лук Суйе, сокровищная): мод не кладёт её ни в один лут (его
+  своя функция «случайная книга» берёт только `discoverable`). **Добавлено:** `buried_warehouse_special`, 8%.
+- Сокровищные чары ванили (Починка, Скорость души, Быстрая крадучесть и т. д.) — как в ваниле, не трогали.
+  Лут боссов не трогали.
+
+Всё добавленное — `pack/kubejs/server_scripts/eso_enchant_books.js`: в таблицу добавляется **отдельный** пул (1 бросок:
+пусто или книга), старое содержимое сундука не меняется; каждая чара — своя запись `set_enchantments`, уровень случайный.
+Проверка `scripts/tests/esobooks.js` (1000 бросков каждой таблицы): книги выпадают во всех 20 таблицах, все чары
+списков AC/Spore/Sarkaz встретились; у M&A из-за 24 чар на ≈60 книг за прогон часть не встретилась (статистика,
+не ошибка — в другой таблице встречались).
+
+### Таблица «чара → где взять книгу» (модовые чары)
+
+«Библиотекари» — книга в торговле у библиотекаря (уровень случайный). «Случайные книги в луте» — книги с
+`enchant_randomly`/`enchant_with_levels` в сундуках ванили и модов, рыбалка. (сокр.) — сокровищная, (прокл.) — проклятие.
+
+| Мод | Чары | Где взять книгу |
+|---|---|---|
+| `ad_astra_giselle_addon` | acid_rain_proof, gravity_normalizing, space_breathing, space_fire_proof | крафт книги (верстак: книга + деталь скафандра/лунный камень) — рецепты мода |
+| `alexscaves` | arrow_inducting, astral_transferring, bonking, bouncing_bolt, bouncy_ball, charting_call, chomping_spirit, crystallization, dark_nock, dazing_sweep, detonating_death, double_stab, energy_efficiency, enveloping_bubble, explosive_flavor, far_flung, ferrous_haste, field_extension, flinging, gamma_ray, heavy_slam, herd_phalanx, humungous_hex, impending_stab, lasting_morale, multiple_mint, peppermint_punting, plummeting_flight, precise_volley, rapid_possession, relentless_darkness, sated_blade, sea_swing, seapairing, second_wave, seekcandy, shaded_respite, sharp_cane, sightless, soak_seeking, solar, spell_lasting, straight_hook, swiftwood, targeted_ricochet, taxing_bellow, triple_splash, triple_split, tsunami, twilight_perfection, x_ray | **добавлено:** сундуки AC своего биома |
+| `alexsmobs` | board_return, lavawax, serpentfriend, straddle_jump | библиотекари; случайные книги в луте |
+| `alexsmobsinteraction` | lightweight, rolling_thunder, stabilizer, stretchy_accumulation | библиотекари; случайные книги в луте |
+| `arknights_weapon` | apoptoic_damage, fire_damage_1, urbians_wardrobe, wet_sword_bag | библиотекари; случайные книги в луте |
+| `ars_elemental` | mirror_shield (сокр.) | Ars Nouveau: аппарат зачарования (на книгу) |
+| `ars_elemental` | soulbound (сокр.) | случайные книги в луте |
+| `ars_nouveau` | mana_boost, mana_regen | библиотекари; случайные книги в луте |
+| `ars_nouveau` | reactive | библиотекари |
+| `bobsoriginiumdream` | attributeliberate (сокр.), oridamageattack, oriprotect | библиотекари; случайные книги в луте |
+| `caerula_arbor` | flexibility, hazard_protection (сокр.), magic_tolerance, mute_attack, nethersea_walker, oceanospr_killer, sanity_defend, sanity_reaper, synesthesia | библиотекари; случайные книги в луте |
+| `caerula_arbor` | metabolism (сокр.), reflection, rejection_curse (прокл.), sanity_injury_curse (прокл.) | случайные книги в луте |
+| `clanginghowl` | chain_burn, ecological_energy, energy_efficiency, exceeding_the_limit, fuel_burst, fuel_saving, full_power, killer_charge, napalm_stream, overdrive, soul_burner, tunnel_driller | библиотекари; случайные книги в луте |
+| `create` | capacity, potato_recovery | библиотекари; случайные книги в луте |
+| `create_sa` | above_the_clouds, chunk_eater, digging, gravity_gun, hellfire, impact | библиотекари; случайные книги в луте |
+| `deep_aether` | gloves_reach (сокр.) | Deep Aether: сокровищница латунного данжа (brass_dungeon_treasure) |
+| `deeperdarker` | catalysis (сокр.), sculk_smite | библиотекари; случайные книги в луте |
+| `enchanted_arsenal` | armour_piercing (сокр.), curse_of_overpressuring (прокл.), curse_of_overrecoiling (прокл.), enflamed, hollow_point (сокр.), illuminating, juggernaught, lightweight, poison_tipped, shell_shock | библиотекари; случайные книги в луте |
+| `farmersdelight` | backstabbing | библиотекари; случайные книги в луте |
+| `fnc` | holy_smite | библиотекари; случайные книги в луте |
+| `legendarysurvivaloverhaul` | purity (сокр.), refreshing, reservoir | библиотекари; случайные книги в луте |
+| `lrtactical` | backstab | библиотекари; случайные книги в луте |
+| `mahoutsukai` | projector | библиотекари |
+| `mna` | aura-bulwark, aura-depths, aura-healing, aura-jumping, aura-mining, aura-pilgrim, aura-repair, aura-running, beheading, bludgeoning, bouncing, cloudstep, duration_modifier, fireproof, gilded, mana-repair, range_modifier, returning, soulbound, speed_modifier, transitorystep, xp_to_souls | **добавлено:** библиотека крепости, древний город, особняк |
+| `mnaw` | dedication, potion_immune | **добавлено:** библиотека крепости, древний город, особняк |
+| `mythicbotany` | hammer_mobility | библиотекари; случайные книги в луте |
+| `northstar` | frostbite (сокр.) | библиотекари; случайные книги в луте |
+| `origins` | water_protection (сокр.) | библиотекари; случайные книги в луте |
+| `sarkazs_furnace_side_fables` | annihilation (сокр.) | **добавлено:** buried_warehouse_special |
+| `sarkazs_furnace_side_fables` | apoptosis, apoptosis_protection, armor_breaker, combustion, combustion_protection, corrosion, corrosion_protection, magic_penetration, magic_protection, spell_tempering, thought_plunderer, thought_release, true_reduction | библиотекари; случайные книги в луте |
+| `spore` | corrosive_potency, cryogenic_aspect, gastric_spewage, mutagenic_reactant (прокл.), serrated_thorns, symbiotic_reconstitution, unwavering_nature (прокл.), voracious_maw | **добавлено:** сундуки Spore (document/equipment) |
+| `supplementaries` | stasis (сокр.) | библиотекари; случайные книги в луте |
+| `the_bumblezone` | comb_cutter, neurotoxins, potent_poison | библиотекари; случайные книги в луте |
+| `the_bumblezone` | hive_lifeline (сокр.) | подозрительный песок/гравий Bumblezone (археология) |
+| `twilightforest` | chill_aura (сокр.) | сундуки Сумеречного леса: Aurora Palace (aurora_cache/room) |
+| `twilightforest` | destruction (сокр.) | сундуки Сумеречного леса: Knight Stronghold (stronghold_cache/room) |
+| `twilightforest` | fire_react (сокр.) | сундуки Сумеречного леса: Лабиринт (labyrinth_room/dead_end/vault) |
+| `undergarden` | longevity, ricochet, self_sling | случайные книги в луте |
+
+Ванильные 39 чар — как в ваниле: обычные — библиотекари и лут; сокровищные — лут/рыбалка/торговля по ванильным правилам.
+
+### Откат
+
+`git revert` PR потока 57 (порт, конфиг, скрипт лута, версия сборки). В мирах ничего не ломается: ESO не добавляет
+блоков и предметов; изученные чары хранятся в данных игрока (`LearnedEnchantments`) и после отката просто не читаются,
+а книги, уже выпавшие из добавленных пулов, остаются обычными зачарованными книгами. Запасной вариант — «а»
+(Enchanting Infuser, разбор ниже).
+
+## Исследование (поток 54)
 
 Метод: Modrinth API (версии под 1.20.1/Forge, зависимости), разбор jar (`mods.toml`, классы конфигов, рецепты, `lang`),
 сверка с `pack/modlist.txt` и jar сервера сборки. Что **не** проверено в игре, помечено «не проверено».
@@ -129,7 +269,7 @@ Ancient Tomes из Quark остаются, дешёвый путь не закр
 (MIT; код, `data/`, генерируемые конфиги) + пробный запуск на тестовом сервере (`EXTRA_MODS`). Дата: 2026-10-19.
 В сборку не добавлен. Что не проверено в игре — помечено.
 
-### Главная находка: в нашей сборке ESO сейчас не запускается
+### Главная находка: в нашей сборке ESO сейчас не запускается (починено потоком 57 — см. «Итог»)
 
 Сервер с ESO падает при загрузке данных (`MaterialDataLoader` → `MaterialOverrides`, строка 44):
 `AbstractMethodError ... ArmorMaterial.m_6082_()`. ESO обходит **все** предметы реестра и у каждой брони зовёт

@@ -47,7 +47,7 @@
 | [docs/client-checklist.md](docs/client-checklist.md) | Чек-лист игрока на настоящем ПК (~30 минут): запуск, вход, графика, модели, магия, Galacticraft, голос, JEI; что прислать при проблеме |
 | [docs/whats-new-check.md](docs/whats-new-check.md) | Что недавно вошло в сборку и что нужно проверить глазами; пополняется после каждого слияния |
 | [docs/diagnostics.md](docs/diagnostics.md) | Как собрать и прислать диагностику при фризах: запуск `collect-diagnostics` под Windows, что попадает в zip |
-| [docs/enchanting-table.md](docs/enchanting-table.md) | Исследование: чаровальный стол с выбором чар за большую стоимость (Enchanting Infuser, Modest Magic, ESO, Apotheosis), совместимость, вопрос В47 владельцу |
+| [docs/enchanting-table.md](docs/enchanting-table.md) | Чаровальный стол ESO (В47 «в»): порт, настройка «средний» режим, команды `/eso`, таблица «чара → где взять книгу», откат; исследование кандидатов (Enchanting Infuser, Modest Magic, Apotheosis) |
 | [docs/report-form.md](docs/report-form.md) | Как устроен приём отчётов игроков: форма, таблица, номера и статусы, процесс приёмщика, правила приватности для публичного репозитория; пожелания (раздел 10): статусы, граница «влияет на баланс», шаги обновления |
 | [docs/report-status.md](docs/report-status.md) | Открытая страница статусов отчётов: номер, суть, категория, мод, статус, PR; без ников и текстов игроков; отдельный раздел «Пожелания» |
 | [docs/issue-history.md](docs/issue-history.md) | История решений: прошлые проблемы и вопросы игроков (H-###) — причина, PR или версия мода, что делать игроку, статус; без ников |

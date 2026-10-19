@@ -3,11 +3,12 @@
 Моды и порты, собранные в этом репозитории (mods-src/, patches/).
 
 <!-- auto:start toc -->
-Модов в категории: **19**.
+Модов в категории: **20**.
 
 - [Alshanex Familiars Mod](#alshanex-familiars-mod)
 - [Cataclysm: Spellbooks](#cataclysm-spellbooks)
 - [CBC: Nukes](#cbc-nukes)
+- [Enchanting System Overhaul](#enchanting-system-overhaul)
 - [Fish's Undead Rising (1.20.1 port)](#fishs-undead-rising-1201-port)
 - [gaboulibs-shim](#gaboulibs-shim)
 - [Galacticraft Revival (private port)](#galacticraft-revival-private-port)
@@ -155,7 +156,7 @@
 - **Версия:** 0.3.0 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/fishs-undead-rising-port-0.3.0.jar`
 - **Что это:** Частичный порт Fish's Undead Rising: мобы, предметы и эффекты, нужные Necromancer's Delight. _(источник: docs сборки)_
 - **В сборке:** свой мод (both): pack/mods/fishs-undead-rising-port-*.jar из mods-src/fishs-undead-rising — частичный порт Fish's Undead Rising (Fish, ARR; по решению владельца, убрать по требованию автора) под ND
-- **В наших docs:** [wizardry-port.md](../wizardry-port.md) (3), [compat.md](../compat.md) (2), [roadmap.md](../roadmap.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (3), [wizardry-port.md](../wizardry-port.md) (3), [roadmap.md](../roadmap.md) (2)
 <!-- auto:end card:fishs-undead-rising-port -->
 
 ### Как играть
@@ -246,6 +247,7 @@ Soiled, Corroded, Infested, Fragile («Смертное касание»), Immol
 <a id="mnaw"></a>
 - **Версия:** 0.2.1-alpha · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/mnaw-1.20.1-forge-0.2.1-alpha-mmport.jar`
 - **Что это:** Аддон к Mana and Artifice: ведьмовство, куклы и ритуалы симпатической магии; порт под M&A 3.1.11. _(источник: docs сборки)_
+- **В наших docs:** [enchanting-table.md](../enchanting-table.md) (1)
 <!-- auto:end card:mnaw -->
 
 ### Как играть
@@ -543,5 +545,37 @@ Soiled, Corroded, Infested, Fragile («Смертное касание»), Immol
 
 ### Конфиги
 Нет. Проверка: `scripts/tests/mobhealth_commands.txt` (здоровье мобов не растёт после перезагрузки чанка), `scripts/tests/abyssaljump.js`. Подробности — [compat.md](../compat.md).
+
+## Enchanting System Overhaul
+
+<!-- auto:start card:eso-forge -->
+<a id="eso-forge"></a>
+- **Версия:** 1.2.2 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/eso-forge-1.20.1-1.2.2-mmport.jar`
+- **Что это:** Enchanting System Overhaul: стол зачарования без рандома — чары сначала изучают из найденных книг, потом накладывают за материалы; порт под моды брони сборки. _(источник: docs сборки)_
+- **В наших docs:** [enchanting-table.md](../enchanting-table.md) (3), [friends.md](../friends.md) (1), [roadmap.md](../roadmap.md) (1)
+<!-- auto:end card:eso-forge -->
+
+### Как играть
+
+Ванильный стол зачарования открывает меню ESO: никаких случайных чар и опыта. Чару сначала **изучают** — правый клик
+зачарованной книгой в руке (книга рассыпается, знание остаётся у персонажа), потом накладывают на предмет за
+материалы. Подробно для игроков — [friends.md](../friends.md) «Стол зачарования», для ведущего и таблица источников
+книг — [enchanting-table.md](../enchanting-table.md).
+
+### Чары
+
+Своих чар нет. Книги для модовых чар, у которых их не было (Alex's Caves, Mana and Artifice, Spore, «Аннигиляция»
+Sarkaz's Fables), добавлены в лут сундуков: `pack/kubejs/server_scripts/eso_enchant_books.js`.
+
+### Команды/гамерулы
+
+`/eso learn <игрок> <чара|all>`, `/eso forget <игрок> <чара|all>`, `/eso learn-leveled <игрок> <чара> add|set|sub <уровень>`,
+`/eso get-enchantment-id-in-hand` / `get-item-id-in-hand` / `get-mat-id-in-hand` (оператор).
+
+### Конфиги
+
+`config/eso/config.json` (изучение включено, уровни открываются сразу, лимит чар 4), `config/eso/default-recipe.json`
+(цена чар без своего рецепта ≈ ×2,5), `config/eso/material-overrides/` (лимиты по материалам, генерируется модом).
+Порт: `patches/jar-ports/eso` — `getName()` модовой брони с `@OnlyIn(CLIENT)` ронял сервер (поток 57).
 
 <!-- cards:end -->

@@ -268,6 +268,9 @@ mr legendary-survival-addon       # Create × Legendary Survival Overhaul
 #   загрузке чанка). Оригинал у потока 3 закомментирован, его .pw.toml удалён.
 mr apothic-attributes     # обязательная зависимость T.O Magic 'n Extras (+ Placebo)
 mr azurelib               # обязательная зависимость Cataclysm: Spellbooks (раньше подтягивалась packwiz'ом)
+# enchanting-system-overhaul (ESO 1.2.2, CmdrJane, MIT; поток 57, В47 «в») → eso-forge-1.20.1-1.2.2-mmport.jar (both):
+#   стол зачарования с изучением чар из книг; порт — getName() брони модов с @OnlyIn(CLIENT) падал на сервере.
+#   Конфиг pack/config/eso/, книги модовых чар — pack/kubejs/server_scripts/eso_enchant_books.js, docs/enchanting-table.md
 # zombie-have-ears (поток 2) → zombiehaveears-1.1.2-forgefix.jar (patches/zombie-have-ears, только mods.toml)
 
 ## Рубка деревьев (поток 18; Falling Tree — RakSrinaNa, LGPL-3.0)

@@ -53,6 +53,14 @@ file = "config/disaster_ward-common.toml"
 hash = "7a98eaa32af83836ff8af3e3d2895b81f63c271aefe29843240fc9e3005a3eac"
 
 [[files]]
+file = "config/eso/config.json"
+hash = "1cd0f0130396e2b8bf83fe84576fc447a666ef2ce0cdc11f6297a687601d9c0e"
+
+[[files]]
+file = "config/eso/default-recipe.json"
+hash = "674b458f2fa0ae4069ed84c06a454db761514c9453ecc1c5b34f57a68cd30da4"
+
+[[files]]
 file = "config/fallingtree.json"
 hash = "e5ce3851728af563cb5b9bf8752dbb461b28340aec350d9b2fd8d9c9026c915f"
 
@@ -70,7 +78,7 @@ hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "84085bf4571cb91db587fd6cb8d389dbbd1924b1ec8be89a2ad746e4b1ebc916"
+hash = "00ee9a3d1cd0467e6ad1018af624f38001eae8f8c8dddd7c94a5b98cd34cdf50"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -1773,6 +1781,10 @@ file = "kubejs/data/superbwarfare/forge/biome_modifier/silver_ore_biome_modifier
 hash = "a75d5d611e58e3c80bbf0244f82a8a8351c4e8c4aa0f3a1c56da5343aa6d5ae5"
 
 [[files]]
+file = "kubejs/server_scripts/eso_enchant_books.js"
+hash = "02d88213b7d5e07a394f940ea57937f7ac553120f52b90f38415440c152d8a4d"
+
+[[files]]
 file = "kubejs/server_scripts/missing_mod_refs.js"
 hash = "98f946259767d1ecf5cd8f6f43192b0832b5d68b60d5f3273e48a7edc2847817"
 
@@ -2333,6 +2345,10 @@ metafile = true
 file = "mods/entityculling.pw.toml"
 hash = "e5206ecaa7deacbdb38d292be484bd584bac736d1bed2fb20289020a65a7f132"
 metafile = true
+
+[[files]]
+file = "mods/eso-forge-1.20.1-1.2.2-mmport.jar"
+hash = "318cd5a5ad0def545c3dc55461528400444d9111f5f5be3dea742b51e8e52904"
 
 [[files]]
 file = "mods/eureka.pw.toml"
