@@ -418,39 +418,62 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Мод Blue Skies (Modding Legacy) добавляет два измерения: `blue_skies:everbright` («Вечный день», холодный, снег, духи) и `blue_skies:everdawn` («Вечный рассвет», жаркий и влажный, насекомые и рептилии). Из журнала мода:
+1. Постройте рамку-портал из **бирюзовых каменных кирпичей** (`turquoise_stonebrick`) — в Everbright — или **лунных** (`lunar_stonebrick`) — в Everdawn.
+2. Зажгите её **зажигалкой усердия** (`zeal_lighter`) — внутри появится `everbright_portal` / `everdawn_portal`.
+3. Полезно взять **Синий журнал** (`blue_journal`, «An adventurer's guide — The Gatekeeper»): справочник на ~80 разделов (мобы, руды, подземелья, рецепты). Его даёт Хранитель (`gatekeeper`) из домиков `gatekeeper_house_*`.
+4. Подземелья открываются «ключами этажей» и закрываются **краеугольными камнями** (keystone): каждый этаж даёт ключ, на верхнем нужно вставить 4 ключа. Боссы и награды — в [bosses.md](../bosses.md#blue_skies).
+5. Совместимость: Create Blue Skies Compat, Blue Skies Tweaks, Blue Skies Gravestones Compat, Farmer's Cutting: Blue Skies — отдельные карточки/строки в [compat.md](../compat.md).
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+| id | Что делает |
+|---|---|
+| `zeal_lighter` | Зажигает порталы (и огонь); в сборке нужна для входа |
+| `blue_journal` | Книга-справочник, достаточно один раз использовать |
+| `astrolabe`, `soul_fragment`, `summoning_tome`, `alchemy_scroll`, `bag_of_spoils` | Артефакты, фрагмент души и свитки из подземелий |
+| `horizonite_forge` | Печь без топлива: заряжается предметами из горизонита и солнечным камнем (перезарядка), пока внутри пусто |
+| `snowcap_oven`, `food_prep_table`, `alchemy_table`, `summoning_table`, `tool_box` | Станки: готовка, алхимия, заклинания Призывателя |
+
+Материалы: руды `diopside`, `pyrope`, `aquite`, `charoite` (в обоих измерениях, `everbright_*`/`everdawn_*`), `falsite_ore`, `ventium_ore`, `horizonite`, `moonstone`, `rimestone`, `cinderstone`, `taratite`, `sunstone_crystal`. Наборы дерева и камня: лунное (`lunar_*`), бирюзовое (`turquoise_*`), кристаллический песок и песчаник и др. — по 502 блока в lang.
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
+Everbright: олень (`reindeer`), снежная сова (`snow_owl`), Crynocerus (`crynocerous`), звёздный баран (`stardust_ram`), Frost Spirit (`frost_spirit`, `armored_frost_spirit`), Polargeist (`polargeist`), Azulfo (`azulfo`), Nested Spider (`nested_spider`), Jelly Drifter (`jelly_drifter`), `grittle_flatfish`, `horizofin_tunid` и др.
+Everdawn: хрустальный верблюд (`crystal_camel`), космическая лиса (`cosmic_fox`), Shade Monitor (`shade_monitor`), Emberback (`emberback`), Crogre (`crogre`), ядовитый паук (`venom_spider`), Infested Swarmer (`infested_swarmer`), `sliv`, `seclam`, `shrumpty`, `whistleshell_crab`, `spewter`, `stonelet`, `diophyde_prowler`, `nyctofly`, `firefly`, `municipal_monkfish`, `charscale_moki`.
+Боссы (HP в [bosses.md](../bosses.md#blue_skies)): **Призыватель** (`summoner`) — Everbright, «Ослепляющее подземелье»; **Алхимик** (`alchemist`) — Everdawn, то же подземелье; **Звёздный крушитель** (`starlit_crusher`) — Природное подземелье (Snow Covered Pines); **Арахнарх** (`arachnarch`) — Ядовитое подземелье (Sunset Maple Forest, паучье гнездо в дереве).
+Жители-деревни: Звездочёт, Дозорный, Вранглер, Копатель, Призыватель, Алхимик (`entity.minecraft.villager.blue_skies.*`).
 
 ### Эффекты
 
-_Пока пусто — заполнит один из следующих этапов._
+- `blue_skies:deadly_venom` («Смертельный яд») — от ядовитых пауков и плевков.
 
 ### События
 
-_Пока пусто — заполнит один из следующих этапов._
+Дополнительных событий нет; в Everbright во время снегопада появляется больше мобов (по журналу мода).
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
+Поиск: `/locate structure blue_skies:<id>` (в нужном измерении).
+
+| id | Что это |
+|---|---|
+| `everbright_blinding_dungeon`, `everdawn_blinding_dungeon` | Башни «Blinding Dungeon» с Призывателем и Алхимиком; для босса — 4 ключа в Blinding Keystone |
+| `nature_dungeon` | Зелёная пирамида (Starlit Crusher) |
+| `poison_dungeon` | Паучье гнездо в дереве (Arachnarch) |
+| `frozen_bunker` | Замёрзший бункер |
+| `village_brightlands`, `village_calming_skies`, `village_slushlands`, `village_crystal_dunes`, `village_shaded_woodlands`, `village_sunset_maple_forest` | Деревни разных биомов |
+| `gatekeeper_house_plains`, `gatekeeper_house_mountain`, `gatekeeper_house_snowy` | Домики Хранителя |
+
+Биомы (23): `brightlands`, `calming_skies`, `slushlands`, `frostbitten_forest`, `snow_covered_pines`, `brumble_forest`, `polar_highland`, `crystal_dunes`, `sunset_maple_forest`, `searing_grassland`, `crescent_orchard`, `peeking_ocean` и др. (`/locate biome blue_skies:<id>`).
 
 ### Чары
 
-_Пока пусто — заполнит один из следующих этапов._
+Своих чар у мода нет.
 
 ### Команды/гамерулы
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Своих команд и гамерулов нет.
 
 ## Blue Skies Gravestones Compat
 
@@ -1095,39 +1118,55 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Измерение `aether:the_aether` («Эфир») — острова в небе, открывается порталом из Верхнего мира (мод The Aether, Team Aether):
+1. Постройте рамку-портал из **светокамня** (`minecraft:glowstone`, тег `aether:aether_portal_blocks`) — как рамку Незера.
+2. Залейте внутрь воду из ведра: в рамке загорится портал. Падение из Эфира возвращает в Верхний мир.
+3. Все три подземелья на островах — с боссом и ключом: **Бронзовое** (`bronze_dungeon`, Слайдер) → **Серебряное** (`silver_dungeon`, Королева валькирий) → **Золотое** (`gold_dungeon`, Дух Солнца). Ключи: `bronze_dungeon_key`, `silver_dungeon_key`, `gold_dungeon_key`.
+4. Дружит с кучей аддонов сборки: Aether Redux, Deep Aether, Ancient Aether, Lost Content, Aether Villages и др. (см. карточки ниже); боссы и их HP — [bosses.md](../bosses.md#aether).
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+Руды и материалы: **амброзий** (`ambrosium_shard`), **зенит** (`zanite_*`), **гравитит** (`gravitite_*`), **золотой янтарь** (`golden_amber`), **осколок жизни** (`life_shard`, +здоровье, команда `/aether life_shards`), `victory_medal`, `skyroot_bucket`.
+
+| id | Что делает |
+|---|---|
+| `flaming_sword`, `holystone_sword`, `lightning_knife`, `vampire_blade`, `pig_slayer`, `candy_cane_sword`, `hammer_of_kingbdogz`, `valkyrie_lance`, `phoenix_bow` | Оружие: огненное, молнии, вампирское, бьющее «фигов» (`phyg`) и т. д. |
+| `gravitite_*`, `zanite_*`, `neptune_*`, `phoenix_*`, `valkyrie_*`, `obsidian_*` | Комплекты брони/инструментов; перчатки (`*_gloves`), у гравитита есть особая способность («подбрасывание» блоков) |
+| `golden_dart_shooter`, `poison_dart_shooter`, `enchanted_dart_shooter` + дротики | Стрелковое |
+| `cloud_staff`, `iron_bubble`, `shield_of_repulsion`, `regeneration_stone` | Утилиты и щиты |
+| Аксессуары (Curios): кольца и кулоны (`iron_`, `golden_`, `ice_`), плащи (`red_cape`, `blue_cape`, `swet_cape`, `agility_cape`, `valkyrie_cape` …) | Бонусы без слота брони |
+
+Блоки: холлистоун и рельефные блоки подземелий, **аэрклауды** (синий — подбрасывает, золотой, холодный и др.), аэрогель, небесный корень (`skyroot_*`: дерево, инструменты, лодка), алтарь/морозильник/инкубатор (`altar`, `freezer`, `incubator`). Крафты, которых нет в JEI, смотрите в [jei.md](../jei.md).
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
+Мирные: Аэрбанни (`aerbunny`), Летающая корова (`flying_cow`), Свинья-летун «Phyg» (`phyg`), Овцепух (`sheepuff`), **Моа** (`moa`, на ней можно летать; яйца вылупляются в инкубаторе; достижение «Let's Fly!»), Эрваль (`aerwhale`).
+Враждебные: Swet-слизни (`blue_swet`, `golden_swet`), Цефир (`zephyr`), Кокатрис (`cockatrice`), Мимик (`mimic`), Страж (`sentry`), Вихри (`whirlwind`, `evil_whirlwind`), Эхор-растение (`aechor_plant`), Валькирия (`valkyrie`), Огненные миньоны (`fire_minion`).
+Боссы: Слайдер (`slider`), Королева валькирий (`valkyrie_queen`), Дух Солнца (`sun_spirit`).
 
 ### Эффекты
 
-_Пока пусто — заполнит один из следующих этапов._
+- `aether:inebriation` («Опьянение») — урон со временем и случайное движение;
+- `aether:remedy` («Лекарство») — снимает и даёт иммунитет к опьянению.
 
 ### События
 
-_Пока пусто — заполнит один из следующих этапов._
+Особых событий нет. Время суток в Эфире можно закрепить — `eternal_day` (мир, команда `/aether`).
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
+| id | Что внутри |
+|---|---|
+| `aether:bronze_dungeon` | Слайдер, бронзовый ключ |
+| `aether:silver_dungeon` | Королева валькирий, серебряный ключ |
+| `aether:gold_dungeon` | Дух Солнца, золотой ключ |
+| `aether:large_aercloud` | Крупный облачный остров (декор) |
 
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
+Биомы: `aether:skyroot_forest`, `skyroot_grove`, `skyroot_meadow`, `skyroot_woodland`. Поиск: `/locate structure aether:silver_dungeon` (в Эфире).
 
 ### Команды/гамерулы
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Группа `/aether`: `eternal_day` (запрос/включение вечного дня), `life_shards` (задать число осколков жизни игроку), `sun_altar_whitelist` (белый список алтаря Солнца: `add`, `remove`, `list`, `enable/disable`, `reload`), служебная `menu fix` (сброс превью мира). Гамерулов у мода нет.
 
 ## The Aether: Redux
 
@@ -1327,39 +1366,74 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Измерение `twilightforest:twilight_forest` («Лес сумерек») открывается порталом из Верхнего мира (мод — Benimatic, Tamaized и др.):
+1. Найдите небольшой водоём (источник воды) и обсадите его по краю любыми растениями (трава, папоротник, цветы, грибы, лоза, сахарный тростник и т. п. — тег `twilightforest:portal/decoration`).
+2. Бросьте в воду **алмаз** (предмет из тега `forge:gems/diamond`, он же `twilightforest:portal/activator`): вода превратится в портал.
+3. В Лесу сумерек работает **прогрессия**: подряд идущие боссы открывают следующие биомы (правило `tfEnforcedProgression`, см. «Команды/гамерулы»). Порядок по цепочке достижений: Нага → Лич → Миношрум (лабиринт) → Гидра; Призрачные рыцари → Ур-Гаст; Альфа-йети → Снежная королева; затем Тролли и Финальный замок. Достижения `twilightforest:progress_*` — это и есть отметки прогресса.
+4. Подсказка по ходу игры — книга достижений («Twilight Forest»), её корень: «Enter the mysterious, magical woodlands».
+5. Для еды, броской мебели и декора есть аддоны: Twilight Delight, Twilight Forest: The Lost Blocks, Twilight Forest Bosses Resurrection (см. карточки ниже). Боссы мода и их HP — в [bosses.md](../bosses.md); совместимость с остальной сборкой — [compat.md](../compat.md).
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+Главные (по lang мода):
+
+| id | Что делает |
+|---|---|
+| `ironwood_ingot`, `steeleaf_ingot`, `knightmetal_ingot`, `fiery_ingot`, `naga_scale`, `carminite`, `arctic_fur` | Материалы ступеней прогрессии: брони и инструменты на каждый, плюс `yeti_boots`, `phantom_helmet`, `arctic_*` (красится) |
+| `magic_map`, `maze_map`, `ore_map` + фокусы (`magic_map_focus`, `maze_map_focus`) | Карты измерения, лабиринта и руд; из пустой карты и фокуса |
+| `ore_magnet`, `crumble_horn`, `peacock_feather_fan`, `ender_bow`, `ice_bomb`, `cube_of_annihilation` | Утилиты и оружие боссов и мобов |
+| `twilight_scepter`, `lifedrain_scepter`, `zombie_scepter`, `fortification_scepter` | Скипетры Лича: ослабление-молния, кража здоровья, призыв зомби, щит |
+| `charm_of_keeping_1..3`, `charm_of_life_1..2` | Амулеты сохранения вещей и «второй жизни» |
+| `meef_stroganoff`, `raw_meef`, `cooked_meef`, `torchberries` | Еда; Meef Stroganoff нужен для достижения-условия «жара Огненного болота» |
+| `transformation_powder`, `magic_beans`, `moonworm_queen`, `lamp_of_cinders` | Утилиты: превращение мобов, бобовый стебель в облака, светящиеся снаряды, огонь |
+| `mazebreaker_pickaxe`, `giant_pickaxe`, `diamond_minotaur_axe` | Особые инструменты (лабиринт, великаны) |
+
+Блоки: «Стол распаковки» (`uncrafting_table`, достижение «A Step too Far»), деревья-леса (`canopy_*`, `cinder_*`, `time_*`, `transformation_*`, `mining_*`, `sorting_*`), `carminite_builder`/`carminite_reactor`, `cinder_furnace`, огненные струи и дымоходы башен (`fire_jet`, `encased_*`), силовые поля (`blue_force_field`), банка-цикада (`cicada_jar`). Спавнеры боссов (`*_boss_spawner`) — только творческий режим.
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
+Дикая природа: олень, кабан, белка, ворон, пингвин, бигхорн-овца, карликовый кролик, мини-птица. Враги: кобольд, (`carminite_golem`, `carminite_ghastling`, `carminite_ghastguard`, `carminite_broodling`), рэдкэп, жук-щипач, огненный жук, слизистый жук, паук-рой, король-паук, пауки-изгородь, жук-шлем (`helmet_crab`), гоблины (`blockchain_goblin`), скелет-друид, мёртвая книга (`death_tome`), троль, йети, зимний волк, снежный страж, куб-бродяга, призрак (`wraith`) и др. Полный список — `entity.twilightforest.*` (81 запись в lang).
+
+Боссы:
+- **Нага** (`naga`) — Двор Наги; **Лич** (`lich`) — Башня Лича; **Миношрум** (`minoshroom`) — Лабиринт; **Гидра** (`hydra`) — Логово гидры;
+- **Призрачный рыцарь** (`knight_phantom`) — Крепость рыцарей; **Ур-Гаст** (`ur_ghast`) — Тёмная башня; **Альфа-йети** (`alpha_yeti`) — Логово йети; **Снежная королева** (`snow_queen`) — Аврора-дворец;
+- **Верхний и Нижний гоблин-рыцарь** (`upper_goblin_knight`, `lower_goblin_knight`); **Plateau Boss** (`plateau_boss`) — Финальный замок.
+
+HP, броня и слабые места — в [bosses.md](../bosses.md#twilightforest).
 
 ### Эффекты
 
-_Пока пусто — заполнит один из следующих этапов._
+- `twilightforest:frosted` («Замороженный») — охлаждение от ледяных вещей Снежной королевы и зимней брони.
 
 ### События
 
-_Пока пусто — заполнит один из следующих этапов._
+Дополнительных событий нет; в измерении действует прогрессия биомов (защитные «коробки» не пускают вперёд без нужного босса).
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
+Структуры мода (id в `twilightforest:`, поиск: `/locate structure twilightforest:<id>` — нужно находиться в измерении):
+
+| id | Что внутри |
+|---|---|
+| `naga_courtyard` | Двор Наги — первый босс |
+| `lich_tower` | Башня Лича |
+| `labyrinth`, `hedge_maze` | Лабиринт Миношрума; Лабиринт-изгородь |
+| `hydra_lair` | Логово гидры (Огненное болото) |
+| `knight_stronghold`, `dark_tower` | Крепость рыцарей; Тёмная башня (Ур-Гаст) |
+| `yeti_cave`, `aurora_palace` | Логово йети; Аврора-дворец (Ледник) |
+| `troll_cave`, `final_castle` | Троллья пещера; Финальный замок |
+| `small_hollow_hill`, `medium_hollow_hill`, `large_hollow_hill`, `mushroom_tower`, `quest_grove` | Полые холмы, грибная башня, роща «барана-квеста» |
+
+Биомы измерения: `clearing`, `forest`, `dense_forest`, `enchanted_forest`, `dark_forest`, `dark_forest_center`, `fire_swamp`, `swamp`, `glacier`, `snowy_forest`, `highlands`, `thornlands`, `final_plateau`, `mushroom_forest`, `firefly_forest`, `spooky_forest`, `oak_savannah`, `lake`, `stream`, `underground`.
 
 ### Чары
 
-_Пока пусто — заполнит один из следующих этапов._
+- `twilightforest:chill_aura` («Аура холода»), `twilightforest:fire_react` («Огненная реакция»), `twilightforest:destruction` («Разрушение»).
 
 ### Команды/гамерулы
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+- `/tffeature <info | reactivate | conquer | center>` — сведения об ориентире рядом (`info`), центр структуры, флаг «захвачена» (`conquer`), повторная активация (`reactivate`); работает только в Лесу сумерек.
+- Гамерул `tfEnforcedProgression` — «Twilight Forest: Enforced Progression»: `false` отключает запрет на заход в биомы без нужного босса.
 
 ## The Undergarden
 
