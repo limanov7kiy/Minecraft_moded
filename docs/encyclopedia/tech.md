@@ -48,39 +48,48 @@ _Обзор категории — вручную, следующие этапы
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Applied Energistics 2 15.4.11 (TeamAppliedEnergistics) — «цифровое» хранение и автокрафт: все предметы живут в сети, которой управляют с терминала. **Требует GuideME** (не объявлен на Modrinth, добавлен вручную — [compat.md](../compat.md)). Руководство по предметам — внутриигровой `ae2:guide` (клавиша «Open Guide for Items»); достижения (ветка «Root») ведут по шагам.
+1. **Добыть кварц**: метеориты (см. структуры) дают небесный камень (`sky_stone_block`) и Certus Quartz; кристаллы растут на `flawless/flawed/chipped/damaged_budding_quartz` (почки `small/medium/large_quartz_bud`, `quartz_cluster`); `charger` (+ `crank`) заряжает `charged_certus_quartz_crystal`; `fluix_crystal` и `fluix_dust` — материалы для кабелей и терминалов.
+2. **Процессоры**: `inscriber` с прессами (`calculation_processor_press`, `engineering_processor_press`, …) → `calculation_processor`, `engineering_processor`.
+3. **Сеть**: `controller` (ME Controller) питает сеть, кабели `*_glass_cable`, `*_covered_cable`, `*_smart_cable`, `*_dense_cable` (16 цветов + флюикс), энергия — `energy_cell`, `dense_energy_cell`, `vibration_chamber`.
+4. **Хранение**: `drive` (ME Drive) + ячейки `item_storage_cell_1k…256k`, `fluid_storage_cell_*`, `cell_workbench`; терминалы (`crafting_terminal` и др.), портативные ячейки (клавиши «Open Portable Item/Fluid Cell»), беспроводной терминал (`wireless_access_point`, клавиша «Open Wireless Terminal»).
+5. **Автокрафт**: `crafting_unit` + `crafting_storage` (1k…256k) + `crafting_accelerator` (ко-процессор), `pattern_provider`, `molecular_assembler`, `blank_pattern` → `crafting_pattern`; шины `import_bus`, `export_bus`, `storage_bus`, `annihilation_plane`, `formation_plane`.
+6. **Телепорт и пространство**: `quantum_link` + `quantum_ring` (квантовый мост), `spatial_io_port` + `spatial_pylon` (пространственные ячейки, отдельное измерение).
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+| id (`ae2:<id>`) | Что делает |
+|---|---|
+| `controller` | Контроллер сети (питание, ограничение размера) |
+| `drive`, `chest` (ME Chest), `io_port` | Подключение и перенос ячеек |
+| `interface`, `pattern_provider`, `molecular_assembler` | Подача предметов в машины и автосборка |
+| `crafting_terminal`, `conversion_monitor`, `crafting_monitor` | Терминалы и мониторы |
+| `annihilation_plane`, `formation_plane` | Разрушение/размещение блоков и предметов |
+| `quantum_link`, `quantum_ring`, `spatial_io_port`, `spatial_pylon` | Квантовый мост и пространственное хранилище |
+| `entropy_manipulator` | Энтропийный манипулятор: меняет состояние блоков |
+| `network_tool`, `certus_quartz_wrench`, `color_applicator` | Инструменты: сетевой тулкит, ключ, окраска кабелей (`*_paint_ball`) |
+| `facade`, `cable_anchor`, `*_p2p_tunnel` | Фасады и P2P-туннели (предметы, жидкости, FE) |
+| `fluix_*` инструменты, `certus_quartz_*` инструменты | Набор инструментов из кварца и флюикса |
+| `tiny_tnt` | Крошечный динамит (сущность `tiny_tnt_primed`) |
+
+Предметы «Dev.*» (`debug_*`) — отладочные, игрокам не нужны.
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
+Профессия жителя «Fluix Researcher» (`ae2:fluix_researcher`) — единственная «живая» добавка AE2; сущность `ae2:tiny_tnt_primed` — взведённый крошечный динамит.
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
+- `ae2:meteorite` — метеорит; `random_spread`, spacing 32, separation 8 чанков: `/locate structure ae2:meteorite`. Метеорит несёт небесный камень (`sky_stone_block`), из которого делают часть блоков AE2.
+- Измерение `ae2:spatial_storage` (биом `ae2:spatial_storage`) — отдельное пространство под пространственные ячейки (`spatial_io_port`).
 
 ### Команды/гамерулы
 
-_Пока пусто — заполнит один из следующих этапов._
+Корневая команда `/ae2` (`/ae2 list`, `/ae2 help <команда>`). Среди подкоманд — включение/выключение журнала чанков (`ChunkLogger`, для отладки загрузки).
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+Файла `ae2/…` в `pack/config` нет — настройки по умолчанию. Истинный кварц и флюикс AE2 дают только новые материалы, Almost Unified их не трогает ([compat.md](../compat.md)); в JEI виден `ae2:charger` через ванильную книгу рецептов ([jei.md](../jei.md)). Botanical Machinery Extra хотели добавить, но он тянет AE2 как обязательную зависимость ([roadmap.md](../roadmap.md)).
 
 ## Create
 
@@ -348,39 +357,50 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Mekanism 10.4.16 — «большая» техника: переработка руд в несколько ступеней, химия (газы, жидкости, слюри), энергия, хранилище, телепорты, скафандр и реакторы (через [Mekanism Generators](#mekanism-generators)). Внутриигровой справочник — достижения (ветка с корнем «Mekanism» — по ним удобно идти по шагам), JEI + [Just Enough Mekanism Multiblocks](../jei.md) показывают рецепты и схемы мультиблоков.
+1. **Старт**: руды (`osmium`, `tin`, `lead`, `uranium`, `fluorite`, соль) → `enrichment_chamber`, `crusher`, `metallurgic_infuser` (железо + углерод → сталь, `ingot_steel`), `enriched_*`, `alloy_infused` → `alloy_reinforced` → `alloy_atomic`; «5-кратная» переработка руд — `purification_chamber`, `chemical_injection_chamber`, `chemical_dissolution_chamber`, `chemical_washer`, `chemical_crystallizer`. Машины улучшаются **апгрейдами** (`upgrade_speed`, `upgrade_energy`, …), а тиры фабрик ставят установщиками (достижение «installer»).
+2. **Транспорт**: Universal Cable (энергия), Mechanical Pipe (жидкости), Pressurized Tube (химия), Logistical Transporter + `logistical_sorter` (предметы), Thermodynamic Conductor (тепло); у всех тиры basic/advanced/elite/ultimate. Настройка сторон — `configurator`, копирование настроек — `configuration_card`.
+3. **Энергия**: Energy Cube (накопитель), генераторы — в аддоне [Mekanism Generators](#mekanism-generators).
+4. **Хранилище**: Bin, `personal_chest`, `personal_barrel`, **QIO** (`qio_drive_array`, `qio_dashboard`, `qio_importer`, `qio_exporter`, `qio_redstone_adapter`; диски `qio_drive_base` → `qio_drive_hyper_dense` → `qio_drive_supermassive` → `qio_drive_time_dilating`) — сетевое хранилище без кабелей; сравнение с AE2 и Refined Storage — в карточках [AE2](#ae2) и [Refined Storage](#refined-storage).
+5. **Снаряжение**: `jetpack`, `scuba_mask` + `scuba_tank`, `free_runners`, `hazmat_*` (защита от радиации), `atomic_disassembler`, `flamethrower`, `electric_bow`, `canteen`, и **MekaSuit** (`mekasuit_helmet/bodyarmor/pants/boots`) + `meka_tool`: модули ставятся в `modification_station`.
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+| id (`mekanism:<id>`) | Что делает |
+|---|---|
+| `digital_miner` | Цифровой шахтёр: автоматическая добыча по фильтрам в области |
+| `teleporter`, `teleporter_frame`, `portable_teleporter` | Телепорт по частотам; портативный — предмет для личного перемещения |
+| `quantum_entangloporter` | Мгновенный обмен предметами/жидкостями/энергией между точками по частоте |
+| `robit` | Помощник-робот (зарядка на `chargepad`) |
+| `laser`, `laser_amplifier`, `laser_tractor_beam` | Лазер (урон, добыча) и усилитель/притягивающий луч |
+| `dimensional_stabilizer` + `upgrade_anchor` | Прогрузка чанков |
+| `seismic_vibrator` + `seismic_reader` | Сейсморазведка: показывает, что под землёй |
+| `nutritional_liquifier`, `canteen` | Пищевая паста и фляга |
+| `network_reader`, `dosimeter`, `geiger_counter` | Диагностика сетей и радиации |
+| `cardboard_box` | Перенос блоков вместе с содержимым |
+| `sps_casing`, `sps_port`, `antiprotonic_nucleosynthesizer` | Поздняя игра: SPS (антиматерия) и нуклеосинтез |
+| `radioactive_waste_barrel`, `pellet_plutonium`, `pellet_polonium`, `pellet_antimatter` | Хранение отходов и «пеллеты» |
+| `hdpe_*`, `hdpe_elytra` | Пластик HDPE и усиленные надкрылья |
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
+Сущности: `mekanism:robit` (Robit) и `mekanism:flame` (пламя огнемёта). Мобов в мире Mekanism не добавляет (у [Mekanism Additions](#mekanism-additions) есть «детёныши» мобов).
 
 ### События
 
-_Пока пусто — заполнит один из следующих этапов._
+Радиация: источники (`radioactive_waste_barrel`, уран и др.) создают излучение в мире и на игроке; урон — `mekanism:radiation` (смерть «killed by radiation poisoning»), лазеров — `mekanism:laser`. Защита — `hazmat_*`.
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
+Структур нет. Руды: `mekanism:ore_osmium_upper/middle/small`, `ore_tin_large/small`, `ore_lead_normal`, `ore_uranium_small/buried`, `ore_fluorite_normal/buried` и `mekanism:salt` (соляные залежи). На планетах Ad Astra те же руды даёт [Mekanism: Ad Astra Ores](space.md#mekanism-ad-astra-ores).
 
 ### Команды/гамерулы
 
-_Пока пусто — заполнит один из следующих этапов._
+Команда `/mek` (подкоманды по lang): `radiation add|get|reduce|clear|remove_all`, `build` (построить мультиблок), `chunk watch|unwatch|clear|flush`, `retrogen` (нужно включить в конфиге), `tp` / `tpop`, `debug`, `testrules` (включает keepInventory и выключает мобов/смену дня/погоду/mobGriefing — осторожно на живом сервере).
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+Файлов конфигов Mekanism в `pack/config` нет — настройки по умолчанию. Дубли металлов объединяет Almost Unified: приоритет у `mekanism` выше `ad_astra`, а вся сталь выдаётся как `mekanism:ingot_steel`, свинец — Mekanism ([compat.md](../compat.md), «Объединение дублей»). Рецепты `mekanism:block_charcoal` против `quark:charcoal_block` разобраны в [compat.md](../compat.md); чек-лист — [client-checklist.md](../client-checklist.md).
 
 ## Mekanism Additions
 
@@ -390,41 +410,14 @@ _Пока пусто — заполнит один из следующих эт�
 - **Что это:** Модуль Mekanism с вещами, не вошедшими в другие модули. _(источник: docs сборки)_
 <!-- auto:end card:mekanism-additions -->
 
-### Как играть
+### Что даёт игроку
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Mekanism Additions 10.4.16 — «весёлый» аддон к Mekanism:
+- **Пластик**: 16 цветов блоков `*_plastic` с вариантами — `*_reinforced_plastic`, `*_slick_plastic` (скользкий), `*_plastic_transparent`, `*_plastic_glow` (светится), `*_plastic_road`, плиты, ступени, заборы и калитки (`*_plastic_fence`, `*_plastic_fence_gate`), панели `*_glow_panel`.
+- **Воздушные шарики** `*_balloon` (сущность `mekanismadditions:balloon`; достижения «Pop Pop», «Reach for the Skies»).
+- **«Детёныши»**: `mekanismadditions:baby_creeper`, `baby_enderman`, `baby_skeleton`, `baby_stray`, `baby_wither_skeleton` (яйца `*_spawn_egg`); достижения «Not the Babies» и «Don't Try Taking Candy From Those Babies».
+- `obsidian_tnt` (обсидиановая взрывчатка) и `walkie_talkie` (рация).
+Конфигов в `pack/config` нет.
 
 ## Mekanism Covers
 
@@ -435,41 +428,13 @@ _Пока пусто — заполнит один из следующих эт�
 - **В наших docs:** [compat.md](../compat.md) (1)
 <!-- auto:end card:mekanism-covers -->
 
-### Как играть
+### Что даёт игроку
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Mekanism Covers (1.3-BETA, автор D4rkness_King) добавляет «покрытия» (Cover) — предметы с видом другого блока:
+- Крафт: стекло в центре, вокруг — по 4 осмиевых самородка (`forge:nuggets/osmium`) и 4 древесной пыли (`forge:dusts/wood`) → 4 `mekanismcovers:empty_cover`.
+- Рецепт `crafting_special_cover` в JEI соединяет пустое покрытие с блоком — получается `mekanismcovers:cover` с видом этого блока. На какие именно блоки Mekanism покрытия накладываются, в jar не описано (по названию — маскировка).
+- Плагин для Jade показывает компонент покрытия.
+JEI-вид — «только special» ([jei.md](../jei.md)). Конфиг мода (класс `ModConfig`) в `pack/config` не лежит — настройки по умолчанию.
 
 ## Mekanism Curios
 
@@ -480,41 +445,12 @@ _Пока пусто — заполнит один из следующих эт�
 - **В наших docs:** [compat.md](../compat.md) (1)
 <!-- auto:end card:mekanism-curios -->
 
-### Как играть
+### Что даёт игроку
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Mekanism Curios 1.2.1 (TonimatasDEV) добавляет в Curios API два слота и клавиши быстрого доступа:
+- слот `qio` — для `mekanism:portable_qio_dashboard` (клавиша «Open Portable QIO»);
+- слот `teleporter` — для `mekanism:portable_teleporter` (клавиши «Open Portable Teleporter» и «Quick-Teleport»; телепортируется на выбранную частоту, если телепорт найден, заряжен и привязан).
+Вещи работают, не занимая руки. Конфигов нет.
 
 ## Mekanism Generators
 
@@ -526,39 +462,12 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
+Mekanism Generators 10.4.16 — генераторы и реакторы. Порядок (по достижениям): `heat_generator` («Your First Generator») → `solar_generator` / `advanced_solar_generator` → `wind_generator` → `gas_burning_generator` (топливо — этилен, «Burn the Gas»; также `bio_generator`, `bioethanol`) → **турбины** (`turbine_casing`, `turbine_rotor`, `turbine_valve`, `turbine_vent`, `rotational_complex`, `saturating_condenser`, `electromagnetic_coil`) → **деление** (`fission_reactor_casing`, `fission_fuel_assembly`, `control_rod_assembly`, `fission_reactor_port`, `fission_reactor_logic_adapter`) → **синтез** (`fusion_reactor_controller`, `fusion_reactor_frame`, `fusion_reactor_port`, `fusion_reactor_logic_adapter`, `laser_focus_matrix`, `reactor_glass`; топливо `fusion_fuel`, `hohlraum`, жидкости `deuterium`, `tritium`).
+Мультиблоки удобно собирать по схемам Just Enough Mekanism Multiblocks ([jei.md](../jei.md)). Радиация и отходы — см. «События» у [Mekanism](#mekanism).
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+Файла в `pack/config` нет — настройки по умолчанию. Large-версии генераторов (тепло, газ, ветер) добавляет [Mekanism: More Machine](#mekanismmore-machine).
 
 ## Mekanism Tools
 
@@ -568,41 +477,9 @@ _Пока пусто — заполнит один из следующих эт�
 - **Что это:** Модуль Mekanism: мощные инструменты и броня. _(источник: docs сборки)_
 <!-- auto:end card:mekanism-tools -->
 
-### Как играть
+### Что даёт игроку
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Mekanism Tools 10.4.16 — инструменты и броня из материалов Mekanism: `bronze_*`, `lapis_lazuli_*`, `osmium_*`, `refined_glowstone_*`, `refined_obsidian_*`, `steel_*` (кирка, топор, лопата, мотыга, меч, шлем, нагрудник, поножи, ботинки) и **щиты** (`*_shield`, 16 цветов). **Паксели** (`wood_/stone_/iron_/gold_/diamond_/netherite_/…_paxel`) — «три в одном»: кирка, топор и лопата. Достижения: «Multi-Tool», «Better Than Netherite» (броня из очищенного обсидиана), «Loved By Piglins» (броня из очищенного светящегося камня, пиглины ей «рады»). В JEI есть категории `banner_shield` и `paxel` ([jei.md](../jei.md)). Конфигов в `pack/config` нет.
 
 ## Mekanism:More Machine
 
@@ -616,39 +493,20 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Mekanism: More Machine (`mekmm`, 1.2.1, автор Lost Myself) — расширяет машины Mekanism и добавляет «фабрики» для тех машин, у которых их не было. Требует Mekanism 10.4.16.
+- **Новые фабрики** (по 9 уровней: basic, advanced, elite, ultimate, **overclocked, quantum, dense, multiversal, creative**): окисление, растворение, промывка, кристаллизация, реакционная камера под давлением, центрифуга, ожижение (liquifying), извлечение пигмента (`*_<тип>_factory`).
+- **Машины**: `recycler`, `planting_station`, `cnc_stamper`, `cnc_lathe`, `cnc_rolling_mill`, `replicator`, `fluid_replicator`, `chemical_replicator` (`uu_matter`), `ambient_gas_collector`, `wireless_charging_station`.
+- **Large-машины**: `large_rotary_condensentrator`, `large_chemical_infuser`, `large_electrolytic_separator`, `large_solar_neutron_activator`, `large_antiprotonic_nucleosynthesizer`, `large_pigment_mixer`, `large_heat_generator`, `large_gas_burning_generator`, `large_wind_generator`.
+- Предметы: `scrap`, `scrap_box`, `uu_matter`, `empty_crystal`, `advanced_electrolysis_core`.
 
-### Предметы/блоки
+### Наши правки и баги
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
+- 4 модели покраски фабрик использовали загрузчик NeoForge (`neoforge:composite`) и показывались «потерянными»; исправлены копиями в `pack/kubejs/assets/mekmm/models/block/factory/painting/active/*.json` ([compat.md](../compat.md), «Находки клиентского лога»).
+- 75 таблиц добычи на фабрики других аддонов Mekanism не загружаются (предметов нет) — некритично; в JEI рецепты Replicator не видны из-за NPE мода (`registerItemReplicator`) — [jei.md](../jei.md).
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+Файла в `pack/config` нет — по умолчанию.
 
 ## Refined Storage
 
@@ -662,39 +520,32 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Refined Storage 1.12.4 (Refined Mods) — более простая, «блочная» альтернатива AE2: сеть из кабеля, один контроллер и хранилище на дисках. В сборке он нужен ещё и мод **More Backpack Upgrades** (требует Refined Storage; добавлен с одобрения владельца — [compat.md](../compat.md)).
+1. `controller` (питание сети), `cable`, затем `grid` (терминал) — `crafting_grid`, `fluid_grid`, `pattern_grid`.
+2. Хранилище: `disk_drive` + диски `1k/4k/16k/64k_storage_disk` и жидкостные `64k…4096k_fluid_storage_disk` (части `*_storage_part` + `storage_housing`), блоки `*_storage_block`.
+3. Автоматизация: `importer`, `exporter`, `constructor`, `destructor`, `interface`, `external_storage`, `detector`, `relay`, `disk_manipulator`, `security_manager` + `security_card`.
+4. Автокрафт: `crafter` (+ `crafter_manager`), шаблоны `pattern`, `crafting_monitor`, улучшения `speed_upgrade`, `stack_upgrade`, `crafting_upgrade`, `range_upgrade`, `silk_touch_upgrade`, `fortune_*_upgrade`, `regulator_upgrade`.
+5. Беспроводное: `wireless_transmitter` + `wireless_grid` / `wireless_fluid_grid` / `wireless_crafting_monitor`, `portable_grid` (клавиши «Open Wireless Grid», «Open Portable Grid»); связь сетей — `network_transmitter` / `network_receiver` + `network_card`.
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
+| id (`refinedstorage:<id>`) | Что делает |
+|---|---|
+| `controller`, `creative_controller` | Контроллер сети (питание) |
+| `grid`, `crafting_grid`, `pattern_grid`, `fluid_grid` | Терминалы доступа |
+| `disk_drive`, `*_storage_disk` | Диски и накопители |
+| `importer`, `exporter`, `constructor`, `destructor`, `interface`, `detector` | Автоматизация |
+| `crafter`, `pattern`, `crafting_monitor` | Автокрафт |
+| `wrench`, `network_card`, `security_card` | Инструменты и карты |
+| `quartz_enriched_iron`, `basic/improved/advanced_processor`, `silicon` | Материалы |
 
 ### Команды/гамерулы
 
-_Пока пусто — заполнит один из следующих этапов._
+`/refinedstorage disk create <диск> <игрок>` — выдать диск; `/refinedstorage network list` (позиция, узлы, TPS-время тика, энергия, задачи автокрафта), `network get`, `network autocrafting get|cancel` (отмена задач).
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+Файла в `pack/config` нет — по умолчанию. JEI: категории `cover_recipe`, `hollow_cover_recipe`, `upgrade_with_enchanted_book` ([jei.md](../jei.md)). Проверка — только пачка «сторон»; полный тест RS ещё не делался ([roadmap.md](../roadmap.md)).
 
 ## Valkyrien Sails
 
