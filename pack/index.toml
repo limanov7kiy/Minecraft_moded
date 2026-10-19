@@ -2287,8 +2287,8 @@ hash = "f2d6e4f93abbd4efdad16d85653a878415a43a7f389d12c3f0a4afdb5d002745"
 metafile = true
 
 [[files]]
-file = "mods/disaster-ward-1.2.0.jar"
-hash = "ae0512008040d76be294b469bfc6747c61e767cb4a40136780559a70ce620a1d"
+file = "mods/disaster-ward-1.2.1.jar"
+hash = "4d9304dd821506dde36da4fe70fea2390fd4463338642755ec007b7e4536370e"
 
 [[files]]
 file = "mods/distanthorizons.pw.toml"

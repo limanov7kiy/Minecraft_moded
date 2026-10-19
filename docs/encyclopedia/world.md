@@ -395,7 +395,7 @@ _Пока пусто — заполнит один из следующих эт�
 
 <!-- auto:start card:disaster-ward -->
 <a id="disaster-ward"></a>
-- **Версия:** 1.2.0 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/disaster-ward-1.2.0.jar`
+- **Версия:** 1.2.1 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/disaster-ward-1.2.1.jar`
 - **Что это:** Блок-оберег (только креатив): в его зоне (один радиус) не бушуют катаклизмы Weather2 и Natural Disasters!, не распространяется заражение Fungal Infection: Spore и SRP System, пришедшие снаружи бедствия не ломают блоки внутри, ориджиниумная буря Bob's Originium Dream не призывает в зоне монстров и н… _(источник: mods.toml)_
 - **В сборке:** наш мод (mods-src/disaster-ward): «Оберег от катаклизмов» (только креатив; зона без бедствий Weather2/Natural Disasters!) и редкий случайный спавн бедствий
 - **В наших docs:** [compat.md](../compat.md) (3), [friends.md](../friends.md) (1), [issue-history.md](../issue-history.md) (1), [roadmap.md](../roadmap.md) (1)
