@@ -837,39 +837,47 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Мод Dimensional Dungeons (автор Catastrophe573) добавляет «измерения подземелий» (`dimdungeons:dungeon_dimension`) и личное строительное измерение (`dimdungeons:build_dimension`). Попасть можно только порталом с ключом:
+1. **Портал**: нужны 3 **позолоченных портальных блока** (`block_gilded_portal` — чиселированный каменный кирпич в кольце из 8 золотых слитков) и **портальная замочная скважина** (`block_portal_keyhole` — позолоченный блок + Око Эндера + сундук-ловушка). Рамка — из каменных кирпичей, 4 блока в высоту и 3 в ширину (2 воздуха внутри), верхний центр заменяется замочной скважиной; по бокам на расстоянии 1 блока ставятся «шпили» (3 блока высотой, сверху позолоченный блок); на верх рамки — два `block_portal_crown`; на шпили вешаются белые/пурпурные флаги с нужным узором (см. сообщения об ошибках при неверной постройке).
+2. **Ключ**: Blank Portal Key (`item_portal_key`) крафтится из бирки и огненного стержня. Чтобы его **активировать**, зайдите в крепость и используйте ключ на **верхней стороне рамки портала Края** — ключ получит уникальное имя и всегда ведёт в одно и то же подземелье. Ключ вставляют в замочную скважину портала.
+3. В подземелье (обычные и «продвинутые» — вдвое больше) — ловушки, загадки, сундуки. «Продвинутый» ключ (`item_portal_key_advanced`) находят внутри. Книгу-гайд мод выдаёт через Patchouli: чиселированный кирпич + книга; в сборке книга русифицирована своим файлом `pack/kubejs/data/dimdungeons/patchouli_books/guide_book/book.json`.
+4. Полезен **Homeward Pearl** (`item_homeward_pearl`: ключ + жемчуг Эндера + бутылочка опыта) и жемчуга Эндера для ловушек.
+5. Личное измерение: **Personal Dimension Key** (`item_build_key`, заготовка — 6 жемчугов Эндера, Homeward Pearl, осколок эха, блок травы); доступ можно закрыть списками гостей (бумага, книга, белый/чёрный краситель, точило на портале — `security.dimdungeons.*`).
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+| id | Что делает |
+|---|---|
+| `block_gilded_portal`, `block_portal_keyhole`, `block_portal_crown`, `block_gold_portal` | Детали и поле портала |
+| `item_portal_key`, `item_portal_key_basic`, `item_portal_key_advanced`, `item_blank_*_key` | Ключи: пустой → обычный/продвинутый/тематический/личный |
+| `item_teleporter_key`, `block_local_teleporter` | Хаб-ключ и телепортёр внутри измерения |
+| `block_key_charger` (`_used`, `_damaged`) | Станция «Key Inscribing Station» для перезаписи ключей; шанс «понижения» ключа — в конфиге |
+| `item_secret_bell`, `item_homeward_pearl`, `item_guidebook` | Колокол тайн, жемчуг возвращения, гайд |
+| `item_trophy_1..8` | Восемь трофеев (достижение «Collectionist»): 1UP Mushroom, Master Sword, Ist Rune, The Terrarian, Matter Manipulator, Sunlight Medal, Pink Arrow Panel, Ultros Painting |
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
+Своих мобов нет — в подземельях ванильные враги (в продвинутых — с повышенным здоровьем и иммунитетом к огню). Глобальный лут-модификатор `no_dungeon_drops` отключает обычный дроп мобов в подземельях.
 
 ### Эффекты
 
-_Пока пусто — заполнит один из следующих этапов._
+Своих эффектов нет.
 
 ### События
 
-_Пока пусто — заполнит один из следующих этапов._
+Своих событий нет.
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
+Подземелья строятся из шаблонов (`data/dimdungeons/structures/*.nbt`, не worldgen-структуры): `/locate` не применим. Темы: без темы, Nether Fortress, Desert, Sewers и др. Единственный биом — `dimdungeons:biome_dungeon`. Пустая карта внутри подземелья раскрывает его план (по книге мода).
 
 ### Чары
 
-_Пока пусто — заполнит один из следующих этапов._
+Своих чар нет (но подземелья — источник зачарованных книг).
 
 ### Команды/гамерулы
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Своих команд нет. Настройки — серверный/общий конфиг мода (ключи по lang: `globalBlockProtection`, `hardcoreMode`, `hardcorePortalRadius`, `portalCooldownTicks`, `keyEnscriberDowngradeChance*`, `breakingWhitelist`, `interactionBlacklist` и др.); наших правок в `pack/config` нет. Измерения можно отключить конфигом (`disabled_dungeon_dimension`/`disabled_build_dimension`).
 
 ## Dungeons And Villages: Deeper and Darker
 
@@ -1257,39 +1265,51 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Измерение `the_bumblezone:the_bumblezone` — мир сот, мёда и пчёл (мод Telepathic Grunt):
+1. **Вход**: бросить **жемчуг Эндера** в улей/пчелиное гнездо (достижение «Beenderman Intrusion!»), либо загнать игрока в улей **поршнем** («Honeydraulic Press»). Условия входа и выхода настраиваются конфигом мода (`Enable Entrance Teleportation`, `Enable Exit Teleportation`, `Only Overworld Hives Teleports`); наших конфигов в `pack/config` нет.
+2. **Выход**: упасть ниже дна или подняться выше потолка измерения — это не убивает, а телепортирует обратно («Dive Bombing Exit»).
+3. **Цель**: достижения «Queen's Desire» (разводить пчёл, пить мёд, торговать с Королевой пчёл, кормить слизней и т. д.). Все — и вы получаете **Essence of the Bees** (`essence_of_the_bees`): открывает «эссенции» (Raging, Knowing, Calming, Life, Radiance, Continuity) с особыми способностями.
+4. **Королева пчёл** (`bee_queen`) торгует: бросьте ей вещи или кликните предметом в руке; награды зависят от обмена. Подсказки — «Honey Compass» (`honey_compass`): клик по воздуху ищет Cell Maze (`cell_maze`), по улью — наводит на блок.
+5. Боссы — Королева пчёл и Космический кристалл ([bosses.md](../bosses.md#the_bumblezone)); совместимость — [compat.md](../compat.md).
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+| id | Что делает |
+|---|---|
+| `honey_compass` | Компас до Cell Maze, улья или трона Королевы |
+| `stinger_spear`, `bee_stinger`, `bee_cannon`, `crystal_cannon` | Копьё и стрелы из жал, пушки для пчёл/кристаллов |
+| `honey_bucket`, `royal_jelly_bucket`, `sugar_water_bucket` (+ бутылки) | Жидкости измерения; сахарная вода — декор/эффекты |
+| `pollen_puff`, `bee_bread`, `bee_soup`, `dirt_pellet` | Еда и метательные снаряды |
+| `buzzing_briefcase` | Чемоданчик для пчёл: лечится мёдом, возвращает жало, ускоряет рост |
+| Броня «пчелы»: `stingless_bee_helmet_*`, `bumble_bee_chestplate_*`, `honey_bee_leggings_*`, `carpenter_bee_boots_*` | Лёгкая защита от Rootmin и пчёл, бонусы за полный набор |
+| `honey_crystal_shards`, `honey_crystal_shield`, `super_candle_*`, `potion_candle`, `flower_headwear` | Декор и снаряжение |
+
+Много строительных блоков (соты, воск, свечи, цветущие кристаллы, 228 блоков в lang). Выпадают баннерные узоры (`banner_pattern_*`).
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
+`bee_queen` (Королева пчёл), `beehemoth` (Бегемот-пчела: приручается мёдом, седлается), `beehemoth_queen`, `honey_slime` (Медовый слизень), `rootmin` (полу-враждебен, прячется в траве, стреляет по тем, кто без пчелиной одежды), `variant_bee` (особые пчёлы), `sentry_watcher`, `cosmic_crystal_entity` (босс Космического кристалла). Боссы и HP — [bosses.md](../bosses.md#the_bumblezone).
 
 ### Эффекты
 
-_Пока пусто — заполнит один из следующих этапов._
+`the_bumblezone:wrath_of_the_hive` (улей мстит нападающему), `protection_of_the_hive`, `beenergized`, `hidden` (скрытность), `paralyzed` (оцепенение жертвы).
 
 ### События
 
-_Пока пусто — заполнит один из следующих этапов._
+Дополнительных событий нет. В `forge/biome_modifier` есть связки с Productive Bees, Resourceful Bees, Buzzier Bees, Forestry (дополнительные спавны, если моды стоят).
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
+`/locate structure the_bumblezone:<id>` (в измерении; 33 структуры): `cell_maze`, `throne_pillar`, `hive_temple`, `ancient_shrine`, `honitel`, `bumbling_beepartments`), `honey_cave_room`, `honey_fountain`, `goliath_honey_fountain`, `pirate_ship`, `cannon_range`, `dance_floor`, `candle_parkour`, `hanging_garden`, `mite_fortress`, `subway`, шесть `sempiternal_sanctum_<цвет>` (blue/green/purple/red/white/yellow) и др.
+Биомы (9): `bumbling_beepartments`, `crystal_canyon`, `floral_meadow`, `hive_pillar`, `hive_wall`, `howling_constructs`, `pollinated_fields`, `pollinated_pillar`, `sugar_water_floor`.
 
 ### Чары
 
-_Пока пусто — заполнит один из следующих этапов._
+`the_bumblezone:comb_cutter` (двойной выход из гнёзд/ульев), `potent_poison`, `neurotoxins` (оцепенение), `hive_lifeline` (всего 4).
 
 ### Команды/гамерулы
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Команды мода: `bumblezone_teleport`, `bumblezone_read_data`, `bumblezone_read_self_data`, `bumblezone_modify_data` (для админов; данные эссенций и «Queen's Desire»), `bumblezone_tag_log_output` — по именам в классах мода.
 
 ## The Lost Cities
 
