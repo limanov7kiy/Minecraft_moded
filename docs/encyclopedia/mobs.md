@@ -36,7 +36,7 @@ _Обзор категории — вручную, следующие этапы
 <!-- auto:start card:alexs-mobs -->
 <a id="alexs-mobs"></a>
 - **Версия:** 1.22.9 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/alexs-mobs)
-- **Что это:** 85+ New mobs with stylistic quality above the default game. _(источник: Modrinth)_
+- **Что это:** Больше 90 оригинальных животных и монстров с повадками, приручением и крафтом из дропа; всё описано во внутриигровой Книге о животных (Animal Dictionary), есть босс Червь Пустоты. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (14), [orespawn.md](../orespawn.md) (6), [roadmap.md](../roadmap.md) (6), [performance.md](../performance.md) (4), [russification.md](../russification.md) (4), [version-choice.md](../version-choice.md) (2)
 <!-- auto:end card:alexs-mobs -->
 
@@ -389,7 +389,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:capsidfix -->
 <a id="capsidfix"></a>
 - **Версия:** 1.0.0 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/capsidfix-1.0.0.jar`
-- **Что это:** Fixes the bug where players can duplicate items using the Capsid block from Alex's Mobs. _(источник: mods.toml)_
+- **Что это:** Заплатка к Alex's Mobs: чинит дублирование предметов через блок Капсид (выпадает с Эндериофага). Своего контента не добавляет. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (2)
 <!-- auto:end card:capsidfix -->
 
@@ -410,46 +410,92 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:chaospersists -->
 <a id="chaospersists"></a>
 - **Версия:** 1.20.1-0.9.1 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/chaospersists-1.20.1-0.9.1.jar`
-- **Что это:** Chaos Persists is a modern reimagining inspired by the classic chaos-era mods. Featuring dimensions, bosses, creatures, structures, weapons, and large-scale world generation systems built for modern Forge. _(источник: mods.toml)_
+- **Что это:** Ремейк OreSpawn 1.7.10 на 1.20.1: около 130 мобов и боссов (Король, Королева, Мобзилла, Кракен, Кошмар), шесть измерений, 54 структуры, руды, оружие и броня «Хаоса», питомцы и еда. _(источник: docs сборки)_
 - **В сборке:** both: Chaos Persists 0.9.1 (Astryxion; All Rights Reserved, CF 1460238) — ремейк OreSpawn 1.7.10 (В16, поток 23): ~130 мобов, King/Queen/Mobzilla, измерения Utopia/Mining/Village/Crystal/Chaos/Danger; зависимостей нет. Сравнение с оригиналом — docs/orespawn.md
 - **В наших docs:** [orespawn.md](../orespawn.md) (15), [compat.md](../compat.md) (6), [performance.md](../performance.md) (4), [roadmap.md](../roadmap.md) (4), [issue-history.md](../issue-history.md) (1)
 <!-- auto:end card:chaospersists -->
 
 ### Как играть
+Chaos Persists (Astryxion, All Rights Reserved) — перенос классического **OreSpawn 1.7.10** на 1.20.1: ~130 мобов (боссы, питомцы, динозавры, роботы), шесть измерений, 54 структуры, руды, оружие и броня, еда и растения.
+Разбор «что есть, чего нет» в сравнении с оригиналом — [orespawn.md](../orespawn.md); совместимость и нагрузка — [compat.md](../compat.md), [performance.md](../performance.md). Сравнение с другими модами мобов, отдельная таблица боссов — [bosses.md](../bosses.md) (строк по Chaos Persists там пока нет).
 
-_Пока пусто — заполнит один из следующих этапов._
+**Измерения** (датапак `chaospersists:<id>`; входы как в оригинале — через муравьёв/термитов и бабочку, см. orespawn.md; быстро — командой, см. «Команды»):
+| id | Что это | Вход (по orespawn.md) |
+|---|---|---|
+| `chaospersists:utopia` | мирные равнины (биом «Равнины Утопии»), деревья Короля и Королевы, алтари | Муравей |
+| `chaospersists:mining` | горы для добычи, много подземелий | Красный муравей |
+| `chaospersists:village` | деревни везде + роботы, здесь живёт Мобзилла | Радужный муравей |
+| `chaospersists:danger` | плоский мир + движущиеся острова-сущности (`IslandSizeFactor`, `IslandSpeedFactor`), 6 «испытательных» данжей | Нестабильный муравей |
+| `chaospersists:crystal` | кристальные пики; вход только с пустым инвентарём | Термит |
+| `chaospersists:chaos` | острова над пустотой, 57 видов мобов | Бабочка |
+Утопия по тегу попадает в `#minecraft:is_overworld` и `#is_plains`: мобы и руды других модов туда заходят (решение владельца — оставить, см. «Конфиги»).
+
+**Что делать**: начать можно с Overworld — наземные структуры и муравейники; приручать питомцев (подруга, крыса, раптор, дракончик, фея, ховерборд и др.), собирать **Идеальный** комплект (`ultimate*`), охотиться на боссов за чешуёй, делать клетки/зоопарки (`cage*`, `zoo2…zoo10`).
+- **Питомцы**: ПКМ — приручение/посадка (`message.chaospersists.pet.sitting/following`), Ключ (`wrench`) приручает роботов; **Принц/Принцесса** растут сами (убийства / еда / дни) или за **Алмазный блок** (`PrinceAutoGrow`; в Jade видно «Рост»).
+- **Боссы** (в оригинале HP: Король 7000, Королева 6000, Мобзилла 4000, Кракен 1000, Кошмар 125–1000, Робот-паук 1500, Джеффри 550). В нашей сборке здоровье выше 1024 держит **AttributeFix** (иначе ваниль обрезала бы до 1024). Фактическое HP в бою в игре не проверяли.
 
 ### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
+Всего ~740 предметов и ~750 блоков (вкладки «Мобы Chaos», «Инструменты», «Оружие», «Броня Хаоса», «Блоки хаоса», «Еда хаоса», «Предметы хаоса»). Рецепты **не в датапаке**: код вставляет их в `RecipeManager` после каждой загрузки (`LegacyRecipeInjector`) — KubeJS и Almost Unified их не видят, смотреть в JEI.
+- **Входы в измерения**: гнёзда `antblock`, `redantblock`, `rainbowantblock`, `unstableantblock`; блок `blockteleport` (случайный телепорт), `dungeonspawner` (случайное подземелье).
+- **Блоки боссов**: `kingspawner`, `queenspawner` (призывают Короля и Королеву), яйца `eggtheking`/`eggthequeen`/`egggodzilla`/`eggnightmare`/`eggmothra`/`eggvortex`/… и «Древние высушенные яйца» (руда `ore*` — `oretheking`, `orethequeen`, `oregodzilla`, `orenightmare`… ~120 штук в земле Overworld); части яиц Короля, Королевы и Мобзиллы (`orethekingpart` и т. п.).
+- **Оружие**: Совершенный меч/лук/топор/кирка/лопата/мотыга/удочка (`ultimate*`), Большая Берта (`berthasmall`), Бензопила, Кошмарный меч (`nightmaresword`), Меч королевского стража (`royalsmall`), Боевой топор Королевы, Громовой посох, Лучевая пушка (`raygun`), КальмарЗука, Коготь богомола, Скейт-лук, Ключ.
+- **Броня** (14 наборов, характеристики в `chaospersistsarmor`): Ultimate, Lava Eel, Moth Scale, Emerald, Experience, Ruby, Amethyst, Pink Tourmaline, Tiger's Eye, Mobzilla Scale, Royal Guardian, Lapis, Queen Scale, Peacock.
+- **Материалы**: Рубин, Аметист, Уран, Титан, Соль, Кианит, Кристальные (Pink Tourmaline, Tiger's Eye); четыре из них — материалы отделки брони (trim). Урана и титана тут свои — **не в тегах** `forge:ingots/*`, с Mekanism/Northstar не объединены.
+- **Механика/удобство**: Репелленты (`creeperrepellent`, `krakenrepellent`), Мечта шахтёра (`minersdream`), Мгновенное убежище/сад, Сито (`sifter`), Кристальный верстак и печь, Ловушка опыта и Дерево опыта, Дубликатор-дерево, клейкая лента.
+- **Еда и растения**: кукуруза, помидор, салат, редис, клубника, киноа, рис, вишня/персик/яблоня (саженцы), сыр, масло, попкорн, бекон, краб, пицца, BLT и др.; овощи — в тегах `forge:crops/*`.
 
 ### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
+Id вида `chaospersists:<id>` (названия — наш перевод). Вызов: яйцо из творческой вкладки или `/summon chaospersists:<id>`; **естественный спавн в Overworld у нас сокращён до 25 %** (см. «Конфиги»), в измерениях Chaos — как в оригинале.
+| Группа | Мобы |
+|---|---|
+| **Боссы** | `the_king` Король, `the_queen` Королева, `mobzilla` Мобзилла (+ `mobzilla_head`), `the_kraken` Кракен, `nightmare` Кошмар, `robot_spider` Робот-паук, `mothra` Мотра, `vortex` Вортекс, `cephadrome` Цефадром, `leonopteryx` Леоноптерикс, `kyuubi` Кьюби, `emperor_scorpion`, `hammerhead`, `hercules_beetle`, `caterkiller`, `large_worm` и др. |
+| **Питомцы** | `girlfriend` Подруга (много скинов), `boyfriend` (выключен `BoyfriendBroMode`), `the_prince` → `the_young_prince` → `the_young_adult_prince`, `the_princess`, `frog`, `baby_dragon` → `dragon`, `camarasaurus`, `velocity_raptor`, `hydrolisc`, `ostrich`, `gazelle`, `chipmunk`, `lizard`, `stinky`, `cephadrome`, `leonopteryx`, `robot_red_ant`, `rat`, `fairy`, `hoverboard`, `jeffery`, `wtf` |
+| **Мирные** | коровы (`apple_cow`, `golden_apple_cow`, `enchanted_golden_apple_cow`, `crystal_apple_cow`), `butterfly`, `moth`, `firefly`, `cricket`, муравьи (`ant`, `rainbow_ant`, `unstable_ant`, `red_ant`), `termite`, `bird`, `ruby_bird`, `cassowary`, `beaver`, `peacock`, `whale`, `flounder`, `gold_fish`, `cliff_racer`, `rubber_ducky`, `easter_bunny`, `baryonyx`, `stink_bug`, `ghost`, `crab` |
+| **Враждебные** | `mosquito`, `bee`, `dragonfly`, `brutalfly`, `scorpion`, `mantis`, `jumpy_bug`, `spit_bug`, `cave_fisher`, `alien`, `attack_squid`, `water_dragon`, `sea_monster`, `sea_viper`, `leaf_monster`, `molenoid`, `ender_knight`, `ender_reaper`, `criminal`, `bomb_omb`, `robo_pounder/gunner/warrior/sniper`, динозавры (`alosaurus`, `cryolophosaurus`, `trex`, `nastysaurus`, `pointysaurus`, `basilisk`), `triffid`, `irukandji`, `creeping_horror`, `lurking_terror`, `terrible_terror`, `dungeon_beast`, `cloud_shark` |
+**Как призвать боссов**: Король/Королева — блок `kingspawner`/`queenspawner` на алтаре (структуры `king_altar`/`queen_altar` в Утопии), яйцо или `/summon chaospersists:the_king` (в Утопии есть и «Дерево Короля/Королевы»); Мобзилла — измерение Village / яйцо `egggodzilla`; **Кракен появляется после убийства Нападающего кальмара**, отпугивает `krakenrepellent`, из него — `krakentooth`; Кошмар — Danger (`nightmare_rookery`) и Mining (`nightmare_dungeon`); Принц растёт сам. Названия «Что за черт?» (`wtf`, `gamma_metroid`) — перевод «WTF?!».
+Известные недочёты апстрима (без правок у нас): Кошмар не исчезает на «мирной» сложности (#311, #312), Ultimate Bow не лечит питомцев (#303), невидимые мобы со свечением (#304) — см. [orespawn.md](../orespawn.md).
 
 ### События
-
-_Пока пусто — заполнит один из следующих этапов._
+Своих событий (рейдов, «ночей») нет. Постоянные: ночной естественный спавн мобов Chaos в Overworld (у нас ×0,25); движущиеся острова в Danger; муравейники и «высушенные яйца» в земле (`SpawnOres`); структуры на поверхности и в океане при генерации чанка.
 
 ### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
+Структуры — «маркеры» (`chaospersists:locate_marker`): их содержимое строит код при генерации чанка. `/locate structure chaospersists:<id>` работает; в чужом измерении мод пишет «Эта структура генерируется только в: …» (`locate.wrong_dimension`). Включение/выключение по каждой — `chaospersistsstructures` в конфиге (все `1`).
+| Где | id структур |
+|---|---|
+| Overworld | `igloo` (снежные равнины), `haunted_house` (равнины, тайга, болото), `bouncy_castle` (пустыня), `frog_pond`, `leaf_monster`, `rubber_ducky_pond` (равнины), `spit_bug` (болота), `bee_hive`, `nest` (леса/джунгли), `dungeon` (Утопия, Village, горы); океан — `girlfriend_island`, `goldfish_bowl`, `monster_island`, `play_pool`, `water_dragon_lair` |
+| Utopia | `king_altar`, `king_tree`, `queen_altar`, `queen_tree`, `ruby_dungeon` |
+| Mining | `alien_wtf_dungeon`, `basilisk_maze`, `bee_nest`, `kyuubi_dungeon`, `leon_nest`, `nightmare_dungeon`, `ender_knight_dungeon` |
+| Village | `village_mania_village`, `damsel_in_distress`, `red_ant_hangout`, `spider_hangout` |
+| Danger | `cephadrome_altar`, `cloud_shark`, `danger_dungeon`, `danger_ender_castle`, `danger_ruby_dungeon`, `enormous_castle`, `greenhouse`, `inca_pyramid`, `mini_dungeon`, `nightmare_rookery`, `pumpkin`, `rainbow`, `robot_lab`, `stinky_house`, `white_house` |
+| Crystal | `crystal_battle_tower`, `crystal_haunted_house`, `rotator_station`, `round_rotator`, `urchin_spawner` |
+| End | `ender_castle`, `ender_dragon_hospital`, `ender_reaper_graveyard`, `ender_knight_dungeon` |
+Названия структур русские (427 доп. строк `pack/resourcepacks-src/russian-moded/assets/chaospersists`). Команда `/chaosstructures` печатает список названий для `/locate`.
 
 ### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
+Собственных чар нет (в `lang` нет `enchantment.*`). Наборы брони при крафте получают ванильные чары по конфигу (`<Набор>_enchant_protection`, `_blastprotection` и др. в `chaospersistsarmor`; для Mobzilla — Protection 10, Unbreaking 5). Оружие и инструменты — `chaospersistsweapons` (`<Набор>_enchantability`, `harvestlevel`). Эффектов у мода тоже нет.
 
 ### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
+Телепорт в измерения (права уровня 2, только игрок; в своём измерении — «вы уже здесь»): `/utopia`, `/mining`, `/villagemania`, `/danger`, `/crystal`, `/chaos`, `/overworld`. `/chaosstructures` — подсказка названий для `/locate`.
+Игровое правило **`mobGriefing`** управляет разрушениями Мобзиллы, Короля, Королевы, роботов, бобров, термитов (`BossesGriefing`/`CrittersGriefing`/`OtherMobsGriefing`/`RobotsGriefing`: 0 — по правилу, 1 — всегда, 2 — никогда). Оберег (`disaster_ward`) мобов Chaos не останавливает.
+Пример: `/summon chaospersists:the_king`; `/locate structure chaospersists:king_altar` (из Утопии).
 
 ### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Файл `pack/config/chaospersists.cfg` (формат «Configuration file» Forge, разделы `chaospersistsarmor/griefing/ids/mobs/ores/overworld/structures/tweaks/weapons`). Мод оставляет его как есть. **Наши правки** (решение владельца В16, поток 25, подробности и замеры — [orespawn.md](../orespawn.md), «Доводка»):
+| Параметр | Было | Стало | Зачем |
+|---|---|---|---|
+| `LessOre` | 0 | 1 | число попыток генерации руд делится на 3 |
+| `SpawnOres_rate` (высушенные яйца) | 28 | 12 | «руды в малом кол-ве» |
+| `Amethyst_clumpsize` | 6 | 5 | — |
+| `Salt_rate` / `_clumpsize` | 5 / 12 | 4 / 10 | — |
+| `Ruby_rate` | 10 | 5 | — |
+| `Diamond`, `Emerald` rate / clump | 4 / 6 | 2 / 4 | добавка к ванильным |
+| `Gold` rate / clump | 4 / 8 | 2 / 6 | — |
+| `BlockDiamond`, `BlockEmerald`, `BlockGold` rate / clump | 2 / 4 | 1 / 2 | — |
+Итог: Chaos-руд в Overworld в 4–6 раз меньше (≈2 яйца на чанк вместо ≈12). Остальное — по умолчанию мода: `BossesGriefing/RobotsGriefing=0`, `IgnorePercentHealthDamage=1` (боссы Cataclysm, бьющие процентом от HP, не «ломаются» огромным HP), `PlayNicely=0`, `LessLag=0`, `DisableOverworld*=0`, `FullPowerKingEnable=0`, `PrinceAutoGrow=1`, `BoyfriendBroMode=0`.
+Не менялось по решению владельца: Utopia остаётся в `#is_overworld`/`#is_plains`; разрушения боссами — по `mobGriefing`.
+**Спавн в Overworld реже**: `pack/kubejs/server_scripts/orespawn_spawn_thin.js` — на `EntityEvents.checkSpawn` отсекает 75 % попыток естественного спавна (`NATURAL`, `CHUNK_GENERATION`) мобов `chaospersists:*` в `minecraft:overworld` (`ORESPAWN_KEEP = 0.25`); яйца, спавнеры, `/summon`, измерения Chaos, Незер/Энд не трогает; раз в 10 минут пишет в `logs/kubejs/server.log` счётчик. Почему: вес спавна зашит в код, а ~130 мобов вытесняли бы остальных при общем лимите мобов.
+**Связанные моды в сборке**: AttributeFix 21.0.5 (потолок здоровья; без него боссы режутся до 1024), русификация (+427 строк). Мобы Chaos **не включены** в таблицы заражения Spore/SRP (`pack/kubejs/data/spore/...`, `infection_mappings`); при заражении мицелием сработает запасной вариант SRP (`spore:inf_human`) — по логике конфига, в игре не проверяли.
+В профиле сервера заметен Chaos Persists (~6–7 % потока), см. [performance.md](../performance.md). В логе клиента безвредна строка `ChaosPersists: failed to raise generic.maxHealth cap`.
 
 ## Cinematic Cataclysm
 
@@ -547,7 +593,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:fungal-infectionspore -->
 <a id="fungal-infectionspore"></a>
 - **Версия:** 2.2.0j · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/fungal-infectionspore)
-- **Что это:** The purpose of this mod is to increase the difficulty of the vanilla game by adding new enemies and infection mechanics inspired by popular zombie type games. _(источник: Modrinth)_
+- **Что это:** Зомби-апокалипсис поверх ванили: мицелий превращает мобов в заражённых, они эволюционируют, растут Курганы и Протомозг, а на высшей стадии приходят калимити-боссы. Есть оружие и броня из органов, Сканер и станции. _(источник: docs сборки)_
 - **В сборке:** Fungal Infection: Spore 2.2.0j (Harbinger, ARR, both): заражение мицелием, эволюция, ульи/Протомозг; распространение ОГРАНИЧЕНО — pack/config/sporeconfig.toml; заражение мобов наших модов — pack/kubejs/data/spore/spore_mob_conversion
 - **В наших docs:** [compat.md](../compat.md) (3), [roadmap.md](../roadmap.md) (2)
 <!-- auto:end card:fungal-infectionspore -->
@@ -751,7 +797,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:l_enders-cataclysm -->
 <a id="l_enders-cataclysm"></a>
 - **Версия:** 3.31 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/l_enders-cataclysm)
-- **Что это:** Cataclysm is a mod that adds difficult dungeons, challenging boss-fights and powerful items. _(источник: Modrinth)_
+- **Что это:** Cataclysm от L_Ender: восемь крупных структур-арен с боссами (Игнис, Левиафан, Сцилла, Предвестник и др.), мини-боссы и мобы Незера, пустыни, океана и Края, оружие и броня по ступеням (чёрная сталь, игнит, проклятый слиток) и аметистовые пещеры. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (29), [roadmap.md](../roadmap.md) (11), [client-checklist.md](../client-checklist.md) (2), [orespawn.md](../orespawn.md) (2), [version-choice.md](../version-choice.md) (2), [lost-cities.md](../lost-cities.md) (1)
 <!-- auto:end card:l_enders-cataclysm -->
 
@@ -941,7 +987,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:lycanites-mobs -->
 <a id="lycanites-mobs"></a>
 - **Версия:** 0.1.0-alpha · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/lycanites-mobs)
-- **Что это:** Strange and Deadly Creatures! _(источник: Modrinth)_
+- **Что это:** Свыше 120 существ с тематическими данжами, мобовыми событиями и боссами (Раховарт, Асмодей, Амальгалич); приручение, камни души, призыв миньонов и Зверинец. _(источник: docs сборки)_
 - **В сборке:** + pack/mods/lycanites-refmap-fix (patches/lycanites-refmap): недостающий refmap миксинов
 - **В наших docs:** [compat.md](../compat.md) (29), [roadmap.md](../roadmap.md) (15), [performance.md](../performance.md) (7), [orespawn.md](../orespawn.md) (4), [issue-history.md](../issue-history.md) (3), [jei.md](../jei.md) (2)
 <!-- auto:end card:lycanites-mobs -->
@@ -1185,7 +1231,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:srpsystem -->
 <a id="srpsystem"></a>
 - **Версия:** 0.0.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/srpsystem)
-- **Что это:** In higher versions, some functions of the Scape and Run: Parasites mod have been restored. _(источник: Modrinth)_
+- **Что это:** Часть механик Scape and Run: Parasites для Spore: существо с мицелием получает «Заражение паразитом» и при 30 % здоровья превращается в паразита; перерождение, колонии «матери», ограничение урона Протомозга. _(источник: docs сборки)_
 - **В сборке:** SRP System 0.0.1 (MIT, both — регистрирует эффекты и звуки, без клиента вход на сервер не пройдёт): «вселение в любых» (эффект заражения → превращение при 30 % HP); опасные части выключены — pack/config/srpsystem-common.toml
 - **В наших docs:** [compat.md](../compat.md) (5), [performance.md](../performance.md) (1), [roadmap.md](../roadmap.md) (1)
 <!-- auto:end card:srpsystem -->

@@ -1222,7 +1222,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:the-lost-cities -->
 <a id="the-lost-cities"></a>
 - **Версия:** 1.20-7.5.7 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/the-lost-cities)
-- **Что это:** Allows the player to play in an old abandoned city instead of the normal overworld _(источник: Modrinth)_
+- **Что это:** Генерирует заброшенные города (улицы, шоссе, здания с подвалами, метро, спавнерами и сундуками) прямо в обычном Overworld; в сборке включён редкий профиль rarecities (≈6 % городских чанков), действует для нового мира. _(источник: docs сборки)_
 - **В сборке:** The Lost Cities (McJty, MIT): города в обычном Overworld; профиль — pack/defaultconfigs/lostcities-server.toml
 - **В наших docs:** [lost-cities.md](../lost-cities.md) (17), [compat.md](../compat.md) (9), [roadmap.md](../roadmap.md) (7), [issue-history.md](../issue-history.md) (3), [performance.md](../performance.md) (3), [friends.md](../friends.md) (2)
 <!-- auto:end card:the-lost-cities -->

@@ -84,7 +84,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:cataclysm_spellbooks -->
 <a id="cataclysm_spellbooks"></a>
 - **Версия:** 1.2.9-1.20.1-mmport · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/cataclysm_spellbooks-1.2.9-1.20.1-mmport.jar`
-- **Что это:** A compat mod for L_Ender's Cataclysm and Iron's Spells and Spellbooks Adds in a new armor set, spellbooks, and unique spells to the game _(источник: mods.toml)_
+- **Что это:** Мод-связка Cataclysm и Iron's Spells: заклинания, книги, посохи, оружие и броня по мотивам боссов Cataclysm, две новые школы магии (Бездна и Техномантия); в сборке — наш порт под Cataclysm 3.31. _(источник: docs сборки)_
 - **В наших docs:** [bosses.md](../bosses.md) (32), [compat.md](../compat.md) (32), [roadmap.md](../roadmap.md) (12), [orespawn.md](../orespawn.md) (4), [jei.md](../jei.md) (3), [client-checklist.md](../client-checklist.md) (2)
 <!-- auto:end card:cataclysm_spellbooks -->
 

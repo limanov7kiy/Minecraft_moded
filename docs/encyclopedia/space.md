@@ -40,7 +40,7 @@
 <!-- auto:start card:ad-astra -->
 <a id="ad-astra"></a>
 - **Версия:** 1.15.21 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/ad-astra)
-- **Что это:** Live long and prosper, Ad Astra! _(источник: Modrinth)_
+- **Что это:** Космическое расширение: планеты как отдельные измерения (Луна, Марс, Венера, Меркурий, Глацио) со своим воздухом, температурой и гравитацией, скафандры, кислородные машины, ровер и реактивный костюм. В сборке отвечает за планеты и орбиты единой Солнечной системы; его крафтовые ракеты убраны. _(источник: docs сборки)_
 - **В наших docs:** [galacticraft.md](../galacticraft.md) (25), [compat.md](../compat.md) (20), [roadmap.md](../roadmap.md) (7), [performance.md](../performance.md) (3), [client-checklist.md](../client-checklist.md) (2), [russification.md](../russification.md) (2)
 <!-- auto:end card:ad-astra -->
 
@@ -139,7 +139,7 @@ Ad Astra (Terrarium, лицензия Terrarium License) даёт **планет
 <!-- auto:start card:ad-astra-giselle-addon -->
 <a id="ad-astra-giselle-addon"></a>
 - **Версия:** 6.20 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/ad-astra-giselle-addon)
-- **Что это:** Add things be more convenience, compatibility for Ad Astra! _(источник: Modrinth)_
+- **Что это:** Дополнение к Ad Astra: кислородные канистры, топливный погрузчик, датчик ракеты и четыре чары защиты в мирах Ad Astra (дыхание, огонь, кислотный дождь, гравитация), а также модули МекаСкафандра. _(источник: docs сборки)_
 - **В сборке:** Ad Astra × Mekanism/Create (кислород, энергия)
 - **В наших docs:** [galacticraft.md](../galacticraft.md) (4), [russification-audit.md](../russification-audit.md) (3), [jei.md](../jei.md) (2)
 <!-- auto:end card:ad-astra-giselle-addon -->
@@ -227,7 +227,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:northstar-redux -->
 <a id="northstar-redux"></a>
 - **Версия:** 0.6.6+1.20.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/northstar-redux)
-- **Что это:** Space exploration addon for Create. _(источник: Modrinth)_
+- **Что это:** Космос для Create в духе Galacticraft: ракеты собираются из блоков, нужны двигатели, топливо, навигатор и теплозащита; планеты открываются телескопом, есть электролиз, герметизаторы и скафандры. В сборке даёт ракеты и гравитацию, а сами планеты — Ad Astra. _(источник: docs сборки)_
 - **В сборке:** порт Create: Northstar под Create 6 (оригинал несовместим)
 - **В наших docs:** [compat.md](../compat.md) (52), [galacticraft.md](../galacticraft.md) (15), [roadmap.md](../roadmap.md) (11), [version-choice.md](../version-choice.md) (10), [russification.md](../russification.md) (8), [performance.md](../performance.md) (7)
 <!-- auto:end card:northstar-redux -->
@@ -323,7 +323,7 @@ Northstar Redux (MIT; авторы Redstonneur1256, lightning2401) — косм�
 <!-- auto:start card:create-northstar-structures -->
 <a id="create-northstar-structures"></a>
 - **Версия:** 1.0.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/create-northstar-structures)
-- **Что это:** An addon that adds structures to the planets of Northstar Redux. _(источник: Modrinth)_
+- **Что это:** Лунные кратеры всех размеров и гигантский бассейн Южный полюс — Эйткен для Northstar, плюс Лунный компас и команда поиска. В сборке работает и на Луне Ad Astra (патч), с исправлением удаления мобов. _(источник: docs сборки)_
 - **В сборке:** биомы Луны под Redux 0.6+ и кратеры на Луне Ad Astra: patches/northstar_structures_fix.py
 - **В наших docs:** [compat.md](../compat.md) (27), [version-choice.md](../version-choice.md) (9), [performance.md](../performance.md) (7), [russification.md](../russification.md) (6), [roadmap.md](../roadmap.md) (5), [russification-glossary.md](../russification-glossary.md) (4)
 <!-- auto:end card:create-northstar-structures -->
@@ -370,7 +370,7 @@ Northstar Redux (MIT; авторы Redstonneur1256, lightning2401) — косм�
 <!-- auto:start card:creating-space -->
 <a id="creating-space"></a>
 - **Версия:** 1.20.1_1.7.13 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/creating-space)
-- **Что это:** Creating Space is a mod that allow you to create rocket using contraption and go to other planets. _(источник: Modrinth)_
+- **Что это:** Ракеты на Create с настоящей инженерией: двигатель проектируется по чертежу, топливные пары и дельта-V ограничивают маршрут. Даёт двигатели, ракеты и скафандры; в сборке маршруты ведут по планетам Ad Astra. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (10), [galacticraft.md](../galacticraft.md) (3), [client-checklist.md](../client-checklist.md) (2), [roadmap.md](../roadmap.md) (1), [version-choice.md](../version-choice.md) (1)
 <!-- auto:end card:creating-space -->
 
@@ -450,7 +450,7 @@ Creating Space (MIT; автор Real Ant Engineer) — ракеты на Create,
 <!-- auto:start card:mekanism-x-create-northstar -->
 <a id="mekanism-x-create-northstar"></a>
 - **Версия:** 1.20.1-1.4.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/mekanism-x-create-northstar)
-- **Что это:** Compatibility between Mekanism and Create: Northstar _(источник: Modrinth)_
+- **Что это:** Мост между Mekanism и Northstar: модули МекаСкафандра (космический костюм, кислородный баллон, утепление, защита от жары) и материалы к ним (изоляция, дюрасталь). _(источник: docs сборки)_
 <!-- auto:end card:mekanism-x-create-northstar -->
 
 ### Как играть
