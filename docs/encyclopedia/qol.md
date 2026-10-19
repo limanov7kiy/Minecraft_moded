@@ -54,7 +54,7 @@
 - **Версия:** 1.20.1-4.3.4 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/fallingtree)
 - **Что это:** Срубает дерево целиком, достаточно одного бревна. _(источник: docs сборки)_
 - **В сборке:** both: 1.20.1-4.3.4; дерево падает целиком (FALL_BLOCK), присед = один блок; «всё или ничего» по прочности — миксин FallingTreeDamageMixin в mods-src/mm-compat; конфиг pack/config/fallingtree.json (docs/compat.md)
-- **В наших docs:** [compat.md](../compat.md) (6), [roadmap.md](../roadmap.md) (4)
+- **В наших docs:** [compat.md](../compat.md) (6), [roadmap.md](../roadmap.md) (4), [enchanting-table.md](../enchanting-table.md) (2)
 <!-- auto:end card:fallingtree -->
 
 ### Как играть

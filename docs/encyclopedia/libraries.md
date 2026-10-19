@@ -101,7 +101,7 @@ _Обзор категории — вручную, следующие этапы
 - **Версия:** 1.20.1-0.11.0+forge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/almostunified)
 - **Что это:** Объединяет дубли ресурсов разных модов в один (руды, слитки и т. д.). _(источник: docs сборки)_
 - **В сборке:** объединение дублей: один предмет на ресурс (config/almostunified)
-- **В наших docs:** [compat.md](../compat.md) (13), [roadmap.md](../roadmap.md) (5), [orespawn.md](../orespawn.md) (2), [jei.md](../jei.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (13), [roadmap.md](../roadmap.md) (5), [orespawn.md](../orespawn.md) (2), [enchanting-table.md](../enchanting-table.md) (1), [jei.md](../jei.md) (1)
 <!-- auto:end card:almostunified -->
 
 ### Что даёт игроку
@@ -115,7 +115,7 @@ _Обзор категории — вручную, следующие этапы
 - **Версия:** 1.3.7 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/apothic-attributes)
 - **Что это:** Библиотека: окно атрибутов и набор новых атрибутов. _(источник: docs сборки)_
 - **В сборке:** обязательная зависимость T.O Magic 'n Extras (+ Placebo)
-- **В наших docs:** [compat.md](../compat.md) (3), [roadmap.md](../roadmap.md) (3)
+- **В наших docs:** [compat.md](../compat.md) (3), [roadmap.md](../roadmap.md) (3), [enchanting-table.md](../enchanting-table.md) (2)
 <!-- auto:end card:apothic-attributes -->
 
 ### Что даёт игроку
