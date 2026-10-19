@@ -70,7 +70,7 @@ hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "c4912291343a033098249adccab7bc8e3564e09bbc2a13e4c06558c8de11a746"
+hash = "84085bf4571cb91db587fd6cb8d389dbbd1924b1ec8be89a2ad746e4b1ebc916"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -2859,7 +2859,7 @@ metafile = true
 
 [[files]]
 file = "mods/ru-lang-1.0.0-client.jar"
-hash = "cfcfaea24ff8e15f7b2d1721e36491bbe8e7166e6f5d00637b5956d2c16d16a2"
+hash = "a3752cdec9b6c146ce134ac9f7e9498098dd8d5f488ec52f78022acf0db65ac0"
 
 [[files]]
 file = "mods/sarkazs_furnace_side_fables-0.2.3-forge-1.20.1.jar"
