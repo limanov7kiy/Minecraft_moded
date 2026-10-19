@@ -35,6 +35,7 @@ COL_MOD = 'Мод для публичной страницы'
 COL_NOTE = 'Пояснение для публичной страницы'
 COL_CAT = 'Категория'
 CATEGORIES = ('краш/вылет', 'фризы/лаги', 'мод/механика', 'модели/графика', 'звук/голос', 'сервер/вход', 'другое')
+WISH_CAT = 'пожелание'   # в форме пункт «пожелание / идея»; в странице любая категория, начинающаяся с «пожелание», — пожелание
 # Колонки, которые нужны только чтобы убедиться, что их содержимое не просочилось в публичные поля. Не публикуются.
 GUARD_COLUMNS = ('Ник / имя для связи', 'Псевдоним из диагностики', 'Адрес электронной почты', 'Адрес эл. почты',
                  'Email Address', 'Контакт')
@@ -45,6 +46,10 @@ REQUIRED = (COL_NUMBER, COL_STATUS, COL_DATE, COL_DESC, COL_NOTE)
 
 STATUSES = ('новый', 'принят', 'в работе', 'исправлено', 'не баг', 'нужны данные', 'отложено', 'дубль')
 OPEN_STATUSES = ('новый', 'принят', 'в работе', 'нужны данные', 'отложено')
+# Пожелания: свой набор статусов («отложено» общий). Статус не из набора своей категории — строка не публикуется.
+WISH_STATUSES = ('идея', 'принята', 'в реализации', 'реализовано', 'нужно решение владельца', 'отклонено', 'отложено')
+WISH_OPEN = ('идея', 'принята', 'в реализации', 'нужно решение владельца', 'отложено')
+WISH_EXPLAIN = ('нужно решение владельца', 'отклонено', 'отложено')   # для этих статусов ждём комментарий
 MAX_LEN = 400          # описание, мод, версия/PR
 MAX_NOTE_LEN = 1500    # пояснение (рекомендации из ответов авторам); длиннее — обрезка по предложению с «…»
 
@@ -188,6 +193,7 @@ def build(rows):
     warnings = []
     records = []
     counts = Counter()
+    wish_counts = Counter()
     everyone = all_authors_tokens(rows)
     for i, row in enumerate(rows, start=2):
         g = lambda c: (row.get(c) or '').strip()
@@ -199,12 +205,15 @@ def build(rows):
         if not NUMBER_RE.match(number):
             warnings.append('строка %d: номер не вида R-### — не опубликована' % i)
             continue
-        status = g(COL_STATUS) or 'новый'
-        if status not in STATUSES:
-            warnings.append('%s: неизвестный статус — не опубликована' % number)
-            counts['?'] += 1
+        cat = g(COL_CAT).lower()
+        wish = cat.startswith(WISH_CAT)
+        status = g(COL_STATUS) or ('идея' if wish else 'новый')
+        cnt = wish_counts if wish else counts
+        if status not in (WISH_STATUSES if wish else STATUSES):
+            warnings.append('%s: статус не подходит %s — не опубликована' % (number, 'пожеланию' if wish else 'багу'))
+            cnt['?'] += 1
             continue
-        counts[status] += 1
+        cnt[status] += 1
         desc = g(COL_DESC)
         if not desc:
             warnings.append('%s: нет публичного описания — не опубликована (заполните «%s»)' % (number, COL_DESC))
@@ -216,8 +225,9 @@ def build(rows):
         version = g(COL_VERSION)
         if not version and PR_RE.match(g(COL_OWNER)):
             version = g(COL_OWNER)
-        cat = g(COL_CAT).lower()
-        if cat not in CATEGORIES:
+        if wish:
+            cat = WISH_CAT
+        elif cat not in CATEGORIES:
             if cat:
                 warnings.append('%s: категория не из списка — показана как «другое»' % number)
             cat = 'другое'
@@ -238,14 +248,14 @@ def build(rows):
         if bad:
             warnings.append('%s: %s — не опубликована' % (number, bad))
             continue
-        if status in ('не баг', 'отложено', 'нужны данные') and not fields['пояснение']:
+        if status in (WISH_EXPLAIN if wish else ('не баг', 'отложено', 'нужны данные')) and not fields['пояснение']:
             warnings.append('%s: для статуса «%s» нет публичного пояснения — опубликована без него' % (number, status))
         note_text, cut = truncate_note(fields['пояснение'])
         if cut:
             warnings.append('%s: пояснение длиннее %d знаков — обрезано по границе предложения' % (number, MAX_NOTE_LEN))
         records.append({'cat': cat, 'number': number, 'desc': cell(desc), 'mod': cell(fields['мод']) or '—', 'status': status,
                         'date': changed, 'ver': cell(version) or '—', 'note': note_cell(note_text) or '—'})
-    return records, counts, warnings
+    return records, counts, wish_counts, warnings
 
 
 HEADER = """# Статус отчётов о проблемах
@@ -258,6 +268,7 @@ HEADER = """# Статус отчётов о проблемах
 - Как отправить отчёт — `docs/friends.md`, раздел «Нашёл баг». Ответ с номером R-### приходит автору лично в течение суток.
 - Прошлые проблемы — в `docs/issue-history.md` (H-###); новые — через форму, им присваивается номер R-###.
 - Что недавно вошло в сборку и что стоит проверить — `docs/whats-new-check.md`; исправленное по отчётам там помечено «исправлено по отчёту R-012».
+- Пожелания игроков — в разделе «Пожелания» внизу страницы; баги и пожелания считаются раздельно.
 - Статусы: **новый** (пришёл), **принят** (признан проблемой), **в работе** (есть ответственный или PR), **исправлено** (в «PR / сборка» — когда будет у вас),
   **не баг** (так задумано или настройка), **нужны данные** (ждём от автора), **отложено** (не сейчас, причина в пояснении), **дубль** (тот же симптом, что у другого отчёта).
 
@@ -265,32 +276,39 @@ HEADER = """# Статус отчётов о проблемах
 
 TABLE_HEAD = ('| № | Что за проблема | Категория | Мод | Статус | Изменено | PR / сборка | Пояснение |\n'
               '|---|---|---|---|---|---|---|---|\n')
+WISH_TABLE_HEAD = ('| № | Пожелание | Мод | Статус | Изменено | PR / сборка | Комментарий |\n'
+                   '|---|---|---|---|---|---|---|\n')
 EMPTY_EXAMPLE = ('<!-- Пример строки:\n'
                  '| R-012 | Фриз раз в полминуты при полёте над новыми чанками | фризы/лаги | The Lost Cities | в работе | 2026-10-20 | PR #96 | Ищем причину в генерации чанков |\n'
                  '-->\n')
 
 
-def table(recs, example=False):
-    head = TABLE_HEAD
+def table(recs, example=False, wish=False):
+    head = WISH_TABLE_HEAD if wish else TABLE_HEAD
+    cols = 7 if wish else 8
     if not recs:
-        return head + '| — | Пока пусто |' + ' |' * 6 + '\n' + ('\n' + EMPTY_EXAMPLE if example else '')
+        return head + '| — | Пока пусто |' + ' |' * (cols - 2) + '\n' + ('\n' + EMPTY_EXAMPLE if example else '')
     out = head
     for r in recs:
-        out += '| %s | %s | %s | %s | %s | %s | %s | %s |\n' % (
-            r['number'], r['desc'], r['cat'], r['mod'], r['status'],
-            r['date'].isoformat(), r['ver'], r['note'])
+        if wish:
+            out += '| %s | %s | %s | %s | %s | %s | %s |\n' % (
+                r['number'], r['desc'], r['mod'], r['status'], r['date'].isoformat(), r['ver'], r['note'])
+        else:
+            out += '| %s | %s | %s | %s | %s | %s | %s | %s |\n' % (
+                r['number'], r['desc'], r['cat'], r['mod'], r['status'],
+                r['date'].isoformat(), r['ver'], r['note'])
     return out
 
 
-def grouped(recs, order, example=False):
+def grouped(recs, order, example=False, wish=False, level='###'):
     """Подразделы по статусам (порядок order), внутри — по номеру R. Если записей нет — одна пустая таблица."""
     if not recs:
-        return table([], example)
+        return table([], example, wish)
     out = ''
     for st in order:
         part = [r for r in recs if r['status'] == st]
         if part:
-            out += '### %s (%d)\n\n%s\n' % (st, len(part), table(part))
+            out += '%s %s (%d)\n\n%s\n' % (level, st, len(part), table(part, wish=wish))
     return out
 
 
@@ -309,9 +327,45 @@ def breakdown(records):
     return out + ('\n' + m if m else '')
 
 
-def render(records, counts):
+WISH_INTRO = """## Пожелания
+
+Что игроки хотели бы увидеть в сборке (форма: категория «пожелание / идея»). Номера общие с отчётами, R-###; ников и текстов игроков здесь нет.
+Идеи, которые не меняют баланс и доступность контента (косметика, удобство, русификация, документация, производительность), мы реализуем сами и сообщаем итог.
+Идеи, которые могут повлиять на баланс (мобы, оружие, магия, ресурсы, сложность, добавление или удаление модов и т. п.), получают статус «нужно решение владельца»: владелец решает вместе с ребятами.
+Правила разбора — `docs/report-form.md`, раздел «Пожелания».
+
+Статусы: **идея** (пришла), **принята** (будем делать), **в реализации** (есть ответственный или PR), **реализовано** (в «PR / сборка» — когда будет у вас),
+**нужно решение владельца** (влияет на баланс или спорно), **отклонено** (почему — в комментарии), **отложено** (не сейчас, причина в комментарии).
+
+"""
+
+
+def render_wishes(wrecs, wcounts):
+    total = sum(wcounts.values())
+    c = lambda s: wcounts.get(s, 0)
+    wrecs = sorted(wrecs, key=lambda r: int(r['number'][2:]))
+    still_open = [r for r in wrecs if r['status'] in WISH_OPEN]
+    solved = [r for r in wrecs if r['status'] not in WISH_OPEN]
+    summary = ('| Всего | Открыто (идея, принята) | В реализации | Нужно решение владельца | Реализовано | Отклонено | Отложено |\n'
+               '|---|---|---|---|---|---|---|\n'
+               '| %d | %d | %d | %d | %d | %d | %d |\n' % (
+                   total, c('идея') + c('принята'), c('в реализации'), c('нужно решение владельца'),
+                   c('реализовано'), c('отклонено'), c('отложено')))
+    hidden = total - len(wrecs)
+    note = ('\n%d из них ещё без публичного описания и в таблицах ниже пока не показаны.\n' % hidden) if hidden > 0 else ''
+    return (WISH_INTRO + '### Сводка по пожеланиям\n\n' + summary + note +
+            '\n### Открытые пожелания\n\n' +
+            grouped(still_open, ('идея', 'принята', 'нужно решение владельца', 'в реализации', 'отложено'), False, True, '####') +
+            '\n### Реализовано и отклонено\n\n' + grouped(solved, ('реализовано', 'отклонено'), False, True, '####'))
+
+
+def render(records, counts, wish_counts=None):
+    wish_counts = wish_counts if wish_counts is not None else Counter()
+    wish_recs = [r for r in records if r['cat'] == WISH_CAT]
+    records_all = records
+    records = [r for r in records if r['cat'] != WISH_CAT]
     total = sum(counts.values())
-    last = max((r['date'] for r in records), default=None)
+    last = max((r['date'] for r in records_all), default=None)
     key = lambda r: int(r['number'][2:])
     records = sorted(records, key=key)
     still_open = [r for r in records if r['status'] in OPEN_STATUSES]
@@ -331,7 +385,8 @@ def render(records, counts):
             ('\n### По категориям и модам\n\n' + bd if bd else '') +
             '\n## Что ещё открыто\n\nГруппы по статусу, внутри — по номеру отчёта.\n\n' +
             grouped(still_open, ('новый', 'принят', 'в работе', 'нужны данные', 'отложено'), True) +
-            '\n## Что решено\n\n' + grouped(solved, ('исправлено', 'не баг', 'дубль'), False))
+            '\n## Что решено\n\n' + grouped(solved, ('исправлено', 'не баг', 'дубль'), False) +
+            '\n' + render_wishes(wish_recs, wish_counts))
 
 
 def main(argv):
@@ -340,8 +395,8 @@ def main(argv):
     ap.add_argument('--out', default=str(DEFAULT_OUT), help='куда писать (по умолчанию docs/report-status.md)')
     a = ap.parse_args(argv)
     rows = load_rows(a.csv)
-    records, counts, warnings = build(rows)
-    text = render(records, counts)
+    records, counts, wish_counts, warnings = build(rows)
+    text = render(records, counts, wish_counts)
     out = Path(a.out)
     fd, tmp = tempfile.mkstemp(dir=str(out.parent), prefix='.report-status-', suffix='.tmp')
     with os.fdopen(fd, 'w', encoding='utf-8', newline='\n') as f:
@@ -349,7 +404,9 @@ def main(argv):
     os.replace(tmp, out)
     for w in warnings:
         print('ПРЕДУПРЕЖДЕНИЕ: ' + w, file=sys.stderr)
-    print('Опубликовано строк: %d из %d. Предупреждений: %d. Файл: %s' % (len(records), sum(counts.values()), len(warnings), out))
+    print('Опубликовано строк: %d из %d (из них пожеланий: %d из %d). Предупреждений: %d. Файл: %s' % (
+        len(records), sum(counts.values()) + sum(wish_counts.values()),
+        sum(1 for r in records if r['cat'] == WISH_CAT), sum(wish_counts.values()), len(warnings), out))
     print('Теперь: закоммитьте только docs/report-status.md и удалите CSV.')
 
 
