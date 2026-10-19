@@ -3,6 +3,7 @@
 Модовая сборка Minecraft для игры с друзьями по сети: **Minecraft 1.20.1 + Forge 47.4.26**.
 Магия, ракеты и космос, оружие, мобы, Arknights, измерения, умеренный реализм, оптимизация.
 
+- 📖 **[Справочник-энциклопедия сборки](docs/encyclopedia/INDEX.md)** — карточка каждого мода по категориям
 - Список модов с пояснениями: [pack/modlist.txt](pack/modlist.txt)
 - Журнал совместимости: [docs/compat.md](docs/compat.md)
 - Почему 1.20.1: [docs/version-choice.md](docs/version-choice.md)
@@ -64,6 +65,10 @@
 | [docs/orespawn.md](docs/orespawn.md) | OreSpawn: ремейк Chaos Persists против оригинала 1.7.10, чего не хватает для порта |
 | [docs/wizardry-port.md](docs/wizardry-port.md) | Electroblob's Wizardry: опись недостающих заклинаний Redux против оригинала 1.12.2 и план переноса |
 | [docs/ysm-models.md](docs/ysm-models.md) | Модели игроков Yes Steve Model: где лежат, как перезагрузить, какие подключены, ограничения |
+| [docs/encyclopedia/INDEX.md](docs/encyclopedia/INDEX.md) | Справочник-энциклопедия: оглавление по категориям и алфавитный указатель всех модов (генерируется) |
+| [docs/encyclopedia/README-authoring.md](docs/encyclopedia/README-authoring.md) | Как писать в справочник: что генерируется (авто-блоки), что вручную, как добавить или перенести мод |
+| [docs/encyclopedia/](docs/encyclopedia/) | Страницы категорий справочника с карточками модов (`<категория>.md`) и статьи (`arknights/`) |
+| [scripts/encyclopedia/](scripts/encyclopedia/) | Генератор справочника: `build.py` (карточки), `fetch_meta.py` (описания Modrinth), `categories.toml` (категории), `meta-cache.json` |
 | [docs/bosses.md](docs/bosses.md) | Таблица боссов сборки: где встретить, как призвать, здоровье/урон/броня, награда (генерируется) |
 | [docs/bosses.csv](docs/bosses.csv) | Та же таблица боссов в CSV для сортировки и фильтров |
 | [docs/client-check/](docs/client-check/) | Скриншоты клиента из проверок (главное меню, мир, F3, мобы) |

@@ -73,10 +73,15 @@
    - `cataclysm_spellbooks:extended_(death_)laser_beam has no attributes` (368 строк): мод регистрирует лучи
      с категорией `MONSTER` — они ещё и занимали лимит враждебных мобов. `mods-src/mm-compat` 0.2.0 ставит
      им `MISC` → 0 строк.
-   - Силы `arks:*/thought` рас Arknights (атрибут `the_massestravels:thought_load_limit` из закрытого мода):
-     `mm-compat` регистрирует пустой атрибут, только если The Masses Travels нет; сами силы заменены скрытой
-     заглушкой (`pack/kubejs/data/arks/powers/*/thought.json`, `loading_priority` 10) — у рас не висит
-     «Thought Load +7», который ни на что не влияет.
+   - Силы `arks:*/thought` рас Arknights (в оригинале — атрибут `the_massestravels:thought_load_limit` из закрытого мода
+     The Masses Travels; его преемник — Sarkaz's Furnace Side Fables, пакет `com.zhixu.themassestravels`):
+     переопределены в `pack/kubejs/data/arks/powers/{human,sarkaz,sarkaz_nephesh}/thought.json` (`loading_priority` 10) —
+     дают `sarkazs_furnace_side_fables:thought_load_limit` (+7 / +7 / +17), то есть поднимают предел «нагрузки мысли»
+     Sarkaz (`ThoughtLoadService.getFinalLoadLimit` = 18 + атрибут + …; см. `docs/encyclopedia/arknights/mind-storm.md`).
+     Модификатор ставит и снимает Origins вместе с силой, двойного учёта нет. Пустой атрибут `the_massestravels:*` из
+     `mm-compat` остаётся (безвредно, на него больше ничто не ссылается). Поток 48, 2026-10-19, `scripts/tests/racethought.js`:
+     без расы предел 18; `arks:human` 25; `arks:sarkaz_lich` (сила `arks:sarkaz/thought`) 25; `arks:sarkaz_nephesh` 35;
+     после смены расы на `origins:empty` — 18; `arks:feline` (без силы) 18. Ошибок загрузки сил в логе нет.
    - Остаётся (безвредно): KubeJS не разбирает `deeperdarker:resonarium_*_smithing` (шаблон намеренно пустой)
      и `northstar:electrolysis/*` — рецепты загружает ванилла, они работают; попытки модов загрузить
      клиентские классы на сервере (`RuntimeDistCleaner`); внутренний миксин Valkyrien Skies

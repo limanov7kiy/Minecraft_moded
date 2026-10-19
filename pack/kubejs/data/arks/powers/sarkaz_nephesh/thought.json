@@ -1,1 +1,9 @@
-{ "type": "origins:simple", "hidden": true, "loading_priority": 10 }
+{
+  "type": "origins:attribute",
+  "loading_priority": 10,
+  "modifier": {
+    "attribute": "sarkazs_furnace_side_fables:thought_load_limit",
+    "value": 17,
+    "operation": "addition"
+  }
+}
