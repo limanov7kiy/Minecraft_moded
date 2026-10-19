@@ -63,5 +63,11 @@ final class PackVersion {
         GuiGraphics g = e.getGuiGraphics();
         Minecraft mc = Minecraft.getInstance();
         g.drawString(mc.font, label(), 4, 4, 0xFFFFFF, true);
+        try {
+            Component warn = MemoryWatch.menuWarning();
+            if (warn != null) g.drawWordWrap(mc.font, warn, 4, 16, Math.max(120, e.getScreen().width - 8), 0xFF5555);
+        } catch (RuntimeException ex) {
+            // украшение, не мешаем игре
+        }
     }
 }

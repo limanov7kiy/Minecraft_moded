@@ -26,7 +26,7 @@
 - **Моды** (`pack/modlist.txt`, раздел «Оптимизация»): Let Me Despawn (`lmd`, сервер) + библиотека Almanac, FastFurnace и FastWorkbench (сервер).
   Уже стояли: ModernFix, FerriteCore, Canary, Saturn, Embeddium, Oculus, Entity Culling, ImmediatelyFast, Clumps, AI Improvements, Async Locator,
   Smooth Boot, MemoryLeakFix, Distant Horizons, spark.
-- **`mods-src/mm-perf`** (клиентский jar `pack/mods/mm-perf-0.3.0-client.jar`, на сервер не ставится): миксины в JEI — не строить строки
+- **`mods-src/mm-perf`** (клиентский jar `pack/mods/mm-perf-0.3.1-client.jar`, на сервер не ставится): миксины в JEI — не строить строки
   «снять чары на точиле» и «предмет + зачарованная книга» на наковальне (ремонт остаётся). Сборка: `cd mods-src/mm-perf && ./gradlew build`.
   Если JEI обновится и имена методов изменятся, миксины просто не применятся (`require = 0`) — игра не упадёт, вернётся старая медленная загрузка.
 - **`pack/config/modernfix-mixins.properties`**: `remove_spawn_chunks`, `dynamic_resources` (+ как включить авто-профиль входа spark — в `friends.md`).
