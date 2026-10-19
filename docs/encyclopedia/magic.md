@@ -1199,41 +1199,168 @@ _Пока пусто — заполнит один из следующих эт�
 - **В наших docs:** [compat.md](../compat.md) (16), [russification.md](../russification.md) (9), [performance.md](../performance.md) (8), [roadmap.md](../roadmap.md) (8), [ysm-models.md](../ysm-models.md) (6), [version-choice.md](../version-choice.md) (3)
 <!-- auto:end card:irons-spells-n-spellbooks -->
 
+Автор — Iron431 (лицензия All Rights Reserved; в сборке — по решению пользователя, см. [CLAUDE.md](../../CLAUDE.md)). Модид `irons_spellbooks`, зависимости: `irons_lib`, `playeranimator`, GeckoLib, Curios ([compat.md](../compat.md), п. 1). Сторона — both.
+
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+**Идея.** Заклинания хранятся в **свитках** и **книгах заклинаний**; колдуются расходом **маны** с перезарядкой. Книга надевается в слот Curios `spellbook` и даёт ячейки; заклинание выбирается колесом/панелью и применяется клавишей («Применить выбранное заклинание», по умолчанию настраивается в «Управление → Iron's Spells»). Есть клавиши быстрых слотов 1–15 и «колесо заклинаний». Посохи и некоторые мечи колдуют правым кликом.
+
+**Школы магии** (у каждой есть «фокус» — предмет для крафта свитков, руна, сфера улучшения и атрибуты силы/сопротивления):
+
+| Школа (`id`) | Фокус | Суть |
+|---|---|---|
+| Огонь `fire` | Огненный стержень (blaze rod) | урон и урон со временем |
+| Лёд `ice` | `frozen_bone` | урон и контроль (заморозка) |
+| Молния `lightning` | `lightning_bottle` | концентрированный урон, скорость |
+| Свет `holy` | `divine_pearl` | лечение, поддержка, баффы |
+| Эндер `ender` | жемчуг Эндера | перемещение, утилиты, чёрные дыры |
+| Кровь `blood` | `blood_vial` | урон с лечением заклинателя, некромантия |
+| Призыв `evocation` | изумруд | призыв, щиты, разное |
+| Природа `nature` | ядовитый картофель | дебаффы, яд, земля |
+| Потусторонье `eldritch` | осколок эха (`echo_shard`) | нельзя изучить сразу: нужен `eldritch_manuscript`, собранный из найденных обрывков |
+
+Дополнительные школы добавляет [Cataclysm: Spellbooks](own.md#cataclysm_spellbooks) (`cataclysm_spellbooks:abyssal`, `technomancy`).
+
+**Прогрессия (по путеводителю мода):**
+1. *Начало.* Свитки из сундуков магических структур и с магов; книга заклинаний (`copper_spell_book`, `iron_spell_book`) + `inscription_table` — вписываем свиток в книгу (обратно свиток снимается ценой стирания). Из `arcane_essence` и кожаной брони — броня странствующего мага (+макс. мана).
+2. *Середина (уровень Незера).* `scroll_forge`: чернила + бумага + фокус школы → свиток (редкость чернил определяет уровень, фокус — школу). Средние книги: `gold_spell_book` (3 золота + 4 `arcane_essence` + 2 `hogskin`), `diamond_spell_book`. Броня школ из `magic_cloth` + руны школы; руны класс-мобов выпадают с них.
+3. *Поздняя игра.* `arcane_anvil` — улучшение свитков (чернила следующей редкости), брони и книг сферами улучшения (`*_upgrade_orb`, сфера школы = базовая сфера + 8 рун), вписывание заклинаний в оружие («высечка»), снятие улучшений `shriving_stone`. Лучшие книги: `netherite_spell_book` (нужен `ruined_book` из Древних городов), `dragonskin_spell_book` (шкура дракона Края). Мифрил (`mithril_ore`) — глубже Y=−38, без контакта с воздухом, киркой из незерита.
+
+**Чернила** (`common_ink` … `legendary_ink`) определяют максимальную редкость/уровень свитка; хорошие — в магических сундуках и с магов. **Алхимический котёл** (`alchemist_cauldron`) перерабатывает ненужные свитки и варит эликсиры/чернила (13 рецептов `brew_*`).
+
+**Мана.** Атрибуты: `max_mana`, `mana_regen`, `spell_power` (общая и по школе), `cooldown_reduction`, `cast_time_reduction`, `spell_resist`, `summon_damage`, сопротивление по школам. Источники: броня магов, кольца (`mana_ring`), сферы, эффект «Прилив маны». Мана у каждого мода магии своя — общей нет ([compat.md](../compat.md), поток 3).
+
+**Заклинания — обзор по школам** (id в `код`; всего ~115, в списке самые полезные; полный список — `/cast`/JEI/подсказки в игре):
+
+| Школа | Ключевые заклинания |
+|---|---|
+| Огонь | `fireball` огненный шар (взрыв); `firebolt` снаряд; `fire_breath` конус пламени; `wall_of_fire` стена огня; `blaze_storm` шквал огненных шаров; `burning_dash` рывок; `magma_bomb`; `scorch` зона ожога; `raise_hell` (`Адский удар`) ударная волна от оружия; `flaming_barrage` |
+| Лёд | `icicle` пробивающая сосулька; `cone_of_cold` морозное дыхание; `ray_of_frost` луч; `ice_block` глыба сверху; `frost_step` телепорт + ледяная тень; `ice_tomb` защитный гроб; `summon_polar_bear`; `blizzard`; `frostwave` |
+| Молния | `lightning_bolt` удар с небес; `lightning_lance` копьё; `electrocute` конус тока; `chain_lightning` цепная; `thunderstorm` гроза вокруг (молния раз в 2 с); `ascension` взлёт; `charge` бонус скорости/урона; `ball_lightning`; `volt_strike`; `thunder_step` |
+| Свет | `heal` / `greater_heal` лечение; `healing_circle` круг лечения; `cloud_of_regeneration`; `blessing_of_life`; `fortify` поглощение союзникам; `haste` ускорение; `cleanse` снятие эффектов; `wisp`; `sunbeam`; `divine_smite` удар по области; `guiding_bolt`; `angel_wing` призрачные элитры |
+| Эндер | `magic_missile` базовый снаряд; `teleport`; `counterspell` прерывание чужого заклинания; `portal` пара порталов; `recall` на спавн; `starfall` дождь комет; `black_hole`; `summon_ender_chest`; `evasion` уклонение; `echoing_strikes`; `gravity_fissure`; `shadow_slash`; `arcane_shackle`; `summon_swords` |
+| Кровь | `blood_slash` клинок (лечит 15% нанесённого); `raise_dead` нежить-миньоны; `blood_step` телепорт + невидимость; `devour` укус; `heartstop` неуязвимость с возвратом 50% урона; `sacrifice` взрыв своего призыва; `ray_of_siphoning` высасывающий луч; `wither_skull`; `blood_needles`; `acupuncture` |
+| Призыв | `summon_vex`; `summon_horse` призрачная лошадь; `shield` магический щит; `slow`; `invisibility`; `fang_strike`/`fang_ward` клыки эвокера; `spectral_hammer` (добыча камня); `throw`; `scapegoat` козёл-приманка; `arrow_volley`; `lob_creeper`/`chain_creeper`/`creeper_revenge`; `wololo`; `firecracker` |
+| Природа | `oakskin` дубовая кожа; `root` корни-путы; `earthquake`; `touch_dig` магическая добыча (учитывает предмет в руке); `gluttony` еда → мана; `stomp`; `spider_aspect`; `blight`; `acid_orb`; `poison_breath`/`poison_arrow`/`poison_splash`; `firefly_swarm` |
+| Потусторонье | `eldritch_blast` лучи; `sculk_tentacles` / `void_tentacles` щупальца; `pocket_dimension` личный карман; `sonic_boom`; `telekinesis`; `planar_sight` вид сквозь стены; `abyssal_shroud` |
+
+Расширение по теме Wizardry — отдельный мод [Electroblob's Wizardry Redux](#electroblobs-wizardry-redux) (у него своя мана).
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+**Станции**
+
+| Блок | Для чего |
+|---|---|
+| `inscription_table` (Начертательный стол) | вписать свиток в книгу; рецепт: книга + 3 деревянные плиты + 2 забора |
+| `scroll_forge` (Кузница свитков) | чернила + бумага + фокус → свиток; 3 полированных глубинных сланца + 4 плачущего обсидиана |
+| `arcane_anvil` (Волшебная наковальня) | апгрейд свитков/брони/книг, высечка заклинаний в оружие; 3 аметистовых блока + алмаз + наковальня + 2 полированных сланца |
+| `alchemist_cauldron` | переработка свитков, эликсиры, чернила |
+| `pedestal`, `brazier`, `portal_frame`, `wisewood_bookshelf` | декор/механика (рамки портала связываются заклинанием `portal`) |
+| `mithril_ore`, `deepslate_mithril_ore` | руда мифрила → `raw_mithril`, `mithril_ingot` |
+
+**Книги заклинаний (по силе):** `copper_spell_book`, `wimpy_spell_book` (находка), `iron_spell_book`, `gold_spell_book`, `diamond_spell_book`, `netherite_spell_book`, `dragonskin_spell_book`; уникальные с зафиксированными заклинаниями: `evoker_spell_book` (с эвокеров/архизаклинателя), `necronomicon_spell_book` и `blood_staff` (с Мёртвого короля), `rotten_spell_book`, `blaze_spell_book` (с всполохов), `villager_spell_book`, `druidic_spell_book`, `ice_spell_book`, `cursed_doll_spell_book`.
+
+**Посохи (колдуют по ПКМ):** `graybeard_staff`, `artificer_cane`, `ice_staff` (`frosted_helve` + `permafrost_shard`), `lightning_rod`, `blood_staff`, `pyrium_staff` (из `pyrium_ingot`, незерит), `staff_of_the_nines`.
+
+**Броня:** странствующего мага (`wandering_magician_*`), школьная (`pyromancer_*`, `cryomancer_*`, `electromancer_*`, `archevoker_*`, `cultist_*`, `priest_*`, `shadowwalker_*`, `plagued_*`, `pumpkin_*`, `netherite_mage_*`), `wizard_*`; делается из `magic_cloth` + руны.
+
+**Украшения (Curios):** `mana_ring`, `cooldown_ring`, `cast_time_ring`, `affinity_ring` (по школе), `fireward_ring`/`frostward_ring`/`poisonward_ring`, `invisibility_ring`, `conjurers_talisman`, `concentration_amulet`, `teleportation_amulet`. Обереги: `enchanted_ward_amulet` защищает от магического поля Затерянной цитадели.
+
+**Навигация:** `wayward_compass` (4 `arcane_essence` + 4 железа + фонарь душ) ведёт к склепу-катакомбам; `antiquated_compass`; карты `citadel_map`, `ancient_battleground_map`, `evoker_fort_battle_plans` и др. (`furled_map*`).
+
+**Боссы-награды:** `divine_soulshard`, `decrepit_scythe`, `betrayer_signet`, `cinder_essence`, `decrepit_key` (открывает хранилища цитадели), `dead_king_phylactery` (воскресить Мёртвого короля), `hellrazor`, `legionnaire_flamberge`, `magehunter`, `spellbreaker`.
+
+**Еда/зелья:** `casters_tea`, `oakskin_elixir`, `invisibility_elixir`, `evasion_elixir` и «великие» версии, `greater_healing_potion`, `fire_ale`, `netherward_tincture`. **Данные:** музыкальные диски `dead_king_lullaby`, `flame_still_burns`, `whispers_of_ice`.
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
+Именные маги спавнятся в своих структурах и дают руны школы и чернила:
+
+| Моб (`irons_spellbooks:…`) | Где |
+|---|---|
+| `pyromancer` Пиромант | башня пироманта |
+| `cryomancer` Криомант | горная башня (`mountain_tower`) |
+| `archevoker` Архизаклинателя + эвокеры | крепость эвокеров (`evoker_fort`) |
+| `necromancer` Некромант | свободно в Верхнем мире (биом-модификатор `forge:add_spawns`, вес 18) |
+| `priest` Жрец, `apothecarist` Фармацевт | домики жреца в деревнях и отдельно |
+| `cultist` Культист | в структурах |
+| `citadel_keeper` Древний рыцарь | Незер: Затерянная цитадель / Лагерь легиона; «просыпается» при разрушении груд доспехов (`armor_pile`), роняет `cinder_essence` |
+| `ice_spider` Ледяной паук | логово ледяных пауков, патрули в заснеженных биомах |
+| `dead_king` Мёртвый король | **босс**, катакомбы (`catacombs`) |
+| `fire_boss` Эхо Тироса, Первый Пламеносец | **босс**; есть блок `tyros_statue`, но структуру, где он появляется, в данных мода однозначно найти не удалось |
+
+Боссы подробнее — [bosses.md](../bosses.md), раздел `irons_spellbooks`: Тирос — 1000 HP, урон 10, броня 15; Мёртвый король — 500 HP, урон 10, броня 15. Дропы Короля (`loot_tables/entities/dead_king`): 28–45 `arcane_essence`, свитки, руны, чернила, с шансом 50% — `blood_staff` или `necronomicon_spell_book`. Оживить Короля — `dead_king_phylactery` на его душе. Боссы имеют «зловещий» (ominous) вариант и доп. ХП/урон из конфига (`tyros_*`, `dead_king_*`).
+
+Призываемые: `summoned_vex`, `summoned_skeleton`, `summoned_zombie`, `summoned_polar_bear`, `spectral_steed`, `frozen_humanoid`.
 
 ### Эффекты
 
-_Пока пусто — заполнит один из следующих этапов._
+| Эффект (`irons_spellbooks:…`) | Что делает |
+|---|---|
+| `instant_mana` | восстанавливает 25 маны + 5% максимума за уровень |
+| `vigor` | +1 сердце к максимуму за уровень |
+| `oakskin` | −15% входящего урона (+5% за уровень) |
+| `fortify` | сердца поглощения |
+| `evasion` | телепорт от атаки, урон не получаете |
+| `abyssal_shroud` | уклонение от любой атаки на время |
+| `heartstop` | неуязвимость, затем возвращает 50% накопленного урона |
+| `true_invisibility` | невидимость с бронёй и предметами |
+| `ascension` | невесомость; `antigravity` — тоже |
+| `angel_wings` | призрачные элитры |
+| `hastened` / `slowed` | ускорение / замедление (движение, атака, копание, мана, чтение заклинаний) |
+| `charged` | +10% урона, +5% силы заклинаний, +20% скорости за уровень |
+| `rend` | −5% брони за уровень; `blight` — −5% урона, −10% входящего лечения |
+| `chilled`, `frostbite` | замедление/заморозка; убитое замороженное существо становится ледяной тенью |
+| `immolate` | при 3 стаках взрыв и поджог соседей |
+| `spider_aspect` | +5% урона по отравленным за уровень |
+| `guided` | притягивает ближайшие снаряды |
+| `planar_sight` | видеть существ сквозь блоки |
+| `gluttony` | еда превращается в ману |
+| `echoing_strikes` | немагические удары оставляют эхо-взрыв |
+| `thunderstorm` | молния по врагам каждые 2 с |
+| `enchanted_ward` | разрушает тело в поле Затерянной цитадели (защита — `enchanted_ward_amulet`) |
+| `fall_damage_immunity`, `airborne` | без урона падения / уязвимость к кинетическому урону |
 
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
+Таймеры призванных (`vex_timer`, `raise_dead_timer`, `polar_bear_timer`, `summon_horse_timer`) показывают время жизни фамильяров.
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
+Все — `/locate structure irons_spellbooks:<id>`. Расстояние/разброс — `structure_set` (в чанках).
 
-### Чары
+| Структура | Где и что | Spacing / sep. |
+|---|---|---|
+| `catacombs` | катакомбы Мёртвого короля; подземелье, биомы холмов/тайги/джунглей/леса/саванны/пустыни/равнин/болота/пещер | 72 / 48 |
+| `pyromancer_tower` | башня пироманта с подвалом; холмы, лес, равнины, болота | 85 / 50 |
+| `mountain_tower` | башня криоманта; горы, снежные равнины/тайга, роща | 45 / 33 |
+| `evoker_fort` | крепость эвокеров/Архизаклинателя; холмы, лес, пустыня, равнины, саванна | 85 / 50 |
+| `mangrove_hut` | хижина алхимика в болотах | 25 / 18 |
+| `ice_spider_den` | логово ледяных пауков, заснеженные биомы | 85 / 50 |
+| `impaled_icebreaker` | ледокол во льдах; замёрзший океан, ледяные шипы, Terralith ледники | 75 / 50 |
+| `citadel` | Затерянная цитадель (Незер, биомы бастиона; поле `enchanted_ward`) | 100 / 80 |
+| `ancient_battleground` | Лагерь легиона / поле древней битвы, Незер (бастион) | 35 / 12 |
 
-_Пока пусто — заполнит один из следующих этапов._
+Дополнительно: `priest_house` в деревнях, интеграции деревень (`structures/villages`). Достижения-вехи: `enter_catacombs`, `make_wayward_compass`. Лут катакомб и цитадели на 1.20.1 не грузился (формат 1.21) — исправлено нашим патчем, см. «Конфиги».
 
 ### Команды/гамерулы
 
-_Пока пусто — заполнит один из следующих этапов._
+Команды (нужны права оператора; названия литералов — из байткода 3.16.3):
+- `/cast <кто> <заклинание> <уровень>` — произнести заклинание;
+- `/mana get|set|add <игроки> [число]` — мана;
+- `/createScroll <заклинание> <уровень>`, `/createSpellBook <слоты> [randomize]`, `/createImbuedSword <предмет> <заклинание> <уровень>` — выдать предметы;
+- `/learnSpell` с подкомандами `learn <заклинание>`, `learn_all`, `forget_all` — изученные заклинания (нужно для эльдричских);
+- `/clearCooldowns <игроки|all>`, `/clearRecasts`, `/clearSpellSelection`;
+- `/ironsSpellbooks` — служебное: `summons … setOwner`, `upgrade`, `camera_shake`, `config`, `inscription_table`.
+Гамерулов мод не добавляет (`SPELL_GREIFING` — опция конфига, см. ниже).
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+Файл — `serverconfig/irons_spellbooks-server.toml` (создаётся в каждом мире) и `config/irons_spellbooks-client.toml`. Среди опций: `spellGriefing` (разрушение блоков заклинаниями), `manaRegenMultiplier`, `maxUpgrades`, `scrollMerging`, `scrollRecycleChance`, `swordsConsumeMana`, `iceSpiderPatrols`, `priestHouseWeight`, `portalFrameRestrictBreaking`, лимиты HP/урона боссов `tyros*`/`deadKing*`, чёрные/белые списки апгрейдов и высечки, а также настройки каждого заклинания (`enabled`, `maxLevel`, `cooldownInSeconds`, школа, мин. редкость).
+
+Наши правки:
+- `patches/irons_loot_1_20_1.py` → `pack/kubejs/data/irons_spellbooks/loot_tables/chests/{catacombs/crypt_loot,citadel/citadel_tomes}.json` — таблицы в формате 1.21 переписаны под 1.20.1 ([compat.md](../compat.md), п. 7); после обновления мода запустить скрипт заново.
+- Порты зависящих от Iron's модов (`alshanex_familiars-…-mmport`, T.O Magic/`traveloptics-…-mmport`, `cataclysm_spellbooks-…-mmport`) и переходники `mods-src/jar-ports` (`SimpleAttributeCurio`, `KeyState`, `OwnerGetter`, удалённые из 3.16).
+- Русификация: [russian-moded](../../pack/resourcepacks-src/russian-moded/assets/irons_spellbooks/lang/ru_ru.json); гайд-книга `iss_guide_book` без русского перевода ([russification-audit.md](../russification-audit.md)).
 
 ## Mahou Tsukai
 
@@ -1290,41 +1417,134 @@ _Пока пусто — заполнит один из следующих эт�
 - **В наших docs:** [compat.md](../compat.md) (30), [roadmap.md](../roadmap.md) (19), [bosses.md](../bosses.md) (12), [russification.md](../russification.md) (6), [issue-history.md](../issue-history.md) (4), [client-checklist.md](../client-checklist.md) (2)
 <!-- auto:end card:mana-and-artifice -->
 
+Автор — Mithion (лицензия All Rights Reserved), модид `mna`; требует Forge ≥ 47.1.64 и Curios, в сборке — вместе с GeckoLib. Сторона — both (нужен и клиенту, и серверу). Дополнения в сборке: ArcaneAdditions, Factions And Curiosities, MNAOverpowered, MNAWitchcraft (порт), Dragon Magic And Relics ([compat.md](../compat.md), раздел «Mana and Artifice и Ars Magica: Legacy»).
+
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Мод об **Элдрине** (тайной энергии) и **плетении маны** (manaweaving): заклинания создаются из частей и «ткутся» рисованием узоров, а не берутся из книги. Путь ведёт через **Кодекс мага** (`guide_book`, встроенная энциклопедия мода с поиском) и **Оккулус** (`occulus`) — блок, показывающий, что нужно сделать для следующего уровня прогресса. Достижения идут по ступеням `tier_0` … `tier_4` (и далее), отдельные ветки — боссы и фракции.
+
+**Основы**
+- **Мана** зависит от магического уровня и растёт с ним; полностью восстанавливается за 120 с по умолчанию (настраивается), медленнее при неполной сытости и под эффектом щита. Показана слева сверху вместе с опытом магии. Быстрее — Мана-чай (`mana_coffee`, регенерация) и зелья маны (5 уровней: Minor … Superior, по 20% максимума).
+- **Первые шаги (tier 0–1):** добыть `vinteum_ore` → `vinteum_ingot`/пыль; поставить **Рунную кузню** (`runeforge`), **Алтарь плетения маны** (`manaweaving_altar`), **Стол надписей** (`inscription_table`); взять «Мешочек практикующего» (`practitioners_pouch`); сделать жезл плетения (`improvized_manaweaver_wand` → `manaweaver_wand` винтеумовый → химеритовый).
+- **Заговоры (cantrips):** рисуются 2+ узорами жезлом, например `ignite`, `gust`, `transmute` (камень → арканный камень, медь → ртуть, гравий → кремень), `dispel`, `drought`, `halp` (сигнальная вспышка), `grimoire`, три «заклинания произвольной формы». Новые открываются с каждым tier.
+- **Заклинания** собираются на Столе надписей из частей: форма (`shapes/*`: луч, волна, стена, конус, цепь, рунa, эманация, …), компоненты (`components/*`: урон огнём/молнией, телекинез, взрыв, щит маны, симулякр, приманка …) и модификаторы. Части изучаются/осваиваются («rote» → «mastery») с практикой.
+- **Ритуалы:** рисуются **Волшебным мелом** (`wizard_chalk`), запускаются **Очищенной пылью Винтеума** (`purified_vinteum_dust`) в центре, затем выкладываются реагенты и (иногда) рисуются узоры плетения. Примеры из Кодекса: Ритуал Локации (зачаровать компас на структуру/биом), Странствующего мага (торговля, карты, паттерны), Железного колокола (обмен с фракциями), Призыва/Врат, Арканы, Изменения заклинания, и ритуалы-стихии (Ancient Stone — глубоко, Untamed Wind — высоко, Deep Ocean — в океане, Searing Inferno — в Незере, Endless Void — в темноте, Aurora — ночью, Eventide — днём).
+- **Мотыльки/«моты»** (motes), мини-башни **конструкций** (`animated_construct`, Станция делегирования), **Источники силы** (`wellspring`: arcane/earth/ender/fire/water/wind) и **Пилоны** Элдрина — поздние механики.
+
+**Фракции** (выбор на tier 2–3, необратим; враждебны остальным, свои мобы защищают игрока; используя чужие реликвии, провоцируете рейды сильных ассасинов):
+
+| Фракция | Ритуал вступления | Особенность |
+|---|---|---|
+| Совет волшебников (Council) | Ритуал Совета (`ancient_council`) | ресурс — мана; воины Council: Spellbreaker, Witch Hunter, Living Ward |
+| Демоны Бездны (Demons of the Nether) | Burning Hells (`searing_inferno`), подношение — Mote of Fire | ресурс **бримстоун**; больше урона/радиуса, −25% перезарядки; тратит здоровье при нехватке |
+| Дворы фей (Fey Courts) | Faerie Courts, подношение — Mote of Air | ресурсы **летний огонь / зимний лёд**; пикси, смертные шапки |
+| Нежить (Undead) | Cold Dark (`cold_dark`) | ресурс **души**: сами не восстанавливаются, нужно убивать; горят на солнце, дышат под водой, спят в гробах (+25% душ) — самый трудный путь |
+
+После выбора — Ритуал Sanctum Invocation: блок «Loci of Power» и мультиблок Круга силы (баффы союзникам фракции).
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+| Предмет/блок | Назначение |
+|---|---|
+| `guide_book` (Кодекс мага), `occulus` (Оккулус) | энциклопедия и дерево прогресса |
+| `vinteum_ore`, `vinteum_ingot`, `vinteum_dust`, `purified_vinteum_dust` | базовый материал и порошок для ритуалов |
+| `chimerite_gem` | самоцвет из `*_chimerite`-руд (изумруд/алмаз/уголь; видимость руды зависит от магического уровня 5/10/20) |
+| `runeforge`, `manaweaving_altar`, `inscription_table`, `arcane_furnace` | основные станции (в Кодексе: Бонная зола `bone_ash` из рунной кузни) |
+| `manaweaver_wand` (винтеумовый), `wand_chimerite`, `staff_chimerite`, `wand_prismarinecrystal`, `improvized_manaweaver_wand` | жезлы/посохи плетения и фокусы |
+| `spell_book`, `bangle` (браслеты), `pilgrim_staff`, `thaumaturgic_compass` | заклинания, фокусы, поиск |
+| `practitioners_pouch` + «патчи» (Void, Depth, Speed, Glyph, Mote, Rift, Weave, Conveyance, Collection) | карманное хранилище-мешок с улучшениями |
+| `wizard_chalk`, `purified_vinteum_dust`, `bell_of_bidding`, `player_charm`, `world_charm` | ритуалы (призыв, обмен, вызов игрока порталом) |
+| Цветы: `aum` (леса/равнины), `cerublossom` (леса, равнины, снег), `tarma_root` (болота), `desert_nova` (пустыня), `wakebloom` (вода) | реагенты; красители |
+| `mana_coffee`, `mana_coffee_beans` | чай/кофе маны |
+| Реликвии фракций: `hellfire_staff`, `grimoire_council`, `allfather_axe`, `bound_axe`, `faction_horn_council` | босс-лут и награды фракций |
+
+Вспомогательные блоки: арканный камень/песчаник (`arcane_stone`, `arcane_sandstone` — результат заговора transmute), `manaweave_cache` (тайники плетения, часть даёт мощный бафф), `mana_crystal`.
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
+Обычные (все — фракционные, нейтральны к безфракционным игрокам): Council — `spell_breaker` (щит, отражает заклинания), `witch_hunter` (арбалет, зелья), `living_ward` (малый летающий конструкт); Fey — `mushroom_soldier` (Смертельная шапка, яд), `pixie` (элементальные болты, 4 стихии); Demons — `demon_imp`; Undead — `skeleton_assassin`, `hulking_zombie`, `lantern_wraith`, `barkling`, `chatterer`; нейтральные — `wandering_wizard`, `broker`, `arcane_eye`, `insect_swarm`. Спавнятся биом-тегами `mob_spawns_overworld` и у логов фракций.
+
+**Боссы** (характеристики — [bosses.md](../bosses.md), раздел `mna`; зона применения структур ниже):
+
+| Босс | HP | Как вызвать / найти |
+|---|---|---|
+| `council_warden` Страж Совета | 850 | Ритуал Совета в Большом зале Совета (`council_island`) — «Вызвать на дуэль» старейшин, откликается Warden |
+| `wither_lich` Лич-иссушитель | 850 | Ритуал Cold Dark в Большом зале Собора (`cathedral`) |
+| `demon_lord` Повелитель демонов | 375 | Ритуал Burning Hells (Mote of Fire) или в Арене демонов (`demon_arena`, Незер) |
+| `faerie_queen` Королева фей (лето/зима) | 675 | Ритуал Faerie Courts (Mote of Air) или Великое Древо фей (`fey_tree`, лес) — дуэль с обеими |
+| `odin` Один (Всеотец) | 850 | Ритуал «Зов Одина» под открытым небом **во время грозы**; награда — топор Всеотца |
+| `pumpkin_king` Король тыкв | 300 | способ призыва не выяснен |
+| `tfpd` (Pig Dragon, пасхалка) | — | подсказка в игре о «свинье-драконе»; способ не выяснен |
+
+Достижения боссов: `mna:boss/defeat_council_warden`, `defeat_demon_lord`, `defeat_fey_queens`, `defeat_odin`, `defeat_pig_dragon`, `defeat_pumpkin_king`, `defeat_wither_lich`.
 
 ### Эффекты
 
-_Пока пусто — заполнит один из следующих этапов._
+| Эффект (`mna:…`) | Что делает |
+|---|---|
+| `mana_regen`, `mana_boost`, `instant_mana` | регенерация / увеличение максимума / мгновенное восстановление маны |
+| `mana_shield` | щит маны (замедляет регенерацию) |
+| `mana_burn`, `mana_stunt` | сжигание / задержка маны |
+| `silence` | нельзя колдовать |
+| `levitation`, `icarian_flight`, `eldrin_flight`, `soar` | левитация / полёт |
+| `water_walking`, `spider_climbing`, `mist_form`, `greater_invisibility`, `telekinesis` | движение и скрытность |
+| `flame_cloak`, `aura_of_frost`, `wind_wall`, `briarthorn_barrier`, `burning_rage` | защитные/боевые ауры |
+| `fossilize`, `entangle`, `gradity_well`, `watery_grave`, `asphyxiate`, `snowblind`, `chrono_anchor` | контроль цели |
+| `living_bomb`, `lacerate`, `life_tap`, `sunder`, `frailty`, `disjunction`, `soul_vulnerability` | урон и дебаффы |
+| `bind_wounds` | лечение стоя на месте (снимается движением/уроном) |
+| `eldrin_sight`, `wellspring_sight`, `mind_vision`, `divination` | разведка |
+| `mind_control`, `possession`, `confusion` | контроль разума |
+| `cold_dark` (Объятия смерти), `circle_of_power` (Союзное святилище) | события ритуалов фракций |
+| `enlarged`/`reduced`, `amplify_magic`/`dampen_magic`, `repair`, `earthquake` | прочее |
 
 ### События
 
-_Пока пусто — заполнит один из следующих этапов._
+- Фракционные **рейды**: если игрок использует вещи чужих фракций, его начинают атаковать сильные ассасины (параметры `RaidChanceBase`, `RaidChanceTier`, `ClassicRaids` в конфиге; `/mna raid`).
+- Ритуал фей требует «решающих» цветов (летних или зимних) — одновременно нельзя ([lang `fey_ritual_*`]).
+- Подсказки (`helptip.mna.*`): визуализация мультиблоков, закрепление рецепта на HUD, Shift+клик по модификаторам (шаг ×5).
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
+`/locate structure mna:<путь>`; места — `structure_set`: разбросанные (`scatter`) — 20/15, фракционные цитадели — 25/20, тайники плетения — 25/20, боссы — 150/50 (чанки).
+
+| Структура | Биомы | Что |
+|---|---|---|
+| `mna:scatter/ritual_circle_forest` / `_desert` / `_tundra` | лес-зелёные / сухие / тайга | ритуальные круги |
+| `mna:scatter/lonely_tower` | грибные поля | одинокая башня |
+| `mna:scatter/winter_tower` | тайга | зимняя башня |
+| `mna:scatter/potion_hut` | зелёные биомы | хижина зельевара |
+| `mna:scatter/wistful_runesmith` | зелёные биомы | кузнец рун |
+| `mna:scatter/research_outpost_swamp` | болота | исследовательский форпост |
+| `mna:scatter/respawn_altar` | Незер | алтарь возрождения |
+| `mna:caches/smallarcane`, `largearcane` (+ `_broken`) | множество, в т.ч. Эндер | тайники плетения (Manaweave caches) |
+| `mna:faction/council_library` | горы | библиотека Совета |
+| `mna:faction/demon_fortress` | Незер | крепость демонов |
+| `mna:faction/fairy_glade` | леса | поляна фей |
+| `mna:faction/undead_crypt` | под землёй в большинстве биомов | склеп нежити |
+| `mna:faction/boss/council_island` | равнины, лес, горы, тайга, саванна, пустыня и др. | остров Совета (Большой зал) |
+| `mna:faction/boss/cathedral` | леса, холмы, джунгли, тайга, саванна, равнины, болота | собор (босс — лич) |
+| `mna:faction/boss/fey_tree` | леса | Великое Древо фей |
+| `mna:faction/boss/demon_arena` | Незер: долина душ, базальтовые дельты, пустоши | арена демонов |
+
+В Ритуале Локации игрок зачаровывает компас на структуру/биом (паттерны покупаются у Странствующего мага).
 
 ### Чары
 
-_Пока пусто — заполнит один из следующих этапов._
+Чары мода (`mna:…`): ауры на предметах — `aura-healing` (регенерация), `aura-running`, `aura-jumping`, `aura-deeps` (глубины), `aura-mining`, `aura-repair`, `aura-pilgrim`; оружие/броня — `soulbound` (не теряется), `fireproof`, `gilded`, `xp_to_souls`, `bouncing`, `mana-repair` (чинит предмет маной), `beheading`, `cloudstep`, `transitorystep`, `returning` (телекинетическое возвращение), `bludgeoning`; модификаторы заклинаний фокусов — `duration_modifier`, `range_modifier`, `speed_modifier`. Накладываются ритуально («runic enchant», tier 3+).
 
 ### Команды/гамерулы
 
-_Пока пусто — заполнит один из следующих этапов._
+Корень `/mna` (права оператора). Подкоманды из байткода: прогресс (`tier`, `level`, `complete`, `reset_codex`, `fullReset`), `faction <игрок> <фракция>`, `affinity add|remove|set|reset <игрок> <родство>`, `raid` (шанс 100% — сразу рейд), `wellspring` (создать/удалить источник, `wellspringpower set|add|remove`), `rote` и `mastery` (освоить части заклинаний), `structurediff` (отладка). Гамерулов нет.
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+Файлы Forge `mna-*.toml` (общий, клиентский, заклинаний): `ManaTicksForRegen` (120 с), `ClassicRaids`, `RaidChanceBase/Tier`, `FactionMobKillIre`, `SoulsForFactionMobKill`, `AverageManaweaveCost` и др.
+
+Наши правки:
+- **Фриз сервера** — `mods-src/mm-compat`, миксин `MnaChunkTickMixin` (`mm-compat` 0.5.2): `CommonEventHandler.onWorldTick` обходил чанки 11×11 вокруг игрока через `Level.getChunk`, который на сервере синхронно ждёт генерацию недогруженных чанков; миксин пропускает чанки, которые ещё не FULL. Тест `scripts/tests/mnachunk.js`. Подробно — [compat.md](../compat.md), «Фриз сервера от Mana and Artifice»; [issue-history.md](../issue-history.md) (H-003).
+- **Модель пилона** — `pack/kubejs/assets/mna/models/block/obj/pylon/pylon_ring.obj` (копия `pylon_ring_old.obj`): в jar ошибка ссылки ([compat.md](../compat.md)).
+- **Атлас блоков** — `pack/kubejs/assets/minecraft/atlases/blocks.json` вырезает `entity/**` других модов, которые `mna` затягивает в атлас (иначе переполнение текстур, [compat.md](../compat.md)).
+- Порт MNAWitchcraft под M&A 3.1 — `patches/jar-ports/mnawitchcraft`; русификация Кодекса — `scripts/books/mna_guide.py` ([russification.md](../russification.md)); проверка клиента — [client-checklist.md](../client-checklist.md).
 
 ## Mechanical Botania
 
