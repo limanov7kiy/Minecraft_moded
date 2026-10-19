@@ -1782,7 +1782,7 @@ hash = "a75d5d611e58e3c80bbf0244f82a8a8351c4e8c4aa0f3a1c56da5343aa6d5ae5"
 
 [[files]]
 file = "kubejs/server_scripts/eso_enchant_books.js"
-hash = "02d88213b7d5e07a394f940ea57937f7ac553120f52b90f38415440c152d8a4d"
+hash = "3510dc4489197d38aa1330f8765f9948989b94db71072cbd382eda1bfde62ae6"
 
 [[files]]
 file = "kubejs/server_scripts/missing_mod_refs.js"

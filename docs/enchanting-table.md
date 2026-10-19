@@ -62,7 +62,7 @@
 чар, в том числе модовых) или `discoverable` и разрешена на книгах (`isAllowedOnBooks`) — тогда она попадает в случайные
 книги лута (сундуки, рыбалка). Кроме флагов проверены лут-таблицы, рецепты и код модов (поиск id чар по jar сервера).
 
-**Без книг было 84 чары** (теперь книги есть у всех):
+**Без книг было 84 чары** (теперь книги есть у 83; `mnaw:dedication` — только через фракцию Ковена, см. ниже):
 - **Alex's Caves — 51.** Чары `discoverable`, но запрещены на книгах, а миксин AC в `enchant_randomly` ещё и подменяет
   их на случайные чужие (пока в конфиге AC `enchantments_in_loot = false`). Раньше их давал только ванильный стол на
   оружии пещер — ESO его заменил. **Добавлено:** книга в сундуках своего биома — руины/постройки (`magnetic_ruins`,
@@ -71,9 +71,9 @@
   Очень редкие: `bonking`, `seapairing`, `tsunami`, `relentless_darkness`, `shaded_respite`, `explosive_flavor`.
 - **Mana and Artifice — 22, M&A Witchcraft — 2.** У мода свой путь — руны manaweaving накладывают чару сразу на предмет;
   книг нет вовсе. Путь через руны остаётся. **Добавлено:** книга в библиотеке крепости (обычная 15% / редкая 5%), древнем
-  городе (8/4), лесном особняке (8/3). Редкие: `aura-healing`, `aura-pilgrim`, `aura-repair`, `beheading`,
-  `transitorystep`, `mnaw:potion_immune`. Внимание: `mnaw:dedication` в M&A накладывается только фракцией Ковена —
-  через книгу и ESO это ограничение обходится (если не нужно — убрать id из `MNA_NORMAL`).
+  городе (8/4), лесном особняке (8/3) — для 23 чар. Редкие: `aura-healing`, `aura-pilgrim`, `aura-repair`, `beheading`,
+  `transitorystep`, `mnaw:potion_immune`. **`mnaw:dedication` книги не получила намеренно:** в M&A её накладывает только
+  фракция Ковена, книга с ESO обошла бы это (решение координатора; вернуть — дописать id в `MNA_NORMAL`).
 - **Fungal Infection: Spore — 8** (в т.ч. проклятия `mutagenic_reactant`, `unwavering_nature`). Флагов нет.
   **Добавлено:** сундуки Spore `document_chest` (25% / редкая 5%), `equipment_chest` (15/5); редкая — `symbiotic_reconstitution`.
 - **Sarkaz's Furnace-side Fables — `annihilation`** (лук Суйе, сокровищная): мод не кладёт её ни в один лут (его
@@ -118,7 +118,8 @@
 | `lrtactical` | backstab | библиотекари; случайные книги в луте |
 | `mahoutsukai` | projector | библиотекари |
 | `mna` | aura-bulwark, aura-depths, aura-healing, aura-jumping, aura-mining, aura-pilgrim, aura-repair, aura-running, beheading, bludgeoning, bouncing, cloudstep, duration_modifier, fireproof, gilded, mana-repair, range_modifier, returning, soulbound, speed_modifier, transitorystep, xp_to_souls | **добавлено:** библиотека крепости, древний город, особняк |
-| `mnaw` | dedication, potion_immune | **добавлено:** библиотека крепости, древний город, особняк |
+| `mnaw` | potion_immune | **добавлено:** библиотека крепости, древний город, особняк |
+| `mnaw` | dedication | без книги: руна M&A, только фракция Ковена |
 | `mythicbotany` | hammer_mobility | библиотекари; случайные книги в луте |
 | `northstar` | frostbite (сокр.) | библиотекари; случайные книги в луте |
 | `origins` | water_protection (сокр.) | библиотекари; случайные книги в луте |

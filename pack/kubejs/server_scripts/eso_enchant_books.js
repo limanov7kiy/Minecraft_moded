@@ -36,8 +36,8 @@ const AC_BIOMES = {
 // Книга для ESO — редкая находка в «учёных» местах ванили; путь через руны M&A остаётся как был.
 const MNA_NORMAL = ['mna:aura-bulwark', 'mna:aura-depths', 'mna:aura-jumping', 'mna:aura-mining', 'mna:aura-running',
   'mna:bludgeoning', 'mna:bouncing', 'mna:cloudstep', 'mna:duration_modifier', 'mna:fireproof', 'mna:gilded',
-  'mna:mana-repair', 'mna:range_modifier', 'mna:returning', 'mna:soulbound', 'mna:speed_modifier', 'mna:xp_to_souls',
-  'mnaw:dedication']
+  'mna:mana-repair', 'mna:range_modifier', 'mna:returning', 'mna:soulbound', 'mna:speed_modifier', 'mna:xp_to_souls']
+// mnaw:dedication без книги: в M&A её накладывает только фракция Ковена (решение координатора; вернуть — дописать сюда)
 const MNA_RARE = ['mna:aura-healing', 'mna:aura-pilgrim', 'mna:aura-repair', 'mna:beheading', 'mna:transitorystep',
   'mnaw:potion_immune']
 
