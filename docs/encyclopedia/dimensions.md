@@ -1221,39 +1221,49 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Редизайн и расширение Эфира (зависит от The Aether и Ancient Aether). Своего портала нет — играете в обычном `aether:the_aether` (вход — как в карточке [The Aether](#the-aether)); меняются биомы, генерация, цвета неба/воды и появляется много нового.
+1. **Биомы** (`aether_redux:*`): `skyfields`, `gilded_groves`, `gilded_grasslands`, `frosted_forests`, `glacial_tundra`, `cloudcaps` («Cloudcap jungle»), `skyroot_shrublands`, `the_blight` («Порча»). Достижения «enter_*»: Prismacolor Photosynthesis, All That Glitters, Walking in a Winter Wonderland, Moolander, Shattered Glass.
+2. **Материалы**: `veridium_ingot` (+ «infused» версии инструментов, достижение «Next Level»), `gravitite_ingot`, `raw_valkyrum`, `sentrite_chunk`/`refined_sentrite` (Sentry Circuit `sentry_chip`).
+3. **Порча (the Blight)**: опасный биом с `blighted_spores`, Blightbunny; от неё защищает `feather_of_warding` («Blight's Bane») и эффект `blightward`.
+4. Двойной прыжок и другие бонусы из достижений («Take THAT, Physics!», «Falling with Style!»).
+5. Часть рецептов зависит от несуществующего мода Aether Genesis — наш KubeJS отключает рецепт `aether_redux:genesis_dark_gummy_swet`, а из тегов убираются ссылки на `aether_genesis:*` ([compat.md](../compat.md)). Боссов у Redux нет; HP боссов Эфира — [bosses.md](../bosses.md#aether).
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+| id | Что делает |
+|---|---|
+| `subzero_crossbow`, `spear_of_the_blight`, `veridium_dart_shooter`, `infused_veridium_*` | Оружие и инструменты |
+| `airbound_cape`, `vampire_amulet`, `ring_of_construction`, `ring_of_wisdom`, `sentry_ring`, `shroom_ring` (Adrenaline Ring), `solar_emblem`, `enchanted_ring` | Аксессуары (Curios) |
+| `snailshell_shield`, `mykapod_shell_chunk` | Щит и материал с Mykapod |
+| `grand_victory_medal` | Награда «Valkyrie Champion» |
+| `blueberry_pie`, `blueberry_bagel`, `oatmeal`, `mouse_ear_soup`, `*_swet_jelly`, `*_gummy_swet` | Еда |
+| `cloudcap_*`, `crystal_*`, `fieldsproot_*`, `glacia_*`, `jellyshroom_*`, `blightwillow_*` | Новые «породы» дерева: брёвна, доски, лодки, книжные шкафы, саженцы |
+
+Всего 274 блока и 77 предметов (lang). Прочее — мшистые камни, грибы `cloudcap_*`, `jellyshroom`, «Corrupted Aercloud», `blightmoss_*`.
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
+`shimmercow` (мерцающая корова), `mykapod`, `blightbunny` (+ спавнер), `vanilla_swet`, `ember`, `volatile_fire_crystal`, `cockatrice_spawner`. Эндермены в Эфире — по конфигу мода (`Gameplay Changes → Mob Spawns → Enderman Spawns`).
 
 ### Эффекты
 
-_Пока пусто — заполнит один из следующих этапов._
+`aether_redux:adrenaline_rush`, `adrenal_fatigue` (расплата за него), `blightward`.
 
 ### События
 
-_Пока пусто — заполнит один из следующих этапов._
+Своих событий нет.
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
+Собственных структур нет — используются структуры The Aether ([bronze_dungeon, silver_dungeon, gold_dungeon](#the-aether)). Через `forge/biome_modifier` (19 модификаторов) добавляются руда (`veridium_ore`, `divinite`, `sentrite`), пещеры (`aether_caves`, `blighted_caves`, `fungal_caves`), снег, мох и т. п.
 
 ### Чары
 
-_Пока пусто — заполнит один из следующих этапов._
+Своих чар нет.
 
 ### Команды/гамерулы
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Своих команд нет. Настройки — конфиг мода (параметры вроде `Gameplay Changes`, `Mob Spawns`); в `pack/config` нашего файла нет.
 
 ## The Bumblezone - NeoForge/Forge
 
