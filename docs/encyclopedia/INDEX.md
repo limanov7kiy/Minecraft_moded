@@ -12,7 +12,7 @@
 | [Оружие](weapons.md) | 12 | Огнестрельное и тяжёлое оружие, пушки, патроны, зачарования для оружия. |
 | [Космос и ракеты](space.md) | 8 | Ракеты, планеты, скафандры, кислород и связки космических модов. |
 | [Мобы и боссы](mobs.md) | 15 | Новые существа, боссы, паразиты. Подробные таблицы боссов — docs/bosses.md. |
-| [Измерения, данжи и структуры](dimensions.md) | 34 | Aether, Twilight Forest, Blue Skies, Undergarden, пещеры, заброшенные города и аддоны к ним. |
+| [Измерения, данжи и структуры](dimensions.md) | 30 | Aether, Twilight Forest, Blue Skies, Undergarden, пещеры, заброшенные города и аддоны к ним. |
 | [Техника и автоматизация](tech.md) | 20 | Create, Mekanism, AE2, Refined Storage, корабли Valkyrien Skies. |
 | [Еда и фермерство](food.md) | 10 | Farmer's Delight и его связки с остальными модами. |
 | [Мир: выживание, погода и катастрофы](world.md) | 9 | Температура и жажда, сезоны, штормы, торнадо, метеориты и обереги от них. |
@@ -20,7 +20,7 @@
 | [Оптимизация, интерфейс и ресурспаки](optimization-ui.md) | 37 | Моды производительности, JEI и его дополнения, карты, подсказки, русификация. |
 | [Звук и голосовой чат](voice.md) | 9 | Simple Voice Chat, рации, физика звука. |
 | [Модели и косметика (YSM)](ysm.md) | 1 | Yes Steve Model — свои модели игроков. Подробности — docs/ysm-models.md. |
-| [Библиотеки и инструменты](libraries.md) | 48 | Модули, нужные другим модам, а также KubeJS и Almost Unified. |
+| [Библиотеки и инструменты](libraries.md) | 52 | Модули, нужные другим модам, а также KubeJS и Almost Unified. |
 | [Свои моды и патчи](own.md) | 19 | Моды и порты, собранные в этом репозитории (mods-src/, patches/). |
 <!-- auto:end cats -->
 
@@ -174,9 +174,9 @@
 - [GuideME](libraries.md#guideme) — Библиотеки и инструменты
 - [Ice and Fire](mobs.md#ice-and-fire-dragons) — Мобы и боссы
 - [ImmediatelyFast](optimization-ui.md#immediatelyfast) — Оптимизация, интерфейс и ресурспаки
-- [Integrated API](dimensions.md#integrated-api) — Измерения, данжи и структуры
+- [Integrated API](libraries.md#integrated-api) — Библиотеки и инструменты
 - [Integrated Mowzie's Mobs](dimensions.md#integrated-mowzies-mobs) — Измерения, данжи и структуры
-- [Integrated Patches](dimensions.md#integrated-patches) — Измерения, данжи и структуры
+- [Integrated Patches](libraries.md#integrated-patches) — Библиотеки и инструменты
 - [Iron Chests](qol.md#iron-chests) — Удобство, хранилища и строительство
 - [Iron's Lib](libraries.md#irons-lib) — Библиотеки и инструменты
 - [Iron's Recipe Additions](magic.md#irons_recipe_additions) — Магия
@@ -203,8 +203,8 @@
 - [Lexiconfig](libraries.md#lexiconfig) — Библиотеки и инструменты
 - [LibX](libraries.md#libx) — Библиотеки и инструменты
 - [Lionfish-API](libraries.md#lionfish-api) — Библиотеки и инструменты
-- [Lootintegrations mod](dimensions.md#lootintegrations) — Измерения, данжи и структуры
-- [lootintegrations_cataclysm mod](dimensions.md#lootintegrations_cataclysm) — Измерения, данжи и структуры
+- [Lootintegrations mod](libraries.md#lootintegrations) — Библиотеки и инструменты
+- [lootintegrations_cataclysm mod](libraries.md#lootintegrations_cataclysm) — Библиотеки и инструменты
 - [Lycanite Delight](food.md#lycanitesdelight) — Еда и фермерство
 - [Lycanites Kin](mobs.md#lycaniteskin) — Мобы и боссы
 - [Lycanites Mobs](mobs.md#lycanites-mobs) — Мобы и боссы

@@ -3,7 +3,7 @@
 Модули, нужные другим модам, а также KubeJS и Almost Unified.
 
 <!-- auto:start toc -->
-Модов в категории: **48**.
+Модов в категории: **52**.
 
 - [AeroBlender](#aeroblender)
 - [Almanac](#almanac)
@@ -27,6 +27,8 @@
 - [GlitchCore](#glitchcore)
 - [GTBC's SpellLib/API](#gtbcs-spelllibapi)
 - [GuideME](#guideme)
+- [Integrated API](#integrated-api)
+- [Integrated Patches](#integrated-patches)
 - [Iron's Lib](#irons-lib)
 - [Kotlin for Forge](#kotlin-for-forge)
 - [KubeJS](#kubejs)
@@ -34,6 +36,8 @@
 - [Lexiconfig](#lexiconfig)
 - [LibX](#libx)
 - [Lionfish-API](#lionfish-api)
+- [Lootintegrations mod](#lootintegrations-mod)
+- [lootintegrations_cataclysm mod](#lootintegrations_cataclysm-mod)
 - [MezzConfig](#mezzconfig)
 - [Modonomicon](#modonomicon)
 - [Moonlight Lib](#moonlight-lib)
@@ -705,5 +709,57 @@ _Обзор категории — вручную, следующие этапы
 ### Что даёт игроку
 
 Ничего напрямую — библиотека, которая нужна другим модам сборки.
+
+## Integrated API
+
+<!-- auto:start card:integrated-api -->
+<a id="integrated-api"></a>
+- **Версия:** 1.8.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/integrated-api)
+- **Что это:** Библиотека серии Integrated Structures (для генерации структур). _(источник: docs сборки)_
+- **В сборке:** подтянут как зависимость или связка (в modlist.txt отдельной строкой не указан).
+- **В наших docs:** [compat.md](../compat.md) (1), [roadmap.md](../roadmap.md) (1)
+<!-- auto:end card:integrated-api -->
+
+### Что даёт игроку
+
+Библиотека серии Integrated Structures: общий код (события торговцев, совместимость с Async Locator, обновление NBT структур) для дата-паков «Integrated …» — в сборке они переделывают структуры других модов. Сама по себе игроку ничего не добавляет.
+
+## Integrated Patches
+
+<!-- auto:start card:integrated-patches -->
+<a id="integrated-patches"></a>
+- **Версия:** 1.2.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/integrated-patches)
+- **Что это:** Лёгкий фикс проблем генерации мира в Integrated API. _(источник: docs сборки)_
+- **В сборке:** подтянут как зависимость или связка (в modlist.txt отдельной строкой не указан).
+- **В наших docs:** [compat.md](../compat.md) (1)
+<!-- auto:end card:integrated-patches -->
+
+### Что даёт игроку
+
+Лёгкое исправление генерации мира для Integrated API (Integrated Patches): миксины `FixedJigsawManager`, `PieceLimitedJigsawManager`, `StructureStart`, `ChunkGenerator`, `EnhancedTerrainAdaptation` и очистка висящих лоз (`ProtectedVines`, `UnsupportedVineCleaner`) — лечат ошибки генерации интегрированных структур. Игровых предметов нет.
+
+## Lootintegrations mod
+
+<!-- auto:start card:lootintegrations -->
+<a id="lootintegrations"></a>
+- **Версия:** 1.20.1-4.7 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/lootintegrations-1.20.1-4.7.jar`
+- **Что это:** Подмешивает предметы одних таблиц добычи в другие — совместимость лута разных модов. _(источник: docs сборки)_
+<!-- auto:end card:lootintegrations -->
+
+### Что даёт игроку
+
+Библиотека-связка лута (мод `lootintegrations`): через миксины и глобальные лут-модификаторы подмешивает предметы из таблиц лута других модов в ванильные сундуки (`minecraft:chests/ancient_city`, пирамиды, крепости, шахты, лесные особняки, города Края и др.) по уровням сложности `easy`/`hard` (`lootintegrations:chests/hard`, лимит `max_result_itemcount`). Игроку даёт больше разнообразного лута в ванильных структурах; команд нет.
+
+## lootintegrations_cataclysm mod
+
+<!-- auto:start card:lootintegrations_cataclysm -->
+<a id="lootintegrations_cataclysm"></a>
+- **Версия:** 1 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/lootintegrations_cataclysm-1.2.jar`
+- **Что это:** Часть Loot Integrations: лут Cataclysm. _(источник: docs сборки)_
+<!-- auto:end card:lootintegrations_cataclysm -->
+
+### Что даёт игроку
+
+Расширение `lootintegrations` для Cataclysm: таблицы `loot_cataclysm_easy`, `loot_cataclysm_medium`, `loot_cataclysm_hard`, `loot_cataclysm_nether`, `loot_cataclysm_water` — добавляют вещи Cataclysm в сундуки ванильных структур по уровням сложности. Требует `lootintegrations`; своих предметов нет.
 
 <!-- cards:end -->
