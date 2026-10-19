@@ -43,7 +43,7 @@
 
 **Как моды связаны между собой**
 - Расы (`arks:*`) читают Origins; профессии и искусства — отдельные слои тех же Origins; Puffish Skills ×Origins дают дерево навыков под каждую профессию.
-- *Sarkaz's Furnace Side Fables* ведёт «нагрузку мыслей» (см. ограничение у карточки мода) — расы Сарказ/Человек должны были её увеличивать, но сейчас нет.
+- *Sarkaz's Furnace Side Fables* ведёт «нагрузку мыслей»; бонус рас Human/Sarkaz/Nephesh «Thought Load +N» увеличивает её предел (подробности у карточки мода и в [mind-storm.md](arknights/mind-storm.md)).
 - *Bob's Originium Dream* — буря и рост ориджиниума; их укрощает наш [Оберег](own/disaster-ward.md) (`disaster-ward`).
 - *Caerula Arbor*, *Bob's Originium Dream*, *Sarkaz's Furnace*, *Gathering Torches* — источники боссов; статы — в [bosses.md](../bosses.md).
 - Русский перевод всех этих модов (включая книги Patchouli Каэрулы и Боба) — ресурспак сборки, см. [russification.md](../russification.md).
@@ -115,7 +115,7 @@
 - **Сильные/воины:** Ursus, Oni, Lung, Kylin (молнии), Durin (копание), Petram (кузнечное), Savra, Sankta (стрелковое оружие), Archosauria, Caprinae (магия: −40 % магического урона).
 - **Особые:** Human («Pre-human»: −60 % нервного урона, +50 % урона по ориджиниуму, защита от Орипатии), Elf, Phidia, Anasa, Anaty, Kukulkan, Manticore, Nightzmora, Elafia.
 - **Сарказы:** базовый Sarkaz (-20 % здоровья, враждебность, голод ×2) и 12 подрас: Banshee (проклятие), Cyclops (пророчество), Diablo (огонь), Djall (отталкивание), Gargoyle (камень), Goliath (сила), Lich (хранилище), Nachzehrer (грязь), Nephesh (вселение, полёт), Vampire (шаг крови), Wendigo (ритуал).
-Расовый бонус «Thought Load +N» у Human/Sarkaz/Nephesh не работает — см. «Известное ограничение» у [Sarkaz's Furnace Side Fables](#sarkazs-furnace-side-fables). Правки пака: `pack/kubejs/data/arks/powers/*/thought.json` (скрытая заглушка). Перевод — `pack/resourcepacks-src/russian-moded/assets/arks`.
+Расовый бонус «Thought Load +N» (Human и подрасы сарказов +7, Nephesh +17) увеличивает предел нагрузки мыслей Sarkaz's Furnace — см. [Sarkaz's Furnace Side Fables](#sarkazs-furnace-side-fables) и [mind-storm.md](arknights/mind-storm.md). Перевод — `pack/resourcepacks-src/russian-moded/assets/arks`.
 
 ## Arknights skills
 
@@ -491,7 +491,7 @@ OCC, EPT, энергоузел, ориджиниумная руда/криста
 5. **Ковка** (`forging`) в основной руке + «Спасение», «Отчаяние» или «Прекращение» в левой даёт концовку и **Бесконечный странный ключ** (`endless_odd_key`). Зажмите ключ, чтобы войти в измерение «Вечный покой» (достижение «Конец -»); там вызывается босс **Амия, Финал пепла** (достижения «…Уже здесь», «Безупречный день»). Полный набор «Финал» (`finale_*`) даёт «Финал возрождённый».
 6. Инструменты и броня «Духа душ», «Учжоу» и «Финал» делаются верстаком и кузнечным столом (рецепты `soul_spirit_*`, `wuzhou_*`, `finale_*`, шаблоны улучшения); есть интеграция с Tetra (улучшения «Непринятие финала» и «Импровизированная самозащита»).
 
-**Известное ограничение (вопрос владельцу В45 — ответа пока нет).** Предел нагрузки мыслей считается кодом мода: `18 + 3 × уровень чар «Высвобождение мыслей» (на броне) + значение атрибута sarkazs_furnace_side_fables:thought_load_limit` (броня «Финал», «Учжоу» и «Связанный теневой дух» добавляют к нему модификаторы). Силы рас Arknights «Thought Load +N» (Человек +7, Сарказ +7, Сарказ-нефеш +17) заданы на **другой** атрибут `the_massestravels:thought_load_limit` — он из закрытого мода The Masses Travels, которого в сборке нет. `mm-compat` (`MissingAttributes`) регистрирует для него пустую заглушку, чтобы силы загрузились, а сами силы скрыты оверрайдом KubeJS (`pack/kubejs/data/arks/powers/{human,sarkaz,sarkaz_nephesh}/thought.json`, скрытый `origins:simple`). Итог: расовые бонусы к нагрузке **не работают** и предел для всех игроков одинаков (18 + чары + броня). Подробности — [compat.md](../compat.md) («Найдено тестовыми запусками», пункт про `arks:*/thought`).
+**Бонус рас к пределу нагрузки.** Предел считается кодом мода: `18 + 3 × уровень чар «Высвобождение мыслей» (на броне) + значение атрибута sarkazs_furnace_side_fables:thought_load_limit` (броня «Финал», «Учжоу» и «Связанный теневой дух» добавляют к нему модификаторы). Силы рас `arks:{human,sarkaz,sarkaz_nephesh}/thought` изначально были заданы на чужой атрибут `the_massestravels:thought_load_limit` (закрытый мод The Masses Travels, в сборке его нет), поэтому бонус не работал. Решение владельца (В45 «а»): сборка переопределяет эти силы в `pack/kubejs/data/arks/powers` так, чтобы они давали `sarkazs_furnace_side_fables:thought_load_limit`. Итог по пределу: без расы и у прочих рас — 18; Человек и 10 подрас сарказов — 25 (+7); Нефеш — 35 (+17); базовая `arks:sarkaz` без подрасы — 18. Механика и последствия переполнения — [mind-storm.md](arknights/mind-storm.md); подробности реализации — в PR Потока 48 (#124).
 
 ### Предметы/блоки
 - **Кодекс духа души**, **Очищение истины** (блок и предмет), **Бесконечный странный ключ**, **Ковка**, **Потеря и приобретение** (зарядка с коллекционным предметом в левой руке заменяет его случайным), **Мешок замысла** (3 мысли «замысла»), **Клятва Бабеля** (макс. здоровье/атака/броня +10 %, стойкость +2), **Особый ингибитор** (+2 макс. здоровья).
@@ -550,6 +550,6 @@ OCC, EPT, энергоузел, ориджиниумная руда/криста
 Игровые правила: `EraEnabled` (включить эпохи, по умолчанию true), `LianKillCreative` (урон Лиан в творческом режиме, true), `AncestorLauncherFriendlyFire` (пусковая установка предков бьёт союзников, false).
 
 ### Конфиги
-Своих файлов в `pack/config` нет — настройки по умолчанию. Из наших правок: оверрайд сил рас `thought.json` (см. «Известное ограничение») и `pack/kubejs/server_scripts/missing_mod_refs.js` (убирает из тегов предметы отсутствующих модов). Перевод — `pack/resourcepacks-src/russian-moded/assets/sarkazs_furnace_side_fables`.
+Своих файлов в `pack/config` нет — настройки по умолчанию. Из наших правок: оверрайд сил рас `thought.json` (см. «Бонус рас к пределу нагрузки») и `pack/kubejs/server_scripts/missing_mod_refs.js` (убирает из тегов предметы отсутствующих модов). Перевод — `pack/resourcepacks-src/russian-moded/assets/sarkazs_furnace_side_fables`.
 
 <!-- cards:end -->

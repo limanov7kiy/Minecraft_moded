@@ -253,7 +253,7 @@ Soiled, Corroded, Infested, Fragile («Смертное касание»), Immol
 | Что | Проблема → решение |
 |---|---|
 | `EntityCategoryFix` | лучи Cataclysm: Spellbooks с категорией `MONSTER` писали 368 строк «has no attributes» и занимали лимит мобов → категория `MISC` |
-| `MissingAttributes` | атрибут `the_massestravels:thought_load_limit` (расы Arknights) из отсутствующего мода: регистрируется пустая заглушка, только если оригинального мода нет. **На предел нагрузки мыслей Sarkaz's Furnace не влияет** — см. [Sarkaz's Furnace](arknights.md#sarkazs-furnace-side-fables) |
+| `MissingAttributes` | атрибут `the_massestravels:thought_load_limit` (силы рас Arknights) из отсутствующего мода: регистрируется пустая заглушка, только если оригинального мода нет. Бонус рас к нагрузке мыслей идёт не через неё, а через переопределение сил в `pack/kubejs/data/arks/powers` — см. [Sarkaz's Furnace](arknights.md#sarkazs-furnace-side-fables) |
 | `jei/ImbuementAltarCategory` | категория JEI для алтаря наложения (Redux) |
 | `SbwShipHitMixin` | Superb Warfare: попадание по кораблям Valkyrien Skies ставило блок «в воздух» → берём блок корабля |
 | `MnaChunkTickMixin` | Mana and Artifice: блокирующий `getChunk` в `onWorldTick` вешал сервер на минуты у края загруженной области |
