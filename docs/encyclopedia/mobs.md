@@ -304,39 +304,26 @@ _Обзор категории — вручную, следующие этапы
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Аддон к [Alex's Mobs](#alexs-mobs): сотни мелких «взаимодействий» между мобами и игроком плюс собственная Patchouli-книга.
+1. Сделайте **«AMI Wiki»** (`alexsmobsinteraction:amiwiki`): бесформенный рецепт — книга + багровый гриб + ингредиент из тега `alexsmobs:animal_dictionary_ingredient`. В ней 49 статей по мобам (аллигатор-черепаха, белоголовый орлан, ... червь Пустоты) и разделам «мутация мобов», «еда», «ванильные мобы», «приручённые».
+2. Взаимодействия подсвечены **52 достижениями** (например, «Mutate Frog», «Stomp», «Dimensional Lodestone», «Mimickry», «Void Dweller»): при их выполнении вы узнаёте, что можно делать с мобами.
+3. Мод меняет поведение существ с тегами сущностей (16 тегов), так что ориентируйтесь на книгу и достижения, а не на описание в JEI.
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
+`asmon_crown` («The Roach Crown», крафт есть), `mutate_items` (служебное) и книга `amiwiki`. Остальное — взаимодействия с предметами Alex's Mobs.
 
 ### Эффекты
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
+`blooded` («Blooded»), `gusting`, `skreeching`; варианты зелий, лингерин-зелий и стрел «Gusting», «Skreeching», «Health Boost».
 
 ### Чары
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
+`alexsmobsinteraction:lightweight` (Cosmaw не страдает от тяжёлого игрока), `rolling_thunder` (перекат по жидкостям для скалистой нагрудной), `stabilizer` (защита разума от сущностей), `stretchy_accumulation` (подбор предметов и опыта при ударах); в jar есть глобальные модификаторы добычи для этих чар (`rolling_thunder` — в сундуках заброшенных шахт).
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+Нет файла в `pack/config`. Заметки — [compat.md](../compat.md), [jei.md](../jei.md).
 
 ## Bosses of Mass Destruction Forge
 
@@ -350,39 +337,44 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Четыре босса-«арены» (в сборке — Forge-порт): каждый живёт в своей структуре, бой запускается блоком/алтарём, после победы — ценные дропы и достижение. Параметры боссов (HP, броня, урон) и их атаки — в [bosses.md](../bosses.md) (раздел `bosses_of_mass_destruction`).
+1. **Ночной лич** (`bosses_of_mass_destruction:lich`) — башня в холодных биомах Верхнего мира; чтобы призвать, нужна **Звезда душ** (`soul_star`), которую лич-механика роняет по счётчику убийств мобов (настраивается: сколько убийств и каких мобов).
+2. **Цветок Пустоты** (`void_blossom`) — под землёй Верхнего мира, рядом с «лилиями пустоты» (`void_lily`; подсказка «Where does the pollen lead?»); бой начинает блок `void_blossom_block`.
+3. **Обсидилит** (`obsidilith`) — арена в Крае, запускается «Обсидиановым алтарём» (`obsidilith_end_frame`).
+4. **Перчатка Незера** (`gauntlet`) — арена в Незере из «древнего резного чернита»; в конфиге есть «Spawn Ancient Debris On Death».
+5. Прогресс — четыре достижения: «Night Vanquisher», «Extreme Weeding», «Obsidian Obliterator», «Through the Gauntlet».
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+| id (`bosses_of_mass_destruction:`) | Что делает |
+|---|---|
+| `soul_star` | Звезда душ: призыв лича |
+| `ancient_anima`, `blazing_eye`, `obsidian_heart`, `void_thorn` | Материалы с боссов (для крафта) |
+| `crystal_fruit` | Краткая регенерация и сопротивление |
+| `charged_ender_pearl` | Многоразовая жемчужина Эндера, после телепорта даёт краткое сопротивление |
+| `earthdive_spear` | Копьё: короткий телепорт сквозь блоки |
+| `brimstone_nectar` | Сбрасывает ближайшие боссовые структуры |
+| `mob_ward` («Staff of Suppression») | Блок: мобы не спавнятся в радиусе 64 блока |
+| `monolith_block` («Blast Amplifier») | Блок: +30% к силе взрывов в радиусе 64 (не складывается) |
+| `levitation_block` («Table of Elevation») | Блок: творческий полёт в колонне 7x7 (радиус — настройка `tableOfElevationRadius`) |
+| `void_lily`, `vine_wall`, `sealed_blackstone`, `gauntlet_blackstone`, `chiseled_stone_altar`, `obsidilith_rune` | Блоки арен |
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
+`lich` (Night Lich), `void_blossom`, `obsidilith`, `gauntlet`; сущности-снаряды: `comet`, `blue_fireball`, `soul_star`, `spore_ball`, `petal_blade`. Тег `c:bosses` включает боссов мода.
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
+| Структура | Где | Команда |
+|---|---|---|
+| Башня лича | холодные биомы | `/locate structure bosses_of_mass_destruction:lich_tower` |
+| Арена Обсидилита | Край | `/locate structure bosses_of_mass_destruction:obsidilith_arena` |
+| Арена Перчатки | Незер (под землёй, `spacing 32`, `separation 16`) | `/locate structure bosses_of_mass_destruction:gauntlet_arena` |
+| Цветок Пустоты | Верхний мир (биомы: океан, река, пляж, горы, холмы, тайга, джунгли, лес и др.) | `/locate structure bosses_of_mass_destruction:void_blossom` |
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+Автоконфиг мода ( «все изменения требуют перезапуска») — по каждому боссу: здоровье, броня, урон, самолечение за тик, опыт, включение и шаг генерации арены (`generationSpacing/Separation`), параметры комет и ракет лича (эффект, урон, разрушение блоков). Файла в `pack/config` нет — создаётся при запуске. Сравнение с Ice and Fire — [compat.md](../compat.md) (раздел «Ice and Fire CE»).
 
 ## Capsid Fix
 
@@ -506,41 +498,9 @@ Id вида `chaospersists:<id>` (названия — наш перевод). �
 - **В наших docs:** [compat.md](../compat.md) (1)
 <!-- auto:end card:cinematic-cataclysm -->
 
-### Как играть
+### Что даёт игроку
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Дополнение к [L_Ender's Cataclysm](#l_enders-cataclysm): по описанию мода — **одноразовые заставки** (камера) перед боем с боссом. В jar есть сцены для Ignis, Leviathan, Maledictus, Scylla и Ancient Remnant; запускаются миксинами в алтарях Огня и Бездны, Проклятом надгробии, Древнем Реликте и самих боссах; в коде есть флаг `bossWasSpawnedOnce`. Предметов, блоков, команд и конфигов нет; зависимости — FDLib и Forge 47.1.1+. Заметки — [compat.md](../compat.md).
 
 ## Clanging Howl
 
@@ -554,39 +514,35 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Мод с CurseForge (Mongoose_artist, All Rights Reserved; jar лежит в репозитории — см. [compat.md](../compat.md), раздел «Clanging Howl»): **внеземное вторжение** — метеоритные дожди, «внеземные объекты» и гнёзда, исследовательские станции, враждебные «техно-плотные» мобы и энергетические гаджеты. Требует GeckoLib и Curios.
+1. Раз в 15 дней по умолчанию идёт **метеоритный дождь** (включён в конфиге); есть сущность `small_meteorite` и руды `meteorite_steel_ore`, `extraterrestrial_steel_ore`.
+2. В мире есть структуры-источники материалов и врагов (см. ниже); из «внеземной стали» (`extraterrestrial_steel_ingot`, плиты, блоки) делают инструменты-«молоты» и броню.
+3. Гаджеты: Flamethrower (`flamethrower`), Advanced Chainsaw/Chainsword/Hand Drill, X-Ray Goggles, Energy Barrier Generator, Energy Glove, Tendon Strengthener, Reanimator, Attraction Device; питание — батареи (`small_energy_battery` … `advanced_energy_battery`), топливо `blaze_fuel`/`cryogenic_fuel`, зарядка — `portable_charger`/блок `stationary_charging_station`. Часть вещей надевается в Curios-слоты (heart/legs/feet).
+4. Мод не проверялся нами в реальном бою: нет проверки клиента (GeckoLib-рендер) и спавна мобов и структур ([compat.md](../compat.md)).
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+Материалы и блоки — внеземный камень и сталь (`extraterrestrial_stone*`, `steel_plate_block`, `fireproof_steel_*`), энергокластеры/кристаллы, технолоть (`technoflesh_*`), `crystal_former`, `flame_spewer`, `motion_sensor`, `extraterrestrial_activity_radar`, `barrier_of_extraterrestrial_activity`, `redstone_cable`. Инструменты — `extraterrestrial_sword/shovel/pickaxe/axe/hoe/hammer`; гаджеты — перечень выше.
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
+`extraterrestrial_reaper`, `flesh_maiden`, `hematoma`, `prowler`, `carcass`, `heart_of_decay` (сердце распада), а также сущности-механики: `blood_spreader`, `blood_clot`, `bloody_copy`, `blood_trail`.
 
 ### Эффекты
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
+`cosmic_irradiation`, `sawing_up_health`, `weakened_defense`, `overdrive`, `deep_burn`, `internal_heat`, `neurotoxin`, `beyond_flesh`, `enlightened`, `attraction` (в т. ч. зелья/стрелы).
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
+`/locate structure clanginghowl:<id>`, где `<id>`: `extraterrestrial_nest`, `large_extraterrestrial_nest`, `small_extraterrestrial_object`, `medium_extraterrestrial_object`, `large_extraterrestrial_object`, `unknown_extraterrestrial_object`, `research_cabin`, `research_station` (станция ставится рядом со снежными деревнями).
 
 ### Чары
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
+`energy_efficiency`, `ecological_energy`, `tunnel_driller`, `overdrive`, `full_power`, `killer_charge`, `exceeding_the_limit`, `fuel_saving`, `napalm_stream`, `chain_burn`, `fuel_burst`, `soul_burner` (id вида `clanginghowl:<имя>`).
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+`config/clanginghowl.toml` создаётся при первом запуске (WARN «исправлен до значений по умолчанию» — норма); в `pack/config` файла нет.
 
 ## Fungal Infection:Spore
 
@@ -758,39 +714,40 @@ Id `spore:<имя>`; накладываются на оружие и броню 
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Ice and Fire CE: **огненные, ледяные и молниевые драконы**, их яйца и снаряжение, плюс «мифические существа» (гидра, циклоп, сирена, гиппогриф, гарпия-стимфалиды, мирмексы, тролли, горгона, кокатрис, пикси, призраки, Dread-орда). Выбран по умолчанию как мод с огромными существами (альтернатива — [Bosses of Mass Destruction](#bosses-of-mass-destruction-forge)); цифры, баланс и нагрузка — в [compat.md](../compat.md) (раздел «Ice and Fire CE»), боссы — в [bosses.md](../bosses.md).
+1. Прочитайте **Бестиарий** (`iceandfire:bestiary`) — внутриигровая книга по существам; рукописи — `manuscript`.
+2. **Дракон.** Взрослый — 500 HP, урон 18, броня 21 (по нашим замерам); только что вылупившийся — 20 HP. Яйца (`dragonegg`), черепа и стадии роста (в наших замерах стадия 5 = взрослый). Предметы для работы с драконами — `dragon_horn`, `dragon_flute`, `dragon_stick`, броня для дракона — `dragonarmor_*`.
+3. **Кузницы драконов** (`dragonforge_fire/ice/lightning_*`, ядро + кирпичи + входы): из драконьей стали (`dragonsteel_*`) делают броню и оружие стихий. Рецепты — во внутриигровой JEI-вкладке мода.
+4. **Материалы:** драконьи чешуя, кости (`dragonbone`, мечи стихий), кровь, сердца, плоть; серебро и сапфир (`silver_ore`, `sapphire_ore`) — свои инструменты и броня; чешуя морского змея, хитин мирмексов, кожа троллей, хитин смертельного червя — отдельные наборы брони.
+5. Драконы — самые тяжёлые мобы по нагрузке (ИИ/полёт); см. наши замечания в [performance.md](../performance.md) и [compat.md](../compat.md).
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+| id (`iceandfire:`) | Что делает |
+|---|---|
+| `bestiary`, `manuscript` | Книга существ, рукописи |
+| `dragonegg`, `dragon_skull_fire/ice/lightning`, `dragonscales`, `dragonbone`, `dragon_helmet…boots` | Яйца, черепа, чешуя, броня из чешуи |
+| `dragonbone_sword_fire/ice/lightning`, `dragonbone_bow`, `dragonbone_arrow` | Оружие из кости |
+| `dragon_horn`, `dragon_flute`, `dragon_stick`, `dragon_meal`, `fire/frost/lightning_stew` | Приручение/управление и еда |
+| `dragonforge_*`, `dragonsteel_fire/ice/lightning_block`, `dragonscale_*`, `dragon_bone_block` | Кузницы и блоки драконов |
+| `hippogryph_egg`, `*_hippogryph_armor` | Гиппогриф и его броня |
+| `gorgon_head`, `blindfold`, `earplugs`, `air_pods` | Голова горгоны и вспомогательные предметы |
+| `pixie_dust`, `pixie_house_*`, `pixie_jar_*`, `ambrosia` | Пикси |
+| `myrmex_*` (яйца, смола, жезлы, броня, инструменты, ульи) | Мирмексы пустыни и джунглей |
+| `dread_stone*`, `dread_torch` и др. | Блоки Dread-стен/мавзолея |
+| `silver_*`, `copper_*` наборы, `sapphire_gem`, `amythest_gem` | Инструменты и броня серебра/меди, самоцветы |
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
+`fire_dragon`, `ice_dragon`, `lightning_dragon`, `hippogryph`, `gorgon`, `pixie`, `cyclops`, `siren`, `hippocampus`, `deathworm`, `cockatrice`, `stymphalian_bird`, `troll`, `myrmex_worker/soldier/queen/sentinel/royal/swarmer`, `amphithere`, `sea_serpent`, `hydra`, `ghost`, а также Dread-орда: `dread_thrall`, `dread_ghoul`, `dread_beast`, `dread_scuttler`, `dread_lich`, `dread_knight`, `dread_queen`; `black_frost_dragon`.
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
+Структуры мира: `/locate structure iceandfire:gorgon_temple`, `iceandfire:graveyard`, `iceandfire:mausoleum` (мавзолей — Dread). Остальное (логова и «гнёзда» драконов `fire/ice/lightning_dragon_roost`/`_cave`, пещера циклопа, деревня пикси, остров сирен, пещера гидры, ульи мирмексов) — **features** биомного модификатора `iaf_features`, командой `/locate structure` не находятся.
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+Наш `pack/config/iceandfire-common.toml`: **«Dragon Griefing» = 1** (драконы ломают только слабые блоки; по умолчанию 0 — любые), «Tamed Dragon Griefing» = true; по описанию в самом конфиге значение также зависит от ванильного правила `mobGriefing`. «Dragons Despawn» оставлен `true` — иначе, по описанию, серьёзные лаги ([compat.md](../compat.md)).
 
 ## L_Ender's Cataclysm
 
@@ -946,41 +903,15 @@ _Пока пусто — заполнит один из следующих эт�
 - **В наших docs:** [compat.md](../compat.md) (2)
 <!-- auto:end card:lycaniteskin -->
 
-### Как играть
+### Что даёт игроку
 
-_Пока пусто — заполнит один из следующих этапов._
+Расширение [Lycanites Mobs](#lycanites-mobs) (автор — glennfo): добавляет то, чего не хватало «из коробки».
+- **Броня из дропа существ** — наборы из 5 предметов (шлем, нагрудник, поножи, ботинки + материал): Argus, Barghest, Dawon, Frostweaver, Ioray, Jouste, Krake, Maka, Raiko, Reaper, Remobra, Roc, Salamander, Spriggan, Vespid, Warg, Yale ; в коде есть обработчик бонусов за комплект.
+- **Свитки призыва** (`lycaniteskin:scroll_<существо>`, 56 штук): крафт без станка (например свиток Абайи — вяленые водоросли, бумага, золотой самородок) — призывают существо.
+- **Приручаемые варианты** Krake, Yale, Maka, Jouste, Vespid (классы `Tameable*` также у Barghest, Dawon, Warg), «Elemental Treat» (`treat_elemental`), «Corrupted» посохи призыва (обычный, прочный, стабильный, свирепый, кровавый), `netherite_soulgazer`.
+- Обработчики: открытие существ, элементальное приручение, привязка уровня мобов (`MobLevelGate`).
 
-### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Предметов 150+; своих структур, команд и конфигов нет. Заметки — [compat.md](../compat.md), [jei.md](../jei.md).
 
 ## Lycanites Mobs
 
@@ -1145,41 +1076,18 @@ Seastorm, Shadow Games, Sharknado, Subzero, The Swarm, Tsunami, Windstorm, Winge
 - **В наших docs:** [compat.md](../compat.md) (1)
 <!-- auto:end card:mowzies-cataclysm -->
 
-### Как играть
+### Что даёт игроку
 
-_Пока пусто — заполнит один из следующих этапов._
+Четыре предмета-**«глаза»** для поиска структур [Mowzie's Mobs](#mowzies-mobs) (в jar — теги структур `mowzies_cataclysm:*_located`; крафт строится вокруг Ока Эндера). Крафт — рамка 3x3 с `ender_eye` в центре:
 
-### Предметы/блоки
+| Предмет (`mowzies_cataclysm:`) | Ведёт к | Рецепт |
+|---|---|---|
+| `wrought_eye` («Eye of Wrought») | `mowziesmobs:wrought_chamber` | око Эндера, 4 каменных кирпича, 4 железных слитка, 1 редстоун |
+| `sun_eye` («Eye of the Sunbird») | `mowziesmobs:umvuthana_grove` | око Эндера, 3 золотых слитка, 2 пера, 3 акациевые доски |
+| `frostmaw_eye` («Eye of Frost») | `mowziesmobs:frostmaw_spawn` | око Эндера, 4 снежных блока, 4 плотного льда |
+| `tongbi_eye` («Eye of the Sculptor») | `mowziesmobs:monastery` | око Эндера, 2 пера, изумруд, 3 доски тёмного дуба, 2 красной терракоты |
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Конфигов нет; общая заметка — [compat.md](../compat.md). По боссам мода — [bosses.md](../bosses.md).
 
 ## Mowzie's Mobs
 
@@ -1192,39 +1100,41 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Мод Bob Mowzie: «вымышленные» существа с уникальным ИИ и анимацией, боссы и снаряжение из их дропа. Таблица боссов (HP, броня) — [bosses.md](../bosses.md), раздел `mowziesmobs`.
+1. **Фолиаат** (`foliaath`) — хищное растение: семя `foliaath_seed` сажают на траву, малыша кормят мясом (голодает каждые полсуток), через 2 дня он вырастает.
+2. **Умвутана и Умвути** (`umvuthana`, `umvuthi`) — племя масочников, живёт в роще; Умвути — «Птица солнца»: торгует и даёт **Солнечное благословение** (`grant_suns_blessing`: Sunstrike, Solar Flare, Solar Beam, Supernova — пустой рукой). Маски племени (`umvuthana_mask_fury/fear/rage/bliss/misery/faith`) дают силу, скорость, ускорение копания, прыгучесть, сопротивление, бонус здоровья; `sol_visage` вызывает миньонов.
+3. **Железный Вротнаут** (`ferrous_wroughtnaut`) — страж в «Wrought Chamber»; из дропа — Топор тысячи металлов (`wrought_axe`, не ломается) и шлем.
+4. **Фростмо** (`frostmaw`) — снежный босс; даёт `ice_crystal` (вихрь льда). **Нага** (`naga`) — клыки (`naga_fang`, кинжал, зелье сопротивления яду). **Гроттол** (`grottol`) — подземный моб; есть достижения за его убийство с Удачей и с Шёлковым касанием. **Тунби, Скульптор** (`sculptor`) — в монастыре: испытание «прыжки на время», награда — Посох геомантии и броня геоманта. **Элокоса** (`elokosa_howler`) — лапы фаз луны.
+5. Достижения-ориентиры: «Praise the Sun», «Just a Flesh Wound», «Rude Awakening», «Wingin' It», «You Must Believe» и др. (16 штук).
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+| id (`mowziesmobs:`) | Что делает |
+|---|---|
+| `wrought_axe`, `wrought_helmet` | Топор: удар дугой / по ЛКМ с Shift — ударная волна; не ломаются |
+| `earthrend_gauntlet` | Перчатка: подъём валуна, туннель сквозь землю, подъём столбом; заряжается в инвентаре |
+| `ice_crystal` | Удерживая ПКМ — ледяной вихрь; заряжается в инвентаре |
+| `spear`, `blowgun`, `dart` | Копьё (+1,5 к дальности), духовая трубка и отравляющие дротики |
+| `naga_fang`, `naga_fang_dagger` | Клык и кинжал (яд, двойной урон со спины) |
+| `sculptor_staff`, `geomancer_beads/robe/belt/sandals`, `bluff_rod` | Набор геоманта (три камня-снаряда, бонусы брони/удара/скорости); жезл чинит геомантские предметы |
+| `elokosa_paw_full/gibbous/half/crescent/new` | Лапы фаз луны: Слабость, Замедление, Усталость, Хрупкость, Затмение на ближних мобов |
+| `glowing_jelly`, `sand_rake`, `captured_grottol`, `music_disc_petiole`, `mob_remover` | Желе (ночное зрение), грабли для песка, пойманный гроттол, пластинка, удаление мобов мода |
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
+`foliaath`, `baby_foliaath`, `ferrous_wroughtnaut`, `umvuthana` (+ `umvuthana_raptor`, `umvuthana_crane`, последователи), `umvuthi`, `frostmaw`, `grottol`, `lantern`, `naga`, `sculptor`, `bluff`, `elokosa_howler`; `boulder` — снаряд. Спавн в мире идёт по биомному модификатору `mowziesmobs:mowzie_mob_spawns`.
 
 ### Эффекты
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
+`mowziesmobs:suns_blessing`, `geomancy`, `frozen`, `sunblock`, `poison_resist`, `eclipsed`, `fragility`.
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
+`/locate structure mowziesmobs:wrought_chamber` (камера Вротнаута), `mowziesmobs:umvuthana_grove` (роща племени), `mowziesmobs:monastery` (монастырь Скульптора), `mowziesmobs:frostmaw_spawn` (логово Фростмо). Для поиска без команд служат «Глаза» из [Mowzie's Cataclysm](#mowzies-cataclysm).
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+Файла в `pack/config` нет (создаётся при запуске). Связка с боссами Cataclysm и их HP — [compat.md](../compat.md).
 
 ## One-Click Parasite Transformation
 
