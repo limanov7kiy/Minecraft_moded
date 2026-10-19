@@ -80,7 +80,7 @@ optimization-ui = ["modernfix","ferrite-core","memoryleakfix","canary","ai-impro
 voice = ["simple-voice-chat","simple-radio","sound-physics-remastered","talkingheads","let-them-talk","vibrative-voice","vc-admin-voice-chat-moderation-tool","simplevoicechat-broadcast","admiral"]
 ysm = ["yes-steve-model"]
 libraries = ["geckolib","azurelib","citadel","cloth-config","curios","architectury-api","balm","baguettelib","almanac","botarium","caelus","cerbons-api","event-wrapper","fdlib","glitchcore","gtbcs-spelllib","irons-lib","kotlin-for-forge","ldlib","libx","lionfish-api","mezzconfig","moonlight","patchouli","placebo","playeranimator","photon-editor","resourceful-config","resourceful-lib","rhino","rpl","searchables","smartbrainlib","sophisticated-core","structure-gel-api","terrablender","aeroblender","yacl","zeta","apothic-attributes","attributes","attributefix","lexiconfig","cupboard","kubejs","guideme","modonomicon","almostunified","integrated-api","integrated-patches","lootintegrations","lootintegrations_cataclysm"]
-own = ["wizardry-restored","wizardry-golems","necromancers-delight","fishs-undead-rising-port","galacticraft-revival","mm-compat","mm-perf","ru-lang","voicechat-addons-forge","gaboulibs-shim","lycanites-refmap-fix","zombiehaveears","alshanex_familiars","arknights_weapon","cataclysm_spellbooks","cbc_nukes","mnaw","traveloptics","origin_visuals"]
+own = ["wizardry-restored","wizardry-golems","necromancers-delight","fishs-undead-rising-port","galacticraft-revival","mm-compat","mm-perf","ru-lang","voicechat-addons-forge","gaboulibs-shim","lycanites-refmap-fix","zombiehaveears","alshanex_familiars","arknights_weapon","cataclysm_spellbooks","cbc_nukes","mnaw","traveloptics","origin_visuals","eso-forge"]
 
 # Дополнительные названия для поиска упоминаний в docs/ (если в docs мод назван иначе, чем в Modrinth).
 [doc_aliases]
@@ -146,6 +146,7 @@ alshanex_familiars = "Волшебные питомцы-фамильяры дл�
 cbc_nukes = "Ядерные боеприпасы для Create Big Cannons; порт под CBC 5.11."
 mnaw = "Аддон к Mana and Artifice: ведьмовство, куклы и ритуалы симпатической магии; порт под M&A 3.1.11."
 traveloptics = "Большое дополнение к Cataclysm и Iron's Spells: оружие, броня, боссы и 176 заклинаний; порт под версии сборки."
+eso-forge = "Enchanting System Overhaul: стол зачарования без рандома — чары сначала изучают из найденных книг, потом накладывают за материалы; порт под моды брони сборки."
 origin_visuals = "Клиентский порт Origin Furs: модели игрока для рас Origins (со встроенной копией AzureLib 2)."
 gaboulibs-shim = "Замена удалённой автором библиотеки GabouLibs для Serene Seasons Plus (patches/gaboulibs-shim)."
 lycanites-refmap-fix = "Недостающий refmap миксинов Lycanites Mobs — без пересборки 120-МБ jar (patches/lycanites-refmap)."

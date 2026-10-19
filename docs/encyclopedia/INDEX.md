@@ -21,7 +21,7 @@
 | [Звук и голосовой чат](voice.md) | 9 | Simple Voice Chat, рации, физика звука. |
 | [Модели и косметика (YSM)](ysm.md) | 1 | Yes Steve Model — свои модели игроков. Подробности — docs/ysm-models.md. |
 | [Библиотеки и инструменты](libraries.md) | 52 | Модули, нужные другим модам, а также KubeJS и Almost Unified. |
-| [Свои моды и патчи](own.md) | 19 | Моды и порты, собранные в этом репозитории (mods-src/, patches/). |
+| [Свои моды и патчи](own.md) | 20 | Моды и порты, собранные в этом репозитории (mods-src/, patches/). |
 <!-- auto:end cats -->
 
 ## Статьи
@@ -146,6 +146,7 @@
 - [Dungeons And Villages: Deeper and Darker](dimensions.md#dungeons-and-villages-deeper-and-darker) — Измерения, данжи и структуры
 - [Electroblob's Wizardry Redux](magic.md#electroblobs-wizardry-redux) — Магия
 - [Embeddium](optimization-ui.md#embeddium) — Оптимизация, интерфейс и ресурспаки
+- [Enchanting System Overhaul](own.md#eso-forge) — Свои моды и патчи
 - [Endfield Industry](arknights.md#endfield-industry) — Arknights
 - [Entity Culling](optimization-ui.md#entityculling) — Оптимизация, интерфейс и ресурспаки
 - [Eureka! Ships! for Valkyrien Skies (Forge/Fabric)](tech.md#eureka) — Техника и автоматизация

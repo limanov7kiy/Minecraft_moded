@@ -1,0 +1,2 @@
+# getName() материала брони вырезан на сервере у модов с @OnlyIn(CLIENT) → имя через переходник (MaterialOverrides, ESOCommands)
+scall net/minecraft/world/item/ArmorMaterial.m_6082_()Ljava/lang/String;   dev/mcmoded/port/eso/EsoPort.materialName(Lnet/minecraft/world/item/ArmorMaterial;)Ljava/lang/String;

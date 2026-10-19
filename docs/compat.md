@@ -1387,3 +1387,22 @@ DH на выделенном сервере сам ничего не генер�
   в HUD и блок в мире глазами не видели: иконка проверена по наличию файла в jar `ru-lang` (`resourcepacks/russian-moded/assets/srpsystem/textures/mob_effect/infection.png`)
   и по разбору движка (спрайт эффекта берётся по `<namespace>:textures/mob_effect/<id>.png`). SERVER OK — см. ниже.
 - Прочее по `ru-lang`: чтобы поправить иконку позже — править файл в `pack/resourcepacks-src/`, затем `scripts/build-ru-pack.sh`, поднять версию сборки.
+
+## Enchanting System Overhaul: AbstractMethodError на модовой броне (поток 57, 2026-10-19, сборка 2026.10.19-5)
+- **Симптом (до порта):** сервер с ESO 1.2.2 не стартует — `Failed to load datapacks`, причина
+  `AbstractMethodError: Receiver class de.joh.dmnr.common.item.material.ArmorMaterials does not define or inherit an implementation
+  of ... m_6082_()` в `aiefu.eso.data.materialoverrides.MaterialOverrides.<init>`. По очереди так же падали Factions and Curiosities,
+  Deep Aether, Ancient Aether (поток 54).
+- **Причина:** у этих материалов брони `getName()` помечен `@OnlyIn(Dist.CLIENT)` (проверено `javap -v` у DMnR); на выделенном
+  сервере RuntimeDistCleaner вырезает метод, а ESO обходит все предметы реестра и зовёт его у каждой брони.
+- **Решение:** порт `patches/jar-ports/eso` (`scall` на `dev.mcmoded.port.eso.EsoPort.materialName`: `getName()`, при вырезанном
+  методе — имя enum/класса). Переходник вызывает `getName()` через ссылку на метод: JarPort переписывает и классы-переходники, и прямой
+  вызов превратился бы в рекурсию (первая сборка порта так и упала `StackOverflowError`).
+- **Проверка:** `SERVER OK` (Done 22–27 с) со всей сборкой; `scripts/tests/esobooks.js` — книги модовых чар выпадают во всех
+  20 изменённых таблицах, фейковый игрок изучает чару правым кликом, `/eso` зарегистрирована (`ESOBOOKS_DONE bad=0`);
+  `scripts/tests/enchdump.js` — 227 чар. **Проверка клиента:** `CLIENT OK` (535 с) из `.mrpack` 2026.10.19-5 с первой сборкой
+  порта (в финальном jar добавлен только `ru_ru.json`); в логе клиента по ESO только безвредное `mixins.eso.json does not specify
+  "minVersion"`. Меню стола, оплату и наковальню глазами не смотрели (нужен живой клиент на сервере).
+- **Подвох для лута:** Alex's Caves миксином в `EnchantRandomlyFunction` подменяет свои чары на случайные чужие, пока в его конфиге
+  `enchantments_in_loot = false` — поэтому книги AC в `eso_enchant_books.js` делаются через `set_enchantments`, не `enchant_randomly`.
+  Подробно и таблица «чара → где взять книгу» — `docs/enchanting-table.md`.
