@@ -37,7 +37,7 @@ _Обзор категории — вручную, следующие этапы
 <a id="alexs-mobs"></a>
 - **Версия:** 1.22.9 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/alexs-mobs)
 - **Что это:** Больше 90 оригинальных животных и монстров с повадками, приручением и крафтом из дропа; всё описано во внутриигровой Книге о животных (Animal Dictionary), есть босс Червь Пустоты. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (16), [roadmap.md](../roadmap.md) (8), [orespawn.md](../orespawn.md) (6), [performance.md](../performance.md) (4), [russification.md](../russification.md) (4), [enchanting-table.md](../enchanting-table.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (16), [roadmap.md](../roadmap.md) (8), [orespawn.md](../orespawn.md) (6), [enchanting-table.md](../enchanting-table.md) (4), [performance.md](../performance.md) (4), [russification.md](../russification.md) (4)
 <!-- auto:end card:alexs-mobs -->
 
 ### Как играть
@@ -755,7 +755,7 @@ Ice and Fire CE: **огненные, ледяные и молниевые дра
 <a id="l_enders-cataclysm"></a>
 - **Версия:** 3.31 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/l_enders-cataclysm)
 - **Что это:** Cataclysm от L_Ender: восемь крупных структур-арен с боссами (Игнис, Левиафан, Сцилла, Предвестник и др.), мини-боссы и мобы Незера, пустыни, океана и Края, оружие и броня по ступеням (чёрная сталь, игнит, проклятый слиток) и аметистовые пещеры. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (31), [roadmap.md](../roadmap.md) (12), [enchanting-table.md](../enchanting-table.md) (3), [client-checklist.md](../client-checklist.md) (2), [orespawn.md](../orespawn.md) (2), [version-choice.md](../version-choice.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (31), [roadmap.md](../roadmap.md) (12), [enchanting-table.md](../enchanting-table.md) (4), [client-checklist.md](../client-checklist.md) (2), [orespawn.md](../orespawn.md) (2), [version-choice.md](../version-choice.md) (2)
 <!-- auto:end card:l_enders-cataclysm -->
 
 ### Как играть
@@ -920,7 +920,7 @@ Ice and Fire CE: **огненные, ледяные и молниевые дра
 - **Версия:** 0.1.0-alpha · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/lycanites-mobs)
 - **Что это:** Свыше 120 существ с тематическими данжами, мобовыми событиями и боссами (Раховарт, Асмодей, Амальгалич); приручение, камни души, призыв миньонов и Зверинец. _(источник: docs сборки)_
 - **В сборке:** + pack/mods/lycanites-refmap-fix (patches/lycanites-refmap): недостающий refmap миксинов
-- **В наших docs:** [compat.md](../compat.md) (32), [roadmap.md](../roadmap.md) (16), [performance.md](../performance.md) (7), [orespawn.md](../orespawn.md) (4), [issue-history.md](../issue-history.md) (3), [jei.md](../jei.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (32), [roadmap.md](../roadmap.md) (17), [performance.md](../performance.md) (7), [orespawn.md](../orespawn.md) (4), [issue-history.md](../issue-history.md) (3), [jei.md](../jei.md) (2)
 <!-- auto:end card:lycanites-mobs -->
 
 ### Как играть

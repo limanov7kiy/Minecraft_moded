@@ -82,7 +82,7 @@
 <a id="cataclysm_spellbooks"></a>
 - **Версия:** 1.2.9-1.20.1-mmport · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/cataclysm_spellbooks-1.2.9-1.20.1-mmport.jar`
 - **Что это:** Мод-связка Cataclysm и Iron's Spells: заклинания, книги, посохи, оружие и броня по мотивам боссов Cataclysm, две новые школы магии (Бездна и Техномантия); в сборке — наш порт под Cataclysm 3.31. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (35), [bosses.md](../bosses.md) (32), [roadmap.md](../roadmap.md) (13), [orespawn.md](../orespawn.md) (4), [enchanting-table.md](../enchanting-table.md) (3), [jei.md](../jei.md) (3)
+- **В наших docs:** [compat.md](../compat.md) (35), [bosses.md](../bosses.md) (32), [roadmap.md](../roadmap.md) (13), [enchanting-table.md](../enchanting-table.md) (4), [orespawn.md](../orespawn.md) (4), [jei.md](../jei.md) (3)
 <!-- auto:end card:cataclysm_spellbooks -->
 
 Автор — Ace The Eldritch King и StarOcean (MIT). В сборке — наш порт `cataclysm_spellbooks-1.2.9-1.20.1-mmport.jar` (мод собран под другую версию Cataclysm; подробности порта — [compat.md](../compat.md), п. К4 и «Cataclysm: Spellbooks 1.2.9»). Требует [Iron's Spells 'n Spellbooks](magic.md#irons-spells-n-spellbooks), L_Ender's Cataclysm, AzureLib.
@@ -305,15 +305,15 @@ Soiled, Corroded, Infested, Fragile («Смертное касание»), Immol
 
 <!-- auto:start card:mm-perf -->
 <a id="mm-perf"></a>
-- **Версия:** 0.3.0 · **Сторона:** client · **Источник:** jar в репозитории: `pack/mods/mm-perf-0.3.0-client.jar`
+- **Версия:** 0.3.1 · **Сторона:** client · **Источник:** jar в репозитории: `pack/mods/mm-perf-0.3.1-client.jar`
 - **Что это:** Клиентские удобства: режим слабого ПК, отвязка клавиш модов, предупреждения о памяти, ускорение JEI. _(источник: docs сборки)_
 <!-- auto:end card:mm-perf -->
 
 ### Как играть
-Только клиент (`mm-perf` 0.3.0, `pack/mods/mm-perf-*-client.jar`; на сервер не ставится).
+Только клиент (`mm-perf` 0.3.1, `pack/mods/mm-perf-*-client.jar`; на сервер не ставится).
 1. **Режим слабого ПК:** кнопка «Режим слабого ПК» / «Вернуть как было» внизу слева на экранах настроек видео (ваниль и Embeddium) и в «Настройки», либо клавиша `key.mm_perf.lowspec` («Minecraft_moded: производительность», не назначена). Ставит дальность 5, симуляцию 5, графику «Быстро», облака выкл., частицы «минимум», мягкий свет и тени сущностей выкл., 60 FPS, VSync выкл.; Embeddium, Oculus (шейдеры) и Distant Horizons (рендер) выключаются, если они есть. Прежние значения хранятся в `config/mm-perf-lowspec.json` до «Вернуть».
 2. **Клавиши модов «Не назначено».** При первом запуске каждая клавиша не ванильного мода, стоявшая на заводском значении, отвязывается (флаг `config/mm-perf-keys.json`). Назначьте нужные в «Управление» — там есть поиск по названию (Controlling).
-3. **Память.** В главном меню — тост, если выделено < ~7 ГБ или > 70 % ОЗУ; в мире — если > 90 % кучи занято после сборки мусора около 30 с. В лог при старте пишется `[mm_perf] память: Xmx …, ОЗУ ПК …`; предупреждение, если Xmx > 70 % ОЗУ или свободно меньше 4 ГБ.
+3. **Память.** В главном меню — красная строка, если Xmx > 60 % ОЗУ ПК (с рекомендацией ≤ Z ГБ; тот же текст — один раз в чат при входе в мир и WARN в лог; порог для проверки: `-Dmm_perf.mem.threshold=<%>`), и тост, если выделено < ~7 ГБ или > 70 % ОЗУ; в мире — если > 90 % кучи занято после сборки мусора около 30 с. В лог при старте пишется `[mm_perf] память: Xmx …, ОЗУ ПК …`; предупреждение, если Xmx > 70 % ОЗУ или свободно меньше 4 ГБ.
 4. Миксины `JeiAnvilRecipeMaker`/`JeiGrindstoneRecipeMaker` убирают из JEI строки «снять чары на точиле» и «предмет + зачарованная книга» на наковальне: при каждом входе в мир JEI прогонял настоящие меню для каждого предмета и чар (~1,8 мин из ~3,5 мин запуска JEI); рецепты ремонта остаются.
 
 ### Команды/гамерулы

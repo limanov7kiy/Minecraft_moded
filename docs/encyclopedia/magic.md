@@ -299,7 +299,7 @@ Ars Magica: Legacy 1.5.0 (`arsmagicalegacy`) — порт классическо
 <a id="ars-nouveau"></a>
 - **Версия:** 4.12.7 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/ars-nouveau)
 - **Что это:** Создание заклинаний из глифов и магическая автоматизация. _(источник: docs сборки)_
-- **В наших docs:** [russification.md](../russification.md) (18), [compat.md](../compat.md) (8), [roadmap.md](../roadmap.md) (8), [russification-glossary.md](../russification-glossary.md) (4), [bosses.md](../bosses.md) (2), [client-checklist.md](../client-checklist.md) (2)
+- **В наших docs:** [russification.md](../russification.md) (18), [compat.md](../compat.md) (8), [roadmap.md](../roadmap.md) (8), [enchanting-table.md](../enchanting-table.md) (4), [russification-glossary.md](../russification-glossary.md) (4), [bosses.md](../bosses.md) (2)
 <!-- auto:end card:ars-nouveau -->
 
 ### Как играть
@@ -561,7 +561,7 @@ Botanical Extra Machinery 1.1.2 (`botanicalextramachinery`) — расширен
 - **Версия:** 1.20.1-0.11.4 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/occult-engineering)
 - **Что это:** Связка Create и Occultism. _(источник: docs сборки)_
 - **В сборке:** Occultism × Create
-- **В наших docs:** [compat.md](../compat.md) (27), [version-choice.md](../version-choice.md) (9), [performance.md](../performance.md) (7), [enchanting-table.md](../enchanting-table.md) (6), [russification.md](../russification.md) (6), [roadmap.md](../roadmap.md) (5)
+- **В наших docs:** [compat.md](../compat.md) (27), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7), [russification.md](../russification.md) (6), [roadmap.md](../roadmap.md) (5)
 <!-- auto:end card:occult-engineering -->
 
 ### Как играть
@@ -584,7 +584,7 @@ Create: Occult Engineering 0.11.4 (`occultengineering`): связка Occultism 
 - **Версия:** 1.3.1-1.20.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/deeper-and-darker-spellbooks)
 - **Что это:** Связка Iron's Spells 'n Spellbooks и Deeper and Darker. _(источник: docs сборки)_
 - **В сборке:** Iron's Spells × Deeper and Darker
-- **В наших docs:** [compat.md](../compat.md) (6), [bosses.md](../bosses.md) (1), [enchanting-table.md](../enchanting-table.md) (1), [roadmap.md](../roadmap.md) (1), [version-choice.md](../version-choice.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (6), [enchanting-table.md](../enchanting-table.md) (2), [bosses.md](../bosses.md) (1), [roadmap.md](../roadmap.md) (1), [version-choice.md](../version-choice.md) (1)
 <!-- auto:end card:deeper-and-darker-spellbooks -->
 
 ### Что даёт игроку
@@ -601,7 +601,7 @@ Deeper and Darker: Spellbooks 1.3.1 (`darkermagic`) — мост между Deep
 - **Версия:** 3.2.14 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/dragon-magic-and-relics)
 - **Что это:** Расширение Mana and Artifice: драконья магия и реликвии. _(источник: docs сборки)_
 - **В сборке:** дополнение M&A
-- **В наших docs:** [compat.md](../compat.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (1), [enchanting-table.md](../enchanting-table.md) (1)
 <!-- auto:end card:dragon-magic-and-relics -->
 
 ### Как играть
@@ -838,7 +838,7 @@ ExtraBotany 1.9.2 (модид `extrabotany`) — большое расширен
 - **Версия:** 1.3.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/factions-and-curiosities)
 - **Что это:** Аддон Mana and Artifice: новые фракции. _(источник: docs сборки)_
 - **В сборке:** дополнение M&A: новые фракции
-- **В наших docs:** [compat.md](../compat.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (1), [enchanting-table.md](../enchanting-table.md) (1)
 <!-- auto:end card:factions-and-curiosities -->
 
 ### Как играть

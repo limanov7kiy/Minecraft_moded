@@ -156,7 +156,7 @@ _Обзор категории — вручную, следующие этапы
 - **Версия:** 3.1.20 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/azurelib)
 - **Что это:** Библиотека: модели и анимации Bedrock для предметов, блоков и существ. _(источник: docs сборки)_
 - **В сборке:** обязательная зависимость Cataclysm: Spellbooks (раньше подтягивалась packwiz'ом)
-- **В наших docs:** [compat.md](../compat.md) (44), [roadmap.md](../roadmap.md) (14), [client-checklist.md](../client-checklist.md) (6), [performance.md](../performance.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (44), [roadmap.md](../roadmap.md) (14), [client-checklist.md](../client-checklist.md) (6), [enchanting-table.md](../enchanting-table.md) (2), [performance.md](../performance.md) (2)
 <!-- auto:end card:azurelib -->
 
 ### Что даёт игроку
@@ -398,7 +398,7 @@ _Обзор категории — вручную, следующие этапы
 - **Версия:** 2001.6.5-build.26+forge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/kubejs)
 - **Что это:** Скрипты на JavaScript: правка рецептов, новые предметы, события мира. _(источник: docs сборки)_
 - **В сборке:** патчи данных/рецептов/добычи: pack/kubejs/
-- **В наших docs:** [compat.md](../compat.md) (31), [roadmap.md](../roadmap.md) (15), [russification.md](../russification.md) (8), [orespawn.md](../orespawn.md) (6), [wizardry-port.md](../wizardry-port.md) (5), [galacticraft.md](../galacticraft.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (31), [roadmap.md](../roadmap.md) (15), [russification.md](../russification.md) (8), [orespawn.md](../orespawn.md) (6), [wizardry-port.md](../wizardry-port.md) (5), [enchanting-table.md](../enchanting-table.md) (3)
 <!-- auto:end card:kubejs -->
 
 ### Что даёт игроку

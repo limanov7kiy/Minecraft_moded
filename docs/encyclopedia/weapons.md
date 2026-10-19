@@ -51,7 +51,7 @@ _Обзор категории — вручную, следующие этапы
 - **Версия:** 0.4.4-cr6.0-SIMPLE-beta · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/precise-manufacturing)
 - **Что это:** Аддон Create: автоматизируемые рецепты с предметами TaC Zero. _(источник: docs сборки)_
 - **В сборке:** Create × TACZ
-- **В наших docs:** [compat.md](../compat.md) (27), [version-choice.md](../version-choice.md) (9), [performance.md](../performance.md) (7), [enchanting-table.md](../enchanting-table.md) (6), [russification.md](../russification.md) (6), [roadmap.md](../roadmap.md) (5)
+- **В наших docs:** [compat.md](../compat.md) (27), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7), [russification.md](../russification.md) (6), [roadmap.md](../roadmap.md) (5)
 <!-- auto:end card:precise-manufacturing -->
 
 ### Как играть
@@ -138,7 +138,7 @@ Create-аддон для **автоматического производств
 <a id="timeless-and-classics-zero"></a>
 - **Версия:** 1.1.8-hotfix2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/timeless-and-classics-zero)
 - **Что это:** Современный FPS-геймплей в Minecraft: настраиваемое огнестрельное оружие, обвесы, анимации (переработка TaC). _(источник: docs сборки)_
-- **В наших docs:** [enchanting-table.md](../enchanting-table.md) (3), [client-checklist.md](../client-checklist.md) (1), [compat.md](../compat.md) (1), [roadmap.md](../roadmap.md) (1), [russification.md](../russification.md) (1), [ysm-models.md](../ysm-models.md) (1)
+- **В наших docs:** [enchanting-table.md](../enchanting-table.md) (5), [client-checklist.md](../client-checklist.md) (1), [compat.md](../compat.md) (1), [roadmap.md](../roadmap.md) (1), [russification.md](../russification.md) (1), [ysm-models.md](../ysm-models.md) (1)
 <!-- auto:end card:timeless-and-classics-zero -->
 
 ### Как играть
@@ -189,7 +189,7 @@ TACZ (Timeless and Classics Zero) — основа всего огнестрел
 - **Версия:** 1.0.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/enchanted-arsenal)
 - **Что это:** Зачарования для оружия TaCZ. _(источник: docs сборки)_
 - **В сборке:** зачарования для оружия TACZ
-- **В наших docs:** [enchanting-table.md](../enchanting-table.md) (3), [compat.md](../compat.md) (1)
+- **В наших docs:** [enchanting-table.md](../enchanting-table.md) (4), [compat.md](../compat.md) (1)
 <!-- auto:end card:enchanted-arsenal -->
 
 ### Чары
