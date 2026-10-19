@@ -312,39 +312,21 @@ Create: Steam 'n' Rails (`railways`, 1.7.3) — большое дополнен�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Eureka (Valkyrien Skies Eureka, `vs_eureka` 1.6.3; Tri0de, ewoudje и др.) — «жизнь на корабле» поверх [Valkyrien Skies](#valkyrien-skies): вы строите корабль из обычных блоков, ставите **штурвал** и «собираете» его. Это сам мод (jar), не путать с CurseForge-сборкой «Create: Eureka!» ([compat.md](../compat.md), п. 16).
+1. Корпус из блоков плюс специальные блоки (по названиям; описаний в jar нет): **Floater** (`vs_eureka:floater`), **Balloon** (`balloon`, 16 цветов), **Ballast** (`ballast`), якорь **Anchor** (`anchor`), двигатель **Ship Engine** (`engine`).
+2. **Штурвал** `*_ship_helm` (8 пород дерева: oak, spruce, birch, jungle, acacia, dark oak, crimson, warped): «Sneak to open the ship helm!» (присесть и ПКМ — меню). Кнопки меню: **Assemble** (собрать корабль), **Disassemble** (разобрать в блоки), **Align** (выровнять по сетке).
+3. Круиз-контроль — в HUD есть сообщения «Cruise control enabled/disabled».
+4. Максимальный размер корабля ограничен конфигом (сообщение «Ship is too big! Max size is %s blocks»); теги `vs_eureka:assemble_blacklist` не дают собирать запрещённые блоки.
+
+Рецепты из jar (проверено по `data/vs_eureka/recipes`): штурвал — палки, заборы, золотой слиток и плита; якорь — поводки, железные слитки и железный блок; двигатель — камень, доменная печь, стеклянная панель и гладкий камень; `floater` — 4 нити вокруг доски; `balloon` — 4 кожи (есть варианты из шерсти, бумаги, мембраны: `balloon_leather`, `balloon_wool`, `balloon_paper`, `balloon_membrane`).
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
+`vs_eureka:oak_ship_helm` … `warped_ship_helm`, `anchor`, `engine`, `ballast`, `floater`, `balloon` и 16 цветных `*_balloon`; креативная вкладка «VS Eureka». Массы блоков — `data/vs_eureka/vs_mass`.
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+Файла в `pack/config` нет — настройки по умолчанию.
 
 ## Mekanism
 
@@ -558,39 +540,13 @@ Refined Storage 1.12.4 (Refined Mods) — более простая, «блоч�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Valkyrien Sails (`vs_sails`, 0.3.2; автор Quinton Center) — парусники для Valkyrien Skies: паруса, такелаж, якоря и ветер.
+1. Штурвал: `helm_block` («Old Ship's Helm»), `redstone_helm_block`, колёса `*_helm_wheel` для всех пород дерева (oak…bamboo) и основания `*_helm`.
+2. Движение: `sail_block` (16 цветов, `*_sail`), `magma_sail_block` (`*_magma_sail`), такелаж `rigging_block` / `magma_rigging_block`; ветер показывают `wind_flag` (флаги 16 цветов, есть «rainbow», «jolly roger» — JEI: `wind_flag_pattern`, `wind_flag_dye`).
+3. Стоянка и остойчивость: `anchor_block`, `capstan_block` (кабестан), `rope_block` / `magma_rope_block`, `ballast_block` / `magic_ballast_block`, поплавки `buoy_block` (`*_buoy`, 16 цветов).
+4. Предмет `dedication_bottle` — «бутылка посвящения»; звук `vs_sails:wind_ambience` («Wind blows»).
 
-### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Масса блоков — `data/vs_sails/vs_mass`. Рецепты без отдельных категорий JEI ([jei.md](../jei.md)). Конфигов в `pack/config` нет; JEI-«пробел»: `wind_flag_pattern`, `wind_flag_dye`.
 
 ## Valkyrien Skies
 
@@ -603,39 +559,34 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Valkyrien Skies 2.4.11 (Tri0de, Rubydesic; зависимость — Architectury) — **физика кораблей**: набор блоков превращается в «корабль» (отдельное тело на «верфи» мира), который двигается, плавает и летает, а игроки ходят по нему. Сама по себе VS даёт механику, а готовые «играбельные» корабли строят аддоны: [Eureka](#eureka-ships-for-valkyrien-skies-forgefabric) (штурвал, шарики, двигатель), [Valkyrien Sails](#valkyrien-sails) (паруса и такелаж), [Create: Propulsion](#create-propulsion) (двигатели и крылья), [VS Tournament Reforged](#valkyrien-skies-tournament-reforged) (оружие и боевые блоки).
+1. **Создание корабля**: аддонные блоки (штурвал Eureka, `physics_assembler` Create: Propulsion) собирают корабль из соседних блоков; сама VS даёт отладочные предметы `valkyrienskies:ship_creator`, `ship_creator_smaller` (мини), `ship_assembler`, `area_assembler`.
+2. **Масса и плавучесть**: у каждого блока есть масса (данные `vs_mass/…` — руды, растения, декор, функциональные блоки, блоки Create); подсказка предмета показывает «Mass». Правила поведения сущностей на корабле — `vs_entities` (вагонетки, рамки, картины, стойки для брони, сущности Create: контрапции, сиденья).
+3. **Управление**: клавиши «Cruise» и «Descend» (категория «Driving»); в Create у деплоера есть режим «Ship Behaviour» (ставить на текущий корабль или в мир).
+4. **Совместимость**: Superb Warfare сам трассирует снаряды по кораблям, а наш `mm-compat` чинит блок попадания (`scripts/tests/vshitcheck.js`); Canary × VS — отдельная миксин-проблема ([compat.md](../compat.md), п. 6). В сборке есть аддон Jade `jade-vs` ([jei.md](../jei.md)).
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
+| id (`valkyrienskies:<id>`) | Что делает |
+|---|---|
+| `ship_creator`, `ship_creator_smaller` | Создание корабля из блока (креатив/отладка) |
+| `ship_remover` | Удаление корабля |
+| `ship_assembler`, `area_assembler` | Сборка корабля из выбранных блоков или области |
+| `connection_checker` | Проверка связности блоков |
+| `physics_entity_creator`, сущность `valkyrienskies:vs_physics_entity` | Физическая сущность (для отладки) |
+| `test_chair`, `test_hinge`, `test_flap`, `test_wing`, `test_sphere`, `test_thruster`, `test_antigrav` | «Debug…»-блоки для проверки механики |
 
 ### События
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
+Корабли — ресурсоёмкая механика: при фризе сервера виновником может быть очередь физики VS (в [compat.md](../compat.md) разобран один такой случай, spark «Timed out waiting for world statistics»). В конфиге VS есть параметр разделения кораблей (`enableWorldSplitting`).
 
 ### Команды/гамерулы
 
-_Пока пусто — заполнит один из следующих этапов._
+Команда `/vs` (подкоманды по lang): `delete`, `remass` (пересчитать массу), `shipify` (превратить блок в корабль), `set-static`, `teleport`, `get-ship`, `scale`, `backend`, `lod`, `air-values`, `get-gravity`, `set-splitting`, `dry` (убрать воду из корабля). Точный синтаксис — по автодополнению в игре; доступ задают настройки `…CommandPerms` в конфиге.
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+Файла VS в `pack/config` нет — настройки по умолчанию; из наших заметок: `enableClientConnectivity` уже `false` ([performance.md](../performance.md)). Класс `VSGameConfig` содержит `allowMobSpawns`, `enableWorldSplitting`, `enablePocketBuoyancy`, `explosionBlastForce`, `defaultBlockMass` и др. Шейдеры и рендер Embeddium/Oculus не проверялись глазами ([performance.md](../performance.md)).
 
 ## Valkyrien Skies: Tournament Reforged
 
@@ -649,38 +600,13 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+VS Tournament Reforged (`vs_tournament` 1.0.3; alex-s168, Balatan, 411_Cat, blockninja124) — порт мода VS Tournament под VS 2.4 (оригинал падает с `NoClassDefFoundError VSConfigClass` — [compat.md](../compat.md)). Набор боевых и «турнирных» блоков для кораблей [Valkyrien Skies](#valkyrien-skies); работает вместе с Create (теги).
+- **Двигатели**: `thruster`, `tiny_thruster`, `custom_thruster`, `six_way_thruster`, `spinner`, `custom_spinner`, `six_way_spinner`, `prop_big` / `prop_small` (пропеллеры помечены «Deprecated: use thrusters»), улучшение `upgrade_thruster`.
+- **Подъём и вес**: `balloon`, `powered_balloon`, `floater`, `ballast`, `flap` («Tournament Flap»).
+- **Сиденья и датчики**: `seat` (лёгкое), `obsidian_seat` (стойкое ко взрывам), `sensor` (датчик расстояния).
+- **Оружие и взрывчатка**: `explosive_instant_small/medium/large`, `dampened_gunpowder`, `self_destruct_core` (при установке **без** сигнала редстоуна ломание уничтожает корабль; с сигналом — безопасное снятие), инструменты `pulse_gun`, `suction_gun`, `grab_gun`, `delete_wand` («Deleting Tool» удаляет корабль, чат «Deleted ship!»).
+- `baishi_education` — предмет-обучение (Tutorial Item).
 
-### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Параметры блоков настраиваются NBT («Configurable NBT parameters»). Конфиги в `pack/config` отсутствуют; в JEI мод использует чужой плагин (`create`) — [jei.md](../jei.md). Режим «Deleting Tool» и взрывчатка опасны на общем сервере с кораблями друзей.
 
 <!-- cards:end -->
