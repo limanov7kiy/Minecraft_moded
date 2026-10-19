@@ -146,39 +146,20 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
+Ars Additions 1.6.7 (`ars_additions`) — «small tweaks and quality of life additions» для Ars Nouveau.
+- **Амулеты-обереги** (Charm): `undying_charm` (Second Wind), `fall_prevention_charm`, `fire_resistance_charm`, `night_vision_charm`, `dispel_protection_charm`, `ender_mask_charm`, `powdered_snow_walk_charm`, `sonic_boom_protection_charm`, `golden_charm`.
+- Новые глифы: `Mark`, `Recall`, `Retaliate` (эффект `marked`).
+- Свитки и кодексы: `exploration_warp_scroll`, `nexus_warp_scroll`, `stabilized_warp_index`, `codex_entry`, `lost_codex_entry`, `ancient_codex_entry` (учат глифам).
+- Ритуалы: `ritual_chunk_loading` («Arcane Permanence»), `ritual_locate_structure` («Locate Structure»).
+- Утилиты: `handy_haversack`, `advanced_dominion_wand`, `bound_wayfinder`, `ender_source_jar`, `enchanting_wixie_cauldron`; блоки-декор (`archwood_lantern`, `golden_chain`, треснувший `sourcestone`).
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
+`ars_additions:arcane_library`, `ars_additions:nexus_tower`, `ars_additions:ruined_portal`, `ars_additions:ruined_portal_large` (например, `/locate structure ars_additions:arcane_library`).
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+В `pack/config` файлов нет. Шум о «Incorrect key» при первом запуске — [compat.md](../compat.md), раздел «Ars Nouveau и аддоны».
 
 ## Ars Artifice
 
@@ -189,41 +170,9 @@ _Пока пусто — заполнит один из следующих эт�
 - **В наших docs:** [compat.md](../compat.md) (1)
 <!-- auto:end card:ars-artifice -->
 
-### Как играть
+### Что даёт игроку
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Ars Artifice 2.0.4: механика «Artificing» — **курио, автоматически кастующие заклинание при событиях** с игроком. Верстак `artificers_workbench`, `spell_gem_t1`/`t2`/`t3` («Spell Gem»), `spell_storing_amulet`, `spell_storing_belt`, `spell_storing_ring`. В JEI аддон без плагина, у него есть «пробел» (`no_damage_enchantment`) — [jei.md](../jei.md).
 
 ## Ars Controle
 
@@ -234,41 +183,9 @@ _Пока пусто — заполнит один из следующих эт�
 - **В наших docs:** [compat.md](../compat.md) (1)
 <!-- auto:end card:ars-controle -->
 
-### Как играть
+### Что даёт игроку
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Ars Controle 1.1.1: «increasing control» над заклинаниями — предмет `remote` («Remote») и блок `warping_spell_prism` («Warping Spell Prism»). Книга Patchouli аддона заглушена и выправлена нашим датапаком (`pack/kubejs/data/ars_controle/patchouli_books`) — [compat.md](../compat.md).
 
 ## Ars Creo
 
@@ -280,41 +197,9 @@ _Пока пусто — заполнит один из следующих эт�
 - **В наших docs:** [compat.md](../compat.md) (1), [russification.md](../russification.md) (1)
 <!-- auto:end card:ars-creo -->
 
-### Как играть
+### Что даёт игроку
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Ars Creo 4.3.0: совместимость Ars Nouveau и Create — блок `starbuncle_wheel` («Starbuncle Wheel», мост к Create). Конфигов в `pack/config` нет.
 
 ## Ars Elemental
 
@@ -328,39 +213,43 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Ars Elemental 0.6.8.0 (модид `ars_elemental`) — аддон Ars Nouveau: четыре стихии (Огонь, Вода, Воздух, Земля) + «Некромантия» и «Манипуляция», 54 новых глифа и снаряжение.
+- **Фокусы стихий** (`fire_focus`, `water_focus`, `air_focus`, `earth_focus` и `lesser_*`; `necrotic_focus`) усиливают заклинания своей стихии; **Браслеты** (`fire_bangle`, `water_bangle`, `air_bangle`, `earth_bangle`, `summon_bangle`, `anima_bangle`) и тома `*_caster_tome` — готовые заклинания.
+- Глифы: `Spark` / `Discharge` (разряд), `Mana Bubble` (щит из маны), `Watery Grave`, `Conjure Terrain`, `Poison Spores`, `Phantom Grasp`, `Spike`, `Envenom`, `Homing Projectile`, `Arc Projectile` (+ «Propagate»), и семейство фильтров `Filter: Aquatic/Aerial/Fireproof/Flammable/Insect…`.
+- **Башни** (`fire_turret`, `water_turret`, `air_turret`, `earth_turret`, `manipulation_turret`), **призмы** (`advanced_prism` + линзы `*_prism_lens`), **подъёмники** (`water_upstream`, `magma_upstream`, `air_upstream`), `spell_mirror`.
+- Помощники: сирена (`siren_charm`, `siren_entity`), Flarecannon (`firenando_charm`), яйца и фамильяры.
+- Жёлтое дерево: `yellow_archwood` («Flashing Archwood»).
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+| id (`ars_elemental:…`) | Что даёт |
+|---|---|
+| `spell_horn`, `fire_focus`/`water_focus`/`air_focus`/`earth_focus` | Рог зачарователя; фокусы стихий |
+| `*_bangle`, `*_caster_tome`, `caster_bag`, `curio_bag` | Браслеты, тома, сумки заклинателя и безделушек |
+| `thread_shock`, `thread_spore`, `thread_summon` | Нити улучшения брони |
+| `everfull_urn`, `mermaid_rock` | Урна бесконечной воды; Святилище сирены |
+| `ritual_*` | Ритуалы: `ritual_squirrels`, `ritual_tesla_coil`, `ritual_repulsion`, `ritual_attraction`, `ritual_detection` |
+| `mark_of_mastery`, `anima_essence`, `debug` | Редкие предметы |
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
+`siren_entity`, `firenando_entity` (Flarecannon), мятежные маги `fire_mage`, `water_mage`, `air_mage`, `earth_mage`, призываемые союзники (`summon_direwolf`, `summon_skelehorse`, `summon_camel`, `summon_dolphin`, `summon_strider`, `summon_vhex`, `summon_wskeleton`), `flashing_weald_walker`.
 
 ### Эффекты
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
+`ars_elemental:` `enderference`, `watery_grave`, `mana_shield`, `static_charged`, `hellfire`, `life_link`, `enthralled`, `hymn_of_order`, `venom`.
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
+`ars_elemental:starbuncle_shrine` — `/locate structure ars_elemental:starbuncle_shrine`.
 
 ### Чары
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
+`ars_elemental:mirror_shield` («Spell Reflection»), `ars_elemental:soulbound`.
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+В `pack/config` файлов нет: аддон создаёт свои конфиги при первом запуске; шум «Incorrect key … was corrected» — [compat.md](../compat.md), раздел «Ars Nouveau и аддоны».
 
 ## Ars Instrumentum
 
@@ -371,41 +260,9 @@ _Пока пусто — заполнит один из следующих эт�
 - **В наших docs:** [compat.md](../compat.md) (3), [russification.md](../russification.md) (3)
 <!-- auto:end card:ars_instrumentum -->
 
-### Как играть
+### Что даёт игроку
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Ars Instrumentum 4.1.0: набор утилит для Ars Nouveau — `arcane_applicator` (блок), `wizards_armarium`, `copy_paste_spell_scroll` (Scroll of Spelltransfer), `numeric_mana_charm` (Charm of Numeric Mana), `runic_storage_stone`, `scroll_of_save_starbuncle`, `fake_wilden_tribute` (Essence of Vanquished Foes). Конфигов в `pack/config` нет.
 
 ## Ars Magica: Legacy
 
@@ -535,41 +392,14 @@ _Пока пусто — заполнит один из следующих эт�
 - **В наших docs:** [russification.md](../russification.md) (1)
 <!-- auto:end card:ars-ocultas -->
 
-### Как играть
+### Что даёт игроку
 
-_Пока пусто — заполнит один из следующих этапов._
+Ars Ocultas 1.2.2 («Ars Nouveau corrupted by Occultism») — рецепты и записи в Worn Notebook для связки Ars Nouveau и Occultism:
+- **Контейнер для духов:** духи Occultism работают внутри Containment Jar (`mob_jar`), не «распадаются» и подходят для автоматизации; Фолиот-уборщик в банке сам подбирает предметы и кладёт в соседний инвентарь.
+- **Трансмутация:** серебро ↔ золото (Imbuement-рецепты `imbuement_silver_transmute`, `imbuement_gold_transmute`).
+- Альтернативный рецепт `spirit_attuned_gem` (когда мало алмазов).
 
-### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Конфигов в `pack/config` нет. Совпадения по JEI — [jei.md](../jei.md).
 
 ## Ars Technica
 
@@ -583,39 +413,15 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
+Ars Technica 1.4.2 (`ars_technica`): связка Ars Nouveau и Create — заклинания превращаются в «станки».
+- Глифы-станки (20): `Fuse` (слияние), `Press`, `Polish`, `Carve`, `Pack`, `Insert`, `Whirl` (центрифуга; с водой/огнём/Smelt/Hex — мытьё/копчение/плавка/«призрачная» обработка), `Obliterate` (молот; с Sensitive дробит предметы), `Telefeast`, `Superheat` (если включён в конфиге).
+- Предметы: `technomancer_*` (шляпа, мантия, штаны, ботинки), `runic_spanner`, `spy_monocle`, `transmutation_focus`, `giant_experience_gem`, `gargantuan_experience_gem`, `calibrated_precision_mechanism`, нить `thread_pressure`.
+- Блоки: `source_engine` (Source Motor — преобразует Источник во вращение) и `precise_relay`.
+- В JEI у аддона нет своего плагина для брони-апгрейдов (`armor_upgrade` — «чужой тип без плагина»), см. [jei.md](../jei.md).
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+В `pack/config` файлов нет. Нужны Create и `create_enchantment_industry` (в [jei.md](../jei.md) отмечено как отсутствующая зависимость).
 
 ## Blood Magic
 
@@ -777,39 +583,16 @@ Botanical Extra Machinery 1.1.2 (`botanicalextramachinery`) — расширен
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
+Create: Occult Engineering 0.11.4 (`occultengineering`): связка Occultism и техники.
+- Новые **мелки** (`chalk_brass`, `chalk_copper`, `chalk_zinc`) и блоки пентаклей (`brass_chalk`, `copper_chalk`, `zinc_chalk`), `pentacle_altar`, `empty_pentacle_schematic`/`pentacle_schematic`.
+- Ритуалы крафта: `ritual_dummy_craft_mechanical_chamber`, `ritual_dummy_craft_otherworld_detector`, `ritual_dummy_craft_phlogiport`.
+- Машины: `mechanical_chamber`, `mechanical_pulverizer`, `phlogiport`, `otherworld_detector`, `fan_enspirit_catalyst`; материалы `phlogiston`, `silver_phlogistate`, `sterling_silver_ingot`, `spirit_solution`.
+- Моб: `occultengineering:puca` (Púca; книги `book_of_binding_puca`, яйцо `puca_spawn_egg`), блок `pucalith`.
+- Справочник: `encyclopedia_of_souls`; `combined_goggles` («Otherworldly Engineer's Goggles»).
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+В `pack/config` файлов нет. JEI-плагин (`occultengineering`) есть — [jei.md](../jei.md); проверка запуска — [compat.md](../compat.md).
 
 ## Deeper and Darker: Spellbooks
 
@@ -1730,39 +1513,39 @@ MythicBotany 4.0.4 (расширение Botania): после терра-сту�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Occultism 1.158.0 (модид `occultism`, klikli-dev): магия вызова духов. Гид — Modonomicon-книга (`data/occultism/modonomicon`; в игре — «Dictionary of Spirits»).
+- **Старт.** Жертвенные чаши (`sacrificial_bowl`, `golden_sacrificial_bowl`) ставятся в пентакле из **мела** (`chalk_white`, `chalk_gold`, `chalk_purple`, `chalk_red` + кисть `brush`); пентакль можно заранее показать призраком через Dictionary of Spirits. Рецепты ритуалов — `data/occultism/recipes/ritual` (67 файлов); подсказки «Invalid pentacle/ritual» подскажут, чего не хватает.
+- **Духи.** Книги связывания (`book_of_binding_*`) нужны, чтобы вызвать духов: Фолиот (`foliot`), Джинн (`djinni`), Африт (`afrit`), Марид (`marid`). Книги призыва (`book_of_calling_*`) задают работу: уборщик, дровосек, перевозчик предметов, оператор машин (`book_of_calling_foliot_*`, `book_of_calling_djinni_manage_machine`).
+- **Руды и материалы:** серебро (`silver_ore`, `silver_ore_deepslate`, `silver_ingot`), иезний (`iesnium_ore`, `iesnium_ingot`), **иной камень** (`otherstone`), иномировое дерево (`otherworld_log`, `otherworld_sapling`); подземная роща `occultism:grove_underground` генерируется в мире.
+- **Шахтёры-духи** (`miner_*`: `miner_foliot_unspecialized`, `miner_djinni_ores`, `miner_afrit_deeps`, `miner_marid_master`) и «Dimensional Storage» (`storage_controller`, `storage_stabilizer_tier1..4`, `stable_wormhole`, `storage_remote`) — главные автоматизации.
+- **Фамильяры**: ритуалы `familiar_*` создают питомцев (`bat_familiar`, `beaver_familiar`, `dragon_familiar`, `fairy_familiar`, `mummy_familiar`, …; бонусы дают эффекты `bat_lifesteal`, `beaver_harvest`, `dragon_greed`, `mummy_dodge`, `double_jump`, `step_height`). Кольцо `familiar_ring` носит одного питомца.
+- Дополнения: [Occultism Ritual Satchel](#occultism-ritual-satchel), [Create: Occult Engineering](#create-occult-engineering), [Ars Ocultas](#ars-ocultas).
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+| id (`occultism:…`) | Что делает |
+|---|---|
+| `sacrificial_bowl`, `golden_sacrificial_bowl`, `chalk_glyph_*`, `chalk_*`, `brush` | Пентакль и жертвенники |
+| `book_of_binding_*`, `book_of_calling_*`, `soul_gem`, `soul_shard` | Связывание духов и работа |
+| `divination_rod`, `otherworld_goggles`, `infused_lenses` | Поиск и зрение «третьего глаза» |
+| `satchel` | Ритуальная сумка (расширена аддоном [Occultism Ritual Satchel](#occultism-ritual-satchel)) |
+| `storage_controller`, `storage_stabilizer_tier1..4`, `stable_wormhole`, `storage_remote` | Хранилище «иного измерения» |
+| `dimensional_mineshaft`, `miner_*` | Автоматическая добыча духами |
+| `spirit_campfire`, `spirit_lantern`, `spirit_torch`, `spirit_fire` | Духовные источники света/огня |
+| `datura` | Растение для рецептов |
+| `butcher_knife`, `taboo_book` | Утилитарные/ритуальные предметы |
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
+`occultism:foliot`, `djinni`, `afrit` (+ `afrit_wild`), `marid` — духи; около 20 фамильяров (`*_familiar`, включая `cthulhu_familiar`, `shub_niggurath_familiar`, `chimera_familiar`); `demonic_husband`, `demonic_wife`; одержимые версии ванильных мобов (`possessed_enderman`, `possessed_ghast`, `possessed_hoglin`, `possessed_phantom`, `possessed_shulker`, `possessed_skeleton`, `possessed_warden` и др. — цели ритуалов `possess_*`); `wild_hunt_skeleton`, `wild_hunt_wither_skeleton` (Дикая охота); `otherworld_bird` (Drikwing).
 
 ### Эффекты
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
+`occultism:` `bat_lifesteal`, `beaver_harvest`, `double_jump`, `dragon_greed`, `mummy_dodge`, `step_height`, `third_eye`.
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+В `pack/config` файлов Occultism нет. JEI — свой плагин ([jei.md](../jei.md)).
 
 ## Occultism Ritual Satchel
 
@@ -1773,41 +1556,14 @@ _Пока пусто — заполнит один из следующих эт�
 - **В наших docs:** [compat.md](../compat.md) (1), [jei.md](../jei.md) (1), [russification-audit.md](../russification-audit.md) (1)
 <!-- auto:end card:occultism-ritual-satchel -->
 
-### Как играть
+### Что даёт игроку
 
-_Пока пусто — заполнит один из следующих этапов._
+Occultism Ritual Satchel 1.0.2 (`occultism_rs`): сумка, которая **строит пентакль за игрока** по призрачному предпросмотру из Dictionary of Spirits (нужно навести сумку на блок-превью).
+- `ritual_satchel_t1` (Apprentice) — внутри связан Фолиот, достраивает пентакль шаг за шагом.
+- `ritual_satchel_t2` (Artisanal) — внутри Африт, строит пентакль целиком за раз; апгрейд t1 → t2 ритуалом сохраняет содержимое.
+- Сами сумки делаются ритуалами (`ritual_dummy.craft_ritual_satchel_t1`, `…_t2`, `…_upgrade_ritual_satchel`).
 
-### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Настроек в `pack/config` нет.
 
 ## Spell Forge for Electroblob's Wizardry: Redux
 
@@ -1909,40 +1665,13 @@ _Пока пусто — заполнит один из следующих эт�
 - **В наших docs:** [compat.md](../compat.md) (2), [russification.md](../russification.md) (1)
 <!-- auto:end card:toomanyglyphs -->
 
-### Как играть
+### Что даёт игроку
 
-_Пока пусто — заполнит один из следующих этапов._
+Too Many Glyphs 2.3.2: «more flexible, more intelligent, or just plain overpowered» глифы для Ars Nouveau (17 глифов):
+- Фильтры: `Filter: Block`, `Entity`, `Living`, `Not Player`, `Not Monster`, `Player`, `Monster`, `Item`, `Animal`, `Baby`, `Mature`.
+- Эффекты и формы: `Lay on Hands`, `Reverse Direction`, `Chaining`, `Ray`.
+- Усилители `Amplify II`, `Amplify III`.
 
-### Предметы/блоки
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Конфиги
-
-_Пока пусто — заполнит один из следующих этапов._
+Рецепты — `data/toomanyglyphs/recipes`; своя страница в Worn Notebook. Конфигов в `pack/config` нет.
 
 <!-- cards:end -->
