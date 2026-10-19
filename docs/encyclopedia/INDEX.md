@@ -28,6 +28,7 @@
 
 <!-- auto:start articles -->
 - Arknights: [Мысленная буря](arknights/mind-storm.md) — отдельная статья (ведёт Поток 48)
+- Свои моды и патчи: [Оберег от катаклизмов](own/disaster-ward.md) — подробный разбор нашего мода disaster-ward
 <!-- auto:end articles -->
 
 ## Все моды по алфавиту
