@@ -70,7 +70,7 @@ hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "d4fd5804329afc886b9c3f5e4b6f26565568da48d45bcc73a78f700acf570743"
+hash = "b597a6e105f455c4a60a009148cde13f7c5d6cd6e13ad72561a22d0bf4a5030d"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -2291,8 +2291,8 @@ hash = "f2d6e4f93abbd4efdad16d85653a878415a43a7f389d12c3f0a4afdb5d002745"
 metafile = true
 
 [[files]]
-file = "mods/disaster-ward-1.2.0.jar"
-hash = "ae0512008040d76be294b469bfc6747c61e767cb4a40136780559a70ce620a1d"
+file = "mods/disaster-ward-1.2.1.jar"
+hash = "4d9304dd821506dde36da4fe70fea2390fd4463338642755ec007b7e4536370e"
 
 [[files]]
 file = "mods/distanthorizons.pw.toml"
