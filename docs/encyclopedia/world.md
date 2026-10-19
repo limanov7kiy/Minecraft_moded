@@ -1,0 +1,440 @@
+# Мир: выживание, погода и катастрофы
+
+Температура и жажда, сезоны, штормы, торнадо, метеориты и обереги от них.
+
+<!-- auto:start toc -->
+Модов в категории: **9**.
+
+- [Better Days](#better-days)
+- [CoroUtil](#coroutil)
+- [Legendary Survival Addon](#legendary-survival-addon)
+- [Legendary Survival Overhaul](#legendary-survival-overhaul)
+- [Natural Disasters!](#natural-disasters)
+- [Serene Seasons](#serene-seasons)
+- [Serene Seasons Plus](#serene-seasons-plus)
+- [Weather Storms & Tornadoes](#weather-storms--tornadoes)
+- [Оберег от катаклизмов (Disaster Ward)](#оберег-от-катаклизмов-disaster-ward)
+
+Вернуться: [оглавление справочника](INDEX.md).
+<!-- auto:end toc -->
+
+## Общее по категории
+
+_Обзор категории — вручную, следующие этапы._
+
+---
+
+<!-- cards:start -->
+## Better Days
+
+<!-- auto:start card:betterdays -->
+<a id="betterdays"></a>
+- **Версия:** 1.20.1-3.3.4.5-FORGE · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/betterdays)
+- **Что это:** Gives you control over the passage of time by allowing you to customize the length of the day-night cycle and alters the Minecraft sleep mechanic by accelerating the speed of time. _(источник: Modrinth)_
+- **В сборке:** подтянут как зависимость или связка (в modlist.txt отдельной строкой не указан).
+- **В наших docs:** [russification-audit.md](../russification-audit.md) (1)
+<!-- auto:end card:betterdays -->
+
+### Как играть
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Предметы/блоки
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Мобы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Эффекты
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### События
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Данжи/структуры (/locate)
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Чары
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Команды/гамерулы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Конфиги
+
+_Пока пусто — заполнит один из следующих этапов._
+
+## CoroUtil
+
+<!-- auto:start card:coroutil -->
+<a id="coroutil"></a>
+- **Версия:** 1.20.1-1.3.7 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/coroutil)
+- **Что это:** Shared library mod for Corosus's mods _(источник: Modrinth)_
+- **В сборке:** библиотека Weather2
+- **В наших docs:** [compat.md](../compat.md) (8), [roadmap.md](../roadmap.md) (4), [issue-history.md](../issue-history.md) (2)
+<!-- auto:end card:coroutil -->
+
+### Как играть
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Предметы/блоки
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Мобы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Эффекты
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### События
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Данжи/структуры (/locate)
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Чары
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Команды/гамерулы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Конфиги
+
+_Пока пусто — заполнит один из следующих этапов._
+
+## Legendary Survival Addon
+
+<!-- auto:start card:legendary-survival-addon -->
+<a id="legendary-survival-addon"></a>
+- **Версия:** Forge-1.3.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/legendary-survival-addon)
+- **Что это:** Add new way to cooling and heating with create _(источник: Modrinth)_
+- **В сборке:** Create × Legendary Survival Overhaul
+- **В наших docs:** [compat.md](../compat.md) (1)
+<!-- auto:end card:legendary-survival-addon -->
+
+### Как играть
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Предметы/блоки
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Мобы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Эффекты
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### События
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Данжи/структуры (/locate)
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Чары
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Команды/гамерулы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Конфиги
+
+_Пока пусто — заполнит один из следующих этапов._
+
+## Legendary Survival Overhaul
+
+<!-- auto:start card:legendary-survival-overhaul -->
+<a id="legendary-survival-overhaul"></a>
+- **Версия:** 1.20.1-2.4.7 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/legendary-survival-overhaul)
+- **Что это:** Temperature, thirst, limbs management, health overhaul for Survival game! _(источник: Modrinth)_
+- **В наших docs:** [compat.md](../compat.md) (2), [roadmap.md](../roadmap.md) (1), [version-choice.md](../version-choice.md) (1)
+<!-- auto:end card:legendary-survival-overhaul -->
+
+### Как играть
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Предметы/блоки
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Мобы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Эффекты
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### События
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Данжи/структуры (/locate)
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Чары
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Команды/гамерулы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Конфиги
+
+_Пока пусто — заполнит один из следующих этапов._
+
+## Natural Disasters!
+
+<!-- auto:start card:natural_disasters -->
+<a id="natural_disasters"></a>
+- **Версия:** 2.0.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/natural_disasters)
+- **Что это:** This mod adds 9 different natural disasters to your Minecraft world and they actually spawn naturally if you wish to! _(источник: Modrinth)_
+- **В сборке:** Natural Disasters! 2.0.0 (MCreator, YouTuber): метеоры, цунами, пожары, кислотный дождь, воронки, землетрясения; торнадо и песчаная буря отключены (дубли Weather2) модом disaster-ward
+- **В наших docs:** [compat.md](../compat.md) (34), [roadmap.md](../roadmap.md) (11), [friends.md](../friends.md) (2), [issue-history.md](../issue-history.md) (2)
+<!-- auto:end card:natural_disasters -->
+
+### Как играть
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Предметы/блоки
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Мобы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Эффекты
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### События
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Данжи/структуры (/locate)
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Чары
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Команды/гамерулы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Конфиги
+
+_Пока пусто — заполнит один из следующих этапов._
+
+## Serene Seasons
+
+<!-- auto:start card:serene-seasons -->
+<a id="serene-seasons"></a>
+- **Версия:** 9.1.0.3 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/serene-seasons)
+- **Что это:** Seasons with changing colors, shifting temperatures, and more! _(источник: Modrinth)_
+- **В наших docs:** [compat.md](../compat.md) (8), [roadmap.md](../roadmap.md) (3), [client-checklist.md](../client-checklist.md) (1), [version-choice.md](../version-choice.md) (1)
+<!-- auto:end card:serene-seasons -->
+
+### Как играть
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Предметы/блоки
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Мобы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Эффекты
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### События
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Данжи/структуры (/locate)
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Чары
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Команды/гамерулы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Конфиги
+
+_Пока пусто — заполнит один из следующих этапов._
+
+## Serene Seasons Plus
+
+<!-- auto:start card:serene-seasons-plus -->
+<a id="serene-seasons-plus"></a>
+- **Версия:** Forge-1.20.1-5.1.4 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/serene-seasons-plus)
+- **Что это:** SereneSeason Plus (formerly Extended Fix) enhances seasonal immersion with sub season based day/night speed and improved snow piling/melting logic, delivering smoother and more natural seasonal block behavior. _(источник: Modrinth)_
+- **В сборке:** требует GabouLibs (удалена автором) — заменена нашей библиотекой pack/mods/gaboulibs-shim (patches/gaboulibs-shim)
+- **В наших docs:** [compat.md](../compat.md) (4), [roadmap.md](../roadmap.md) (2), [client-checklist.md](../client-checklist.md) (1)
+<!-- auto:end card:serene-seasons-plus -->
+
+### Как играть
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Предметы/блоки
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Мобы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Эффекты
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### События
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Данжи/структуры (/locate)
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Чары
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Команды/гамерулы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Конфиги
+
+_Пока пусто — заполнит один из следующих этапов._
+
+## Weather Storms & Tornadoes
+
+<!-- auto:start card:weather-storms-tornadoes -->
+<a id="weather-storms-tornadoes"></a>
+- **Версия:** 1.20.1-2.8.3 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/weather-storms-tornadoes)
+- **Что это:** Adds storms, tornadoes, wind, lots of particle effects and more. _(источник: Modrinth)_
+- **В сборке:** Weather2 2.8.3 (Corosus/ProtoManly): штормы, торнадо, песчаные/снежные бури, сирены; профиль — pack/config (разрушение построек ВЫКЛ)
+- **В наших docs:** [compat.md](../compat.md) (23), [roadmap.md](../roadmap.md) (4), [issue-history.md](../issue-history.md) (2), [friends.md](../friends.md) (1)
+<!-- auto:end card:weather-storms-tornadoes -->
+
+### Как играть
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Предметы/блоки
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Мобы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Эффекты
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### События
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Данжи/структуры (/locate)
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Чары
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Команды/гамерулы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Конфиги
+
+_Пока пусто — заполнит один из следующих этапов._
+
+## Оберег от катаклизмов (Disaster Ward)
+
+<!-- auto:start card:disaster-ward -->
+<a id="disaster-ward"></a>
+- **Версия:** 1.2.0 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/disaster-ward-1.2.0.jar`
+- **Что это:** Блок-оберег (только креатив): в его зоне (один радиус) не бушуют катаклизмы Weather2 и Natural Disasters!, не распространяется заражение Fungal Infection: Spore и SRP System, пришедшие снаружи бедствия не ломают блоки внутри, ориджиниумная буря Bob's Originium Dream не призывает в зоне монстров и н… _(источник: mods.toml)_
+- **В сборке:** наш мод (mods-src/disaster-ward): «Оберег от катаклизмов» (только креатив; зона без бедствий Weather2/Natural Disasters!) и редкий случайный спавн бедствий
+- **В наших docs:** [compat.md](../compat.md) (3), [friends.md](../friends.md) (1), [issue-history.md](../issue-history.md) (1), [roadmap.md](../roadmap.md) (1)
+<!-- auto:end card:disaster-ward -->
+
+### Как играть
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Предметы/блоки
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Мобы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Эффекты
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### События
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Данжи/структуры (/locate)
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Чары
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Команды/гамерулы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Конфиги
+
+_Пока пусто — заполнит один из следующих этапов._
+
+<!-- cards:end -->
