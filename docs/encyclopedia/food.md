@@ -133,7 +133,7 @@ Cataclysm, Lycanites, Blue Skies). Все готовятся на тех же с
 <a id="farmers-delight"></a>
 - **Версия:** 1.20.1-1.3.4 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/farmers-delight)
 - **Что это:** Уютное расширение земледелия и кулинарии: грядки, готовка на плите и сковороде, ножи, новые блюда. _(источник: docs сборки)_
-- **В наших docs:** [client-checklist.md](../client-checklist.md) (1), [jei.md](../jei.md) (1), [orespawn.md](../orespawn.md) (1), [roadmap.md](../roadmap.md) (1)
+- **В наших docs:** [client-checklist.md](../client-checklist.md) (1), [enchanting-table.md](../enchanting-table.md) (1), [jei.md](../jei.md) (1), [orespawn.md](../orespawn.md) (1), [roadmap.md](../roadmap.md) (1)
 <!-- auto:end card:farmers-delight -->
 
 ### Как играть
