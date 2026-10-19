@@ -22,7 +22,7 @@ _Обзор категории — вручную, следующие этапы
 <!-- auto:start card:yes-steve-model -->
 <a id="yes-steve-model"></a>
 - **Версия:** 2.6.5-forge+mc1.20.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/yes-steve-model)
-- **Что это:** A mod that modifies the vanilla player model _(источник: Modrinth)_
+- **Что это:** Подменяет ванильную модель игрока своими (анимированными) моделями. _(источник: docs сборки)_
 - **В сборке:** модели игроков (нативный код: Windows/Linux x64, macOS не поддерживается)
 - **В наших docs:** [ysm-models.md](../ysm-models.md) (76), [compat.md](../compat.md) (21), [roadmap.md](../roadmap.md) (18), [friends.md](../friends.md) (9), [client-checklist.md](../client-checklist.md) (7), [issue-history.md](../issue-history.md) (7)
 <!-- auto:end card:yes-steve-model -->

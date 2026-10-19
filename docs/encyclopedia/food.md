@@ -31,7 +31,7 @@ _Обзор категории — вручную, следующие этапы
 <!-- auto:start card:undergarden-delight -->
 <a id="undergarden-delight"></a>
 - **Версия:** 2.0.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/undergarden-delight)
-- **Что это:** Adds Farmer's Delight & The Undergarden compatibility. Vanilla style. _(источник: Modrinth)_
+- **Что это:** Совместимость Farmer's Delight и The Undergarden в ванильном стиле. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (1)
 <!-- auto:end card:undergarden-delight -->
 
@@ -76,7 +76,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:the-aethers-delight -->
 <a id="the-aethers-delight"></a>
 - **Версия:** 0.1.3.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/the-aethers-delight)
-- **Что это:** Adds Compatibility between The Aether and Farmer's Delight _(источник: Modrinth)_
+- **Что это:** Совместимость The Aether и Farmer's Delight. _(источник: docs сборки)_
 - **В сборке:** Aether × Farmer's Delight
 - **В наших docs:** [compat.md](../compat.md) (1), [russification.md](../russification.md) (1)
 <!-- auto:end card:the-aethers-delight -->
@@ -122,7 +122,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:alexsdelight -->
 <a id="alexsdelight"></a>
 - **Версия:** 1.5 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/alexsdelight-1.5.jar`
-- **Что это:** Adds compatibility between Alex's Mobs and Farmer's Delight _(источник: mods.toml)_
+- **Что это:** Совместимость Alex's Mobs и Farmer's Delight. _(источник: docs сборки)_
 - **В сборке:** Alex's Mobs × Farmer's Delight
 - **В наших docs:** [compat.md](../compat.md) (2), [russification.md](../russification.md) (1)
 <!-- auto:end card:alexsdelight -->
@@ -168,7 +168,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:alexs-caves-delight-(-farmers-delight-alexs-caves-add-on) -->
 <a id="alexs-caves-delight-(-farmers-delight-alexs-caves-add-on)"></a>
 - **Версия:** 1.0.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/alexs-caves-delight-farmers-delight-alexs-caves-add-on)
-- **Что это:** a simple addition to "Farmer's Delight" and "alexs caves", adding some food _(источник: Modrinth)_
+- **Что это:** Небольшое дополнение к Farmer's Delight и Alex's Caves: новая еда. _(источник: docs сборки)_
 <!-- auto:end card:alexs-caves-delight-(-farmers-delight-alexs-caves-add-on) -->
 
 ### Как играть
@@ -212,7 +212,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:arsdelight -->
 <a id="arsdelight"></a>
 - **Версия:** 1.2.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/arsdelight)
-- **Что это:** Adding 49+ food made with Ars Nouveau's ingredients in Farmer's Delight style, and mechanics that interacts with spells and rituals _(источник: Modrinth)_
+- **Что это:** Более 49 блюд из ингредиентов Ars Nouveau в стиле Farmer's Delight; механики, связанные с заклинаниями и ритуалами. _(источник: docs сборки)_
 - **В наших docs:** [jei.md](../jei.md) (2), [russification-audit.md](../russification-audit.md) (1)
 <!-- auto:end card:arsdelight -->
 
@@ -257,7 +257,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:farmers-cutting-blue-skies -->
 <a id="farmers-cutting-blue-skies"></a>
 - **Версия:** 1.20.1-1.0+mod · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/farmers-cutting-blue-skies)
-- **Что это:** Adds Farmer's Delight cutting recipes for Blue Skies _(источник: Modrinth)_
+- **Что это:** Рецепты нарезки Farmer's Delight для материалов Blue Skies. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (2), [jei.md](../jei.md) (1)
 <!-- auto:end card:farmers-cutting-blue-skies -->
 
@@ -302,7 +302,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:farmers-delight -->
 <a id="farmers-delight"></a>
 - **Версия:** 1.20.1-1.3.4 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/farmers-delight)
-- **Что это:** A cozy expansion to farming and cooking! _(источник: Modrinth)_
+- **Что это:** Уютное расширение земледелия и кулинарии: грядки, готовка на плите и сковороде, ножи, новые блюда. _(источник: docs сборки)_
 - **В наших docs:** [client-checklist.md](../client-checklist.md) (1), [jei.md](../jei.md) (1), [orespawn.md](../orespawn.md) (1), [roadmap.md](../roadmap.md) (1)
 <!-- auto:end card:farmers-delight -->
 
@@ -347,7 +347,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:l_enders-cataclysm-delight -->
 <a id="l_enders-cataclysm-delight"></a>
 - **Версия:** 1.20.1-1.0.10b · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/l_enders-cataclysm-delight)
-- **Что это:** Adds 50+ dishes, linking L_Ender's Cataclysm and Farmer's Delight in a Vanilla style. _(источник: Modrinth)_
+- **Что это:** Более 50 блюд, связывающих L_Ender's Cataclysm и Farmer's Delight, в ванильном стиле. _(источник: docs сборки)_
 <!-- auto:end card:l_enders-cataclysm-delight -->
 
 ### Как играть
@@ -391,7 +391,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:lycanitesdelight -->
 <a id="lycanitesdelight"></a>
 - **Версия:** 0.4.0 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/lycanitesdelight-1.20.1-0.4.0.jar`
-- **Что это:** Turns Lycanites Mobs into Farmer's Delight cuisine — monster ecology through cooking. _(источник: mods.toml)_
+- **Что это:** Превращает дроп Lycanites Mobs в кухню Farmer's Delight. _(источник: docs сборки)_
 - **В наших docs:** [compat.md](../compat.md) (2)
 <!-- auto:end card:lycanitesdelight -->
 
@@ -436,7 +436,7 @@ _Пока пусто — заполнит один из следующих эт�
 <!-- auto:start card:twilight-delight -->
 <a id="twilight-delight"></a>
 - **Версия:** 2.2.5 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/twilight-delight)
-- **Что это:** This mod adds food and desserts from Twilight Forest in Farmer's Delight and Neapolitan style. _(источник: Modrinth)_
+- **Что это:** Еда и десерты Сумеречного леса в стиле Farmer's Delight и Neapolitan. _(источник: docs сборки)_
 <!-- auto:end card:twilight-delight -->
 
 ### Как играть
