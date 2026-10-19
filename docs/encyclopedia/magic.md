@@ -926,41 +926,138 @@ _Пока пусто — заполнит один из следующих эт�
 - **В наших docs:** [wizardry-port.md](../wizardry-port.md) (73), [compat.md](../compat.md) (30), [roadmap.md](../roadmap.md) (9), [jei.md](../jei.md) (7), [client-checklist.md](../client-checklist.md) (6), [russification.md](../russification.md) (5)
 <!-- auto:end card:electroblobs-wizardry-redux -->
 
+Автор порта Redux — Binaris (лицензия MIT/GPL-3.0, см. [wizardry-port.md](../wizardry-port.md)); оригинал 1.12.2 — Electroblob. Модид `ebwizardry`, сторона — both. Мана у мода своя (хранится в посохах и магической броне).
+
+**Связь с нашей сборкой.** В Redux 0.8.9 нет примерно 61 заклинания оригинала. Их (и оживлённые артефакты) дописывает наш мод-дополнение `wizardry_restored` (`mods-src/wizardry-restored`, jar в `pack/mods/`): регистрирует заклинания в реестре Redux под своим namespace, зависит от Redux, переживает его обновления. Состояние — 0.6.0, в реестре 185 заклинаний, `scripts/tests/castcheck.js` 69/69. Полная опись, таблицы «что и как сделано» и список отключённых на сервере «тестовых» заклинаний — [wizardry-port.md](../wizardry-port.md). Рядом: Spell Forge for Wizardry Redux (CurseForge, +11 заклинаний), порты `wizardry-golems`, `necromancers-delight` ([compat.md](../compat.md)).
+
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+- **Стихии** (`element`): Огонь, Лёд, Молния, Некромантия, Земля, Колдовство (sorcery), Исцеление + «Без стихии» (`magic`). Каждой соответствует кристалл (`magic_crystal_fire` и т. д.), посох, броня и руна.
+- **Ступени заклинаний** (`tier`): Новичок → Ученик → Продвинутый → Мастер. Посох повышается Тайным фолиантом (`arcane_tome_*`) после накопления прогресса (прогресс идёт от применения посоха).
+- **Откуда заклинания.** Книги заклинаний (`spell_book`) и свитки (`scroll`) находятся в сундуках структур, у магов и в торговле; чтобы узнать, что в книге, нужно её «открыть» (достижение `discover_spell`) или применить **Свиток идентификации** (`identification_scroll`). Заклинание вписывается в посох на **Таинственном верстаке** (`arcane_workbench`); посох хранит до N заклинаний (панель быстрого доступа). Улучшения посоха — `condenser_upgrade`, `cooldown_upgrade`, `duration_upgrade`, `storage_upgrade`, `range_upgrade`, `attunement_upgrade`, `siphon_upgrade`, `melee_upgrade`, `blast_upgrade`.
+- **Мана.** Хранится в посохе и броне мага; пополняется кристаллами (`magic_crystal`, осколки), склянками маны (`mana_flask_small|medium|large`), кольцом конденсации (`ring_condensing`) и эффектом `font_of_mana`. Ограничение ресурса — атрибуты `cast.cost`, `cast.chargeup`, `cast.cooldown`, `cast.potency`, `cast.range`, `cast.duration`, `cast.blast`, `cast.progression`.
+- **Алтарь наполнения** (`imbuement_altar`): наполняет предметы магией (120 рецептов; в JEI плагина нет — [jei.md](../jei.md); для Redux наш `mm-compat` даёт JEI-категорию). Книжные шкафы и аналои (`*_bookshelf`, `*_lectern`) — декор мага.
+- **Броня:** боевой маг (`battlemage_*`), мудрец (`sage_*`), колдун (`warlock_*`) — каждый комплект по стихиям (`battlemage_helmet_fire`, `sage_robe_ice` и т. д.), плюс призрачная (`spectral_*`); бонусы — за комплект стихии; **великолепная нить** (`resplendent_thread`) улучшает обычную магическую броню в броню мудреца.
+- **Артефакты** (кольца, амулеты, обереги в Curios): например `charm_haggler` (всегда новая сделка), `charm_experience_tome` (+50% прогресса посоха), `charm_flight`, `charm_storm`, `charm_black_hole`. Часть была «неработающей» — оживлена нашим Restored ([wizardry-port.md](../wizardry-port.md), «Этап 4»).
+
+**Заклинания — ключевые (id `ebwizardry:…`; около 120 в jar + дополнения):**
+
+| Ступень | Стихия | Заклинания |
+|---|---|---|
+| Новичок | — | `magic_missile` магическая ракета (базовое) |
+| Новичок | Огонь | `ignite` поджечь; `smoke_bomb` |
+| Новичок | Лёд | `freeze` заморозить |
+| Новичок | Молния | `arc` электродуга; `thunderbolt` |
+| Новичок | Земля | `dart` дротик; `leap` прыжок |
+| Новичок | Исцеление | `heal` (+2 сердца); `ward` (щит от магии 30 с); `evade` |
+| Новичок | Колдовство / Некромантия | `telekinesis`; `summon_zombie` (30 с) |
+| Ученик | Огонь | `firebolt`, `fireball`, `firebomb`, `flame_ray`, `fire_sigil`, `pocket_furnace` |
+| Ученик | Лёд | `iceball`, `frost_ray`, `ice_shard`, `ice_charge`, `frost_sigil`, `summon_snow_golem` |
+| Ученик | Молния | `lightning_arrow`, `spark_bomb`, `homing_spark`, `charge` (рывок с уроном), `lightning_sigil` |
+| Ученик | Земля | `whirlwind`, `poison`, `poison_bomb`, `growth_aura`, `dark_vision`, `bubble` |
+| Ученик | Исцеление | `heal_ally`, `cure_effects`, `replenish_hunger`, `invigorating_presence` |
+| Ученик | Некромантия | `life_drain`, `summon_skeleton`, `reversal`, `enrage` |
+| Ученик | Колдовство | `conjure_sword`/`conjure_pickaxe`/`conjure_bow`, `force_arrow`, `agility`, `pocket_workbench` |
+| Продвинутый | Огонь | `ring_of_fire`, `flaming_weapon`, `flaming_axe`, `summon_blaze`, `detonate`, `combustion_rune`, `fire_skin`, `fire_resistance` |
+| Продвинутый | Лёд | `ice_lance`, `ice_spikes`, `blizzard`, `frost_step`, `permafrost`, `frost_axe` |
+| Продвинутый | Молния | `static_aura`, `summon_lightning_wraith`, `invoke_weather` |
+| Продвинутый | Земля | `tornado`, `spider_swarm`, `slime`, `cobwebs`, `fangs`, `water_breathing` |
+| Продвинутый | Исцеление | `greater_heal`, `group_heal` (+3 сердца союзникам), `healing_aura`, `greater_ward`, `oakflesh`, `remove_curse`, `ray_of_purification`, `arcane_jammer` |
+| Продвинутый | Некромантия | `wither`, `decay`, `wither_skull`, `darkness_orb`, `summon_wither_skeleton`, `banish`, `entrapment`, `curse_of_undeath`, `curse_of_soulbinding`, `dragon_fireball` |
+| Продвинутый | Колдовство | `phase_step` (через стены), `containment` (удержание 20 с), `arcane_lock` (замок на контейнер), `force_orb`, `levitation`, `invisibility`, `vanishing_box` |
+| Мастер | Огонь | `meteor`, `firestorm`, `fire_breath`, `flamecatcher` |
+| Мастер | Лёд | `ice_age`, `hailstorm` |
+| Мастер | Земля | `flight`, `boulder`, `forests_curse` |
+| Мастер | Исцеление | `font_of_mana`, `font_of_vitality` |
+| Мастер | Некромантия | `zombie_apocalypse`, `summon_skeleton_legion`, `plague_of_darkness`, `curse_of_enfeeblement` |
+| Мастер | Колдовство | `arrow_rain`, `vex_swarm`, `speed_time` (ускорение времени) |
+
+Из Restored (мастера/продвинутые): `lightning_bolt`, `chain_lightning`, `thunderstorm`, `lightning_hammer`, `earthquake`, `black_hole`, `slow_time`, `resurrection`, `possession`, `summon_phoenix`, `blink`, `decoy`, `mirage`, `petrify`, `transportation` и др. — см. [wizardry-port.md](../wizardry-port.md).
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+| Предмет/блок | Назначение |
+|---|---|
+| `wizard_handbook` Пособие мага | гайд-книга |
+| `arcane_workbench` Таинственный верстак | вписывание заклинаний, улучшения, броня |
+| `imbuement_altar` Алтарь наполнения | наполнение предметов магией (120 рецептов) |
+| `wand_novice_<стихия>` … `wand_master_<стихия>` | посохи по ступеням: «Посох тлеющих углей» (новичок, огонь), «Посох ученика-пироманта», …, «Посох мастера-пироманта» |
+| `magic_crystal*`, `crystal_ore`, `deepslate_crystal_ore`, `crystal_flower`, `crystal_block_*` | кристаллы (мана, крафт), руда и цветок встречаются в мире |
+| `*_runestone`, `*_runestone_pedestal`, `receptacle` | рунические камни и пьедесталы (святилища/обелиски) |
+| `spectral_dust*` | призрачная пыль стихий (крафт брони) |
+| `mana_flask_*`, `arcane_tome_*`, `identification_scroll`, `resplendent_thread` | расходники |
+| `gilded_*_wood`, `*_bookshelf`, `*_lectern` | декор мага (шкафы и аналои) |
+| `astral_diamond`, `ruined_spell_book` | материалы редких улучшений |
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
+| Моб (`ebwizardry:…`) | Что |
+|---|---|
+| `wizard` Маг | дружелюбный маг (торгует заклинаниями/свитками; жители башен, храмов) |
+| `evil_wizard` Злой маг | враждебный, спавн биом-модификатором (вес 8, по одному) в биомах из тега `spawns_evil_wizard`; достижение `defeat_evil_wizard` |
+| `remnant` Остаток | охраняет обелиски, роняет призрачную пыль (`spectral_dust`; достижение `defeat_remnant`) |
+| `ice_giant`, `ice_wraith`, `lightning_wraith`, `shadow_wraith`, `storm_elemental`, `magic_slime`, `zombie_spawner` | существа заклинаний-призывов и враги структур |
+| `boulder`, `meteor`, `tornado`, `blizzard`, `hailstorm`, `heal_aura`, `ring_of_fire`, `fire_sigil`/`frost_sigil`/`lightning_sigil`, `ice_barrier` | сущности-эффекты заклинаний |
 
 ### Эффекты
 
-_Пока пусто — заполнит один из следующих этапов._
+| Эффект (`ebwizardry:…`) | Что делает |
+|---|---|
+| `frost` | обморожение (замедление, лёд) |
+| `fireskin` | огненная кожа |
+| `ward` | щит от магического урона |
+| `static_aura` | статическая аура |
+| `containment` | не позволяет цели уйти далеко |
+| `paralysis` | паралич |
+| `arcane_jammer` | глушитель магии |
+| `curse_of_enfeeblement`, `curse_of_soulbinding`, `curse_of_undeath` | проклятия (некромантия) |
+| `decay` | разложение |
+| `oakflesh` | дубовая плоть (броня) |
+| `font_of_mana` | источник маны |
+| `frost_step` | ледяной шаг |
+
+Наши эффекты в Restored (например `mark_sacrifice`, «Метка жертвы») — [wizardry-port.md](../wizardry-port.md).
 
 ### События
 
-_Пока пусто — заполнит один из следующих этапов._
+Достижения-вехи: `apprentice`, `advanced`, `master`, `arcane_initiate`, `battlemage`, `sage`, `warlock`, `wizard_tower`, `visit_shrine`, `find_library_ruins`, `defeat_evil_wizard`, `defeat_remnant`, `buy_master_spell`, `restore_imbuement_altar`, `restore_ruined_book`. Спавн злых магов (`evil_wizard`) описан выше; специальных мировых событий нет.
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
+`/locate structure ebwizardry:<id>`. Места — `structure_set` (spacing/separation в чанках).
+
+| Структура | Что | Spacing / sep. |
+|---|---|---|
+| `wizard_tower` | башня мага (джунгли, лес, тайга, пустыня, равнины, снежные равнины, саванна) | 42 / 8 |
+| `library_ruins` | руины библиотеки (то же + болота/мангровые) | 42 / 8 |
+| `fire_shrine`, `ice_shrine`, `lightning_shrine`, `necromancy_shrine`, `earth_shrine`, `sorcery_shrine`, `healing_shrine` | святилища стихий (набор из 7, выбор случайный) | 38 / 8 |
+| `fire_obelisk`, `ice_obelisk`, `lightning_obelisk`, `necromancy_obelisk`, `earth_obelisk`, `sorcery_obelisk`, `healing_obelisk` | обелиски стихий | 38 / 8 |
+
+Святилища регенерируются (опция `shrine_regeneration_enabled`); шаблоны — `structures/*.nbt` (`shrine_0..7`, `obelisk_0..3`, `library_ruins_0..3`, `underground_library_ruins_0..3`, `wizard_tower_0..3`).
 
 ### Чары
 
-_Пока пусто — заполнит один из следующих этапов._
+Мод использует «наполнение» (imbuement) вместо ванильных чар; временные чары от наших заклинаний `imbue_weapon` (Острота II / Сила II на 45 с) идут через механизм `ImbuementEnchantData` ([wizardry-port.md](../wizardry-port.md)).
 
 ### Команды/гамерулы
 
-_Пока пусто — заполнит один из следующих этапов._
+- `/cast <заклинание>` (ядро Redux: команда `cast`; сообщения «Заклинание … успешно произнесено»);
+- `/discover <игрок> <заклинание|all>` и `/undiscover` — открыть/закрыть заклинания (аргумент `all` — все);
+- `/ally add|remove <кого> <чьим союзником>` — союзники по заклинаниям (союзников не затрагивают AoE);
+- `magic_attribute` — выдать модификатор атрибута `cast.*` сущности (add / multiply_base / multiply_total);
+- отладочные (выдача посохов, свитков, книг, брони, магов) включаются `enable_debug_commands` в общем конфиге.
+Гамерулов нет; разрушение блоков заклинаниями зависит от ванильного `mobGriefing` и опции `player_block_damage`.
+Тесты — `castcheck.js` (Wizardry Restored): кастует все заклинания фейковым игроком.
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+Три файла: сервер (`EBServerConfig`), общий (`EBCommonConfig`: `enable_debug_commands`), клиент. Серверные опции: `mana_per_crystal`, `mana_per_shard`, `grand_crystal_mana`, `forfeit_chance`, `potency_increase_per_tier`, `range/duration/cooldown…_per_level`, `max_progression_reduction`, `upgrade_stack_limit`, `passive_mobs_are_allies`, `block_players_allies_damage`, `player_block_damage`, `replace_vanilla_fall_damage`, `shrine_regeneration_enabled`, `single_use_spell_books`, `inject_mob_drops`/`loot_injection_to_mobs` (добавление свитков в добычу мобов), `melt_items_blacklist`.
+Включённость каждого заклинания и параметры (урон, затраты, перезарядка, доступность в книгах/посохах/торговле/сундуках/диспенсерах) — в данных `data/ebwizardry/spells/*.json`; переопределяются датапаком/KubeJS.
+
+Наши правки:
+- `mods-src/wizardry-restored` — недостающие заклинания и артефакты ([wizardry-port.md](../wizardry-port.md)).
+- `mods-src/mm-compat` — JEI-категория Алтаря наполнения (`ImbuementAltarCategory`, [jei.md](../jei.md)).
+- Русификация — [russification.md](../russification.md) (перевод мода в `ebwizardry` уже есть в jar).
 
 ## Extra Golems
 
@@ -1431,7 +1528,7 @@ _Пока пусто — заполнит один из следующих эт�
 - **Ритуалы:** рисуются **Волшебным мелом** (`wizard_chalk`), запускаются **Очищенной пылью Винтеума** (`purified_vinteum_dust`) в центре, затем выкладываются реагенты и (иногда) рисуются узоры плетения. Примеры из Кодекса: Ритуал Локации (зачаровать компас на структуру/биом), Странствующего мага (торговля, карты, паттерны), Железного колокола (обмен с фракциями), Призыва/Врат, Арканы, Изменения заклинания, и ритуалы-стихии (Ancient Stone — глубоко, Untamed Wind — высоко, Deep Ocean — в океане, Searing Inferno — в Незере, Endless Void — в темноте, Aurora — ночью, Eventide — днём).
 - **Мотыльки/«моты»** (motes), мини-башни **конструкций** (`animated_construct`, Станция делегирования), **Источники силы** (`wellspring`: arcane/earth/ender/fire/water/wind) и **Пилоны** Элдрина — поздние механики.
 
-**Фракции** (выбор на tier 2–3, необратим; враждебны остальным, свои мобы защищают игрока; используя чужие реликвии, провоцируете рейды сильных ассасинов):
+**Фракции** (выбор необратим; враждебны остальным, свои мобы защищают игрока; используя чужие реликвии, провоцируете рейды сильных ассасинов):
 
 | Фракция | Ритуал вступления | Особенность |
 |---|---|---|
@@ -1449,7 +1546,7 @@ _Пока пусто — заполнит один из следующих эт�
 | `guide_book` (Кодекс мага), `occulus` (Оккулус) | энциклопедия и дерево прогресса |
 | `vinteum_ore`, `vinteum_ingot`, `vinteum_dust`, `purified_vinteum_dust` | базовый материал и порошок для ритуалов |
 | `chimerite_gem` | самоцвет из `*_chimerite`-руд (изумруд/алмаз/уголь; видимость руды зависит от магического уровня 5/10/20) |
-| `runeforge`, `manaweaving_altar`, `inscription_table`, `arcane_furnace` | основные станции (в Кодексе: Бонная зола `bone_ash` из рунной кузни) |
+| `runeforge`, `manaweaving_altar`, `inscription_table` | основные станции (жар рунной кузни превращает кости в `bone_ash`) |
 | `manaweaver_wand` (винтеумовый), `wand_chimerite`, `staff_chimerite`, `wand_prismarinecrystal`, `improvized_manaweaver_wand` | жезлы/посохи плетения и фокусы |
 | `spell_book`, `bangle` (браслеты), `pilgrim_staff`, `thaumaturgic_compass` | заклинания, фокусы, поиск |
 | `practitioners_pouch` + «патчи» (Void, Depth, Speed, Glyph, Mote, Rift, Weave, Conveyance, Collection) | карманное хранилище-мешок с улучшениями |
@@ -1462,7 +1559,7 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Мобы
 
-Обычные (все — фракционные, нейтральны к безфракционным игрокам): Council — `spell_breaker` (щит, отражает заклинания), `witch_hunter` (арбалет, зелья), `living_ward` (малый летающий конструкт); Fey — `mushroom_soldier` (Смертельная шапка, яд), `pixie` (элементальные болты, 4 стихии); Demons — `demon_imp`; Undead — `skeleton_assassin`, `hulking_zombie`, `lantern_wraith`, `barkling`, `chatterer`; нейтральные — `wandering_wizard`, `broker`, `arcane_eye`, `insect_swarm`. Спавнятся биом-тегами `mob_spawns_overworld` и у логов фракций.
+Обычные (все — фракционные, нейтральны к безфракционным игрокам): Council — `spell_breaker` (щит, отражает заклинания), `witch_hunter` (арбалет, зелья), `living_ward` (малый летающий конструкт); Fey — `mushroom_soldier` (Смертельная шапка, яд), `pixie` (элементальные болты, 4 стихии); Demons — `demon_imp`. Прочие существа мода (фракцию по данным не определил): `skeleton_assassin`, `hulking_zombie`, `lantern_wraith`, `barkling`, `chatterer`, `wandering_wizard`, `broker`, `arcane_eye`, `insect_swarm`. Спавн — биом-модификатор `mob_spawns_overworld` и структуры фракций.
 
 **Боссы** (характеристики — [bosses.md](../bosses.md), раздел `mna`; зона применения структур ниже):
 
@@ -1500,7 +1597,7 @@ _Пока пусто — заполнит один из следующих эт�
 ### События
 
 - Фракционные **рейды**: если игрок использует вещи чужих фракций, его начинают атаковать сильные ассасины (параметры `RaidChanceBase`, `RaidChanceTier`, `ClassicRaids` в конфиге; `/mna raid`).
-- Ритуал фей требует «решающих» цветов (летних или зимних) — одновременно нельзя ([lang `fey_ritual_*`]).
+- Ритуал фей требует «решающих» цветов (летних или зимних) — одновременно нельзя (иначе ритуал не удаётся).
 - Подсказки (`helptip.mna.*`): визуализация мультиблоков, закрепление рецепта на HUD, Shift+клик по модификаторам (шаг ×5).
 
 ### Данжи/структуры (/locate)
@@ -1538,7 +1635,7 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Конфиги
 
-Файлы Forge `mna-*.toml` (общий, клиентский, заклинаний): `ManaTicksForRegen` (120 с), `ClassicRaids`, `RaidChanceBase/Tier`, `FactionMobKillIre`, `SoulsForFactionMobKill`, `AverageManaweaveCost` и др.
+Конфиги Forge мода (общий, клиентский, заклинаний); среди опций: `ManaTicksForRegen` (120 с), `ClassicRaids`, `RaidChanceBase/Tier`, `FactionMobKillIre`, `SoulsForFactionMobKill`, `AverageManaweaveCost` и др.
 
 Наши правки:
 - **Фриз сервера** — `mods-src/mm-compat`, миксин `MnaChunkTickMixin` (`mm-compat` 0.5.2): `CommonEventHandler.onWorldTick` обходил чанки 11×11 вокруг игрока через `Level.getChunk`, который на сервере синхронно ждёт генерацию недогруженных чанков; миксин пропускает чанки, которые ещё не FULL. Тест `scripts/tests/mnachunk.js`. Подробно — [compat.md](../compat.md), «Фриз сервера от Mana and Artifice»; [issue-history.md](../issue-history.md) (H-003).

@@ -19,7 +19,18 @@
 
 ## Общее по категории
 
-_Обзор категории — вручную, следующие этапы._
+В сборке **одна Солнечная система из трёх модов** ([compat.md](../compat.md), «Одна Солнечная система»): **планеты, орбиты, воздух, температура — Ad Astra; ракеты, топливо и Δv — Northstar Redux и Creating Space; реальная гравитация — Northstar**. Крафтовые ракеты Ad Astra убраны; машины, скафандры, ровер и реактивный костюм остались. Разведка и план «Galacticraft»-геймплея (данжи с боссами, схемы) — [galacticraft.md](../galacticraft.md).
+
+**Путь игрока**
+1. **Create** — база: шестерни, жидкости, контрапции. Космос строится на ней.
+2. **Ad Astra**: сталь (Компрессор, Этрионная печь) → энергия (генератор, панели) → Кислородный загрузчик и **скафандр**; нефть → топливо; книга-руководство «Астродукс». Отсюда же ровер и кислородное снабжение баз (Распылитель кислорода, вентиляция, шлюзы).
+3. **Northstar Redux** (проще): электролиз → водород/кислород, Combustion Engine; Telescope + Astronomy Table открывают планеты (Луна 2, Марс 5, Венера и Меркурий 6 «науки»); Ракетная станция, двигатели, баки, Interplanetary Navigator, теплозащита. Дополнения: **Northstar Structures** (кратеры и бассейн Луны, Лунный компас), **Mekanism x Create: Northstar** (модули МекаСкафандра).
+4. **Creating Space** (сложнее): стол инженера, чертёж двигателя, пара топлива, расчёт Δv до Венеры, Меркурия и Глацио (самый дорогой перелёт — 20 000 Δv от орбиты Земли).
+5. Кислород скафандров Northstar/Creating Space в мирах Ad Astra связывает наш мод `mm-compat` (воздух из баллона, 1 ед./с). Защиту от условий планет усиливает **Giselle Addon** (чары и модули МекаСкафандра). Руды и растения на планетах — `patches/ore_crossgen.py` (+ Mekanism: Ad Astra Ores, Create Ad Astra Recipes — соседние карточки).
+
+**Порядок планет** (Ad Astra): Земля → Луна (первая цель) → Марс → Венера и Меркурий (жара, нужен жаростойкий скафандр) → Глацио (другая система, воздух есть, холодно). Подробные таблицы — в карточках Ad Astra и Creating Space. Структуры планет — в карточках: Ad Astra (подземелье Луны, деревни, храм Марса, Венера), Northstar Structures (кратеры).
+
+Проверки: `scripts/tests/gravitycheck.js`, `routecheck.js`, `rocketcheck.js`, `oxygen_commands.txt`, `spacecheck.js`, `northstar_structures_commands.txt` ([compat.md](../compat.md)); что смотреть глазами на клиенте — [client-checklist.md](../client-checklist.md); производительность Ad Astra — [performance.md](../performance.md).
 
 ---
 
@@ -110,10 +121,6 @@ Ad Astra (Terrarium, лицензия Terrarium License) даёт **планет
 | Нефтяная скважина | `ad_astra:oil_well` | океаны Земли | 20 / 14 |
 
 Искать нужно в нужном измерении: `/execute in ad_astra:moon run locate structure ad_astra:moon_dungeon`. Ванильный `/locate` в сборке асинхронный (Async Locator) — ответ приходит позже, а не сразу ([compat.md](../compat.md)). Биомы: `ad_astra:lunar_wastelands`, `martian_canyon_creek`, `martian_polar_caps`, `martian_wastelands`, `venus_wastelands`, `infernal_venus_barrens`, `mercury_deltas`, `glacio_snowy_barrens`, `glacio_ice_peaks`, `orbit`. Лут: `ad_astra:chests/dungeon/moon`, `chests/temple/mars`, `chests/village/moon`. В Лунное подземелье сборка добавляет данж Galacticraft Revival с боссом (`gcrevival`, [galacticraft.md](../galacticraft.md)).
-
-### Команды/гамерулы
-
-Собственных команд у Ad Astra не найдено. Отключать механики можно только настройками (ниже).
 
 ### Конфиги
 
@@ -227,39 +234,89 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Northstar Redux (MIT; авторы Redstonneur1256, lightning2401) — космос в духе Galacticraft на механике **Create**: ракета собирается из блоков как контрапция, топливо — жидкости в баках, воздух и тепло — машины. В сборке он даёт **ракеты, расчёт топлива, гравитацию, механизмы кислорода/температуры и материалы**, а сами планеты — Ad Astra ([compat.md](../compat.md), «Одна Солнечная система»): маршруты Northstar (`northstar:planet_dimension`) перенаправлены в измерения `ad_astra:*`, мир Northstar в полётах не используется.
+
+**Постройка и полёт ракеты** (подсказки Ponder «Building a rocket»):
+1. Нужны **Rocket Thruster** (`rocket_thruster`; сколько — зависит от массы и гравитации), баки с топливом (`hydrocarbon`, `hydrogen` или `methane`; топливо хранится в баках Create), хотя бы одно сиденье, **Rocket Controls** (`rocket_controls`) и **Rocket Station** (`rocket_station`). Всё склеивается Super Glue (подойдут строительные леса или куски клея).
+2. В Ракетной станции кладётся **Space Atlas** (`space_atlas`) — выбор цели; станция показывает топливо (взлёт/путь/посадка), число двигателей и навигационных компьютеров, **теплозащиту**. «Assemble Rocket» собирает ракету, «Disassemble» — разбирает.
+3. Для других планет нужен **Interplanetary Navigator** (`interplanetary_navigator`; для лун не нужен). **Targeting Computer** в **Computer Rack** (`computer_rack`) снижает расход топлива.
+4. Точка посадки — блок **Rocket Waypoint** (ПКМ атласом записывает координаты); **Auto-Landing Station** (`auto_lander`) сажает ракету безопасно.
+5. Запуск начинается и отменяется клавишей, которую показывает подсказка на экране; при посадке торможение — удержанием клавиши из подсказки; без Rocket Controls ракета не соберётся («No rocket controls attached»). Теплозащита набирается металлическими блоками на корпусе: теги `northstar:tier_1/2/3_heat_resistance` — листовой металл/обшивка/колонны титана и железный блок (3), мартианской стали (8), вольфрама (20); тяжёлые блоки (`heavy_blocks`, 5; `super_heavy_blocks`, 10) утяжеляют ракету.
+
+**Открытие планет.** Планета открывается «наукой»: **Telescope** (`telescope`, только ночью, тратит бумагу) делает **Astronomical Reading**, **Astronomy Table** (`astronomy_table`) вносит его в Space Atlas. Нужная наука: Земля 1, Луна 2, Марс 5, Венера 6, Меркурий 6 (`required_science` в данных). Чтение той же планеты в тот же день не засчитывается; чтения разных планет ценнее.
+
+**Планеты в сборке** (данные Northstar после `space_unify.py`; измерения — Ad Astra):
+
+| Тело | Измерение | Гравитация | Температура, °C |
+|---|---|---|---|
+| Земля (орбита `earth_orbit`) | `minecraft:overworld`, `ad_astra:earth_orbit` | орбита 0 | орбита −270 |
+| Луна (+ орбита; орбиту для Northstar добавили мы) | `ad_astra:moon`, `moon_orbit` | 1,6 | −183 |
+| Марс | `ad_astra:mars`, `mars_orbit` | 3,71 | −100 |
+| Венера | `ad_astra:venus`, `venus_orbit` | 8,87 | 464 |
+| Меркурий | `ad_astra:mercury`, `mercury_orbit` | 3,7 | от −200 до 434 (меняется) |
+
+Глацио Northstar не знает. Данные описывают и другие тела Солнечной системы (Юпитер, Европа, Титан и т.д.), но посадочных измерений у них нет.
+
+**Воздух и тепло.** Электролизная машина (`electrolysis_machine`) расщепляет воду на водород и кислород; Атмосферный концентратор (`atmospheric_concentrator`) собирает газ из атмосферы; **Oxygen Sealer** (`oxygen_sealer`, кислород сзади + вращение снизу) наполняет помещение; **Large Fan** (`large_fan`) увеличивает область; **Oxygen Filler** (`oxygen_filler`) заправляет скафандры; **Temperature Regulator** (`temperature_regulator`) меняет температуру в области; `vent`/`insulated_vent`; **Oxygen Detector** (`oxygen_detector`) — редстоун-сигнал. Скафандры: железный (`iron_space_suit_*`) и из мартианской стали (`martian_steel_space_suit_*`) — с баллоном воздуха (NBT `Oxygen`). В нашей сборке **кислород, которым дышит игрок на планетах, считает Ad Astra**: из данных Northstar убрана атмосфера, а скафандр Northstar тратит воздух из баллона через мод `mm-compat` (1 ед./с; пустой баллон — удушье). Следствие по данным, не проверено в игре: Атмосферный концентратор на этих планетах газ не берёт («нет атмосферы»). **Combustion Engine** (`combustion_engine`) — источник вращения из топлива (типы: водород, жидкий водород, метан, углеводород, биотопливо; есть типы для Create Diesel Generators и TFMG).
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+| Группа | Id (`northstar:`) |
+|---|---|
+| Ракета | `rocket_station`, `rocket_controls`, `rocket_thruster`, `rocket_waypoint`, `interplanetary_navigator`, `auto_lander`, `computer_rack`, `targeting_computer`, `space_atlas`, `return_ticket` |
+| Наука | `telescope`, `astronomy_table`, `astronomical_reading` |
+| Машины | `combustion_engine`, `electrolysis_machine`, `atmospheric_concentrator`, `oxygen_sealer`, `oxygen_filler`, `oxygen_detector`, `temperature_regulator`, `large_fan` + `fan_blade`, `ice_box`, `circuit_engraver`, `solar_panel`, `vent`, `insulated_vent` |
+| Материалы | титан `titanium_ingot`, вольфрам `tungsten_ingot`, мартианская сталь `martian_steel_ingot`, `lunar_sapphire_shard`/`polished_lunar_sapphire`, `circuit`, `advanced_circuit`, `hardened_precision_mechanism`, `durable_fabric`, `rocket_combustion_chamber`, `oxygen_separator` |
+| Броня и инструмент | скафандры (железный, из мартианской стали), броня и инструмент из мартианской стали (`martian_*`), `broken_iron_space_suit_*` |
+| Камень планет | `moon_stone`, `mars_stone`, `venus_stone`, `mercury_stone` (+ глубинные, кирпичи, плиты, колонны, лампы), руды Луны/Марса/Венеры/Меркурия (титан, цинк, вольфрам, свечение, и др.) |
+| Растения | деревья `argyre_*`, `calorian_*`, `coiler_*`, `wilter_*`, грибы Венеры, марсианские цветы/пальма, марсианская клубника |
+| Жидкости | `oxygen`, `hydrogen`, `liquid_hydrogen`, `liquid_oxygen`, `methane`, `hydrocarbon`, `biofuel`, `sulfuric_acid`, `brine`, `chlorine`, `sodium`, `titanium_tetrachloride` |
+
+Ресурсы Northstar в сборке размещены и на планетах Ad Astra (генератор `patches/ore_crossgen.py`, подробности — в «Конфигах»).
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
+Есть яйца призыва (`northstar:<id>_spawn_egg`). Естественные спавны привязаны к биомам `northstar:*`, а в сборке игроки живут на планетах Ad Astra; в их биомы мы добавляли только руды, пласты камня, жеоды и растения — так что этих мобов в Ad Astra получают яйцами или `/summon` (вывод по патчам, игрой не проверено). Боссов нет.
 
-### Эффекты
+| Планета | Мобы (`northstar:`) |
+|---|---|
+| Луна | `moon_lunargrade` (Луноходка, плюёт), `moon_snail`, `moon_eel` |
+| Марс | `mars_cobra`, `mars_moth`, `mars_toad`, `mars_worm` (Эхо-червь, гнёзда `mars_worm_nest`) |
+| Венера | `venus_mimic`, `venus_scorpion`, `venus_stone_bull`, `venus_vulture` |
+| Меркурий | `mercury_raptor`, `mercury_roach`, `mercury_tortoise` |
+| Холод | `frozen_zombie` |
 
-_Пока пусто — заполнит один из следующих этапов._
+Все они в теге `#northstar:doesnt_require_oxygen` (вместе с зомби, скелетом, странником и др.).
 
 ### События
 
-_Пока пусто — заполнит один из следующих этапов._
+- Урон: `northstar:suffocation_no_oxygen` («кончился кислород»), `suffocation_no_spacesuit` («забыл скафандр»), `acid` (серная кислота).
+- Достижения: «Welcome to Northstar!» (`northstar:root`), «One Small Step» (ступить на Луну), «One Giant Leap» (ступить на Марс). Статистика: запуски, полёты и крушения ракет.
+- Ракета при взлёте/посадке выводит сообщения (скорость, высота, отмена запуска); о причинах отказа взлёта — в Ракетной станции.
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
+| Структура | Id | Биомы |
+|---|---|---|
+| Лунная база | `northstar:lunar_base` | `#northstar:moon_biomes` (только `northstar:lunar_*`) |
+| Марсианская база | `northstar:martian_base` | `martian_dunes`, `martian_highlands` (тег `has_mars_base`) |
+
+Обе — шаг 40 / отступ 16 чанков. Лут: `northstar:chests/lunar_base_chest`, `martian_base_chest`, `martian_base_seed_chest` (кислород, золотые яблоки, книги, лунный сапфир, схемы, мартианская сталь, в сундуке с семенами — «спящие» марсианские семена, клубника). Так как биомы Northstar в сборке не посещаются, базы **на планетах Ad Astra не генерируются** (их биомы — только `northstar:*`) — вывод по данным, игрой не проверялся. Кратеры Луны — в карточке Northstar Structures. Биомы Northstar для `/locate biome`: `northstar:lunar_plains`, `lunar_hills`, `lunar_ice_caves`, `lunar_crater_fields`, `martian_dunes`, `mercury_basins`, `venus_fungal_forest` и другие.
 
 ### Чары
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
+| Id | Действие |
+|---|---|
+| `northstar:frostbite` — Обморожение | наносит врагам урон холодом; книги лежат в сундуках баз (лут-таблицы) |
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+Наших правок конфига нет (`pack/config` не содержит Northstar). Правки данными ([compat.md](../compat.md)):
+- `patches/space_unify.py` → `pack/kubejs/data/northstar/northstar/planet_dimension/*.json` (измерения Ad Astra, без атмосферы, добавлена орбита Луны `moon_orbit`), `tags/items/insulating.json` и `heat_resistant.json` (скафандры Ad Astra и Creating Space считаются изолирующими/жаростойкими).
+- `patches/ore_crossgen.py` → `pack/kubejs/data/mm_space/*`: руды Northstar (кроме материалов, которые на планете уже есть у Ad Astra и Mekanism), пласты `northstar:<планета>_stone`/`_deep_stone`, жеоды лунного сапфира, гравий Марса/Венеры и гигантские грибы Венеры — в биомы Ad Astra.
+- `mods-src/mm-compat` (`SuitOxygen`): Ad Astra считает, что существо дышит, пока на нём полный комплект скафандра Northstar (теги `northstar:oxygen_sealing`/`oxygen_sources`) с непустым баллоном; воздух списывается 1 ед./с, креатив и спектатор не тратят. Проверка — `scripts/tests/oxygen_commands.txt`.
+- `pack/config/almostunified/unify.json` — `northstar` в списке объединяемых модов.
+- Известные причины замены оригинала: он собран под Create 0.5 и роняет сервер на Create 6.
 
 ## Create: Northstar - Structures
 
@@ -273,39 +330,40 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Аддон (лицензия в `mods.toml` — All Rights Reserved) делает Луну рельефной: **кратеры разных размеров, «старые» кратеры с валом и гигантский бассейн Южный полюс — Эйткен** (радиус 2400 блоков), плюс лунные пещеры с кристаллами (аметист-асурин, голубой лёд, сосульки, обсидиан, глоустоун) и жеоды лунного сапфира. Играть тут особо нечем: кратеры — ландшафт, который находят с помощью **Лунного компаса** (`northstar_structures:moon_compass`) или команды `/findmoonstructure`. В сборке кратеры стоят на Луне Ad Astra (`ad_astra:moon`, биом `ad_astra:lunar_wastelands`, дно и вал — песок и камень Луны Ad Astra) и на Луне Northstar (`northstar:moon`) — патч `patches/northstar_structures_fix.py` ([compat.md](../compat.md), раздел «Create: Northstar - Structures»).
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
+- `northstar_structures:moon_compass` — **Лунный компас**: ищет кратеры рядом, экран с вкладками «Huge», «Old Huge», «Aitken», сортировкой по диаметру, глубине и расстоянию; выбранная цель привязывается (стрелка указывает на неё). Рецепт аддона: полированный лунный сапфир ×4 + Targeting Computer Northstar в центре. Нюанс: файл рецепта лежит в папке `data/northstar_structures/recipe/` (так называется папка в более новых версиях игры; в 1.20.1 рецепты читаются из `recipes/`) — работает ли рецепт в игре, **не проверено**; выдать предмет можно командой `/give @s northstar_structures:moon_compass`.
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
+Структуры-кратеры:
 
-### Чары
+| Id | Размер | Примечание |
+|---|---|---|
+| `northstar_structures:small_crater` | малый, радиус 10–16 | шаг 8 / отступ 3 чанка (набор `craters`) |
+| `northstar_structures:medium_crater` | средний | набор `craters` |
+| `northstar_structures:large_crater` | большой | шаг 24 / отступ 8 (набор `large_craters`) |
+| `northstar_structures:huge_crater` | огромный, радиус 150–250 | ячейки 64×64 чанка |
+| `northstar_structures:old_small_crater`, `old_medium_crater`, `old_large_crater` | «старые» (с валом, дно — песок) | в наборах малых/больших |
+| `northstar_structures:old_huge_crater` | огромный старый | |
+| `northstar_structures:south_pole_aitken_basin` | бассейн радиусом 2400 | одна ячейка на 5000 чанков |
 
-_Пока пусто — заполнит один из следующих этапов._
+Примеры (Луна, измерение указываем явно): `/execute in ad_astra:moon run locate structure northstar_structures:small_crater` и `.../old_large_crater`; `/execute in northstar:moon run locate structure northstar_structures:small_crater`. Тест — `scripts/tests/northstar_structures_commands.txt` (находит малый и старый большой кратер на `ad_astra:moon`, малый на `northstar:moon`). Ванильный `/locate` в сборке асинхронный (Async Locator) — ответ приходит позже.
+
+Биомы кратеров: тег `#northstar_structures:crater_moon_biomes` — пять лунных биомов Northstar (`lunar_asurine_caves`, `lunar_cooled_lava_cave`, `lunar_crater_fields`, `lunar_hills`, `lunar_plains`) **и добавленный нами `ad_astra:lunar_wastelands`**. Лунные биомы с пещерами (`northstar:lunar_ice_caves`, `lunar_glowstone_cavern` и др.) переопределены патчем под Redux 0.6.
 
 ### Команды/гамерулы
 
-_Пока пусто — заполнит один из следующих этапов._
+- `/findmoonstructure <тип>` — поиск кратеров рядом: `small`, `old_small`, `medium`, `old_medium`, `large`, `old_large`, `huge`, `old_huge`, `south_pole_aitken_basin`. Выводит список с диаметром, глубиной, расстоянием; клик телепортирует (`/tp @s x ~ z`). Если тип выключен в конфиге — сообщение «generation is disabled». Права и точная форма вызова не проверялись.
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+Файл конфига аддона (`northstar_structures-common.toml`, раздел `moon`) в `pack/config` не лежит — действуют значения по умолчанию: `enableCraters`, `enableSmallMediumCraters`, `enableLargeCraters`, `enableHugeCraters` и по отдельному включателю на каждый тип (`enableSmallCrater` … `enableOldHugeCrater`, `enableSouthPoleAitkenBasin`), `craterRarity` (по умолчанию 20, диапазон 1–1000; «больше — реже»).
+
+**Наши правки** ([compat.md](../compat.md)):
+- `patches/northstar_structures_fix.py <папка с jar>` → `pack/kubejs/data/northstar/worldgen/biome/*` (7 лунных биомов под Redux 0.6: фичи `northstar:moon_<камень>_blob` переименованы в `moon_blob_<камень>`, иначе мир не создавался — `Unbound values in registry placed_feature`) и `pack/kubejs/data/northstar_structures/*` (`old_small/medium/large/huge_crater`, `south_pole_aitken_basin` с песком и камнем Ad Astra; тег биомов с `ad_astra:lunar_wastelands`). После обновления аддона или Northstar скрипт перезапускают.
+- `mods-src/mm-compat` 0.5.3, миксин `NorthstarCraterJoinMixin`: аддон на каждом событии `EntityJoinLevelEvent` удалял любое не-игровое существо в «защищённых кратерах» (круги радиусом 150–250 блоков и бассейн Эйткена) **без проверки измерения**, поэтому в Обычном мире мобы не появлялись. Теперь обработчик пропускается везде, кроме Луны (`northstar:moon`, `ad_astra:moon`). Подробности — [compat.md](../compat.md), «Northstar Structures удаляло всех существ…».
 
 ## Creating Space
 
@@ -318,39 +376,74 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Creating Space (MIT; автор Real Ant Engineer) — ракеты на Create, где важна «настоящая» инженерия: **двигатель проектируется** (тяга, смесь топлива, тип насосной и выхлопной части), а полёт ограничен **дельта-V (Δv)** — запасом скорости. В сборке он даёт ракеты, двигатели и скафандры; планеты — Ad Astra ([compat.md](../compat.md), «Одна Солнечная система»): граф перелётов Creating Space перенаправлен в измерения `ad_astra:*`.
+
+**Путь ракеты**
+1. Стол инженера ракет (`rocket_engineer_table`) создаёт **чертёж двигателя** (`engine_blueprint`): выбираются топливная пара, тип силового и выхлопного блока, размер и тяга; в окне видны ISP, масса, температура, давление, уровень материала. Чертёж дублируется (`engine_recipes/duplicate_blueprint`) и по нему собирается двигатель (`rocket_engine`, малый `small_rocket_engine`, большой `big_rocket_engine`) из деталей — турбина, инжектор, сетка инжектора, камера сгорания, рёбра, каналы, трубы: чем лучше топливо, тем более жаропрочный металл нужен.
+2. Корпус: `rocket_casing`, баки (Create, `cryogenic_tank` — переносной бак/ведро для холодных жидкостей), топливо сжижается (`air_liquefier`, `mechanical_electrolyzer`) и подаётся в двигатель. `starter_charge` — взрывной заряд, нужный для запуска `rocket_generator`; `clamps` удерживают контрапцию, `flight_recorder` после неудачи показывает причину (нужны очки инженера): «not enough thrust», «wrong ratio of propellant», «not enough propellant».
+3. В **Rocket Controls** (`rocket_controls`) выбирается цель и координаты входа, показывается **«ΔV needed»**; «Assemble» собирает ракету, «Launch» запускает. Нужно: тяга больше веса и хватает топлива на Δv маршрута.
+
+**Топливные пары** (данные `propellant_type`): метан/кислород `methalox` (ISP до 460 с; жидкий кислород 2 : метан 1), водород/кислород `lh2lox` (до 540 с; кислород 6 : водород 1), металлический водород `metalic_hydrogen` (до 6000 с, «задел на будущее»). Силовые блоки: открытый цикл, ступенчатый с избытком топлива/окислителя, полный поток; выхлопные: колокольное сопло, aerospike.
+
+**Маршруты и Δv** (наши данные после `patches/space_unify.py`; узел → куда, Δv; гравитация узла в скобках):
+
+| Из | В (Δv) |
+|---|---|
+| Земля `minecraft:overworld` (9,81) | орбита Земли 1500 |
+| Орбита Земли `ad_astra:earth_orbit` (0) | Земля 200 · орбита Луны 600 · орбита Марса 1000 · Венера 2200 · орбита Меркурия 6500 · орбита Глацио 20000 |
+| Орбита Луны `ad_astra:moon_orbit` | Луна 300 · орбита Земли 200 · орбита Марса 400 · Венера 1600 |
+| Луна `ad_astra:moon` (1,6) | орбита Луны 300 |
+| Орбита Марса `ad_astra:mars_orbit` | Марс 300 · орбита Луны 300 · орбита Земли 500 |
+| Марс `ad_astra:mars` (3,71) | орбита Марса 400 |
+| Венера `ad_astra:venus` (8,87) | орбита Луны 1800 · орбита Земли 2000 |
+| Орбита Меркурия `ad_astra:mercury_orbit` | Меркурий 1500 · орбита Земли 6500 |
+| Меркурий `ad_astra:mercury` (3,7) | орбита Меркурия 1500 |
+| Орбита Глацио `ad_astra:glacio_orbit` | Глацио 1200 · орбита Земли 20000 |
+| Глацио `ad_astra:glacio` (3,721) | орбита Глацио 1200 |
+
+Меркурий и Глацио (межзвёздный перелёт — самый дорогой по Δv) мы добавили сами; у Венеры исправлена гравитация (в оригинале 1,6 → 8,87). Узлы Creating Space `creatingspace:*` оставлены пустыми.
+
+**Кислород.** Мод проверяет воздух только в своих биомах (тег `creatingspace:no_oxygen`: луна, Марс, Венера Creating Space и `creatingspace:space`), в мирах Ad Astra действует **одна система — Ad Astra**. Скафандр Creating Space (обычный: шлем/штаны/ботинки + `copper_oxygen_backtank`; улучшенный: `advanced_spacesuit_*` + `netherite_oxygen_backtank`) работает там через `mm-compat`: воздух из баллона (NBT `Oxygen`) тратится 1 ед./с, пустой — удушье. **Oxygen Sealer** (`creatingspace:oxygen_sealer`) наполняет помещение, но в мирах Ad Astra воздух определяет Ad Astra, поэтому надёжнее его распылитель кислорода (поведение герметизатора Creating Space в этих мирах не проверялось). Температуру скафандры дают через теги (`freeze_resistant_armor`, `heat_resistant_armor`: улучшенный — и от жары).
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
+| Группа | Id (`creatingspace:`) |
+|---|---|
+| Двигатель | `rocket_engineer_table`, `design_blueprint`, `engine_blueprint`, `rocket_engine`, `small_rocket_engine`, `big_rocket_engine`, `power_pack`, `exhaust_pack`, `injector`, `reinforced_injector`, `combustion_chamber`, `bell_nozzle`, `aerospike_plug`, `copper_coil`, `basic_catalyst`, `sturdy_propeller` |
+| Ракета | `rocket_controls`, `rocket_casing`, `rocket_generator`, `starter_charge`, `clamps`, `flight_recorder`, `catalyst_carrier`, `cryogenic_tank` |
+| Химия | `air_liquefier`, `mechanical_electrolyzer`, `chemical_synthesizer` (устарел), `flow_meter`, `oxygen_sealer` |
+| Скафандры | `basic_spacesuit_*`, `copper_oxygen_backtank`, `advanced_spacesuit_*`, `netherite_oxygen_backtank`, ткани `basic_spacesuit_fabric`/`advanced_spacesuit_fabric` |
+| Металлы деталей | андезит, железо, медь, латунь, усиленная медь, мельхиор (`copronickel`), монель, инконель, хастеллой — слитки, листы, турбины, лопатки (`blisk`), трубы |
+| Руды Луны | никель (`nickel_*`), кобальт (`cobalt_*`), алюминий (`aluminum_*`), сульфат никеля (кристаллы `crystal_*`), реголит Луны/Марса |
+| Жидкости | `liquid_methane`, `liquid_oxygen`, `liquid_hydrogen`, `liquid_co2` |
+| Прочее | `space_food` |
 
 ### Мобы
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
+Своих мобов нет. Тег `#creatingspace:space_creatures` содержит скелета (`minecraft:skeleton`) — ему вакуум нипочём.
 
 ### События
 
-_Пока пусто — заполнит один из следующих этапов._
+- Смерть без кислорода в мире Creating Space: «`%s` didn't find oxygen in space» (урон `creatingspace:no_oxygen`).
+- Падение ракеты и неудачный запуск разбираются по `flight_recorder` (причины выше).
 
 ### Данжи/структуры (/locate)
 
-_Пока пусто — заполнит один из следующих этапов._
+| Структура | Id | Биом |
+|---|---|---|
+| Заброшенный лунный аванпост | `creatingspace:abandoned_moon_outpost` | `creatingspace:moon_plains`, шаг 80 / отступ 16 |
+| Разбившаяся ракета | `creatingspace:crashed_rocket` | `creatingspace:moon_plains`, шаг 20 / отступ 6 |
 
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
+Лут разбившейся ракеты (`creatingspace:crashed_rocket_loot`) — чертежи дизайна (`design_blueprint`) и никель; аванпост — `abandoned_moon_base_loot`. Биом `creatingspace:moon_plains` есть только в собственном измерении Creating Space, а все полёты в сборке ведут на Луну Ad Astra (`lunar_wastelands`), поэтому **эти структуры в игре, скорее всего, не встречаются** — вывод по данным, игрой не проверялся.
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+Собственного конфига в `pack/config` нет. Наши правки ([compat.md](../compat.md)):
+- `patches/space_unify.py` → `pack/kubejs/data/ad_astra/creatingspace/rocket_accessible_dimension/*` (узлы Ad Astra, включая новые Меркурий и Глацио), `pack/kubejs/data/creatingspace/creatingspace/rocket_accessible_dimension/{moon_orbit,mars_orbit}.json` и аналоги для старых узлов (пустые связи), `pack/kubejs/data/minecraft/creatingspace/rocket_accessible_dimension/overworld.json`.
+- `patches/ore_crossgen.py` → никель, кобальт и алюминий Creating Space генерируются на Луне Ad Astra (`pack/kubejs/data/mm_space/worldgen/placed_feature/moon/creatingspace_*`).
+- `pack/config/almostunified/unify.json` — три никелевые руды Creating Space исключены из объединения (ошибочные теги); `pack/kubejs/server_scripts/missing_mod_refs.js` — убрана недостающая ссылка `creatingspace:reinforced_copper_nickel` из тега `forge:nuggets/reinforced_copper`.
+- `mods-src/mm-compat` (`SuitOxygen`) — воздух скафандров (теги `creatingspace:spacesuit`, `creatingspace:oxygen_sources`) в системе Ad Astra.
+- Проверки: `scripts/tests/routecheck.js`, `rocketcheck.js`, `gravitycheck.js`, `oxygen_commands.txt`.
 
 ## Mekanism x Create: Northstar
 
@@ -362,39 +455,25 @@ _Пока пусто — заполнит один из следующих эт�
 
 ### Как играть
 
-_Пока пусто — заполнит один из следующих этапов._
+Мост Mekanism ↔ Create: Northstar (автор Wolfieboy09, All Rights Reserved): добавляет **модули для МекаСкафандра**, которые превращают его в космический скафандр Northstar, и материалы для них. Модули ставятся в МекаСкафандр как обычные модули Mekanism (`mekanism:module_base` в основе рецептов). Что именно работает на планетах Ad Astra (кислород там считает Ad Astra, а скафандр Northstar — через `mm-compat` по тегам `northstar:oxygen_sealing`/`oxygen_sources`), в игре **не проверялось**.
+
+| Модуль (`mek_x_star:`) | Что делает (описание мода) | Рецепт |
+|---|---|---|
+| `module_space_suit` — Space Suit Unit | превращает МекаСкафандр в космический скафандр | механическая крафт-сборка Create 5×4 (атомные сплавы, изоляция, лист HDPE, цепи ultimate, сапфир, железные пластины) |
+| `module_oxygen_tank` — Oxygen Tank Unit | кислородный баллон в нагруднике | основа — незеритовый баллон Create (`create:netherite_backtank`), железные пластины, изоляция |
+| `module_oxygen_tank_expansion` — Oxygen Tank Expansion Unit | увеличивает ёмкость баллона | собирается через последовательную сборку Create (`incomplete_oxygen_tank_expansion`) |
+| `module_space_suit_insulation` — Space Suit Insulation Unit | утепление, чтобы не замёрзнуть | изоляция, лист HDPE, железные пластины |
+| `module_heat_resistive` — Heat Resistant Unit | защита от жары горячих планет | `heat_insulation`, лист HDPE, железные пластины |
+
+Материалы: `insulation` (смешивание Create: 2 дроблёной шерсти + 2 дроблёной сырой меди + 1 дроблёного сырого железа), `crushed_wool` (дробление шерсти и ковров), `heat_insulation` (лист мартианской стали Northstar + изоляция + огненный порошок), `durasteel` (Mekanism: стальной слиток + углерод, 40), `pressurized_durasteel` (реакция: титантетрахлорид 50 + литий 100 + дюрасталь).
 
 ### Предметы/блоки
 
-_Пока пусто — заполнит один из следующих этапов._
-
-### Мобы
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Эффекты
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### События
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Данжи/структуры (/locate)
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Чары
-
-_Пока пусто — заполнит один из следующих этапов._
-
-### Команды/гамерулы
-
-_Пока пусто — заполнит один из следующих этапов._
+Предметы `mek_x_star:`: `insulation`, `heat_insulation`, `crushed_wool`, `durasteel`, `pressurized_durasteel`, `incomplete_oxygen_tank_expansion`, пять модулей (таблица выше). Блоков и мобов нет. Теги: `mek_x_star:insulating` (изоляция), `mek_x_star:heat_resistive` (термоизоляция), `forge:ingot/durasteel`.
 
 ### Конфиги
 
-_Пока пусто — заполнит один из следующих этапов._
+Конфига и наших правок нет: мод в сборке «как есть». Отдельной совместимости с Ad Astra у него нет — для неё сборка использует Giselle Addon (модули МекаСкафандра «дыхание в космосе» и др.) и `mm-compat`.
 
 ## Mekanism: Ad Astra Ores
 
