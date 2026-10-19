@@ -95,6 +95,9 @@ var WISH_QUESTION = {
   help: 'Проблема: что делали, что ожидали, что получилось. Пожелание: что хотели бы увидеть и зачем (от этого зависит, как мы решим)'
 };
 var WISH_CATEGORY_HELP = 'Что ближе всего. Идея или пожелание — «пожелание / идея»: опишите в поле ниже, что хотите увидеть и зачем';
+var VERSION_QUESTION = 'Версия сборки';
+var VERSION_HELP = 'Написана в левом верхнем углу главного меню игры («Minecraft_moded 2026.10.19-1») и в заголовке окна. ' +
+  'Нет в меню — Prism → экземпляр → Изменить → Моды → версия mm-perf. Не знаете — «не знаю»';
 var FORM = {
   TITLE: 'Minecraft_moded — отчёт о проблеме',
   DESCRIPTION: 'Опишите проблему. Логи и скриншоты — по желанию: лучше архив diag-Player-….zip от collect-diagnostics.bat (ник и IP в нём заменены), ' +
@@ -106,7 +109,7 @@ var FORM = {
   FIELDS: [
     { title: 'Ник / имя для связи', type: 'text', required: true, help: 'Как к вам обратиться. Ник виден только хосту. Отчёты без имени не принимаются' },
     { title: 'Псевдоним из диагностики', type: 'text', help: 'Player-xxxx из конца окна скрипта диагностики (по нему сопоставим архив с вами)' },
-    { title: 'Версия сборки', type: 'text', required: true, help: 'Дата последнего обновления сборки или номер из Prism. Не знаете — «не знаю»' },
+    { title: 'Версия сборки', type: 'text', required: true, help: VERSION_HELP },
     { title: 'Пункт «Что нового»', type: 'list', help: 'W1…W10 из docs/whats-new-check.md', choices: ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8', 'W9', 'W10', 'другое'] },
     { title: 'Где играли', type: 'choice', required: true, choices: ['Одиночная игра', 'Сервер друзей'] },
     { title: 'Мод или предмет', type: 'text', help: 'Подсказка Jade при наведении или вкладка Mods. Не знаете — «не знаю»' },
@@ -147,9 +150,23 @@ function ensureForm_() {
     created = true;
   }
   form.setTitle(FORM.TITLE).setDescription(FORM.DESCRIPTION).setConfirmationMessage(FORM.CONFIRMATION);
-  if (!created) optional_('пожелания в форме', function () { applyWish_(form); });
+  if (!created) {
+    optional_('пожелания в форме', function () { applyWish_(form); });
+    optional_('подсказка «' + VERSION_QUESTION + '»', function () { applyVersionHelp_(form); });
+  }
   form.setAllowResponseEdits(false).setLimitOneResponsePerUser(false).setProgressBar(false);
   return { form: form, created: created };
+}
+
+// Подсказка к вопросу «Версия сборки» у уже созданной формы: ищет по заголовку, только перезаписывает текст подсказки (идемпотентно).
+// Нет вопроса — не ошибка (владелец мог переименовать), просто пропуск.
+function applyVersionHelp_(form) {
+  var done = false;
+  form.getItems().forEach(function (it) {
+    if (it.getTitle() === VERSION_QUESTION) { it.setHelpText(VERSION_HELP); done = true; }
+  });
+  if (!done) Logger.log('applyVersionHelp_: вопрос «' + VERSION_QUESTION + '» не найден — подсказку поправьте вручную');
+  return done;
 }
 
 // Добавляет в существующую форму пожелания (и делает «Категорию» обязательной): пункт «пожелание / идея» в «Категории» и новое название/подсказку общего вопроса.
@@ -775,4 +792,4 @@ function setup() {
   fillMissing();
 }
 
-if (typeof module !== 'undefined') { module.exports = { applyWish_: applyWish_, addWishOption: addWishOption, isWish_: isWish_, statusValid: statusValid, onEdit: onEdit, WISH_QUESTION: WISH_QUESTION, setupThenStart_: setupThenStart_, formatNumber: formatNumber, isStale: isStale, needsReply: needsReply, FORM: FORM, ensureForm_: ensureForm_, pickNewSheet: pickNewSheet, startRows: startRows, safeText_: safeText_, isValidEmail_: isValidEmail_, confirmationMail_: confirmationMail_, sendReplies_: sendReplies_, replyTextProblem_: replyTextProblem_, replyMail_: replyMail_, writeFormulas_: writeFormulas_, onFormSubmit: onFormSubmit, fillMissing: fillMissing, rebuildPeople_: rebuildPeople_, setup: setup, writeStart_: writeStart_, addFormItem_: addFormItem_, bootstrap: bootstrap, buildQueries: buildQueries, groupPeople: groupPeople, emailColIndex_: emailColIndex_, summarize: summarize, letter_: letter_, CFG: CFG }; }
+if (typeof module !== 'undefined') { module.exports = { applyWish_: applyWish_, applyVersionHelp_: applyVersionHelp_, VERSION_HELP: VERSION_HELP, addWishOption: addWishOption, isWish_: isWish_, statusValid: statusValid, onEdit: onEdit, WISH_QUESTION: WISH_QUESTION, setupThenStart_: setupThenStart_, formatNumber: formatNumber, isStale: isStale, needsReply: needsReply, FORM: FORM, ensureForm_: ensureForm_, pickNewSheet: pickNewSheet, startRows: startRows, safeText_: safeText_, isValidEmail_: isValidEmail_, confirmationMail_: confirmationMail_, sendReplies_: sendReplies_, replyTextProblem_: replyTextProblem_, replyMail_: replyMail_, writeFormulas_: writeFormulas_, onFormSubmit: onFormSubmit, fillMissing: fillMissing, rebuildPeople_: rebuildPeople_, setup: setup, writeStart_: writeStart_, addFormItem_: addFormItem_, bootstrap: bootstrap, buildQueries: buildQueries, groupPeople: groupPeople, emailColIndex_: emailColIndex_, summarize: summarize, letter_: letter_, CFG: CFG }; }

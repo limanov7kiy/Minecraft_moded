@@ -167,6 +167,18 @@ delete forms.f1; assert.strictEqual(c.ensureForm_().created, true);
   const re = c.ensureForm_();
   assert.strictEqual(re.created, false);
   assert.ok(old2.items[0].choices.includes('пожелание / идея'), 'bootstrap добавляет пункт в существующую форму');
+  // подсказка «Версия сборки» обновляется у уже созданной формы, идемпотентно; без вопроса — не ошибка
+  const old3 = fakeForm('old3'); forms.old3 = old3; store.formId = 'old3';
+  c.addFormItem_(old3, { title: 'Категория', type: 'choice', choices: c.CFG.BUG_CATEGORIES });
+  c.addFormItem_(old3, { title: 'Версия сборки', type: 'text', required: true, help: 'Дата последнего обновления сборки или номер из Prism. Не знаете — «не знаю»' });
+  c.ensureForm_();
+  const vq = old3.items.find((x) => x.title === 'Версия сборки');
+  assert.strictEqual(vq.help, c.VERSION_HELP); assert.ok(vq.help.includes('левом верхнем углу главного меню'));
+  assert.strictEqual(vq.required, true, 'обязательность не тронута');
+  const snap3 = JSON.stringify(old3.items); c.ensureForm_();
+  assert.strictEqual(JSON.stringify(old3.items), snap3, 'повторный bootstrap идемпотентен');
+  assert.strictEqual(c.applyVersionHelp_(fakeForm('empty')), false, 'нет вопроса — пропуск без ошибки');
+  assert.strictEqual(r1.form.items.find((x) => x.title === 'Версия сборки').help, c.VERSION_HELP, 'новая форма создаётся с той же подсказкой');
   delete store.formId;
 }
 assert.deepStrictEqual(c.pickNewSheet([1, 2], [{ id: 1 }, { id: 2 }]), null);

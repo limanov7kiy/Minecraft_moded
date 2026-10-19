@@ -96,6 +96,7 @@
 | [scripts/fetch-mods.py](scripts/fetch-mods.py) | Скачивает jar модов из `pack/mods/*.pw.toml` для клиента или сервера (optional — в отдельную папку) |
 | [scripts/fetch-config-files.py](scripts/fetch-config-files.py) | Разворачивает метафайлы конфигов (модели YSM) для сервера |
 | [scripts/export-pack.sh](scripts/export-pack.sh) | Раздача: `dist/*.mrpack` для клиента и `dist/*-server.zip` для сервера |
+| [scripts/check-pack-version.py](scripts/check-pack-version.py) | Проверка версии сборки: `pack.toml` и `config/mm_pack_version.txt` совпадают и вида `ГГГГ.ММ.ДД-N` |
 | [scripts/mrpack-install.py](scripts/mrpack-install.py) | Ставит `.mrpack` в папку как лаунчер — для проверки без лаунчера |
 | [scripts/mrpack-optional.py](scripts/mrpack-optional.py) | Помечает необязательные моды в `.mrpack`, чтобы клиент их не получал |
 | [scripts/pack-index-refresh.py](scripts/pack-index-refresh.py) | Пересчёт хэшей `pack/index.toml` и `pack/pack.toml` после правки метафайлов моделей YSM |
