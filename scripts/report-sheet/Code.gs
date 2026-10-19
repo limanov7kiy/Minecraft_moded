@@ -10,6 +10,8 @@
  *  - при правке статуса/ответственного/версии/заметки обновляет «Дату изменения»;
  *  - список статусов, подсветка зависших отчётов и лист «Сводка» (получено / обработано / висит / старше N дней);
  *  - лист «По людям» (по адресу почты из формы, без адреса — по нику): сколько отчётов и открытых, номера, последний ответ, неотвеченные;
+ *  - категория «пожелание / идея»: отдельный набор статусов (идея → принята → в реализации → реализовано, а также нужно решение владельца /
+ *    отклонено / отложено), отдельные счётчики на «Сводке», своё письмо-подтверждение; нумерация общая R-###;
  *  - колонки для публичной страницы (заполняются вручную, без ников; сборка — scripts/report-status.py) и для ответов авторам;
  *    строка с оранжевой подсветкой = статус сменился, а ответ автору не отправлен.
  */
@@ -17,13 +19,21 @@ var CFG = {
   STATUSES: ['новый', 'принят', 'в работе', 'исправлено', 'дубль', 'не баг', 'нужны данные', 'отложено'],
   OPEN: ['новый', 'принят', 'в работе', 'нужны данные'],   // «отложено» не краснеет: ждёт сознательно
   DONE: ['исправлено', 'дубль', 'не баг'],
+  // Пожелания (категория WISH): свой набор статусов. «отложено» общий. Список в ячейке один на колонку, поэтому проверка значений в Таблице —
+  // объединённый список (ALL_STATUSES); соответствие категории проверяет statusValid() при правке (мягкая пометка ячейки, без запрета).
+  WISH: 'пожелание',
+  WISH_CHOICE: 'пожелание / идея',   // пункт выпадающего списка формы; в Таблице начало «пожелание» опознаётся isWish_()
+  WISH_STATUSES: ['идея', 'принята', 'в реализации', 'реализовано', 'нужно решение владельца', 'отклонено', 'отложено'],
+  WISH_OPEN: ['идея', 'принята', 'в реализации', 'нужно решение владельца'],
+  WISH_DONE: ['реализовано', 'отклонено'],
   STALE_DAYS: 7,
   EXTRA: ['№', 'Статус', 'Ответственный (поток/PR)', 'Исправлено в версии', 'Дата изменения', 'Заметка',
           'Статус изменён (дата)', 'Мод для публичной страницы', 'Описание для публичной страницы',
           'Пояснение для публичной страницы', 'Ответ автору', 'Ответ отправлен (дата)', 'Категория', 'Письмо отправлено (дата)'],
   EDIT_TRIGGERS: ['Статус', 'Ответственный (поток/PR)', 'Исправлено в версии', 'Заметка',
                   'Мод для публичной страницы', 'Описание для публичной страницы', 'Пояснение для публичной страницы', 'Категория'],
-  CATEGORIES: ['краш/вылет', 'фризы/лаги', 'мод/механика', 'модели/графика', 'звук/голос', 'сервер/вход', 'другое'],
+  BUG_CATEGORIES: ['краш/вылет', 'фризы/лаги', 'мод/механика', 'модели/графика', 'звук/голос', 'сервер/вход', 'другое'],
+  CATEGORIES: ['краш/вылет', 'фризы/лаги', 'мод/механика', 'модели/графика', 'звук/голос', 'сервер/вход', 'другое', 'пожелание'],
   NICK: 'Ник / имя для связи',
   // Форма с «Собирать адреса эл. почты: Подтверждённые» сама добавляет колонку; название зависит от языка. Нет колонки — setup() создаёт первую.
   EMAIL_TITLES: ['Адрес электронной почты', 'Адрес эл. почты', 'Email Address'],
@@ -38,12 +48,27 @@ var CFG = {
   STATUS_URL: 'https://github.com/limanov7kiy/Minecraft_moded/blob/HEAD/docs/report-status.md'
 };
 
+CFG.ALL_STATUSES = CFG.STATUSES.concat(CFG.WISH_STATUSES.filter(function (x) { return CFG.STATUSES.indexOf(x) < 0; }));
+CFG.FORM_CATEGORIES = CFG.BUG_CATEGORIES.concat([CFG.WISH_CHOICE]);   // что видит автор в форме
+CFG.SHEET_CATEGORIES = CFG.CATEGORIES.concat([CFG.WISH_CHOICE]);      // что принимает список в Таблице (форма пишет «пожелание / идея»)
+
+// Пожелание ли строка: категория «пожелание» или «пожелание / идея» (регистр и пробелы в начале не важны).
+function isWish_(category) { return /^\s*пожелание/i.test(String(category || '')); }
+function isOpenStatus_(status) { return CFG.OPEN.indexOf(status) >= 0 || CFG.WISH_OPEN.indexOf(status) >= 0; }
+function isDoneStatus_(status) { return CFG.DONE.indexOf(status) >= 0 || CFG.WISH_DONE.indexOf(status) >= 0; }
+
+// Подходит ли статус категории: пусто можно; у пожеланий — WISH_STATUSES, у остальных — STATUSES.
+function statusValid(category, status) {
+  if (!status) return true;
+  return (isWish_(category) ? CFG.WISH_STATUSES : CFG.STATUSES).indexOf(status) >= 0;
+}
+
 // Номер R-### : минимум три цифры, дальше без обрезки (R-1000).
 function formatNumber(n) { var s = String(n); while (s.length < 3) s = '0' + s; return 'R-' + s; }
 
 // Зависший отчёт: открытый статус и последнее изменение старше days дней.
 function isStale(status, changed, now, days) {
-  if (status && CFG.OPEN.indexOf(status) < 0) return false;   // пустой статус = ещё не разобран
+  if (status && !isOpenStatus_(status)) return false;   // пустой статус = ещё не разобран
   if (!changed) return true;
   return (now.getTime() - new Date(changed).getTime()) > days * 86400000;
 }
@@ -52,7 +77,7 @@ function isStale(status, changed, now, days) {
 // Только для владельца: на листах есть ники. Листы не публиковать, не делиться Таблицей.
 function buildQueries(sheet, c) {
   var q = "'" + sheet + "'!A2:" + c.last;
-  var notDone = CFG.DONE.map(function (x) { return c.status + " <> '" + x + "'"; }).join(' and ');
+  var notDone = CFG.DONE.concat(CFG.WISH_DONE).map(function (x) { return c.status + " <> '" + x + "'"; }).join(' and ');
   return {
     byNumber: '=IFERROR(QUERY(' + q + ', "select * where ' + c.num + ' is not null order by ' + c.num + '", 0), "Нет отчётов")',
     byAuthor: '=IFERROR(QUERY(' + q + ', "select * where ' + c.num + ' is not null order by ' + c.nick + ', ' + c.num + '", 0), "Нет отчётов")',
@@ -63,11 +88,19 @@ function buildQueries(sheet, c) {
 }
 
 // ---------- Форма: создаётся и связывается скриптом (bootstrap) ----------
+// Вопрос «Что не работает» стал общим для багов и пожеланий; WISH_QUESTION.old — прежнее название (ищем и по нему, и по новому).
+var WISH_QUESTION = {
+  old: 'Что не работает',
+  title: 'Что не работает / что хотите видеть',
+  help: 'Проблема: что делали, что ожидали, что получилось. Пожелание: что хотели бы увидеть и зачем (от этого зависит, как мы решим)'
+};
+var WISH_CATEGORY_HELP = 'Что ближе всего. Идея или пожелание — «пожелание / идея»: опишите в поле ниже, что хотите увидеть и зачем';
 var FORM = {
   TITLE: 'Minecraft_moded — отчёт о проблеме',
   DESCRIPTION: 'Опишите проблему. Логи и скриншоты — по желанию: лучше архив diag-Player-….zip от collect-diagnostics.bat (ник и IP в нём заменены), ' +
     'ссылкой в поле «Ссылка на файлы». Не вставляйте пароли, адрес дома, реальное имя и IP в текст. Ответы видит только хост. ' +
-    'Адрес виден только хосту, не публикуется; нужен вход в Google.',
+    'Адрес виден только хосту, не публикуется; нужен вход в Google. ' +
+    'Есть идея, а не проблема? Выберите категорию «' + CFG.WISH_CHOICE + '» и напишите, что хотите увидеть и зачем.',
   CONFIRMATION: 'Спасибо! Номер отчёта и ответ пришлём в чат в течение суток; статус — на странице report-status',
   // type: text | paragraph | list | choice. Вопроса «Загрузка файла» здесь нет: FormApp не умеет его создавать (см. docs/report-form.md, ручной шаг).
   FIELDS: [
@@ -77,10 +110,10 @@ var FORM = {
     { title: 'Пункт «Что нового»', type: 'list', help: 'W1…W10 из docs/whats-new-check.md', choices: ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8', 'W9', 'W10', 'другое'] },
     { title: 'Где играли', type: 'choice', required: true, choices: ['Одиночная игра', 'Сервер друзей'] },
     { title: 'Мод или предмет', type: 'text', help: 'Подсказка Jade при наведении или вкладка Mods. Не знаете — «не знаю»' },
-    { title: 'Что не работает', type: 'paragraph', required: true, help: 'Что делали, что ожидали, что получилось' },
+    { title: WISH_QUESTION.title, type: 'paragraph', required: true, help: WISH_QUESTION.help },
     { title: 'Шаги, чтобы повторить', type: 'paragraph', help: '1–2–3. Не повторяется — напишите' },
     { title: 'Как часто', type: 'choice', choices: ['Один раз', 'Иногда', 'Каждый раз'] },
-    { title: 'Категория', type: 'choice', help: 'Что ближе всего', choices: null },   // choices = CFG.CATEGORIES
+    { title: 'Категория', type: 'choice', help: WISH_CATEGORY_HELP, choices: null },   // choices = CFG.FORM_CATEGORIES
     { title: 'Ссылка spark', type: 'text', help: 'При лагах: в мире /spark profiler start, 2–3 минуты игры, /spark profiler stop, ссылку из чата сюда' },
     { title: 'Ссылка на файлы', type: 'text', help: 'Если файл большой: ссылка на облако «доступ по ссылке», срок — неделя' },
     { title: 'ОС, видеокарта, память для игры', type: 'text', help: 'Например: Windows 11, RTX 2060, 8192 МБ' }
@@ -92,7 +125,7 @@ function addFormItem_(form, f) {
   if (f.type === 'text') item = form.addTextItem();
   else if (f.type === 'paragraph') item = form.addParagraphTextItem();
   else if (f.type === 'list') item = form.addListItem().setChoiceValues(f.choices || CFG.CATEGORIES);
-  else item = form.addMultipleChoiceItem().setChoiceValues(f.choices || CFG.CATEGORIES);
+  else item = form.addMultipleChoiceItem().setChoiceValues(f.choices || CFG.FORM_CATEGORIES);
   item.setTitle(f.title);
   if (f.help) item.setHelpText(f.help);
   item.setRequired(!!f.required);
@@ -114,8 +147,41 @@ function ensureForm_() {
     created = true;
   }
   form.setTitle(FORM.TITLE).setDescription(FORM.DESCRIPTION).setConfirmationMessage(FORM.CONFIRMATION);
+  if (!created) optional_('пожелания в форме', function () { applyWish_(form); });
   form.setAllowResponseEdits(false).setLimitOneResponsePerUser(false).setProgressBar(false);
   return { form: form, created: created };
+}
+
+// Добавляет в существующую форму пожелания: пункт «пожелание / идея» в «Категории» и новое название/подсказку общего вопроса.
+// Ищет по заголовку; повторный запуск ничего не меняет. Бросает ошибку, если вопроса «Категория» нет (тогда пункт добавить руками, docs/report-form.md).
+function applyWish_(form) {
+  var found = { question: false, category: false }, items = form.getItems();
+  items.forEach(function (it) {
+    var t = it.getTitle();
+    if (t === WISH_QUESTION.old || t === WISH_QUESTION.title) {
+      found.question = true;
+      if (t !== WISH_QUESTION.title) it.setTitle(WISH_QUESTION.title);
+      it.setHelpText(WISH_QUESTION.help);
+    } else if (t === 'Категория') {
+      var q = null;
+      try { q = it.asMultipleChoiceItem(); } catch (e1) { q = it.asListItem(); }
+      var vals = q.getChoices().map(function (c) { return c.getValue(); });
+      if (vals.indexOf(CFG.WISH_CHOICE) < 0) q.setChoiceValues(vals.concat([CFG.WISH_CHOICE]));
+      q.setHelpText(WISH_CATEGORY_HELP);
+      found.category = true;
+    }
+  });
+  if (!found.category) throw new Error('В форме нет вопроса «Категория»: добавьте пункт «' + CFG.WISH_CHOICE + '» вручную (docs/report-form.md, «Пожелания»).');
+  if (!found.question) Logger.log('addWishOption: вопрос «' + WISH_QUESTION.old + '» не найден — название и подсказку поправьте вручную');
+  return found;
+}
+
+// Можно запустить отдельно (редактор Apps Script → addWishOption): только форма. Полное обновление (списки статусов, «Сводка») делает bootstrap().
+function addWishOption() {
+  var id = PropertiesService.getDocumentProperties().getProperty('formId');
+  if (!id) throw new Error('Форма ещё не создана через bootstrap(): запустите bootstrap().');
+  var res = applyWish_(FormApp.openById(id));
+  Logger.log('addWishOption: готово (' + JSON.stringify(res) + ')');
 }
 
 // Какой из листов появился после связывания формы: before — id листов до, sheets — [{id, name}] после.
@@ -152,6 +218,7 @@ function startRows(publishedUrl, editUrl) {
     ['Ручной шаг 3', 'Ответы → ⋮ → «Получать уведомления о новых ответах по электронной почте».'],
     ['Письмо автору', 'После отправки отчёта скрипт шлёт автору короткое письмо с номером R-### (только номер и ссылка на report-status, без ника и текста отчёта). При первом запуске Google спросит разрешение «Отправлять письма от вашего имени». Лимит — около 100 писем в день. Выключить: CFG.SEND_CONFIRMATION = false в Code.gs.'],
     ['Ответ автору', 'Раз в 15 минут скрипт шлёт автору текст из колонки «Ответ автору» (если он не начинается с [ЧЕРНОВИК], «Ответ отправлен (дата)» пусто и адрес корректен) и ставит дату. Не больше 20 писем за запуск. Выключить: CFG.SEND_REPLIES = false. Подробности — docs/report-form.md.'],
+    ['Пожелания', 'Категория «пожелание / идея» — идеи игроков. Номера общие R-###, статусы свои: идея → принята → в реализации → реализовано, а также нужно решение владельца / отклонено / отложено. Что можно делать самим, а что — только с решением владельца: docs/report-form.md, «Пожелания».'],
     ['', ''],
     ['Что делает скрипт сам', 'Номера R-###, статусы, подсветка, листы «Сводка», «По номеру», «По автору», «По людям», «Кто что ждёт», триггеры. Повторный запуск bootstrap() форму не дублирует.'],
     ['Приватность', 'Таблица и этот лист содержат ники и адреса. Не делитесь Таблицей и не публикуйте листы. Ссылки на форму и Таблицу в git не вписываются. Публичная страница: python3 -I scripts/report-status.py <csv>.']
@@ -215,7 +282,7 @@ function groupPeople(rows) {
   });
   var out = order.map(function (k) {
     var g = by[k];
-    var open = g.items.filter(function (x) { return CFG.DONE.indexOf(x.status) < 0; }).length;
+    var open = g.items.filter(function (x) { return !isDoneStatus_(x.status); }).length;
     g.items.sort(function (a, b) { return a.number < b.number ? -1 : a.number > b.number ? 1 : 0; });
     return { open: open, key: k, row: [g.email, g.nick, g.items.length, open,
       g.items.map(function (x) { return x.number + ' (' + (x.status || 'без статуса') + ')'; }).join(', '),
@@ -268,11 +335,23 @@ function needsReply(number, statusChanged, replySent) {
   return new Date(replySent).getTime() < new Date(statusChanged).getTime();
 }
 
-// rows — массив {status, number, changed}. Возвращает числа для сводки.
+// rows — массив {status, number, changed, category}. Баги и пожелания считаются раздельно: верхние числа — только баги, wishes — только пожелания.
+// noNumber — по всем строкам.
 function summarize(rows, now, days) {
-  var r = { received: rows.length, noNumber: 0, done: 0, open: 0, stale: 0, postponed: 0 };
+  var r = { received: 0, noNumber: 0, done: 0, open: 0, stale: 0, postponed: 0,
+            wishes: { total: 0, open: 0, implemented: 0, rejected: 0, needsOwner: 0 } };
   rows.forEach(function (x) {
     if (!x.number) r.noNumber++;
+    if (isWish_(x.category)) {
+      var w = r.wishes;
+      w.total++;
+      if (x.status === 'реализовано') w.implemented++;
+      else if (x.status === 'отклонено') w.rejected++;
+      else w.open++;
+      if (x.status === 'нужно решение владельца') w.needsOwner++;
+      return;
+    }
+    r.received++;
     if (CFG.DONE.indexOf(x.status) >= 0) r.done++;
     else r.open++;
     if (x.status === 'отложено') r.postponed++;
@@ -314,7 +393,10 @@ function stamp_(sh, row) {
   var cN = colIndex_(sh, '№'), cS = colIndex_(sh, 'Статус'), cD = colIndex_(sh, 'Дата изменения'), cC = colIndex_(sh, 'Статус изменён (дата)');
   if (!sh.getRange(row, cC).getValue()) sh.getRange(row, cC).setValue(new Date());
   if (!sh.getRange(row, cN).getValue()) sh.getRange(row, cN).setValue(formatNumber(nextNumber_()));
-  if (!sh.getRange(row, cS).getValue()) sh.getRange(row, cS).setValue('новый');
+  if (!sh.getRange(row, cS).getValue()) {
+    var catCol = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0].indexOf('Категория') + 1;
+    sh.getRange(row, cS).setValue(catCol && isWish_(sh.getRange(row, catCol).getValue()) ? 'идея' : 'новый');
+  }
   if (!sh.getRange(row, cD).getValue()) sh.getRange(row, cD).setValue(new Date());
 }
 
@@ -324,27 +406,33 @@ function stamp_(sh, row) {
 function writeFormulas_() {
   var ss = SpreadsheetApp.getActiveSpreadsheet(), sh = responsesSheet_();
   var cS = colIndex_(sh, 'Статус'), cN = colIndex_(sh, '№'), cNick = colIndex_(sh, CFG.NICK);
-  var sL = letter_(cS), nL = letter_(cN), dL = letter_(colIndex_(sh, 'Дата изменения'));
+  var sL = letter_(cS), nL = letter_(cN), dL = letter_(colIndex_(sh, 'Дата изменения')), catL = letter_(colIndex_(sh, 'Категория'));
   var chL = letter_(colIndex_(sh, 'Статус изменён (дата)')), rL = letter_(colIndex_(sh, 'Ответ отправлен (дата)'));
   var sum = ss.getSheetByName('Сводка') || ss.insertSheet('Сводка');
   var q = "'" + sh.getName() + "'!";
-  var sR = q + sL + '2:' + sL, dR = q + dL + '2:' + dL, nR = q + nL + '2:' + nL, aR = q + 'A2:A';
-  var staleSum = CFG.OPEN.map(function (s) { return 'COUNTIFS(' + sR + ',"' + s + '",' + dR + ',"<"&(TODAY()-' + CFG.STALE_DAYS + '))'; }).join('+');
+  var sR = q + sL + '2:' + sL, dR = q + dL + '2:' + dL, nR = q + nL + '2:' + nL, aR = q + 'A2:A', catR = q + catL + '2:' + catL;
+  var bug = ',' + catR + ',"<>' + CFG.WISH + '*"', wish = ',' + catR + ',"' + CFG.WISH + '*"';   // условия «только баги» / «только пожелания» для COUNTIFS
+  var staleSum = CFG.OPEN.map(function (s) { return 'COUNTIFS(' + sR + ',"' + s + '",' + dR + ',"<"&(TODAY()-' + CFG.STALE_DAYS + ')' + bug + ')'; }).join('+');
   var cL = q + chL + '2:' + chL, pR = q + rL + '2:' + rL;
-  // Подписи — значениями (иначе «=Получено» → #NAME?), формулы — отдельно.
+  // Баги и пожелания считаются раздельно (пожелания — строки с категорией «пожелание…»). Подписи — значениями (иначе «=Получено» → #NAME?), формулы — отдельно.
   var sumRows = [
-    ['Получено', '=COUNTA(' + aR + ')'],
-    ['Обработано (исправлено, дубль, не баг)', '=COUNTIF(' + sR + ',"исправлено")+COUNTIF(' + sR + ',"дубль")+COUNTIF(' + sR + ',"не баг")'],
-    ['Висит', '=B1-B2'],
-    ['Висит дольше ' + CFG.STALE_DAYS + ' дней', '=' + staleSum],
-    ['Без номера (должно быть 0)', '=B1-COUNTA(' + nR + ')'],
-    ['Отложено', '=COUNTIF(' + sR + ',"отложено")'],
-    ['Ждут ответа автору', '=COUNTIFS(' + nR + ',"<>",' + pR + ',"")+SUMPRODUCT((' + nR + '<>"")*(' + pR + '<>"")*(' + pR + '<' + cL + '))'],
+    ['Баги: получено', '=COUNTA(' + aR + ')-B6'],
+    ['Баги: обработано (исправлено, дубль, не баг)', '=' + CFG.DONE.map(function (s) { return 'COUNTIFS(' + sR + ',"' + s + '"' + bug + ')'; }).join('+')],
+    ['Баги: висит', '=B1-B2'],
+    ['Баги: висят дольше ' + CFG.STALE_DAYS + ' дней', '=' + staleSum],
+    ['Баги: отложено', '=COUNTIFS(' + sR + ',"отложено"' + bug + ')'],
+    ['Пожелания: всего', '=COUNTIF(' + catR + ',"' + CFG.WISH + '*")'],
+    ['Пожелания: открыто (не реализовано и не отклонено)', '=B6-B8-B9'],
+    ['Пожелания: реализовано', '=COUNTIFS(' + sR + ',"реализовано"' + wish + ')'],
+    ['Пожелания: отклонено', '=COUNTIFS(' + sR + ',"отклонено"' + wish + ')'],
+    ['Пожелания: ждут решения владельца', '=COUNTIFS(' + sR + ',"нужно решение владельца"' + wish + ')'],
+    ['Без номера (должно быть 0)', '=COUNTA(' + aR + ')-COUNTA(' + nR + ')'],
+    ['Ждут ответа автору (баги и пожелания)', '=COUNTIFS(' + nR + ',"<>",' + pR + ',"")+SUMPRODUCT((' + nR + '<>"")*(' + pR + '<>"")*(' + pR + '<' + cL + '))'],
     ['На дату', '=TODAY()']
   ];
 
-  sum.getRange(1, 1, 8, 1).setValues(sumRows.map(function (x) { return [x[0]]; }));   // подписи — значениями (иначе «=Получено» → #NAME?)
-  sum.getRange(1, 2, 8, 1).setFormulas(sumRows.map(function (x) { return [x[1]]; }));
+  sum.getRange(1, 1, sumRows.length, 1).setValues(sumRows.map(function (x) { return [x[0]]; }));   // подписи — значениями (иначе «=Получено» → #NAME?)
+  sum.getRange(1, 2, sumRows.length, 1).setFormulas(sumRows.map(function (x) { return [x[1]]; }));
   sum.autoResizeColumns(1, 2);
 
   // Служебные листы (заголовки копируются из листа ответов). Содержат ники — только владельцу.
@@ -374,7 +462,11 @@ function isValidEmail_(v) {
 }
 
 // Тема и текст фиксированные: только номер R-###. Ник, текст отчёта и прочее в письмо не попадают.
-function confirmationMail_(number) {
+function confirmationMail_(number, wish) {
+  if (wish) return {
+    subject: 'Идея ' + number + ' принята — Minecraft_moded',
+    body: 'Спасибо за идею! Номер ' + number + ', статус — на странице report-status: ' + CFG.STATUS_URL + ' Хост ответит в чате.'
+  };
   return {
     subject: 'Отчёт ' + number + ' принят — Minecraft_moded',
     body: 'Спасибо! Ваш отчёт принят, номер ' + number + '. Статус — на странице report-status: ' + CFG.STATUS_URL + ' Хост ответит в чате.'
@@ -400,7 +492,8 @@ function sendConfirmation_(sh, row) {
     if (!isValidEmail_(addr)) { noteMailFail_(sh, row, 'нет корректного адреса'); return; }
     if (!/^R-\d+$/.test(number)) { noteMailFail_(sh, row, 'нет номера'); return; }
     if (MailApp.getRemainingDailyQuota() <= 0) { noteMailFail_(sh, row, 'исчерпан дневной лимит писем'); return; }
-    var m = confirmationMail_(number);
+    var cCat = h.indexOf('Категория') + 1;
+    var m = confirmationMail_(number, !!cCat && isWish_(sh.getRange(row, cCat).getValue()));
     MailApp.sendEmail(addr, m.subject, m.body);
     sh.getRange(row, cMail).setValue(new Date());
   } catch (err) {
@@ -614,6 +707,13 @@ function onEdit(e) {
   var now = new Date();
   sh.getRange(e.range.getRow(), h.indexOf('Дата изменения') + 1).setValue(now);
   if (e.range.getColumn() === h.indexOf('Статус') + 1) sh.getRange(e.range.getRow(), h.indexOf('Статус изменён (дата)') + 1).setValue(now);
+  // Список статусов в Таблице общий, поэтому «реализовано» у бага или «исправлено» у пожелания она пропустит: помечаем ячейку примечанием (не запрещаем).
+  var cStat = h.indexOf('Статус') + 1, cCat = h.indexOf('Категория') + 1;
+  if (cStat && cCat && (e.range.getColumn() === cStat || e.range.getColumn() === cCat)) {
+    var row = e.range.getRow(), status = sh.getRange(row, cStat).getValue(), cat = sh.getRange(row, cCat).getValue();
+    sh.getRange(row, cStat).setNote(statusValid(cat, status) ? '' : 'Статус «' + status + '» не подходит категории «' + cat + '». ' +
+      (isWish_(cat) ? 'Для пожеланий: ' + CFG.WISH_STATUSES.join(', ') : 'Для багов: ' + CFG.STATUSES.join(', ')));
+  }
 }
 
 // Один раз: колонки, списки, подсветка, сводка, триггеры.
@@ -639,7 +739,7 @@ function setup() {
   var sL = letter_(cS), dL = letter_(cD), chL = letter_(colIndex_(sh, 'Статус изменён (дата)')), rL = letter_(colIndex_(sh, 'Ответ отправлен (дата)')), nL = letter_(cN);
   optional_('закрепление строки', function () { sh.setFrozenRows(1); });
   optional_('список статусов', function () {
-  var rule = SpreadsheetApp.newDataValidation().requireValueInList(CFG.STATUSES, true).setAllowInvalid(false).build();
+  var rule = SpreadsheetApp.newDataValidation().requireValueInList(CFG.ALL_STATUSES, true).setAllowInvalid(false).build();
   sh.getRange(2, cS, CFG.MAX_ROWS, 1).setDataValidation(rule);
   });
 
@@ -649,12 +749,12 @@ function setup() {
   var reply = SpreadsheetApp.newConditionalFormatRule()
     .whenFormulaSatisfied('=AND($' + nL + '2<>"",OR($' + rL + '2="",AND($' + chL + '2<>"",$' + rL + '2<$' + chL + '2)))')
     .setBackground('#fce5cd').setRanges([rng]).build();
-  var openCond = 'OR($' + sL + '2="",' + CFG.OPEN.map(function (s) { return '$' + sL + '2="' + s + '"'; }).join(',') + ')';
+  var openCond = 'OR($' + sL + '2="",' + CFG.OPEN.concat(CFG.WISH_OPEN).map(function (s) { return '$' + sL + '2="' + s + '"'; }).join(',') + ')';
   var stale = SpreadsheetApp.newConditionalFormatRule()
     .whenFormulaSatisfied('=AND($A2<>"",' + openCond + ',OR($' + dL + '2="",TODAY()-$' + dL + '2>' + CFG.STALE_DAYS + '))')
     .setBackground('#f4c7c3').setRanges([rng]).build();
   var done = SpreadsheetApp.newConditionalFormatRule()
-    .whenFormulaSatisfied('=OR($' + sL + '2="исправлено",$' + sL + '2="дубль",$' + sL + '2="не баг")')
+    .whenFormulaSatisfied('=OR(' + CFG.DONE.concat(CFG.WISH_DONE).map(function (s) { return '$' + sL + '2="' + s + '"'; }).join(',') + ')')
     .setBackground('#d9ead3').setRanges([rng]).build();
   sh.setConditionalFormatRules([reply, stale, done]);
   });
@@ -665,7 +765,7 @@ function setup() {
 
   optional_('список категорий', function () {
     sh.getRange(2, cCat, CFG.MAX_ROWS, 1).setDataValidation(
-      SpreadsheetApp.newDataValidation().requireValueInList(CFG.CATEGORIES, true).setAllowInvalid(true).build());
+      SpreadsheetApp.newDataValidation().requireValueInList(CFG.SHEET_CATEGORIES, true).setAllowInvalid(true).build());
   });
   // Лист ответов — «Таблица» Google: createFilter на нём падает. Фильтр необязателен; вручную: Данные → Создать фильтр.
   optional_('фильтр', function () {
@@ -674,4 +774,4 @@ function setup() {
   fillMissing();
 }
 
-if (typeof module !== 'undefined') { module.exports = { setupThenStart_: setupThenStart_, formatNumber: formatNumber, isStale: isStale, needsReply: needsReply, FORM: FORM, ensureForm_: ensureForm_, pickNewSheet: pickNewSheet, startRows: startRows, safeText_: safeText_, isValidEmail_: isValidEmail_, confirmationMail_: confirmationMail_, sendReplies_: sendReplies_, replyTextProblem_: replyTextProblem_, replyMail_: replyMail_, writeFormulas_: writeFormulas_, onFormSubmit: onFormSubmit, fillMissing: fillMissing, rebuildPeople_: rebuildPeople_, setup: setup, writeStart_: writeStart_, addFormItem_: addFormItem_, bootstrap: bootstrap, buildQueries: buildQueries, groupPeople: groupPeople, emailColIndex_: emailColIndex_, summarize: summarize, letter_: letter_, CFG: CFG }; }
+if (typeof module !== 'undefined') { module.exports = { applyWish_: applyWish_, addWishOption: addWishOption, isWish_: isWish_, statusValid: statusValid, onEdit: onEdit, WISH_QUESTION: WISH_QUESTION, setupThenStart_: setupThenStart_, formatNumber: formatNumber, isStale: isStale, needsReply: needsReply, FORM: FORM, ensureForm_: ensureForm_, pickNewSheet: pickNewSheet, startRows: startRows, safeText_: safeText_, isValidEmail_: isValidEmail_, confirmationMail_: confirmationMail_, sendReplies_: sendReplies_, replyTextProblem_: replyTextProblem_, replyMail_: replyMail_, writeFormulas_: writeFormulas_, onFormSubmit: onFormSubmit, fillMissing: fillMissing, rebuildPeople_: rebuildPeople_, setup: setup, writeStart_: writeStart_, addFormItem_: addFormItem_, bootstrap: bootstrap, buildQueries: buildQueries, groupPeople: groupPeople, emailColIndex_: emailColIndex_, summarize: summarize, letter_: letter_, CFG: CFG }; }
