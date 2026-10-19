@@ -1364,3 +1364,26 @@ DH на выделенном сервере сам ничего не генер�
   (облачный ПК 13 ГБ → Z = 6). Красная строка в меню и сообщение в чат глазами **не проверены**: скриншот под Xvfb снят на экране предупреждений YSM (облачная особенность), в мир тест не входил.
   `test-server.sh` — `SERVER OK: Done (63 с)`; mm-perf в серверном zip нет (0 совпадений), в логе сервера строк `[mm_perf]` нет.
 - **Повторная проверка после правок ревью** (jar пересобран, сборка `2026.10.19-3`): `CLIENT OK` (535 с), WARN в логе есть (порог `-Dmm_perf.mem.threshold=1` отключает защиту «штатного Xmx»); `SERVER OK: Done (66 с)`.
+
+## R-007: чёрно-розовые заглушки — «Заражение паразитом» и «Гриб-покров» (поток 56, 2026-10-19, сборка 2026.10.19-4)
+Отчёт игрока (ник не приводим): вместо текстур чёрно-розовые заглушки в двух местах, «каждый раз».
+- **Иконка эффекта «Заражение паразитом»** (`srpsystem:infection`, «Вредный», −20 % к скорости, цвет #8b0000) — это эффект мода **SRP System**
+  («One-Click Parasite Transformation» 1.0.0, Modrinth), не FUR. **Причина найдена:** в jar вообще нет `textures/mob_effect/` (только звуки и `pack.png`),
+  а эффект рисуется спрайтом `srpsystem:textures/mob_effect/infection.png`, которого нет → заглушка в HUD и в инвентаре.
+  (Заодно: `srpsystem:sounds/nude.ogg` в `sounds.json` нет — WARN при загрузке звуков, на внешний вид не влияет.)
+  **Правка:** иконка 18×18 `pack/resourcepacks-src/russian-moded/assets/srpsystem/textures/mob_effect/infection.png` — нарисована нами (тёмно-красное
+  кольцо #8b0000 с зелёной спорой), чужих ассетов нет; в сборку идёт тем же путём, что русский пак (клиентский мод `ru-lang`, пак всегда включён и сверху;
+  `scripts/build-ru-pack.sh`). Сервера это не касается.
+- **«Гриб-покров»** (`mod_lavacow:veil_shroom`, наш порт Fish's Undead Rising 0.3.0): blockstate (`age=0/1`) → `block/veil_shroom`, `block/veil_shroom_s` →
+  `textures/block/veil_shroom(_s).png`, предметная модель `item/veil_shroom` → `block/veil_shroom` — все файлы на месте, текстуры 16×16 RGBA с нормальным
+  рисунком (шляпка и сетчатый «покров»), как у `cordy_shroom`. В логе клиента сборки 2026.10.19-3 (CLIENT OK, 595 с) нет `Unable to load model`
+  / `Missing textures` ни по `mod_lavacow`, ни по `srpsystem`. Ресурспаки сборки (`just-some-translations`, `mploc-mods-v43`, `russian-moded`) файлов `mod_lavacow`/`srpsystem` (кроме `lang` и новой иконки) не содержат,
+  так что подменить модель нечему. **Воспроизвести не удалось, кода-причины нет → правок по блоку не делали.** Поток 35 («модели целы») подтверждён заново.
+  Вероятно, игрок видел заглушку именно у иконки эффекта (она рисуется рядом с подсказкой эффектов). Если «Гриб-покров» останется фиолетово-чёрным и
+  после 2026.10.19-4 — нужны скриншот, F3 (что за блок/предмет, состояние `age`) и строки `Unable to load model` / `Missing textures` из `logs/latest.log`.
+- **Проверка:** сборка 2026.10.19-4 из `export-pack.sh` → `test-client.sh`: **CLIENT OK** (главное меню 582 с, в углу «Minecraft_moded 2026.10.19-4»);
+  в логе нет `Unable to load model` / `Missing textures` по `mod_lavacow` и `srpsystem`. Вход в мир в облаке не удался (клиент + интегрированный сервер
+  на 15 ГБ ОЗУ: OOM при 5 ГБ кучи, затем cgroup-OOM при 11 ГБ; `xdotool` в облаке не стоит — `apt-get install xdotool`), поэтому саму иконку
+  в HUD и блок в мире глазами не видели: иконка проверена по наличию файла в jar `ru-lang` (`resourcepacks/russian-moded/assets/srpsystem/textures/mob_effect/infection.png`)
+  и по разбору движка (спрайт эффекта берётся по `<namespace>:textures/mob_effect/<id>.png`). SERVER OK — см. ниже.
+- Прочее по `ru-lang`: чтобы поправить иконку позже — править файл в `pack/resourcepacks-src/`, затем `scripts/build-ru-pack.sh`, поднять версию сборки.
