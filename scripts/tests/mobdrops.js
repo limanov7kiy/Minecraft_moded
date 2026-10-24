@@ -94,7 +94,7 @@ ServerEvents.tick(event => {
     e.setPos(X0 + (n % 10) * 3 + 0.5, Y, Z0 + Math.floor(n / 10) * 3 + 0.5)
     if (e instanceof Mob) e.finalizeSpawn(level, level.getCurrentDifficultyAt(e.blockPosition()), Java.loadClass('net.minecraft.world.entity.MobSpawnType').NATURAL, null, null)
     level.addFreshEntity(e)
-    // метка «бонусного» моба Contingency Contract (pack/kubejs/server_scripts/cc_no_mob_bonus.js её выключает)
+    // метка «бонусного» моба Contingency Contract (pack/kubejs/server_scripts/cc_rare_mob_bonus.js оставляет её 0,1 % мобов; моб убит в тик появления — снимается при смерти)
     var ccb = FR.ATTRIBUTES.getValue(RL.tryParse('contigency_contract:bonusable'))
     if (ccb != null && e.isLiving() && e.getAttribute(ccb) != null && e.getAttribute(ccb).getBaseValue() > 0) st.ccBonus = (st.ccBonus || 0) + 1
     if (job.mode == 'player') { e.setLastHurtByPlayer(fp); e.attack(level.damageSources().playerAttack(fp), 100000) }

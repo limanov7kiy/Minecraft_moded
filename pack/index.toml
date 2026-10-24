@@ -78,7 +78,7 @@ hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "fafec8d860a2012eba399d983c8bcb149a59c778808f2b88f9fa19593d9b3e54"
+hash = "00e270fbfac1854a6db6535f92a394a690307c692ae59544e7def7f0cac9237a"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -1405,6 +1405,10 @@ file = "kubejs/data/cataclysm/recipes/stonecutting/azure_seastone_brick_stair_fr
 hash = "61c01488bd1bc9113ef1a64e626a0ba9dbbe7d4178d4d8767c0e9cb3d8cdf4a2"
 
 [[files]]
+file = "kubejs/data/contigency_contract/loot_tables/gameplay/chronicle_bonus.json"
+hash = "cfb14d04d7eb95a148a52408ebe2dc29c283d367962f80471abdf5f95b94b0bd"
+
+[[files]]
 file = "kubejs/data/creatingspace/creatingspace/rocket_accessible_dimension/earth_orbit.json"
 hash = "20e08ea6abd176fadd92c274970c2ce424da728ee929fd6101e3c6a0b4e03a98"
 
@@ -1793,8 +1797,8 @@ file = "kubejs/data/superbwarfare/forge/biome_modifier/silver_ore_biome_modifier
 hash = "a75d5d611e58e3c80bbf0244f82a8a8351c4e8c4aa0f3a1c56da5343aa6d5ae5"
 
 [[files]]
-file = "kubejs/server_scripts/cc_no_mob_bonus.js"
-hash = "92196ff6d7f987477df20fc1e05e37d564342d669f00ead5065a1eaa9feaaf44"
+file = "kubejs/server_scripts/cc_rare_mob_bonus.js"
+hash = "6f635c322fedc3176b13c5631f69efb25c2ba1bd7f67fc89d3fe31f6c6e8ab77"
 
 [[files]]
 file = "kubejs/server_scripts/eso_enchant_books.js"
