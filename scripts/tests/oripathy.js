@@ -37,14 +37,16 @@ ServerEvents.tick(event => {
       var p = new SPL(server, level, new GP(UU.fromString('00000000-0000-0000-0000-00000062' + hex), 'ori' + i))
       p.setPos(0.5, 200, 0.5); conn(p)
       var got = o == 'plain' ? 'plain' : setO(p, o)
-      // у нового ServerPlayer 60 тиков неуязвимости после появления (spawnInvulnerableTime) — отжидаем
-      for (var t0 = 0; t0 < 70; t0++) { p.setHealth(p.getMaxHealth()); p.doTick() }
+      // у нового ServerPlayer 60 тиков неуязвимости после появления (spawnInvulnerableTime, убывает в ServerPlayer.tick) — отжидаем
+      for (var t0 = 0; t0 < 70; t0++) p.tick()
+      if (i == 0) { try { log('diag invulnerableTo=' + p.isInvulnerableTo(dmg()) + ' creative=' + p.isCreative() + ' difficulty=' + level.getDifficulty()) } catch (err) { log('diag-error=' + err) } }
       var hurt = 0
       for (var k = 0; k < HITS; k++) {
         p.setHealth(p.getMaxHealth()); p.invulnerableTime = 0
         var h0 = p.getHealth()
-        p.attack(dmg(), 0.5)
+        var r = p.attack(dmg(), 0.5)
         if (p.getHealth() < h0) hurt++
+        if (i == 0 && k == 0) log('diag attack=' + r + ' health ' + h0 + ' -> ' + p.getHealth())
       }
       p.setHealth(p.getMaxHealth())
       var hit = 'orillness=' + v(p, A.ill) + ' oridisease=' + v(p, A.dis)
