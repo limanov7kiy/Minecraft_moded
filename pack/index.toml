@@ -78,7 +78,7 @@ hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "8192f31b124af89f969850a8bbc7ab019454b5134a51d233824e2fc16c2512e0"
+hash = "fafec8d860a2012eba399d983c8bcb149a59c778808f2b88f9fa19593d9b3e54"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -1791,6 +1791,10 @@ hash = "a75d5d611e58e3c80bbf0244f82a8a8351c4e8c4aa0f3a1c56da5343aa6d5ae5"
 [[files]]
 file = "kubejs/data/superbwarfare/forge/biome_modifier/silver_ore_biome_modifier.json"
 hash = "a75d5d611e58e3c80bbf0244f82a8a8351c4e8c4aa0f3a1c56da5343aa6d5ae5"
+
+[[files]]
+file = "kubejs/server_scripts/cc_no_mob_bonus.js"
+hash = "92196ff6d7f987477df20fc1e05e37d564342d669f00ead5065a1eaa9feaaf44"
 
 [[files]]
 file = "kubejs/server_scripts/eso_enchant_books.js"

@@ -161,7 +161,7 @@
 ### Внутриигровые подсказки и настройки сборки (pack/)
 | Файл | Что здесь объясняется |
 |---|---|
-| [pack/kubejs/server_scripts/](pack/kubejs/server_scripts/) | KubeJS-правки: убранные ссылки в тегах, спавн OreSpawn, правила бури, ракеты, свечение и формы модели Priestess |
+| [pack/kubejs/server_scripts/](pack/kubejs/server_scripts/) | KubeJS-правки: убранные ссылки в тегах, спавн OreSpawn, правила бури, ракеты, свечение и формы модели Priestess, выключенный бонусный лут мобов Contingency Contract |
 | [pack/kubejs/data/](pack/kubejs/data/) | Данные KubeJS: рецепты, лут, теги, патчи Patchouli-книг модов |
 | [pack/kubejs/assets/](pack/kubejs/assets/) | Модели и атласы текстур, поправленные KubeJS |
 | [pack/config/almostunified/](pack/config/almostunified/) | Объединение дублей предметов между модами (Almost Unified) |
