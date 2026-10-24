@@ -1,0 +1,23 @@
+{
+  "loading_priority": 10,
+  "powers": [
+    "arks:seaborn/status",
+    "arks:seaborn/modify",
+    "arks:seaborn/waterful",
+    "arks:seaborn/evolution",
+    "arks:seaborn/grow",
+    "arks:seaborn/breed",
+    "arks:seaborn/subsisting",
+    "arks:seaborn/migration",
+    "arks:seaborn/grow_timer",
+    "arks:seaborn/breed_timer",
+    "arks:seaborn/subsisting_timer",
+    "arks:seaborn/migration_timer",
+    "arks:mm_ori_immune"
+  ],
+  "icon": {
+    "item": "caerula_arbor:collector_meat"
+  },
+  "order": 48,
+  "impact": 3
+}
