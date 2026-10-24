@@ -37,6 +37,8 @@ ServerEvents.tick(event => {
       var p = new SPL(server, level, new GP(UU.fromString('00000000-0000-0000-0000-00000062' + hex), 'ori' + i))
       p.setPos(0.5, 200, 0.5); conn(p)
       var got = o == 'plain' ? 'plain' : setO(p, o)
+      // у нового ServerPlayer 60 тиков неуязвимости после появления (spawnInvulnerableTime) — отжидаем
+      for (var t0 = 0; t0 < 70; t0++) { p.setHealth(p.getMaxHealth()); p.doTick() }
       var hurt = 0
       for (var k = 0; k < HITS; k++) {
         p.setHealth(p.getMaxHealth()); p.invulnerableTime = 0
