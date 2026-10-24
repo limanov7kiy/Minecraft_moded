@@ -1,6 +1,6 @@
 // Поток 62: орипатия Bob's Originium Dream у каждой расы слоя origins:origin (и без расы).
-// Фейковый ServerPlayer (как racethought.js), раса через IOriginContainer, затем N ударов уроном bobsoriginiumdream:oridamage
-// (как от кристаллов/бури). Вывод: ORIPATHY <раса> hurt=<сколько ударов прошло> orillness=<индекс> oridisease=<тип 0-3>
+// Фейковый ServerPlayer (как racethought.js), раса через IOriginContainer, затем N событий LivingHurtEvent с уроном
+// bobsoriginiumdream:oridamage (как от кристаллов/бури), если сила Origins не даёт неуязвимость к нему. Вывод: ORIPATHY <раса> hurt=<сколько ударов прошло> orillness=<индекс> oridisease=<тип 0-3>
 // protect=<orillnessprotect> complete=<oricompletelyprotect> — заражение (oridisease) у Bob's идёт только при complete != 0;
 // затем 120 тиков игрока (doTick) и те же значения — сброс силой arks:mm_ori_immune / arks:human/ori раз в 100 тиков.
 ServerEvents.tick(event => {
@@ -19,6 +19,9 @@ ServerEvents.tick(event => {
   var OA = Java.loadClass('io.github.edwinmindcraft.origins.api.OriginsAPI')
   var Cont = Java.loadClass('io.github.edwinmindcraft.origins.api.capabilities.IOriginContainer')
   var Reg = Java.loadClass('io.github.edwinmindcraft.origins.api.registry.OriginsDynamicRegistries')
+  var MF = Java.loadClass('net.minecraftforge.common.MinecraftForge')
+  var LHE = Java.loadClass('net.minecraftforge.event.entity.living.LivingHurtEvent')
+  var Inv = Java.loadClass('io.github.edwinmindcraft.apoli.common.power.InvulnerablePower')
   var attr = n => REG.ATTRIBUTES.getValue(new RL('bobsoriginiumdream', n))
   var A = { ill: attr('orillness'), dis: attr('oridisease'), prot: attr('orillnessprotect'), comp: attr('oricompletelyprotect') }
   var v = (p, a) => { var i = p.getAttribute(a); return i == null ? 'n/a' : i.getValue() }
@@ -37,23 +40,18 @@ ServerEvents.tick(event => {
       var p = new SPL(server, level, new GP(UU.fromString('00000000-0000-0000-0000-00000062' + hex), 'ori' + i))
       p.setPos(0.5, 200, 0.5); conn(p)
       var got = o == 'plain' ? 'plain' : setO(p, o)
-      // у нового ServerPlayer 60 тиков неуязвимости после появления (spawnInvulnerableTime, убывает в ServerPlayer.tick) — отжидаем
-      for (var t0 = 0; t0 < 70; t0++) p.tick()
-      if (i == 0) { try { log('diag invulnerableTo=' + p.isInvulnerableTo(dmg()) + ' creative=' + p.isCreative() + ' difficulty=' + level.getDifficulty()) } catch (err) { log('diag-error=' + err) } }
+      // Фейковый игрок вне мира для ванильного hurt() «неуязвим», поэтому шлём LivingHurtEvent напрямую (его слушают
+      // процедуры Bob's: Orichange — индекс, Oripathy1 — тип болезни), а иммунитет Origins (сила invulnerability) проверяем сами.
+      if (i == 0) log('diag isInvulnerableTo=' + p.isInvulnerableTo(dmg()) + ' removed=' + p.isRemoved() + ' changingDim=' + p.isChangingDimension())
+      var immune = Inv.isInvulnerableTo(p, dmg())
       var hurt = 0
-      for (var k = 0; k < HITS; k++) {
-        p.setHealth(p.getMaxHealth()); p.invulnerableTime = 0
-        var h0 = p.getHealth()
-        var r = p.attack(dmg(), 0.5)
-        if (p.getHealth() < h0) hurt++
-        if (i == 0 && k == 0) log('diag attack=' + r + ' health ' + h0 + ' -> ' + p.getHealth())
-      }
+      if (!immune) for (var k = 0; k < HITS; k++) { MF.EVENT_BUS.post(new LHE(p, dmg(), 0.5)); hurt++ }
       p.setHealth(p.getMaxHealth())
       var hit = 'orillness=' + v(p, A.ill) + ' oridisease=' + v(p, A.dis)
       // 120 тиков игрока: силы с таймером (сброс орипатии у иммунных рас раз в 100 тиков)
       var ticked = 'ok'
       try { for (var t = 0; t < 120; t++) { p.setHealth(p.getMaxHealth()); p.doTick() } } catch (err) { ticked = 'tick-error=' + err }
-      log(o + ' got=' + got + ' hurt=' + hurt + '/' + HITS + ' ' + hit + ' | after120t(' + ticked + ') orillness=' + v(p, A.ill) + ' oridisease=' + v(p, A.dis) + ' protect=' + v(p, A.prot) + ' complete=' + v(p, A.comp))
+      log(o + ' got=' + got + ' originsImmune=' + immune + ' hurt=' + hurt + '/' + HITS + ' ' + hit + ' | after120t(' + ticked + ') orillness=' + v(p, A.ill) + ' oridisease=' + v(p, A.dis) + ' protect=' + v(p, A.prot) + ' complete=' + v(p, A.comp))
     } catch (err) { log(o + ' error=' + err) }
   })
   log('done ' + races.length)
