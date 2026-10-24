@@ -78,7 +78,7 @@ hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "00e270fbfac1854a6db6535f92a394a690307c692ae59544e7def7f0cac9237a"
+hash = "78f3f50b81732c06f62ab7977f4ac1d64f3320bac4ba37da57dec770e1b6a855"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -1369,12 +1369,28 @@ file = "kubejs/data/animus/advancements/root.json"
 hash = "1a9e6f2e35892591510d8f00f6b4f86e68a710a082a4e7406e4a194a338ec4db"
 
 [[files]]
+file = "kubejs/data/arks/origins/seaborn.json"
+hash = "085e5ed8d710ab8e39b2857eeefb941b415a174ba3194c5d9234a1bb3a9610e0"
+
+[[files]]
+file = "kubejs/data/arks/origins/seaborn_endspeaker.json"
+hash = "d037c791aaca8e17d047e86b01893dae95c3eedba8b4ba16bb5a1a06e91ef0a1"
+
+[[files]]
+file = "kubejs/data/arks/origins/seahunter.json"
+hash = "be000677fcd7f8ecda73eeff1d8e76b75cda231dd5a17936ef4809ce9d3c19bd"
+
+[[files]]
 file = "kubejs/data/arks/powers/human/ori.json"
 hash = "505fb25ab658bb51ac3eaf8efb71250eb6ab606d9dac2319c3285a8588ee187c"
 
 [[files]]
 file = "kubejs/data/arks/powers/human/thought.json"
 hash = "34808717c95351e39e5f19cef471bdc0ad5f5fe8315b88290c5ab38893ec9a97"
+
+[[files]]
+file = "kubejs/data/arks/powers/mm_ori_immune.json"
+hash = "decd5024cd519327f8cf4a1dba37f8cb6e99f9743357bd39cc282bd9a57a9866"
 
 [[files]]
 file = "kubejs/data/arks/powers/sarkaz/thought.json"
