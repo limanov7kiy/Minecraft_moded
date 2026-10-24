@@ -78,7 +78,7 @@ hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "d60789092cdff8d6a98d62ad92f12a57420fb3e14fab2fb8202c8e5984ed91c6"
+hash = "8192f31b124af89f969850a8bbc7ab019454b5134a51d233824e2fc16c2512e0"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -1365,6 +1365,14 @@ file = "kubejs/data/ancient_aether/recipes/ancient_rune.json"
 hash = "61c01488bd1bc9113ef1a64e626a0ba9dbbe7d4178d4d8767c0e9cb3d8cdf4a2"
 
 [[files]]
+file = "kubejs/data/animus/advancements/root.json"
+hash = "1a9e6f2e35892591510d8f00f6b4f86e68a710a082a4e7406e4a194a338ec4db"
+
+[[files]]
+file = "kubejs/data/arks/powers/human/ori.json"
+hash = "505fb25ab658bb51ac3eaf8efb71250eb6ab606d9dac2319c3285a8588ee187c"
+
+[[files]]
 file = "kubejs/data/arks/powers/human/thought.json"
 hash = "34808717c95351e39e5f19cef471bdc0ad5f5fe8315b88290c5ab38893ec9a97"
 
@@ -1375,6 +1383,10 @@ hash = "34808717c95351e39e5f19cef471bdc0ad5f5fe8315b88290c5ab38893ec9a97"
 [[files]]
 file = "kubejs/data/arks/powers/sarkaz_nephesh/thought.json"
 hash = "7ef3127aa09ec9db33ceceafe4e6ce6f9332a33785249f9ea874ae8b95bcc662"
+
+[[files]]
+file = "kubejs/data/arks/tags/damage_type/human_ori_immune.json"
+hash = "59885f5132ce32de799800cc99fbdc6e91521877d7e25de743184100f0018d4b"
 
 [[files]]
 file = "kubejs/data/ars_controle/patchouli_books/ars_controle/book.json"
