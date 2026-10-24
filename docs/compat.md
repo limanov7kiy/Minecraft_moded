@@ -1407,7 +1407,7 @@ DH на выделенном сервере сам ничего не генер�
   `enchantments_in_loot = false` — поэтому книги AC в `eso_enchant_books.js` делаются через `set_enchantments`, не `enchant_randomly`.
   Подробно и таблица «чара → где взять книгу» — `docs/enchanting-table.md`.
 
-## R-009 / R-010: раса Origins, сила `arks:human/ori`, достижения Animus (поток 58, 2026-10-24, сборка 2026.10.24-1)
+## R-009 / R-010: раса Origins, сила `arks:human/ori`, достижения Animus (поток 58, 2026-10-24, сборка 2026.10.24-2)
 Отчёты игроков на 2026.10.19-5: «пропал класс и бафы класса» (один раз) и «раса не работает» (каждый раз, без деталей).
 В логе у всех: `Power "arks:human/ori" will only be partially loaded: … Unknown registry key: origins:type`.
 
