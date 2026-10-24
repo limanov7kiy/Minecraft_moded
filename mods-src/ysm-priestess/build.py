@@ -671,9 +671,9 @@ def build_main(default_geo):
     G.mirror("LeftArm", "RightArm"); G.mirror("LeftForeArm", "RightForeArm")
 
     # ================= ноги: стройные, колготки с бликом, туфли с бантом и ремешком-крестом
-    cb("LeftLeg", (0.6, 11.65, -1.6), (3.1, 10, 3.2), tights(top=True))
-    cb("LeftLowerLeg", (0.72, 2.0, -1.45), (2.86, 10.0, 2.9), tights(knee=True))
-    cb("LeftLowerLeg", (1.25, 10.7, -1.62), (1.8, 1.5, 0.2), "tights", faces=["north", "east", "west", "up", "down"])
+    cb("LeftLeg", (0.3, 11.65, -1.9), (4.0, 10, 3.8), tights(top=True))
+    cb("LeftLowerLeg", (0.5, 2.0, -1.7), (3.5, 10.0, 3.4), tights(knee=True))
+    cb("LeftLowerLeg", (1.2, 10.7, -1.82), (2.1, 1.5, 0.2), "tights", faces=["north", "east", "west", "up", "down"])
     cb("LeftFoot", (0.55, 0, -1.95), (3.3, 2.1, 3.9), "shoe")
     cb("LeftFoot", (0.62, 0, -4.05), (3.16, 1.55, 2.2), "shoe")
     cb("LeftFoot", (0.95, 0, -4.35), (2.5, 1.25, 0.35), "shoe")
