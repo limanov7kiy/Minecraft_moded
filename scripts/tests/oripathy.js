@@ -1,7 +1,8 @@
 // Поток 62: орипатия Bob's Originium Dream у каждой расы слоя origins:origin (и без расы).
 // Фейковый ServerPlayer (как racethought.js), раса через IOriginContainer, затем N ударов уроном bobsoriginiumdream:oridamage
 // (как от кристаллов/бури). Вывод: ORIPATHY <раса> hurt=<сколько ударов прошло> orillness=<индекс> oridisease=<тип 0-3>
-// protect=<orillnessprotect> complete=<oricompletelyprotect> — заражение (oridisease) у Bob's идёт только при complete != 0.
+// protect=<orillnessprotect> complete=<oricompletelyprotect> — заражение (oridisease) у Bob's идёт только при complete != 0;
+// затем 120 тиков игрока (doTick) и те же значения — сброс силой arks:mm_ori_immune / arks:human/ori раз в 100 тиков.
 ServerEvents.tick(event => {
   var server = event.server
   if (server.tickCount != 300) return
@@ -44,7 +45,11 @@ ServerEvents.tick(event => {
         if (p.getHealth() < h0) hurt++
       }
       p.setHealth(p.getMaxHealth())
-      log(o + ' got=' + got + ' hurt=' + hurt + '/' + HITS + ' orillness=' + v(p, A.ill) + ' oridisease=' + v(p, A.dis) + ' protect=' + v(p, A.prot) + ' complete=' + v(p, A.comp))
+      var hit = 'orillness=' + v(p, A.ill) + ' oridisease=' + v(p, A.dis)
+      // 120 тиков игрока: силы с таймером (сброс орипатии у иммунных рас раз в 100 тиков)
+      var ticked = 'ok'
+      try { for (var t = 0; t < 120; t++) { p.setHealth(p.getMaxHealth()); p.doTick() } } catch (err) { ticked = 'tick-error=' + err }
+      log(o + ' got=' + got + ' hurt=' + hurt + '/' + HITS + ' ' + hit + ' | after120t(' + ticked + ') orillness=' + v(p, A.ill) + ' oridisease=' + v(p, A.dis) + ' protect=' + v(p, A.prot) + ' complete=' + v(p, A.comp))
     } catch (err) { log(o + ' error=' + err) }
   })
   log('done ' + races.length)
