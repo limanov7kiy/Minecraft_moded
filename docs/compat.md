@@ -1460,4 +1460,4 @@ DH на выделенном сервере сам ничего не генер�
   механики мода (усиление мобов, контракты, хроники) не тронуты. Вернуть: удалить файл и `/enableBonus true`.
 - После: `MOBDROPS_DONE bad=0`, `ccbonus=0` у всех 1000 мобов, корова из «старого чанка» (summon с `bonusable = 1`) → `bonusable=0`; дроп — ваниль + задуманные добавки модов (книги заклинаний EBWizardry
   ~1–2 %, «мысли» и `soul_spirit_matter` Sarkaz's Furnace Side Fables при убийстве игроком, филе Arknights Endfield с коров,
-  `aggagrit*` Arknights Endfield со скелетов, лук/морковь у зомби). SERVER OK.
+  `aggagrit*` Arknights Endfield со скелетов, лук/морковь у зомби). SERVER OK, CLIENT OK (меню за 576 с, llvmpipe).
