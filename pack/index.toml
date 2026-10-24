@@ -1798,7 +1798,7 @@ hash = "a75d5d611e58e3c80bbf0244f82a8a8351c4e8c4aa0f3a1c56da5343aa6d5ae5"
 
 [[files]]
 file = "kubejs/server_scripts/cc_rare_mob_bonus.js"
-hash = "6f635c322fedc3176b13c5631f69efb25c2ba1bd7f67fc89d3fe31f6c6e8ab77"
+hash = "f1bcbfdeca44fca0869d0e40d00756a22564286b4b44f8451e0dd77a633154dd"
 
 [[files]]
 file = "kubejs/server_scripts/eso_enchant_books.js"
