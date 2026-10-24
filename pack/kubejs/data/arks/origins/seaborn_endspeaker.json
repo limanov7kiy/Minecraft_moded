@@ -1,0 +1,18 @@
+{
+  "loading_priority": 10,
+  "powers": [
+    "arks:seaborn/status",
+    "arks:seaborn/modify",
+    "arks:seaborn/waterful",
+    "arks:seaborn_endspeaker/skill",
+    "arks:seaborn_endspeaker/time",
+    "arks:seaborn_endspeaker/power",
+    "arks:seaborn_endspeaker/modify1",
+    "arks:mm_ori_immune"
+  ],
+  "icon": {
+    "item": "caerula_arbor:endspeaker_spawnegg"
+  },
+  "order": 49,
+  "impact": 3
+}

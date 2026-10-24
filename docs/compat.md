@@ -1487,3 +1487,39 @@ DH на выделенном сервере сам ничего не генер�
     `crisis_coin`… — блоков, незерита и пр. нет.
 - Откат: полностью выключить — вернуть `cc_no_mob_bonus.js` из PR #154 (`git show 1188f03:pack/kubejs/server_scripts/cc_no_mob_bonus.js`) вместо
   `cc_rare_mob_bonus.js` и `/enableBonus false`; вернуть исходную награду мода — удалить перекрытие таблицы; другой шанс — `CC_KEEP` в скрипте.
+
+## Орипатия Bob's Originium Dream на всех расах, кроме лорно иммунных (поток 62, 2026-10-24, сборка 2026.10.24-5, В50 «б»)
+Просьба владельца: «чтобы орипатия работала на все расы», но «не должна действовать на тех, у кого по лору есть к ней иммунитет
+(раса Предтеч, Эбисалы… из этой серии)».
+
+**Как устроено (код Bob's 1.1.1):** индекс `bobsoriginiumdream:orillness` +1 за каждый урон `bobsoriginiumdream:oridamage` (кристаллы,
+ядра, буря, мобы) любому существу (`OrichangeProcedure`, кроме полного комплекта брони oriprotect, до 150). Тип болезни
+`oridisease` 1–3 (бафф + дебафф при уроне, см. `Oripathy1Procedure`/`OrillinessbenefitProcedure`) ставится игроку, **только если
+`oricompletelyprotect` ≠ 0** (по умолчанию 1) и правило `oriillness` включено. От расы Bob's сам ничего не зависит.
+
+**Было (тест `scripts/tests/oripathy.js`, 61 раса слоя `origins:origin` + без расы, 40 событий урона `oridamage`):** заражаются все,
+кроме `arks:human` («Pre-human» = Предтеча, в моде — Доктор): сила `arks:human/ori` (наш оверрайд #152) — неуязвимость к урону
+ориджиниумом, `oricompletelyprotect` −1, сброс `oridisease`. Seaborn/Endspeaker только −10 индекса раз в 5 мин, Abyssal Hunter — обычный.
+Ванильные Origins (human, avian, arachnid, blazeborn, elytrian, enderian, feline, merling, phantom, shulk) и игрок без расы — заражаются.
+
+**Стало:** новая сила `pack/kubejs/data/arks/powers/mm_ori_immune.json` («Иммунитет к орипатии»: `oricompletelyprotect` −1,
+`orillnessprotect` +20, сброс `orillness` и `oridisease` в 0 раз в 100 тиков; урон ориджиниумом проходит — неуязвимость к самому урону
+только у Предтечи, как задумано модом) добавлена расам переопределением `pack/kubejs/data/arks/origins/{seahunter,seaborn,seaborn_endspeaker}.json`
+(копии из jar Arknights Races 1.5.3 + `arks:mm_ori_immune`, `loading_priority` 10).
+
+| Раса | Орипатия | Почему |
+|---|---|---|
+| `arks:human` (Pre-human, Предтеча) | **нет** | лор и задумка мода, сила `arks:human/ori` (без изменений) |
+| `arks:seahunter` (Абиссальные охотники) | **нет** | лор: гены Seaborn, `arks:mm_ori_immune` |
+| `arks:seaborn`, `arks:seaborn_endspeaker` | **нет** | лор: Seaborn «из той же серии», `arks:mm_ori_immune` (В50 владельцу — подтверждение) |
+| `arks:agir` (обычные Эгир) | да | по лору не иммунны, в Эгире просто мало ориджиниума (В50 владельцу — подтверждение) |
+| `arks:sankta`, `arks:elf` и остальные 43 расы Arknights | да | по лору заражаются (Эльфы, по описанию мода, особенно уязвимы) |
+| 10 рас ванильных Origins, без расы | да | не из Arknights — по решению владельца орипатия на них действует |
+
+Тест «после» (тот же `oripathy.js`, урон → 120 тиков игрока): у трёх иммунных `orillness` 40 → 0, `oridisease` → 0, `complete=0`
+`protect=20`; у Предтечи урон не проходит (0/40); у остальных 57 — `orillness` 40, `oridisease` 1–3. Ошибок загрузки новой силы и
+рас в логе нет (прежнее `arks:seaborn_endspeaker/modify1` «partially loaded» — см. R-009/R-010).
+Тонкость: тест шлёт `LivingHurtEvent` напрямую (фейковый игрок вне мира для ванильного `hurt()` неуязвим), неуязвимость Origins проверяет
+`InvulnerablePower.isInvulnerableTo`. Между ударом и сбросом (≤ 5 с) индекс у иммунных может ненадолго подняться — эффектов это не даёт.
+- Откат: удалить `pack/kubejs/data/arks/powers/mm_ori_immune.json` и папку `pack/kubejs/data/arks/origins/` (расы вернутся к jar).
+  Сделать иммунной/неиммунной ещё одну расу: скопировать её `data/arks/origins/<раса>.json` из jar, добавить/убрать `arks:mm_ori_immune`.

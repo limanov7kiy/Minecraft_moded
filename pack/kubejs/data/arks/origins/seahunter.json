@@ -1,0 +1,16 @@
+{
+  "loading_priority": 10,
+  "powers": [
+    "arks:seahunter/status",
+    "arks:seahunter/modify",
+    "arks:agir/waterful",
+    "arks:agir/crafting_table",
+    "arks:mm_ori_immune"
+  ],
+  "icon": {
+    "item": "caerula_arbor:hunter_gene"
+  },
+  "unchoosable": true,
+  "order": 1,
+  "impact": 3
+}
