@@ -1406,3 +1406,34 @@ DH на выделенном сервере сам ничего не генер�
 - **Подвох для лута:** Alex's Caves миксином в `EnchantRandomlyFunction` подменяет свои чары на случайные чужие, пока в его конфиге
   `enchantments_in_loot = false` — поэтому книги AC в `eso_enchant_books.js` делаются через `set_enchantments`, не `enchant_randomly`.
   Подробно и таблица «чара → где взять книгу» — `docs/enchanting-table.md`.
+
+## R-009 / R-010: раса Origins, сила `arks:human/ori`, достижения Animus (поток 58, 2026-10-24, сборка 2026.10.24-2)
+Отчёты игроков на 2026.10.19-5: «пропал класс и бафы класса» (один раз) и «раса не работает» (каждый раз, без деталей).
+В логе у всех: `Power "arks:human/ori" will only be partially loaded: … Unknown registry key: origins:type`.
+
+- **`arks:human/ori`** — сила расы «Человек» из jar Arknights Races 1.5.3 (не наш оверрайд; #124 трогал только
+  `arks:*/thought`). Три подсилы `invulnerability` проверяли урон условием `origins:type` + `damage_type` — в Apoli 2.9
+  (Origins-Forge 1.10.0.9) такого условия урона нет (типы урона с 1.19.4 — через теги: `origins:in_tag`). Apoli отбрасывал
+  эти три подсилы, остальное грузилось: Человек терял **иммунитет к урону ориджиниумом** (`bobsoriginiumdream:oridamage`,
+  `origintantdamage`, `oribleed`). Бонус нагрузки мыслей (#124, отдельная сила `thought`) и «Орипатия» (атрибуты
+  `orillnessprotect` +20 / `oricompletelyprotect` −1 и сброс `oridisease` раз в 5 с) не задеты.
+  Починка: `pack/kubejs/data/arks/powers/human/ori.json` (`loading_priority` 10, копия оригинала) — три подсилы заменены
+  одной `immune` с `origins:in_tag` → тег `pack/kubejs/data/arks/tags/damage_type/human_ori_immune.json` (те же три типа урона).
+  Предупреждение в логе **остаётся** — Apoli всё равно читает копию из jar, но в реестр попадает наша (`ori_immune` есть, `ori_immune1` нет).
+- Другие «partially loaded» на сервере (все силы Origins-паков, кроме этих, читаются чисто):
+  `arks:seaborn_endspeaker/modify1` — нет предмета `caerula_arbor:whole_collector_cooked` (в Caerula Arbor 0.12.7.2, видимо,
+  `cooked_collector`): у «Глашатая» нет одного бонуса еды (регенерация 60 с), остальное работает; `arks:sankta/status` —
+  атрибут `gunsmithlib:reload_speed` (мода нет в сборке): у Санкты нет только ускорения перезарядки. Не чинили — мелочь.
+  В слоях Origins есть ссылки на несуществующие происхождения (`arkarts:eldritch`, `arkbranches:defender_guardian`,
+  `defender_juggermaut`) — их просто нет в выборе; `defender_fortress` и `defender_ars_protector` есть в jar, но в слой не внесены.
+- **Сброс расы** (`scripts/tests/origincheck.js`, фейковый игрок: Человек + Guard + Guard Lord + Fire): после выбора, смерти
+  и штатного `PlayerList.respawn`, `/tp` в Незер и обратно, выхода и **перезапуска сервера** (второй запуск того же мира,
+  `PlayerList.load`) — все 4 слоя, 13 сил, иммунитет `111` и предел мыслей 25 на месте. В `pack/kubejs`, конфигах и своих модах
+  ничего не меняет и не сбрасывает происхождение. Origins-Forge сам стирает происхождение только если его ID или ID слоя
+  пропали из реестра (`OriginContainer.deserializeNBT` «Missing origin/layer») — версии модов рас с 18.10 не менялись.
+  Причина R-010 не найдена; нужен вывод `/origin get @s origins:arkclass_layers` в момент пропажи и что было до этого.
+  У фейкового игрока `PlayerList.respawn` падает NPE в Xaero's lib (нет `ServerPlayerData`) — тест заводит её вручную.
+- **Animus** (аддон Blood Magic): `animus:root` — родитель `bloodmagic:recipes/misc/sacrificial_dagger`, а Quark
+  «Automatic Recipe Unlock» удаляет все рецептные достижения (13 885) → вся ветка Animus (9 достижений) не грузилась.
+  На игру не влияло (только вкладка достижений). Починка: `pack/kubejs/data/animus/advancements/root.json` без родителя —
+  своя вкладка с фоном алтаря. Ошибок `Couldn't load advancement animus:*` больше нет.

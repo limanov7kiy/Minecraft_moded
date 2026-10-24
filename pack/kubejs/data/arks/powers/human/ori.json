@@ -1,0 +1,56 @@
+{
+  "type": "origins:multiple",
+  "loading_priority": 10,
+  "melee": {
+    "type": "origins:modify_damage_dealt",
+    "modifier": {
+      "operation": "multiply_base",
+      "value": 0.5
+    },
+    "target_condition": {
+      "type": "origins:in_tag",
+      "tag": "bobsoriginiumdream:oricreature"
+    }
+  },
+  "projectile": {
+    "type": "origins:modify_projectile_damage",
+    "modifier": {
+      "operation": "multiply_base",
+      "value": 0.5
+    },
+    "target_condition": {
+      "type": "origins:in_tag",
+      "tag": "bobsoriginiumdream:oricreature"
+    }
+  },
+  "attribute": {
+    "type": "origins:attribute",
+    "modifiers": [
+      {
+        "attribute": "bobsoriginiumdream:oricompletelyprotect",
+        "value": -1,
+        "operation": "addition"
+      },
+      {
+        "attribute": "bobsoriginiumdream:orillnessprotect",
+        "value": 20,
+        "operation": "addition"
+      }
+    ]
+  },
+  "immune": {
+    "type": "origins:invulnerability",
+    "damage_condition": {
+      "type": "origins:in_tag",
+      "tag": "arks:human_ori_immune"
+    }
+  },
+  "illness": {
+    "type": "origins:action_over_time",
+    "entity_action": {
+      "type": "origins:execute_command",
+      "command": "attribute @s bobsoriginiumdream:oridisease base set 0"
+    },
+    "interval": 100
+  }
+}
