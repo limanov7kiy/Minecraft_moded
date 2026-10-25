@@ -2193,6 +2193,11 @@ file = "mods/chaospersists-1.20.1-0.9.1.jar"
 hash = "f868d47bf5a8cf4a327df98ae896e9e0d55fd1bf1858f3d851e8a60c38ab6698"
 
 [[files]]
+file = "mods/chunky.pw.toml"
+hash = "0e17f9758f6f67ef87aa6f8d5afc47901521a05904cd8470ef65063b48e69d73"
+metafile = true
+
+[[files]]
 file = "mods/cinematic-cataclysm.pw.toml"
 hash = "51a26b15b158cb016944b8ac19d3badc251ccde6ce58d8143e0a37524ea09ce7"
 metafile = true

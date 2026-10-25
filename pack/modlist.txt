@@ -12,6 +12,7 @@ mr async-locator          # сервер
 mr clumps
 mr saturn
 mr spark                  # профайлер лагов
+mr chunky                 # both: прегенерация мира командами /chunky (В51, поток 64); сам ничего не запускает — docs/friends.md «Прегенерация»
 mr embeddium              # клиент
 mr oculus                 # клиент, шейдеры
 mr entityculling          # клиент
