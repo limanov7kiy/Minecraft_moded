@@ -17,7 +17,7 @@
 | [Еда и фермерство](food.md) | 10 | Farmer's Delight и его связки с остальными модами. |
 | [Мир: выживание, погода и катастрофы](world.md) | 9 | Температура и жажда, сезоны, штормы, торнадо, метеориты и обереги от них. |
 | [Удобство, хранилища и строительство](qol.md) | 13 | Рюкзаки, вейстоуны, гробницы, сундуки, WorldEdit, декор и мелкие улучшения. |
-| [Оптимизация, интерфейс и ресурспаки](optimization-ui.md) | 37 | Моды производительности, JEI и его дополнения, карты, подсказки, русификация. |
+| [Оптимизация, интерфейс и ресурспаки](optimization-ui.md) | 38 | Моды производительности, JEI и его дополнения, карты, подсказки, русификация. |
 | [Звук и голосовой чат](voice.md) | 9 | Simple Voice Chat, рации, физика звука. |
 | [Модели и косметика (YSM)](ysm.md) | 1 | Yes Steve Model — свои модели игроков. Подробности — docs/ysm-models.md. |
 | [Библиотеки и инструменты](libraries.md) | 52 | Модули, нужные другим модам, а также KubeJS и Almost Unified. |
@@ -110,6 +110,7 @@
 - [CBC: Nukes](own.md#cbc_nukes) — Свои моды и патчи
 - [CERBON's API](libraries.md#cerbons-api) — Библиотеки и инструменты
 - [Chaos Persists](mobs.md#chaospersists) — Мобы и боссы
+- [Chunky](optimization-ui.md#chunky) — Оптимизация, интерфейс и ресурспаки
 - [Cinematic Cataclysm](mobs.md#cinematic-cataclysm) — Мобы и боссы
 - [Citadel](libraries.md#citadel) — Библиотеки и инструменты
 - [Clanging Howl](mobs.md#clanging-howl) — Мобы и боссы

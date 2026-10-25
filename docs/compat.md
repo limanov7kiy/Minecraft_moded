@@ -1538,3 +1538,22 @@ DH на выделенном сервере сам ничего не генер�
   загрузки моделей YSM, не модель. `CLIENT OK` (510 с) из `.mrpack` 2026.10.25-1; ошибок по Priestess в логе нет, клиент YSM
   в облаке по-прежнему отказывается работать (`YSM client cannot run under a virtual machine`, К7). В игре глазами (клиент YSM в облаке не запускается, К7) — по чек-листу в `docs/ysm-models.md`.
 - **Откат:** `git revert` коммита PR (модель — генерируемые файлы в `pack/config/yes_steve_model/custom/priestess/`).
+
+## Chunky — прегенерация мира (поток 64, 2026-10-25, решение владельца В51)
+Chunky 1.3.146 (popcraft, GPL-3.0, Modrinth, сторона `both`: сервер и клиент для одиночной игры). Строка в `pack/modlist.txt` («Оптимизация»), `pack/mods/chunky.pw.toml`.
+Инструкция игрокам — `docs/friends.md`, «Прегенерация мира (Chunky)»; энциклопедия — «Оптимизация», карточка Chunky.
+- **Найдено: падение сервера при старте** с Distant Horizons 3.3.3: DH на первой загрузке чанка (`ServerApi.serverChunkLoadEvent` →
+  `AbstractChunkyAccessor.tryRunFirstTimeSetup` → `ChunkyAccessor.bindOnGenerationProgressEvent`) вызывает `ChunkyProvider.get()`, а Chunky на Forge
+  создаётся позже → `IllegalStateException: Chunky is not loaded` внутри `ChunkEvent.Load` → краш «Exception during promotion of chunk to FULL status»
+  через несколько секунд после `Done` (воспроизводилось в 2 из 2 запусков). **Исправление — mm-compat 0.5.7, `DhChunkyBindMixin`**: пока `ChunkyProvider.get()` бросает,
+  `tryRunFirstTimeSetup` отменяется без флага `listenerBound`, DH повторяет на следующем чанке (в логе один раз
+  `mm_compat: Distant Horizons ждёт запуска Chunky…`). Подписка DH нужна только чтобы выключать собственную генерацию DH на время Chunky (у нас она и так выключена).
+- **Найдено попутно: `scripts/test-server.sh` писал `SERVER OK` при краше после `Done`** (смотрел только на строку `Done`). Теперь при файле в `crash-reports/` — `SERVER FAILED: crash after start`.
+- **Автозапуска нет**: `config/chunky/config.json` по умолчанию `"continueOnRestart": false` (файл сборкой не переопределяется). Проверка: задача радиуса 400 запущена,
+  сервер остановлен на 50 %, после перезапуска через 2 мин `/chunky progress` → `[Chunky] No tasks running.` Задача лежит в `config/chunky/tasks/` и продолжается только `/chunky continue`.
+- **Скорость и место** (тестовый сервер, 4 общих ядра, Xmx 8G, верхний мир у (0,0) с Lost Cities): 1 319 чанков за ~4 мин — в начале 7–9 чанков/с, к концу 3,5
+  (города); мир 75 МБ (регионы 47 МБ + LOD Distant Horizons 12 МБ + прочее) → ориентир ≈ 50 КБ на чанк. Пока Chunky работает — «Can't keep up» до 8 с (7 раз за 4 мин):
+  запускать, когда никто не играет.
+- **Проверка**: `test-server.sh` — `SERVER OK` (краш-отчётов нет) в двух запусках подряд, `[Chunky] Task started… Task running… Task stopped`.
+- **Откат**: удалить строку `mr chunky` из `pack/modlist.txt` и `pack/mods/chunky.pw.toml`, `packwiz refresh` (mm-compat 0.5.7 без Chunky безвреден — миксин
+  срабатывает только если DH создал адаптер Chunky).
