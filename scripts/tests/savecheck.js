@@ -8,7 +8,7 @@
 var SC = { phase: 0, t: 0, last: 0, held: [] }
 function dimId(l) { try { return String(l.dimension.location()) } catch (e) { return String(l.dimension) } }
 function nPlayers(l) { try { return l.players.size() } catch (e) { return '?' } }
-function nano() { return Java.loadClass('java.lang.System').nanoTime() }
+function nano() { return Date.now() * 1e6 }   // java.lang.System закрыт фильтром классов KubeJS
 function stats(server, tag) {
   var tot = 0, dims = 0, withChunks = 0
   server.getAllLevels().forEach(l => {
@@ -51,7 +51,7 @@ ServerEvents.tick(event => {
   if (SC.last && now - SC.last > 1000 && SC.phase != 1) console.info('SAVECHECK GAP tick=' + T + ' ms=' + (now - SC.last) + ' phase=' + SC.phase + ' tick%6000=' + (T % 6000))
   SC.last = now
   if (SC.phase == 0 && T >= 2400) {
-    stats(server, 'A'); timeSave(server, 'A'); SC.phase = 1; SC.last = Date.now(); return
+    SC.phase = 1; stats(server, 'A'); timeSave(server, 'A'); SC.last = Date.now(); return
   }
   if (SC.phase == 1) {
     var t0 = Date.now()
@@ -69,7 +69,7 @@ ServerEvents.tick(event => {
     SC.phase = 2; SC.t = Date.now(); SC.last = Date.now(); return
   }
   if (SC.phase == 2 && now - SC.t > 60000) {
-    stats(server, 'C'); timeSave(server, 'C'); SC.phase = 3; SC.t = Date.now(); SC.last = Date.now(); return
+    SC.phase = 3; stats(server, 'C'); timeSave(server, 'C'); SC.t = Date.now(); SC.last = Date.now(); return
   }
   if (SC.phase == 3 && now - SC.t > 30000) { stats(server, 'D'); SC.phase = 4; console.info('SAVECHECK DONE') }
 })
