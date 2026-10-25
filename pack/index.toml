@@ -78,7 +78,7 @@ hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "406c2311cfed7133e89dd1b05615a442405250c389c64ea757bdf97516a6a787"
+hash = "22a46f28628bafb131e83826b26c6aa7159021f5becdd642f37d7872ce2af091"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -1166,7 +1166,7 @@ hash = "37cc6952c62fbe24376a1effdca702a015ae224c4cde5c042e2ed70a94987fb9"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/animations/main.animation.json"
-hash = "45cf7d8e4eb54ea038fb3929b4a9d0bb2849015634054d00ae208a2c56b549b8"
+hash = "e5a1440eba90c254d6a6cd354740053127fd0ac008798eae5a0d18412351eeac"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/animations/tac.animation.json"
@@ -1186,15 +1186,15 @@ hash = "3ac7b04dcac9e6ecd2079112055fbd62adbafb4578a71b5d8e0ae26f7492b9f2"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/models/arm.json"
-hash = "0d6cdf98b918a7f8347947d89f2ad52ba3205af3c28fd36dd51a779b6110378f"
+hash = "c67ccb41b3ce04d2f6dc523af384ed94db427a2180a6ba855cfe3403f97f87be"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/models/main.json"
-hash = "d5d4395b8667039032029f4d2b138eed72bce2334ba4aa73c1499d91ed56f7d9"
+hash = "9ca2ce217055f7f511a5c9cd56b0c0cb0f687201b036ddb8c8fb3f273f96abbb"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/textures/priestess.png"
-hash = "05cec26d2dbb0fc2156d697223fc51e2b96be8658f9a6c8f6b1cc90e2f293827"
+hash = "46f340753b2f65b935739854437223a3343bf4c1626cdd76a671d01e82fdbd40"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/ysm.json"
@@ -2760,8 +2760,8 @@ hash = "c25495262a852dc02886ec8c4b695f30e53264a2e3d881dd36ee9de16a1ef499"
 metafile = true
 
 [[files]]
-file = "mods/mm-compat-0.5.6.jar"
-hash = "2561a17122803e77a94146eacf89ec27b630d7ce160aaa8aa938ec52c5fd257f"
+file = "mods/mm-compat-0.5.7.jar"
+hash = "48080b03aec0f24b05f82da01d331cff5f295b846b72723fb29e4422aba7a794"
 
 [[files]]
 file = "mods/mm-perf-0.3.1-client.jar"
