@@ -1584,7 +1584,7 @@ Chunky 1.3.146 (popcraft, GPL-3.0, Modrinth, сторона `both`: сервер
 - **Найдено: падение сервера при старте** с Distant Horizons 3.3.3: DH на первой загрузке чанка (`ServerApi.serverChunkLoadEvent` →
   `AbstractChunkyAccessor.tryRunFirstTimeSetup` → `ChunkyAccessor.bindOnGenerationProgressEvent`) вызывает `ChunkyProvider.get()`, а Chunky на Forge
   создаётся позже → `IllegalStateException: Chunky is not loaded` внутри `ChunkEvent.Load` → краш «Exception during promotion of chunk to FULL status»
-  через несколько секунд после `Done` (воспроизводилось в 2 из 2 запусков). **Исправление — mm-compat 0.5.7, `DhChunkyBindMixin`**: пока `ChunkyProvider.get()` бросает,
+  через несколько секунд после `Done` (воспроизводилось в 2 из 2 запусков). **Исправление — mm-compat 0.5.8, `DhChunkyBindMixin`**: пока `ChunkyProvider.get()` бросает,
   `tryRunFirstTimeSetup` отменяется без флага `listenerBound`, DH повторяет на следующем чанке (в логе один раз
   `mm_compat: Distant Horizons ждёт запуска Chunky…`). Подписка DH нужна только чтобы выключать собственную генерацию DH на время Chunky (у нас она и так выключена).
 - **Найдено попутно: `scripts/test-server.sh` писал `SERVER OK` при краше после `Done`** (смотрел только на строку `Done`). Теперь при файле в `crash-reports/` — `SERVER FAILED: crash after start`.
@@ -1593,10 +1593,10 @@ Chunky 1.3.146 (popcraft, GPL-3.0, Modrinth, сторона `both`: сервер
 - **Скорость и место** (тестовый сервер, 4 общих ядра, Xmx 8G, верхний мир у (0,0) с Lost Cities): 1 319 чанков за ~4 мин — в начале 7–9 чанков/с, к концу 3,5
   (города); мир 75 МБ (регионы 47 МБ + LOD Distant Horizons 12 МБ + прочее) → ориентир ≈ 50 КБ на чанк. Пока Chunky работает — «Can't keep up» до 8 с (7 раз за 4 мин):
   запускать, когда никто не играет.
-- **Проверка**: `test-server.sh` — `SERVER OK` (краш-отчётов нет) в двух запусках подряд, `[Chunky] Task started… Task running… Task stopped`.
+- **Проверка**: `test-server.sh` — `SERVER OK` (краш-отчётов нет) в двух запусках подряд и после переименования в 0.5.8 (0.5.7 занят в PR #80), `[Chunky] Task started… Task running… Task stopped`.
 - **Клиент** (`test-client.sh`, Xmx 6G, `.mrpack` без jar YSM): одиночный мир открыт, игрок в мире (экран выбора происхождения), краша нет; во встроенном сервере
   Chunky успевает загрузиться раньше DH — строки `mm_compat: Distant Horizons ждёт…` нет. DH писал в чат «Distant Horizons: Chunky detected… LODs to have holes» —
   выключено в `pack/config/DistantHorizons.toml`: `[common.logging.warning] showModCompatibilityWarningsOnStartup = false` (остальные предупреждения DH — о памяти — включены);
   про «дыры» в LOD — строка в friends.md.
-- **Откат**: удалить строку `mr chunky` из `pack/modlist.txt` и `pack/mods/chunky.pw.toml`, `packwiz refresh` (mm-compat 0.5.7 без Chunky безвреден — миксин
+- **Откат**: удалить строку `mr chunky` из `pack/modlist.txt` и `pack/mods/chunky.pw.toml`, `packwiz refresh` (mm-compat 0.5.8 без Chunky безвреден — миксин
   срабатывает только если DH создал адаптер Chunky).

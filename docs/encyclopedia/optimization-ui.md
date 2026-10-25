@@ -139,7 +139,7 @@ _Обзор категории — вручную, следующие этапы
 - **Версия:** 3.3.3-1.20.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/distanthorizons)
 - **Что это:** Сильно увеличивает дальность прорисовки без потери производительности (упрощённые дальние чанки). _(источник: docs сборки)_
 - **В сборке:** дальняя прорисовка
-- **В наших docs:** [performance.md](../performance.md) (11), [compat.md](../compat.md) (8), [friends.md](../friends.md) (7), [roadmap.md](../roadmap.md) (4), [client-checklist.md](../client-checklist.md) (2), [orespawn.md](../orespawn.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (11), [performance.md](../performance.md) (11), [friends.md](../friends.md) (7), [roadmap.md](../roadmap.md) (4), [client-checklist.md](../client-checklist.md) (2), [orespawn.md](../orespawn.md) (1)
 <!-- auto:end card:distanthorizons -->
 
 ### Что даёт игроку
@@ -555,7 +555,7 @@ Jade показывает корректные данные на корабля�
 - **Версия:** 1.3.146 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/chunky)
 - **Что это:** Прегенерация мира командами /chunky: заранее создаёт местность в заданном радиусе. _(источник: docs сборки)_
 - **В сборке:** both: прегенерация мира командами /chunky (В51, поток 64); сам ничего не запускает — docs/friends.md «Прегенерация»
-- **В наших docs:** [friends.md](../friends.md) (21), [compat.md](../compat.md) (20), [performance.md](../performance.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (22), [friends.md](../friends.md) (21), [performance.md](../performance.md) (1)
 <!-- auto:end card:chunky -->
 
 ### Что даёт игроку
@@ -564,4 +564,4 @@ Jade показывает корректные данные на корабля�
 (`continueOnRestart = false` по умолчанию — прерванная задача после перезапуска не продолжается). Команды (оператор / читы в одиночке):
 `/chunky center [x z]`, `/chunky radius <блоки>`, `/chunky world <измерение>`, `/chunky start`, `/chunky pause`, `/chunky continue`, `/chunky cancel`, `/chunky progress`.
 Начать: у базы `/chunky center`, `/chunky radius 500`, `/chunky start` — на ночь или когда никто не играет (на 4 ядрах ~4–6 чанков/с, радиус 1000 ≈ 45–75 мин и ~800 МБ).
-Таблица времени и места — [friends.md](../friends.md), «Прегенерация мира (Chunky)». С Distant Horizons 3.3.3 нужен патч mm-compat 0.5.7 (`DhChunkyBindMixin`, см. [compat.md](../compat.md)).
+Таблица времени и места — [friends.md](../friends.md), «Прегенерация мира (Chunky)». С Distant Horizons 3.3.3 нужен патч mm-compat 0.5.8 (`DhChunkyBindMixin`, см. [compat.md](../compat.md)).
