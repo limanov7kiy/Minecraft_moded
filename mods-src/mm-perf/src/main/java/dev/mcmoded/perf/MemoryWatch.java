@@ -60,10 +60,12 @@ final class MemoryWatch {
             else if (a.startsWith("-Xms")) xmsArg = a.substring(4);
             else gc.append(gc.length() > 0 ? " " : "").append(a);
         }
+        String gcEn = gc.length() == 0 ? "default" : gc.toString();
         if (gc.length() == 0) gc.append("по умолчанию");
-        MmPerf.LOGGER.info("[mm_perf] память: Xmx {} ({} ГБ), Xms {}, ОЗУ ПК {} ГБ, свободно ОЗУ {} ГБ, ядер {}, GC {}",
+        MmPerf.LOGGER.info("[mm_perf] память: Xmx {} ({} ГБ), Xms {}, ОЗУ ПК {} ГБ, свободно ОЗУ {} ГБ, ядер {}, GC {} / memory: Xmx {} ({} GB), Xms {}, RAM {} GB, free RAM {} GB, cores {}, GC {}",
             xmxArg, String.format("%.1f", xmx), xmsArg, String.format("%.0f", phys), String.format("%.1f", free),
-            Runtime.getRuntime().availableProcessors(), gc);
+            Runtime.getRuntime().availableProcessors(), gc, xmxArg, String.format("%.1f", xmx), xmsArg, String.format("%.0f", phys),
+            String.format("%.1f", free), Runtime.getRuntime().availableProcessors(), gcEn);
         boolean forced = false;   // тест: свойство порога отключает защиту «штатной конфигурации»
         try {
             String t = System.getProperty("mm_perf.mem.threshold");
@@ -78,17 +80,23 @@ final class MemoryWatch {
             shareXmx = xmx;
             sharePhys = phys;
             shareRec = rec;
-            MmPerf.LOGGER.warn("[mm_perf] ВНИМАНИЕ: Xmx {} ГБ — это {} % физической ОЗУ ({} ГБ), больше порога {} %: возможны фризы из-за свопа. Рекомендуем не больше {} ГБ (docs/friends.md, «Память»).",
+            MmPerf.LOGGER.warn("[mm_perf] ВНИМАНИЕ: Xmx {} ГБ — это {} % физической ОЗУ ({} ГБ), больше порога {} %: возможны фризы из-за свопа. Рекомендуем не больше {} ГБ (docs/friends.md, «Память»). / "
+                + "WARNING: Xmx {} GB is {} % of physical RAM ({} GB), above {} %: swapping may cause freezes. Recommended at most {} GB.",
+                String.format("%.1f", xmx), Math.round(xmx / phys * 100), String.format("%.1f", phys), Math.round(threshold * 100), shareRec,
                 String.format("%.1f", xmx), Math.round(xmx / phys * 100), String.format("%.1f", phys), Math.round(threshold * 100), shareRec);
         }
         if (tooMuch(xmx, phys)) {
             MmPerf.LOGGER.warn("[mm_perf] ВНИМАНИЕ: игре выделено {} ГБ из {} ГБ ОЗУ ПК — для системы остаётся меньше 30 % (или меньше 4 ГБ). "
                 + "Компьютер может зависнуть при загрузке. Уменьшите память: Prism → экземпляр → Изменить → Настройки → Java → Память "
-                + "(Xmx не больше ~60 % ОЗУ; при 16 ГБ — не больше 8 ГБ).", String.format("%.1f", xmx), String.format("%.0f", phys));
+                + "(Xmx не больше ~60 % ОЗУ; при 16 ГБ — не больше 8 ГБ). / "
+                + "WARNING: the game has {} GB of {} GB RAM - less than 30 % (or 4 GB) is left for the system, the PC may freeze while loading. "
+                + "Lower the memory: Prism -> instance -> Edit -> Settings -> Java -> Memory (Xmx at most ~60 % of RAM; 8 GB with 16 GB).",
+                String.format("%.1f", xmx), String.format("%.0f", phys), String.format("%.1f", xmx), String.format("%.0f", phys));
         }
         if (phys > 0 && phys < 7) {
-            MmPerf.LOGGER.warn("[mm_perf] ВНИМАНИЕ: на ПК всего {} ГБ ОЗУ — для этой сборки нужно не меньше 8 ГБ. Включите Режим слабого ПК и закройте лишние программы.",
-                String.format("%.1f", phys));
+            MmPerf.LOGGER.warn("[mm_perf] ВНИМАНИЕ: на ПК всего {} ГБ ОЗУ — для этой сборки нужно не меньше 8 ГБ. Включите Режим слабого ПК и закройте лишние программы. / "
+                + "WARNING: the PC has only {} GB RAM - this pack needs at least 8 GB. Enable Low-spec mode and close other programs.",
+                String.format("%.1f", phys), String.format("%.1f", phys));
         }
     }
 
@@ -152,7 +160,7 @@ final class MemoryWatch {
         if (highSeconds >= 30 && now - lastToast > COOLDOWN_MS) {
             lastToast = now;
             highSeconds = 0;
-            MmPerf.LOGGER.info("[mm_perf] куча после GC > 90 % ({} МБ из {})", used >> 20, max >> 20);
+            MmPerf.LOGGER.info("[mm_perf] куча после GC > 90 % ({} МБ из {}) / heap after GC > 90 % ({} MB of {})", used >> 20, max >> 20, used >> 20, max >> 20);
             SystemToast.addOrUpdate(mc.getToasts(), SystemToast.SystemToastIds.PERIODIC_NOTIFICATION,
                 Component.translatable("mm_perf.mem.title"), Component.translatable("mm_perf.mem.full"));
         }
