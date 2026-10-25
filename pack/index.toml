@@ -6,7 +6,7 @@ hash = "f1ceb92d0b8b72485894a12f2e434f475a127d59cae046ee5843be6318f6745e"
 
 [[files]]
 file = "config/DistantHorizons.toml"
-hash = "fc7ca364a55cb70b312ddae5be1eee4c49a3234927b1a8685a0585748c4d7fba"
+hash = "5560728c41f5700432b8905e397bb9d0dc6786c6876da7277c8c6f03b5871094"
 
 [[files]]
 file = "config/Weather2/Misc.toml"
@@ -78,7 +78,7 @@ hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "22a46f28628bafb131e83826b26c6aa7159021f5becdd642f37d7872ce2af091"
+hash = "974afa8bd4fbff48aa479ce7eecd9050123ab1c50c2e4c8c29b4d0b3c8e08f37"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -1194,7 +1194,7 @@ hash = "9ca2ce217055f7f511a5c9cd56b0c0cb0f687201b036ddb8c8fb3f273f96abbb"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/textures/priestess.png"
-hash = "46f340753b2f65b935739854437223a3343bf4c1626cdd76a671d01e82fdbd40"
+hash = "7b534739c75f1ecf2095b3545a1ba18ce27cf149260122d5d25549fed75dc835"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/ysm.json"
@@ -2764,8 +2764,8 @@ file = "mods/mm-compat-0.5.7.jar"
 hash = "48080b03aec0f24b05f82da01d331cff5f295b846b72723fb29e4422aba7a794"
 
 [[files]]
-file = "mods/mm-perf-0.3.1-client.jar"
-hash = "7d73d82ea334704b6c4089e0aaae34c612657bb42792c7018d6f1b4d8f940291"
+file = "mods/mm-perf-0.3.2-client.jar"
+hash = "a234effd7f1d58efccd6d2c0a10834f5ff8abc5ec2370eb6f8c9dae9ba1c48ee"
 
 [[files]]
 file = "mods/mnaoverpowered.pw.toml"

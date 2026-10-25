@@ -22,7 +22,8 @@ import org.slf4j.Logger;
 
 /**
  * Клиентские удобства сборки (docs/performance.md, docs/friends.md): Режим слабого ПК (кнопка в настройках видео + клавиша),
- * клавиши модов по умолчанию «Не назначено», подсказки о нехватке памяти, версия сборки в меню и заголовке окна. Миксины JEI — в mm_perf.mixins.json.
+ * клавиши модов по умолчанию «Не назначено», подсказки о нехватке памяти, версия сборки в меню и заголовке окна,
+ * подпись на экране «Сохранение мира» (SaveWatch). Миксины JEI — в mm_perf.mixins.json.
  */
 @Mod("mm_perf")
 public final class MmPerf {
@@ -40,6 +41,8 @@ public final class MmPerf {
         MinecraftForge.EVENT_BUS.addListener(MmPerf::onClientTick);
         MinecraftForge.EVENT_BUS.addListener(MmPerf::onScreenInit);
         MinecraftForge.EVENT_BUS.addListener(PackVersion::drawOnTitle);
+        MinecraftForge.EVENT_BUS.addListener(SaveWatch::onOpening);
+        MinecraftForge.EVENT_BUS.addListener(SaveWatch::onRender);
     }
 
     private static void registerKeys(RegisterKeyMappingsEvent e) {
@@ -72,6 +75,7 @@ public final class MmPerf {
         if (++ticks % 20 == 0) {
             MemoryWatch.tickSecond(mc);
             PackVersion.tickTitle(mc, ticks);
+            SaveWatch.selfTestSecond(mc);
         }
     }
 

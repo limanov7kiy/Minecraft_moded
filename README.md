@@ -106,6 +106,7 @@
 | [scripts/test-server.sh](scripts/test-server.sh) | Тестовый запуск сервера со сборкой до `Done`; лог в `<папка>/logs/latest.log` |
 | [scripts/test-client.sh](scripts/test-client.sh) | Тестовый запуск клиента из `.mrpack` без лаунчера (Xvfb + llvmpipe) до главного меню |
 | [scripts/tests/](scripts/tests/) | Проверочные скрипты и списки команд для тестового сервера (заклинания, ракеты, спавн, города, боссы, отчёты) |
+| [scripts/tests/savecheck.js](scripts/tests/savecheck.js) | Замер сохранения мира по измерениям: автосейв, сохранение с flush (как выход из мира), во время генерации — см. `docs/performance.md` «Долгое сохранение» |
 | [scripts/clienttest/clientmobs.js](scripts/clienttest/clientmobs.js) | Клиентская проверка рендера мобов: по одному мобу каждого вида в ряд |
 | [scripts/clienttest/ExitTrace.java](scripts/clienttest/ExitTrace.java) | Java-агент для `test-client.sh`: печатает стек каждого `System.exit` |
 | [scripts/collect-diagnostics.bat](scripts/collect-diagnostics.bat) | Запуск двойным щелчком (Windows): вызывает `collect-diagnostics.ps1` |

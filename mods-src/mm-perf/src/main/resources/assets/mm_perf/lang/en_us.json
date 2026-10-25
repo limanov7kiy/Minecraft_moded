@@ -14,5 +14,8 @@
   "mm_perf.mem.share.chat": "[Minecraft_moded] The game has %s GB of %s GB RAM — more than %s%%, stutters are possible. Recommended ≤ %s GB: Prism → Edit → Settings → Java → Memory (see friends.md).",
   "mm_perf.mem.full": "Memory is almost full — enable Low-end PC mode (Options → Video).",
   "mm_perf.version.known": "Minecraft_moded %s",
-  "mm_perf.version.unknown": "Minecraft_moded: version unknown"
+  "mm_perf.version.unknown": "Minecraft_moded: version unknown",
+  "mm_perf.save.wait": "Saving the world - do not close the game.",
+  "mm_perf.save.hint": "After flying or using a portal the game waits for terrain generation to finish - this can take up to a minute.",
+  "mm_perf.save.elapsed": "%s s"
 }

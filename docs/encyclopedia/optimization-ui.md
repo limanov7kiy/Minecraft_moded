@@ -139,7 +139,7 @@ _Обзор категории — вручную, следующие этапы
 - **Версия:** 3.3.3-1.20.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/distanthorizons)
 - **Что это:** Сильно увеличивает дальность прорисовки без потери производительности (упрощённые дальние чанки). _(источник: docs сборки)_
 - **В сборке:** дальняя прорисовка
-- **В наших docs:** [performance.md](../performance.md) (10), [compat.md](../compat.md) (8), [friends.md](../friends.md) (6), [roadmap.md](../roadmap.md) (4), [client-checklist.md](../client-checklist.md) (2), [orespawn.md](../orespawn.md) (1)
+- **В наших docs:** [performance.md](../performance.md) (11), [compat.md](../compat.md) (8), [friends.md](../friends.md) (7), [roadmap.md](../roadmap.md) (4), [client-checklist.md](../client-checklist.md) (2), [orespawn.md](../orespawn.md) (1)
 <!-- auto:end card:distanthorizons -->
 
 ### Что даёт игроку
@@ -393,7 +393,7 @@ Jade показывает корректные данные на корабля�
 <a id="modernfix"></a>
 - **Версия:** 5.27.87+mc1.20.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/modernfix)
 - **Что это:** Комплексная оптимизация производительности и памяти, исправляет баги. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (22), [performance.md](../performance.md) (10), [roadmap.md](../roadmap.md) (10), [friends.md](../friends.md) (2), [issue-history.md](../issue-history.md) (2), [jei.md](../jei.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (22), [performance.md](../performance.md) (14), [roadmap.md](../roadmap.md) (10), [friends.md](../friends.md) (2), [issue-history.md](../issue-history.md) (2), [jei.md](../jei.md) (2)
 <!-- auto:end card:modernfix -->
 
 ### Что даёт игроку
@@ -555,7 +555,7 @@ Jade показывает корректные данные на корабля�
 - **Версия:** 1.3.146 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/chunky)
 - **Что это:** Прегенерация мира командами /chunky: заранее создаёт местность в заданном радиусе. _(источник: docs сборки)_
 - **В сборке:** both: прегенерация мира командами /chunky (В51, поток 64); сам ничего не запускает — docs/friends.md «Прегенерация»
-- **В наших docs:** [compat.md](../compat.md) (20), [friends.md](../friends.md) (20)
+- **В наших docs:** [friends.md](../friends.md) (21), [compat.md](../compat.md) (20), [performance.md](../performance.md) (1)
 <!-- auto:end card:chunky -->
 
 ### Что даёт игроку

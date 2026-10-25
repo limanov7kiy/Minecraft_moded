@@ -35,3 +35,8 @@
 		numberOfThreads = 1
 		# потоки DH работают не постоянно, а ~половину времени — игре остаётся процессор
 		threadRunTimeRatio = "0.5"
+
+	[common.logging.warning]
+		# Поток 64: без сообщения в чат при входе «Chunky detected… LOD могут быть с дырами» (Chunky стоит ради прегенерации,
+		# docs/friends.md). Дыры в LOD закрываются, когда вы проходите рядом; предупреждения о памяти DH остаются включены.
+		showModCompatibilityWarningsOnStartup = false
