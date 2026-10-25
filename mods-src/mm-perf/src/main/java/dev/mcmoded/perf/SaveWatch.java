@@ -7,6 +7,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.contents.TranslatableContents;
+import net.minecraft.util.FormattedCharSequence;
 import net.minecraftforge.client.event.ScreenEvent;
 
 /**
@@ -59,9 +60,17 @@ final class SaveWatch {
         long sec = (System.currentTimeMillis() - start) / 1000;
         // ванильная надпись «Сохранение мира» у GenericDirtMessageScreen 1.20.1 — на y = 70; наши строки ниже
         int y = 90;
-        g.drawCenteredString(mc.font, Component.translatable("mm_perf.save.wait"), s.width / 2, y, 0xFFFFFF);
-        g.drawCenteredString(mc.font, Component.translatable("mm_perf.save.hint"), s.width / 2, y + 12, 0xA0A0A0);
-        if (sec >= 3) g.drawCenteredString(mc.font, Component.translatable("mm_perf.save.elapsed", sec), s.width / 2, y + 30, 0xFFFF55);
+        int w = Math.max(100, s.width - 40);   // на узком окне подсказка переносится, а не уходит за край
+        for (FormattedCharSequence line : mc.font.split(Component.translatable("mm_perf.save.wait"), w)) {
+            g.drawCenteredString(mc.font, line, s.width / 2, y, 0xFFFFFF);
+            y += 10;
+        }
+        y += 2;
+        for (FormattedCharSequence line : mc.font.split(Component.translatable("mm_perf.save.hint"), w)) {
+            g.drawCenteredString(mc.font, line, s.width / 2, y, 0xA0A0A0);
+            y += 10;
+        }
+        if (sec >= 3) g.drawCenteredString(mc.font, Component.translatable("mm_perf.save.elapsed", sec), s.width / 2, y + 8, 0xFFFF55);
     }
 
     /** Самотест для test-client.sh: -Dmm_perf.selftest.quit=<с> — через столько секунд в одиночном мире «Сохранить и выйти» (как кнопка меню паузы). */
