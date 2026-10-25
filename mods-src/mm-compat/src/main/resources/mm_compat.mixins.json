@@ -3,7 +3,7 @@
   "minVersion": "0.8",
   "package": "dev.mcmoded.compat.mixin",
   "compatibilityLevel": "JAVA_17",
-  "mixins": ["SbwShipHitMixin", "FallingTreeDamageMixin", "MnaChunkTickMixin", "NorthstarCraterJoinMixin", "StructureTemplatePlaceMixin", "LostCitiesNeighborMixin"],
+  "mixins": ["SbwShipHitMixin", "FallingTreeDamageMixin", "MnaChunkTickMixin", "NorthstarCraterJoinMixin", "StructureTemplatePlaceMixin", "LostCitiesNeighborMixin", "DhChunkyBindMixin"],
   "client": ["LycanitesFearLightMixin", "OriginFursReloadCacheMixin"],
   "injectors": { "defaultRequire": 0 }
 }

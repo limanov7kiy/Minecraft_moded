@@ -6,7 +6,7 @@ hash = "f1ceb92d0b8b72485894a12f2e434f475a127d59cae046ee5843be6318f6745e"
 
 [[files]]
 file = "config/DistantHorizons.toml"
-hash = "fc7ca364a55cb70b312ddae5be1eee4c49a3234927b1a8685a0585748c4d7fba"
+hash = "5560728c41f5700432b8905e397bb9d0dc6786c6876da7277c8c6f03b5871094"
 
 [[files]]
 file = "config/Weather2/Misc.toml"
@@ -78,7 +78,7 @@ hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "e31dd93d0c4857d911288e3557a3ce277064ca890e9e1f5cd7abd5c2fcc9f7b3"
+hash = "974afa8bd4fbff48aa479ce7eecd9050123ab1c50c2e4c8c29b4d0b3c8e08f37"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -2193,6 +2193,11 @@ file = "mods/chaospersists-1.20.1-0.9.1.jar"
 hash = "f868d47bf5a8cf4a327df98ae896e9e0d55fd1bf1858f3d851e8a60c38ab6698"
 
 [[files]]
+file = "mods/chunky.pw.toml"
+hash = "0e17f9758f6f67ef87aa6f8d5afc47901521a05904cd8470ef65063b48e69d73"
+metafile = true
+
+[[files]]
 file = "mods/cinematic-cataclysm.pw.toml"
 hash = "51a26b15b158cb016944b8ac19d3badc251ccde6ce58d8143e0a37524ea09ce7"
 metafile = true
@@ -2755,8 +2760,8 @@ hash = "c25495262a852dc02886ec8c4b695f30e53264a2e3d881dd36ee9de16a1ef499"
 metafile = true
 
 [[files]]
-file = "mods/mm-compat-0.5.6.jar"
-hash = "2561a17122803e77a94146eacf89ec27b630d7ce160aaa8aa938ec52c5fd257f"
+file = "mods/mm-compat-0.5.8.jar"
+hash = "110f32130708bea8a8ea62873f7586d64a8e65ee8615370bc912675fbf40d653"
 
 [[files]]
 file = "mods/mm-perf-0.3.2-client.jar"
