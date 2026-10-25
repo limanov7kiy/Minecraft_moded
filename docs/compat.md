@@ -1550,4 +1550,6 @@ DH на выделенном сервере сам ничего не генер�
   ходьба 2 (как в v6), sit 0 (v6 — 102), gui 44 (v6 — 36; та же стойка ×2, граница допуска). `SERVER OK` (Done 111 с,
   `SERVER_XMX=5G`); `/ysm export priestess` на первом запуске свежего сервера — `Failed to export model` (тайминг, как в R-011),
   на повторном — `Saved as 'export/priestess.ysm'` (123 КБ). JSON модели валиден.
+  `CLIENT OK` (515 с) из `.mrpack` 2026.10.25-2; ошибок по Priestess в логе нет, клиент YSM в облаке по-прежнему не работает
+  (`YSM client cannot run under a virtual machine`, К7) — в игре глазами смотреть по чек-листу `docs/ysm-models.md`.
 - **Откат:** `git revert` коммита PR.
