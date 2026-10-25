@@ -45,13 +45,17 @@ def C(h, a=255):
 
 P = {
     "skin": C("ffece4"), "skin_s": C("f4d3c8"), "skin_d": C("e3b3a6"), "blush": C("f7aeb0"), "mouth": C("b35a6a"),
-    "hair": C("2c2226"), "hair_l": C("44363c"), "hair_hi": C("62505a"), "hair_d": C("1a1316"),
-    "hair_tip": C("1d2b68"), "hair_tip_l": C("3a4fa6"),
+    # волосы тёмно-каштановые, концы — приглушённый сине-фиолетовый отлив (у спрайта avg_npc_083 он только в тени прядей)
+    "hair": C("372a29"), "hair_l": C("4d3c39"), "hair_hi": C("715c56"), "hair_d": C("221918"),
+    "hair_tip": C("2b2c4c"), "hair_tip_l": C("44467a"),
     "white": C("f7f5fa"), "white_s": C("e4e0ea"), "white_d": C("c7c1d2"),
     "black": C("1e1c24"), "black_l": C("3a3744"), "black_hi": C("57535f"), "black_d": C("0f0e13"),
     "graphite": C("3b3a44"), "graph_l": C("5a5866"),
     "purple": C("7446b4"), "purple_l": C("a07ad8"), "purple_d": C("4a2a7c"),
-    "tights": C("3e2a58"), "tights_l": C("5d437e"), "tights_hi": C("7a5d9c"), "tights_d": C("261836"), "tights_skin": C("7a6178"),
+    # колготки почти чёрные с фиолетовым оттенком (avg_npc_083), не сиреневые
+    "tights": C("2a2234"), "tights_l": C("3d324b"), "tights_hi": C("5a4b6e"), "tights_d": C("17121e"), "tights_skin": C("5e4b5e"),
+    # плащ: полупрозрачный светло-серый лабораторный халат — холоднее и темнее белого свитера
+    "coat": C("dcdce4"), "coat_s": C("c4c4ce"), "coat_d": C("a4a3b2"),
     "red": C("e0243f"), "red_l": C("ff6378"), "red_d": C("8e1028"), "core": C("fff4f6"),
     "violet": C("b36cff"), "violet_l": C("ead2ff"), "eye": C("9a90b6"), "eye_d": C("4f4668"), "eye_l": C("c9c0e0"),
     "obs": C("17151c"), "obs_l": C("3a3644"), "obs_hi": C("5a5468"), "obs_d": C("0a090d"), "obs_glint": C("4b3f63"),
@@ -154,12 +158,18 @@ def m_pleat(w, h, face, s):
 
 
 def m_frill(w, h, face, s):
-    """фиолетовая нижняя оборка: волны-фестоны по низу"""
-    a = fill(w, h, P["purple"])
+    """низ юбки (avg_npc_083): чёрные складки, по ним перекрещенные фиолетовые ремешки — на соседних панелях диагонали
+    в разные стороны, по кругу читается «зигзаг/крест»"""
+    a = fill(w, h, P["black"]) + noise(w, h, s, 3)
     if face in SIDE:
-        a[:, ::3] = P["purple_l"]; a[:, 2::3] = P["purple_d"]
-        a[0] = P["purple_d"]
-        a[-1, 1::3, 3] = 0
+        a[:, 0] = P["black_l"]; a[:, -1] = P["black_d"]; a[-1] = P["black_l"]
+        if face in ("north", "south"):
+            for y in range(h):
+                x = int(round(y / max(1, h - 1) * (w - 1)))
+                if s % 2: x = w - 1 - x
+                for dx in (0, 1):
+                    if 0 <= x + dx < w: a[y, x + dx] = P["purple"] if dx == 0 else P["purple_d"]
+            a[0, :] = P["purple_d"]
     return a
 
 
@@ -320,17 +330,21 @@ def m_glitch(w, h, face, s):
     a = fill(w, h, P["ember_l"]); a[::2, :] = P["ember_hi"]; return a
 
 
-def m_cape(w, h, face, s, trim=(True, True, True), hem=None, inner=False):
-    """плащ: белый, почти непрозрачный, складки; чёрная отделка (верх, бока) и по краю подола; hem — профиль клиньев"""
-    a = fill(w, h, P["white_s"] if inner else P["white"]); a[..., 3] = 238
-    a[:, ::5, :3] = P["white_d"][:3] if inner else P["white_s"][:3]
+def m_cape(w, h, face, s, trim=(True, True, True), hem=None, inner=False, band=False):
+    """плащ: светло-серый, почти непрозрачный, складки; кант по краям (верх — чёрный, бока — тонкий серый, как контур
+    халата у avg_npc_083) и чёрная полоса по краю подола; hem — профиль клиньев"""
+    a = fill(w, h, P["coat_s"] if inner else P["coat"]); a[..., 3] = 238
+    a[:, ::5, :3] = P["coat_d"][:3] if inner else P["coat_s"][:3]
     if face in ("up", "down"):
         a[:] = P["black"]; return a
     t, l, r = trim
     if t: a[0:3, :, :] = P["black"]
-    if l: a[:, 0:2, :] = P["black"]
-    if r: a[:, -2:, :] = P["black"]
+    if l: a[:, 0:1, :3] = P["coat_d"][:3]
+    if r: a[:, -1:, :3] = P["coat_d"][:3]
+    if band and h > 6:  # пелерина: прямой край с чёрной полосой чуть выше (CG 50_i16)
+        a[h - 3, :, :] = P["black"]; a[h - 1:, :, :3] = P["coat_d"][:3]
     if hem is not None:
+        ys = []
         for x in range(w):
             u = x / max(1, w - 1)
             if face in ("south", "east"):
@@ -338,14 +352,17 @@ def m_cape(w, h, face, s, trim=(True, True, True), hem=None, inner=False):
             cut = int(round(hem(u) * h))
             if cut > 0:
                 a[h - cut:, x, 3] = 0
-            y = h - cut - 1
-            for k in range(3):
-                if 0 <= y - k < h: a[y - k, x] = P["black"]
+            ys.append(h - cut - 1)
+        # чёрная кайма по краю подола сплошной линией: на крутом скосе тянется до края соседних столбцов
+        for x, y in enumerate(ys):
+            top = min([y - 2] + [ys[j] - 1 for j in (x - 1, x + 1) if 0 <= j < w])
+            for k in range(max(0, top), y + 1):
+                if k < h: a[k, x] = P["black"]
     return a
 
 
-def cape(hem=None, trim=(False, True, True), inner=False):
-    return lambda w, h, f, s: m_cape(w, h, f, s, trim, hem, inner)
+def cape(hem=None, trim=(False, True, True), inner=False, band=False):
+    return lambda w, h, f, s: m_cape(w, h, f, s, trim, hem, inner, band)
 
 
 def wedges(n, depth, phase=0.0, slope=0.0):
@@ -540,7 +557,7 @@ def strand(G, bone, x0, x1, ytop, ybot, z0, z1, tip=0.35, band=False, rot=None, 
         G.cube(bone, (cx - w / 2, ybot, z0 + (z1 - z0) * 0.15), (w, k, (z1 - z0) * 0.7), hair(1.0), rot=rot, pivot=piv, dens=dens)
 
 
-def ring(G, parent, name, n, top, height, rx, rz, width, thick, tilt, mat, zc=0.1, dens=2, phase=0.0):
+def ring(G, parent, name, n, top, height, rx, rz, width, thick, tilt, mat, zc=0.1, dens=2, phase=0.0, seed=None):
     """кольцо панелей (юбка/оборка): n костей с поворотом по Y, в каждой панель с наклоном наружу"""
     for i in range(n):
         th = 360.0 * (i + phase) / n
@@ -549,7 +566,8 @@ def ring(G, parent, name, n, top, height, rx, rz, width, thick, tilt, mat, zc=0.
         bn = f"{name}{i}"
         G.bone(bn, parent, (0, top, zc), (0, round(th, 3), 0))
         G.cube(bn, (-width / 2, top - height, zc - r - thick), (width, height, thick), mat,
-               rot=(-tilt, 0, 0), pivot=(0, top, zc - r), dens=dens, faces=["north", "south", "east", "west", "down"])
+               rot=(-tilt, 0, 0), pivot=(0, top, zc - r), dens=dens, faces=["north", "south", "east", "west", "down"],
+               seed=None if seed is None else seed + i)
 
 
 def build_main(default_geo):
@@ -647,12 +665,12 @@ def build_main(default_geo):
     cb("UpperBody", (-3.75, 23.55, -2.25), (7.5, 0.85, 4.5), "belt")
     G.bone("Buckle", "UpperBody", (0, 23.98, -2.35))
     cb("Buckle", (-0.75, 23.23, -2.5), (1.5, 1.5, 0.3), "silver", rot=(0, 0, 45), pivot=(0, 23.98, -2.35))
-    cb("Buckle", (-0.4, 23.58, -2.6), (0.8, 0.8, 0.25), "violet", rot=(0, 0, 45), pivot=(0, 23.98, -2.35), share="swatch_violet")
+    cb("Buckle", (-0.4, 23.58, -2.6), (0.8, 0.8, 0.25), "black", rot=(0, 0, 45), pivot=(0, 23.98, -2.35))
     cb("Breast", (-3.4, 27.3, -3.05), (6.8, 2.9, 2.7), "sweater")
-    # бейдж на клипсе (левая сторона груди)
-    G.bone("Badge", "Breast", (1.7, 29.2, -3.2))
-    cb("Badge", (0.95, 26.7, -3.3), (1.6, 2.3, 0.18), "badge", dens=5, faces=["north", "south", "east", "west", "up", "down"])
-    cb("Badge", (1.5, 28.85, -3.4), (0.5, 0.75, 0.3), "silver")
+    # бейдж на клипсе (правая сторона груди, как у avg_npc_083 и CG avg_8_9)
+    G.bone("Badge", "Breast", (-1.7, 29.2, -3.2))
+    cb("Badge", (-2.55, 26.7, -3.3), (1.6, 2.3, 0.18), "badge", dens=5, faces=["north", "south", "east", "west", "up", "down"])
+    cb("Badge", (-2.0, 28.85, -3.4), (0.5, 0.75, 0.3), "silver")
     # высокий ворот и бант
     G.bone("Neck", "UpperBody", (0, 31.5, 0))
     cb("Neck", (-2.05, 31.4, -2.05), (4.1, 2.45, 4.0), "sweater")
@@ -693,8 +711,9 @@ def build_main(default_geo):
 
     # ================= юбка: 18 панелей плиссировки + фиолетовая оборка
     # клёш умеренный (R-011): подол должен помещаться под плащом (плащ — А-силуэт, см. parallel4)
-    ring(G, "Skirt", "SkirtP", 20, 22.6, 6.8, 3.95, 2.55, 1.65, 0.18, 17, "pleat", dens=3)
-    ring(G, "Skirt", "SkirtF", 20, 17.6, 2.6, 5.45, 3.95, 2.1, 0.14, 20, "frill", dens=3, phase=0.5)
+    # длина — мини, как у avg_npc_083 (подол 16,2 вместо 15,0); низ — чёрный с фиолетовыми ремешками крест-накрест
+    ring(G, "Skirt", "SkirtP", 20, 22.6, 5.6, 3.95, 2.55, 1.65, 0.18, 17, "pleat", dens=3)
+    ring(G, "Skirt", "SkirtF", 20, 18.2, 2.0, 5.2, 3.75, 2.1, 0.14, 20, "frill", dens=3, phase=0.5, seed=1000)
 
     # ================= подсумки и ремешки
     G.bone("Gear", "UpperBody", (0, 23, 0))
@@ -707,30 +726,40 @@ def build_main(default_geo):
                                     (-2.6, -2.45, 2.8), (1.2, 2.35, 5.4)]):
         cb("Straps", (x, 23.6 - ln, z), (0.35, ln, 0.15), "strap", dens=3)
 
-    # ================= плащ: накидка на плечах (чёрная отделка) + длинный плащ сегментами с качанием
+    # ================= плащ (по avg_npc_083 и CG avg_8_9 / 50_i16): светло-серый полупрозрачный халат до лодыжек,
+    # на плечах — короткая пелерина почти до локтя с чёрной полосой у края; плечи светлые (без чёрной кокетки)
     G.bone("Cape", "UpperBody", (0, 32, 0))
-    cb("Cape", (-4.75, 31.7, -2.7), (9.5, 0.6, 5.45), "black")
-    H4 = wedges(5, 0.28)
-    cb("Cape", (-5.5, 27.2, 2.95), (11.0, 4.6, 0.18), cape(H4, (True, True, True)), faces=["north", "south"])
-    cb("Cape", (1.9, 27.2, -2.95), (3.65, 4.6, 0.18), cape(wedges(2, 0.3, 0.25), (True, False, True)), faces=["north", "south"])
-    cb("Cape", (-5.55, 27.2, -2.95), (3.65, 4.6, 0.18), cape(wedges(2, 0.3, 0.75), (True, True, False)), faces=["north", "south"])
-    cb("Cape", (5.5, 27.2, -2.95), (0.18, 4.6, 5.9), cape(wedges(3, 0.3), (True, True, True)), faces=["east", "west"])
-    cb("Cape", (-5.68, 27.2, -2.95), (0.18, 4.6, 5.9), cape(wedges(3, 0.3, 0.5), (True, True, True)), faces=["east", "west"])
+    cb("Cape", (-4.75, 31.7, -2.7), (9.5, 0.6, 5.45), cape(None, (False, False, False)))
+    CY, CH = 25.9, 5.9  # пелерина: низ 25,9 (было 27,2), край прямой с чёрной полосой
+    cb("Cape", (-5.5, CY, 2.95), (11.0, CH, 0.18), cape(None, (False, True, True), band=True), faces=["north", "south"])
+    cb("Cape", (1.9, CY, -2.95), (3.65, CH, 0.18), cape(None, (False, False, True), band=True), faces=["north", "south"])
+    cb("Cape", (-5.55, CY, -2.95), (3.65, CH, 0.18), cape(None, (False, True, False), band=True), faces=["north", "south"])
+    cb("Cape", (5.5, CY, -2.95), (0.18, CH, 5.9), cape(None, (False, True, True), band=True), faces=["east", "west"])
+    cb("Cape", (-5.68, CY, -2.95), (0.18, CH, 5.9), cape(None, (False, True, True), band=True), faces=["east", "west"])
+    # лацканы халата: узкие полосы от плеча к поясу по краям полочек
+    for sg in (-1, 1):
+        x0 = 1.6 if sg > 0 else -2.2
+        cb("Cape", (x0, 26.0, -3.08), (0.6, 5.4, 0.12), cape(None, (False, True, True), inner=True), faces=["north"])
     # спинка: три сегмента
     G.bone("CapeBack", "Cape", (0, 31.8, 2.8))
     cb("CapeBack", (-5.7, 22.0, 2.75), (11.4, 9.8, 0.16), cape(None, (False, True, True)), faces=["north", "south"])
     G.bone("CapeBackMid", "CapeBack", (0, 22.0, 2.83))
     cb("CapeBackMid", (-6.2, 14.0, 2.75), (12.4, 8.0, 0.16), cape(None, (False, True, True)), faces=["north", "south"])
     G.bone("CapeBackLow", "CapeBackMid", (0, 14.0, 2.83))
-    cb("CapeBackLow", (-6.7, 4.5, 2.75), (13.4, 9.5, 0.16), cape(wedges(3, 0.42, 0.1, 0.22), (False, True, True)), faces=["north", "south"])
+    # нижний сегмент до лодыжек (было до 4,5), клинья подола острее
+    cb("CapeBackLow", (-6.7, 1.6, 2.75), (13.4, 12.4, 0.16), cape(wedges(3, 0.4, 0.1, 0.18), (False, True, True)), faces=["north", "south"])
     # полы спереди: левая длиннее
-    for side, x0, x1, ln, ph in (("L", 2.7, 6.0, 15.5, 0.15), ("R", -6.0, -2.7, 10.5, 0.7)):
+    for side, x0, x1, ln, ph in (("L", 2.7, 6.0, 17.5, 0.15), ("R", -6.0, -2.7, 15.0, 0.7)):  # до середины голени (было 15,5/10,5)
         G.bone(f"CapeFront{side}", "Cape", ((x0 + x1) / 2, 31.8, -2.9))
         cb(f"CapeFront{side}", (x0, 22.0, -2.95), (x1 - x0, 9.8, 0.16), cape(None, (False, side == "R", side == "L")), faces=["north", "south"])
         G.bone(f"CapeFront{side}Low", f"CapeFront{side}", ((x0 + x1) / 2, 22.0, -2.9))
         cb(f"CapeFront{side}Low", (x0 - 0.3, 22.0 - ln, -2.95), (x1 - x0 + 0.6, ln, 0.16),
-           cape(wedges(1, 0.5, ph), (False, side == "R", side == "L")), faces=["north", "south"])
-    for side, x, ln in (("L", 6.05, 17.0), ("R", -6.21, 14.0)):
+           cape(wedges(1, 0.3, ph), (False, side == "R", side == "L")), faces=["north", "south"])
+    # подвеска-ромб на цепочке на левой поле (avg_npc_083)
+    cb("CapeFrontLLow", (4.55, 10.4, -3.06), (0.12, 3.2, 0.08), "silver", faces=["north", "south", "east", "west"])
+    cb("CapeFrontLLow", (4.2, 9.25, -3.1), (0.82, 0.82, 0.12), "silver", rot=(0, 0, 45), pivot=(4.61, 9.66, -3.04))
+    cb("CapeFrontLLow", (4.43, 9.48, -3.16), (0.36, 0.36, 0.08), "black", rot=(0, 0, 45), pivot=(4.61, 9.66, -3.04))
+    for side, x, ln in (("L", 6.05, 21.0), ("R", -6.21, 19.0)):
         G.bone(f"CapeSide{side}", "Cape", (x, 27.2, 0))
         cb(f"CapeSide{side}", (x, 27.2 - ln, -2.9), (0.16, ln, 5.75), cape(wedges(2, 0.4, 0.3 if side == "L" else 0.8)), faces=["east", "west"])
 
@@ -981,14 +1010,15 @@ def parallels():
     A["parallel4"] = {"loop": True, "bones": {
         "CapeFrontL": {"rotation": [f"-{ln} * 30", 0, 0]},
         "CapeFrontR": {"rotation": [f"-{ln} * 30", 0, 0]},
-        "CapeBackLow": {"rotation": [f"ysm.second_order('pr_cape_h', {sp}, 2, 0.6, 0) * 1.6 + ysm.second_order('pr_cape_v', {vs}, 2, 0.6, 0) * 0.6 - 8", 0,
+        # длинный (до лодыжек) нижний сегмент спинки в приседе отводим назад, чтобы не уходил в землю
+        "CapeBackLow": {"rotation": [f"ysm.second_order('pr_cape_h', {sp}, 2, 0.6, 0) * 1.6 + ysm.second_order('pr_cape_v', {vs}, 2, 0.6, 0) * 0.6 - 8 + {ln} * 22", 0,
                                      "ysm.second_order('pr_cape_y', math.clamp(0.02 * q.yaw_speed, -40, 40), 2, 0.6, 0)"]},
         "CapeBack": {"rotation": [f"ysm.second_order('pr_cape_h2', {sp}, 2, 0.6, 0) * 0.4 + 3 + {ln} * 10", 0, 0]},
         "CapeBackMid": {"rotation": [f"ysm.second_order('pr_cape_m', {sp}, 2, 0.5, 0) * 1.0 + 14", 0, 0]},
-        "CapeFrontLLow": {"rotation": [f"-ysm.second_order('pr_capef', {sp}, 2, 0.6, 0) * 0.9 - 17", 0, 0]},
-        "CapeFrontRLow": {"rotation": [f"-ysm.second_order('pr_capef', {sp}, 2, 0.6, 0) * 0.9 - 17", 0, 0]},
-        "CapeSideL": {"rotation": [f"ysm.second_order('pr_cape_h', {sp}, 2, 0.6, 0) * 0.8", 0, -6]},
-        "CapeSideR": {"rotation": [f"ysm.second_order('pr_cape_h', {sp}, 2, 0.6, 0) * 0.8", 0, 6]},
+        "CapeFrontLLow": {"rotation": [f"-ysm.second_order('pr_capef', {sp}, 2, 0.6, 0) * 0.9 - 17 - {ln} * 45", 0, 0]},
+        "CapeFrontRLow": {"rotation": [f"-ysm.second_order('pr_capef', {sp}, 2, 0.6, 0) * 0.9 - 17 - {ln} * 45", 0, 0]},
+        "CapeSideL": {"rotation": [f"ysm.second_order('pr_cape_h', {sp}, 2, 0.6, 0) * 0.8 + {ln} * 30", 0, f"-6 - {ln} * 15"]},
+        "CapeSideR": {"rotation": [f"ysm.second_order('pr_cape_h', {sp}, 2, 0.6, 0) * 0.8 + {ln} * 30", 0, f"6 + {ln} * 15"]},
         "Straps": {"rotation": [f"ysm.second_order('pr_strap', {sp}, 3, 0.4, 0) * 1.2", 0, 0]},
     }}
     return A
@@ -1140,6 +1170,9 @@ def main():
             an[pose]["bones"][f"CapeFront{side}"] = {"rotation": [up, 0, 0]}
             if low:
                 an[pose]["bones"][f"CapeFront{side}Low"] = {"rotation": [low, 0, 0]}
+    # езда: длинная (до лодыжек) спинка отходит назад, чтобы не уходила в круп лошади
+    for pose in ("ride", "ride_pig"):
+        an[pose]["bones"]["CapeBackLow"] = {"rotation": [35, 0, 0]}
     an["gui"] = copy.deepcopy(an["gui"])
     (out / "animations" / "main.animation.json").write_text(json.dumps(main_an, ensure_ascii=False, separators=(",", ":")))
     extra = {"format_version": "1.8.0", "animations": extras()}
