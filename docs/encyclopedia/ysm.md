@@ -25,7 +25,7 @@ Yes Steve Model — свои модели игроков. Подробности
 - **Версия:** 2.6.5-forge+mc1.20.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/yes-steve-model)
 - **Что это:** Подменяет ванильную модель игрока своими (анимированными) моделями. _(источник: docs сборки)_
 - **В сборке:** модели игроков (нативный код: Windows/Linux x64, macOS не поддерживается)
-- **В наших docs:** [ysm-models.md](../ysm-models.md) (76), [compat.md](../compat.md) (22), [roadmap.md](../roadmap.md) (19), [friends.md](../friends.md) (9), [client-checklist.md](../client-checklist.md) (7), [issue-history.md](../issue-history.md) (7)
+- **В наших docs:** [ysm-models.md](../ysm-models.md) (78), [compat.md](../compat.md) (31), [roadmap.md](../roadmap.md) (21), [friends.md](../friends.md) (9), [client-checklist.md](../client-checklist.md) (7), [issue-history.md](../issue-history.md) (7)
 <!-- auto:end card:yes-steve-model -->
 
 ### Как играть
