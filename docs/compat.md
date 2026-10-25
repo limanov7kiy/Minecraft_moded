@@ -1535,5 +1535,6 @@ DH на выделенном сервере сам ничего не генер�
   присед/езда/sit ≤ 18 (было 1 500–4 500). `SERVER OK` (Done 77 с, `SERVER_XMX=5G`); `/ysm export priestess` → `Saved as
   'export/priestess.ysm'` (и старая v5 рядом — тоже). Заметка: на первом запуске свежего сервера команда через ~60 с после Done
   ответила `Failed to export model : priestess`, на повторном запуске того же сервера — успешно для обеих версий; это тайминг
-  загрузки моделей YSM, не модель. В игре глазами (клиент YSM в облаке не запускается, К7) — по чек-листу в `docs/ysm-models.md`.
+  загрузки моделей YSM, не модель. `CLIENT OK` (510 с) из `.mrpack` 2026.10.25-1; ошибок по Priestess в логе нет, клиент YSM
+  в облаке по-прежнему отказывается работать (`YSM client cannot run under a virtual machine`, К7). В игре глазами (клиент YSM в облаке не запускается, К7) — по чек-листу в `docs/ysm-models.md`.
 - **Откат:** `git revert` коммита PR (модель — генерируемые файлы в `pack/config/yes_steve_model/custom/priestess/`).
