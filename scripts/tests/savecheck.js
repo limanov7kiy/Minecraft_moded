@@ -1,7 +1,8 @@
 // Замер сохранения мира (поток 64, отчёт R-012: долгая пауза при автосейве/выходе, 52 измерения).
 // Фазы по времени после старта: A — через 2400 тиков после старта (первые минуты тики и так медленные); B — «игрок побывал в разных измерениях»
 // (forceload 9×9 чанков по маршруту в верхнем мире, Незере, Энде и 3×3 у (0,0) в каждом прочем измерении),
-// C — через 60 с после снятия forceload. В каждой фазе: по каждому измерению загружено чанков / forceload,
+// B2 — те же области через 90 с, C — через 60 с после снятия forceload, G — сохранение через 5 с после новых тикетов
+// в несгенерированном месте (выход из мира во время генерации), D — через 30 с после снятия этих тикетов. В каждой фазе: по каждому измерению загружено чанков / forceload,
 // затем время сохранения: SavedData измерения (data/*.dat), чанки измерения (level.save без flush, как автосейв),
 // и полное saveEverything (как автосейв: игроки, level.dat). Отдельно — тики дольше 1 с (ловит ванильный автосейв раз в 6000 тиков).
 // Вывод: SAVECHECK <фаза> ..., SAVECHECK DIM <фаза> <измерение> chunks=<n> forced=<n> data=<мс> chunks_save=<мс>, SAVECHECK GAP tick=<n> ms=<n>.
@@ -65,11 +66,30 @@ ServerEvents.tick(event => {
     })
     console.info('SAVECHECK LOADTIME ms=' + (Date.now() - t0))
     stats(server, 'B'); timeSave(server, 'B')
+    SC.phase = 15; SC.t = Date.now(); SC.last = Date.now(); return
+  }
+  // те же области ещё 90 с: генерация соседних чанков закончилась, чанки тикают (как стоящий игрок)
+  if (SC.phase == 15 && now - SC.t > 90000) {
+    SC.phase = 2; stats(server, 'B2'); timeSave(server, 'B2')
     SC.held.forEach(h => fl(server, h[0], h[1], h[2], h[3], h[4], false))
-    SC.phase = 2; SC.t = Date.now(); SC.last = Date.now(); return
+    SC.t = Date.now(); SC.last = Date.now(); return
   }
   if (SC.phase == 2 && now - SC.t > 60000) {
     SC.phase = 3; stats(server, 'C'); timeSave(server, 'C'); SC.t = Date.now(); SC.last = Date.now(); return
   }
-  if (SC.phase == 3 && now - SC.t > 30000) { stats(server, 'D'); SC.phase = 4; console.info('SAVECHECK DONE') }
+  // G: выход из мира во время генерации (полёт по новым местам): тикеты без ожидания, через 5 с — сохранение
+  if (SC.phase == 3 && now - SC.t > 30000) {
+    var TT = Java.loadClass('net.minecraft.server.level.TicketType').FORCED, CP = Java.loadClass('net.minecraft.world.level.ChunkPos')
+    var lv = server.getLevel('minecraft:overworld')
+    SC.tickets = []
+    for (var i = 0; i < 4; i++) { var p = new CP(400 + i * 8, 400); lv.getChunkSource().addRegionTicket(TT, p, 4, p); SC.tickets.push(p) }
+    SC.phase = 35; SC.t = Date.now(); SC.last = Date.now(); return
+  }
+  if (SC.phase == 35 && now - SC.t > 5000) {
+    SC.phase = 36; stats(server, 'G'); timeSave(server, 'G')
+    var TT = Java.loadClass('net.minecraft.server.level.TicketType').FORCED, lv = server.getLevel('minecraft:overworld')
+    SC.tickets.forEach(p => lv.getChunkSource().removeRegionTicket(TT, p, 4, p))
+    SC.phase = 3.5; SC.t = Date.now(); SC.last = Date.now(); return
+  }
+  if (SC.phase == 3.5 && now - SC.t > 30000) { stats(server, 'D'); SC.phase = 4; console.info('SAVECHECK DONE') }
 })
