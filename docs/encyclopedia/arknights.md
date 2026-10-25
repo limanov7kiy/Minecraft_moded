@@ -166,7 +166,7 @@
 <a id="bobs-originium-dream"></a>
 - **Версия:** 1.1.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/bobs-originium-dream)
 - **Что это:** Мод Боба: ориджиниумные черви, бури и рост ориджиниума, биомы и структуры пустоши, десятки боссов, внутреннее измерение. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (4), [russification.md](../russification.md) (2), [friends.md](../friends.md) (1), [performance.md](../performance.md) (1), [version-choice.md](../version-choice.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (5), [russification.md](../russification.md) (2), [friends.md](../friends.md) (1), [performance.md](../performance.md) (1), [version-choice.md](../version-choice.md) (1)
 <!-- auto:end card:bobs-originium-dream -->
 
 ### Как играть
@@ -223,7 +223,7 @@ MCreator-мод goods (в jar названия на китайском; мы п�
 <a id="caerula-arbor"></a>
 - **Версия:** 0.12.7.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/caerula-arbor)
 - **Что это:** Порождения моря и расползающаяся метка пучины: сложная кампания с рассудком, эволюцией, 46 структурами и около 15 боссами. _(источник: docs сборки)_
-- **В наших docs:** [russification.md](../russification.md) (9), [roadmap.md](../roadmap.md) (5), [compat.md](../compat.md) (3), [enchanting-table.md](../enchanting-table.md) (1), [version-choice.md](../version-choice.md) (1)
+- **В наших docs:** [russification.md](../russification.md) (9), [roadmap.md](../roadmap.md) (5), [compat.md](../compat.md) (4), [enchanting-table.md](../enchanting-table.md) (1), [version-choice.md](../version-choice.md) (1)
 <!-- auto:end card:caerula-arbor -->
 
 ### Как играть
@@ -420,7 +420,7 @@ OCC, EPT, энергоузел, ориджиниумная руда/криста
 <a id="origins-forge"></a>
 - **Версия:** 1.20.1-1.10.0.9 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/origins-forge)
 - **Что это:** Основа для рас: происхождения, слои выбора и силы (Forge-порт Origins). _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (3), [jei.md](../jei.md) (1), [performance.md](../performance.md) (1), [roadmap.md](../roadmap.md) (1), [russification-audit.md](../russification-audit.md) (1), [russification-glossary.md](../russification-glossary.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (13), [roadmap.md](../roadmap.md) (3), [jei.md](../jei.md) (1), [performance.md](../performance.md) (1), [russification-audit.md](../russification-audit.md) (1), [russification-glossary.md](../russification-glossary.md) (1)
 <!-- auto:end card:origins-forge -->
 
 ### Как играть
@@ -479,7 +479,7 @@ OCC, EPT, энергоузел, ориджиниумная руда/криста
 <a id="sarkazs_furnace_side_fables"></a>
 - **Версия:** 1.0.0 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/sarkazs_furnace_side_fables-0.2.3-forge-1.20.1.jar`
 - **Что это:** Сюжет «печи» сарказов: мысли и их нагрузка, эпохи, Амия и измерение «Вечный покой», оружие и броня «Финал» и «Учжоу». _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (4), [friends.md](../friends.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (5), [friends.md](../friends.md) (1)
 <!-- auto:end card:sarkazs_furnace_side_fables -->
 
 ### Как играть

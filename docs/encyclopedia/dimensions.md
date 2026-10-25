@@ -165,7 +165,7 @@ _Обзор категории — вручную, следующие этапы
 <a id="alexs-caves"></a>
 - **Версия:** 2.0.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/alexs-caves)
 - **Что это:** Шесть редких пещерных биомов под поверхностью Верхнего мира, со своими мобами и предметами. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (8), [enchanting-table.md](../enchanting-table.md) (5), [orespawn.md](../orespawn.md) (2), [client-checklist.md](../client-checklist.md) (1), [performance.md](../performance.md) (1), [roadmap.md](../roadmap.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (8), [enchanting-table.md](../enchanting-table.md) (5), [orespawn.md](../orespawn.md) (2), [roadmap.md](../roadmap.md) (2), [client-checklist.md](../client-checklist.md) (1), [performance.md](../performance.md) (1)
 <!-- auto:end card:alexs-caves -->
 
 ### Как играть
