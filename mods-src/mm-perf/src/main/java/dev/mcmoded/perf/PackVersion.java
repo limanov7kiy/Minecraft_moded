@@ -38,8 +38,8 @@ final class PackVersion {
         } catch (IOException | RuntimeException e) {
             MmPerf.LOGGER.warn("[mm_perf] не прочитан {}: {}", FILE, e.toString());
         }
-        if (version != null) MmPerf.LOGGER.info("[mm_perf] версия сборки: {}", version);
-        else MmPerf.LOGGER.warn("[mm_perf] версия сборки неизвестна (нет или повреждён config/{})", FILE);
+        if (version != null) MmPerf.LOGGER.info("[mm_perf] версия сборки: {} / pack version: {}", version, version);
+        else MmPerf.LOGGER.warn("[mm_perf] версия сборки неизвестна (нет или повреждён config/{}) / pack version unknown (config/{} missing or broken)", FILE, FILE);
     }
 
     static String label() {
