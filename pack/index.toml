@@ -78,7 +78,7 @@ hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "78f3f50b81732c06f62ab7977f4ac1d64f3320bac4ba37da57dec770e1b6a855"
+hash = "406c2311cfed7133e89dd1b05615a442405250c389c64ea757bdf97516a6a787"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -1166,7 +1166,7 @@ hash = "37cc6952c62fbe24376a1effdca702a015ae224c4cde5c042e2ed70a94987fb9"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/animations/main.animation.json"
-hash = "578d078527580b1c7f44fb526668fab1a87120de9091b31d4847a135ce35120a"
+hash = "45cf7d8e4eb54ea038fb3929b4a9d0bb2849015634054d00ae208a2c56b549b8"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/animations/tac.animation.json"
@@ -1186,15 +1186,15 @@ hash = "3ac7b04dcac9e6ecd2079112055fbd62adbafb4578a71b5d8e0ae26f7492b9f2"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/models/arm.json"
-hash = "983d544985686325ef94da2824d5c07cee1e9f4bf0434666a3d855cdf9f2bfe3"
+hash = "0d6cdf98b918a7f8347947d89f2ad52ba3205af3c28fd36dd51a779b6110378f"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/models/main.json"
-hash = "c4e2198e58c4466f1469e570ea72b7b70af49cda5135012c86b5b0c5060dd650"
+hash = "d5d4395b8667039032029f4d2b138eed72bce2334ba4aa73c1499d91ed56f7d9"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/textures/priestess.png"
-hash = "d23eb19b5aaa0a4d903eb1a192b55a9dac910d384c55a2c6b853a90c23ac3cf7"
+hash = "05cec26d2dbb0fc2156d697223fc51e2b96be8658f9a6c8f6b1cc90e2f293827"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/ysm.json"

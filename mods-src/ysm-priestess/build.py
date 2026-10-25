@@ -583,9 +583,11 @@ def build_main(default_geo):
     cb("Hair", (-4.1, 37.2, -4.1), (8.2, 4.0, 8.2), hair(0, True), dens=4, faces=["north"])
     cb("Hair", (-3.6, 41.15, -3.6), (7.2, 0.5, 7.2), hair(), dens=2)
     cb("Hair", (-2.5, 41.6, -2.5), (5.0, 0.35, 5.0), hair(), dens=2)
-    cb("Hair", (-4.3, 32.4, -1.6), (0.6, 5.0, 5.9), hair(0.3))
-    cb("Hair", (3.7, 32.4, -1.6), (0.6, 5.0, 5.9), hair(0.3))
-    cb("Hair", (-4.2, 31.2, 3.9), (8.4, 10.0, 0.6), hair(0.15, True))
+    # бока и затылок «шапки» переходят в длинные пряди (кости LongHair) — без синих кончиков, иначе на стыке
+    # головы и тела читается полоса-разрыв (R-011)
+    cb("Hair", (-4.3, 32.4, -1.6), (0.6, 5.0, 5.9), hair(0.0))
+    cb("Hair", (3.7, 32.4, -1.6), (0.6, 5.0, 5.9), hair(0.0))
+    cb("Hair", (-4.2, 31.2, 3.9), (8.4, 10.0, 0.6), hair(0.0, True))
     # пряди поверх «шапки» по бокам и на затылке — рваный силуэт вместо коробки
     for sg in (-1, 1):
         zs = [-2.7, -1.35, 0.0, 1.35, 2.7, 4.1]
@@ -593,11 +595,11 @@ def build_main(default_geo):
             x0 = 4.08 if i % 2 else 4.16
             yb = 32.8 - (i % 3) * 0.5
             lo, hi = (-(x0 + 0.4), -x0) if sg < 0 else (x0, x0 + 0.4)
-            cb("Hair", (lo, yb, zs[i]), (0.4, 41.0 - yb, zs[i + 1] - zs[i]), hair(0.25, True), dens=2,
+            cb("Hair", (lo, yb, zs[i]), (0.4, 41.0 - yb, zs[i + 1] - zs[i]), hair(0.25 if zs[i] < 0 else 0.0, True), dens=2,
                faces=["east", "west", "north", "south", "down"], seed=60 + i + (10 if sg > 0 else 0))
     for i, x in enumerate([-4.1, -2.75, -1.4, -0.05, 1.3, 2.65]):
         yb = 31.0 - (i % 2) * 0.6
-        cb("Hair", (x, yb, 4.5 + (0.15 if i % 2 else 0)), (1.45, 41.0 - yb, 0.4), hair(0.2, True), dens=2,
+        cb("Hair", (x, yb, 4.5 + (0.15 if i % 2 else 0)), (1.45, 41.0 - yb, 0.4), hair(0.0, True), dens=2,
            faces=["south", "east", "west", "down"], seed=80 + i)
     # чёлка: ровный срез, пряди разной глубины
     bang_x = [-4.15, -3.2, -2.3, -1.38, -0.46, 0.46, 1.38, 2.3, 3.2, 4.15]
@@ -614,19 +616,20 @@ def build_main(default_geo):
                                                   (X(3.75, 4.6), (38.2, 29.8), (-3.05, -1.85), 0.38),
                                                   (X(3.8, 4.65), (37.8, 31.0), (-1.85, -0.45), 0.35)):
             strand(G, "corner_h1", xa, xb, yt, yb, z0, z1, tip)
-    # пряди за плечами
+    # пряди за плечами; верх заходит на бок головы (выше оси LongHair ≈35,6), чтобы при качании волос
+    # и наклоне головы не открывалась щель между волосами головы и тела (R-011)
     for sg in (-1, 1):
         lo, hi = (-4.95, -3.95) if sg < 0 else (3.95, 4.95)
-        strand(G, "hl_side", lo, hi, 33.0, 25.8, 0.4, 1.9, 0.4)
-        strand(G, "hl_side", lo + 0.1 * sg, hi + 0.1 * sg, 33.0, 26.6, 1.9, 3.5, 0.4)
-    # длинная масса сзади: 8 прядей разной длины, в два слоя
+        strand(G, "hl_side", lo, hi, 37.0, 25.8, 0.4, 1.9, 0.4)
+        strand(G, "hl_side", lo + 0.1 * sg, hi + 0.1 * sg, 37.0, 26.6, 1.9, 3.5, 0.4)
+    # длинная масса сзади: 8 прядей разной длины, в два слоя; начинаются от макушки (поверх затылка «шапки»), см. выше
     xs = [-4.45, -3.35, -2.2, -1.1, 0.0, 1.1, 2.2, 3.35, 4.45]
     lens = [24.6, 23.6, 23.0, 22.6, 22.8, 23.2, 23.8, 24.8]
     for i in range(8):
         z0 = 4.1 + (0.18 if i % 2 else 0)
-        strand(G, "hl_m", xs[i], xs[i + 1], 31.6, lens[i], z0, z0 + 0.55, 0.4, band=False)
+        strand(G, "hl_m", xs[i], xs[i + 1], 38.0, lens[i], z0, z0 + 0.55, 0.4, band=False)
     for i in range(0, 8, 2):
-        strand(G, "hl_m", xs[i] + 0.3, xs[i + 1] + 0.6, 31.4, lens[i] + 1.4, 4.75, 5.15, 0.45)
+        strand(G, "hl_m", xs[i] + 0.3, xs[i + 1] + 0.6, 37.6, lens[i] + 1.4, 4.75, 5.15, 0.45)
     # ободок: чёрная лента через макушку, белое кружево по переднему краю
     G.bone("Headband", "Hair", (0, 39, -1))
     cb("Headband", (-3.7, 41.65, -1.3), (7.4, 0.35, 1.0), "black")
@@ -674,6 +677,9 @@ def build_main(default_geo):
     cb("LeftLeg", (0.3, 11.65, -1.9), (4.0, 10, 3.8), tights(top=True))
     cb("LeftLowerLeg", (0.5, 2.0, -1.7), (3.5, 10.0, 3.4), tights(knee=True))
     cb("LeftLowerLeg", (1.2, 10.7, -1.82), (2.1, 1.5, 0.2), "tights", faces=["north", "east", "west", "up", "down"])
+    # сустав колена (R-011): продолжение голени выше оси колена (11,7) — стоя спрятано в бедре (оно шире),
+    # при сгибе (сидя, присед, ходьба) поворачивается вперёд и закрывает щель между бедром и голенью
+    cb("LeftLowerLeg", (0.55, 11.0, -1.68), (3.4, 2.6, 3.36), "tights")
     cb("LeftFoot", (0.55, 0, -1.95), (3.3, 2.1, 3.9), "shoe")
     cb("LeftFoot", (0.62, 0, -4.05), (3.16, 1.55, 2.2), "shoe")
     cb("LeftFoot", (0.95, 0, -4.35), (2.5, 1.25, 0.35), "shoe")
@@ -686,8 +692,9 @@ def build_main(default_geo):
     G.mirror("LeftLeg", "RightLeg"); G.mirror("LeftLowerLeg", "RightLowerLeg"); G.mirror("LeftFoot", "RightFoot")
 
     # ================= юбка: 18 панелей плиссировки + фиолетовая оборка
-    ring(G, "Skirt", "SkirtP", 20, 22.6, 6.8, 3.95, 2.55, 1.65, 0.18, 21, "pleat", dens=3)
-    ring(G, "Skirt", "SkirtF", 20, 17.6, 2.6, 5.85, 4.3, 2.1, 0.14, 26, "frill", dens=3, phase=0.5)
+    # клёш умеренный (R-011): подол должен помещаться под плащом (плащ — А-силуэт, см. parallel4)
+    ring(G, "Skirt", "SkirtP", 20, 22.6, 6.8, 3.95, 2.55, 1.65, 0.18, 17, "pleat", dens=3)
+    ring(G, "Skirt", "SkirtF", 20, 17.6, 2.6, 5.45, 3.95, 2.1, 0.14, 20, "frill", dens=3, phase=0.5)
 
     # ================= подсумки и ремешки
     G.bone("Gear", "UpperBody", (0, 23, 0))
@@ -964,18 +971,24 @@ def parallels():
         eye[f"ysmGlow{s}Rim"] = {"scale": f"1 + 0.3 * {g}"}  # тонкая белая обводка ромба видна всегда, при вспышке чуть шире
         eye[f"ysmGlow{s}Hot"] = {"scale": f"{g} > 0.05 ? (0.5 + 0.7 * {g}) : 0"}
     A["parallel3"] = {"loop": True, "bones": eye}
-    # parallel4: физика плаща (как у волос default: скорость, вертикаль, поворот), ремешки
+    # parallel4: физика плаща (как у волос default: скорость, вертикаль, поворот), ремешки.
+    # Постоянные слагаемые — А-силуэт плаща: спинка, полы и бока отходят от тела так, чтобы юбка с оборкой
+    # не проходила сквозь плащ (R-011); кости плаща вращаются вокруг верхнего края сегмента, цепочка следует.
     sp = "math.clamp(q.ground_speed + (v.hg ?? 0), 0, 20)"
     vs = "math.clamp(-3 * q.vertical_speed, -10, 90)"
+    # присед: корпус (UpBody) наклоняется на ~32°, а юбка висит на ногах — полы плаща держим вертикально
+    ln = "ysm.second_order('pr_cape_lean', (q.is_sneaking ?? 0) ? 1 : 0, 3, 1, 0)"
     A["parallel4"] = {"loop": True, "bones": {
-        "CapeBackLow": {"rotation": [f"ysm.second_order('pr_cape_h', {sp}, 2, 0.6, 0) * 1.6 + ysm.second_order('pr_cape_v', {vs}, 2, 0.6, 0) * 0.6", 0,
+        "CapeFrontL": {"rotation": [f"-{ln} * 30", 0, 0]},
+        "CapeFrontR": {"rotation": [f"-{ln} * 30", 0, 0]},
+        "CapeBackLow": {"rotation": [f"ysm.second_order('pr_cape_h', {sp}, 2, 0.6, 0) * 1.6 + ysm.second_order('pr_cape_v', {vs}, 2, 0.6, 0) * 0.6 - 8", 0,
                                      "ysm.second_order('pr_cape_y', math.clamp(0.02 * q.yaw_speed, -40, 40), 2, 0.6, 0)"]},
-        "CapeBack": {"rotation": [f"ysm.second_order('pr_cape_h2', {sp}, 2, 0.6, 0) * 0.4", 0, 0]},
-        "CapeBackMid": {"rotation": [f"ysm.second_order('pr_cape_m', {sp}, 2, 0.5, 0) * 1.0", 0, 0]},
-        "CapeFrontLLow": {"rotation": [f"-ysm.second_order('pr_capef', {sp}, 2, 0.6, 0) * 0.9 - 4", 0, 0]},
-        "CapeFrontRLow": {"rotation": [f"-ysm.second_order('pr_capef', {sp}, 2, 0.6, 0) * 0.9 - 4", 0, 0]},
-        "CapeSideL": {"rotation": [f"ysm.second_order('pr_cape_h', {sp}, 2, 0.6, 0) * 0.8", 0, -4]},
-        "CapeSideR": {"rotation": [f"ysm.second_order('pr_cape_h', {sp}, 2, 0.6, 0) * 0.8", 0, 4]},
+        "CapeBack": {"rotation": [f"ysm.second_order('pr_cape_h2', {sp}, 2, 0.6, 0) * 0.4 + 3 + {ln} * 10", 0, 0]},
+        "CapeBackMid": {"rotation": [f"ysm.second_order('pr_cape_m', {sp}, 2, 0.5, 0) * 1.0 + 14", 0, 0]},
+        "CapeFrontLLow": {"rotation": [f"-ysm.second_order('pr_capef', {sp}, 2, 0.6, 0) * 0.9 - 17", 0, 0]},
+        "CapeFrontRLow": {"rotation": [f"-ysm.second_order('pr_capef', {sp}, 2, 0.6, 0) * 0.9 - 17", 0, 0]},
+        "CapeSideL": {"rotation": [f"ysm.second_order('pr_cape_h', {sp}, 2, 0.6, 0) * 0.8", 0, -6]},
+        "CapeSideR": {"rotation": [f"ysm.second_order('pr_cape_h', {sp}, 2, 0.6, 0) * 0.8", 0, 6]},
         "Straps": {"rotation": [f"ysm.second_order('pr_strap', {sp}, 3, 0.4, 0) * 1.2", 0, 0]},
     }}
     return A
@@ -1119,6 +1132,14 @@ def main():
     for k in ("parallel1", "parallel2", "parallel3", "parallel4"):
         an.pop(k, None)
     an.update(parallels()); an.update(pre_parallels())
+    # полы плаща висят на корпусе (UpBody), юбка — на ногах: где корпус наклонён к ногам, полы отводим вперёд,
+    # чтобы юбка не проходила сквозь плащ (R-011). sit («стул»): default кладёт юбку на бёдра — полы ложатся
+    # на колени поверх неё; бег/езда/лодка — полы висят отвесно. Углы подобраны проверкой пересечений (ysmrender).
+    for pose, up, low in (("sit", -30, -40), ("run", -20, 0), ("ride", -25, 0), ("ride_pig", -30, 0), ("boat", -15, 0)):
+        for side in ("L", "R"):
+            an[pose]["bones"][f"CapeFront{side}"] = {"rotation": [up, 0, 0]}
+            if low:
+                an[pose]["bones"][f"CapeFront{side}Low"] = {"rotation": [low, 0, 0]}
     an["gui"] = copy.deepcopy(an["gui"])
     (out / "animations" / "main.animation.json").write_text(json.dumps(main_an, ensure_ascii=False, separators=(",", ":")))
     extra = {"format_version": "1.8.0", "animations": extras()}
