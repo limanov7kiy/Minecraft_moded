@@ -45,15 +45,19 @@ def C(h, a=255):
 
 P = {
     "skin": C("ffece4"), "skin_s": C("f4d3c8"), "skin_d": C("e3b3a6"), "blush": C("f7aeb0"), "mouth": C("b35a6a"),
-    # волосы тёмно-каштановые, концы — приглушённый сине-фиолетовый отлив (у спрайта avg_npc_083 он только в тени прядей)
-    "hair": C("372a29"), "hair_l": C("4d3c39"), "hair_hi": C("715c56"), "hair_d": C("221918"),
-    "hair_tip": C("2b2c4c"), "hair_tip_l": C("44467a"),
+    # волосы по спрайту avg_npc_083 (замер пикселей): нейтральный тёмный серо-коричневый (средний #3d3c3c–#494445,
+    # тени #1d1d1d–#2e2626, свет #5b5b5b–#706767, тёплый блик на чёлке), кончики того же тона (#49494b);
+    # синий — только приглушённый сланцево-фиолетовый нижний слой у шеи за боковыми прядями (#4e4c5b, тень #353546)
+    "hair": C("453d3c"), "hair_l": C("5a5150"), "hair_hi": C("7a6a66"), "hair_d": C("2b2323"),
+    "hair_tip": C("3d3a3b"), "hair_tip_l": C("4b494c"), "hair_under": C("4e4c5b"), "hair_under_d": C("353546"),
     "white": C("f7f5fa"), "white_s": C("e4e0ea"), "white_d": C("c7c1d2"),
     "black": C("1e1c24"), "black_l": C("3a3744"), "black_hi": C("57535f"), "black_d": C("0f0e13"),
     "graphite": C("3b3a44"), "graph_l": C("5a5866"),
     "purple": C("7446b4"), "purple_l": C("a07ad8"), "purple_d": C("4a2a7c"),
     # колготки почти чёрные с фиолетовым оттенком (avg_npc_083), не сиреневые
-    "tights": C("2a2234"), "tights_l": C("3d324b"), "tights_hi": C("5a4b6e"), "tights_d": C("17121e"), "tights_skin": C("5e4b5e"),
+    "tights": C("221c26"), "tights_l": C("332a3a"), "tights_hi": C("4a3f58"), "tights_d": C("121016"), "tights_skin": C("4e3f4c"),
+    # ремешки по низу юбки — тёмный приглушённый фиолетовый (спрайт: #42325c), не яркий purple
+    "strap_p": C("4a3768"), "strap_p_d": C("33264a"),
     # плащ: полупрозрачный светло-серый лабораторный халат — холоднее и темнее белого свитера
     "coat": C("dcdce4"), "coat_s": C("c4c4ce"), "coat_d": C("a4a3b2"),
     "red": C("e0243f"), "red_l": C("ff6378"), "red_d": C("8e1028"), "core": C("fff4f6"),
@@ -168,8 +172,8 @@ def m_frill(w, h, face, s):
                 x = int(round(y / max(1, h - 1) * (w - 1)))
                 if s % 2: x = w - 1 - x
                 for dx in (0, 1):
-                    if 0 <= x + dx < w: a[y, x + dx] = P["purple"] if dx == 0 else P["purple_d"]
-            a[0, :] = P["purple_d"]
+                    if 0 <= x + dx < w: a[y, x + dx] = P["strap_p"] if dx == 0 else P["strap_p_d"]
+            a[0, :] = P["strap_p_d"]
     return a
 
 
@@ -205,8 +209,9 @@ def m_shoe(w, h, face, s):
     return a
 
 
-def m_hair(w, h, face, s, tip=0.0, band=False):
-    """прямые волосы: пряди тремя тонами, «нимб-блик» band, концы (tip — доля высоты) — тёмно-синие"""
+def m_hair(w, h, face, s, tip=0.0, band=False, under=False):
+    """прямые волосы: пряди тремя тонами, «нимб-блик» band, концы (tip — доля высоты) чуть темнее;
+    under — нижний слой у шеи: сланцево-фиолетовый оттенок, к концу пряди сходит на нет"""
     r = np.random.default_rng(s)
     a = fill(w, h, P["hair"])
     if face in ("up", "down"):
@@ -227,11 +232,17 @@ def m_hair(w, h, face, s, tip=0.0, band=False):
             f = (y - (h - n) + 1) / n
             a[y] = a[y] * (1 - f) + P["hair_tip"] * f
             a[y, (y % 3)::3] = a[y, (y % 3)::3] * (1 - f) + P["hair_tip_l"] * f
+    if under:
+        dark = r.random(w) < 0.35  # тёмные пряди слоя — вертикальными полосами, как основной тон
+        for y in range(h):
+            f = 0.75 * min(1.0, 1.4 * (1 - y / max(1, h - 1)))
+            for x in range(w):
+                a[y, x] = a[y, x] * (1 - f) + (P["hair_under_d"] if dark[x] else P["hair_under"]) * f
     return a
 
 
-def hair(tip=0.0, band=False):
-    return lambda w, h, f, s: m_hair(w, h, f, s, tip, band)
+def hair(tip=0.0, band=False, under=False):
+    return lambda w, h, f, s: m_hair(w, h, f, s, tip, band, under)
 
 
 def m_head(w, h, face, s):
@@ -546,11 +557,11 @@ def box(lo, hi):
 FORMS = ["sword", "axe", "pickaxe", "shovel", "hoe", "bow", "crossbow", "shield", "spear", "staff", "tome", "food", "other"]
 
 
-def strand(G, bone, x0, x1, ytop, ybot, z0, z1, tip=0.35, band=False, rot=None, piv=None, taper=True, dens=2):
-    """прядь: основной куб + сужающийся кончик (тёмно-синий)"""
+def strand(G, bone, x0, x1, ytop, ybot, z0, z1, tip=0.35, band=False, rot=None, piv=None, taper=True, dens=2, under=False):
+    """прядь: основной куб + сужающийся кончик"""
     h = ytop - ybot
     k = h * 0.22 if taper else 0
-    G.cube(bone, (x0, ybot + k, z0), (x1 - x0, h - k, z1 - z0), hair(tip * 0.6, band), rot=rot, pivot=piv, dens=dens)
+    G.cube(bone, (x0, ybot + k, z0), (x1 - x0, h - k, z1 - z0), hair(tip * 0.6, band, under), rot=rot, pivot=piv, dens=dens)
     if taper:
         w = (x1 - x0) * 0.55
         cx = (x0 + x1) / 2
@@ -638,8 +649,9 @@ def build_main(default_geo):
     # и наклоне головы не открывалась щель между волосами головы и тела (R-011)
     for sg in (-1, 1):
         lo, hi = (-4.95, -3.95) if sg < 0 else (3.95, 4.95)
-        strand(G, "hl_side", lo, hi, 37.0, 25.8, 0.4, 1.9, 0.4)
-        strand(G, "hl_side", lo + 0.1 * sg, hi + 0.1 * sg, 37.0, 26.6, 1.9, 3.5, 0.4)
+        # нижний слой у шеи — сланцево-фиолетовый отлив (у спрайта виден за боковыми прядями, сильнее справа)
+        strand(G, "hl_side", lo, hi, 37.0, 25.8, 0.4, 1.9, 0.4, under=True)
+        strand(G, "hl_side", lo + 0.1 * sg, hi + 0.1 * sg, 37.0, 26.6, 1.9, 3.5, 0.4, under=True)
     # длинная масса сзади: 8 прядей разной длины, в два слоя; начинаются от макушки (поверх затылка «шапки»), см. выше
     xs = [-4.45, -3.35, -2.2, -1.1, 0.0, 1.1, 2.2, 3.35, 4.45]
     lens = [24.6, 23.6, 23.0, 22.6, 22.8, 23.2, 23.8, 24.8]
