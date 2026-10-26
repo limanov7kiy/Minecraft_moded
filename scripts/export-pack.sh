@@ -43,9 +43,9 @@ curl -sSLo "$stage/forge-installer.jar" \
 # Память и сборщик мусора сервера: G1 с флагами Aikar (замер потока 67 на тестовом сервере: суммарные паузы GC −30 %, p95 паузы
 # 125–139 → 103 мс; docs/performance.md «Поток 67»). Xms = Xmx и AlwaysPreTouch — куча занимается сразу; машине нужно Xmx + 2,5 ГБ (docs/hosting.md).
 cat > "$stage/user_jvm_args.txt" <<'JVM'
-# Куча сервера: при другом объёме ОЗУ меняйте обе строки одинаково (машине нужно Xmx + 2,5 ГБ).
--Xms10G
--Xmx10G
+# Куча сервера: 9 ГБ под тариф 12 ГБ (9 + 2,5 ГБ вне кучи = 11,5). На 16 ГБ можно 12G. Меняйте обе строки одинаково.
+-Xms9G
+-Xmx9G
 # G1 с флагами Aikar (docs/performance.md, «Поток 67»)
 -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch
 -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4
