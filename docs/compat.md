@@ -1706,6 +1706,34 @@ Corosus (Weather2) — здесь только перехват вызовов.
 Генерация мира Chunky: 4,9–5,3 → 7,7 чанка/с. `SERVER OK`, ошибок миксинов нет. Подробности — `docs/performance.md`, «Поток 67».
 Откат: `pack/mods/mm-compat-0.5.13.jar` вместо 0.5.14, `packwiz refresh`.
 
+## Логические дубли, пачка dedup-1: медные инструменты, лазуритовая броня, насос (поток 66, 2026-10-26, сборка 2026.10.26-8)
+Решение владельца (после В54): из логических дублей оставляем один предмет с самым сложным крафтом; аудит и цифры — `docs/dedup.md`.
+
+| Группа | Убрано (без рецептов, JEI, креатива) | Оставлено | Сложность, ед. (убрано → оставлено) |
+|---|---|---|---|
+| О1 медные инструменты | Ice and Fire `copper_sword/pickaxe/axe/shovel/hoe` | Create Stuff Additions `copper_*` | 25 → 25 (равны; у Create SA полный комплект с бронёй — подтверждено координатором) |
+| О2 лазуритовая броня | Mekanism Tools `lapis_lazuli_helmet/leggings/boots` | Chaos Persists `lapis_helmet/leggings/boots` | 19 → 147 |
+| О3 насос воды | Ad Astra `water_pump` | Mekanism `electric_pump` | 25 → 30 |
+
+Как сделано (общий механизм для всех пачек):
+- список `global.mmDedup` в `pack/kubejs/startup_scripts/dedup_list.js`; `server_scripts/dedup.js` убирает рецепты убранного и подставляет
+  оставшийся в чужие рецепты; `client_scripts/dedup.js` прячет из JEI; вкладка креатива — по реестру вкладок (`MM_DEDUP_TABS`:
+  `iceandfire:items`, `ad_astra:main`, остальные `мод:мод`);
+- **теги**: оставшийся предмет получает item-теги убранного (`global.mmDedupTags`, генерирует `scripts/dedup-audit/tagcopy.py`) — у медных
+  инструментов Create SA своих тегов не было вовсе (`minecraft:axes`, `forge:tools`…), без этого они не годились бы для рецептов «любой топор»
+  (Farmer's Delight и ещё 70 рецептов); лазурит Chaos Persists получил `forge:armors/*`, костюм Create Nuclear — `forge:armors/*/hazmat`.
+  Поиск тегов прямо в событии KubeJS 2001.6 не работает (`TagWrapper.getObjectIds()` пуст), поэтому список статический;
+- **лут**: медный меч Ice and Fire лежал в сундуках кладбища и гнезда молниевого дракона — таблицы переопределены
+  (`pack/kubejs/data/iceandfire/loot_tables/chest/{graveyard,lightning_dragon_roost,lightning_dragon_female_cave}.json`, меч Create SA вместо него); Loot Integrations
+  берёт лут из этих же таблиц. Торговли жителей и квестов с этими предметами нет.
+- предметы из реестра не удалены: уже лежащие в мирах остаются рабочими (насос Ad Astra продолжает качать воду).
+
+**Тест** `scripts/tests/dedupcheck.js` (для каждого убранного: рецептов на выходе 0, ни один рецепт не требует именно его, оставшийся
+существует): `DEDUPCHECK total ok=13 fail=0` (4 части Hazmat из #168 + 9 новых), `SERVER OK`, краш-отчётов нет.
+
+**Откат:** удалить строки группы из `global.mmDedup` и `global.mmDedupTags` (`startup_scripts/dedup_list.js`), для О1 — ещё
+`pack/kubejs/data/iceandfire/loot_tables/chest/`, поднять версию, `packwiz refresh`.
+
 ## Модель YSM «Vivi» — девушка-волчица (поток 69, 2026-10-26, сборка 2026.10.26-9)
 Новая модель-папка `pack/config/yes_steve_model/custom/vivi/` (генератор `mods-src/ysm-vivi/build.py`, подробности и
 превью — `docs/ysm-models.md`, раздел «Vivi»). Модель Priestess не менялась (общий с ней движок `Geo` и рендер только
