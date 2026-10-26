@@ -104,7 +104,7 @@
 1. Драйвер видеокарты свежий (NVIDIA/AMD с сайта производителя; Intel — Intel Arc Control / Windows Update). Ноутбуки с двумя видеокартами: Java (`javaw.exe` Prism) прописать на дискретную в *Параметры Windows → Дисплей → Графика*; в F3 должна быть ваша карта, а не Intel UHD/`llvmpipe`.
 2. *Настройки → Видео (Embeddium)*: дальность 8–10 (не выше, дальше рисует Distant Horizons), облака «быстрые», частицы «уменьшенные», «Вертикальная синхронизация» — по вкусу; `chunk_builder_threads=0` (автоматически) оставить; включена «Сортировка прозрачных граней» (делает воду/стекло правильными).
 3. Шейдеры: сначала без них; потом лёгкий (Complementary Reimagined/BSL «Low»), *Распределение теней* ≤ 32 (в `oculus.properties` уже `maxShadowRenderDistance=32`). На ПК без дискретной карты шейдеры не включать.
-4. Distant Horizons: в сборке радиус 64, генерация самим DH выключена. Предупреждение «G1 Garbage collector detected» можно игнорировать: наш набор — G1 с флагами Aikar (`friends.md`), ZGC/Shenandoah на Java 17 для клиента **не советуем**
+4. Distant Horizons: в сборке радиус 64, генерация самим DH выключена. Предупреждение «G1 Garbage collector detected» можно игнорировать (с 2026.10.26-5 в чат не выводится, только в лог — `showGarbageCollectorWarning = false`): наш набор — G1 с флагами Aikar (`friends.md`), ZGC/Shenandoah на Java 17 для клиента **не советуем**
    (ZGC без поколений на 17 хуже G1 и не проверялся на сборке). Если рывки именно при подгрузке LOD: уменьшить в настройках DH «Потоки» и «Радиус LOD», дать клиенту 8 ГБ, держать мир на SSD.
 5. Если видите вылет/фиолетовые блоки с шейдером — сначала выключить шейдер, затем (для проверки) вынуть `oculus-*.jar` из `mods/`; Embeddium без Oculus работает и даёт FPS.
 6. Для диагностики: `scripts/collect-diagnostics.*` (`docs/diagnostics.md`) уже собирает `embeddium-options.json` и `oculus.properties`; присылать вместе с `latest.log`.
@@ -329,3 +329,15 @@ scripts/test-server.sh <папка вне репо> 2100`; мир удалить
 и `PERFLOAD save` в `logs/latest.log`; границы фаз (epoch-мс) — `PERFLOAD phase`; разбор фазы — `java -cp <классы> JfrMods rec.jfr <от> <до>`,
 `JfrGrep rec.jfr <от> <до> "Server thread" getChunkBlocking` (кто синхронно грузит чанки), `JfrMore` (потоки, GC, аллокации). Константы теста — в начале `perfload.js`
 (KubeJS закрывает `java.lang.System`, переменные окружения не читаются; `Math.PI`/`cos` в Rhino KubeJS дают NaN).
+
+### Меньше строк в чате при входе (сборка 2026.10.26-5)
+При каждом входе в мир моды писали в чат 7 строк. Три из них — предупреждения и реклама, которые нельзя выполнить или не нужно:
+- `pack/config/DistantHorizons.toml`: `showGarbageCollectorWarning = false` — «G1 Garbage collector detected, рекомендуем ZGC/Shenandoah». Наш выбор — G1 с флагами Aikar, ZGC/Shenandoah на Java 17 не советуем. В лог предупреждение по-прежнему пишется.
+- `pack/config/alexsmobsinteraction-client.toml`: `EFFECTS_REMINDER_ENABLED = false` — три строки «BEWARE… PHOTOSENSITIVE» о вспышках Farseer. Сами эффекты не выключены (`FARSEER_EFFECTS_ENABLED` — по умолчанию).
+- `pack/config/traveloptics/traveloptics-common.toml`: `welcome_message = false` — приветствие T.O Magic 'n Extras.
+
+Оба новых файла — полные копии сгенерированных модом конфигов с одной изменённой строкой; остальное — умолчания.
+Проверка (`test-client.sh`, вход в созданный мир): было 7 строк, стало 3. Остались Natural Disasters (без настройки) и две строки Simple Voice Chat — их не трогаем.
+Откат: удалить два файла и строку в `DistantHorizons.toml`, `packwiz refresh`.
+
+Не сделано по замеру (поток 67): обработчик анимаций Caerula Arbor (149 `instanceof` на каждое существо) с ранним выходом даёт лишь −0,6 п.п. тика (1,65 → 1,0 % в фазе с игроками; после полёта без изменений). Отдельный PR не делали.

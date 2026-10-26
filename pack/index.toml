@@ -6,7 +6,7 @@ hash = "f1ceb92d0b8b72485894a12f2e434f475a127d59cae046ee5843be6318f6745e"
 
 [[files]]
 file = "config/DistantHorizons.toml"
-hash = "5560728c41f5700432b8905e397bb9d0dc6786c6876da7277c8c6f03b5871094"
+hash = "300a4b20831792af648c51f91eb1134ce465e9f56bb325daf63af6b7bf667338"
 
 [[files]]
 file = "config/Weather2/Misc.toml"
@@ -19,6 +19,10 @@ hash = "d90d1cdabb978dba7833e8f9460e9941382ea3c9126c2bed06c84c8e0bf6fd87"
 [[files]]
 file = "config/Weather2/Tornado.toml"
 hash = "595970f0ab7905829a78bfd00fbe7ec8311603366307fb36b1e717c62bfdc351"
+
+[[files]]
+file = "config/alexsmobsinteraction-client.toml"
+hash = "e994c53b8b32aba78ef91945c135aa2a329dc4ef5a7f501912d0e60ea7594a0c"
 
 [[files]]
 file = "config/almostunified/debug.json"
@@ -78,7 +82,7 @@ hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "b919dfa2e070b041ac5540981e877f7cecd0bea9a4a8a11f2ba33ef531c8eb64"
+hash = "5a288a20500a228a0ac52a7e72562d68bf780cb4be479aa26c7e253394afb620"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -103,6 +107,10 @@ hash = "2ad6e7482e70f641102d77ade3dad0d55a71cd757853010d5aa14425e5b53de7"
 [[files]]
 file = "config/srpsystem-common.toml"
 hash = "00457ff2771a8b29b64bd7eca40b402a071d81a2a71c7bb52ced75c4f2c65ff7"
+
+[[files]]
+file = "config/traveloptics/traveloptics-common.toml"
+hash = "af4a8aecd3e987cca9c458f219a1133d387ab04c1ad48133c6c79ae8a6f96567"
 
 [[files]]
 file = "config/vcinteraction/vcinteraction.properties"
