@@ -364,7 +364,7 @@ Soiled, Corroded, Infested, Fragile («Смертное касание»), Immol
 <a id="traveloptics"></a>
 - **Версия:** 6.3.0-1.20.1 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/traveloptics-6.3.0-1.20.1-mmport.jar`
 - **Что это:** Большое дополнение к Cataclysm и Iron's Spells: оружие, броня, боссы и 176 заклинаний; порт под версии сборки. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (7), [roadmap.md](../roadmap.md) (4), [enchanting-table.md](../enchanting-table.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (7), [roadmap.md](../roadmap.md) (4), [enchanting-table.md](../enchanting-table.md) (2), [performance.md](../performance.md) (2)
 <!-- auto:end card:traveloptics -->
 
 ### Как играть

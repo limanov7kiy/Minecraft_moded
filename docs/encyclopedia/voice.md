@@ -79,7 +79,7 @@ Simple Voice Chat, рации, физика звука.
 - **Версия:** forge-1.20.1-2.6.24 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/simple-voice-chat)
 - **Что это:** Голосовой чат прямо в игре: близкий, группы, на сервере. _(источник: docs сборки)_
 - **В сборке:** both: сам голосовой чат, группы
-- **В наших docs:** [compat.md](../compat.md) (16), [hosting.md](../hosting.md) (15), [roadmap.md](../roadmap.md) (6), [russification.md](../russification.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (16), [hosting.md](../hosting.md) (15), [roadmap.md](../roadmap.md) (6), [performance.md](../performance.md) (2), [russification.md](../russification.md) (2)
 <!-- auto:end card:simple-voice-chat -->
 
 ### Как играть
