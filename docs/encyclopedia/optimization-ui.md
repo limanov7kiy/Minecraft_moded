@@ -555,7 +555,7 @@ Jade показывает корректные данные на корабля�
 - **Версия:** 1.3.146 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/chunky)
 - **Что это:** Прегенерация мира командами /chunky: заранее создаёт местность в заданном радиусе. _(источник: docs сборки)_
 - **В сборке:** both: прегенерация мира командами /chunky (В51, поток 64); сам ничего не запускает — docs/friends.md «Прегенерация»
-- **В наших docs:** [compat.md](../compat.md) (24), [friends.md](../friends.md) (21), [hosting.md](../hosting.md) (16), [roadmap.md](../roadmap.md) (6), [performance.md](../performance.md) (5)
+- **В наших docs:** [compat.md](../compat.md) (24), [friends.md](../friends.md) (21), [hosting.md](../hosting.md) (16), [performance.md](../performance.md) (7), [roadmap.md](../roadmap.md) (6)
 <!-- auto:end card:chunky -->
 
 ### Что даёт игроку

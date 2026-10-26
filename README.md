@@ -126,6 +126,7 @@
 | [scripts/jfr/JfrGrep.java](scripts/jfr/JfrGrep.java) | JFR: доля сэмплов с заданным методом в стеке и кто его вызывает (например `getChunkBlocking`) |
 | [scripts/tests/perfload.js](scripts/tests/perfload.js) | Нагрузочный замер сервера: покой → фейковые игроки → полёт с генерацией → save-all / flush; MSPT по фазам — `docs/performance.md` «Поток 67» |
 | [scripts/tests/hungercheck.js](scripts/tests/hungercheck.js) | Замер расхода голода (усталости) за минуту: стоя / ходьба / бег / прыжки, без расы и с расами Arknights — см. `docs/compat.md`, «Быстрый голод» |
+| [scripts/tests/ticketdump.js](scripts/tests/ticketdump.js) | Кто держит чанки загруженными: тикеты по типам в каждом измерении раз в 30 с (пример — мегаструктура Torches Become Sunlight) |
 | [scripts/spore_infection_map.py](scripts/spore_infection_map.py) | Карта заражения мобов для Spore и SRP System по выгрузке реестра |
 
 ### Скрипты: проверка модов и совместимость

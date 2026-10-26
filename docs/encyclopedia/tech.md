@@ -558,7 +558,7 @@ Valkyrien Sails (`vs_sails`, 0.3.2; автор Quinton Center) — парусн�
 <a id="valkyrien-skies"></a>
 - **Версия:** 1.20.1-forge-2.4.11 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/valkyrien-skies)
 - **Что это:** Физика в Minecraft: корабли и целые постройки как движущиеся тела. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (30), [performance.md](../performance.md) (21), [roadmap.md](../roadmap.md) (16), [galacticraft.md](../galacticraft.md) (3), [dedup.md](../dedup.md) (2), [hosting.md](../hosting.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (30), [performance.md](../performance.md) (24), [roadmap.md](../roadmap.md) (16), [galacticraft.md](../galacticraft.md) (3), [dedup.md](../dedup.md) (2), [hosting.md](../hosting.md) (2)
 <!-- auto:end card:valkyrien-skies -->
 
 ### Как играть
@@ -599,7 +599,7 @@ Valkyrien Skies 2.4.11 (Tri0de, Rubydesic; зависимость — Architectu
 - **Версия:** 1.0.3 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/vs-tournament-reforged)
 - **Что это:** Аддон Valkyrien Skies: механики и оружие для сражений кораблей. _(источник: docs сборки)_
 - **В сборке:** порт VS Tournament под VS 2.4 (оригинал vs-tournament падает: VSConfigClass)
-- **В наших docs:** [performance.md](../performance.md) (8), [compat.md](../compat.md) (6), [roadmap.md](../roadmap.md) (6), [dedup.md](../dedup.md) (1), [galacticraft.md](../galacticraft.md) (1), [hosting.md](../hosting.md) (1)
+- **В наших docs:** [performance.md](../performance.md) (9), [compat.md](../compat.md) (6), [roadmap.md](../roadmap.md) (6), [dedup.md](../dedup.md) (1), [galacticraft.md](../galacticraft.md) (1), [hosting.md](../hosting.md) (1)
 <!-- auto:end card:vs-tournament-reforged -->
 
 ### Как играть
