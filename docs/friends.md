@@ -23,7 +23,7 @@
 
 macOS: модели игроков Yes Steve Model на Mac не работают, остальное — да.
 Модели игроков (Yes Steve Model): клавиши меню моделей и колеса анимаций назначить в *Управление → Yes Steve Model*; есть пакеты
-Arknights / Endfield / Punishing: Gray Raven / Azur Lane / Azur Lane (FREE-YSM-AUTHOR) и наша **Priestess** — подробности в `docs/ysm-models.md`.
+Arknights / Endfield / Punishing: Gray Raven / Azur Lane / Azur Lane (FREE-YSM-AUTHOR) и наши **Priestess** и **Vivi** — подробности в `docs/ysm-models.md`.
 
 > **Пакет «Azur Lane (FREE-YSM-AUTHOR)» — 124 модели, ~500 МБ, часть может быть 18+** (так пишет автор сборника: в именах файлов метки
 > `Nsfw`/`NSFW`, `18plus`; есть и `allages` — версии «для всех возрастов»). Первая установка скачивает эти ~500 МБ, на диске они занимают столько же.

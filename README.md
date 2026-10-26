@@ -74,7 +74,7 @@
 | [docs/bosses.md](docs/bosses.md) | Таблица боссов сборки: где встретить, как призвать, здоровье/урон/броня, награда (генерируется) |
 | [docs/bosses.csv](docs/bosses.csv) | Та же таблица боссов в CSV для сортировки и фильтров |
 | [docs/client-check/](docs/client-check/) | Скриншоты клиента из проверок (главное меню, мир, F3, мобы) |
-| [docs/img/](docs/img/) | Картинки к документам, в т.ч. превью модели Priestess |
+| [docs/img/](docs/img/) | Картинки к документам, в т.ч. превью моделей Priestess и Vivi |
 
 ### Русификация
 | Файл | Что здесь объясняется |
@@ -194,6 +194,7 @@
 | [mods-src/ru-lang/](mods-src/ru-lang/) | Клиентский мод, всегда включающий русский ресурспак сборки |
 | [mods-src/jar-ports/](mods-src/jar-ports/) | Классы-переходники для портов чужих jar |
 | [mods-src/ysm-priestess/](mods-src/ysm-priestess/) | Генератор и офлайн-превью модели игрока Priestess для YSM |
+| [mods-src/ysm-vivi/](mods-src/ysm-vivi/) | Генератор модели игрока Vivi для YSM (девушка-лиса в бордовом пальто): подбор углов пальто и хвоста по позам (`tune.py`), проверка пересечений (`vivicheck.py`), превью |
 | [patches/jar-ports/build.sh](patches/jar-ports/build.sh) | Порт чужого jar под версии зависимостей сборки: скачивание, правила, переходники |
 | [patches/jar-ports/origin-furs/embed.txt](patches/jar-ports/origin-furs/embed.txt) | Пример встраивания старой библиотеки внутрь порта |
 | [patches/abyssal-jump/build.sh](patches/abyssal-jump/build.sh) | Ослабляет «Прыгучесть» у «Охотников Бездны» в jar arknights_weapon |
