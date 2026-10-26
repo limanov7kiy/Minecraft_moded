@@ -34,7 +34,13 @@ global.mmDedup = {
   'createbigcannons:gas_mask': 'spore:gas_mask',
   // В70 п.8 (dedup-2): парашюты — остаётся Superb Warfare
   'aether:cold_parachute': 'superbwarfare:parachute',
-  'aether:golden_parachute': 'superbwarfare:parachute'
+  'aether:golden_parachute': 'superbwarfare:parachute',
+  // В69 (dedup-3, энергия): только явная разница цена ↔ выработка — кабели Ad Astra (150 / 500 FE/т) против универсальных
+  // кабелей Mekanism (от 3200 FE/т при той же цене), угольный генератор Ad Astra (20 FE/т, 34 ед.) против теплового Mekanism (80 FE/т, 18 ед.)
+  'ad_astra:steel_cable': 'mekanism:basic_universal_cable',
+  'ad_astra:desh_cable': 'mekanism:advanced_universal_cable',
+  'ad_astra:cable_duct': 'mekanism:basic_universal_cable',
+  'ad_astra:coal_generator': 'mekanismgenerators:heat_generator'
 }
 // Item-теги убранного, которых нет у оставшегося: оставшийся получает их (server_scripts/dedup.js), чтобы работать во всех
 // связанных механиках (например, топор Create SA без minecraft:axes не годился бы для рецептов «любой топор»).
