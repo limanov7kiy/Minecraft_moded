@@ -109,6 +109,7 @@
 | [scripts/tests/](scripts/tests/) | Проверочные скрипты и списки команд для тестового сервера (заклинания, ракеты, спавн, города, боссы, отчёты) |
 | [scripts/tests/savecheck.js](scripts/tests/savecheck.js) | Замер сохранения мира по измерениям: автосейв, сохранение с flush (как выход из мира), во время генерации — см. `docs/performance.md` «Долгое сохранение» |
 | [scripts/tests/cn_nogrief.js](scripts/tests/cn_nogrief.js) | Проверка, что взрыв реактора Create Nuclear не ломает блоки (`createnuclear_no_grief.js`) — см. `docs/compat.md` «Create Nuclear» |
+| [scripts/tests/radsuit.js](scripts/tests/radsuit.js) | Проверка единого защитного костюма: костюм Create Nuclear защищает от радиации Mekanism и Create Nuclear, Hazmat не крафтится — см. `docs/compat.md` «Один защитный костюм» |
 | [scripts/clienttest/clientmobs.js](scripts/clienttest/clientmobs.js) | Клиентская проверка рендера мобов: по одному мобу каждого вида в ряд |
 | [scripts/clienttest/ExitTrace.java](scripts/clienttest/ExitTrace.java) | Java-агент для `test-client.sh`: печатает стек каждого `System.exit` |
 | [scripts/collect-diagnostics.bat](scripts/collect-diagnostics.bat) | Запуск двойным щелчком (Windows): вызывает `collect-diagnostics.ps1` |
@@ -165,6 +166,7 @@
 | Файл | Что здесь объясняется |
 |---|---|
 | [pack/kubejs/server_scripts/](pack/kubejs/server_scripts/) | KubeJS-правки: убранные ссылки в тегах, спавн OreSpawn, правила бури, ракеты, свечение и формы модели Priestess, выключенный бонусный лут мобов Contingency Contract |
+| [pack/kubejs/startup_scripts/dedup_list.js](pack/kubejs/startup_scripts/dedup_list.js) | Список логических дублей между модами (`global.mmDedup`: убранный предмет → оставшийся): рецепты, JEI, креатив — см. `docs/compat.md` «Один защитный костюм» |
 | [pack/kubejs/data/](pack/kubejs/data/) | Данные KubeJS: рецепты, лут, теги, патчи Patchouli-книг модов |
 | [pack/kubejs/assets/](pack/kubejs/assets/) | Модели и атласы текстур, поправленные KubeJS |
 | [pack/config/almostunified/](pack/config/almostunified/) | Объединение дублей предметов между модами (Almost Unified) |

@@ -78,7 +78,7 @@ hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "e994c11c9a107cc05a25fa1e5f85eaf4f20926e2747251cd9a52291f2ce9755b"
+hash = "8d1dd8052da0bb78dd9feb426491a4406d1afca53fed374559e8513654781a8e"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -1253,6 +1253,10 @@ file = "kubejs/assets/mna/models/block/obj/pylon/pylon_ring.obj"
 hash = "14e3cd0b623c2e784d3c75e1fa54d7f059df7f24f00262934a19730427c33c6e"
 
 [[files]]
+file = "kubejs/client_scripts/dedup.js"
+hash = "f460bcf44f0702f4b3557dff80fa4a008a2ce532a41aaed2ff01042959a6ab6f"
+
+[[files]]
 file = "kubejs/client_scripts/space_rockets.js"
 hash = "c5f3ef1a27991ac16c6f99ff138572a82654f52f514605e7a423b3c9adfb0eac"
 
@@ -1479,6 +1483,10 @@ hash = "0598b727e7ed2370ee43e948969698068785ed8d1e040ed3c7c8d3ca2bc94dfe"
 [[files]]
 file = "kubejs/data/irons_spellbooks/loot_tables/chests/citadel/citadel_tomes.json"
 hash = "2786b834de51e30e359168272b7f307289d8f9ef846d39ff9e809da310e3b6b0"
+
+[[files]]
+file = "kubejs/data/mekanism/advancements/radiation_prevention.json"
+hash = "6ff164b8e370f7f59ca5fef65cae496b03fe6a36c872ede4f09fed52901f4d6c"
 
 [[files]]
 file = "kubejs/data/minecraft/creatingspace/rocket_accessible_dimension/overworld.json"
@@ -1829,6 +1837,10 @@ file = "kubejs/server_scripts/createnuclear_no_grief.js"
 hash = "bc035679c7c1e4102ac9503427cba6d14cb1a70d78d8c3a3afafa0d1a223e82c"
 
 [[files]]
+file = "kubejs/server_scripts/dedup.js"
+hash = "c89b521a08777bc60c9a0035df9931274706351c03895f9baa49d1ee6430e89b"
+
+[[files]]
 file = "kubejs/server_scripts/eso_enchant_books.js"
 hash = "3510dc4489197d38aa1330f8765f9948989b94db71072cbd382eda1bfde62ae6"
 
@@ -1855,6 +1867,10 @@ hash = "d8b36088a29449b83a0a20956a194534ff0dc3a6dd287b09ffde38721d6713a2"
 [[files]]
 file = "kubejs/server_scripts/ysm_priestess_forms.js"
 hash = "936a53c82988205a015331ae4c1f14b04157faf4282d559cc5cf5f3355da1b8c"
+
+[[files]]
+file = "kubejs/startup_scripts/dedup_list.js"
+hash = "a7b2c36c0d4cf3d3ebaa4fbdf5e7b10c89e24ee8ab9c0cfc4cd953ddd634d074"
 
 [[files]]
 file = "kubejs/startup_scripts/space_rockets_list.js"
@@ -2777,8 +2793,8 @@ hash = "c25495262a852dc02886ec8c4b695f30e53264a2e3d881dd36ee9de16a1ef499"
 metafile = true
 
 [[files]]
-file = "mods/mm-compat-0.5.8.jar"
-hash = "110f32130708bea8a8ea62873f7586d64a8e65ee8615370bc912675fbf40d653"
+file = "mods/mm-compat-0.5.9.jar"
+hash = "cc7c7c096d4cb84c7881e7f0344a3b3d409ee96374f38e8d85e0fa7eeec0bb63"
 
 [[files]]
 file = "mods/mm-perf-0.3.2-client.jar"

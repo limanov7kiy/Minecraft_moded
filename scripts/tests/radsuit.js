@@ -21,6 +21,7 @@ ServerEvents.tick(event => {
     createnuclear: ['default_anti_radiation_helmet', 'default_anti_radiation_chestplate', 'default_anti_radiation_leggings', 'default_anti_radiation_boots'].map(i => 'createnuclear:' + i),
     hazmat_old: ['hazmat_mask', 'hazmat_gown', 'hazmat_pants', 'hazmat_boots'].map(i => 'mekanism:' + i)
   }
+  const expect = { none: [false, false], createnuclear: [true, true], hazmat_old: [true, false] }   // [защита Mekanism, защита Create Nuclear]
   const attr = CNAttr.IRRADIATED_RESISTANCE.get()
   Object.keys(sets).forEach(name => {
     let known = true
@@ -42,4 +43,15 @@ ServerEvents.tick(event => {
     console.info(`RADSUIT ${name} mek_dose=${dose.toFixed(3)} cn_resist=${resist.toFixed(2)} → ${ok ? 'OK' : 'FAIL'}`)
   })
   slots.forEach(s => fake.setItemSlot(s, ItemStack.EMPTY))
+  // Рецепты (KubeJS dedup.js): Hazmat больше не крафтится, модуль MekaSuit берёт шлем Create Nuclear вместо маски
+  const RL = Java.loadClass('net.minecraft.resources.ResourceLocation')
+  const rm = server.getRecipeManager(), reg = server.registryAccess()
+  let hazmat = 0
+  rm.getRecipes().forEach(r => { if (String(r.getResultItem(reg).getId()).startsWith('mekanism:hazmat_')) hazmat++ })
+  console.info(`RADSUIT recipes hazmat_out=${hazmat} → ${hazmat == 0 ? 'OK' : 'FAIL'}`)
+  const mod = rm.byKey(new RL('mekanism', 'module_inhalation_purification_unit')).orElse(null)
+  const ings = mod ? mod.getIngredients() : []
+  let cn = false, mask = false
+  ings.forEach(i => { if (i.test(Item.of('createnuclear:default_anti_radiation_helmet'))) cn = true; if (i.test(Item.of('mekanism:hazmat_mask'))) mask = true })
+  console.info(`RADSUIT module_inhalation cn_helmet=${cn} hazmat_mask=${mask} → ${mod && cn && !mask ? 'OK' : 'FAIL'}`)
 })

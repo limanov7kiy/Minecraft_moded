@@ -1641,3 +1641,38 @@ Bob's не затронуты, иммунитеты рас не менялись
 **Откат:** удалить строку `createnuclear` из `pack/modlist.txt`, `pack/mods/createnuclear.pw.toml`, `pack/kubejs/data/createnuclear/`,
 `pack/kubejs/server_scripts/createnuclear_no_grief.js`, ключ из `scripts/encyclopedia/categories.toml`, поднять версию, `packwiz refresh`.
 Блоки мода в мире после удаления пропадут (станут воздухом), предметы — исчезнут.
+
+## Один защитный костюм: Create Nuclear вместо Hazmat Mekanism (поток 66, 2026-10-26, сборка 2026.10.26-2, В54)
+Решение владельца (В54): «связывай, пусть будет один, с самым сложным крафтом, другой можно удалять».
+
+**Сравнение крафта (полный костюм из 4 частей):**
+
+| | Hazmat Mekanism | антирадиационный костюм Create Nuclear |
+|---|---|---|
+| ингредиенты | 24 свинцовых слитка + 4 красителя | 10 латуни + 17 свинца (с усиленным стеклом) + 4 стекла + 16 стали + 8 графена |
+| станки | верстак | миксер Create с горелкой (латунь), механический пресс (графен из угольной пыли — дробилка/жернов), механический крафтер 3×4 (2 графитовых стержня), верстак |
+| этапов | 1 | 3–4 |
+
+Остаётся **костюм Create Nuclear**. Hazmat Mekanism **не удалён из реестра** — уже существующий в мирах работает как раньше.
+
+**Что сделано:**
+- `mods-src/mm-compat` **0.5.9**, `RadiationSuitShielding` (без миксина): на все части костюма Create Nuclear вешается capability
+  Mekanism `IRadiationShielding` с долями Hazmat (`ItemHazmatSuitArmor.getShieldingByArmor`: шлем 0,25, нагрудник 0,4, поножи 0,2,
+  ботинки 0,15 — полный костюм 100 %). От своей радиации костюм защищает сам (атрибут `createnuclear:irradiated_resistance`).
+  Покраска костюма — NBT того же предмета, защита сохраняется.
+- KubeJS, общий список логических дублей `pack/kubejs/startup_scripts/dedup_list.js` (`global.mmDedup`: убранный → оставшийся):
+  `server_scripts/dedup.js` убирает рецепты Hazmat и подставляет оставшийся предмет в чужие рецепты — модуль MekaSuit
+  «Inhalation Purification Unit» теперь со **шлемом Create Nuclear** вместо маски Hazmat; `client_scripts/dedup.js` прячет Hazmat в JEI;
+  `startup_scripts/dedup_list.js` убирает его из вкладки креатива Mekanism.
+- Достижение Mekanism `radiation_prevention` («надеть полный костюм») переписано на костюм Create Nuclear —
+  `pack/kubejs/data/mekanism/advancements/radiation_prevention.json`.
+- Лут, торговля жителей, квесты: Hazmat нигде не встречается (поиск по всем jar сервера и `pack/`), трогать нечего.
+- MekaSuit не менялся (его защита от радиации Mekanism — свой модуль).
+
+**Тест** `scripts/tests/radsuit.js` (фейковый игрок; `EXTRA_SERVER_SCRIPTS=<папка с файлом>`, `TEST_COMMANDS` с `#sleep 60`), `SERVER OK`, краш-отчётов нет:
+`none mek_dose=1.000 cn_resist=0.00`, `createnuclear mek_dose=0.000 cn_resist=1.00`, `hazmat_old mek_dose=0.000` (старый Hazmat
+по-прежнему защищает от Mekanism), `recipes hazmat_out=0`, `module_inhalation cn_helmet=true hazmat_mask=false` — всё OK.
+
+**Откат:** удалить 4 строки Hazmat из `global.mmDedup` (`startup_scripts/dedup_list.js`) и
+`pack/kubejs/data/mekanism/advancements/radiation_prevention.json`, поднять версию, `packwiz refresh`. mm-compat 0.5.9 можно оставить
+(костюм CN просто дополнительно защищает от Mekanism) или вернуть 0.5.8.
