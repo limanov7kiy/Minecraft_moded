@@ -1129,7 +1129,7 @@ Mahou Tsukai (`mahoutsukai`, v1.34.74; вдохновлён Fate/stay night) —
 - **Версия:** 3.1.11 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/mana-and-artifice)
 - **Что это:** Магия плетения маны от Mithion: заклинания и ритуалы создаются из частей и рисунков-узоров, прогресс ведёт Оккулус и Кодекс мага; игрок выбирает фракцию (Совет, демоны, феи, нежить) и может вызвать боссов вроде Одина или Повелителя демонов. _(источник: docs сборки)_
 - **В сборке:** 3.1.11 Forge 1.20.1; зависимости GeckoLib, Curios уже в сборке
-- **В наших docs:** [compat.md](../compat.md) (30), [roadmap.md](../roadmap.md) (20), [bosses.md](../bosses.md) (12), [enchanting-table.md](../enchanting-table.md) (8), [russification.md](../russification.md) (6), [issue-history.md](../issue-history.md) (4)
+- **В наших docs:** [compat.md](../compat.md) (32), [roadmap.md](../roadmap.md) (20), [bosses.md](../bosses.md) (12), [enchanting-table.md](../enchanting-table.md) (8), [russification.md](../russification.md) (6), [issue-history.md](../issue-history.md) (4)
 <!-- auto:end card:mana-and-artifice -->
 
 Автор — Mithion (лицензия All Rights Reserved), модид `mna`; требует Forge ≥ 47.1.64 и Curios, в сборке — вместе с GeckoLib. Сторона — both (нужен и клиенту, и серверу). Дополнения в сборке: ArcaneAdditions, Factions And Curiosities, MNAOverpowered, MNAWitchcraft (порт), Dragon Magic And Relics ([compat.md](../compat.md), раздел «Mana and Artifice и Ars Magica: Legacy»).
