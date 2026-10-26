@@ -1,0 +1,8 @@
+name = "AL_Yukikaze_2.4.1"
+filename = "AL_Yukikaze_2.4.1.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_AzurLane/AL_Yukikaze_2.4.1.ysm"
+hash-format = "sha256"
+hash = "08d6122c83ecff405bca9956fd429cc71fc8a207e2a65de115d1a083c072a001"

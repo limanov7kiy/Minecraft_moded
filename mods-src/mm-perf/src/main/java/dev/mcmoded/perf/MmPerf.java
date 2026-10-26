@@ -22,7 +22,8 @@ import org.slf4j.Logger;
 
 /**
  * Клиентские удобства сборки (docs/performance.md, docs/friends.md): Режим слабого ПК (кнопка в настройках видео + клавиша),
- * клавиши модов по умолчанию «Не назначено», подсказки о нехватке памяти. Миксины JEI — в mm_perf.mixins.json.
+ * клавиши модов по умолчанию «Не назначено», подсказки о нехватке памяти, версия сборки в меню и заголовке окна,
+ * подпись на экране «Сохранение мира» (SaveWatch). Миксины JEI — в mm_perf.mixins.json.
  */
 @Mod("mm_perf")
 public final class MmPerf {
@@ -34,9 +35,14 @@ public final class MmPerf {
 
     public MmPerf() {
         if (FMLEnvironment.dist != Dist.CLIENT) return;
+        PackVersion.load();
+        MemoryWatch.earlyCheck();   // до загрузки ресурсов: если ПК зависнет, диагностика уже в логе
         FMLJavaModLoadingContext.get().getModEventBus().addListener(MmPerf::registerKeys);
         MinecraftForge.EVENT_BUS.addListener(MmPerf::onClientTick);
         MinecraftForge.EVENT_BUS.addListener(MmPerf::onScreenInit);
+        MinecraftForge.EVENT_BUS.addListener(PackVersion::drawOnTitle);
+        MinecraftForge.EVENT_BUS.addListener(SaveWatch::onOpening);
+        MinecraftForge.EVENT_BUS.addListener(SaveWatch::onRender);
     }
 
     private static void registerKeys(RegisterKeyMappingsEvent e) {
@@ -66,7 +72,11 @@ public final class MmPerf {
         if (lowSpecKey != null) {
             while (lowSpecKey.consumeClick()) LowSpecMode.toggle();
         }
-        if (++ticks % 20 == 0) MemoryWatch.tickSecond(mc);
+        if (++ticks % 20 == 0) {
+            MemoryWatch.tickSecond(mc);
+            PackVersion.tickTitle(mc, ticks);
+            SaveWatch.selfTestSecond(mc);
+        }
     }
 
     private static void onScreenInit(ScreenEvent.Init.Post e) {

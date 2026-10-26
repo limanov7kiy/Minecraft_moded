@@ -1,0 +1,8 @@
+name = "0105_AL_Ayanami_v2.6.1_2"
+filename = "0105_AL_Ayanami_v2.6.1_2.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0105-%E8%B6%85%E7%BA%A7%E5%A4%A7%E9%B8%A1%E8%85%BF%E4%B8%B6%2CNss/AL_Ayanami_%E7%BB%AB%E6%B3%A2_LA/AL_%E7%BB%AB%E6%B3%A2_Ayanami_v2.6.1_2.ysm"
+hash-format = "sha256"
+hash = "84eca9fc0726041e4d14e80975825c2632d27c2275be973dab4c3352b58d8892"

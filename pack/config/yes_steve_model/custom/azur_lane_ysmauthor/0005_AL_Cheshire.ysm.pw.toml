@@ -1,0 +1,8 @@
+name = "0005_AL_Cheshire"
+filename = "0005_AL_Cheshire.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0005-omo%E4%BB%99%E8%B4%9D2%E5%8F%B7%2Como%2Cmo%2CFujiwaranoMoku114514/AL_Cheshire_%E6%9F%B4%E9%83%A1_LC/AL_%E6%9F%B4%E9%83%A1_Cheshire.ysm"
+hash-format = "sha256"
+hash = "7609e6ccc49e4373f39760704a136e89cf27273c50af07600ec7cbea0f686933"

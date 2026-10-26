@@ -1,0 +1,10 @@
+{
+  "name": "Azur Lane (FREE-YSM-AUTHOR)",
+  "description": "Модели Azur Lane из сборника github.com/nekohalawrence/FREE-YSM-AUTHOR; часть может быть 18+ (так пишет автор сборника). Авторы — в карточке модели и docs/ysm-models.md",
+  "lang": {
+    "en_us": {
+      "name": "Azur Lane (FREE-YSM-AUTHOR)",
+      "description": "From github.com/nekohalawrence/FREE-YSM-AUTHOR; some models may be 18+"
+    }
+  }
+}

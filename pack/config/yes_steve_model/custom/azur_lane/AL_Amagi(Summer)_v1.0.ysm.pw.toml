@@ -1,0 +1,8 @@
+name = "AL_Amagi(Summer)_v1.0"
+filename = "AL_Amagi(Summer)_v1.0.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_AzurLane/AL_Amagi%28Summer%29_v1.0.ysm"
+hash-format = "sha256"
+hash = "f4e3f518fa39114f94e3fede5fe602cda5c41e1690815b25f5b0331fcdc6fb52"

@@ -1,0 +1,8 @@
+name = "0103_AL_TAC_50"
+filename = "0103_AL_TAC_50.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0103-%E6%B5%85%E9%99%8C%E8%8F%8C/AL_TAC_LA/AL_TAC_50.ysm"
+hash-format = "sha256"
+hash = "f73117e983de22424009068cf96207b1192deca7896b21a199bcee0415f9ddfe"

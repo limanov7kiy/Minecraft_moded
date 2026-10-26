@@ -1,0 +1,6 @@
+# Enchanting System Overhaul 1.2.2 (автор CmdrJane, MIT) — поток 57, решение владельца по В47 (вариант «в»).
+# Без порта сервер сборки падает при загрузке данных: AbstractMethodError на ArmorMaterial.getName() у модовой брони.
+url https://cdn.modrinth.com/data/CxaV51ez/versions/228OMT78/eso-forge-1.20.1-1.2.2-all.jar
+sha512 815154db94cb5dd4001a129dfeec0f689f60c33cb9f8cd5b5723aa4bd4287fac9954c794e8a2e89e656325170a7680a22bc531260f099a25df7494b6e619a025
+out eso-forge-1.20.1-1.2.2-mmport.jar
+shims dev/mcmoded/port/eso

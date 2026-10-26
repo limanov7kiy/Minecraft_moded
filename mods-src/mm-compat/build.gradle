@@ -45,6 +45,8 @@ dependencies {
     modCompileOnly "maven.modrinth:electroblobs-wizardry-redux:${redux_version}"
     // The Lost Cities (McJty, MIT) — миксин LostCitiesNeighborMixin (утечка BuildingInfo)
     modCompileOnly "maven.modrinth:the-lost-cities:${lostcities_version}"
+    // Mekanism — capability радиационной защиты для костюма Create Nuclear (RadiationSuitShielding)
+    modCompileOnly "maven.modrinth:mekanism:${mekanism_version}"
 }
 
 processResources {

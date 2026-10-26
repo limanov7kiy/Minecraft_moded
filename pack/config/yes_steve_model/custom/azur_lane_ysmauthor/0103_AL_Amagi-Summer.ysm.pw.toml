@@ -1,0 +1,8 @@
+name = "0103_AL_Amagi-Summer"
+filename = "0103_AL_Amagi-Summer.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0103-%E6%B5%85%E9%99%8C%E8%8F%8C/AL_Amagi_summer_%E5%A4%A9%E5%9F%8E_LA/AL_%E5%A4%A9%E5%9F%8E_Amagi-Summer.ysm"
+hash-format = "sha256"
+hash = "33b674de75dc56c88dddb686a1dc9fd9901a44b09c8bca951fa168f5e8158ab4"

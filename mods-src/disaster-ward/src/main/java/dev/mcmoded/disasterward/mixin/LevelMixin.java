@@ -1,5 +1,6 @@
 package dev.mcmoded.disasterward.mixin;
 
+import dev.mcmoded.disasterward.OriStorm;
 import dev.mcmoded.disasterward.WardGuard;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
@@ -15,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class LevelMixin {
     @Inject(method = "m_6933_(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;II)Z", at = @At("HEAD"), cancellable = true, remap = false)
     private void disasterWard$setBlock(BlockPos pos, BlockState state, int flags, int depth, CallbackInfoReturnable<Boolean> cir) {
-        if (WardGuard.deny((Level) (Object) this, pos)) cir.setReturnValue(false);
+        if (WardGuard.deny((Level) (Object) this, pos) || OriStorm.denyUnloaded((Level) (Object) this, pos)) cir.setReturnValue(false);
     }
 
     @Inject(method = "m_7740_(Lnet/minecraft/core/BlockPos;ZLnet/minecraft/world/entity/Entity;I)Z", at = @At("HEAD"), cancellable = true, remap = false)

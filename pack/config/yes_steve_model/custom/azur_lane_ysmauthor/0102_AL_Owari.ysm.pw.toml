@@ -1,0 +1,8 @@
+name = "0102_AL_Owari"
+filename = "0102_AL_Owari.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0102-Dreamer%2C%E6%99%AE%E9%80%9A%E7%9A%84%E6%9C%A8%E5%B1%90/AL_Owari_%E5%B0%BE%E5%BC%A0_%E6%84%BF%E6%9C%9B%E4%B8%BA%E7%88%B1_LB/AL_%E5%B0%BE%E5%BC%A0_%E6%84%BF%E6%9C%9B%E4%B8%BA%E7%88%B1_Owari.ysm"
+hash-format = "sha256"
+hash = "ccac16c2ec101f7c89b4392b4d5cb86f2f0b4618d7810ba31db26748969c64a6"

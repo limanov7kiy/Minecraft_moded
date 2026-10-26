@@ -1,0 +1,8 @@
+name = "AL_Helena"
+filename = "AL_Helena.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_AzurLane/AL_Helena.ysm"
+hash-format = "sha256"
+hash = "81154b0ba946515f6fa631197d206eda640b9825b839e8e6fffbbc4ad450b744"

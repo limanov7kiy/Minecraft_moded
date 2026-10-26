@@ -1,0 +1,8 @@
+name = "AL_Yamashiro_2.3.2.1"
+filename = "AL_Yamashiro_2.3.2.1.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_AzurLane/AL_Yamashiro_2.3.2.1.ysm"
+hash-format = "sha256"
+hash = "cb06b413f8fc68551740d58fc93bc02860e9e9f437dfd2f55594161a6e2d7e1b"

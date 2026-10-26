@@ -1,0 +1,8 @@
+name = "0045_AL_LC_AL_v2.2.2.10"
+filename = "0045_AL_LC_AL_v2.2.2.10.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0045-%E9%9B%BE%E9%9B%A8%E6%B3%A2%E6%B3%A2%E6%B2%99/AL_%E5%B9%B3%E6%B5%B7_LC/AL_%E5%B9%B3%E6%B5%B7_v2.2.2.10.ysm"
+hash-format = "sha256"
+hash = "e3c4d8c1442638da7669b248eba44e8bd9090ef88abe60d2bef4aa635c1239bb"

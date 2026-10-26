@@ -1,0 +1,1696 @@
+{
+ "1WAsDg6d": {
+  "description": "Adds intro cutscenes to some L_Ender's Cataclysm bosses",
+  "project_type": "mod",
+  "slug": "cinematic-cataclysm",
+  "title": "Cinematic Cataclysm",
+  "version": "1.0.1"
+ },
+ "1bokaNcj": {
+  "description": "Displays a map of the nearby world terrain, players, mobs, entities in the corner of your screen. Lets you create waypoints which help you find the locations you've marked.",
+  "project_type": "mod",
+  "slug": "xaeros-minimap",
+  "title": "Xaero's Minimap",
+  "version": "forge-1.20.1-26.6.0"
+ },
+ "1eAoo2KR": {
+  "description": "A builder-based configuration library for Minecraft!",
+  "project_type": "mod",
+  "slug": "yacl",
+  "title": "YetAnotherConfigLib (YACL)",
+  "version": "3.6.6+1.20.1-forge"
+ },
+ "1eaq94ok": {
+  "description": "AeroBlender is a library mod dependent on TerraBlender, for adding biomes in a simple and compatible manner with Aether's biome/terrain system.",
+  "project_type": "mod",
+  "slug": "aeroblender",
+  "title": "AeroBlender",
+  "version": "1.20.1-1.0.1-neoforge"
+ },
+ "1u6JkXh5": {
+  "description": "A Minecraft Map Editor... that runs in-game!\nWith selections, schematics, copy and paste, brushes, and scripting.\nUse it in creative, or use it temporarily in survival.",
+  "project_type": "mod",
+  "slug": "worldedit",
+  "title": "WorldEdit",
+  "version": "7.2.15"
+ },
+ "1uJ2rMf6": {
+  "description": "Adds compatibility between Create and Alex's Caves",
+  "project_type": "mod",
+  "slug": "create-alexs-caves-compat",
+  "title": "Create: Alex's Caves Compat",
+  "version": "1.6.2"
+ },
+ "2cMuAZAp": {
+  "description": "85+ New mobs with stylistic quality above the default game.",
+  "project_type": "mod",
+  "slug": "alexs-mobs",
+  "title": "Alex's Mobs",
+  "version": "1.22.9"
+ },
+ "2eT495vq": {
+  "description": "A performance mod designed to optimize Minecraft's memory usage.",
+  "project_type": "mod",
+  "slug": "saturn",
+  "title": "Saturn",
+  "version": "mc1.20.1-0.1.3"
+ },
+ "2u6LRnMa": {
+  "description": "A crossplatform API for devs that makes transfer and storage of items, fluids and energy easier, as well as some other helpful things",
+  "project_type": "mod",
+  "slug": "botarium",
+  "title": "Botarium",
+  "version": "2.3.4"
+ },
+ "38tpSycf": {
+  "description": "An unBEElievable dimension full of bees that becomes REALLY angry if you take their honey!",
+  "project_type": "mod",
+  "slug": "the-bumblezone",
+  "title": "The Bumblezone - NeoForge/Forge",
+  "version": "7.14.0+1.20.1-forge"
+ },
+ "3Ihyt5WL": {
+  "description": "An expansion mod for TaCZ about better attachment managing.",
+  "project_type": "mod",
+  "slug": "taczaddon",
+  "title": "TaCZ addon",
+  "version": "1.1.8.3"
+ },
+ "3P2XnNW6": {
+  "description": "Adds grandiose temples and villages to the Aether dimension!",
+  "project_type": "mod",
+  "slug": "aether-villages",
+  "title": "Aether Villages",
+  "version": "1.0.7"
+ },
+ "3ufwT9JF": {
+  "description": "Live long and prosper, Ad Astra!",
+  "project_type": "mod",
+  "slug": "ad-astra",
+  "title": "Ad Astra",
+  "version": "1.15.21"
+ },
+ "40FYwb4z": {
+  "description": "A coremod and API to provide developers access to elytra flight mechanics through an entity attribute.",
+  "project_type": "mod",
+  "slug": "caelus",
+  "title": "Caelus API",
+  "version": "3.2.0+1.20.1"
+ },
+ "46KJle7n": {
+  "description": "Cataclysm is a mod that adds difficult dungeons, challenging boss-fights and powerful items.",
+  "project_type": "mod",
+  "slug": "l_enders-cataclysm",
+  "title": "L_Ender's Cataclysm",
+  "version": "3.31"
+ },
+ "4Al4H3t9": {
+  "description": "SereneSeason Plus (formerly Extended Fix) enhances seasonal immersion with sub season based day/night speed and improved snow piling/melting logic, delivering smoother and more natural seasonal block behavior.",
+  "project_type": "mod",
+  "slug": "serene-seasons-plus",
+  "title": "Serene Seasons Plus",
+  "version": "Forge-1.20.1-5.1.4"
+ },
+ "4IVqzWnc": {
+  "description": "This mod adds the different models and visuals to the player for different origins according to the game Arknights.",
+  "project_type": "mod",
+  "slug": "arknights-furs",
+  "title": "Arknights origin furs",
+  "version": "1.0.2-1.20.1"
+ },
+ "4coY8PBv": {
+  "description": "This mod backports​ the Ritual Satchel from Occultism 1.21.1 to 1.20.1.",
+  "project_type": "mod",
+  "slug": "occultism-ritual-satchel",
+  "title": "Occultism Ritual Satchel",
+  "version": "1.0.2"
+ },
+ "4qIW8vBb": {
+  "description": "Allows dungeon treasure equipment to be smelted down into raw materials, which can be smithed back into other treasure equipment using new templates.",
+  "project_type": "mod",
+  "slug": "aether-treasure-reforging",
+  "title": "Aether Addon: Treasure Reforging",
+  "version": "1.20.1-1.0.1-neoforge"
+ },
+ "5JY3QNIB": {
+  "description": "An addon for JEI which let you search for advancements. This is pronounced like \"yeah\".",
+  "project_type": "mod",
+  "slug": "jea",
+  "title": "Just Enough Advancements (JEA)",
+  "version": "1.20.1-5.0.1"
+ },
+ "5NYPwQRn": {
+  "description": "A major optimization for the Crafting Table!",
+  "project_type": "mod",
+  "slug": "fastworkbench",
+  "title": "FastWorkbench",
+  "version": "8.0.4"
+ },
+ "5ZwdcRci": {
+  "description": "Speed up immediate mode rendering in Minecraft",
+  "project_type": "mod",
+  "slug": "immediatelyfast",
+  "title": "ImmediatelyFast",
+  "version": "1.5.5+1.20.4-forge"
+ },
+ "5kBJRF84": {
+  "description": "Compatibility between Mekanism and Create: Northstar",
+  "project_type": "mod",
+  "slug": "mekanism-x-create-northstar",
+  "title": "Mekanism x Create: Northstar",
+  "version": "1.20.1-1.4.0"
+ },
+ "692GClaE": {
+  "description": "Modonomicon is an in-game documentation mod inspired by Thaumcraft's Thaumonomicon and Patchouli, and aims to provide the best of both, with some unique flavors.",
+  "project_type": "mod",
+  "slug": "modonomicon",
+  "title": "Modonomicon",
+  "version": "1.20.1-1.79.3"
+ },
+ "6KeEgbxe": {
+  "description": "An addon centered around equipment for Moas, allowing them to be outfitted with chests and craftable Moa Armor.",
+  "project_type": "mod",
+  "slug": "aether-protect-your-moa",
+  "title": "Aether Addon: Protect Your Moa",
+  "version": "1.20.1-1.0.0-neoforge"
+ },
+ "6iTJugQR": {
+  "description": "Many changes to vanilla blocks",
+  "project_type": "mod",
+  "slug": "amendments",
+  "title": "Amendments",
+  "version": "1.20-2.2.6"
+ },
+ "6mVXdiOT": {
+  "description": "An Aether add-on that expands upon the concepts of the original mod",
+  "project_type": "mod",
+  "slug": "ancient-aether",
+  "title": "Ancient Aether",
+  "version": "0.9.10"
+ },
+ "7UsJsd1y": {
+  "description": "Mowzie's Cataclysm adds features between Mowzie's Mobs and Cataclysm to fill in gaps",
+  "project_type": "mod",
+  "slug": "mowzies-cataclysm",
+  "title": "Mowzie's Cataclysm",
+  "version": "1.2.1"
+ },
+ "7jOxn6qJ": {
+  "description": "A magic mod focused on special effects and spell uniqueness",
+  "project_type": "mod",
+  "slug": "mahou-tsukai",
+  "title": "Mahou Tsukai",
+  "version": "1.20.1-v1.34.74"
+ },
+ "7mLhyqIY": {
+  "description": "Creates a Waypoint in Xaero's Minimap & World Map when activate a Waystone",
+  "project_type": "mod",
+  "slug": "xaeros-minimap-world-map-waystones-compatibility-forge",
+  "title": "Xaero's Minimap & World Map - Waystones Compatibility",
+  "version": "1.1"
+ },
+ "7tEfOcA7": {
+  "description": "Simple configuration library for Minecraft Mods",
+  "project_type": "mod",
+  "slug": "mezzconfig",
+  "title": "MezzConfig",
+  "version": "0.6.8"
+ },
+ "7tl2Pt3c": {
+  "description": "Dive deeper into the world of botania",
+  "project_type": "mod",
+  "slug": "mythicbotany",
+  "title": "MythicBotany",
+  "version": "1.20.1-4.0.4"
+ },
+ "7zlUOZvb": {
+  "description": "Java Minecraft mod using Bedrock models to create custom models and animations for items, blocks, entities",
+  "project_type": "mod",
+  "slug": "azurelib",
+  "title": "AzureLib",
+  "version": "3.1.20"
+ },
+ "86xjpqqS": {
+  "description": "A mod that modifies the vanilla player model",
+  "project_type": "mod",
+  "slug": "yes-steve-model",
+  "title": "Yes Steve Model",
+  "version": "2.6.5-forge+mc1.20.1"
+ },
+ "8BmcQJ2H": {
+  "description": "A 3D animation library for entities, blocks, items, armor, and more!",
+  "project_type": "mod",
+  "slug": "geckolib",
+  "title": "Geckolib",
+  "version": "4.8.4"
+ },
+ "8VDCUS3b": {
+  "description": "Allows the player to play in an old abandoned city instead of the normal overworld",
+  "project_type": "mod",
+  "slug": "the-lost-cities",
+  "title": "The Lost Cities",
+  "version": "1.20-7.5.7"
+ },
+ "8VQksBiY": {
+  "description": "Creating Space is a mod that allow you to create rocket using contraption and go to other planets.",
+  "project_type": "mod",
+  "slug": "creating-space",
+  "title": "Creating Space",
+  "version": "1.20.1_1.7.13"
+ },
+ "8WTZVaS6": {
+  "description": "Contigency contract is a mode from game Arknights, which greatly increase the difficulty of the game. So does it in Minecraft.",
+  "project_type": "mod",
+  "slug": "contigency-contract-lite",
+  "title": "Contigency Contract Lite",
+  "version": "1.3.2"
+ },
+ "9Pk89J3g": {
+  "description": "JEI/REI/EMI plugin that displays breeding information",
+  "project_type": "mod",
+  "slug": "justenoughbreeding",
+  "title": "Just Enough Breeding (JEBr)",
+  "version": "3.1.2"
+ },
+ "9X0318ev": {
+  "description": "Performance optimizations for the furnace",
+  "project_type": "mod",
+  "slug": "fastfurnace",
+  "title": "FastFurnace",
+  "version": "8.0.2"
+ },
+ "9eGKb6K1": {
+  "description": "A working voice chat in Minecraft!",
+  "project_type": "mod",
+  "slug": "simple-voice-chat",
+  "title": "Simple Voice Chat",
+  "version": "forge-1.20.1-2.6.24"
+ },
+ "9nfaJPtX": {
+  "description": "Provides common functionality and content for Iron's mods",
+  "project_type": "mod",
+  "slug": "irons-lib",
+  "title": "Iron's Lib",
+  "version": "1.20.1-2.2.0"
+ },
+ "9s6osm5g": {
+  "description": "Configuration Library for Minecraft Mods",
+  "project_type": "mod",
+  "slug": "cloth-config",
+  "title": "Cloth Config API",
+  "version": "11.1.136+forge"
+ },
+ "A2l0YkuP": {
+  "description": "Adapted from Originium creature from Arknights, which adds varieties of Originium mobs in the Land.",
+  "project_type": "mod",
+  "slug": "bobs-originium-dream",
+  "title": "BOB's Originium dream",
+  "version": "1.1.1"
+ },
+ "AcZjW79x": {
+  "description": "Add functionality to trigger Ars Nouveau magic using TaCZ guns.",
+  "project_type": "mod",
+  "slug": "arsarms",
+  "title": "[TaCZ] ArsArms - Ars Nouveau & Timeless and Classics Zero",
+  "version": "3.0.4"
+ },
+ "AiwNM9O0": {
+  "description": "An addon for tacz, with extra support about throwable, melee weapons for gun packs",
+  "project_type": "mod",
+  "slug": "lr-tactical",
+  "title": "[TACZ] LesRaisins Tactical Equipements",
+  "version": "0.4.3"
+ },
+ "B1CBVXHX": {
+  "description": "LDLib is a libarary mod for custom rendering, modular gui.",
+  "project_type": "mod",
+  "slug": "ldlib",
+  "title": "LDLib",
+  "version": "mc1.20.1-1.0.52.a-forge"
+ },
+ "B3pb093D": {
+  "description": "A Minecraft modding library for better projectiles.",
+  "project_type": "mod",
+  "slug": "rpl",
+  "title": "Ritchie's Projectile Library",
+  "version": "2.1.1"
+ },
+ "BFbX9xcm": {
+  "description": "Mowzie's Mobs adds a variety of fictional creatures to Minecraft, priding itself in unique AI, rich atmosphere, and fluid animations. Prove your might against new bosses and enemies and claim their magical abilities as your own.",
+  "project_type": "mod",
+  "slug": "mowzies-mobs",
+  "title": "Mowzie's Mobs",
+  "version": "1.8.2"
+ },
+ "BoU05LAX": {
+  "description": "This mod adds 9 different natural disasters to your Minecraft world and they actually spawn naturally if you wish to!",
+  "project_type": "mod",
+  "slug": "natural_disasters",
+  "title": "Natural Disasters!",
+  "version": "2.0.0"
+ },
+ "BwbT0OZE": {
+  "description": "Adding 49+ food made with Ars Nouveau's ingredients in Farmer's Delight style, and mechanics that interacts with spells and rituals",
+  "project_type": "mod",
+  "slug": "arsdelight",
+  "title": "Ars Nouveau's Flavors & Delight",
+  "version": "1.2.2"
+ },
+ "CTJzhcfH": {
+  "description": "Automating Botania is easier than you think",
+  "project_type": "mod",
+  "slug": "botanical-machinery",
+  "title": "Botanical Machinery",
+  "version": "1.20.1-3.0.10"
+ },
+ "Cd3DYqzn": {
+  "description": "A warfare themed mod with various guns, huge cannons and powerful vehicles",
+  "project_type": "mod",
+  "slug": "superb-warfare",
+  "title": "Superb Warfare",
+  "version": "0.8.9.2"
+ },
+ "Ce6I4WUE": {
+  "description": "High-tech machinery, powerful energy generation, fancy gadgets and more. Now on Modrinth!",
+  "project_type": "mod",
+  "slug": "mekanism",
+  "title": "Mekanism",
+  "version": "10.4.16.80"
+ },
+ "Ck4E7v7R": {
+  "description": "A guidebook toolkit for mods and modpack makers alike with comfortable markdown formatting, and live 3d scenes!",
+  "project_type": "mod",
+  "slug": "guideme",
+  "title": "GuideME",
+  "version": "20.1.15"
+ },
+ "D0BAyuxZ": {
+  "description": "Integrated Mowzie's Mobs is a mod that revamps and integrates all the structures of the mod with many improvements.",
+  "project_type": "mod",
+  "slug": "integrated-mowzies-mobs",
+  "title": "Integrated Mowzie's Mobs",
+  "version": "1.3.2"
+ },
+ "D157Rgyf": {
+  "description": "This is a config API that aims to provide many integrations alongside other libraries, and to be as easy as possible to use, for both developers and users alike.",
+  "project_type": "mod",
+  "slug": "lexiconfig",
+  "title": "Lexiconfig",
+  "version": "1.4.21-epic"
+ },
+ "DGaH8Rh0": {
+  "description": "A library that adds the Attributes GUI, alongside a suite of new attributes to work with",
+  "project_type": "mod",
+  "slug": "apothic-attributes",
+  "title": "Apothic Attributes",
+  "version": "1.3.7"
+ },
+ "DNoiFv06": {
+  "description": "An addon mod for Mithion's Mana and Artifice that includes new additional factions!",
+  "project_type": "mod",
+  "slug": "factions-and-curiosities",
+  "title": "Factions And Curiosities",
+  "version": "1.3.1"
+ },
+ "DOSy3C4M": {
+  "description": "Blue Skies is survival mod that adds aspects like dimensions, dungeons and more in a light and dark scenario.",
+  "project_type": "mod",
+  "slug": "blue-skies",
+  "title": "Blue Skies",
+  "version": "1.3.31"
+ },
+ "DSVgwcji": {
+  "description": "Performance improvements for vanilla AI, with  the ability to turn off certain AI behaviors",
+  "project_type": "mod",
+  "slug": "ai-improvements",
+  "title": "AI Improvements: Performance Tuning",
+  "version": "0.5.2"
+ },
+ "E3sGVcD8": {
+  "description": "A Mekanism addon that adds a simple way to cover its cables and pipes.",
+  "project_type": "mod",
+  "slug": "mekanism-covers",
+  "title": "Mekanism Covers",
+  "version": "1.3-BETA+1.20"
+ },
+ "EO27GKs1": {
+  "description": "EMI, JEI and REI plugin that displays information on all status effects",
+  "project_type": "mod",
+  "slug": "just-enough-effect-descriptions-jeed",
+  "title": "Just Enough Effect Descriptions (JEED)",
+  "version": "1.20-2.2.6"
+ },
+ "EO8aSHxh": {
+  "description": "Eureka! Build ships in Minecraft out of ordinary blocks, with physics.",
+  "project_type": "mod",
+  "slug": "eureka",
+  "title": "Eureka! Ships! for Valkyrien Skies (Forge/Fabric)",
+  "version": "1.20.1-forge-1.6.3"
+ },
+ "EVSBNyMm": {
+  "description": "A server-side authentication mod. It provides a complete login/registration system for servers that require an additional layer of account security.",
+  "project_type": "mod",
+  "slug": "sols-authlogin",
+  "title": "Sol's AuthLogin",
+  "version": "1.20.1-v1.3.1"
+ },
+ "Ejfl5qDL": {
+  "description": "Deep underground, a forgotten land awaits.",
+  "project_type": "mod",
+  "slug": "the-undergarden",
+  "title": "The Undergarden",
+  "version": "0.8.14"
+ },
+ "EsAfCjCV": {
+  "description": "Food/hunger-related HUD improvements",
+  "project_type": "mod",
+  "slug": "appleskin",
+  "title": "AppleSkin",
+  "version": "2.5.1+mc1.20.1"
+ },
+ "FCFcFw09": {
+  "description": "A Minecraft mod that adds more attributes to the game.",
+  "project_type": "mod",
+  "slug": "attributes",
+  "title": "Pufferfish's Attributes",
+  "version": "0.8.2"
+ },
+ "FDrEl7QY": {
+  "description": "Improves the consistency of fire being disallowed in the Aether by adding new extinguished variants of blocks.",
+  "project_type": "mod",
+  "slug": "aether-enhanced-extinguishing",
+  "title": "Aether Addon: Enhanced Extinguishing",
+  "version": "1.20.1-1.0.0-neoforge"
+ },
+ "FHMHF9Qr": {
+  "description": "An integration mod between Create and Occultism.",
+  "project_type": "mod",
+  "slug": "occult-engineering",
+  "title": "Create: Occult Engineering",
+  "version": "1.20.1-0.11.4"
+ },
+ "FTtiRPsV": {
+  "description": "Add functionality to trigger Iron's Spells 'n Spellbooks magic using TaCZ guns.",
+  "project_type": "mod",
+  "slug": "ironsarms",
+  "title": "[TaCZ] IronsArms - Iron's Spells & Timeless and Classics Zero",
+  "version": "3.0.6"
+ },
+ "Fb4jn8m6": {
+  "description": "Break down your trees by only cutting one piece of it",
+  "project_type": "mod",
+  "slug": "fallingtree",
+  "title": "FallingTree",
+  "version": "1.20.1-4.3.4"
+ },
+ "FoVacERa": {
+  "description": "Very Light Animation Api",
+  "project_type": "mod",
+  "slug": "lionfish-api",
+  "title": "Lionfish-API",
+  "version": "3.0"
+ },
+ "G1hIVOrD": {
+  "description": "Resourceful Lib",
+  "project_type": "mod",
+  "slug": "resourceful-lib",
+  "title": "Resourceful Lib",
+  "version": "2.1.29"
+ },
+ "G2gG8giX": {
+  "description": "Compatibility between Pufferfish's Skills and Origins.",
+  "project_type": "mod",
+  "slug": "skills-origins",
+  "title": "Pufferfish's Skills x Origins",
+  "version": "0.2.1"
+ },
+ "GWp4jCJj": {
+  "description": "A Minecraft mod for building large cannons with the Create mod.",
+  "project_type": "mod",
+  "slug": "create-big-cannons",
+  "title": "Create Big Cannons",
+  "version": "5.11.4"
+ },
+ "GYK6Gk8R": {
+  "description": "An Ars Nouveau addon focused on small tweaks and quality of life additions.",
+  "project_type": "mod",
+  "slug": "ars-additions",
+  "title": "Ars Additions",
+  "version": "1.6.7"
+ },
+ "GchcoXML": {
+  "description": "Unofficial Fork of \"Iris\", made to work with FML",
+  "project_type": "mod",
+  "slug": "oculus",
+  "title": "Oculus",
+  "version": "1.20.1-1.8.0"
+ },
+ "Gi02250Z": {
+  "description": "Almanac is a library used by my mods with mostly loader independent shared code between multiple mods to avoid duplication of code.",
+  "project_type": "mod",
+  "slug": "almanac",
+  "title": "Almanac",
+  "version": "1.0.2"
+ },
+ "GkIc6rRo": {
+  "description": "A library mod for CERBON's Minecraft Mods",
+  "project_type": "mod",
+  "slug": "cerbons-api",
+  "title": "CERBON's API",
+  "version": "1.1.0"
+ },
+ "H340jsJv": {
+  "description": "Adds Farmer's Delight & The Undergarden compatibility. Vanilla style.",
+  "project_type": "mod",
+  "slug": "undergarden-delight",
+  "title": "[NoCube's] Undergarden Delight",
+  "version": "2.0.2"
+ },
+ "H8peNuJG": {
+  "description": "A collection of random tweaks and features to enhance my experience with TaCZ.",
+  "project_type": "mod",
+  "slug": "tacz-tweaks",
+  "title": "TaCZ Tweaks",
+  "version": "2.14.2"
+ },
+ "IUa4fOEk": {
+  "description": "Перевод модов на русский язык с исправлениями, замена заброшенного RTF | Translation of mods into Russian with corrections, replacement of abandoned RTF",
+  "project_type": "resourcepack",
+  "slug": "rtf-extension",
+  "title": "RTF Extension",
+  "version": "2.7.0"
+ },
+ "K4J2GftO": {
+  "description": "Add new way to cooling and heating with create",
+  "project_type": "mod",
+  "slug": "legendary-survival-addon",
+  "title": "Legendary Survival Addon",
+  "version": "Forge-1.3.1"
+ },
+ "KDCU677O": {
+  "description": "A extension for Mana and Artifice to expand your magic to compete with gods!",
+  "project_type": "mod",
+  "slug": "dragon-magic-and-relics",
+  "title": "Dragon Magic And Relics",
+  "version": "3.2.14"
+ },
+ "KDvYkUg3": {
+  "description": "An elegant solution to your hoarding problem.",
+  "project_type": "mod",
+  "slug": "refined-storage",
+  "title": "Refined Storage",
+  "version": "1.12.4"
+ },
+ "KQwxMOPD": {
+  "description": "Adds Mekanism ores on Ad Astra planets.",
+  "project_type": "mod",
+  "slug": "mekanism-ad-astra-ores",
+  "title": "Mekanism: Ad Astra Ores",
+  "version": "1.1.0"
+ },
+ "LNytGWDc": {
+  "description": "Aesthetic Technology that empowers the Player",
+  "project_type": "mod",
+  "slug": "create",
+  "title": "Create",
+  "version": "mc1.20.1-6.0.8"
+ },
+ "LOpKHB2A": {
+  "description": "Teleport from waystone to waystone or craft magical scrolls to warp.",
+  "project_type": "mod",
+  "slug": "waystones",
+  "title": "Waystones",
+  "version": "14.1.21+forge-1.20.1"
+ },
+ "LVnvHVBp": {
+  "description": "Dragons and Mythical creatures in minecraft.",
+  "project_type": "mod",
+  "slug": "ice-and-fire-dragons",
+  "title": "Ice and Fire",
+  "version": "2.1.13-1.20.1-beta-5"
+ },
+ "LcmGQfK2": {
+  "description": "Collection of utilities for my mods",
+  "project_type": "mod",
+  "slug": "fdlib",
+  "title": "FDLib",
+  "version": "1.0.9"
+ },
+ "M1953qlQ": {
+  "description": "Resourceful Config is a mod that allows for developers to make cross-platform configs",
+  "project_type": "mod",
+  "slug": "resourceful-config",
+  "title": "Resourceful Config",
+  "version": "2.1.3"
+ },
+ "MBAkmtvl": {
+  "description": "Abstraction Layer for Multi-Loader Mods",
+  "project_type": "mod",
+  "slug": "balm",
+  "title": "Balm",
+  "version": "7.3.44+forge-1.20.1"
+ },
+ "MVARlG2f": {
+  "description": "Comprehensive Load-Bearing Library for Modular Mods",
+  "project_type": "mod",
+  "slug": "zeta",
+  "title": "Zeta",
+  "version": "1.20.1-1.0-31"
+ },
+ "Ml3N4KXO": {
+  "description": "This project adds races in arknights into the minecraft using origins, so you can have races in games.",
+  "project_type": "mod",
+  "slug": "arknights-races",
+  "title": "Arknights origins races",
+  "version": "1.5.3-1.20.1"
+ },
+ "NNAgCjsB": {
+  "description": "Using async path-tracing to hide Block-/Entities that are not visible",
+  "project_type": "mod",
+  "slug": "entityculling",
+  "title": "Entity Culling",
+  "version": "1.11.3"
+ },
+ "NRjRiSSD": {
+  "description": "A mod that fixes random memory leaks for both the client and server",
+  "project_type": "mod",
+  "slug": "memoryleakfix",
+  "title": "Memory Leak Fix",
+  "version": "v1.1.5"
+ },
+ "NaiL8bPN": {
+  "description": "This little mod allows you to directly equip your Curios items to the respective slots",
+  "project_type": "mod",
+  "slug": "gravestone-x-curios-api-compat",
+  "title": "Gravestone x Curios API Compat",
+  "version": "4.0.2"
+ },
+ "NcUtCpym": {
+  "description": "Adds a full screen world map which shows you what you have explored in the world. Works great together with Xaero's Minimap.",
+  "project_type": "mod",
+  "slug": "xaeros-world-map",
+  "title": "Xaero's World Map",
+  "version": "forge-1.20.1-1.47.0"
+ },
+ "OFVYKsAk": {
+  "description": "Advanced energy generation for Mekanism.",
+  "project_type": "mod",
+  "slug": "mekanism-generators",
+  "title": "Mekanism Generators",
+  "version": "10.4.16.80"
+ },
+ "OHP5u2V4": {
+  "description": "More Backpack Upgrades is an addon for Sophisticated Backpacks that bridges the gap between your portable storage and your Refined Storage network.",
+  "project_type": "mod",
+  "slug": "more-backpack-upgrades",
+  "title": "More Backpack Upgrades",
+  "version": "1.0.2"
+ },
+ "OfKzpbRU": {
+  "description": "Ever tried to make a mod that needs proper death handling or inventory tracking? Yeah, NeoForge events suck for that.",
+  "project_type": "mod",
+  "slug": "baguettelib",
+  "title": "BaguetteLib",
+  "version": "2.0.7"
+ },
+ "Os35nfkh": {
+  "description": "Client-side Addon for Plasmo Voice & Simple Voice Chat, that scales player heads when they're talking.",
+  "project_type": "mod",
+  "slug": "talkingheads",
+  "title": "Talking Heads",
+  "version": "1.1.4+1.20.1+forge"
+ },
+ "P3iIrPH3": {
+  "description": "Iron Chests mod has chests for the various metals in vanilla minecraft with varying sizes!",
+  "project_type": "mod",
+  "slug": "iron-chests",
+  "title": "Iron Chests",
+  "version": "1.20.1-14.4.4"
+ },
+ "PbNc6qBY": {
+  "description": "An arcane art for ultimate power",
+  "project_type": "mod",
+  "slug": "blood-magic",
+  "title": "Blood Magic",
+  "version": "3.3.8-50"
+ },
+ "PuyPazRT": {
+  "description": "A brain library for Minecraft, making the brain system easier to use and manage",
+  "project_type": "mod",
+  "slug": "smartbrainlib",
+  "title": "SmartBrainLib",
+  "version": "1.15"
+ },
+ "Q8XlZjYF": {
+  "description": "A mod that adds a dimension full of endless and renewable dungeons to explore! This mod is extremely configurable and is designed for modpacks.",
+  "project_type": "mod",
+  "slug": "dimensional-dungeons",
+  "title": "Dimensional Dungeons",
+  "version": "207"
+ },
+ "QjEwLGIZ": {
+  "description": "Arcane Additions is a companion mod for Mana and Artifice, adding new spell components, rituals, and items to the game, some of which alter the balance of Mana and Artifice, or provide compatibility with other mods",
+  "project_type": "mod",
+  "slug": "arcaneadditions",
+  "title": "ArcaneAdditions",
+  "version": "forge-1.10.0"
+ },
+ "R2OftAxM": {
+  "description": "A cozy expansion to farming and cooking!",
+  "project_type": "mod",
+  "slug": "farmers-delight",
+  "title": "Farmer's Delight",
+  "version": "1.20.1-1.3.4"
+ },
+ "RRn740Gf": {
+  "description": "In higher versions, some functions of the Scape and Run: Parasites mod have been restored.",
+  "project_type": "mod",
+  "slug": "srpsystem",
+  "title": "One-Click Parasite Transformation",
+  "version": "0.0.1"
+ },
+ "RYtXKJPr": {
+  "description": "Places a gravestone with your inventory items inside when you die",
+  "project_type": "mod",
+  "slug": "gravestone-mod",
+  "title": "GraveStone Mod",
+  "version": "forge-1.20.1-1.0.35"
+ },
+ "S7b8mMXS": {
+  "description": "This mod adds a simple radio you can use to communicate with your friends while far away!",
+  "project_type": "mod",
+  "slug": "simple-radio",
+  "title": "Simple Radio",
+  "version": "1.20.1-4.5.7.9"
+ },
+ "SZ1DDiij": {
+  "description": "Client-side Addon for Plasmo Voice & Simple Voice Chat, that lowers your in-game music and other apps while someone is talking.",
+  "project_type": "mod",
+  "slug": "let-them-talk",
+  "title": "Let Them Talk (LTT)",
+  "version": "1.0.1+1.20.1+forge"
+ },
+ "SzzJttH8": {
+  "description": "The most Immersive and Customizable modern FPS experience in Minecraft - A complete Remaster of the TaC gun mod by the original team.",
+  "project_type": "mod",
+  "slug": "timeless-and-classics-zero",
+  "title": "[TaCZ] Timeless and Classics Zero",
+  "version": "1.1.8-hotfix2"
+ },
+ "T8TGycIQ": {
+  "description": "An API for simplifying the developer end of creating generated structures.",
+  "project_type": "mod",
+  "slug": "structure-gel-api",
+  "title": "Structure Gel API",
+  "version": "2.16.2"
+ },
+ "TKB6INcv": {
+  "description": "Craft spells and construct magical automations",
+  "project_type": "mod",
+  "slug": "ars-nouveau",
+  "title": "Ars Nouveau",
+  "version": "4.12.7"
+ },
+ "TQr3t8Sb": {
+  "description": "Temperature, thirst, limbs management, health overhaul for Survival game!",
+  "project_type": "mod",
+  "slug": "legendary-survival-overhaul",
+  "title": "Legendary Survival Overhaul",
+  "version": "1.20.1-2.4.7"
+ },
+ "Tsw8vbks": {
+  "description": "Ars Nouveau Integration for Occultism",
+  "project_type": "mod",
+  "slug": "ars-ocultas",
+  "title": "Ars Ocultas",
+  "version": "1.20.1-1.2.2"
+ },
+ "TyCTlI4b": {
+  "description": "Yet another backpack mod this time with backpack you can place in world, color in different color combinations, upgrade with more inventory and enhance with many functional upgrades",
+  "project_type": "mod",
+  "slug": "sophisticated-backpacks",
+  "title": "Sophisticated Backpacks",
+  "version": "1.20.1-3.26.9.2194"
+ },
+ "TyYh3b27": {
+  "description": "Adds missing blocks to Twilight Forest for the builders!",
+  "project_type": "mod",
+  "slug": "twilight-forest-the-lost-blocks",
+  "title": "Twilight Forest: The Lost Blocks",
+  "version": "1.20.1-1.5.0"
+ },
+ "U6GY0xp0": {
+  "description": "Explore six new rare cave biomes hidden under the surface of the Overworld...",
+  "project_type": "mod",
+  "slug": "alexs-caves",
+  "title": "Alex's Caves",
+  "version": "2.0.2"
+ },
+ "UB87WTC6": {
+  "description": "Adds Farmer's Delight cutting recipes for Blue Skies",
+  "project_type": "mod",
+  "slug": "farmers-cutting-blue-skies",
+  "title": "Farmer's Cutting: Blue Skies",
+  "version": "1.20.1-1.0+mod"
+ },
+ "UT2M39wf": {
+  "description": "All the copycats you've ever wanted, combined into a single mod!",
+  "project_type": "mod",
+  "slug": "copycats",
+  "title": "Create: Copycats+",
+  "version": "3.0.10+mc.1.20.1-forge"
+ },
+ "UZiq3QVW": {
+  "description": "Space exploration addon for Create.",
+  "project_type": "mod",
+  "slug": "northstar-redux",
+  "title": "Create: Northstar - Redux",
+  "version": "0.6.6+1.20.1"
+ },
+ "V5ujR2yw": {
+  "description": "Physics in Minecraft",
+  "project_type": "mod",
+  "slug": "valkyrien-skies",
+  "title": "Valkyrien Skies",
+  "version": "1.20.1-forge-2.4.11"
+ },
+ "V6fKbpBN": {
+  "description": "Library mod for the Integrated Structures series",
+  "project_type": "mod",
+  "slug": "integrated-api",
+  "title": "Integrated API",
+  "version": "1.8.2"
+ },
+ "VW7RrrFu": {
+  "description": "the real tournament is about to begin...",
+  "project_type": "mod",
+  "slug": "vs-tournament-reforged",
+  "title": "Valkyrien Skies: Tournament Reforged",
+  "version": "1.0.3"
+ },
+ "W5NORTN9": {
+  "description": "Ars Nouveau Integration for Blood Magic. Spiritual successor of Tome of Blood by SadieLuna",
+  "project_type": "mod",
+  "slug": "tome-of-blood-rebirth",
+  "title": "Tome of Blood: Rebirth",
+  "version": "1.20.1-0.4.5"
+ },
+ "Wa9vzNNU": {
+  "description": "This is an addon for Simple Voice Chat that lets your voice interact with vibrations!",
+  "project_type": "mod",
+  "slug": "vibrative-voice",
+  "title": "Vibrative Voice",
+  "version": "1.2.0"
+ },
+ "Wnxd13zP": {
+  "description": "Clumps XP orbs together to reduce lag",
+  "project_type": "mod",
+  "slug": "clumps",
+  "title": "Clumps",
+  "version": "12.0.0.4"
+ },
+ "X661i40C": {
+  "description": "The purpose of this mod is to increase the difficulty of the vanilla game by adding new enemies and infection mechanics inspired by popular zombie type games.",
+  "project_type": "mod",
+  "slug": "fungal-infectionspore",
+  "title": "Fungal Infection:Spore",
+  "version": "2.2.0j"
+ },
+ "XQDxCBVw": {
+  "description": "Add things be more convenience, compatibility for Ad Astra!",
+  "project_type": "mod",
+  "slug": "ad-astra-giselle-addon",
+  "title": "Ad-Astra: Giselle Addon",
+  "version": "6.20"
+ },
+ "XUztKPS9": {
+  "description": "Adds Compatibility between The Aether and Farmer's Delight",
+  "project_type": "mod",
+  "slug": "the-aethers-delight",
+  "title": "Aether's Delight",
+  "version": "0.1.3.1"
+ },
+ "XxWD5pD3": {
+  "description": "AE2: A popular automation and storage mod",
+  "project_type": "mod",
+  "slug": "ae2",
+  "title": "Applied Energistics 2",
+  "version": "15.4.11"
+ },
+ "YhmgMVyu": {
+  "description": "The Aether Team presents the original Aether mod! Maintained and kept up to date for modern versions of Minecraft and fully compatible with multiplayer!",
+  "project_type": "mod",
+  "slug": "aether",
+  "title": "The Aether",
+  "version": "1.20.1-1.5.2-neoforge"
+ },
+ "Yysh5NsL": {
+  "description": "A lightweight fix mod that resolves world generation issues with Integrated API.",
+  "project_type": "mod",
+  "slug": "integrated-patches",
+  "title": "Integrated Patches",
+  "version": "1.2.0"
+ },
+ "ZzjhlDgM": {
+  "description": "Adding depth to Create's rail network & steam system",
+  "project_type": "mod",
+  "slug": "create-steam-n-rails",
+  "title": "Create: Steam 'n' Rails",
+  "version": "1.7.3+forge-mc1.20.1"
+ },
+ "a48R8AGk": {
+  "description": "Adds 50+ dishes, linking L_Ender's Cataclysm and Farmer's Delight in a Vanilla style.",
+  "project_type": "mod",
+  "slug": "l_enders-cataclysm-delight",
+  "title": "L_Ender 's Cataclysm Delight",
+  "version": "1.20.1-1.0.10b"
+ },
+ "a6F3uASn": {
+  "description": "Additions module for Mekanism, contains things that don't quite fit in the other modules.",
+  "project_type": "mod",
+  "slug": "mekanism-additions",
+  "title": "Mekanism Additions",
+  "version": "10.4.16.80"
+ },
+ "aq9qUUQG": {
+  "description": "🧲 Dominate your environment with Create technology",
+  "project_type": "mod",
+  "slug": "create-stuff-additions",
+  "title": "Create Stuff 'N Additions",
+  "version": "2.1.2"
+ },
+ "bFyxs7LI": {
+  "description": "Adds recipes to make Create and Ad Astra more compatible",
+  "project_type": "mod",
+  "slug": "create-ad-astra-recipes",
+  "title": "Create Ad Astra Recipes",
+  "version": "1.0.0"
+ },
+ "bY4q13Xr": {
+  "description": "An Addon for Iron's Spells 'n Spellbooks and Deeper and Darker",
+  "project_type": "mod",
+  "slug": "deeper-and-darker-spellbooks",
+  "title": "Deeper and Darker: Spellbooks",
+  "version": "1.3.1-1.20.1"
+ },
+ "cCiIp0Ns": {
+  "description": "PotatoCraft 8x is an 8x Texture Pack that significantly increases FPS in Low-End Devices.",
+  "project_type": "resourcepack",
+  "slug": "potato-craft-8x",
+  "title": "Potato Craft-8x",
+  "version": "v1.4"
+ },
+ "cQPcBgTD": {
+  "description": "An addon that adds tons of new features specifically for the mod Alex's Mobs",
+  "project_type": "mod",
+  "slug": "alexs-mobs-interaction",
+  "title": "Alex's Mobs Interaction",
+  "version": "6.0"
+ },
+ "d6cSefpO": {
+  "description": "This mod adds food and desserts from Twilight Forest in Farmer's Delight and Neapolitan style.",
+  "project_type": "mod",
+  "slug": "twilight-delight",
+  "title": "Twilight's Flavor & Delight",
+  "version": "2.2.5"
+ },
+ "dDLO8v94": {
+  "description": "Adds dungeons to the Deeper and Darker dimension",
+  "project_type": "mod",
+  "slug": "dungeons-and-villages-deeper-and-darker",
+  "title": "Dungeons And Villages: Deeper and Darker",
+  "version": "1.3"
+ },
+ "dv5SFk5T": {
+  "description": "Adds storms, tornadoes, wind, lots of particle effects and more.",
+  "project_type": "mod",
+  "slug": "weather-storms-tornadoes",
+  "title": "Weather Storms & Tornadoes",
+  "version": "1.20.1-2.8.3"
+ },
+ "e0bNACJD": {
+  "description": "Seasons with changing colors, shifting temperatures, and more!",
+  "project_type": "mod",
+  "slug": "serene-seasons",
+  "title": "Serene Seasons",
+  "version": "9.1.0.3"
+ },
+ "eDeSn4Ds": {
+  "description": "Adds new content to The Twilight Forest mod, mainly villages.",
+  "project_type": "mod",
+  "slug": "the-twilight-forest-dungeons-villages",
+  "title": "Twilight Forest - Dungeons & Villages",
+  "version": "1.2.3"
+ },
+ "eqWqcloq": {
+  "description": "An addon that adds structures to the planets of Northstar Redux.",
+  "project_type": "mod",
+  "slug": "create-northstar-structures",
+  "title": "Create: Northstar - Structures",
+  "version": "1.0.0"
+ },
+ "esFadCt9": {
+  "description": "An addon for Valkyrien Skies that adds immersive sailing mechanics to Minecraft.",
+  "project_type": "mod",
+  "slug": "valkyrien-sails",
+  "title": "Valkyrien Sails",
+  "version": "1.20.1-0.3.2-forge"
+ },
+ "fALzjamp": {
+  "description": "Pre-generates chunks, quickly and efficiently",
+  "project_type": "mod",
+  "slug": "chunky",
+  "title": "Chunky",
+  "version": "1.3.146"
+ },
+ "fFEIiSDQ": {
+  "description": "Vanilla+ additions: Jars, signposts, faucets, weather vanes spring launchers, sconces, planters, lights, decoration and automation",
+  "project_type": "mod",
+  "slug": "supplementaries",
+  "title": "Supplementaries",
+  "version": "1.20-3.1.43-forge"
+ },
+ "fZ324GMc": {
+  "description": "An addon for Ars Nouveau and Create",
+  "project_type": "mod",
+  "slug": "ars-creo",
+  "title": "Ars Creo",
+  "version": "4.3.0"
+ },
+ "fmudhH0S": {
+  "description": "A mod that adds redstone magnets, optical sensors, thrusters and more to the Create mod. All stuff works with Valkyrien Skies 2!",
+  "project_type": "mod",
+  "slug": "create-propulsion",
+  "title": "Create: Propulsion",
+  "version": "0.4.1"
+ },
+ "fnAffV0n": {
+  "description": "A Minecraft mod which features more blocks, items, armors, and hidden mysteries to complement the Deep Dark biome.",
+  "project_type": "mod",
+  "slug": "deeperdarker",
+  "title": "Deeper and Darker",
+  "version": "1.3.3-forge+1.20.1"
+ },
+ "fuuu3xnx": {
+  "description": "Searchables is a library mod that adds helper methods that allow for searching and filtering elements based on components, as well as offering built in auto-complete functionality.",
+  "project_type": "mod",
+  "slug": "searchables",
+  "title": "Searchables",
+  "version": "1.0.3"
+ },
+ "gL8ijqNQ": {
+  "description": "Addon for Ars Nouveau focused on increasing control.",
+  "project_type": "mod",
+  "slug": "ars-controle",
+  "title": "Ars Controle",
+  "version": "1.1.1"
+ },
+ "gbz2TvaL": {
+  "description": "This is a mod that adds the Integrated Industries facilities from the game \"Arknights: Endfield\" into \"Minecraft\".",
+  "project_type": "mod",
+  "slug": "endfield-industry",
+  "title": "Endfield Industry",
+  "version": "1.0.3-1.20.1-Forge"
+ },
+ "gcHIih5B": {
+  "description": "Deep Aether is an addon for the original version of The Aether mod. It aims to add lots of new features to give players a chance to venture deeper into the Aether dimension, while also maintaining its original style.",
+  "project_type": "mod",
+  "slug": "deep-aether",
+  "title": "Deep Aether",
+  "version": "1.20.1-1.1.7"
+ },
+ "gedNE4y2": {
+  "description": "animate the player",
+  "project_type": "mod",
+  "slug": "playeranimator",
+  "title": "playerAnimator",
+  "version": "1.0.2-rc1+1.20-forge"
+ },
+ "gzevkJbM": {
+  "description": "Photon - Making mc effects as Unity.",
+  "project_type": "mod",
+  "slug": "photon-editor",
+  "title": "Photon Editor",
+  "version": "mc1.20.1-1.1.17-forge"
+ },
+ "hFUzfDsn": {
+  "description": "WIP mod that adds boss fights to Minecraft",
+  "project_type": "mod",
+  "slug": "bosses-of-mass-destruction-forge",
+  "title": "Bosses of Mass Destruction Forge",
+  "version": "1.1.2"
+ },
+ "hRxKc8ZK": {
+  "description": "Fixes the bug that causes Twilight Forest's caves to cut off when beneath water",
+  "project_type": "mod",
+  "slug": "twilight-forest-cave-fix",
+  "title": "Twilight Forest Cave Fix",
+  "version": "1.0.0"
+ },
+ "hm4S7JIe": {
+  "description": "A legacy version of Mithion's Ars Magica 2, this mod features an exciting way of creating and casting spells.",
+  "project_type": "mod",
+  "slug": "ars-magica-legacy",
+  "title": "Ars Magica: Legacy",
+  "version": "1.20.1-1.5.0"
+ },
+ "hqQqvaa4": {
+  "description": "Adds a fully configurable skill system to the game.",
+  "project_type": "mod",
+  "slug": "skills",
+  "title": "Pufferfish's Skills",
+  "version": "0.19.2"
+ },
+ "iFRF5kc2": {
+  "description": "A mod that adds enchantments designed to work with tacz guns",
+  "project_type": "mod",
+  "slug": "enchanted-arsenal",
+  "title": "[TACZ]Enchanted Arsenal",
+  "version": "1.0.1"
+ },
+ "jJfV67b1": {
+  "description": "A Lightweight Library",
+  "project_type": "mod",
+  "slug": "citadel",
+  "title": "Citadel",
+  "version": "2.6.3"
+ },
+ "jl3m2lR9": {
+  "description": "This is an unofficial forge port of the Origins mod for fabric",
+  "project_type": "mod",
+  "slug": "origins-forge",
+  "title": "Origins (Forge)",
+  "version": "1.20.1-1.10.0.9"
+ },
+ "k7JPYdTv": {
+  "description": "A wrapper for mod to use eventbus on forge&fabric",
+  "project_type": "mod",
+  "slug": "event-wrapper",
+  "title": "Event Wrapper",
+  "version": "1.20.1-1.1.4-forge"
+ },
+ "kB56GtWA": {
+  "description": "A JEI addon that adds profession workstations",
+  "project_type": "mod",
+  "slug": "just-enough-professions-jep",
+  "title": "Just Enough Professions (JEP)",
+  "version": "3.0.1"
+ },
+ "kESMTJSz": {
+  "description": "Strange and Deadly Creatures!",
+  "project_type": "mod",
+  "slug": "lycanites-mobs",
+  "title": "Lycanites Mobs",
+  "version": "0.1.0-alpha"
+ },
+ "kMpXC38Q": {
+  "description": "An addon for Ars Nouveau to add an event based casting system",
+  "project_type": "mod",
+  "slug": "ars-artifice",
+  "title": "Ars Artifice",
+  "version": "2.0.4"
+ },
+ "kRaE85yQ": {
+  "description": "Add JEI page for calculate mekanism multiblock cost",
+  "project_type": "mod",
+  "slug": "just-enough-mekanism-multiblocks",
+  "title": "Just Enough Mekanism Multiblocks",
+  "version": "4.25"
+ },
+ "kU1G12Nn": {
+  "description": "Create Crafts & Additions extends Create and acts as a bridge between electricity and kinetic energy",
+  "project_type": "mod",
+  "slug": "createaddition",
+  "title": "Create Crafts & Additions",
+  "version": "forge-1.20.1-1.3.3"
+ },
+ "kZAvLL7l": {
+  "description": "Allows tacz ammo box to be placed in curios slots",
+  "project_type": "mod",
+  "slug": "curios-for-ammo-box",
+  "title": "[TaCZ]  Curios For Ammo Box",
+  "version": "1.2.0"
+ },
+ "khv3WzAS": {
+  "description": "An addon for the Aether, adding various improvements and changes",
+  "project_type": "mod",
+  "slug": "the-aether-redux",
+  "title": "The Aether: Redux",
+  "version": "2.0.19-1.20.1"
+ },
+ "kkmrDlKT": {
+  "description": "A library mod for adding biomes in a simple and compatible manner!",
+  "project_type": "mod",
+  "slug": "terrablender",
+  "title": "TerraBlender",
+  "version": "3.0.1.11"
+ },
+ "l6YH9Als": {
+  "description": "spark is a performance profiler for Minecraft clients, servers and proxies.",
+  "project_type": "mod",
+  "slug": "spark",
+  "title": "spark",
+  "version": "1.10.53-forge"
+ },
+ "lOOpEntO": {
+  "description": "Removes arbitrary limits on Minecraft's attribute system. Fixes MANY mods!",
+  "project_type": "mod",
+  "slug": "attributefix",
+  "title": "AttributeFix",
+  "version": "21.0.5"
+ },
+ "lhGA9TYQ": {
+  "description": "An intermediary api aimed to ease developing multiplatform mods.",
+  "project_type": "mod",
+  "slug": "architectury-api",
+  "title": "Architectury API",
+  "version": "9.2.14+forge"
+ },
+ "lr2r2Dpz": {
+  "description": "An addon that brings back, or gives life to a lot of scrapped, unused, and even concepted content and features from The Aether's past.",
+  "project_type": "mod",
+  "slug": "aether-lost-content",
+  "title": "Aether: Lost Content Addon",
+  "version": "1.2.3"
+ },
+ "nU0bVIaL": {
+  "description": "Accessible, Data-Driven, Dependency-Free Documentation for Minecraft Modders and Pack Makers",
+  "project_type": "mod",
+  "slug": "patchouli",
+  "title": "Patchouli",
+  "version": "1.20.1-85-forge"
+ },
+ "nmDcB62a": {
+  "description": "All-in-one mod that improves performance, reduces memory usage, and fixes many bugs. Compatible with all your favorite performance mods!",
+  "project_type": "mod",
+  "slug": "modernfix",
+  "title": "ModernFix",
+  "version": "5.27.87+mc1.20.1"
+ },
+ "nmoqTijg": {
+  "description": "Library mod for Sophisticated mods",
+  "project_type": "mod",
+  "slug": "sophisticated-core",
+  "title": "Sophisticated Core",
+  "version": "1.20.1-1.5.6.2383"
+ },
+ "nqTcTbgz": {
+  "description": "Adding Russian translation for most Farmer's Delight add-ons",
+  "project_type": "resourcepack",
+  "slug": "russian-delight",
+  "title": "Russian Delight",
+  "version": "1.0"
+ },
+ "nvQzSEkH": {
+  "description": "Shows information about what you are looking at. (Hwyla/Waila fork for Minecraft 1.16+)",
+  "project_type": "mod",
+  "slug": "jade",
+  "title": "Jade 🔍",
+  "version": "11.13.3+forge"
+ },
+ "ordsPcFz": {
+  "description": "Adds a Kotlin language loader and provides some optional utilities.",
+  "project_type": "mod",
+  "slug": "kotlin-for-forge",
+  "title": "Kotlin for Forge",
+  "version": "4.12.0"
+ },
+ "ovCaUop0": {
+  "description": "Add skills based on the professions in game Arknights into the game based on Pufferfish's skills",
+  "project_type": "mod",
+  "slug": "arknights-skills",
+  "title": "Arknights skills",
+  "version": "1.1.1-1.20.1"
+ },
+ "pTfszyXD": {
+  "description": "An Addon for the Create Big Cannons Mod, adding new Cannons and Mechanics",
+  "project_type": "mod",
+  "slug": "create-big-cannons-advanced-technologies",
+  "title": "Create Big Cannons: Advanced Technologies",
+  "version": "0.1.4b-1.20.1"
+ },
+ "pXS1mDIy": {
+  "description": "Enable compatibility between Blue Skies and any Gravestone like mod",
+  "project_type": "mod",
+  "slug": "blue-skies-gravestones-compat",
+  "title": "Blue Skies Gravestones Compat",
+  "version": "0.1-1.20.1"
+ },
+ "pfjLUfGv": {
+  "description": "An innovative natural magic themed tech mod",
+  "project_type": "mod",
+  "slug": "botania",
+  "title": "Botania",
+  "version": "1.20.1-456-forge"
+ },
+ "ps36yEsA": {
+  "description": "A mod that draws inspiration from the game Arknights's Originium Arts-related settings. It allows players to use arts units to unleash different skills and to modularly customize these units.",
+  "project_type": "mod",
+  "slug": "originiumarts",
+  "title": "OriginiumArts",
+  "version": "0.1.6-beta"
+ },
+ "qDJXZJTz": {
+  "description": "Added more machines and factories to Mekanism.",
+  "project_type": "mod",
+  "slug": "mekanismmoremachine",
+  "title": "Mekanism:More Machine",
+  "version": "1.20.1-1.2.1"
+ },
+ "qEH6GYul": {
+  "description": "LibX is a library mod with a lot of code that is shared between mods.",
+  "project_type": "mod",
+  "slug": "libx",
+  "title": "LibX",
+  "version": "1.20.1-5.0.14"
+ },
+ "qJT4GBnW": {
+  "description": "Another QoL addon containing small tweaks about easy gaming experiences for Mana and Artifice",
+  "project_type": "mod",
+  "slug": "mnaoverpowered",
+  "title": "MNAOverpowered",
+  "version": "1.20.1-0.11.1"
+ },
+ "qLBNVpiv": {
+  "description": "Add the originium arts in the game Arknights into the game based on the mod Iron's Spells 'n Spellbooks",
+  "project_type": "mod",
+  "slug": "arknights-origins-originium-arts",
+  "title": "Arknights origins originium arts",
+  "version": "1.0.2-1.20.1"
+ },
+ "qUhSghSQ": {
+  "description": "Broadcast audio to everyone",
+  "project_type": "mod",
+  "slug": "simplevoicechat-broadcast",
+  "title": "SimpleVoiceChat Broadcast",
+  "version": "1.0.1"
+ },
+ "qa2H4BS9": {
+  "description": "A performance mod designed to optimize Minecraft's general performance and unofficial fork of Lithium mod for Minecraft Forge.",
+  "project_type": "mod",
+  "slug": "canary",
+  "title": "Canary",
+  "version": "mc1.20.1-0.3.3"
+ },
+ "qcfGSnrv": {
+  "description": "Russian translations and text fixes for mods. | Переводы на русский язык и исправления текста.",
+  "project_type": "resourcepack",
+  "slug": "rtf",
+  "title": "Russian Translations and Fixes | Переводы модификаций на русский",
+  "version": "2.8.4"
+ },
+ "qnQsVE2z": {
+  "description": "A Quark is a very small thing. This mod is a collection of small things...",
+  "project_type": "mod",
+  "slug": "quark",
+  "title": "Quark",
+  "version": "1.20.1-4.0-462"
+ },
+ "qyVF9oeo": {
+  "description": "A Minecraft mod that provides realistic sound attenuation, reverberation, and absorption through blocks.",
+  "project_type": "mod",
+  "slug": "sound-physics-remastered",
+  "title": "Sound Physics Remastered",
+  "version": "forge-1.20.1-1.5.1"
+ },
+ "rLLJ1OZM": {
+  "description": "Shared library mod for Corosus's mods",
+  "project_type": "mod",
+  "slug": "coroutil",
+  "title": "CoroUtil",
+  "version": "1.20.1-1.3.7"
+ },
+ "rkN8aqci": {
+  "description": "Changes the searching of features to be asynchronous to mitigate associated lag",
+  "project_type": "mod",
+  "slug": "async-locator",
+  "title": "Async Locator",
+  "version": "1.20-1.3.0"
+ },
+ "s3dmwKy5": {
+  "description": "A library mod aimed at abstracting mod loaders and providing various utilities for our mods.",
+  "project_type": "mod",
+  "slug": "glitchcore",
+  "title": "GlitchCore",
+  "version": "0.0.1.1"
+ },
+ "s4OWxYQQ": {
+  "description": "A magic mod bringing back the classic RPG spellcasting fantasy. (irons spells and spellbooks)",
+  "project_type": "mod",
+  "slug": "irons-spells-n-spellbooks",
+  "title": "Iron's Spells 'n Spellbooks",
+  "version": "1.20.1-3.16.3"
+ },
+ "s5qOekOc": {
+  "description": "Explore and discover an intuitive and big magic system with more than 180 spells. Recreation of the old RPG classic mod",
+  "project_type": "mod",
+  "slug": "electroblobs-wizardry-redux",
+  "title": "Electroblob's Wizardry Redux",
+  "version": "0.8.9-forge"
+ },
+ "s85zLEDe": {
+  "description": "Sophisticated Backpacks on create contraptions",
+  "project_type": "mod",
+  "slug": "sophisticated-backpacks-create-integration",
+  "title": "Sophisticated Backpacks Create Integration",
+  "version": "1.20.1-0.1.12.187"
+ },
+ "sKHHynnb": {
+  "description": "An addon for The Aether, adding emissivity to various textures.",
+  "project_type": "mod",
+  "slug": "aether-emissivity",
+  "title": "Aether Addon: Emissivity",
+  "version": "1.20.1-1.0.0-neoforge"
+ },
+ "sMvUb4Rb": {
+  "description": "Industrial decoration themed around the aesthetics of the Create mod.",
+  "project_type": "mod",
+  "slug": "create-deco",
+  "title": "Create Deco",
+  "version": "2.0.3-1.20.1-forge"
+ },
+ "sbJh4AZw": {
+  "description": "A ritual magic system centered around summonable spirits allows you to automate various tasks, store vast amounts of items, let demons mine in void dimensions, create powerful enchanted tools and jewelry, get support from familiars, and much much more.",
+  "project_type": "mod",
+  "slug": "occultism",
+  "title": "Occultism",
+  "version": "1.20.1-1.158.0"
+ },
+ "sdaSaQEz": {
+  "description": "Unify all resources.",
+  "project_type": "mod",
+  "slug": "almostunified",
+  "title": "Almost Unified",
+  "version": "1.20.1-0.11.0+forge"
+ },
+ "sk9knFPE": {
+  "description": "A fork of Mozilla's Rhino library, modified for use in mods",
+  "project_type": "mod",
+  "slug": "rhino",
+  "title": "Rhino",
+  "version": "2001.2.3-build.10+forge"
+ },
+ "sk9rgfiA": {
+  "description": "A powerful, mod-friendly, FOSS client performance mod for NeoForge",
+  "project_type": "mod",
+  "slug": "embeddium",
+  "title": "Embeddium",
+  "version": "0.3.31+mc1.20.1"
+ },
+ "tCkE8p2N": {
+  "description": "Placebo is a library used by most of my mods.\nIt does not provide any game-relevant features on its own (save for maybe a couple debug commands).",
+  "project_type": "mod",
+  "slug": "placebo",
+  "title": "Placebo",
+  "version": "8.6.3"
+ },
+ "tL9SPLdV": {
+  "description": "Putting more Magic in your Blood Magic.",
+  "project_type": "mod",
+  "slug": "animus",
+  "title": "Animus",
+  "version": "1.20.1-3.0.35"
+ },
+ "tPLE214j": {
+  "description": "Gives you control over the passage of time by allowing you to customize the length of the day-night cycle and alters the Minecraft sleep mechanic by accelerating the speed of time.",
+  "project_type": "mod",
+  "slug": "betterdays",
+  "title": "Better Days",
+  "version": "1.20.1-3.3.4.5-FORGE"
+ },
+ "tPTR9GcJ": {
+  "description": "Addon Botanical Machinery",
+  "project_type": "mod",
+  "slug": "botanical-extra-machinery",
+  "title": "Botanical Machinery Extra",
+  "version": "1.20.1-1.1.2"
+ },
+ "tgyKU1oY": {
+  "description": "Adapted from Mitsuki and Caerula Arbor from Arknights, which adds varieties of water mobs invading the Land.",
+  "project_type": "mod",
+  "slug": "caerula-arbor",
+  "title": "Caerula Arbor",
+  "version": "0.12.7.2"
+ },
+ "tqQpq1lt": {
+  "description": "Powerful tools and armor for Mekanism.",
+  "project_type": "mod",
+  "slug": "mekanism-tools",
+  "title": "Mekanism Tools",
+  "version": "10.4.16.80"
+ },
+ "twkfQtEc": {
+  "description": "dynamic data pack and registration, villager activities, custom map marker and a lot more",
+  "project_type": "mod",
+  "slug": "moonlight",
+  "title": "Moonlight Lib",
+  "version": "1.20-2.16.36-forge"
+ },
+ "twrsixFr": {
+  "description": "This mod adds furniture from the game Arknights to Minecraft.",
+  "project_type": "mod",
+  "slug": "arknightsfurniture",
+  "title": "ArknightsFurniture",
+  "version": "1.20.1-1.0.4-Forge"
+ },
+ "u6dRKJwZ": {
+  "description": "View Items and Recipes",
+  "project_type": "mod",
+  "slug": "jei",
+  "title": "Just Enough Items (JEI)",
+  "version": "15.62.0.219"
+ },
+ "uCdwusMi": {
+  "description": "Massively increase render distance without harming performance.",
+  "project_type": "mod",
+  "slug": "distanthorizons",
+  "title": "Distant Horizons",
+  "version": "3.3.3-1.20.1"
+ },
+ "uEfK2CXF": {
+  "description": "JEI integration that adds info on mobs, world gen, villagers and many more!",
+  "project_type": "mod",
+  "slug": "just-enough-resources-jer",
+  "title": "Just Enough Resources (JER)",
+  "version": "1.4.0.247"
+ },
+ "uJJBRPID": {
+  "description": "Server-side moderation tool for Simple Voice Chat. Lets OPs join password-protected voice groups without the password. Fully transparent — all group members see a chat notification when an admin joins.",
+  "project_type": "mod",
+  "slug": "vc-admin-voice-chat-moderation-tool",
+  "title": "VC Admin - Voice Chat Moderation Tool",
+  "version": "1"
+ },
+ "uKJX4EfN": {
+  "description": "Use your portable QIO in a Curios slot!",
+  "project_type": "mod",
+  "slug": "mekanism-curios",
+  "title": "Mekanism Curios",
+  "version": "1.2.1"
+ },
+ "uXXizFIs": {
+  "description": "Memory usage optimizations",
+  "project_type": "mod",
+  "slug": "ferrite-core",
+  "title": "FerriteCore",
+  "version": "6.0.1"
+ },
+ "ugdtgQ7E": {
+  "description": "An annotation based command handling library for Brigadier.",
+  "project_type": "mod",
+  "slug": "admiral",
+  "title": "Admiral",
+  "version": "0.4.10+1.20.1+forge"
+ },
+ "umyGl7zF": {
+  "description": "Edit recipes, add new custom items, script world events, all in JavaScript!",
+  "project_type": "mod",
+  "slug": "kubejs",
+  "title": "KubeJS",
+  "version": "2001.6.5-build.26+forge"
+ },
+ "vE2FN5qn": {
+  "description": "Improves performance by tweaking mob despawn rules. Say bye to pesky unintentional persistent mobs.",
+  "project_type": "mod",
+  "slug": "lmd",
+  "title": "Let Me Despawn",
+  "version": "1.5.0"
+ },
+ "vvuO3ImH": {
+  "description": "A flexible and expandable accessory/equipment API for users and developers.",
+  "project_type": "mod",
+  "slug": "curios",
+  "title": "Curios API",
+  "version": "5.14.1+1.20.1"
+ },
+ "wXoQ9BqX": {
+  "description": "A library mod and common code storage for all of my mods containing helpful tools to make my life easier with ISS add-on making!",
+  "project_type": "mod",
+  "slug": "gtbcs-spelllib",
+  "title": "GTBC's SpellLib/API",
+  "version": "2.2.0-1.20.1"
+ },
+ "xAxyIEYU": {
+  "description": "a simple addition to \"Farmer's Delight\" and \"alexs caves\", adding some food",
+  "project_type": "mod",
+  "slug": "alexs-caves-delight-farmers-delight-alexs-caves-add-on",
+  "title": "alexs caves Delight ( Farmer's Delight & alexs caves Add-on)",
+  "version": "1.0.0"
+ },
+ "xs8lcts0": {
+  "description": "A Create Mod Addon that aims to incorporate automatable recipes using TaC Zero's mod items.",
+  "project_type": "mod",
+  "slug": "precise-manufacturing",
+  "title": "[TACZ] Create: Precise Manufacturing",
+  "version": "0.4.4-cr6.0-SIMPLE-beta"
+ },
+ "xuDOzCLy": {
+  "description": "Jade 🔍's additional mod supports for Neo/Forge",
+  "project_type": "mod",
+  "slug": "jade-addons-forge",
+  "title": "Jade Addons (Neo/Forge)",
+  "version": "5.5.1+forge"
+ },
+ "xv94TkTM": {
+  "description": "Adds a search bar to the Key-Bindings menu",
+  "project_type": "mod",
+  "slug": "controlling",
+  "title": "Controlling",
+  "version": "12.0.2"
+ },
+ "z53V2L4P": {
+  "description": "Tweaks for Minecraft CPU scheduling and unofficial fork of Smooth Boot mod for Minecraft Forge 1.18.2+",
+  "project_type": "mod",
+  "slug": "smooth-boot-reloaded",
+  "title": "Smooth Boot (Reloaded)",
+  "version": "mc1.20.1-0.0.4"
+ },
+ "z611fdf7": {
+  "description": "A Create addon that adds nuclear reactors to Create, along with all the dangers associated with radiation!",
+  "project_type": "mod",
+  "slug": "createnuclear",
+  "title": "Create Nuclear",
+  "version": "2.0.1"
+ },
+ "zG0IqeQj": {
+  "description": "A botania addition",
+  "project_type": "mod",
+  "slug": "extrabotany",
+  "title": "Extrabotany",
+  "version": "1.20.1-1.9.2-forge"
+ },
+ "zNKzjsZM": {
+  "description": "Provides compatibility between Jade and Valkyrien Skies",
+  "project_type": "mod",
+  "slug": "jade-vs",
+  "title": "Jade VS",
+  "version": "1.3.0"
+ },
+ "zaRGNexp": {
+  "description": "A splash of magic returns to Minecraft!",
+  "project_type": "mod",
+  "slug": "mana-and-artifice",
+  "title": "Mana and Artifice",
+  "version": "3.1.11"
+ }
+}

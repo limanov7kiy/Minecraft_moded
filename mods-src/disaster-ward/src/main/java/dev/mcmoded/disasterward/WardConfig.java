@@ -21,6 +21,18 @@ public final class WardConfig {
     public static final ForgeConfigSpec.BooleanValue CURE_IN_ZONE;
     public static final ForgeConfigSpec.BooleanValue PUSH_PARASITES;
     public static final ForgeConfigSpec.BooleanValue IMMUNE_BOSSES;
+    public static final ForgeConfigSpec.BooleanValue ORI_PROTECT;
+    public static final ForgeConfigSpec.ConfigValue<List<? extends String>> ORI_ENTITIES;
+    public static final ForgeConfigSpec.ConfigValue<List<? extends String>> ORI_BLOCKS;
+    public static final ForgeConfigSpec.BooleanValue ORI_SKIP_UNLOADED;
+    public static final ForgeConfigSpec.BooleanValue ORI_ROLL;
+    public static final ForgeConfigSpec.IntValue ORI_ROLL_TICKS;
+    public static final ForgeConfigSpec.DoubleValue ORI_ROLL_CHANCE;
+    public static final ForgeConfigSpec.ConfigValue<List<? extends String>> ORI_DIMENSIONS;
+    public static final ForgeConfigSpec.BooleanValue ORI_FIX_STUCK;
+    public static final ForgeConfigSpec.BooleanValue ORI_GROWTH_PROTECT;
+    public static final ForgeConfigSpec.DoubleValue ORI_GROW_CHANCE;
+    public static final ForgeConfigSpec.DoubleValue ORI_CORE_CHANCE;
 
     static {
         ForgeConfigSpec.Builder b = new ForgeConfigSpec.Builder();
@@ -64,6 +76,41 @@ public final class WardConfig {
                 .defineInRange("minTicks", 36000, 200, 24000000);
         NATURAL_MAX_TICKS = b.comment("Максимальная пауза между бросками на игрока, тиков.")
                 .defineInRange("maxTicks", 96000, 200, 24000000);
+        b.pop();
+        b.push("oriStorm");
+        ORI_PROTECT = b.comment("Ориджиниумная буря Bob's Originium Dream: то, что она призывает (черви, огненные шары, молнии, падающие блоки), не появляется в зоне",
+                        "и у её края (radius + edgeMargin), а её блоки (шипы бури) не меняют блоки в зоне. Зашедших снаружи червей не трогаем.")
+                .define("protect", true);
+        ORI_ENTITIES = b.comment("Что считается призывом бури (только во время тика бури Bob's Originium Dream; яйца, команды и обычный спавн не затрагиваются).")
+                .defineList("stormEntities", List.of("bobsoriginiumdream:evildustoriworm", "minecraft:fireball", "minecraft:lightning_bolt", "minecraft:falling_block"),
+                        o -> o instanceof String);
+        ORI_BLOCKS = b.comment("Блоки бури: пока они тикают, блоки в зоне не меняются (шип 50×53×57 из блока бури).")
+                .defineList("stormBlocks", List.of("bobsoriginiumdream:oristormblock"), o -> o instanceof String);
+        ORI_SKIP_UNLOADED = b.comment("Пропускать призывы бури в незагруженных чанках (буря бросает их в квадрате ±400 от игрока; сам мод при этом",
+                        "грузит и генерирует чанк прямо в тике — замер: средний тик 400 мс, пики 2 с). Игроки этих призывов всё равно не видят.")
+                .define("skipUnloaded", true);
+        ORI_ROLL = b.comment("Запускать бурю случайно по времени: раз в rollTicks в измерении из dimensions, где есть игрок в выживании, бросок с шансом rollChance.",
+                        "Сам мод запускает бурю по счётчику получений опыта (игровое правило oristormfrequency) — в сборке оно поднято до 100000,",
+                        "чтобы фермы опыта не вызывали бурю. Выключить бури совсем: /gamerule oristorm false.")
+                .define("roll", true);
+        ORI_ROLL_TICKS = b.comment("Период броска, тиков (12000 = 10 минут).")
+                .defineInRange("rollTicks", 12000, 200, 24000000);
+        ORI_ROLL_CHANCE = b.comment("Шанс бури за бросок. Среднее время до бури = rollTicks / rollChance (12000 / 0.055 ≈ 218000 тиков ≈ 3 часа игры), плюс 10 минут предупреждения (oriwait).")
+                .defineInRange("rollChance", 0.055, 0.0, 1.0);
+        ORI_DIMENSIONS = b.comment("Измерения, где буря бросается по времени.")
+                .defineList("dimensions", List.of("minecraft:overworld"), o -> o instanceof String);
+        ORI_FIX_STUCK = b.comment("При старте сервера снимать «зависший» запуск бури: мод ждёт oriwait тиков в памяти, и если сервер выключили в это время,",
+                        "флаг oristorm_begin остаётся в сохранении навсегда и буря в этом измерении больше не начинается.")
+                .define("fixStuckStart", true);
+        b.pop();
+        b.push("oriGrowth");
+        ORI_GROWTH_PROTECT = b.comment("Ориджиниум Bob's Originium Dream (игровое правило alloworigrow) не растёт в зоне и у её края (radius + edgeMargin);",
+                        "там же не срабатывают ядра (урон и призыв монстров), жидкость пылевого червя, ядро на месте заражённого и ломание блоков ориджиниевым мутантом.")
+                .define("protect", true);
+        ORI_GROW_CHANCE = b.comment("Шанс шага роста oriblockb (у мода — каждые 2400 тиков = 2 мин, если игрок ближе 50 блоков). 0.25 — в среднем раз в 8 минут.")
+                .defineInRange("growChance", 0.25, 0.0, 1.0);
+        ORI_CORE_CHANCE = b.comment("Шанс срабатывания случайного тика ядра ориджиниума (у мода — ~раз в 68 с: урон 8 в радиусе 4 и призыв монстров). 0.1 — ~раз в 11 минут.")
+                .defineInRange("coreChance", 0.1, 0.0, 1.0);
         b.pop();
         SPEC = b.build();
     }

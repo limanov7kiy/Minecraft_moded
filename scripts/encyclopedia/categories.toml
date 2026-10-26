@@ -1,0 +1,408 @@
+# Категории справочника и принадлежность модов. Ключ мода: имя .pw.toml без суффикса
+# (pack/mods/<ключ>.pw.toml) либо для jar — имя файла до первой цифры версии
+# (например, wizardry-restored-0.6.0.jar -> wizardry-restored).
+# Новый мод без записи здесь build.py выведет в «без категории» и завершится с ошибкой.
+
+[categories.arknights]
+title = "Arknights"
+desc = "Расы, умения, мебель, Источник, Эндфилд и всё, что связано с миром Arknights."
+extra = ["[Мысленная буря](arknights/mind-storm.md) — отдельная статья (ведёт Поток 48)"]
+
+[categories.magic]
+title = "Магия"
+desc = "Заклинания, ритуалы, мана, кровь и дополнения к магическим модам."
+
+[categories.weapons]
+title = "Оружие"
+desc = "Огнестрельное и тяжёлое оружие, пушки, патроны, зачарования для оружия."
+
+[categories.space]
+title = "Космос и ракеты"
+desc = "Ракеты, планеты, скафандры, кислород и связки космических модов."
+
+[categories.mobs]
+title = "Мобы и боссы"
+desc = "Новые существа, боссы, паразиты. Подробные таблицы боссов — docs/bosses.md."
+
+[categories.dimensions]
+title = "Измерения, данжи и структуры"
+desc = "Aether, Twilight Forest, Blue Skies, Undergarden, пещеры, заброшенные города и аддоны к ним."
+
+[categories.tech]
+title = "Техника и автоматизация"
+desc = "Create, Mekanism, AE2, Refined Storage, корабли Valkyrien Skies."
+
+[categories.food]
+title = "Еда и фермерство"
+desc = "Farmer's Delight и его связки с остальными модами."
+
+[categories.world]
+title = "Мир: выживание, погода и катастрофы"
+desc = "Температура и жажда, сезоны, штормы, торнадо, метеориты и обереги от них."
+
+[categories.qol]
+title = "Удобство, хранилища и строительство"
+desc = "Рюкзаки, вейстоуны, гробницы, сундуки, WorldEdit, декор и мелкие улучшения."
+
+[categories.optimization-ui]
+title = "Оптимизация, интерфейс и ресурспаки"
+desc = "Моды производительности, JEI и его дополнения, карты, подсказки, русификация."
+
+[categories.voice]
+title = "Звук и голосовой чат"
+desc = "Simple Voice Chat, рации, физика звука."
+
+[categories.ysm]
+title = "Модели и косметика (YSM)"
+desc = "Yes Steve Model — свои модели игроков. Подробности — docs/ysm-models.md."
+
+[categories.libraries]
+title = "Библиотеки и инструменты"
+desc = "Модули, нужные другим модам, а также KubeJS и Almost Unified."
+
+[categories.own]
+title = "Свои моды и патчи"
+desc = "Моды и порты, собранные в этом репозитории (mods-src/, patches/)."
+extra = ["[Оберег от катаклизмов](own/disaster-ward.md) — подробный разбор нашего мода disaster-ward"]
+
+[members]
+arknights = ["caerula-arbor","bobs-originium-dream","originiumarts","endfield-industry","contigency-contract-lite","arknights-races","arknights-skills","arknightsfurniture","arknights-furs","origins-forge","arknights-origins-originium-arts","sarkazs_furnace_side_fables","torchesbecomesunlight","skills","skills-origins"]
+magic = ["electroblobs-wizardry-redux","irons-spells-n-spellbooks","ars-nouveau","botania","occultism","blood-magic","mahou-tsukai","ars-ocultas","ars-creo","ars-additions","tome-of-blood-rebirth","mythicbotany","deeper-and-darker-spellbooks","ars-controle","ars-artifice","botanical-machinery","botanical-extra-machinery","extrabotany","occult-engineering","occultism-ritual-satchel","animus","mana-and-artifice","ars-magica-legacy","arcaneadditions","factions-and-curiosities","mnaoverpowered","dragon-magic-and-relics","ars_elemental","ars_instrumentum","ars_technica","toomanyglyphs","extragolems","gtbcs_geomancy_plus","irons_recipe_additions","mechanicalbotania","spellforge"]
+weapons = ["timeless-and-classics-zero","superb-warfare","create-big-cannons","tacz-tweaks","lr-tactical","taczaddon","enchanted-arsenal","precise-manufacturing","arsarms","ironsarms","curios-for-ammo-box","create-big-cannons-advanced-technologies"]
+space = ["ad-astra","ad-astra-giselle-addon","create-ad-astra-recipes","mekanism-ad-astra-ores","northstar-redux","mekanism-x-create-northstar","create-northstar-structures","creating-space"]
+mobs = ["lycanites-mobs","alexs-mobs","mowzies-mobs","l_enders-cataclysm","ice-and-fire-dragons","bosses-of-mass-destruction-forge","mowzies-cataclysm","alexs-mobs-interaction","cinematic-cataclysm","fungal-infectionspore","srpsystem","capsidfix","chaospersists","clanging-howl","lycaniteskin"]
+dimensions = ["aether","blue-skies","the-undergarden","deeperdarker","alexs-caves","the-bumblezone","dimensional-dungeons","deep-aether","aether-lost-content","the-aether-redux","aether-villages","ancient-aether","aether-protect-your-moa","aether-treasure-reforging","aether-enhanced-extinguishing","aether-emissivity","the-twilight-forest-dungeons-villages","twilight-forest-the-lost-blocks","twilight-forest-cave-fix","blue-skies-gravestones-compat","dungeons-and-villages-deeper-and-darker","create-alexs-caves-compat","integrated-mowzies-mobs","the-lost-cities","twilightforest","tfbr","umbral_skies","bstweaks","create_blue_skies_compat-forge","deeper_and_darker_to_cataclysm"]
+tech = ["create","createaddition","createnuclear","create-stuff-additions","mekanism","mekanism-generators","mekanism-tools","mekanism-additions","mekanism-covers","mekanism-curios","mekanismmoremachine","copycats","create-deco","create-steam-n-rails","create-propulsion","valkyrien-skies","eureka","valkyrien-sails","vs-tournament-reforged","ae2","refined-storage"]
+food = ["farmers-delight","arsdelight","alexs-caves-delight-(-farmers-delight-alexs-caves-add-on)","l_enders-cataclysm-delight","farmers-cutting-blue-skies","twilight-delight","the-aethers-delight","undergarden-delight","alexsdelight","lycanitesdelight"]
+world = ["legendary-survival-overhaul","legendary-survival-addon","serene-seasons","serene-seasons-plus","betterdays","weather-storms-tornadoes","natural_disasters","coroutil","disaster-ward"]
+qol = ["sophisticated-backpacks","sophisticated-backpacks-create-integration","more-backpack-upgrades","waystones","gravestone-mod","gravestone-x-curios-api-compat","iron-chests","worldedit","fallingtree","quark","supplementaries","amendments","sols-authlogin"]
+optimization-ui = ["modernfix","ferrite-core","memoryleakfix","canary","ai-improvements","async-locator","clumps","saturn","spark","chunky","embeddium","oculus","entityculling","immediatelyfast","smooth-boot-reloaded","distanthorizons","lmd","fastfurnace","fastworkbench","jei","jade","jade-vs","jade-addons-forge","appleskin","xaeros-minimap","xaeros-world-map","xaeros-minimap-world-map-waystones-compatibility-forge","controlling","jea","just-enough-effect-descriptions-jeed","just-enough-mekanism-multiblocks","just-enough-professions-jep","just-enough-resources-jer","justenoughbreeding","potato-craft-8x","rtf","rtf-extension","russian-delight"]
+voice = ["simple-voice-chat","simple-radio","sound-physics-remastered","talkingheads","let-them-talk","vibrative-voice","vc-admin-voice-chat-moderation-tool","simplevoicechat-broadcast","admiral"]
+ysm = ["yes-steve-model"]
+libraries = ["geckolib","azurelib","citadel","cloth-config","curios","architectury-api","balm","baguettelib","almanac","botarium","caelus","cerbons-api","event-wrapper","fdlib","glitchcore","gtbcs-spelllib","irons-lib","kotlin-for-forge","ldlib","libx","lionfish-api","mezzconfig","moonlight","patchouli","placebo","playeranimator","photon-editor","resourceful-config","resourceful-lib","rhino","rpl","searchables","smartbrainlib","sophisticated-core","structure-gel-api","terrablender","aeroblender","yacl","zeta","apothic-attributes","attributes","attributefix","lexiconfig","cupboard","kubejs","guideme","modonomicon","almostunified","integrated-api","integrated-patches","lootintegrations","lootintegrations_cataclysm"]
+own = ["wizardry-restored","wizardry-golems","necromancers-delight","fishs-undead-rising-port","galacticraft-revival","mm-compat","mm-perf","ru-lang","voicechat-addons-forge","gaboulibs-shim","lycanites-refmap-fix","zombiehaveears","alshanex_familiars","arknights_weapon","cataclysm_spellbooks","cbc_nukes","mnaw","traveloptics","origin_visuals","eso-forge"]
+
+# Дополнительные названия для поиска упоминаний в docs/ (если в docs мод назван иначе, чем в Modrinth).
+[doc_aliases]
+irons-spells-n-spellbooks = ["Iron's Spells", "Iron's Spellbooks", "Irons"]
+electroblobs-wizardry-redux = ["Wizardry Redux", "Electroblob's Wizardry", "Redux"]
+l_enders-cataclysm = ["Cataclysm"]
+timeless-and-classics-zero = ["TACZ", "TaCZ"]
+valkyrien-skies = ["Valkyrien Skies", "VS"]
+simple-voice-chat = ["Simple Voice Chat", "SVC"]
+yes-steve-model = ["YSM", "Yes Steve Model"]
+ice-and-fire-dragons = ["Ice and Fire"]
+lycanites-mobs = ["Lycanites"]
+bosses-of-mass-destruction-forge = ["BoMD", "Bosses of Mass Destruction"]
+mana-and-artifice = ["Mana and Artifice", "M&A"]
+the-lost-cities = ["Lost Cities"]
+weather-storms-tornadoes = ["Weather2"]
+natural_disasters = ["Natural Disasters"]
+northstar-redux = ["Northstar"]
+ad-astra = ["Ad Astra"]
+superb-warfare = ["Superb Warfare"]
+create-big-cannons = ["Create Big Cannons", "CBC"]
+ars-nouveau = ["Ars Nouveau"]
+botania = ["Botania"]
+mekanism = ["Mekanism"]
+aether = ["Aether"]
+blue-skies = ["Blue Skies"]
+alexs-mobs = ["Alex's Mobs"]
+mowzies-mobs = ["Mowzie's Mobs", "Mowzie's"]
+
+# Слишком общие названия: без явного алиаса в docs не ищем.
+[doc_skip]
+keys = ["create","jade","spark","canary","saturn","clumps","admiral","almanac","controlling","caelus","moonlight","zeta","eureka","copycats","curios","balm","citadel","patchouli","placebo","rhino","skills","attributes","amendments","quark","supplementaries","waystones","aether","botania","mekanism","ad-astra"]
+
+# Описания там, где у jar нет description в mods.toml (по CLAUDE.md и docs/compat.md).
+[descriptions]
+# Русские описания модов страниц «Arknights» и «Свои моды и патчи» (этап 2а справочника).
+arknights-furs = "Клиентский мод: подменяет модель игрока в зависимости от расы Arknights (уши, хвосты, крылья)."
+arknights-origins-originium-arts = "Слой Origins «Искусства Ориджиниума»: девять школ на выбор (огонь, лёд, молния, природа, свет, пространство, призыв, кровь, новичок)."
+arknights-races = "Около 50 рас и подрас Terra для Origins со своими бонусами и навыками (Сарказ, Феллайн, Урсус, Эгир и др.)."
+arknights-skills = "Восемь классов и 25 подклассов Arknights для Origins; к каждому классу — дерево навыков Pufferfish's Skills."
+arknightsfurniture = "Строительный набор: мебель, обои, полы и логотипы фракций Arknights (113 блоков)."
+bobs-originium-dream = "Мод Боба: ориджиниумные черви, бури и рост ориджиниума, биомы и структуры пустоши, десятки боссов, внутреннее измерение."
+caerula-arbor = "Порождения моря и расползающаяся метка пучины: сложная кампания с рассудком, эволюцией, 46 структурами и около 15 боссами."
+contigency-contract-lite = "Добровольные «контракты»: выбираете усложнения мобов и игрока, за прохождение получаете медали."
+endfield-industry = "Фабрика по мотивам Arknights: Endfield: электробуры на жилах, ленты, опоры, цепочки машин и хранилище."
+torchesbecomesunlight = "Сюжетное приключение с диалогами и напарниками: Урсус, Родос Айленд, Святой город, мега-структуры и боссы."
+originiumarts = "Технологическая система Искусств Ориджиниума: руда и кристаллы, компилятор ядер, терминал травления и модули."
+origins-forge = "Основа для рас: происхождения, слои выбора и силы (Forge-порт Origins)."
+skills = "Деревья навыков Pufferfish: категории, очки, опыт и команды; сами деревья приносят другие моды."
+skills-origins = "Совместимость Pufferfish's Skills и Origins: сила «разблокировать категорию» и награда «выдать силу Origins»."
+sarkazs_furnace_side_fables = "Сюжет «печи» сарказов: мысли и их нагрузка, эпохи, Амия и измерение «Вечный покой», оружие и броня «Финал» и «Учжоу»."
+wizardry-restored = "Дополнение к Electroblob's Wizardry Redux: 61 недостающее заклинание оригинала 1.12.2, сущности, статуи и 18 артефактов."
+wizardry-golems = "Порт Wizardry Golems (WinDanesz): заклинания Golemancy, 31 тип голема, 36 артефактов и Living Snow."
+necromancers-delight = "Порт Wizardry — Necromancer's Delight (WinDanesz): 15 заклинаний некромантии и 12 артефактов."
+fishs-undead-rising-port = "Частичный порт Fish's Undead Rising: мобы, предметы и эффекты, нужные Necromancer's Delight."
+galacticraft-revival = "Перенос геймплея Galacticraft на Ad Astra: лунный данж с боссом, ключи и схемы."
+mm-compat = "Кодовые связки и исправления сборки: кислород скафандров, баги чужих модов, утечки памяти, JEI-категории."
+mm-perf = "Клиентские удобства: режим слабого ПК, отвязка клавиш модов, предупреждения о памяти, ускорение JEI."
+ru-lang = "Клиентский мод: всегда включает русский ресурспак сборки и переводит захардкоженные строки модов."
+voicechat-addons-forge = "Forge-порт трёх аддонов Simple Voice Chat от Max Henkel: AudioPlayer, Enhanced Groups, Voice Chat Interaction."
+zombiehaveears = "Зомби слышат голос игроков в Simple Voice Chat; наша пересборка с исправленным mods.toml для Forge 47."
+alshanex_familiars = "Волшебные питомцы-фамильяры для игроков с Iron's Spells 'n Spellbooks; порт под версию сборки."
+cbc_nukes = "Ядерные боеприпасы для Create Big Cannons; порт под CBC 5.11."
+mnaw = "Аддон к Mana and Artifice: ведьмовство, куклы и ритуалы симпатической магии; порт под M&A 3.1.11."
+traveloptics = "Большое дополнение к Cataclysm и Iron's Spells: оружие, броня, боссы и 176 заклинаний; порт под версии сборки."
+eso-forge = "Enchanting System Overhaul: стол зачарования без рандома — чары сначала изучают из найденных книг, потом накладывают за материалы; порт под моды брони сборки."
+origin_visuals = "Клиентский порт Origin Furs: модели игрока для рас Origins (со встроенной копией AzureLib 2)."
+gaboulibs-shim = "Замена удалённой автором библиотеки GabouLibs для Serene Seasons Plus (patches/gaboulibs-shim)."
+lycanites-refmap-fix = "Недостающий refmap миксинов Lycanites Mobs — без пересборки 120-МБ jar (patches/lycanites-refmap)."
+arknights_weapon = "Оружие Arknights (порт оригинала с CurseForge): убран RiseProcedure, удваивавший здоровье мобов при каждой загрузке чанка."
+bstweaks = "Blue Skies Tweaks: твики Blue Skies (описание в mods.toml пустое)."
+deeper_and_darker_to_cataclysm = "Связка прогрессии Deeper and Darker с L_Ender's Cataclysm (описание в mods.toml пустое)."
+ad-astra = "Космическое расширение: планеты как отдельные измерения (Луна, Марс, Венера, Меркурий, Глацио) со своим воздухом, температурой и гравитацией, скафандры, кислородные машины, ровер и реактивный костюм. В сборке отвечает за планеты и орбиты единой Солнечной системы; его крафтовые ракеты убраны."
+ad-astra-giselle-addon = "Дополнение к Ad Astra: кислородные канистры, топливный погрузчик, датчик ракеты и четыре чары защиты в мирах Ad Astra (дыхание, огонь, кислотный дождь, гравитация), а также модули МекаСкафандра."
+northstar-redux = "Космос для Create в духе Galacticraft: ракеты собираются из блоков, нужны двигатели, топливо, навигатор и теплозащита; планеты открываются телескопом, есть электролиз, герметизаторы и скафандры. В сборке даёт ракеты и гравитацию, а сами планеты — Ad Astra."
+create-northstar-structures = "Лунные кратеры всех размеров и гигантский бассейн Южный полюс — Эйткен для Northstar, плюс Лунный компас и команда поиска. В сборке работает и на Луне Ad Astra (патч), с исправлением удаления мобов."
+creating-space = "Ракеты на Create с настоящей инженерией: двигатель проектируется по чертежу, топливные пары и дельта-V ограничивают маршрут. Даёт двигатели, ракеты и скафандры; в сборке маршруты ведут по планетам Ad Astra."
+mekanism-x-create-northstar = "Мост между Mekanism и Northstar: модули МекаСкафандра (космический костюм, кислородный баллон, утепление, защита от жары) и материалы к ним (изоляция, дюрасталь)."
+the-lost-cities = "Генерирует заброшенные города (улицы, шоссе, здания с подвалами, метро, спавнерами и сундуками) прямо в обычном Overworld; в сборке включён редкий профиль rarecities (≈6 % городских чанков), действует для нового мира."
+l_enders-cataclysm = "Cataclysm от L_Ender: восемь крупных структур-арен с боссами (Игнис, Левиафан, Сцилла, Предвестник и др.), мини-боссы и мобы Незера, пустыни, океана и Края, оружие и броня по ступеням (чёрная сталь, игнит, проклятый слиток) и аметистовые пещеры."
+alexs-mobs = "Больше 90 оригинальных животных и монстров с повадками, приручением и крафтом из дропа; всё описано во внутриигровой Книге о животных (Animal Dictionary), есть босс Червь Пустоты."
+lycanites-mobs = "Свыше 120 существ с тематическими данжами, мобовыми событиями и боссами (Раховарт, Асмодей, Амальгалич); приручение, камни души, призыв миньонов и Зверинец."
+irons-spells-n-spellbooks = "Магия в духе классических RPG: заклинания хранятся в свитках и книгах, колдуются за ману в школах (огонь, лёд, молния, свет, эндер, кровь, призыв, природа, потусторонье); добавляет посохи, броню магов, станции начертания и улучшения, магические структуры с боссами (Мёртвый король, Эхо Тироса)."
+mana-and-artifice = "Магия плетения маны от Mithion: заклинания и ритуалы создаются из частей и рисунков-узоров, прогресс ведёт Оккулус и Кодекс мага; игрок выбирает фракцию (Совет, демоны, феи, нежить) и может вызвать боссов вроде Одина или Повелителя демонов."
+electroblobs-wizardry-redux = "Возрождение классического Electroblob's Wizardry для 1.20.1: семь стихий и четыре ступени заклинаний, посохи, кристаллы, броня и артефакты, Таинственный верстак и Алтарь наполнения, башни магов, святилища и обелиски; в сборке дополнен модом Wizardry Restored."
+cataclysm_spellbooks = "Мод-связка Cataclysm и Iron's Spells: заклинания, книги, посохи, оружие и броня по мотивам боссов Cataclysm, две новые школы магии (Бездна и Техномантия); в сборке — наш порт под Cataclysm 3.31."
+capsidfix = "Заплатка к Alex's Mobs: чинит дублирование предметов через блок Капсид (выпадает с Эндериофага). Своего контента не добавляет."
+chaospersists = "Ремейк OreSpawn 1.7.10 на 1.20.1: около 130 мобов и боссов (Король, Королева, Мобзилла, Кракен, Кошмар), шесть измерений, 54 структуры, руды, оружие и броня «Хаоса», питомцы и еда."
+fungal-infectionspore = "Зомби-апокалипсис поверх ванили: мицелий превращает мобов в заражённых, они эволюционируют, растут Курганы и Протомозг, а на высшей стадии приходят калимити-боссы. Есть оружие и броня из органов, Сканер и станции."
+srpsystem = "Часть механик Scape and Run: Parasites для Spore: существо с мицелием получает «Заражение паразитом» и при 30 % здоровья превращается в паразита; перерождение, колонии «матери», ограничение урона Протомозга."
+
+# Русские описания (этап 3, перевод англ. описаний Modrinth/mods.toml; по смыслу, без маркетинга).
+aether-emissivity = "Аддон к The Aether: добавляет свечение (эмиссивные слои) ряду текстур."
+aether-enhanced-extinguishing = "Аддон к The Aether: единообразно запрещает огонь в Эфире — у блоков появляются «потушенные» варианты."
+aether-protect-your-moa = "Аддон к The Aether: снаряжение для мо — сундуки на спину и крафтовая броня для мо."
+aether-treasure-reforging = "Аддон к The Aether: сокровищное снаряжение из данжей переплавляется в сырьё, из которого новыми шаблонами кузнеца куётся другое сокровищное снаряжение."
+aether-villages = "Аддон к The Aether: добавляет в Эфир храмы и деревни."
+aether-lost-content = "Аддон к The Aether: возвращает вырезанный, неиспользованный и концептуальный контент и механики прошлых версий Эфира."
+alexs-caves = "Шесть редких пещерных биомов под поверхностью Верхнего мира, со своими мобами и предметами."
+ancient-aether = "Аддон к The Aether: развивает идеи оригинального мода."
+blue-skies = "Выживание с новыми измерениями (светлым и тёмным), данжами и боссами."
+blue-skies-gravestones-compat = "Совместимость Blue Skies с модами-могилами: могила работает в его измерениях."
+create_blue_skies_compat-forge = "Совместимые рецепты и предметы между Create и Blue Skies."
+create-alexs-caves-compat = "Совместимость Create и Alex's Caves."
+deep-aether = "Аддон к The Aether: много нового контента, чтобы глубже исследовать Эфир, сохраняя дух оригинала."
+deeperdarker = "Больше блоков, предметов, брони и тайн для биома Глубокая тьма: новое измерение «Иная сторона», стражи и древние города."
+dimensional-dungeons = "Измерение из бесконечных обновляемых данжей; гибко настраивается, рассчитано на сборки."
+dungeons-and-villages-deeper-and-darker = "Добавляет данжи в измерение Deeper and Darker."
+integrated-api = "Библиотека серии Integrated Structures (для генерации структур)."
+integrated-mowzies-mobs = "Переработка всех структур Mowzie's Mobs с множеством улучшений."
+integrated-patches = "Лёгкий фикс проблем генерации мира в Integrated API."
+lootintegrations = "Подмешивает предметы одних таблиц добычи в другие — совместимость лута разных модов."
+lootintegrations_cataclysm = "Часть Loot Integrations: лут Cataclysm."
+aether = "Оригинальный мод The Aether: небесное измерение с островами, мо, валькириями и боссами; для современных версий, с мультиплеером."
+the-aether-redux = "Аддон к The Aether: разные улучшения и изменения."
+the-bumblezone = "Измерение, полное пчёл; пчёлы свирепеют, если брать их мёд."
+twilightforest = "Заколдованное лесное измерение Сумеречный лес: боссы, данжи, свои материалы."
+the-undergarden = "Подземное измерение с собственными биомами, мобами, материалами и боссами."
+the-twilight-forest-dungeons-villages = "Новый контент для Сумеречного леса, в основном деревни."
+tfbr = "Позволяет повторно призывать боссов Сумеречного леса: после победы появляется пьедестал, на который кладётся трофей босса."
+twilight-forest-cave-fix = "Исправляет обрыв пещер Сумеречного леса под водой."
+twilight-forest-the-lost-blocks = "Добавляет в Сумеречный лес недостающие блоки для строителей."
+umbral_skies = "Элементы Сумеречного леса в Эфире."
+undergarden-delight = "Совместимость Farmer's Delight и The Undergarden в ванильном стиле."
+the-aethers-delight = "Совместимость The Aether и Farmer's Delight."
+alexsdelight = "Совместимость Alex's Mobs и Farmer's Delight."
+"alexs-caves-delight-(-farmers-delight-alexs-caves-add-on)" = "Небольшое дополнение к Farmer's Delight и Alex's Caves: новая еда."
+arsdelight = "Более 49 блюд из ингредиентов Ars Nouveau в стиле Farmer's Delight; механики, связанные с заклинаниями и ритуалами."
+farmers-cutting-blue-skies = "Рецепты нарезки Farmer's Delight для материалов Blue Skies."
+farmers-delight = "Уютное расширение земледелия и кулинарии: грядки, готовка на плите и сковороде, ножи, новые блюда."
+l_enders-cataclysm-delight = "Более 50 блюд, связывающих L_Ender's Cataclysm и Farmer's Delight, в ванильном стиле."
+lycanitesdelight = "Превращает дроп Lycanites Mobs в кухню Farmer's Delight."
+twilight-delight = "Еда и десерты Сумеречного леса в стиле Farmer's Delight и Neapolitan."
+aeroblender = "Библиотека на основе TerraBlender: добавляет биомы в совместимости с системой рельефа и биомов Aether."
+almanac = "Общая библиотека кода для модов того же автора."
+almostunified = "Объединяет дубли ресурсов разных модов в один (руды, слитки и т. д.)."
+apothic-attributes = "Библиотека: окно атрибутов и набор новых атрибутов."
+architectury-api = "Промежуточный API для облегчения разработки модов под несколько загрузчиков."
+attributefix = "Снимает произвольные ограничения на атрибуты Minecraft; чинит многие моды."
+azurelib = "Библиотека: модели и анимации Bedrock для предметов, блоков и существ."
+baguettelib = "Библиотека: корректная обработка смерти и учёта инвентаря для модов."
+balm = "Слой абстракции для модов под несколько загрузчиков."
+botarium = "Кроссплатформенный API: передача и хранение предметов, жидкостей и энергии."
+caelus = "Коремод и API: полёт на элитрах через атрибут существа."
+cerbons-api = "Библиотека для модов CERBON."
+citadel = "Лёгкая библиотека (нужна Alex's Mobs, Ice and Fire и др.)."
+cloth-config = "Библиотека экранов настройки модов."
+cupboard = "Библиотека утилит для других модов."
+curios = "Универсальный API слотов аксессуаров и экипировки."
+event-wrapper = "Обёртка для шины событий под Forge и Fabric."
+fdlib = "Набор утилит для модов одного автора."
+geckolib = "Библиотека 3D-анимаций для существ, блоков, предметов, брони."
+glitchcore = "Библиотека: абстракция загрузчиков и общие утилиты модов-авторов Serene Seasons."
+gtbcs-spelllib = "Библиотека и общий код для аддонов Iron's Spells 'n Spellbooks одного автора."
+guideme = "Набор для внутриигровых справочников: разметка markdown и живые 3D-сцены."
+irons-lib = "Общая функциональность и контент для модов Iron's."
+kotlin-for-forge = "Загрузчик языка Kotlin и вспомогательные утилиты."
+kubejs = "Скрипты на JavaScript: правка рецептов, новые предметы, события мира."
+ldlib = "Библиотека: свой рендер и модульный GUI."
+lexiconfig = "API конфигов с интеграциями с другими библиотеками."
+libx = "Библиотека с общим кодом для модов."
+lionfish-api = "Очень лёгкий API анимаций."
+mezzconfig = "Простая библиотека конфигов для модов."
+modonomicon = "Внутриигровая документация в духе Thaumonomicon и Patchouli."
+moonlight = "Библиотека: динамические датапаки и регистрация, занятия жителей, свои маркеры на карте и др."
+patchouli = "Библиотека внутриигровых книг-справочников на данных (JSON), без зависимостей."
+photon-editor = "Библиотека и редактор эффектов (частиц) в духе Unity."
+placebo = "Библиотека модов Shadows; сама почти ничего не даёт, максимум пара отладочных команд."
+playeranimator = "Библиотека анимации игрока."
+attributes = "Добавляет в игру дополнительные атрибуты."
+resourceful-config = "Кроссплатформенная библиотека конфигов."
+resourceful-lib = "Библиотека Resourceful."
+rhino = "Форк Mozilla Rhino (JavaScript) для модов; нужен KubeJS."
+rpl = "Библиотека улучшенных снарядов."
+searchables = "Библиотека поиска и фильтрации элементов с автодополнением."
+smartbrainlib = "Библиотека, упрощающая систему «мозгов» существ."
+sophisticated-core = "Общая библиотека модов Sophisticated."
+structure-gel-api = "API для упрощённого создания генерируемых структур."
+terrablender = "Библиотека добавления биомов с поддержкой совместимости."
+yacl = "Библиотека конфигов с построителем интерфейса."
+zeta = "Общая несущая библиотека модульных модов (Quark и др.)."
+animus = "Добавка к Blood Magic: больше магии."
+arcaneadditions = "Спутник Mana and Artifice: новые компоненты заклинаний, ритуалы и предметы; часть меняет баланс или даёт совместимость."
+ars-additions = "Аддон Ars Nouveau: мелкие правки и удобства."
+ars-artifice = "Аддон Ars Nouveau: система применения заклинаний по событиям."
+ars-controle = "Аддон Ars Nouveau: больше контроля над заклинаниями."
+ars-creo = "Связка Ars Nouveau и Create."
+ars_elemental = "Аддон Ars Nouveau о стихийных школах: фокусы, экипировка, новые глифы и скрытые комбинации."
+ars_instrumentum = "Небольшой набор магических инструментов и утилит к Ars Nouveau."
+ars-magica-legacy = "Наследие Ars Magica 2 от Mithion: создание и применение заклинаний из частей."
+ars-nouveau = "Создание заклинаний из глифов и магическая автоматизация."
+ars-ocultas = "Интеграция Ars Nouveau и Occultism."
+ars_technica = "Связка Ars Nouveau и Create."
+blood-magic = "Магия крови: алтари, ритуалы, сети души ради мощи."
+botania = "Природная магия и техника: цветы-генераторы, мана, пестик и т. д."
+botanical-machinery = "Аддон Botania: автоматизация."
+botanical-extra-machinery = "Дополнение к Botanical Machinery."
+occult-engineering = "Связка Create и Occultism."
+deeper-and-darker-spellbooks = "Связка Iron's Spells 'n Spellbooks и Deeper and Darker."
+dragon-magic-and-relics = "Расширение Mana and Artifice: драконья магия и реликвии."
+extragolems = "Десятки новых големов с уникальными текстурами и способностями."
+extrabotany = "Дополнение к Botania."
+factions-and-curiosities = "Аддон Mana and Artifice: новые фракции."
+gtbcs_geomancy_plus = "Аддон Iron's Spells: заклинания по мотивам Mowzie's Mobs и оригинальная магия земли."
+irons_recipe_additions = "Добавляет множество рецептов к Iron's Spells 'n Spellbooks."
+mahou-tsukai = "Магия со спецэффектами и уникальными заклинаниями."
+mechanicalbotania = "Превращает ману Botania в обороты Create."
+mnaoverpowered = "Аддон Mana and Artifice: мелкие твики для облегчения игры."
+mythicbotany = "Дополнение Botania: новые цветы, предметы и механики."
+occultism = "Ритуальная магия с призываемыми духами: автоматизация, хранение предметов, демоны, добывающие в пустоте, инструменты и украшения."
+occultism-ritual-satchel = "Перенос Ritual Satchel из Occultism 1.21.1 в 1.20.1."
+spellforge = "Кузница заклинаний: позволяет крафтить все заклинания Electroblob's Wizardry Redux (по образцу Iron's Spells)."
+tome-of-blood-rebirth = "Интеграция Ars Nouveau и Blood Magic; духовный преемник Tome of Blood."
+toomanyglyphs = "Набор дополнений: более гибкие, умные (а иногда просто сильные) заклинания Ars Nouveau."
+alexs-mobs-interaction = "Дополнение с множеством новых возможностей именно для Alex's Mobs."
+bosses-of-mass-destruction-forge = "Боссы-арены (Лич, Обсидилит, Пустотный цветок, Гаунтлет) — мод в разработке."
+cinematic-cataclysm = "Вступительные ролики перед боями с некоторыми боссами L_Ender's Cataclysm."
+clanging-howl = "Много враждебных мобов со своими особенностями, усложняющих выживание."
+ice-and-fire-dragons = "Драконы (огненные, ледяные, молниевые) и мифические существа."
+lycaniteskin = "Расширение Lycanites Mobs: броня из дропа существ, приручение и призыв."
+mowzies-cataclysm = "Связка Mowzie's Mobs и Cataclysm."
+mowzies-mobs = "Вымышленные существа с уникальным ИИ и плавной анимацией; боссы (Ferrous Wroughtnaut, Frostmaw, Sculptor, Barako и др.) и их маски."
+ai-improvements = "Оптимизация ванильного ИИ с возможностью отключать некоторые его поведения."
+appleskin = "Подсказки сытости и насыщения на панели еды."
+async-locator = "Асинхронный поиск структур — меньше лагов от /locate и карт."
+canary = "Оптимизация общей производительности; неофициальный форк Lithium для Forge."
+clumps = "Склеивает шарики опыта, снижая лаги."
+controlling = "Строка поиска в меню управления."
+distanthorizons = "Сильно увеличивает дальность прорисовки без потери производительности (упрощённые дальние чанки)."
+embeddium = "Клиентская оптимизация рендера (форк Rubidium/Sodium для Forge)."
+entityculling = "Скрывает невидимые блоки-сущности и существ, чтобы не рисовать их."
+fastfurnace = "Оптимизация печей."
+fastworkbench = "Оптимизация верстака."
+ferrite-core = "Снижает потребление памяти."
+immediatelyfast = "Ускоряет рендер в режиме немедленной отрисовки."
+jade-addons-forge = "Дополнительная поддержка модов в Jade."
+jade-vs = "Совместимость Jade и Valkyrien Skies."
+jade = "Показывает информацию о блоке или существе, на которое смотрите."
+jea = "Аддон JEI: поиск достижений."
+justenoughbreeding = "Плагин JEI: показывает информацию о разведении животных."
+just-enough-effect-descriptions-jeed = "Плагин JEI: описания всех эффектов."
+jei = "Просмотр предметов и рецептов."
+just-enough-mekanism-multiblocks = "Страница JEI с расчётом стоимости мультиблоков Mekanism."
+just-enough-professions-jep = "Аддон JEI: рабочие места профессий жителей."
+just-enough-resources-jer = "Интеграция JEI: данные о мобах, генерации мира, жителях и др."
+lmd = "Правит условия исчезновения мобов — меньше случайно «вечных» мобов."
+memoryleakfix = "Исправляет случайные утечки памяти на клиенте и сервере."
+modernfix = "Комплексная оптимизация производительности и памяти, исправляет баги."
+oculus = "Неофициальный форк Iris для Forge: поддержка шейдеров."
+potato-craft-8x = "Текстурпак 8x для слабых ПК, заметно повышает FPS."
+russian-delight = "Русский перевод большинства дополнений к Farmer's Delight."
+saturn = "Снижает потребление памяти."
+smooth-boot-reloaded = "Правки планирования потоков CPU при загрузке; неофициальный форк Smooth Boot."
+spark = "Профилировщик производительности клиентов и серверов."
+chunky = "Прегенерация мира командами /chunky: заранее создаёт местность в заданном радиусе."
+xaeros-minimap = "Миникарта: рельеф, игроки, мобы, путевые точки."
+xaeros-minimap-world-map-waystones-compatibility-forge = "Создаёт путевую точку на картах Xaero при активации вейстоуна."
+xaeros-world-map = "Полноэкранная карта исследованного мира; работает вместе с Xaero's Minimap."
+amendments = "Много изменений ванильных блоков (от автора Supplementaries)."
+fallingtree = "Срубает дерево целиком, достаточно одного бревна."
+gravestone-mod = "При смерти ставит могилу с вещами."
+gravestone-x-curios-api-compat = "Позволяет сразу надевать вещи Curios из могилы в нужные слоты."
+iron-chests = "Сундуки из разных металлов с разной вместимостью."
+more-backpack-upgrades = "Аддон Sophisticated Backpacks: связь рюкзака с сетью Refined Storage."
+quark = "Сборник мелких улучшений ванили: блоки, механики, интерфейс."
+sols-authlogin = "Серверная авторизация: регистрация и вход для серверов с доп. защитой аккаунтов."
+sophisticated-backpacks = "Рюкзаки, которые можно ставить в мире, красить, расширять и улучшать множеством апгрейдов."
+sophisticated-backpacks-create-integration = "Рюкзаки Sophisticated на механизмах Create."
+supplementaries = "Расширение ванили: банки, указатели, краны, флюгеры, пусковые пружины, подсвечники, кашпо, освещение, декор и автоматизация."
+waystones = "Телепорт между вейстоунами и магические свитки возврата."
+worldedit = "Редактор карты прямо в игре: выделения, схематики, копирование, кисти, скрипты."
+create-ad-astra-recipes = "Рецепты, повышающие совместимость Create и Ad Astra."
+mekanism-ad-astra-ores = "Руды Mekanism на планетах Ad Astra."
+ae2 = "Популярная автоматизация и хранение: сеть, МЭ-диски, автокрафт."
+create = "Эстетичная техника: механизмы на оборотах, шестерни, конвейеры, поезда."
+createaddition = "Create Crafts & Additions: мост между электричеством и кинетической энергией."
+createnuclear = "Create Nuclear: ядерный реактор на Create (стержни урана и графита, охлаждение водой, вращение на выходе), руды урана/тория, радиация и антирадиационный костюм."
+create-deco = "Промышленный декор в стиле Create."
+create-stuff-additions = "Дополнения к Create: новые механизмы и предметы."
+copycats = "Блоки-«копикаты», принимающие облик других блоков, в одном моде."
+create-propulsion = "Красные магниты, оптические датчики, двигатели и др. для Create; работает с Valkyrien Skies 2."
+create-steam-n-rails = "Расширяет рельсы и паровую систему Create."
+eureka = "Корабли из обычных блоков с физикой (аддон Valkyrien Skies)."
+mekanism = "Высокотехнологичные машины, энергетика, гаджеты."
+mekanism-additions = "Модуль Mekanism с вещами, не вошедшими в другие модули."
+mekanism-covers = "Аддон Mekanism: простой способ закрывать облицовкой кабели и трубы."
+mekanism-curios = "Портативный QIO в слоте Curios."
+mekanism-generators = "Модуль Mekanism: продвинутая генерация энергии."
+mekanism-tools = "Модуль Mekanism: мощные инструменты и броня."
+mekanismmoremachine = "Дополнительные машины и фабрики для Mekanism."
+refined-storage = "Сеть хранения: удобное решение проблемы захламлённых сундуков."
+valkyrien-sails = "Аддон Valkyrien Skies: механики парусного плавания."
+valkyrien-skies = "Физика в Minecraft: корабли и целые постройки как движущиеся тела."
+vs-tournament-reforged = "Аддон Valkyrien Skies: механики и оружие для сражений кораблей."
+admiral = "Библиотека обработки команд на аннотациях для Brigadier."
+let-them-talk = "Клиентский аддон Plasmo Voice и Simple Voice Chat: приглушает музыку и другие приложения, пока кто-то говорит."
+simple-radio = "Простая рация для связи с друзьями на расстоянии."
+simple-voice-chat = "Голосовой чат прямо в игре: близкий, группы, на сервере."
+simplevoicechat-broadcast = "Вещание аудио на всех игроков."
+sound-physics-remastered = "Реалистичное затухание, реверберация и поглощение звука блоками."
+talkingheads = "Клиентский аддон голосового чата: увеличивает головы говорящих игроков."
+vc-admin-voice-chat-moderation-tool = "Серверная модерация Simple Voice Chat: операторы входят в группы с паролем без пароля; участники видят уведомление."
+vibrative-voice = "Аддон Simple Voice Chat: голос порождает вибрации, на которые реагируют датчики и мобы Sculk."
+arsarms = "Запускает магию Ars Nouveau выстрелами из оружия TaCZ."
+precise-manufacturing = "Аддон Create: автоматизируемые рецепты с предметами TaC Zero."
+curios-for-ammo-box = "Позволяет носить ящик патронов TaCZ в слотах Curios."
+ironsarms = "Запускает магию Iron's Spells 'n Spellbooks выстрелами из оружия TaCZ."
+lr-tactical = "Аддон TaCZ: метательное и холодное оружие для оружейных паков."
+timeless-and-classics-zero = "Современный FPS-геймплей в Minecraft: настраиваемое огнестрельное оружие, обвесы, анимации (переработка TaC)."
+enchanted-arsenal = "Зачарования для оружия TaCZ."
+create-big-cannons = "Постройка больших пушек на Create."
+create-big-cannons-advanced-technologies = "Аддон Create Big Cannons: новые пушки и механики."
+superb-warfare = "Военный мод: оружие, тяжёлые пушки и мощная техника."
+taczaddon = "Расширение TaCZ: удобное управление обвесами."
+tacz-tweaks = "Набор твиков и мелких функций для TaCZ."
+betterdays = "Настройка длины суток и ускорение времени при сне."
+coroutil = "Общая библиотека модов Corosus."
+legendary-survival-addon = "Новые способы охлаждения и нагрева с Create."
+legendary-survival-overhaul = "Температура, жажда, повреждения конечностей и переработка здоровья для выживания."
+natural_disasters = "9 стихийных бедствий, которые могут возникать сами по себе."
+serene-seasons = "Сезоны: смена цветов, температур и др."
+serene-seasons-plus = "Развитие Serene Seasons: скорость дня и ночи по подсезонам, лучшее накопление и таяние снега."
+weather-storms-tornadoes = "Бури, торнадо, ветер и множество эффектов частиц."
+yes-steve-model = "Подменяет ванильную модель игрока своими (анимированными) моделями."
+rtf = "Ресурспак: русские переводы и исправления текста модов сборки (Ad Astra, Twilight Delight и др.)."

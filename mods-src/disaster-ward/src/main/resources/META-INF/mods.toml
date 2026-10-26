@@ -9,7 +9,8 @@ displayName = "Оберег от катаклизмов (Disaster Ward)"
 authors = "Minecraft_moded"
 description = '''
 Блок-оберег (только креатив): в его зоне (один радиус) не бушуют катаклизмы Weather2 и Natural Disasters!, не распространяется заражение Fungal Infection: Spore
-и SRP System, пришедшие снаружи бедствия не ломают блоки внутри. Редкий случайный спавн бедствий Natural Disasters! и отключение его дублей.
+и SRP System, пришедшие снаружи бедствия не ломают блоки внутри, ориджиниумная буря Bob's Originium Dream не призывает в зоне монстров и не растит шипы.
+Редкий случайный спавн бедствий Natural Disasters! и ориджиниумной бури, отключение дублей.
 '''
 
 [[dependencies.${mod_id}]]

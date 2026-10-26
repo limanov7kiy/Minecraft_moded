@@ -1,0 +1,8 @@
+name = "AL_Akashi"
+filename = "AL_Akashi.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/Elaina69/Yes-Steve-Model-Repo/1749b46467acea11694891c01ede24914b22dc6c/_AzurLane/AL_Akashi.ysm"
+hash-format = "sha256"
+hash = "2dc23fa5da5e8782469f6c27e3a84e8686f0646768c012602e0bda051acb4f0e"

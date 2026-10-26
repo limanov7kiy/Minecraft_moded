@@ -12,6 +12,7 @@ set -eu
 dir="$1"; tmo="${2:-900}"
 root="$(cd "$(dirname "$0")/.." && pwd)"
 forge="$(sed -n 's/^forge = "\(.*\)"/\1/p' "$root/pack/pack.toml")"
+python3 "$root/scripts/check-pack-version.py"
 mkdir -p "$dir" && cd "$dir"
 if [ ! -f run.sh ]; then
   curl -sSLo forge-installer.jar "https://maven.minecraftforge.net/net/minecraftforge/forge/1.20.1-$forge/forge-1.20.1-$forge-installer.jar"
@@ -53,4 +54,6 @@ done
 wait $pid || true; exec 3>&-
 # битый мод-файл — Forge пишет предупреждение и стартует сервер БЕЗ модов, поэтому это провал
 if grep -q 'Mods loaded with [0-9]* warnings' logs/latest.log; then grep 'is not a valid mod file\|ServerModLoader' logs/latest.log; echo "SERVER FAILED: mod loading warnings"; exit 1; fi
+# падение уже после Done (например, при загрузке первых чанков) — тоже провал, хотя строка Done в логе есть
+if ls crash-reports/*.txt >/dev/null 2>&1; then echo "SERVER FAILED: crash after start: $(ls crash-reports)"; grep -m1 -A1 '^Description' crash-reports/*.txt; exit 1; fi
 if grep -q 'Done (' logs/latest.log; then echo "SERVER OK: $(grep -o 'Done ([^)]*)' logs/latest.log)"; else echo "SERVER FAILED"; exit 1; fi

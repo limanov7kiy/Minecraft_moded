@@ -1,0 +1,8 @@
+name = "0045_AL_Yamashiro_v2.5.7"
+filename = "0045_AL_Yamashiro_v2.5.7.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0045-%E9%9B%BE%E9%9B%A8%E6%B3%A2%E6%B3%A2%E6%B2%99/AL_Yamashiro_%E5%B1%B1%E5%9F%8E_LA/AL_%E5%B1%B1%E5%9F%8E_Yamashiro_v2.5.7.ysm"
+hash-format = "sha256"
+hash = "ce2d84fbad146b1b0bfe77cd2ac89d5dd657fbc291d6d529a2a34c8e97e39950"

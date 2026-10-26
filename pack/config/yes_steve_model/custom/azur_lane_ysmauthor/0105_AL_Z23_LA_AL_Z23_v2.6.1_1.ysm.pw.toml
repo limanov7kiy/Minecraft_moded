@@ -1,0 +1,8 @@
+name = "0105_AL_Z23_LA_AL_Z23_v2.6.1_1"
+filename = "0105_AL_Z23_LA_AL_Z23_v2.6.1_1.ysm"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/nekohalawrence/FREE-YSM-AUTHOR/17db8b6bee8afa8b4c5959151069704fe0805032/0105-%E8%B6%85%E7%BA%A7%E5%A4%A7%E9%B8%A1%E8%85%BF%E4%B8%B6%2CNss/AL_Z23_%E5%B0%BC%E7%B1%B3_LA/AL_%E5%B0%BC%E7%B1%B3_Z23_v2.6.1_1.ysm"
+hash-format = "sha256"
+hash = "5453f5c49ac2ff534a436ede86a218dffd90c969ca2c73813bd5c640e6dbabfe"
