@@ -139,7 +139,7 @@ _Обзор категории — вручную, следующие этапы
 - **Версия:** 3.3.3-1.20.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/distanthorizons)
 - **Что это:** Сильно увеличивает дальность прорисовки без потери производительности (упрощённые дальние чанки). _(источник: docs сборки)_
 - **В сборке:** дальняя прорисовка
-- **В наших docs:** [performance.md](../performance.md) (17), [compat.md](../compat.md) (11), [friends.md](../friends.md) (7), [roadmap.md](../roadmap.md) (5), [client-checklist.md](../client-checklist.md) (2), [hosting.md](../hosting.md) (1)
+- **В наших docs:** [performance.md](../performance.md) (17), [compat.md](../compat.md) (11), [friends.md](../friends.md) (9), [roadmap.md](../roadmap.md) (5), [client-checklist.md](../client-checklist.md) (2), [hosting.md](../hosting.md) (1)
 <!-- auto:end card:distanthorizons -->
 
 ### Что даёт игроку
