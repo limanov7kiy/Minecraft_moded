@@ -15,5 +15,6 @@ public class MmCompat {
         MinecraftForge.EVENT_BUS.register(SuitOxygen.class);
         modBus.addListener(EntityCategoryFix::onSetup);
         MissingAttributes.register(modBus);
+        RadiationSuitShielding.register();
     }
 }
