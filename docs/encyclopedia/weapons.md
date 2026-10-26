@@ -51,7 +51,7 @@ _Обзор категории — вручную, следующие этапы
 - **Версия:** 0.4.4-cr6.0-SIMPLE-beta · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/precise-manufacturing)
 - **Что это:** Аддон Create: автоматизируемые рецепты с предметами TaC Zero. _(источник: docs сборки)_
 - **В сборке:** Create × TACZ
-- **В наших docs:** [compat.md](../compat.md) (58), [dedup.md](../dedup.md) (29), [friends.md](../friends.md) (15), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7)
+- **В наших docs:** [compat.md](../compat.md) (58), [dedup.md](../dedup.md) (29), [friends.md](../friends.md) (15), [roadmap.md](../roadmap.md) (9), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8)
 <!-- auto:end card:precise-manufacturing -->
 
 ### Как играть
@@ -217,7 +217,7 @@ TACZ (Timeless and Classics Zero) — основа всего огнестрел
 <a id="create-big-cannons"></a>
 - **Версия:** 5.11.4 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/create-big-cannons)
 - **Что это:** Постройка больших пушек на Create. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (17), [roadmap.md](../roadmap.md) (4), [dedup.md](../dedup.md) (3), [friends.md](../friends.md) (3), [ntm.md](../ntm.md) (3), [performance.md](../performance.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (17), [roadmap.md](../roadmap.md) (6), [dedup.md](../dedup.md) (3), [friends.md](../friends.md) (3), [ntm.md](../ntm.md) (3), [performance.md](../performance.md) (2)
 <!-- auto:end card:create-big-cannons -->
 
 ### Как играть
