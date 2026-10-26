@@ -25,6 +25,7 @@ final class AutoupdateConfig {
     static final ForgeConfigSpec.ConfigValue<List<? extends String>> DISABLE_AFTER;
     static final ForgeConfigSpec.BooleanValue BACKUP;
     static final ForgeConfigSpec.ConfigValue<List<? extends String>> BACKUP_DIRS;
+    static final ForgeConfigSpec.BooleanValue KEEP_BACKUP;
 
     static {
         ForgeConfigSpec.Builder b = new ForgeConfigSpec.Builder();
@@ -42,6 +43,9 @@ final class AutoupdateConfig {
             .define("backup", true);
         BACKUP_DIRS = b.comment("Папки в корне сервера, которые копируются и откатываются / folders to back up and roll back")
             .defineListAllowEmpty(List.of("backup_dirs"), () -> new ArrayList<>(Updater.DEFAULT_BACKUP_DIRS), o -> o instanceof String);
+        KEEP_BACKUP = b.comment("Оставлять копию после успешного обновления (до следующего); по умолчанию удаляется — место на диске хостинга",
+                "Keep the backup after a successful update (default: delete it)")
+            .define("keep_backup", false);
         TIMEOUT_SECONDS = b.comment("Сколько секунд ждать packwiz-installer; дольше — процесс останавливается, обновление повторится на следующем старте",
                 "Seconds to wait for packwiz-installer before killing it")
             .defineInRange("timeout_seconds", Updater.DEFAULT_TIMEOUT_SECONDS, 10, 86400);
@@ -99,6 +103,7 @@ final class AutoupdateConfig {
         s.disableAfter = new ArrayList<>(DISABLE_AFTER.get());
         s.backup = BACKUP.get();
         s.backupDirs = new ArrayList<>(BACKUP_DIRS.get());
+        s.keepBackup = KEEP_BACKUP.get();
         return s;
     }
 }

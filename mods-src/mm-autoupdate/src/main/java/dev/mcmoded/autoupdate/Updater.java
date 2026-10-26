@@ -10,6 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.DirectoryStream;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.PathMatcher;
 import java.nio.file.SimpleFileVisitor;
@@ -106,6 +107,8 @@ public final class Updater {
         /** «Всё или ничего»: перед установкой копировать backupDirs в {@link #BACKUP_DIR}, при ошибке вернуть копию целиком. */
         public boolean backup = true;
         public List<String> backupDirs = new ArrayList<>(DEFAULT_BACKUP_DIRS);
+        /** После успешного обновления копию удалять (место на диске хостинга); true — оставить до следующего обновления. */
+        public boolean keepBackup = false;
     }
 
     public enum Result { UPDATED, SKIPPED, FAILED }
@@ -215,6 +218,14 @@ public final class Updater {
         } catch (IOException e) {
             log.warn("не удалось снять маркер " + MARKER + ": " + e);
         }
+        if (s.backup && !s.keepBackup) {
+            try {
+                deleteTree(backupDir);
+                log.info("копия " + BACKUP_DIR + "/ удалена после успешного обновления / backup removed");
+            } catch (RuntimeException e) {
+                log.warn("копия " + BACKUP_DIR + " не удалена: " + e);
+            }
+        }
         String ver = packVersion(root);
         writeStatus(root, "ok " + now() + " reason=" + reason + " version=" + ver, log);
         log.info("обновление завершено, версия сборки " + ver + " / update finished, pack version " + ver);
@@ -277,23 +288,114 @@ public final class Updater {
     }
 
     /** Возвращает из backupDir всё, что там есть, поверх текущих папок (текущие удаляются целиком). */
+    /**
+     * Откат — синхронизация поверх, а не «удалить каталог и переместить копию»: после ServerStoppedEvent чужие моды ещё пишут
+     * в config/ (YSM — config/yes_steve_model/cache), и удаление каталога целиком падает на DirectoryNotEmptyException.
+     * Файлы копии копируются с перезаписью, лишние файлы удаляются по одному, пустые лишние каталоги — по возможности;
+     * до {@value #ROLLBACK_ATTEMPTS} попыток с паузой. Успех = каждый файл копии лежит на месте с тем же размером;
+     * лишний файл, который не удалось удалить (его держит чужой поток), откат не проваливает — он только в WARN.
+     */
     static void rollback(Path root, Path backupDir, List<String> dirs, Log log) throws IOException {
         if (!Files.isDirectory(backupDir)) throw new IOException("нет копии " + BACKUP_DIR);
         for (String d : dirs) {
             Path dst = safeChild(root, d);
             Path src = backupDir.resolve(d);
             if (dst == null || !Files.isDirectory(src)) continue;
-            deleteTree(dst);
-            moveTree(src, dst);
-            log.info("откат: " + d + "/ восстановлен из копии / restored from backup");
+            IOException last = null;
+            for (int attempt = 1; attempt <= ROLLBACK_ATTEMPTS; attempt++) {
+                try {
+                    int[] n = syncTree(src, dst, log);
+                    log.info("откат: " + d + "/ восстановлен из копии (" + n[0] + " файлов, лишних удалено " + n[1] + ")"
+                        + " / restored from backup");
+                    last = null;
+                    break;
+                } catch (IOException e) {
+                    last = e;
+                    log.warn("откат " + d + "/: попытка " + attempt + " из " + ROLLBACK_ATTEMPTS + " не удалась: " + e);
+                    try {
+                        Thread.sleep(ROLLBACK_PAUSE_MS);
+                    } catch (InterruptedException ie) {
+                        Thread.currentThread().interrupt();
+                        throw new IOException("откат прерван", ie);
+                    }
+                }
+            }
+            if (last != null) throw last;
         }
         Path manifest = backupDir.resolve(MANIFEST);
         if (Files.isRegularFile(manifest)) {
-            Files.move(manifest, root.resolve(MANIFEST), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(manifest, root.resolve(MANIFEST), StandardCopyOption.REPLACE_EXISTING);
         } else {
             Files.deleteIfExists(root.resolve(MANIFEST));   // до обновления манифеста не было — не должно быть и после отката
         }
-        deleteTree(backupDir);
+        try {
+            deleteTree(backupDir);
+        } catch (RuntimeException e) {
+            log.warn("копия " + BACKUP_DIR + " после отката удалена не полностью: " + e);
+        }
+    }
+
+    static final int ROLLBACK_ATTEMPTS = 3;
+    static final long ROLLBACK_PAUSE_MS = 2000;
+
+    /**
+     * dst := src. Возвращает {восстановлено файлов, удалено лишних}. Бросает IOException, если хоть один файл копии не удалось
+     * положить или проверить (размер не совпал — например, чужой поток пишет в него прямо сейчас).
+     */
+    static int[] syncTree(Path src, Path dst, Log log) throws IOException {
+        Set<Path> keep = new HashSet<>();
+        List<Path> dirs = new ArrayList<>();
+        int[] n = {0, 0};
+        Files.walkFileTree(src, new SimpleFileVisitor<>() {
+            @Override public FileVisitResult preVisitDirectory(Path d, BasicFileAttributes a) throws IOException {
+                Path rel = src.relativize(d);
+                keep.add(rel);
+                dirs.add(rel);
+                Files.createDirectories(dst.resolve(rel));
+                return FileVisitResult.CONTINUE;
+            }
+            @Override public FileVisitResult visitFile(Path f, BasicFileAttributes a) throws IOException {
+                Path rel = src.relativize(f);
+                keep.add(rel);
+                Path to = dst.resolve(rel);
+                Files.copy(f, to, StandardCopyOption.REPLACE_EXISTING);
+                if (Files.size(to) != a.size()) throw new IOException("размер не совпал после копирования: " + rel);
+                n[0]++;
+                return FileVisitResult.CONTINUE;
+            }
+        });
+        // лишнее: файлы — удалить, каталоги (уже пустые) — попробовать удалить, не вышло — не беда
+        List<Path> extraDirs = new ArrayList<>();
+        Files.walkFileTree(dst, new SimpleFileVisitor<>() {
+            @Override public FileVisitResult preVisitDirectory(Path d, BasicFileAttributes a) {
+                Path rel = dst.relativize(d);
+                if (!keep.contains(rel)) extraDirs.add(d);
+                return FileVisitResult.CONTINUE;
+            }
+            @Override public FileVisitResult visitFile(Path f, BasicFileAttributes a) {
+                if (!keep.contains(dst.relativize(f))) {
+                    try {
+                        Files.deleteIfExists(f);
+                        n[1]++;
+                    } catch (IOException e) {
+                        log.warn("лишний файл не удалён (его держит другой поток?): " + f + ": " + e);
+                    }
+                }
+                return FileVisitResult.CONTINUE;
+            }
+            @Override public FileVisitResult visitFileFailed(Path f, IOException e) {
+                log.warn("не прочитан при откате: " + f + ": " + e);
+                return FileVisitResult.CONTINUE;
+            }
+        });
+        for (int i = extraDirs.size() - 1; i >= 0; i--) {   // сначала вложенные
+            try {
+                Files.deleteIfExists(extraDirs.get(i));
+            } catch (IOException ignored) {
+                // каталог пересоздал или держит чужой поток — не мешает старту
+            }
+        }
+        return n;
     }
 
     /** Имя папки первого уровня в корне сервера; пути с разделителями, «..» и пустые — не принимаются. */
@@ -306,6 +408,10 @@ public final class Updater {
         long[] n = {0};
         Files.walkFileTree(dir, new SimpleFileVisitor<>() {
             @Override public FileVisitResult visitFile(Path f, BasicFileAttributes a) { n[0] += a.size(); return FileVisitResult.CONTINUE; }
+            @Override public FileVisitResult visitFileFailed(Path f, IOException e) throws IOException {
+                if (e instanceof NoSuchFileException) return FileVisitResult.CONTINUE;   // исчез во время обхода — чужой временный файл
+                throw e;
+            }
         });
         return n[0];
     }
@@ -323,22 +429,21 @@ public final class Updater {
                 return FileVisitResult.CONTINUE;
             }
             @Override public FileVisitResult visitFile(Path f, BasicFileAttributes a) throws IOException {
-                Files.copy(f, dst.resolve(src.relativize(f)), StandardCopyOption.REPLACE_EXISTING);
+                try {
+                    Files.copy(f, dst.resolve(src.relativize(f)), StandardCopyOption.REPLACE_EXISTING);
+                } catch (NoSuchFileException e) {
+                    // файл исчез между обходом и копированием — временный файл чужого мода (YSM пишет cache после остановки); не наш
+                }
                 return FileVisitResult.CONTINUE;
+            }
+            @Override public FileVisitResult visitFileFailed(Path f, IOException e) throws IOException {
+                if (e instanceof NoSuchFileException) return FileVisitResult.CONTINUE;
+                throw e;
             }
         });
     }
 
     /** Переименование (мгновенно на одном диске); если не вышло — копирование и удаление источника. */
-    private static void moveTree(Path src, Path dst) throws IOException {
-        try {
-            Files.move(src, dst);
-        } catch (IOException e) {
-            copyTree(src, dst);
-            deleteTree(src);
-        }
-    }
-
     static void deleteTree(Path dir) {
         if (!Files.exists(dir)) return;
         try {

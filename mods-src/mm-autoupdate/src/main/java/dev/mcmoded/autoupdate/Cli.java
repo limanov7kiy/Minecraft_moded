@@ -22,6 +22,7 @@ public final class Cli {
                 case "--windows" -> s.runOnWindows = true;
                 case "--no-post" -> { s.removeAfter.clear(); s.disableAfter.clear(); }
                 case "--no-backup" -> s.backup = false;
+                case "--keep-backup" -> s.keepBackup = true;
                 case "--java" -> s.javaPath = args[++i];
                 default -> {
                     if (args[i].startsWith("-")) {
