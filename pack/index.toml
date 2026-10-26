@@ -86,7 +86,7 @@ hash = "849d8c22b15f44733ae4644b5d83b22a54ba3779c57481643ea2ce5ef14ba8f7"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "f2d7a649feda0887236a3361b652c70529003d38b9786529129a94e83c248222"
+hash = "e64e6755f1fc21a47f1946f82e14fbe2c91d47c0931ba7b9f6bbce0b1998f9ce"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -1273,6 +1273,14 @@ file = "kubejs/client_scripts/space_rockets.js"
 hash = "c5f3ef1a27991ac16c6f99ff138572a82654f52f514605e7a423b3c9adfb0eac"
 
 [[files]]
+file = "kubejs/data/ad_astra/advancements/ad_astra.json"
+hash = "653697c67ca626b213f7ccec9f653643f9386024b9439edd5647b0003a9a472b"
+
+[[files]]
+file = "kubejs/data/ad_astra/advancements/carbon_footprint.json"
+hash = "6ab896f3a1ad9e334f3e0d7b364b14904f2bf51bf8f5b98b81685c38dded79b4"
+
+[[files]]
 file = "kubejs/data/ad_astra/creatingspace/rocket_accessible_dimension/earth_orbit.json"
 hash = "7ec00a861c3989fff503d88aad810565905340014aa56e3bb084a57378dc46fb"
 
@@ -1946,7 +1954,7 @@ hash = "936a53c82988205a015331ae4c1f14b04157faf4282d559cc5cf5f3355da1b8c"
 
 [[files]]
 file = "kubejs/startup_scripts/dedup_list.js"
-hash = "6e7174227b2f169e050b9e8230177c0ae57f287c87dba0bf54481dc386061c19"
+hash = "453ba913e6e685222a72a3333d902061b5b39d1618b7c123e92820c4db5ff9be"
 
 [[files]]
 file = "kubejs/startup_scripts/space_rockets_list.js"

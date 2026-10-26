@@ -1790,7 +1790,7 @@ Corosus (Weather2) — здесь только перехват вызовов.
 ванили — уменьшить (например `Base 0.015`, `Sprinting 0.03`, `On Attack 0.03`: ходьба ≈ +1,8/мин, бег +3,6/мин); в) оставить. Владелец выбрал «б» (В72).
 Как проверить после правки: `EXTRA_SERVER_SCRIPTS=<папка с hungercheck.js> TEST_COMMANDS=<«#sleep 900»> scripts/test-server.sh <папка вне репо>`, строки `HUNGER …`.
 
-**Сделано (В72 «б», версия 2026.10.26-12):** в сборку добавлен `pack/config/legendarysurvivaloverhaul/legendarysurvivaloverhaul-common.toml`
+**Сделано (В72 «б», версия 2026.10.26-13):** в сборку добавлен `pack/config/legendarysurvivaloverhaul/legendarysurvivaloverhaul-common.toml`
 (копия сгенерированного LSO 2.4.7, изменены только три ключа): `"Base Food Exhaustion" = 0.015`, `"Sprinting Food Exhaustion" = 0.03`,
 `"On Attack Food Exhaustion" = 0.03`. Температура, жажда, здоровье LSO, расы (draco/sarkaz) и Mahou Tsukai не тронуты.
 Повторный замер C (тот же `hungercheck.js`; мир с другим сидом — биом dark_forest, тёплый, поэтому фонового «холодного» расхода как в A/B нет):
@@ -1804,3 +1804,24 @@ Corosus (Weather2) — здесь только перехват вызовов.
 двойной расход расы остаётся (задумка расы, не трогали). Тестовый сервер — `Done`, без crash-report.
 **Откат:** удалить папку `pack/config/legendarysurvivaloverhaul/` (LSO сгенерирует умолчания 0.05/0.1/0.1) или вернуть в файле эти три значения;
 на уже запущенном сервере — поправить `config/legendarysurvivaloverhaul/legendarysurvivaloverhaul-common.toml` и перезапустить; поднять версию сборки.
+
+## Логические дубли, пачка dedup-3: энергия (поток 66, 2026-10-26, сборка 2026.10.26-12, В69)
+Решение владельца (В69): энергию не трогать, кроме групп с **явной разницей цена ↔ выработка** — там слабый предмет без крафта, JEI и лута.
+Единая энергия в сборке и так одна — FE (`docs/dedup.md` «Энергия»). Цена — единицы базовых ресурсов по графу рецептов (`scripts/dedup-audit`).
+
+| Убрано | Цена | Пропускная / выработка | Оставлено | Цена | Пропускная / выработка |
+|---|---|---|---|---|---|
+| Ad Astra стальной кабель `steel_cable` | 1,6 | 150 FE/т | Mekanism базовый универсальный кабель | 1,4 | 3 200 FE/т (8 000 J/т) |
+| Ad Astra деш-кабель `desh_cable` | 1,9 (деш — с Луны) | 500 FE/т | Mekanism улучшенный универсальный кабель | 3,1 | 51 200 FE/т (128 000 J/т) |
+| Ad Astra короб для кабеля `cable_duct` | 5,8 | — (оболочка кабеля Ad Astra) | Mekanism базовый универсальный кабель | 1,4 | — |
+| Ad Astra угольный генератор `coal_generator` | 34 | 20 FE/т | Mekanism тепловой генератор (горит любое топливо, + лава рядом) | 18 | 80 FE/т (200 J/т) и выше с лавой |
+
+**Не тронуто** (разницы нет или механика другая): солнечные панели (у Ad Astra выработка зависит от планеты), накопители Create Crafts & Additions
+против энергокубов Mekanism, батареи Superb Warfare (предметы для техники), генераторы Superb Warfare, Creating Space, Mekanism (биогенератор,
+газовый, большие More Machine), кабели и накопители AE2/Refined Storage (это сеть данных, а не энергия).
+
+Уже проложенные кабели и стоящие генераторы Ad Astra продолжают работать и выпадают собой. Достижения Ad Astra `ad_astra` (корень ветки)
+и `carbon_footprint` теперь засчитываются за тепловой генератор Mekanism (`scripts/dedup-audit/overrides.py`).
+**Тест** `scripts/tests/dedupcheck.js`: `ok=27 fail=0` (вместе с dedup-1/2), `hazardgear`/`radsuit` — OK, `SERVER OK`, краш-отчётов нет.
+**Откат:** удалить 4 строки «В69» из `global.mmDedup` и `pack/kubejs/data/ad_astra/advancements/{ad_astra,carbon_footprint}.json`, поднять версию,
+`packwiz refresh`.
