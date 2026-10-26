@@ -412,7 +412,7 @@ Ars Technica 1.4.2 (`ars_technica`): связка Ars Nouveau и Create — за
 <a id="blood-magic"></a>
 - **Версия:** 3.3.8-50 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/blood-magic)
 - **Что это:** Магия крови: алтари, ритуалы, сети души ради мощи. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (6), [russification.md](../russification.md) (4), [roadmap.md](../roadmap.md) (3), [russification-glossary.md](../russification-glossary.md) (2), [client-checklist.md](../client-checklist.md) (1), [dedup.md](../dedup.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (7), [russification.md](../russification.md) (4), [roadmap.md](../roadmap.md) (3), [russification-glossary.md](../russification-glossary.md) (2), [client-checklist.md](../client-checklist.md) (1), [dedup.md](../dedup.md) (1)
 <!-- auto:end card:blood-magic -->
 
 ### Как играть
@@ -470,7 +470,7 @@ Ars Technica 1.4.2 (`ars_technica`): связка Ars Nouveau и Create — за
 <a id="botania"></a>
 - **Версия:** 1.20.1-456-forge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/botania)
 - **Что это:** Природная магия и техника: цветы-генераторы, мана, пестик и т. д. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (4), [dedup.md](../dedup.md) (4), [russification.md](../russification.md) (4), [bosses.md](../bosses.md) (2), [roadmap.md](../roadmap.md) (2), [russification-glossary.md](../russification-glossary.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (5), [dedup.md](../dedup.md) (4), [russification.md](../russification.md) (4), [bosses.md](../bosses.md) (2), [roadmap.md](../roadmap.md) (2), [russification-glossary.md](../russification-glossary.md) (2)
 <!-- auto:end card:botania -->
 
 ### Как играть
@@ -1082,7 +1082,7 @@ Iron's Recipe Additions 2.7: добавляет рецепты к [Iron's Spells
 <a id="mahou-tsukai"></a>
 - **Версия:** 1.20.1-v1.34.74 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/mahou-tsukai)
 - **Что это:** Магия со спецэффектами и уникальными заклинаниями. _(источник: docs сборки)_
-- **В наших docs:** [roadmap.md](../roadmap.md) (3), [compat.md](../compat.md) (2), [orespawn.md](../orespawn.md) (1), [russification.md](../russification.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (3), [roadmap.md](../roadmap.md) (3), [orespawn.md](../orespawn.md) (1), [russification.md](../russification.md) (1)
 <!-- auto:end card:mahou-tsukai -->
 
 ### Как играть
