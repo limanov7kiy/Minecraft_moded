@@ -1656,7 +1656,7 @@ Bob's не затронуты, иммунитеты рас не менялись
 Остаётся **костюм Create Nuclear**. Hazmat Mekanism **не удалён из реестра** — уже существующий в мирах работает как раньше.
 
 **Что сделано:**
-- `mods-src/mm-compat` **0.5.9**, `RadiationSuitShielding` (без миксина): на все части костюма Create Nuclear вешается capability
+- `mods-src/mm-compat` **0.5.10** (0.5.9 занят Потоком 67), `RadiationSuitShielding` (без миксина): на все части костюма Create Nuclear вешается capability
   Mekanism `IRadiationShielding` с долями Hazmat (`ItemHazmatSuitArmor.getShieldingByArmor`: шлем 0,25, нагрудник 0,4, поножи 0,2,
   ботинки 0,15 — полный костюм 100 %). От своей радиации костюм защищает сам (атрибут `createnuclear:irradiated_resistance`).
   Покраска костюма — NBT того же предмета, защита сохраняется.
@@ -1674,5 +1674,5 @@ Bob's не затронуты, иммунитеты рас не менялись
 по-прежнему защищает от Mekanism), `recipes hazmat_out=0`, `module_inhalation cn_helmet=true hazmat_mask=false` — всё OK.
 
 **Откат:** удалить 4 строки Hazmat из `global.mmDedup` (`startup_scripts/dedup_list.js`) и
-`pack/kubejs/data/mekanism/advancements/radiation_prevention.json`, поднять версию, `packwiz refresh`. mm-compat 0.5.9 можно оставить
+`pack/kubejs/data/mekanism/advancements/radiation_prevention.json`, поднять версию, `packwiz refresh`. mm-compat 0.5.10 можно оставить
 (костюм CN просто дополнительно защищает от Mekanism) или вернуть 0.5.8.
