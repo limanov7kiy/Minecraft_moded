@@ -1761,3 +1761,24 @@ Corosus (Weather2) — здесь только перехват вызовов.
 **Откат** группы: удалить её строки из `global.mmDedup` / `global.mmDedupTags` (`startup_scripts/dedup_list.js`) и её файлы в `pack/kubejs/data/`
 (список печатает `scripts/dedup-audit/overrides.py --dry`), поднять версию, `packwiz refresh`. Миксин и предикат mm-compat можно оставить —
 они только добавляют защиту.
+
+## Логические дубли, пачка dedup-3: энергия (поток 66, 2026-10-26, В69)
+Решение владельца (В69): энергию не трогать, кроме групп с **явной разницей цена ↔ выработка** — там слабый предмет без крафта, JEI и лута.
+Единая энергия в сборке и так одна — FE (`docs/dedup.md` «Энергия»). Цена — единицы базовых ресурсов по графу рецептов (`scripts/dedup-audit`).
+
+| Убрано | Цена | Пропускная / выработка | Оставлено | Цена | Пропускная / выработка |
+|---|---|---|---|---|---|
+| Ad Astra стальной кабель `steel_cable` | 1,6 | 150 FE/т | Mekanism базовый универсальный кабель | 1,4 | 3 200 FE/т (8 000 J/т) |
+| Ad Astra деш-кабель `desh_cable` | 1,9 (деш — с Луны) | 500 FE/т | Mekanism улучшенный универсальный кабель | 3,1 | 51 200 FE/т (128 000 J/т) |
+| Ad Astra короб для кабеля `cable_duct` | 5,8 | — (оболочка кабеля Ad Astra) | Mekanism базовый универсальный кабель | 1,4 | — |
+| Ad Astra угольный генератор `coal_generator` | 34 | 20 FE/т | Mekanism тепловой генератор (горит любое топливо, + лава рядом) | 18 | 80 FE/т (200 J/т) и выше с лавой |
+
+**Не тронуто** (разницы нет или механика другая): солнечные панели (у Ad Astra выработка зависит от планеты), накопители Create Crafts & Additions
+против энергокубов Mekanism, батареи Superb Warfare (предметы для техники), генераторы Superb Warfare, Creating Space, Mekanism (биогенератор,
+газовый, большие More Machine), кабели и накопители AE2/Refined Storage (это сеть данных, а не энергия).
+
+Уже проложенные кабели и стоящие генераторы Ad Astra продолжают работать и выпадают собой. Достижения Ad Astra `ad_astra` (корень ветки)
+и `carbon_footprint` теперь засчитываются за тепловой генератор Mekanism (`scripts/dedup-audit/overrides.py`).
+**Тест** `scripts/tests/dedupcheck.js`: `ok=27 fail=0` (вместе с dedup-1/2), `hazardgear`/`radsuit` — OK, `SERVER OK`, краш-отчётов нет.
+**Откат:** удалить 4 строки «В69» из `global.mmDedup` и `pack/kubejs/data/ad_astra/advancements/{ad_astra,carbon_footprint}.json`, поднять версию,
+`packwiz refresh`.

@@ -393,7 +393,7 @@ Everdawn: хрустальный верблюд (`crystal_camel`), космич�
 <a id="create-alexs-caves-compat"></a>
 - **Версия:** 1.6.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/create-alexs-caves-compat)
 - **Что это:** Совместимость Create и Alex's Caves. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (58), [dedup.md](../dedup.md) (29), [friends.md](../friends.md) (15), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7)
+- **В наших docs:** [compat.md](../compat.md) (59), [dedup.md](../dedup.md) (29), [friends.md](../friends.md) (15), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7)
 <!-- auto:end card:create-alexs-caves-compat -->
 
 ### Что даёт игроку
