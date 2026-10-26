@@ -1712,6 +1712,18 @@ mm-compat пересобран из объединённых исходнико�
   на старте остаются только при `backup = false` или неудачном откате. Проверено на Windows `Cli` с тестовым паком на локальном HTTP: успех
   (копия сделана, `preserve`-файл цел), 404 → откат изменённого файла и манифеста, таймаут 1 с → откат, `--no-backup` → маркер остаётся.
   Linux-прогон `test-server.sh` с остановкой — за Ревью/облаком.
+- **0.2.1 (Linux-прогон 0.2.0 в облаке, сборка 2026.10.26-10):** `test-server.sh` на Linux с `enabled = true`, оба сценария. **Находка:** при локали
+  JVM без UTF-8 (`LANG` не задан, `sun.jnu.encoding=ANSI_X3.4-1968` — обычное дело в Docker-образах хостингов) копия срывалась:
+  `InvalidPathException: Malformed input or input contains unmappable characters: yes_steve_model/builtin/wine_fox/09_hailuo/avatar/….avif` →
+  `failed … backup-error`, обновление отменялось (mods/ цел, но обновиться на таком хосте нельзя никогда). Файлы с иероглифами в именах создаёт сам
+  YSM в `config/yes_steve_model/builtin/` при каждом старте сервера (не сборка и не установщик: в индексе их нет, `packwiz-installer` их не трогает).
+  Причина — `copyTree` складывал пути через `String` (`dst.resolve(src.relativize(f).toString())`): обход каталога отдаёт имена байтами, а обратно
+  из строки в `Path` имя при такой локали не превращается. Исправлено: `resolve(Path)` без `toString()`; в `pruneDuplicates` имя файла из манифеста —
+  строкой без `Path.of` (иначе при той же локали манифест с не-ASCII именами не читался и дубли не проверялись). `-Dsun.jnu.encoding=UTF-8` на Java 17
+  не помогает (свойство не переопределяется), `-Dfile.encoding` к путям отношения не имеет. С UTF-8-локалью 0.2.0 работало: «успех» — копия 2796 МБ
+  13 с, установщик 20 с (673 файла по хэшу, 18 скачаны), после `stop` до `обновление завершено` 36 с, `*-client.jar` удалены, WorldEdit → `optional/`,
+  `voicechat-server.properties` (`port=13021`) цел, `mm-autoupdate` не удалён как дубль; «откат» (404 на `pack.toml`) — 4 папки и `packwiz.json`
+  вернулись из копии за 1,2 с, статус `failed … exit=1 rolled-back`, маркера и копии нет. Копия после успеха остаётся на диске (2,8 ГБ).
 
 ## Блокирующая догрузка чанков: Serene Seasons Plus, Falling Tree, Weather2 — mm-compat 0.5.13 (поток 67, 2026-10-26, сборка 2026.10.26-4)
 Нагрузочный тест `scripts/tests/perfload.js` (3 фейковых игрока появляются в несгенерированных местах): тик 54–58 с. JFR (`scripts/jfr/JfrGrep.java … getChunkBlocking`):

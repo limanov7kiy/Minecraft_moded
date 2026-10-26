@@ -310,14 +310,20 @@ public final class Updater {
         return n[0];
     }
 
+    /**
+     * Пути складываем как Path, а не через String: при локали JVM без UTF-8 (LANG не задан — обычное дело в Docker-образах
+     * хостингов, sun.jnu.encoding=ANSI_X3.4-1968) имя файла с иероглифами (модели YSM в config/yes_steve_model/builtin/) после
+     * toString() обратно в Path не превращается — InvalidPathException, и копия срывалась целиком. Path→Path работает байтами.
+     * / Resolve Path against Path, never via String: non-UTF-8 JVM locales cannot re-parse non-ASCII file names.
+     */
     static void copyTree(Path src, Path dst) throws IOException {
         Files.walkFileTree(src, new SimpleFileVisitor<>() {
             @Override public FileVisitResult preVisitDirectory(Path d, BasicFileAttributes a) throws IOException {
-                Files.createDirectories(dst.resolve(src.relativize(d).toString()));
+                Files.createDirectories(dst.resolve(src.relativize(d)));
                 return FileVisitResult.CONTINUE;
             }
             @Override public FileVisitResult visitFile(Path f, BasicFileAttributes a) throws IOException {
-                Files.copy(f, dst.resolve(src.relativize(f).toString()), StandardCopyOption.REPLACE_EXISTING);
+                Files.copy(f, dst.resolve(src.relativize(f)), StandardCopyOption.REPLACE_EXISTING);
                 return FileVisitResult.CONTINUE;
             }
         });
@@ -414,7 +420,12 @@ public final class Updater {
         Set<String> managed = new HashSet<>();
         try {
             Matcher m = MANIFEST_LOC.matcher(Files.readString(manifest, StandardCharsets.UTF_8));
-            while (m.find()) managed.add(Path.of(m.group(1).replace("\\\\", "/").replace("\\", "/")).getFileName().toString());
+            // имя файла — строкой, без Path.of: в манифесте есть и файлы config/ с не-ASCII именами, которые при локали JVM
+            // без UTF-8 в Path не превращаются (InvalidPathException) / file name as a String, Path.of fails on non-ASCII names
+            while (m.find()) {
+                String loc = m.group(1).replace("\\\\", "/").replace("\\", "/");
+                managed.add(loc.substring(loc.lastIndexOf('/') + 1));
+            }
         } catch (IOException | RuntimeException e) {
             log.warn("packwiz.json не прочитан, дубли модов не проверены: " + e);
             return;
