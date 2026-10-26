@@ -404,7 +404,7 @@ _Обзор категории — вручную, следующие этапы
 - **Версия:** 1.20.1-0.9.1 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/chaospersists-1.20.1-0.9.1.jar`
 - **Что это:** Ремейк OreSpawn 1.7.10 на 1.20.1: около 130 мобов и боссов (Король, Королева, Мобзилла, Кракен, Кошмар), шесть измерений, 54 структуры, руды, оружие и броня «Хаоса», питомцы и еда. _(источник: docs сборки)_
 - **В сборке:** both: Chaos Persists 0.9.1 (Astryxion; All Rights Reserved, CF 1460238) — ремейк OreSpawn 1.7.10 (В16, поток 23): ~130 мобов, King/Queen/Mobzilla, измерения Utopia/Mining/Village/Crystal/Chaos/Danger; зависимостей нет. Сравнение с оригиналом — docs/orespawn.md
-- **В наших docs:** [orespawn.md](../orespawn.md) (15), [performance.md](../performance.md) (12), [compat.md](../compat.md) (9), [roadmap.md](../roadmap.md) (5), [dedup.md](../dedup.md) (2), [issue-history.md](../issue-history.md) (1)
+- **В наших docs:** [orespawn.md](../orespawn.md) (15), [performance.md](../performance.md) (12), [compat.md](../compat.md) (9), [roadmap.md](../roadmap.md) (5), [dedup.md](../dedup.md) (2), [friends.md](../friends.md) (1)
 <!-- auto:end card:chaospersists -->
 
 ### Как играть
@@ -709,7 +709,7 @@ Id `spore:<имя>`; накладываются на оружие и броню 
 - **Версия:** 2.1.13-1.20.1-beta-5 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/ice-and-fire-dragons)
 - **Что это:** Драконы (огненные, ледяные, молниевые) и мифические существа. _(источник: docs сборки)_
 - **В сборке:** both: Ice and Fire CE 2.1.13 — драконы (огненный/ледяной/молниевый), гидра, сирены и др.; зависимость Citadel (поток 9)
-- **В наших docs:** [compat.md](../compat.md) (21), [roadmap.md](../roadmap.md) (14), [orespawn.md](../orespawn.md) (8), [dedup.md](../dedup.md) (6), [performance.md](../performance.md) (4), [bosses.md](../bosses.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (23), [roadmap.md](../roadmap.md) (14), [orespawn.md](../orespawn.md) (8), [dedup.md](../dedup.md) (6), [performance.md](../performance.md) (4), [bosses.md](../bosses.md) (2)
 <!-- auto:end card:ice-and-fire-dragons -->
 
 ### Как играть

@@ -117,7 +117,7 @@ _Обзор категории — вручную, следующие этапы
 <a id="aether-lost-content"></a>
 - **Версия:** 1.2.3 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/aether-lost-content)
 - **Что это:** Аддон к The Aether: возвращает вырезанный, неиспользованный и концептуальный контент и механики прошлых версий Эфира. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (13), [russification.md](../russification.md) (9), [enchanting-table.md](../enchanting-table.md) (6), [dedup.md](../dedup.md) (4), [roadmap.md](../roadmap.md) (4), [bosses.md](../bosses.md) (3)
+- **В наших docs:** [compat.md](../compat.md) (21), [russification.md](../russification.md) (9), [enchanting-table.md](../enchanting-table.md) (6), [dedup.md](../dedup.md) (4), [roadmap.md](../roadmap.md) (4), [bosses.md](../bosses.md) (3)
 <!-- auto:end card:aether-lost-content -->
 
 ### Как играть
@@ -165,7 +165,7 @@ _Обзор категории — вручную, следующие этапы
 <a id="alexs-caves"></a>
 - **Версия:** 2.0.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/alexs-caves)
 - **Что это:** Шесть редких пещерных биомов под поверхностью Верхнего мира, со своими мобами и предметами. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (10), [enchanting-table.md](../enchanting-table.md) (5), [dedup.md](../dedup.md) (4), [ntm.md](../ntm.md) (4), [friends.md](../friends.md) (2), [orespawn.md](../orespawn.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (11), [enchanting-table.md](../enchanting-table.md) (5), [dedup.md](../dedup.md) (4), [ntm.md](../ntm.md) (4), [friends.md](../friends.md) (3), [orespawn.md](../orespawn.md) (2)
 <!-- auto:end card:alexs-caves -->
 
 ### Как играть
@@ -230,7 +230,7 @@ Candy: `candicorn`, `caniac`, `caramel_cube`, `gingerbread_man`, `gum_worm`, `gu
 <a id="ancient-aether"></a>
 - **Версия:** 0.9.10 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/ancient-aether)
 - **Что это:** Аддон к The Aether: развивает идеи оригинального мода. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (2), [enchanting-table.md](../enchanting-table.md) (2), [bosses.md](../bosses.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (4), [enchanting-table.md](../enchanting-table.md) (2), [bosses.md](../bosses.md) (1)
 <!-- auto:end card:ancient-aether -->
 
 ### Как играть
@@ -393,7 +393,7 @@ Everdawn: хрустальный верблюд (`crystal_camel`), космич�
 <a id="create-alexs-caves-compat"></a>
 - **Версия:** 1.6.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/create-alexs-caves-compat)
 - **Что это:** Совместимость Create и Alex's Caves. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (49), [dedup.md](../dedup.md) (29), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7), [friends.md](../friends.md) (6)
+- **В наших docs:** [compat.md](../compat.md) (58), [dedup.md](../dedup.md) (29), [friends.md](../friends.md) (15), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7)
 <!-- auto:end card:create-alexs-caves-compat -->
 
 ### Что даёт игроку
@@ -616,7 +616,7 @@ Everdawn: хрустальный верблюд (`crystal_camel`), космич�
 <a id="aether"></a>
 - **Версия:** 1.20.1-1.5.2-neoforge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/aether)
 - **Что это:** Оригинальный мод The Aether: небесное измерение с островами, мо, валькириями и боссами; для современных версий, с мультиплеером. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (13), [russification.md](../russification.md) (9), [enchanting-table.md](../enchanting-table.md) (6), [dedup.md](../dedup.md) (4), [roadmap.md](../roadmap.md) (4), [bosses.md](../bosses.md) (3)
+- **В наших docs:** [compat.md](../compat.md) (21), [russification.md](../russification.md) (9), [enchanting-table.md](../enchanting-table.md) (6), [dedup.md](../dedup.md) (4), [roadmap.md](../roadmap.md) (4), [bosses.md](../bosses.md) (3)
 <!-- auto:end card:aether -->
 
 ### Как играть
