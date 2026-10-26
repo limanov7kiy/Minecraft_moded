@@ -101,7 +101,7 @@ _Обзор категории — вручную, следующие этапы
 - **Версия:** 1.20.1-0.11.0+forge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/almostunified)
 - **Что это:** Объединяет дубли ресурсов разных модов в один (руды, слитки и т. д.). _(источник: docs сборки)_
 - **В сборке:** объединение дублей: один предмет на ресурс (config/almostunified)
-- **В наших docs:** [compat.md](../compat.md) (14), [roadmap.md](../roadmap.md) (5), [orespawn.md](../orespawn.md) (2), [enchanting-table.md](../enchanting-table.md) (1), [jei.md](../jei.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (14), [roadmap.md](../roadmap.md) (5), [orespawn.md](../orespawn.md) (2), [dedup.md](../dedup.md) (1), [enchanting-table.md](../enchanting-table.md) (1), [jei.md](../jei.md) (1)
 <!-- auto:end card:almostunified -->
 
 ### Что даёт игроку
@@ -197,6 +197,7 @@ _Обзор категории — вручную, следующие этапы
 - **Версия:** 2.3.4 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/botarium)
 - **Что это:** Кроссплатформенный API: передача и хранение предметов, жидкостей и энергии. _(источник: docs сборки)_
 - **В сборке:** подтянут как зависимость или связка (в modlist.txt отдельной строкой не указан).
+- **В наших docs:** [dedup.md](../dedup.md) (2)
 <!-- auto:end card:botarium -->
 
 ### Что даёт игроку
@@ -398,7 +399,7 @@ _Обзор категории — вручную, следующие этапы
 - **Версия:** 2001.6.5-build.26+forge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/kubejs)
 - **Что это:** Скрипты на JavaScript: правка рецептов, новые предметы, события мира. _(источник: docs сборки)_
 - **В сборке:** патчи данных/рецептов/добычи: pack/kubejs/
-- **В наших docs:** [compat.md](../compat.md) (53), [roadmap.md](../roadmap.md) (16), [russification.md](../russification.md) (8), [orespawn.md](../orespawn.md) (6), [wizardry-port.md](../wizardry-port.md) (5), [enchanting-table.md](../enchanting-table.md) (4)
+- **В наших docs:** [compat.md](../compat.md) (53), [roadmap.md](../roadmap.md) (18), [russification.md](../russification.md) (8), [orespawn.md](../orespawn.md) (6), [wizardry-port.md](../wizardry-port.md) (5), [enchanting-table.md](../enchanting-table.md) (4)
 <!-- auto:end card:kubejs -->
 
 ### Что даёт игроку

@@ -81,7 +81,7 @@
 <a id="legendary-survival-overhaul"></a>
 - **Версия:** 1.20.1-2.4.7 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/legendary-survival-overhaul)
 - **Что это:** Температура, жажда, повреждения конечностей и переработка здоровья для выживания. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (2), [roadmap.md](../roadmap.md) (1), [version-choice.md](../version-choice.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (2), [dedup.md](../dedup.md) (1), [roadmap.md](../roadmap.md) (1), [version-choice.md](../version-choice.md) (1)
 <!-- auto:end card:legendary-survival-overhaul -->
 
 ### Как играть
