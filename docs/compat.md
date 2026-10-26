@@ -1698,3 +1698,10 @@ Corosus (Weather2) — здесь только перехват вызовов.
 - Проверка: `test-server.sh` — `SERVER OK`, краш-отчётов нет, в логе `mm_compat: Serene Seasons Plus — снег/таяние только в готовых чанках…`, ошибок миксинов нет.
 - Остаток синхронных догрузок (не трогали): ванильный `CatSpawner` и соседние обновления от `ChaosPersists.setBlockFast` у края загруженной области.
 - Откат: `pack/mods/mm-compat-0.5.12.jar` из истории git вместо 0.5.13, `packwiz refresh`.
+
+## The Lost Cities: `City.isCityCenter` без `new Random` — mm-compat 0.5.14 (поток 67, 2026-10-26, сборка 2026.10.26-7)
+`City.isCityCenter` (The Lost Cities 1.20-7.5.7, McJty, MIT) создавал `new Random(seed)` на каждый вызов; через `getCityFactor` он вызывается для всей окрестности
+каждого чанка — ~26 % времени потоков генерации и ~110 МБ/с мусора. `LostCitiesCityCenterMixin` (`@Redirect` конструктора, `require = 1`) отдаёт
+`ReusableRandom` текущего потока с тем же сидом: алгоритм `java.util.Random` без `AtomicLong`, последовательность совпадает бит-в-бит (5 млн сидов — 0 расхождений).
+Генерация мира Chunky: 4,9–5,3 → 7,7 чанка/с. `SERVER OK`, ошибок миксинов нет. Подробности — `docs/performance.md`, «Поток 67».
+Откат: `pack/mods/mm-compat-0.5.13.jar` вместо 0.5.14, `packwiz refresh`.
