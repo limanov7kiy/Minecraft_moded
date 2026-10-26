@@ -142,7 +142,7 @@ _Обзор категории — вручную, следующие этапы
 - **Версия:** 21.0.5 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/attributefix)
 - **Что это:** Снимает произвольные ограничения на атрибуты Minecraft; чинит многие моды. _(источник: docs сборки)_
 - **В сборке:** both: AttributeFix (Darkhax, LGPL-2.1) — снимает потолок здоровья 1024: без него King (7000), Queen (6000), Mobzilla (4000) у Chaos Persists урезаны до 1024 (его собственный обход падает: «failed to raise generic.maxHealth cap»)
-- **В наших docs:** [orespawn.md](../orespawn.md) (16), [compat.md](../compat.md) (8), [roadmap.md](../roadmap.md) (4)
+- **В наших docs:** [orespawn.md](../orespawn.md) (16), [compat.md](../compat.md) (8), [expensive-crafts.md](../expensive-crafts.md) (4), [roadmap.md](../roadmap.md) (4)
 <!-- auto:end card:attributefix -->
 
 ### Что даёт игроку
@@ -318,7 +318,7 @@ _Обзор категории — вручную, следующие этапы
 - **Версия:** 4.8.4 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/geckolib)
 - **Что это:** Библиотека 3D-анимаций для существ, блоков, предметов, брони. _(источник: docs сборки)_
 - **В сборке:** подтянут как зависимость или связка (в modlist.txt отдельной строкой не указан).
-- **В наших docs:** [compat.md](../compat.md) (12), [client-checklist.md](../client-checklist.md) (2), [russification-audit.md](../russification-audit.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (12), [client-checklist.md](../client-checklist.md) (2), [expensive-crafts.md](../expensive-crafts.md) (2), [russification-audit.md](../russification-audit.md) (2), [scp.md](../scp.md) (2)
 <!-- auto:end card:geckolib -->
 
 ### Что даёт игроку
@@ -399,7 +399,7 @@ _Обзор категории — вручную, следующие этапы
 - **Версия:** 2001.6.5-build.26+forge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/kubejs)
 - **Что это:** Скрипты на JavaScript: правка рецептов, новые предметы, события мира. _(источник: docs сборки)_
 - **В сборке:** патчи данных/рецептов/добычи: pack/kubejs/
-- **В наших docs:** [compat.md](../compat.md) (61), [roadmap.md](../roadmap.md) (19), [russification.md](../russification.md) (8), [orespawn.md](../orespawn.md) (6), [wizardry-port.md](../wizardry-port.md) (5), [enchanting-table.md](../enchanting-table.md) (4)
+- **В наших docs:** [compat.md](../compat.md) (61), [roadmap.md](../roadmap.md) (19), [expensive-crafts.md](../expensive-crafts.md) (11), [russification.md](../russification.md) (8), [orespawn.md](../orespawn.md) (6), [wizardry-port.md](../wizardry-port.md) (5)
 <!-- auto:end card:kubejs -->
 
 ### Что даёт игроку
@@ -547,7 +547,7 @@ _Обзор категории — вручную, следующие этапы
 - **Версия:** 1.0.2-rc1+1.20-forge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/playeranimator)
 - **Что это:** Библиотека анимации игрока. _(источник: docs сборки)_
 - **В сборке:** нужна Iron's Spells
-- **В наших docs:** [compat.md](../compat.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (2), [scp.md](../scp.md) (2)
 <!-- auto:end card:playeranimator -->
 
 ### Что даёт игроку

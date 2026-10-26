@@ -83,7 +83,7 @@
 <a id="cataclysm_spellbooks"></a>
 - **Версия:** 1.2.9-1.20.1-mmport · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/cataclysm_spellbooks-1.2.9-1.20.1-mmport.jar`
 - **Что это:** Мод-связка Cataclysm и Iron's Spells: заклинания, книги, посохи, оружие и броня по мотивам боссов Cataclysm, две новые школы магии (Бездна и Техномантия); в сборке — наш порт под Cataclysm 3.31. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (35), [bosses.md](../bosses.md) (32), [roadmap.md](../roadmap.md) (13), [enchanting-table.md](../enchanting-table.md) (4), [orespawn.md](../orespawn.md) (4), [jei.md](../jei.md) (3)
+- **В наших docs:** [compat.md](../compat.md) (35), [bosses.md](../bosses.md) (32), [expensive-crafts.md](../expensive-crafts.md) (15), [roadmap.md](../roadmap.md) (13), [enchanting-table.md](../enchanting-table.md) (4), [orespawn.md](../orespawn.md) (4)
 <!-- auto:end card:cataclysm_spellbooks -->
 
 Автор — Ace The Eldritch King и StarOcean (MIT). В сборке — наш порт `cataclysm_spellbooks-1.2.9-1.20.1-mmport.jar` (мод собран под другую версию Cataclysm; подробности порта — [compat.md](../compat.md), п. К4 и «Cataclysm: Spellbooks 1.2.9»). Требует [Iron's Spells 'n Spellbooks](magic.md#irons-spells-n-spellbooks), L_Ender's Cataclysm, AzureLib.
@@ -365,7 +365,7 @@ Soiled, Corroded, Infested, Fragile («Смертное касание»), Immol
 <a id="traveloptics"></a>
 - **Версия:** 6.3.0-1.20.1 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/traveloptics-6.3.0-1.20.1-mmport.jar`
 - **Что это:** Большое дополнение к Cataclysm и Iron's Spells: оружие, броня, боссы и 176 заклинаний; порт под версии сборки. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (7), [roadmap.md](../roadmap.md) (4), [enchanting-table.md](../enchanting-table.md) (2), [performance.md](../performance.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (7), [roadmap.md](../roadmap.md) (4), [expensive-crafts.md](../expensive-crafts.md) (3), [enchanting-table.md](../enchanting-table.md) (2), [performance.md](../performance.md) (2)
 <!-- auto:end card:traveloptics -->
 
 ### Как играть
