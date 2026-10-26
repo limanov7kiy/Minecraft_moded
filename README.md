@@ -113,7 +113,8 @@
 | [scripts/tests/radsuit.js](scripts/tests/radsuit.js) | Проверка единого защитного костюма: костюм Create Nuclear защищает от радиации Mekanism и Create Nuclear, Hazmat не крафтится — см. `docs/compat.md` «Один защитный костюм» |
 | [scripts/tests/dedup_dump.js](scripts/tests/dedup_dump.js) | Выгрузка всех предметов и рецептов со стенда в JSON для аудита дублей — см. `docs/dedup.md` |
 | [scripts/tests/dedupcheck.js](scripts/tests/dedupcheck.js) | Проверка убранных логических дублей: нет рецептов, нет жёстких ссылок в чужих рецептах, оставшийся предмет есть — см. `docs/compat.md` «пачка dedup-1» |
-| [scripts/dedup-audit/](scripts/dedup-audit/) | Аудит дублей: теги из jar, сложность крафта по графу рецептов, группы кандидатов, виды энергии — см. `docs/dedup.md` «Как считали» |
+| [scripts/tests/hazardgear.js](scripts/tests/hazardgear.js) | Проверка защитного снаряжения после объединения дублей: костюм Create Nuclear в Alex's Caves, противогаз Spore против газа CBC — см. `docs/compat.md` «пачка dedup-2» |
+| [scripts/dedup-audit/](scripts/dedup-audit/) | Аудит дублей: теги из jar, сложность крафта по графу рецептов, группы кандидатов, виды энергии, перенос тегов (tagcopy.py), переопределения лута и достижений (overrides.py) — см. `docs/dedup.md` «Как считали» |
 | [scripts/clienttest/clientmobs.js](scripts/clienttest/clientmobs.js) | Клиентская проверка рендера мобов: по одному мобу каждого вида в ряд |
 | [scripts/clienttest/ExitTrace.java](scripts/clienttest/ExitTrace.java) | Java-агент для `test-client.sh`: печатает стек каждого `System.exit` |
 | [scripts/collect-diagnostics.bat](scripts/collect-diagnostics.bat) | Запуск двойным щелчком (Windows): вызывает `collect-diagnostics.ps1` |
@@ -124,6 +125,7 @@
 | [scripts/jfr/JfrMore.java](scripts/jfr/JfrMore.java) | JFR: CPU по потокам (сервер, генерация, Distant Horizons…), паузы GC, аллокации по модам и классам |
 | [scripts/jfr/JfrGrep.java](scripts/jfr/JfrGrep.java) | JFR: доля сэмплов с заданным методом в стеке и кто его вызывает (например `getChunkBlocking`) |
 | [scripts/tests/perfload.js](scripts/tests/perfload.js) | Нагрузочный замер сервера: покой → фейковые игроки → полёт с генерацией → save-all / flush; MSPT по фазам — `docs/performance.md` «Поток 67» |
+| [scripts/tests/hungercheck.js](scripts/tests/hungercheck.js) | Замер расхода голода (усталости) за минуту: стоя / ходьба / бег / прыжки, без расы и с расами Arknights — см. `docs/compat.md`, «Быстрый голод» |
 | [scripts/spore_infection_map.py](scripts/spore_infection_map.py) | Карта заражения мобов для Spore и SRP System по выгрузке реестра |
 
 ### Скрипты: проверка модов и совместимость

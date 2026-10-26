@@ -1781,3 +1781,80 @@ Corosus (Weather2) — здесь только перехват вызовов.
 
 **Откат:** удалить строки группы из `global.mmDedup` и `global.mmDedupTags` (`startup_scripts/dedup_list.js`), для О1 — ещё
 `pack/kubejs/data/iceandfire/loot_tables/chest/`, поднять версию, `packwiz refresh`.
+
+## Логические дубли, пачка dedup-2: защита, ранцы, дыхание, противогаз, парашюты (поток 66, 2026-10-26, сборка 2026.10.26-11, В70, mm-compat 0.5.15)
+Решение владельца по спорным группам `docs/dedup.md` (В70): п.1, 3, 4, 5, 8 — делать по рекомендации; п.2 (хранилища), 6 (трубы),
+7 (телепорты), 9 (дробилки) — не трогать.
+
+| Группа | Убрано (без рецептов, JEI, креатива, лута) | Оставлено | Сложность, ед. (убрано → оставлено) | Связка механик |
+|---|---|---|---|---|
+| п.1 защита от радиации | Hazmat Alex's Caves (4 части) | костюм Create Nuclear | 58 → 61 | mm-compat `AlexsCavesHazmatMixin`: части CN засчитываются в `HazmatArmorItem.getWornAmount` — облучение и кислота AC |
+| п.3 реактивные ранцы | Mekanism `jetpack`, `jetpack_armored` | Create SA латунный и незеритовый ранцы | 21 / 35 → 45,8 / ≈52 | модуль ранца MekaSuit (`module_jetpack_unit`) делается из латунного ранца Create SA; Jet Suit Ad Astra не трогали |
+| п.4 дыхание под водой | Create `copper_diving_helmet` | Mekanism `scuba_mask` (+ баллон) | 7 → 12 (+31 баллон) | незеритовый шлем Create — кузнечный рецепт теперь из маски Mekanism; бак Create остаётся (питает инструменты Create) |
+| п.5 противогаз | Create Big Cannons `gas_mask` | Spore `gas_mask` (шерсть, губки, железо) | 6 → 8 (губки — только из подводных храмов) | mm-compat `GasMaskCompat`: `GasMaskItem.addIsWearingPredicate` CBC — маска Spore защищает от газовых снарядов |
+| п.8 парашюты | Aether `cold_parachute`, `golden_parachute` | Superb Warfare `parachute` | 5 / 9 → 21 | лут Aether и Ancient Aether (стартовый набор при входе в Aether, 6 таблиц данжей) выдаёт парашют SBW |
+
+**Общее:** `global.mmDedup` (+13 строк) и `global.mmDedupTags` (теги убранного → оставшемуся; не переносятся `aether:deployable_parachutes`
+— иначе Aether раскрывал бы парашют SBW своей логикой — и `curios:head`). Вкладки креатива — `MM_DEDUP_TABS` (Aether — две вкладки).
+**Лут и достижения** генерирует `scripts/dedup-audit/overrides.py` (копии таблиц из jar с заменой id в `pack/kubejs/data/`, кроме
+`loot_tables/blocks/` — уже стоящий блок выпадает собой): сундуки Токсичных руин AC (части Hazmat → части костюма CN), Aether/Ancient Aether
+(парашюты), третья таблица Ice and Fire с медным мечом (`lightning_dragon_female_cave`, пропущена в dedup-1), достижения
+`alexscaves:hazmat_armor`, `mekanism:radiation_prevention`, `mekanism:hydrogen_powered_flight`, `mekanismtools:alternate_armor`,
+`create:diving_suit` (у последнего только значок — срабатывает по встроенному триггеру Create). Торговли жителей и квестов с этими предметами нет.
+
+**Тест** (`EXTRA_SERVER_SCRIPTS` = `scripts/tests/{hazardgear,dedupcheck,radsuit}.js`, `#sleep 60`), `SERVER OK`, краш-отчётов нет:
+`HAZARDGEAR ac_none 0`, `ac_createnuclear_suit 4`, `ac_createnuclear_helmet_only 1`, `ac_old_hazmat 4`, `cbc_none false`,
+`cbc_spore_mask true`, `cbc_old_mask true` — всё OK; `DEDUPCHECK total ok=23 fail=0`; `RADSUIT` — всё OK.
+
+**Откат** группы: удалить её строки из `global.mmDedup` / `global.mmDedupTags` (`startup_scripts/dedup_list.js`) и её файлы в `pack/kubejs/data/`
+(список печатает `scripts/dedup-audit/overrides.py --dry`), поднять версию, `packwiz refresh`. Миксин и предикат mm-compat можно оставить —
+они только добавляют защиту.
+## «Быстрый голод» — Legendary Survival Overhaul (поток 67, 2026-10-26, баг владельца; баланс не менялся)
+Жалоба владельца: голод тратится быстро везде (сервер и одиночка), при любых действиях, без значков эффектов, «было всегда».
+**Причина — умолчания Legendary Survival Overhaul 2.4.7** (`config/legendarysurvivaloverhaul/legendarysurvivaloverhaul-common.toml`, сборка его не переопределяет):
+`[food] "Base Food Exhaustion" = 0.05`, `"Sprinting Food Exhaustion" = 0.1`, `"On Attack Food Exhaustion" = 0.1`. По байт-коду (`FoodCapability.tickUpdate`):
+каждые 10 тиков, **если игрок сместился больше чем на 1 блок**, добавляется `Base` (при беге — `Sprinting`, при смене режима — среднее), за удар — `On Attack`.
+Стоя LSO голод не тратит; при ходьбе (в ванили ходьба голод не тратит вообще) — +6 единиц усталости в минуту = 1,5 деления голода/насыщения в минуту.
+
+**Замер** — `scripts/tests/hungercheck.js` (тестовый сервер, настоящий `ServerPlayer` с ручным тиком, суша, биом frozen_peaks, 30 с на фазу, пересчёт на минуту;
+4 единицы усталости = 1 деление). A — сборка как есть, B — три ключа LSO выше = 0:
+| Без расы, усталость за минуту | ваниль | A (как есть) | B (LSO food = 0) | вклад LSO |
+|---|---|---|---|---|
+| стоит | 0 | 0,8 | 0,8 | 0 |
+| ходьба 4,3 бл/с | 0 | **8,4** | 2,4 | **+6,0** |
+| бег 5,6 бл/с | ≈ 34 | **48** | 36 | **+12 (+35 %)** |
+| прыжок раз в 0,5 с | 6 | 9,2 | 8,4 | +0,8 |
+Час ходьбы: A ≈ 126 делений (≈ 5 полных шкал голода с насыщением), B ≈ 36. Остаток 0,8–2,4/мин в B — холодный биом (вторичные эффекты температуры LSO)
+и расы, не исследовался дальше.
+
+**Прочие источники (не «всегда»):**
+- Расы Arknights (`origins:modify_exhaustion` в силах рас) — задумка рас: `arks:human`/`feline`/`hippogryph` ≈ без доп. расхода; `arks:draco`, `arks:sarkaz`
+  — примерно ×2 (стоя 5–6/мин, бег 66–72 при LSO = 0).
+- Mahou Tsukai: `MANA_REGEN_HUNGER_FACTOR = 1.0` — восстановление маны тратит голод (только у магов с неполной маной).
+- Остальные моды с вызовами `causeFoodExhaustion` (Spore, Botania, Blood Magic, Ars, Alex's Caves и др.) тратят голод только на конкретные действия/заклинания.
+- KubeJS, датапаки и gamerule сборки голод не трогают; явной ошибки (двойного начисления) нет — это настройки LSO.
+
+**Решение — за владельцем** (вопрос Координатора В##): а) как в ванили — три ключа LSO = 0 (температура, жажда, здоровье LSO остаются); б) чуть быстрее
+ванили — уменьшить (например `Base 0.015`, `Sprinting 0.03`, `On Attack 0.03`: ходьба ≈ +1,8/мин, бег +3,6/мин); в) оставить. До ответа ничего не менялось.
+Как проверить после правки: `EXTRA_SERVER_SCRIPTS=<папка с hungercheck.js> TEST_COMMANDS=<«#sleep 900»> scripts/test-server.sh <папка вне репо>`, строки `HUNGER …`.
+
+## Логические дубли, пачка dedup-3: энергия (поток 66, 2026-10-26, сборка 2026.10.26-12, В69)
+Решение владельца (В69): энергию не трогать, кроме групп с **явной разницей цена ↔ выработка** — там слабый предмет без крафта, JEI и лута.
+Единая энергия в сборке и так одна — FE (`docs/dedup.md` «Энергия»). Цена — единицы базовых ресурсов по графу рецептов (`scripts/dedup-audit`).
+
+| Убрано | Цена | Пропускная / выработка | Оставлено | Цена | Пропускная / выработка |
+|---|---|---|---|---|---|
+| Ad Astra стальной кабель `steel_cable` | 1,6 | 150 FE/т | Mekanism базовый универсальный кабель | 1,4 | 3 200 FE/т (8 000 J/т) |
+| Ad Astra деш-кабель `desh_cable` | 1,9 (деш — с Луны) | 500 FE/т | Mekanism улучшенный универсальный кабель | 3,1 | 51 200 FE/т (128 000 J/т) |
+| Ad Astra короб для кабеля `cable_duct` | 5,8 | — (оболочка кабеля Ad Astra) | Mekanism базовый универсальный кабель | 1,4 | — |
+| Ad Astra угольный генератор `coal_generator` | 34 | 20 FE/т | Mekanism тепловой генератор (горит любое топливо, + лава рядом) | 18 | 80 FE/т (200 J/т) и выше с лавой |
+
+**Не тронуто** (разницы нет или механика другая): солнечные панели (у Ad Astra выработка зависит от планеты), накопители Create Crafts & Additions
+против энергокубов Mekanism, батареи Superb Warfare (предметы для техники), генераторы Superb Warfare, Creating Space, Mekanism (биогенератор,
+газовый, большие More Machine), кабели и накопители AE2/Refined Storage (это сеть данных, а не энергия).
+
+Уже проложенные кабели и стоящие генераторы Ad Astra продолжают работать и выпадают собой. Достижения Ad Astra `ad_astra` (корень ветки)
+и `carbon_footprint` теперь засчитываются за тепловой генератор Mekanism (`scripts/dedup-audit/overrides.py`).
+**Тест** `scripts/tests/dedupcheck.js`: `ok=27 fail=0` (вместе с dedup-1/2), `hazardgear`/`radsuit` — OK, `SERVER OK`, краш-отчётов нет.
+**Откат:** удалить 4 строки «В69» из `global.mmDedup` и `pack/kubejs/data/ad_astra/advancements/{ad_astra,carbon_footprint}.json`, поднять версию,
+`packwiz refresh`.

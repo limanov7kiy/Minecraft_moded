@@ -16,5 +16,6 @@ public class MmCompat {
         modBus.addListener(EntityCategoryFix::onSetup);
         MissingAttributes.register(modBus);
         RadiationSuitShielding.register();
+        modBus.addListener(GasMaskCompat::onSetup);
     }
 }
