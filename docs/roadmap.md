@@ -495,3 +495,9 @@ Iron Chests — оригинал. Новая неделя с 17.10 06:00 UTC; р
 - [x] Тест `scripts/tests/disasterward.js` (все DWCHECK OK), замеры нагрузки `disasterload.js`, русификация, строка про бэкап в `docs/friends.md`.
 - [ ] Владельцу: PR не слит; проверить в игре вид штормов (с шейдерами/Distant Horizons), нужны ли вулканы (Extreme Natural Disasters) и цунами-вёдра (This Tsunami); сервер с Natural Disasters! просадил TPS до ~5 при трёх бедствиях сразу над городом — лимит `maxConcurrent` (по умолчанию 1).
 - [x] WorldEdit 7.2.15 (В18, ветка `claude/worldedit`): в сборке, сервер ОК, инструкция переноса построек в `docs/friends.md`.
+
+### Поток 33 — Фон тика сервера (ветка `claude/server-bg-load`, PR **[НЕ СЛИВАТЬ до решения владельца]**)
+- [x] Профиль JFR фона без Spore, разбор обработчиков событий по модам (`scripts/jfr/JfrHandlers.java`, `JfrUnder.java`, тест `scripts/tests/bgload.js`) — `docs/performance.md`, «Фон тика сервера без Spore».
+- [x] mm-compat 0.5.7: Arknights Weapon (раз в 4 тика), Torches Become Sunlight (`syncState` раз в секунду, бюджет постройки вчетверо при тике > 35 мс). Доли потока: Torches 8,0 → 4,6 %, Arknights 5,9 → 2,1 %.
+- [x] Раздел «Как снять spark при фризах» для владельца. Ad Astra/Chaos Persists — не виновники при одном игроке (не воспроизвелось), не тронуты; The Masses Travels (2,6–3,8 %) — ждёт spark владельца.
+- [ ] Владельцу: решить слияние; прислать spark из своего мира во время фризов (инструкция в `performance.md`).

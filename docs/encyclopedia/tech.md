@@ -257,7 +257,7 @@ Copycats+ (3.0.10) — блоки-«хамелеоны» для Create: любо
 - **Версия:** 0.4.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/create-propulsion)
 - **Что это:** Красные магниты, оптические датчики, двигатели и др. для Create; работает с Valkyrien Skies 2. _(источник: docs сборки)_
 - **В сборке:** Create × Valkyrien Skies (двигатели для кораблей)
-- **В наших docs:** [compat.md](../compat.md) (41), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7), [friends.md](../friends.md) (6), [russification.md](../russification.md) (6)
+- **В наших docs:** [compat.md](../compat.md) (42), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7), [friends.md](../friends.md) (6), [russification.md](../russification.md) (6)
 <!-- auto:end card:create-propulsion -->
 
 ### Как играть
@@ -283,7 +283,7 @@ Create: Propulsion (0.4.1) добавляет к Create двигатели, кр
 <a id="create-steam-n-rails"></a>
 - **Версия:** 1.7.3+forge-mc1.20.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/create-steam-n-rails)
 - **Что это:** Расширяет рельсы и паровую систему Create. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (41), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7), [friends.md](../friends.md) (6), [russification.md](../russification.md) (6)
+- **В наших docs:** [compat.md](../compat.md) (42), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7), [friends.md](../friends.md) (6), [russification.md](../russification.md) (6)
 <!-- auto:end card:create-steam-n-rails -->
 
 ### Как играть
@@ -557,7 +557,7 @@ Valkyrien Sails (`vs_sails`, 0.3.2; автор Quinton Center) — парусн�
 <a id="valkyrien-skies"></a>
 - **Версия:** 1.20.1-forge-2.4.11 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/valkyrien-skies)
 - **Что это:** Физика в Minecraft: корабли и целые постройки как движущиеся тела. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (30), [roadmap.md](../roadmap.md) (16), [performance.md](../performance.md) (15), [galacticraft.md](../galacticraft.md) (3), [hosting.md](../hosting.md) (2), [version-choice.md](../version-choice.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (30), [performance.md](../performance.md) (17), [roadmap.md](../roadmap.md) (16), [galacticraft.md](../galacticraft.md) (3), [hosting.md](../hosting.md) (2), [version-choice.md](../version-choice.md) (2)
 <!-- auto:end card:valkyrien-skies -->
 
 ### Как играть
@@ -598,7 +598,7 @@ Valkyrien Skies 2.4.11 (Tri0de, Rubydesic; зависимость — Architectu
 - **Версия:** 1.0.3 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/vs-tournament-reforged)
 - **Что это:** Аддон Valkyrien Skies: механики и оружие для сражений кораблей. _(источник: docs сборки)_
 - **В сборке:** порт VS Tournament под VS 2.4 (оригинал vs-tournament падает: VSConfigClass)
-- **В наших docs:** [compat.md](../compat.md) (6), [performance.md](../performance.md) (6), [roadmap.md](../roadmap.md) (6), [galacticraft.md](../galacticraft.md) (1), [hosting.md](../hosting.md) (1), [jei.md](../jei.md) (1)
+- **В наших docs:** [performance.md](../performance.md) (7), [compat.md](../compat.md) (6), [roadmap.md](../roadmap.md) (6), [galacticraft.md](../galacticraft.md) (1), [hosting.md](../hosting.md) (1), [jei.md](../jei.md) (1)
 <!-- auto:end card:vs-tournament-reforged -->
 
 ### Как играть
@@ -619,7 +619,7 @@ VS Tournament Reforged (`vs_tournament` 1.0.3; alex-s168, Balatan, 411_Cat, bloc
 - **Версия:** 2.0.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/createnuclear)
 - **Что это:** Create Nuclear: ядерный реактор на Create (стержни урана и графита, охлаждение водой, вращение на выходе), руды урана/тория, радиация и антирадиационный костюм. _(источник: docs сборки)_
 - **В сборке:** Create Nuclear: реактор на Create, уран, радиация, костюм (решение владельца 2026-10-26, поток 66)
-- **В наших docs:** [compat.md](../compat.md) (23), [friends.md](../friends.md) (3), [ntm.md](../ntm.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (24), [friends.md](../friends.md) (3), [ntm.md](../ntm.md) (2)
 <!-- auto:end card:createnuclear -->
 
 ### Как играть

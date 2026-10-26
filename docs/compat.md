@@ -1286,6 +1286,11 @@ DH на выделенном сервере сам ничего не генер�
 `OriginFursReloadCacheMixin` (клиент, `require` по умолчанию 0): `OriginalFurClient.reload` каждые ≈25 с вызывал `ResourceManager.listResources("furs", …)` по всем пакам и zip-модам (≈4 с на ПК игрока, spark клиента);
 результат кэшируется до перезагрузки ресурсов. Origin Furs — pandaismyname1 (MIT), здесь только перехват вызова. `CLIENT OK`, миксин применился. Подробности — `docs/performance.md`, «Разбор двух spark-отчётов игрока».
 
+## mm-compat 0.5.7 — фон тика сервера (поток 33, 2026-10-18)
+Три миксина с `require = 0` (подробности и замер — `docs/performance.md`, «Фон тика сервера без Spore»): `ArknightsTickThrottleMixin` (Arknights Weapon, `Fire2Procedure`/`Apoptoic3Procedure` раз в 4 тика на существо),
+`TorchesMegaStructureSyncMixin` (Torches Become Sunlight: `MegaStructureManager.syncState` не чаще раза в секунду, дописывается при остановке), `TorchesMegaStructureLoadMixin` (бюджет постройки мегаструктур
+вчетверо меньше, пока средний тик сервера > 35 мс). `test-server.sh` — `SERVER OK`, миксины применены (счётчики профиля упали), в логе ошибок миксинов нет. Авторство: код модов — их авторов (Torches Become Sunlight — FreeFish и др.,
+Arknights Weapon — MCreator-автор), здесь только перехват вызовов.
 ## Вопросы игрока: агрессия мобов, урон от падения, «квадратные» грибы (поток 35, 2026-10-18)
 Тесты — `scripts/tests/mobaggro.js`, `falldamage.js` (через `EXTRA_SERVER_SCRIPTS`, `TEST_COMMANDS` с `#sleep`), `scripts/check_mod_models.py`.
 
@@ -1676,3 +1681,8 @@ Bob's не затронуты, иммунитеты рас не менялись
 **Откат:** удалить 4 строки Hazmat из `global.mmDedup` (`startup_scripts/dedup_list.js`) и
 `pack/kubejs/data/mekanism/advancements/radiation_prevention.json`, поднять версию, `packwiz refresh`. mm-compat 0.5.10 можно оставить
 (костюм CN просто дополнительно защищает от Mekanism) или вернуть 0.5.8.
+
+## Слияние PR #80 (mm-compat 0.5.12, сборка 2026.10.26-3)
+Решение владельца В35 «а»: фон тика сервера (Arknights Weapon — раз в 4 тика; Torches Become Sunlight — `syncState()` не чаще раза в секунду и урезанный бюджет при тике > 35 мс) влит в основную.
+mm-compat пересобран из объединённых исходников (0.5.7 из #80 + 0.5.8 Chunky/DH + 0.5.10 костюм Create Nuclear/радиация) под номером **0.5.12** — выше всех номеров в основной
+(0.5.11 оставлен Потоку 67). Код миксинов #80 — Поток 33; в `mm_compat.mixins.json` теперь ещё `DhChunkyBindMixin`. Откат — revert слияния и возврат `mm-compat-0.5.10.jar`.

@@ -41,7 +41,7 @@
 <a id="ad-astra"></a>
 - **Версия:** 1.15.21 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/ad-astra)
 - **Что это:** Космическое расширение: планеты как отдельные измерения (Луна, Марс, Венера, Меркурий, Глацио) со своим воздухом, температурой и гравитацией, скафандры, кислородные машины, ровер и реактивный костюм. В сборке отвечает за планеты и орбиты единой Солнечной системы; его крафтовые ракеты убраны. _(источник: docs сборки)_
-- **В наших docs:** [galacticraft.md](../galacticraft.md) (25), [compat.md](../compat.md) (20), [roadmap.md](../roadmap.md) (7), [performance.md](../performance.md) (3), [client-checklist.md](../client-checklist.md) (2), [russification.md](../russification.md) (2)
+- **В наших docs:** [galacticraft.md](../galacticraft.md) (25), [compat.md](../compat.md) (20), [performance.md](../performance.md) (11), [roadmap.md](../roadmap.md) (8), [client-checklist.md](../client-checklist.md) (2), [russification.md](../russification.md) (2)
 <!-- auto:end card:ad-astra -->
 
 ### Как играть
@@ -200,7 +200,7 @@ Create Ad Astra Recipes (1.0.0) — мини-мод только с рецепт
 - **Версия:** 0.6.6+1.20.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/northstar-redux)
 - **Что это:** Космос для Create в духе Galacticraft: ракеты собираются из блоков, нужны двигатели, топливо, навигатор и теплозащита; планеты открываются телескопом, есть электролиз, герметизаторы и скафандры. В сборке даёт ракеты и гравитацию, а сами планеты — Ad Astra. _(источник: docs сборки)_
 - **В сборке:** порт Create: Northstar под Create 6 (оригинал несовместим)
-- **В наших docs:** [compat.md](../compat.md) (67), [galacticraft.md](../galacticraft.md) (15), [roadmap.md](../roadmap.md) (11), [version-choice.md](../version-choice.md) (10), [enchanting-table.md](../enchanting-table.md) (8), [russification.md](../russification.md) (8)
+- **В наших docs:** [compat.md](../compat.md) (68), [galacticraft.md](../galacticraft.md) (15), [roadmap.md](../roadmap.md) (11), [version-choice.md](../version-choice.md) (10), [enchanting-table.md](../enchanting-table.md) (8), [russification.md](../russification.md) (8)
 <!-- auto:end card:northstar-redux -->
 
 ### Как играть
@@ -296,7 +296,7 @@ Northstar Redux (MIT; авторы Redstonneur1256, lightning2401) — косм�
 - **Версия:** 1.0.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/create-northstar-structures)
 - **Что это:** Лунные кратеры всех размеров и гигантский бассейн Южный полюс — Эйткен для Northstar, плюс Лунный компас и команда поиска. В сборке работает и на Луне Ad Astra (патч), с исправлением удаления мобов. _(источник: docs сборки)_
 - **В сборке:** биомы Луны под Redux 0.6+ и кратеры на Луне Ad Astra: patches/northstar_structures_fix.py
-- **В наших docs:** [compat.md](../compat.md) (42), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7), [friends.md](../friends.md) (6), [russification.md](../russification.md) (6)
+- **В наших docs:** [compat.md](../compat.md) (43), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7), [friends.md](../friends.md) (6), [russification.md](../russification.md) (6)
 <!-- auto:end card:create-northstar-structures -->
 
 ### Как играть
