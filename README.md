@@ -65,6 +65,7 @@
 | [docs/lost-cities.md](docs/lost-cities.md) | Заброшенные города (The Lost Cities): выбор мода, настройка генерации в обычном мире |
 | [docs/orespawn.md](docs/orespawn.md) | OreSpawn: ремейк Chaos Persists против оригинала 1.7.10, чего не хватает для порта |
 | [docs/wizardry-port.md](docs/wizardry-port.md) | Electroblob's Wizardry: опись недостающих заклинаний Redux против оригинала 1.12.2 и план переноса |
+| [docs/ntm.md](docs/ntm.md) | HBM's Nuclear Tech Mod (NTM): решение владельца не добавлять alpha-порты, сверка функций NTM с тем, что уже есть в сборке, список портов на будущее |
 | [docs/ysm-models.md](docs/ysm-models.md) | Модели игроков Yes Steve Model: где лежат, как перезагрузить, какие подключены, ограничения |
 | [docs/encyclopedia/INDEX.md](docs/encyclopedia/INDEX.md) | Справочник-энциклопедия: оглавление по категориям и алфавитный указатель всех модов (генерируется) |
 | [docs/encyclopedia/README-authoring.md](docs/encyclopedia/README-authoring.md) | Как писать в справочник: что генерируется (авто-блоки), что вручную, как добавить или перенести мод |
