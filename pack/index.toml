@@ -82,7 +82,7 @@ hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "9bb98bd367c0249babaa1658ef53f2ee6157d502dade466fd5164c41fbe12ee1"
+hash = "ac6716bb175d822f9928192c6804dc957d3701c6583043434e35fcda8a9bae31"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -1485,6 +1485,14 @@ file = "kubejs/data/disaster_ward/tags/entity_types/spore_to_licker.json"
 hash = "28939af178724af921c16b2de7b0acc0ee4c39c4d0e766974680991014488cdc"
 
 [[files]]
+file = "kubejs/data/iceandfire/loot_tables/chest/graveyard.json"
+hash = "f17e210232a4e1f2fc47528ac057dfc6b5c2040f187906309182f344a09001cd"
+
+[[files]]
+file = "kubejs/data/iceandfire/loot_tables/chest/lightning_dragon_roost.json"
+hash = "d13c17620021507b316fe8d23574df04697d62edefc4657b95b9769071eef482"
+
+[[files]]
 file = "kubejs/data/irons_spellbooks/loot_tables/chests/catacombs/crypt_loot.json"
 hash = "0598b727e7ed2370ee43e948969698068785ed8d1e040ed3c7c8d3ca2bc94dfe"
 
@@ -1846,7 +1854,7 @@ hash = "bc035679c7c1e4102ac9503427cba6d14cb1a70d78d8c3a3afafa0d1a223e82c"
 
 [[files]]
 file = "kubejs/server_scripts/dedup.js"
-hash = "c89b521a08777bc60c9a0035df9931274706351c03895f9baa49d1ee6430e89b"
+hash = "d1d36c080a8d904ff7b0bb592aa9c97219a07e936edc5dc3f850ac0415fab53a"
 
 [[files]]
 file = "kubejs/server_scripts/eso_enchant_books.js"
@@ -1878,7 +1886,7 @@ hash = "936a53c82988205a015331ae4c1f14b04157faf4282d559cc5cf5f3355da1b8c"
 
 [[files]]
 file = "kubejs/startup_scripts/dedup_list.js"
-hash = "a7b2c36c0d4cf3d3ebaa4fbdf5e7b10c89e24ee8ab9c0cfc4cd953ddd634d074"
+hash = "ed5fa33ea54bba11025fd768a03453ad9b975d2cf53cb7eef1a452937c71fe6f"
 
 [[files]]
 file = "kubejs/startup_scripts/space_rockets_list.js"

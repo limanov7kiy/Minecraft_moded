@@ -7,3 +7,7 @@ ServerEvents.recipes(event => {
     event.replaceInput({ input: gone }, gone, kept)
   })
 })
+// Оставшийся предмет получает item-теги убранного (список — global.mmDedupTags в dedup_list.js)
+ServerEvents.tags('item', event => {
+  Object.entries(global.mmDedupTags).forEach(([kept, tags]) => tags.forEach(tag => event.add(tag, kept)))
+})
