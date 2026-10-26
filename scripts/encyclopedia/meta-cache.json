@@ -1665,6 +1665,13 @@
   "title": "Smooth Boot (Reloaded)",
   "version": "mc1.20.1-0.0.4"
  },
+ "z611fdf7": {
+  "description": "A Create addon that adds nuclear reactors to Create, along with all the dangers associated with radiation!",
+  "project_type": "mod",
+  "slug": "createnuclear",
+  "title": "Create Nuclear",
+  "version": "2.0.1"
+ },
  "zG0IqeQj": {
   "description": "A botania addition",
   "project_type": "mod",

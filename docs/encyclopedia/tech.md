@@ -3,12 +3,13 @@
 Create, Mekanism, AE2, Refined Storage, корабли Valkyrien Skies.
 
 <!-- auto:start toc -->
-Модов в категории: **20**.
+Модов в категории: **21**.
 
 - [Applied Energistics 2](#applied-energistics-2)
 - [Create](#create)
 - [Create Crafts & Additions](#create-crafts--additions)
 - [Create Deco](#create-deco)
+- [Create Nuclear](#create-nuclear)
 - [Create Stuff 'N Additions](#create-stuff-n-additions)
 - [Create: Copycats+](#create-copycats)
 - [Create: Propulsion](#create-propulsion)
@@ -154,7 +155,7 @@ Create 6.0.8 (автор simibubi; зависимости по `mods.toml` — F
 <a id="createaddition"></a>
 - **Версия:** forge-1.20.1-1.3.3 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/createaddition)
 - **Что это:** Create Crafts & Additions: мост между электричеством и кинетической энергией. _(источник: docs сборки)_
-- **В наших docs:** [jei.md](../jei.md) (3), [compat.md](../compat.md) (1), [russification-audit.md](../russification-audit.md) (1)
+- **В наших docs:** [jei.md](../jei.md) (3), [compat.md](../compat.md) (1), [ntm.md](../ntm.md) (1), [russification-audit.md](../russification-audit.md) (1)
 <!-- auto:end card:createaddition -->
 
 ### Как играть
@@ -256,7 +257,7 @@ Copycats+ (3.0.10) — блоки-«хамелеоны» для Create: любо
 - **Версия:** 0.4.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/create-propulsion)
 - **Что это:** Красные магниты, оптические датчики, двигатели и др. для Create; работает с Valkyrien Skies 2. _(источник: docs сборки)_
 - **В сборке:** Create × Valkyrien Skies (двигатели для кораблей)
-- **В наших docs:** [compat.md](../compat.md) (26), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7), [russification.md](../russification.md) (6), [roadmap.md](../roadmap.md) (5)
+- **В наших docs:** [compat.md](../compat.md) (26), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7), [russification.md](../russification.md) (6), [ntm.md](../ntm.md) (5)
 <!-- auto:end card:create-propulsion -->
 
 ### Как играть
@@ -282,7 +283,7 @@ Create: Propulsion (0.4.1) добавляет к Create двигатели, кр
 <a id="create-steam-n-rails"></a>
 - **Версия:** 1.7.3+forge-mc1.20.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/create-steam-n-rails)
 - **Что это:** Расширяет рельсы и паровую систему Create. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (26), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7), [russification.md](../russification.md) (6), [roadmap.md](../roadmap.md) (5)
+- **В наших docs:** [compat.md](../compat.md) (26), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7), [russification.md](../russification.md) (6), [ntm.md](../ntm.md) (5)
 <!-- auto:end card:create-steam-n-rails -->
 
 ### Как играть
@@ -334,7 +335,7 @@ Eureka (Valkyrien Skies Eureka, `vs_eureka` 1.6.3; Tri0de, ewoudje и др.) —
 <a id="mekanism"></a>
 - **Версия:** 10.4.16.80 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/mekanism)
 - **Что это:** Высокотехнологичные машины, энергетика, гаджеты. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (13), [galacticraft.md](../galacticraft.md) (4), [jei.md](../jei.md) (3), [orespawn.md](../orespawn.md) (3), [roadmap.md](../roadmap.md) (3), [client-checklist.md](../client-checklist.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (13), [ntm.md](../ntm.md) (7), [galacticraft.md](../galacticraft.md) (4), [jei.md](../jei.md) (3), [orespawn.md](../orespawn.md) (3), [roadmap.md](../roadmap.md) (3)
 <!-- auto:end card:mekanism -->
 
 ### Как играть
@@ -440,6 +441,7 @@ Mekanism Curios 1.2.1 (TonimatasDEV) добавляет в Curios API два с�
 <a id="mekanism-generators"></a>
 - **Версия:** 10.4.16.80 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/mekanism-generators)
 - **Что это:** Модуль Mekanism: продвинутая генерация энергии. _(источник: docs сборки)_
+- **В наших docs:** [ntm.md](../ntm.md) (3)
 <!-- auto:end card:mekanism-generators -->
 
 ### Как играть
@@ -470,7 +472,7 @@ Mekanism Tools 10.4.16 — инструменты и броня из матер�
 - **Версия:** 1.20.1-1.2.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/mekanismmoremachine)
 - **Что это:** Дополнительные машины и фабрики для Mekanism. _(источник: docs сборки)_
 - **В сборке:** Mekanism: больше машин и фабрик
-- **В наших docs:** [compat.md](../compat.md) (16), [jei.md](../jei.md) (10), [galacticraft.md](../galacticraft.md) (4), [orespawn.md](../orespawn.md) (3), [roadmap.md](../roadmap.md) (3), [client-checklist.md](../client-checklist.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (16), [jei.md](../jei.md) (10), [ntm.md](../ntm.md) (7), [galacticraft.md](../galacticraft.md) (4), [orespawn.md](../orespawn.md) (3), [roadmap.md](../roadmap.md) (3)
 <!-- auto:end card:mekanismmoremachine -->
 
 ### Как играть
@@ -608,5 +610,61 @@ VS Tournament Reforged (`vs_tournament` 1.0.3; alex-s168, Balatan, 411_Cat, bloc
 - `baishi_education` — предмет-обучение (Tutorial Item).
 
 Параметры блоков настраиваются NBT («Configurable NBT parameters»). Конфиги в `pack/config` отсутствуют; в JEI мод использует чужой плагин (`create`) — [jei.md](../jei.md). Режим «Deleting Tool» и взрывчатка опасны на общем сервере с кораблями друзей.
+
+## Create Nuclear
+
+<!-- auto:start card:createnuclear -->
+<a id="createnuclear"></a>
+- **Версия:** 2.0.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/createnuclear)
+- **Что это:** Create Nuclear: ядерный реактор на Create (стержни урана и графита, охлаждение водой, вращение на выходе), руды урана/тория, радиация и антирадиационный костюм. _(источник: docs сборки)_
+- **В сборке:** Create Nuclear: реактор на Create, уран, радиация, костюм (решение владельца 2026-10-26, поток 66)
+- **В наших docs:** [ntm.md](../ntm.md) (1)
+<!-- auto:end card:createnuclear -->
+
+### Как играть
+
+Реактор — мультиблок из корпуса (`reactor_casing`), рамы, охладителей, ядра и контроллера (схемы T1/T2/T3 — в Ponder по клавише W на контроллере).
+На грани корпуса (не на ребре) ставятся: **минимум два входа стержней** (урановые — нагрев, графитовые — охлаждение),
+**вход жидкости** (вода — без неё реактор перегреется), **выход** (к нему вал — реактор отдаёт вращение Create) и по желанию **сирена**.
+Чертёж (Reactor Blueprint) заполняется раскладкой стержней и прикладывается ПКМ к контроллеру — реактор стартует.
+Перегрев → расплав: через ~15 с взрыв. В нашей сборке взрыв **не ломает блоки** (KubeJS `createnuclear_no_grief.js`),
+но бьёт и облучает существ рядом, а биом вокруг (радиус ~30) становится облучённым — вернуть его можно Biome Restore Cell мода.
+
+### Предметы/блоки
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Мобы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Эффекты
+
+- `createnuclear:radiation` — радиация (I–III по накопленной дозе): от радиоактивных предметов мода в инвентаре (уран, стержни) и облучённого биома.
+  Защита — антирадиационный костюм мода (красится), эффект `createnuclear:iodine` (йод). Костюмы Mekanism и Alex's Caves от этой радиации не защищают,
+  и наоборот: у трёх модов (Create Nuclear, Mekanism, Alex's Caves) радиация своя.
+
+### События
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Данжи/структуры (/locate)
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Чары
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Команды/гамерулы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Конфиги
+
+- серверный конфиг мира (`serverconfig/createnuclear-server.toml`) — стержни, радиация (вкл/выкл, пороги), пороги перегрева реакторов 5×5/7×7/9×9, Biome Restore.
+- `config/createnuclear-common.toml` — `enable_world_gen`. Руды свинца и урана мода в сборке отключены (`pack/kubejs/data/createnuclear/forge/biome_modifier/`):
+  их дают Mekanism, а Almost Unified сводит слитки к Mekanism. Торий и селитра генерируются.
+- Ключ `explosion.type` в конфиге мод (2.0.1) не читает: разрушение блоков отключено скриптом KubeJS, а не конфигом.
 
 <!-- cards:end -->

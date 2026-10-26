@@ -1,0 +1,13 @@
+name = "Create Nuclear"
+filename = "createnuclear-1.20.1-2.0.1-forge.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/z611fdf7/versions/CDrEMlMg/createnuclear-1.20.1-2.0.1-forge.jar"
+hash-format = "sha512"
+hash = "25dbcd4e5ea8bfbc8e825c61cf9bb60c3e89c8cfb80bf86cf06e8559db910f763c076bc5afb8c64da8f64174062497f2b25ba58a907c619f4ab2b11f8dbe5392"
+
+[update]
+[update.modrinth]
+mod-id = "z611fdf7"
+version = "CDrEMlMg"
