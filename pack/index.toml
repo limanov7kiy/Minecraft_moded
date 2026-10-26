@@ -78,7 +78,7 @@ hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "974afa8bd4fbff48aa479ce7eecd9050123ab1c50c2e4c8c29b4d0b3c8e08f37"
+hash = "e994c11c9a107cc05a25fa1e5f85eaf4f20926e2747251cd9a52291f2ce9755b"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -1425,6 +1425,14 @@ file = "kubejs/data/contigency_contract/loot_tables/gameplay/chronicle_bonus.jso
 hash = "cfb14d04d7eb95a148a52408ebe2dc29c283d367962f80471abdf5f95b94b0bd"
 
 [[files]]
+file = "kubejs/data/createnuclear/forge/biome_modifier/lead_ore.json"
+hash = "a75d5d611e58e3c80bbf0244f82a8a8351c4e8c4aa0f3a1c56da5343aa6d5ae5"
+
+[[files]]
+file = "kubejs/data/createnuclear/forge/biome_modifier/uranium_ore.json"
+hash = "a75d5d611e58e3c80bbf0244f82a8a8351c4e8c4aa0f3a1c56da5343aa6d5ae5"
+
+[[files]]
 file = "kubejs/data/creatingspace/creatingspace/rocket_accessible_dimension/earth_orbit.json"
 hash = "20e08ea6abd176fadd92c274970c2ce424da728ee929fd6101e3c6a0b4e03a98"
 
@@ -1815,6 +1823,10 @@ hash = "a75d5d611e58e3c80bbf0244f82a8a8351c4e8c4aa0f3a1c56da5343aa6d5ae5"
 [[files]]
 file = "kubejs/server_scripts/cc_rare_mob_bonus.js"
 hash = "f1bcbfdeca44fca0869d0e40d00756a22564286b4b44f8451e0dd77a633154dd"
+
+[[files]]
+file = "kubejs/server_scripts/createnuclear_no_grief.js"
+hash = "bc035679c7c1e4102ac9503427cba6d14cb1a70d78d8c3a3afafa0d1a223e82c"
 
 [[files]]
 file = "kubejs/server_scripts/eso_enchant_books.js"
@@ -2298,6 +2310,11 @@ hash = "3647068f14ba0102694f633341116daedf130c958a7cb5d6fd206419cd5fb324"
 [[files]]
 file = "mods/createaddition.pw.toml"
 hash = "e6d1f36e9e0193fe410d136e0cda8a7f6dbbc809c0644f06a601bddf5b38a395"
+metafile = true
+
+[[files]]
+file = "mods/createnuclear.pw.toml"
+hash = "e1222fcdd10c24b79759cb0c4de6ef37e7a55b47439b1310235107f7c3c39237"
 metafile = true
 
 [[files]]

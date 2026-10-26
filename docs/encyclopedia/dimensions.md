@@ -165,7 +165,7 @@ _Обзор категории — вручную, следующие этапы
 <a id="alexs-caves"></a>
 - **Версия:** 2.0.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/alexs-caves)
 - **Что это:** Шесть редких пещерных биомов под поверхностью Верхнего мира, со своими мобами и предметами. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (8), [enchanting-table.md](../enchanting-table.md) (5), [orespawn.md](../orespawn.md) (2), [roadmap.md](../roadmap.md) (2), [client-checklist.md](../client-checklist.md) (1), [performance.md](../performance.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (9), [enchanting-table.md](../enchanting-table.md) (5), [ntm.md](../ntm.md) (4), [orespawn.md](../orespawn.md) (2), [roadmap.md](../roadmap.md) (2), [client-checklist.md](../client-checklist.md) (1)
 <!-- auto:end card:alexs-caves -->
 
 ### Как играть
@@ -393,7 +393,7 @@ Everdawn: хрустальный верблюд (`crystal_camel`), космич�
 <a id="create-alexs-caves-compat"></a>
 - **Версия:** 1.6.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/create-alexs-caves-compat)
 - **Что это:** Совместимость Create и Alex's Caves. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (28), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7), [russification.md](../russification.md) (6), [roadmap.md](../roadmap.md) (5)
+- **В наших docs:** [compat.md](../compat.md) (36), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7), [friends.md](../friends.md) (6), [russification.md](../russification.md) (6)
 <!-- auto:end card:create-alexs-caves-compat -->
 
 ### Что даёт игроку
@@ -463,7 +463,7 @@ Everdawn: хрустальный верблюд (`crystal_camel`), космич�
 <a id="deeperdarker"></a>
 - **Версия:** 1.3.3-forge+1.20.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/deeperdarker)
 - **Что это:** Больше блоков, предметов, брони и тайн для биома Глубокая тьма: новое измерение «Иная сторона», стражи и древние города. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (6), [bosses.md](../bosses.md) (3), [enchanting-table.md](../enchanting-table.md) (3), [jei.md](../jei.md) (2), [roadmap.md](../roadmap.md) (1), [russification-audit.md](../russification-audit.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (7), [bosses.md](../bosses.md) (3), [enchanting-table.md](../enchanting-table.md) (3), [jei.md](../jei.md) (2), [roadmap.md](../roadmap.md) (1), [russification-audit.md](../russification-audit.md) (1)
 <!-- auto:end card:deeperdarker -->
 
 ### Как играть

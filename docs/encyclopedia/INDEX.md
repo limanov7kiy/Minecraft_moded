@@ -13,7 +13,7 @@
 | [Космос и ракеты](space.md) | 8 | Ракеты, планеты, скафандры, кислород и связки космических модов. |
 | [Мобы и боссы](mobs.md) | 15 | Новые существа, боссы, паразиты. Подробные таблицы боссов — docs/bosses.md. |
 | [Измерения, данжи и структуры](dimensions.md) | 30 | Aether, Twilight Forest, Blue Skies, Undergarden, пещеры, заброшенные города и аддоны к ним. |
-| [Техника и автоматизация](tech.md) | 20 | Create, Mekanism, AE2, Refined Storage, корабли Valkyrien Skies. |
+| [Техника и автоматизация](tech.md) | 21 | Create, Mekanism, AE2, Refined Storage, корабли Valkyrien Skies. |
 | [Еда и фермерство](food.md) | 10 | Farmer's Delight и его связки с остальными модами. |
 | [Мир: выживание, погода и катастрофы](world.md) | 9 | Температура и жажда, сезоны, штормы, торнадо, метеориты и обереги от них. |
 | [Удобство, хранилища и строительство](qol.md) | 13 | Рюкзаки, вейстоуны, гробницы, сундуки, WorldEdit, декор и мелкие улучшения. |
@@ -126,6 +126,7 @@
 - [Create Blue Skies Compat](dimensions.md#create_blue_skies_compat-forge) — Измерения, данжи и структуры
 - [Create Crafts & Additions](tech.md#createaddition) — Техника и автоматизация
 - [Create Deco](tech.md#create-deco) — Техника и автоматизация
+- [Create Nuclear](tech.md#createnuclear) — Техника и автоматизация
 - [Create Stuff 'N Additions](tech.md#create-stuff-additions) — Техника и автоматизация
 - [Create: Alex's Caves Compat](dimensions.md#create-alexs-caves-compat) — Измерения, данжи и структуры
 - [Create: Copycats+](tech.md#copycats) — Техника и автоматизация

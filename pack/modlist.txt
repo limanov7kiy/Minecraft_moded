@@ -57,6 +57,7 @@ mr attributefix              # both: AttributeFix (Darkhax, LGPL-2.1) — сни
 ## Ракеты, космос, техника
 mr create
 mr createaddition
+mr createnuclear          # Create Nuclear: реактор на Create, уран, радиация, костюм (решение владельца 2026-10-26, поток 66)
 mr create-stuff-additions
 mr ad-astra
 mr northstar-redux          # порт Create: Northstar под Create 6 (оригинал несовместим)
