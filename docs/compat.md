@@ -1724,7 +1724,7 @@ Corosus (Weather2) — здесь только перехват вызовов.
   (Farmer's Delight и ещё 70 рецептов); лазурит Chaos Persists получил `forge:armors/*`, костюм Create Nuclear — `forge:armors/*/hazmat`.
   Поиск тегов прямо в событии KubeJS 2001.6 не работает (`TagWrapper.getObjectIds()` пуст), поэтому список статический;
 - **лут**: медный меч Ice and Fire лежал в сундуках кладбища и гнезда молниевого дракона — таблицы переопределены
-  (`pack/kubejs/data/iceandfire/loot_tables/chest/{graveyard,lightning_dragon_roost}.json`, меч Create SA вместо него); Loot Integrations
+  (`pack/kubejs/data/iceandfire/loot_tables/chest/{graveyard,lightning_dragon_roost,lightning_dragon_female_cave}.json`, меч Create SA вместо него); Loot Integrations
   берёт лут из этих же таблиц. Торговли жителей и квестов с этими предметами нет.
 - предметы из реестра не удалены: уже лежащие в мирах остаются рабочими (насос Ad Astra продолжает качать воду).
 
