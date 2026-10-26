@@ -269,12 +269,12 @@ Soiled, Corroded, Infested, Fragile («Смертное касание»), Immol
 
 <!-- auto:start card:mm-compat -->
 <a id="mm-compat"></a>
-- **Версия:** 0.5.13 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/mm-compat-0.5.13.jar`
+- **Версия:** 0.5.14 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/mm-compat-0.5.14.jar`
 - **Что это:** Кодовые связки и исправления сборки: кислород скафандров, баги чужих модов, утечки памяти, JEI-категории. _(источник: docs сборки)_
 <!-- auto:end card:mm-compat -->
 
 ### Как играть
-Мод без предметов и блоков (`mm-compat` 0.5.13, `mods-src/mm-compat`): кодовые связки и исправления сборки. Включён у всех, игроку ничего делать не нужно.
+Мод без предметов и блоков (`mm-compat` 0.5.14, `mods-src/mm-compat`): кодовые связки и исправления сборки. Включён у всех, игроку ничего делать не нужно.
 1. Скафандры **Northstar** и **Creating Space** работают в мирах **Ad Astra**: пока на существе полный скафандр и в баллоне есть воздух, Ad Astra считает, что кислород есть (`SuitOxygen`, 1 единица в секунду). Пустой баллон — обычное удушье.
 2. Прочие исправления — в списке ниже.
 
@@ -298,6 +298,7 @@ Soiled, Corroded, Infested, Fragile («Смертное касание»), Immol
 | `DhChunkyBindMixin` | Distant Horizons 3.3.3 подписывался на Chunky на первом загруженном чанке, пока Chunky ещё не запущен → «Chunky is not loaded», падение сервера при старте; ждём запуска Chunky |
 | `OriginFursReloadCacheMixin` | клиент: раз в ~25 с перечислялись все ресурс-паки (фриз 4 с) → кэш до следующей перезагрузки ресурсов |
 | `SspSnowChunkMixin`, `FallingTreeLeafChunkMixin`, `Weather2StormBiomeMixin` | Serene Seasons Plus (снег/таяние), Falling Tree (опадание листвы у соседей) и Weather2 (биом новой тучи) синхронно грузили ещё не готовые чанки на главном потоке → тик до 54 с при входе/телепорте в новое место; теперь такие чанки пропускаются (поток 67) |
+| `LostCitiesCityCenterMixin` | The Lost Cities: `City.isCityCenter` на каждый вызов создавал `new Random` (~26 % времени потоков генерации) → генератор потока без атомиков, те же числа бит-в-бит; генерация чанков +47–56 % (поток 67) |
 
 ### Команды/гамерулы
 Нет.
@@ -364,7 +365,7 @@ Soiled, Corroded, Infested, Fragile («Смертное касание»), Immol
 <a id="traveloptics"></a>
 - **Версия:** 6.3.0-1.20.1 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/traveloptics-6.3.0-1.20.1-mmport.jar`
 - **Что это:** Большое дополнение к Cataclysm и Iron's Spells: оружие, броня, боссы и 176 заклинаний; порт под версии сборки. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (7), [roadmap.md](../roadmap.md) (4), [enchanting-table.md](../enchanting-table.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (7), [roadmap.md](../roadmap.md) (4), [enchanting-table.md](../enchanting-table.md) (2), [performance.md](../performance.md) (2)
 <!-- auto:end card:traveloptics -->
 
 ### Как играть

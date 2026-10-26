@@ -40,13 +40,24 @@ for d in config defaultconfigs kubejs; do [ -d "$root/pack/$d" ] && cp -r "$root
 python3 "$root/scripts/fetch-config-files.py" "$stage"   # config/**/*.pw.toml (модели YSM) → сами файлы
 curl -sSLo "$stage/forge-installer.jar" \
   "https://maven.minecraftforge.net/net/minecraftforge/forge/$mc-$forge/forge-$mc-$forge-installer.jar"
-echo "-Xms4G
--Xmx10G" > "$stage/user_jvm_args.txt"
+# Память и сборщик мусора сервера: G1 с флагами Aikar (замер потока 67 на тестовом сервере: суммарные паузы GC −30 %, p95 паузы
+# 125–139 → 103 мс; docs/performance.md «Поток 67»). Xms = Xmx и AlwaysPreTouch — куча занимается сразу; машине нужно Xmx + 2,5 ГБ (docs/hosting.md).
+cat > "$stage/user_jvm_args.txt" <<'JVM'
+# Куча сервера: 9 ГБ под тариф 12 ГБ (9 + 2,5 ГБ вне кучи = 11,5). На 16 ГБ можно 12G. Меняйте обе строки одинаково.
+-Xms9G
+-Xmx9G
+# G1 с флагами Aikar (docs/performance.md, «Поток 67»)
+-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch
+-XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4
+-XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32
+-XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1
+JVM
 # online-mode=false: игроки с офлайн-аккаунтов (защита ников — мод sols-authlogin, /register и /login).
 # Кладём как server.properties.default: start.sh/start.bat копируют его, только если server.properties ещё нет,
 # так что обновление пакета поверх сервера не затирает настройки хоста.
 # max-tick-time=-1: WorldEdit при старте считает все состояния блоков одним тиком дольше 60 с; без этого сторож убивает сервер.
-printf 'motd=%s\nmax-players=10\nview-distance=10\nsimulation-distance=8\nallow-flight=true\nonline-mode=false\nmax-tick-time=-1\n' "$name" > "$stage/server.properties.default"
+# sync-chunk-writes=false: регионы пишутся без fsync на каждый чанк — быстрее сохранение на Windows/HDD; при пропадании питания теряются последние секунды записи.
+printf 'motd=%s\nmax-players=10\nview-distance=10\nsimulation-distance=8\nallow-flight=true\nonline-mode=false\nmax-tick-time=-1\nsync-chunk-writes=false\n' "$name" > "$stage/server.properties.default"
 cat > "$stage/start.sh" <<'EOF'
 #!/usr/bin/env sh
 # Первый запуск ставит Forge; дальше просто запускает сервер. ОЗУ — в user_jvm_args.txt.

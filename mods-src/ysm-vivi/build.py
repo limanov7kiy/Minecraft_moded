@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Модель Yes Steve Model «Vivi» (авторский персонаж владельца сборки) — генератор.
+"""Модель Yes Steve Model «Vivi» (авторский персонаж владельца сборки: девушка-волчица) — генератор.
 
 Собирает папку модели pack/config/yes_steve_model/custom/vivi/ (формат YSM 2.x, папка):
   ysm.json, models/main.json + arm.json, textures/vivi.png (256×256, пиксель-арт),
@@ -146,7 +146,7 @@ def hair(tip=0.0, under=False, band=False):
 
 
 def m_ear(w, h, face, s):
-    """лисье ухо снаружи: красное, к кончику темнее"""
+    """волчье ухо снаружи: тёмно-красное, к кончику темнее"""
     a = fill(w, h, P["hair"]) + noise(w, h, s, 5)
     if face in SIDE:
         for y in range(h):
@@ -173,7 +173,7 @@ def m_tail(w, h, face, s, t0=0.0, t1=1.0):
     strand = r.random(w)
     for y in range(h):
         t = t0 + (t1 - t0) * (y + 0.5) / h
-        k = float(np.clip((t - 0.62) / 0.3, 0, 1))  # переход ближе к концу
+        k = float(np.clip((t - 0.7) / 0.25, 0, 1))  # светлый только конец
         for x in range(w):
             jitter = (strand[x] - 0.5) * 0.25
             kk = float(np.clip(k + jitter, 0, 1))
@@ -418,7 +418,7 @@ def build_main(default_geo):
         cb(f"{side}Eyelid", (ex0, 34.55, -3.53), (2.4, 2.3, 0.1), "eye_white", dens=5, faces=["north"])
         cx = ex0 + 1.2 + 0.1 * sg
         cb(f"{side}EyesBase", (cx - 0.8, 34.6, -3.58), (1.6, 1.45, 0.1), "iris", dens=5, faces=["north"])
-        cb(f"{side}EyesBase", (cx - 0.16, 34.75, -3.62), (0.32, 1.05, 0.04), "pupil", dens=5, faces=["north"])  # лисий зрачок-щель
+        cb(f"{side}EyesBase", (cx - 0.3, 34.9, -3.62), (0.6, 0.62, 0.04), "pupil", dens=5, faces=["north"])  # круглый зрачок
         cb(f"{side}EyesBase", (cx - 0.62, 35.55, -3.66), (0.34, 0.34, 0.04), "sparkle", dens=2, faces=["north"], share="swatch_sparkle")
     G.bone("Mouth", "Head", (0, 33.9, -3.5))
     cb("Mouth", (-0.42, 33.85, -3.54), (0.84, 0.14, 0.05), "mouth", faces=["north"], share="swatch_mouth")
@@ -458,20 +458,20 @@ def build_main(default_geo):
         x0, x1 = (-4.6, -3.55) if sg < 0 else (3.55, 4.6)
         strand(G, "corner_h1", x0, x1, 38.8, 31.4, -4.35, -3.2, tip=0.32, seed=30 + (sg > 0))
 
-    # ================= лисьи уши: снаружи красные, внутри розово-кремовый мех
+    # ================= волчьи уши: высокие, острые, стоячие; снаружи тёмно-красные, внутри розово-кремовые
     for side, sg in (("L", 1), ("R", -1)):
         bn = f"Ear{side}"
-        px = 2.55 * sg
-        G.bone(bn, "Head", (px, 41.2, 0.2), (0, 0, -14 * sg))
-        # треугольное ухо: два ромба (кубы, повёрнутые на 45° вокруг Z), нижняя половина утоплена в волосы
-        # (поворот ромба 45° + наклон кости — в мире ромб стоит ровно, над волосами торчит треугольник)
-        for i, (k, cy, d) in enumerate(((3.7, 41.6, 1.25), (2.5, 43.7, 1.05))):
-            cb(bn, (px - k / 2, cy - k / 2, 0.2 - d / 2), (k, k, d), "ear", rot=(0, 0, 45 + 14 * sg), pivot=(px, cy, 0.2), seed=900 + i)
-        for i, (k, cy) in enumerate(((2.4, 41.9), (1.5, 43.6))):  # внутренняя сторона — розово-кремовый мех
-            cb(bn, (px - k / 2, cy - k / 2, -0.48), (k, k, 0.12), "ear_in", rot=(0, 0, 45 + 14 * sg), pivot=(px, cy, -0.42),
+        px = 2.45 * sg
+        G.bone(bn, "Head", (px, 41.2, 0.2), (0, 0, -8 * sg))
+        # узкий высокий треугольник: стопка ромбов (кубы, повёрнутые на 45° вокруг Z) всё меньше кверху, низ утоплен
+        # в волосы; поворот ромба 45° + наклон кости — в мире ромбы стоят ровно
+        for i in range(10):  # мелкий шаг — ровные края треугольника
+            k, cy, d = 3.0 - 0.29 * i, 41.4 + 0.5 * i, 0.9 - 0.04 * i
+            cb(bn, (px - k / 2, cy - k / 2, 0.2 - d / 2), (k, k, d), "ear", rot=(0, 0, 45 + 8 * sg), pivot=(px, cy, 0.2), seed=900 + i)
+        for i in range(6):  # внутренняя сторона — розово-кремовая
+            k, cy = 1.9 - 0.27 * i, 41.75 + 0.5 * i
+            cb(bn, (px - k / 2, cy - k / 2, -0.34), (k, k, 0.08), "ear_in", rot=(0, 0, 45 + 8 * sg), pivot=(px, cy, -0.3),
                faces=["north"], seed=920 + i)
-        # пушок у основания уха
-        cb(bn, (px - 1.2, 41.4, -0.62), (2.4, 0.7, 0.25), "ear_in", seed=940)
 
     # ================= корпус: белая рубашка, чёрный галстук, жилет на пуговицах, ремень с пряжкой и кисточкой
     cb("UpperBody", (-3.5, 23.9, -2.025), (7, 7.85, 4.05), "vest")
@@ -566,13 +566,14 @@ def build_main(default_geo):
     # ремень-хлястик на спине
     cb("Coat", (-3.6, 23.1, 2.95), (7.2, 0.8, 0.15), coat(("top", 1), ("bottom", 1)), faces=["south"])
 
-    # ================= хвост: большой пушистый, тёмно-красный → кремово-розовый кончик; из разреза пальто, чуть вправо
+    # ================= хвост волчий: пушистый, ровной толщины (без лисьей «кисточки»), висит низко; тёмно-красный →
+    # кремово-розовый конец; из разреза пальто, чуть вправо
     segs = [  # (кость, длина, ширина, глубина, t0, t1)
         ("Tail0", 2.6, 2.6, 2.6, 0.00, 0.12),
-        ("Tail1", 3.6, 3.9, 3.9, 0.12, 0.34),
-        ("Tail2", 3.8, 5.8, 5.2, 0.34, 0.58),
-        ("Tail3", 3.6, 5.8, 5.2, 0.58, 0.80),
-        ("Tail4", 3.0, 4.4, 4.0, 0.80, 0.95),
+        ("Tail1", 3.8, 3.6, 3.4, 0.12, 0.33),
+        ("Tail2", 4.0, 4.3, 4.0, 0.33, 0.55),
+        ("Tail3", 4.0, 4.4, 4.1, 0.55, 0.77),
+        ("Tail4", 3.6, 4.2, 3.9, 0.77, 0.95),
     ]
     parent, py, pz = "UpperBody", 20.2, 3.0
     zc = pz + 3.3  # ось хвоста позади разреза пальто и позади ножен меча
@@ -586,8 +587,9 @@ def build_main(default_geo):
         if i == 0:  # корень: из разреза пальто к оси хвоста
             cb(bn, (-0.9, py - 2.4, pz), (1.8, 2.4, zc - pz), tail(0, 0.05), seed=1099)
         parent, py = bn, py - ln
-    cb("Tail4", (-1.4, py - 1.9, zc - 1.2), (2.8, 1.6, 2.4), tail(0.95, 1.0), seed=1190)
-    cb("Tail4", (-0.6, py - 2.6, zc - 0.5), (1.2, 0.9, 1.0), tail(1.0, 1.0), seed=1191)
+    # тупой конец (волчий хвост к кончику не сужается)
+    cb("Tail4", (-1.8, py - 1.7, zc - 1.65), (3.6, 1.2, 3.3), tail(0.95, 1.0), seed=1190)
+    cb("Tail4", (-1.3, py - 2.2, zc - 1.2), (2.6, 0.6, 2.4), tail(1.0, 1.0), seed=1191)
 
     # ================= меч в ножнах за спиной по диагонали: рукоять над правым плечом (сбоку от головы), наконечник —
     # у левого бока на уровне пояса, над хвостом. Ниже пояса не опускается: там качаются полы и шагают ноги.
@@ -631,13 +633,13 @@ def parallels():
     A["parallel1"] = {"loop": True, "animation_length": 18, "bones": {
         "EarL": {"rotation": [f"-{ln} * 25", 0, f"-{twitch} - {ln} * 12"]},
         "EarR": {"rotation": [f"-{ln} * 25", 0, f"{twitch} + {ln} * 12"]},
-        "Tail0": {"rotation": [f"46 + ysm.second_order('vv_tail_h', {sp}, 2, 0.5, 0) * 2.2 + ysm.second_order('vv_tail_v', {vs}, 2, 0.5, 0) * 0.3 - {ln} * 10",
+        "Tail0": {"rotation": [f"24 + ysm.second_order('vv_tail_h', {sp}, 2, 0.5, 0) * 2.2 + ysm.second_order('vv_tail_v', {vs}, 2, 0.5, 0) * 0.3 - {ln} * 10",
                                "ysm.second_order('vv_tail_y', math.clamp(0.03 * q.yaw_speed, -30, 30), 2, 0.5, 0)",
                                "-7 + math.sin(q.anim_time * 40) * 3"]},
-        "Tail1": {"rotation": ["-12 + math.sin(q.anim_time * 40 - 40) * 2", 0, "-4 + math.sin(q.anim_time * 40 - 50) * 3"]},
-        "Tail2": {"rotation": [f"-14 - ysm.second_order('vv_tail_h2', {sp}, 2, 0.5, 0) * 0.8", 0, "-3 + math.sin(q.anim_time * 40 - 90) * 4"]},
-        "Tail3": {"rotation": [f"-12 - ysm.second_order('vv_tail_h2', {sp}, 2, 0.5, 0) * 0.6", 0, "math.sin(q.anim_time * 40 - 130) * 4"]},
-        "Tail4": {"rotation": ["-8", 0, "math.sin(q.anim_time * 40 - 170) * 5"]},
+        "Tail1": {"rotation": ["-5 + math.sin(q.anim_time * 40 - 40) * 2", 0, "-4 + math.sin(q.anim_time * 40 - 50) * 3"]},
+        "Tail2": {"rotation": [f"-4 - ysm.second_order('vv_tail_h2', {sp}, 2, 0.5, 0) * 0.8", 0, "-3 + math.sin(q.anim_time * 40 - 90) * 4"]},
+        "Tail3": {"rotation": [f"-3 - ysm.second_order('vv_tail_h2', {sp}, 2, 0.5, 0) * 0.6", 0, "math.sin(q.anim_time * 40 - 130) * 4"]},
+        "Tail4": {"rotation": ["-2", 0, "math.sin(q.anim_time * 40 - 170) * 5"]},
         "Sword": {"scale": "(v.roaming.vv_sword ?? 1) ? 1 : 0"},
     }}
     # parallel4: пальто — «физика» по скорости, вертикали и повороту (как у плаща Priestess);
@@ -764,7 +766,7 @@ def main():
         "spec": 2,
         "metadata": {
             "name": "Vivi",
-            "tips": "Vivi — девушка-лиса в бордовом пальто, меч в ножнах за спиной. Авторский персонаж. Модель Minecraft_moded.",
+            "tips": "Vivi — девушка-волчица в бордовом пальто, меч в ножнах за спиной. Авторский персонаж. Модель Minecraft_moded.",
             "license": {"type": "CC BY-NC 4.0", "desc": "Персонаж — авторский (владелец сборки Minecraft_moded). Скелет и базовые анимации — встроенная модель YSM «default» (CC 0)."},
             "authors": [
                 {"name": "Minecraft_moded (Поток 69, Claude)", "role": "модель, текстура, уши, хвост, пальто, меч, позы",
