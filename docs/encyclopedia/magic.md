@@ -561,7 +561,7 @@ Botanical Extra Machinery 1.1.2 (`botanicalextramachinery`) — расширен
 - **Версия:** 1.20.1-0.11.4 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/occult-engineering)
 - **Что это:** Связка Create и Occultism. _(источник: docs сборки)_
 - **В сборке:** Occultism × Create
-- **В наших docs:** [compat.md](../compat.md) (48), [dedup.md](../dedup.md) (29), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7), [friends.md](../friends.md) (6)
+- **В наших docs:** [compat.md](../compat.md) (57), [dedup.md](../dedup.md) (29), [friends.md](../friends.md) (15), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7)
 <!-- auto:end card:occult-engineering -->
 
 ### Как играть

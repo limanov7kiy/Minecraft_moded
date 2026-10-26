@@ -55,7 +55,8 @@ public final class RadiationSuitShielding {
         });
     }
 
-    private static boolean isSuit(Item item) {
+    /// Часть антирадиационного костюма Create Nuclear (по имени класса; нужен и миксину Alex's Caves)
+    public static boolean isSuit(Item item) {
         return IS_SUIT.computeIfAbsent(item.getClass(), c -> {
             for (Class<?> k = c; k != null; k = k.getSuperclass()) {
                 if (k.getName().equals(CN_SUIT)) {

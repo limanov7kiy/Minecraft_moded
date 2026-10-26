@@ -113,7 +113,8 @@
 | [scripts/tests/radsuit.js](scripts/tests/radsuit.js) | Проверка единого защитного костюма: костюм Create Nuclear защищает от радиации Mekanism и Create Nuclear, Hazmat не крафтится — см. `docs/compat.md` «Один защитный костюм» |
 | [scripts/tests/dedup_dump.js](scripts/tests/dedup_dump.js) | Выгрузка всех предметов и рецептов со стенда в JSON для аудита дублей — см. `docs/dedup.md` |
 | [scripts/tests/dedupcheck.js](scripts/tests/dedupcheck.js) | Проверка убранных логических дублей: нет рецептов, нет жёстких ссылок в чужих рецептах, оставшийся предмет есть — см. `docs/compat.md` «пачка dedup-1» |
-| [scripts/dedup-audit/](scripts/dedup-audit/) | Аудит дублей: теги из jar, сложность крафта по графу рецептов, группы кандидатов, виды энергии — см. `docs/dedup.md` «Как считали» |
+| [scripts/tests/hazardgear.js](scripts/tests/hazardgear.js) | Проверка защитного снаряжения после объединения дублей: костюм Create Nuclear в Alex's Caves, противогаз Spore против газа CBC — см. `docs/compat.md` «пачка dedup-2» |
+| [scripts/dedup-audit/](scripts/dedup-audit/) | Аудит дублей: теги из jar, сложность крафта по графу рецептов, группы кандидатов, виды энергии, перенос тегов (tagcopy.py), переопределения лута и достижений (overrides.py) — см. `docs/dedup.md` «Как считали» |
 | [scripts/clienttest/clientmobs.js](scripts/clienttest/clientmobs.js) | Клиентская проверка рендера мобов: по одному мобу каждого вида в ряд |
 | [scripts/clienttest/ExitTrace.java](scripts/clienttest/ExitTrace.java) | Java-агент для `test-client.sh`: печатает стек каждого `System.exit` |
 | [scripts/collect-diagnostics.bat](scripts/collect-diagnostics.bat) | Запуск двойным щелчком (Windows): вызывает `collect-diagnostics.ps1` |
