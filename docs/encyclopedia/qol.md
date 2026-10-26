@@ -176,7 +176,7 @@
 - **Версия:** 1.20.1-v1.3.1 · **Сторона:** server · **Источник:** [Modrinth](https://modrinth.com/mod/sols-authlogin)
 - **Что это:** Серверная авторизация: регистрация и вход для серверов с доп. защитой аккаунтов. _(источник: docs сборки)_
 - **В сборке:** server: пароль при входе (/register, /login) — офлайн-режим, защита ников; на клиенте не нужен и вреден (свои сетевые каналы и экран логина; в одиночке пароль не нужен) — остаётся server
-- **В наших docs:** [compat.md](../compat.md) (3), [roadmap.md](../roadmap.md) (3), [hosting.md](../hosting.md) (2), [friends.md](../friends.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (3), [reset.md](../reset.md) (3), [roadmap.md](../roadmap.md) (3), [hosting.md](../hosting.md) (2), [friends.md](../friends.md) (1)
 <!-- auto:end card:sols-authlogin -->
 
 ### Как играть
@@ -200,7 +200,7 @@
 <a id="sophisticated-backpacks"></a>
 - **Версия:** 1.20.1-3.26.9.2194 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/sophisticated-backpacks)
 - **Что это:** Рюкзаки, которые можно ставить в мире, красить, расширять и улучшать множеством апгрейдов. _(источник: docs сборки)_
-- **В наших docs:** [client-checklist.md](../client-checklist.md) (1), [compat.md](../compat.md) (1), [dedup.md](../dedup.md) (1), [friends.md](../friends.md) (1)
+- **В наших docs:** [client-checklist.md](../client-checklist.md) (1), [compat.md](../compat.md) (1), [dedup.md](../dedup.md) (1), [friends.md](../friends.md) (1), [reset.md](../reset.md) (1)
 <!-- auto:end card:sophisticated-backpacks -->
 
 ### Как играть
