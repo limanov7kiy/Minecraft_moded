@@ -1600,3 +1600,44 @@ Chunky 1.3.146 (popcraft, GPL-3.0, Modrinth, сторона `both`: сервер
   про «дыры» в LOD — строка в friends.md.
 - **Откат**: удалить строку `mr chunky` из `pack/modlist.txt` и `pack/mods/chunky.pw.toml`, `packwiz refresh` (mm-compat 0.5.8 без Chunky безвреден — миксин
   срабатывает только если DH создал адаптер Chunky).
+
+## Create Nuclear — ядерный реактор на Create (поток 66, 2026-10-26, сборка 2026.10.26-1)
+Решение владельца: «если сильно не нагрузит сборку, то добавляй» (вариант «в» из `docs/ntm.md`). Мод `createnuclear` 2.0.1
+(Modrinth, LGPL-3, Create Nuclear Team), сторона both, jar 9,1 МБ, зависимость — Create `[6.0.7,)` (у нас 6.0.8); JEI/REI/EMI необязательны.
+
+**Замер на одном стенде** (4 ядра, 15 ГБ, сервер `-Xmx8G`; база — свежая основная 2026.10.25-6, тот же seed):
+
+| | без мода | с модом | критерий |
+|---|---|---|---|
+| старт сервера, перезапуск существующего мира (`Done`, 3 прогона) | 27,9 / 25,9 / 27,8 с, ср. 27,2 | 26,0 / 27,8 / 26,6 с, ср. 26,8 | +≤5 % — **ок** (разница в шуме) |
+| старт сервера, новый мир | 91,2 с (холодный кэш диска) | 69,5 с | не показателен |
+| Old Gen после `spark gc` (перезапуски) | 2,4 / 2,6 / 2,6 ГБ | 2,6 / 2,4 / 2,4 ГБ | +≤150 МБ — **ок** (разница меньше шума ±200 МБ) |
+| старт клиента до меню (Xvfb + llvmpipe) | 516 с | 506 с | **ок** |
+| MSPT, 8 собранных реакторов T1 в 88 загруженных чанках | 13,4–13,9 мс (реакторы убраны) | 14,6–15,2 мс | TPS 20,0; «Can't keep up» в окне замера нет — **ок** |
+
+«Can't keep up» есть в обоих вариантах только в первую минуту после старта (догрузка мира, как и раньше). Реактор с нагрузкой (чертёж,
+стержни, вода) запустить без игрока нельзя — старт только ПКМ чертежом по контроллеру; замерен собранный, но не горящий реактор
+(≈0,15 мс/тик на реактор). Горящий реактор стоит проверить на живом сервере (`spark profiler`).
+
+**Настройки сборки:**
+- **Взрыв реактора не ломает блоки** — `pack/kubejs/server_scripts/createnuclear_no_grief.js`. Мод ставит сущности взрыва
+  `noGriefing = !mobGriefing`; ключ `explosion.type` в конфиге мод 2.0.1 не читает (класс `CExplode` нигде не используется).
+  Выключать `mobGriefing` целиком нельзя, поэтому скрипт включает `noGriefing` только сущности `createnuclear:nuclear_explosion`.
+  Остаются: урон и радиация существам рядом, облучённый биом (радиус ~30, лечится Biome Restore Cell мода), разрушение контроллера.
+  Тест `scripts/tests/cn_nogrief.js`: взрыв размером 3 у каменной колонны — `noGriefing=true`, колонна цела.
+- **Руды свинца и урана мода выключены** (`pack/kubejs/data/createnuclear/forge/biome_modifier/{lead,uranium}_ore.json` → `forge:none`):
+  их уже генерирует Mekanism. Торий, селитра и слоистые залежи (`striated_ores_overworld`) Create Nuclear генерируются.
+- **Almost Unified:** слитки/самородки свинца и стали, сырой уран, урановая пыль мода объединяются к Mekanism (приоритет create → mekanism).
+  `scripts/hardrefs.py` по jar: прямых ссылок на `createnuclear:lead_ingot`, `steel_ingot`, `raw_uranium`, `uranium_powder` в рецептах нет;
+  есть только `createnuclear:thorium_ingot` (стержень тория) — торий не объединяется, рецепт рабочий.
+- KubeJS при загрузке пишет «Failed to parse recipe createnuclear:smithing/default_anti_radiation_*… Falling back to vanilla» —
+  предупреждение, рецепты перекраски костюма работают через ванильный разбор (то же у Deeper and Darker).
+
+**Совместимость:** Create 6.0.8 — ок, Mekanism — ок (свой уран/радиация; костюм Mekanism от радиации Create Nuclear не защищает —
+защита идёт через атрибут `createnuclear:irradiated_resistance`, который даёт костюм мода; эффект «Йод» мода — тоже его защита). Орипатия и ориджиниум
+Bob's не затронуты, иммунитеты рас не менялись. В моде есть код совместимости взрыва с Alex's Caves.
+Энциклопедия: карточка в `docs/encyclopedia/tech.md`, `build.py --check` — ОК. Игрокам — `docs/friends.md` «Ядерный реактор Create Nuclear и радиация».
+
+**Откат:** удалить строку `createnuclear` из `pack/modlist.txt`, `pack/mods/createnuclear.pw.toml`, `pack/kubejs/data/createnuclear/`,
+`pack/kubejs/server_scripts/createnuclear_no_grief.js`, ключ из `scripts/encyclopedia/categories.toml`, поднять версию, `packwiz refresh`.
+Блоки мода в мире после удаления пропадут (станут воздухом), предметы — исчезнут.

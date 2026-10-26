@@ -200,7 +200,7 @@ Create Ad Astra Recipes (1.0.0) — мини-мод только с рецепт
 - **Версия:** 0.6.6+1.20.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/northstar-redux)
 - **Что это:** Космос для Create в духе Galacticraft: ракеты собираются из блоков, нужны двигатели, топливо, навигатор и теплозащита; планеты открываются телескопом, есть электролиз, герметизаторы и скафандры. В сборке даёт ракеты и гравитацию, а сами планеты — Ad Astra. _(источник: docs сборки)_
 - **В сборке:** порт Create: Northstar под Create 6 (оригинал несовместим)
-- **В наших docs:** [compat.md](../compat.md) (52), [galacticraft.md](../galacticraft.md) (15), [roadmap.md](../roadmap.md) (11), [version-choice.md](../version-choice.md) (10), [enchanting-table.md](../enchanting-table.md) (8), [russification.md](../russification.md) (8)
+- **В наших docs:** [compat.md](../compat.md) (60), [galacticraft.md](../galacticraft.md) (15), [roadmap.md](../roadmap.md) (11), [version-choice.md](../version-choice.md) (10), [enchanting-table.md](../enchanting-table.md) (8), [russification.md](../russification.md) (8)
 <!-- auto:end card:northstar-redux -->
 
 ### Как играть
@@ -296,7 +296,7 @@ Northstar Redux (MIT; авторы Redstonneur1256, lightning2401) — косм�
 - **Версия:** 1.0.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/create-northstar-structures)
 - **Что это:** Лунные кратеры всех размеров и гигантский бассейн Южный полюс — Эйткен для Northstar, плюс Лунный компас и команда поиска. В сборке работает и на Луне Ad Astra (патч), с исправлением удаления мобов. _(источник: docs сборки)_
 - **В сборке:** биомы Луны под Redux 0.6+ и кратеры на Луне Ad Astra: patches/northstar_structures_fix.py
-- **В наших docs:** [compat.md](../compat.md) (27), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7), [russification.md](../russification.md) (6), [ntm.md](../ntm.md) (5)
+- **В наших docs:** [compat.md](../compat.md) (35), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7), [friends.md](../friends.md) (6), [russification.md](../russification.md) (6)
 <!-- auto:end card:create-northstar-structures -->
 
 ### Как играть
@@ -452,7 +452,7 @@ Creating Space (MIT; автор Real Ant Engineer) — ракеты на Create,
 <a id="mekanism-ad-astra-ores"></a>
 - **Версия:** 1.1.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/mekanism-ad-astra-ores)
 - **Что это:** Руды Mekanism на планетах Ad Astra. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (16), [jei.md](../jei.md) (10), [ntm.md](../ntm.md) (7), [galacticraft.md](../galacticraft.md) (4), [orespawn.md](../orespawn.md) (3), [roadmap.md](../roadmap.md) (3)
+- **В наших docs:** [compat.md](../compat.md) (21), [jei.md](../jei.md) (10), [ntm.md](../ntm.md) (7), [galacticraft.md](../galacticraft.md) (4), [orespawn.md](../orespawn.md) (3), [roadmap.md](../roadmap.md) (3)
 <!-- auto:end card:mekanism-ad-astra-ores -->
 
 ### Что даёт игроку

@@ -561,7 +561,7 @@ Botanical Extra Machinery 1.1.2 (`botanicalextramachinery`) — расширен
 - **Версия:** 1.20.1-0.11.4 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/occult-engineering)
 - **Что это:** Связка Create и Occultism. _(источник: docs сборки)_
 - **В сборке:** Occultism × Create
-- **В наших docs:** [compat.md](../compat.md) (27), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7), [russification.md](../russification.md) (6), [ntm.md](../ntm.md) (5)
+- **В наших docs:** [compat.md](../compat.md) (35), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7), [friends.md](../friends.md) (6), [russification.md](../russification.md) (6)
 <!-- auto:end card:occult-engineering -->
 
 ### Как играть
@@ -584,7 +584,7 @@ Create: Occult Engineering 0.11.4 (`occultengineering`): связка Occultism 
 - **Версия:** 1.3.1-1.20.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/deeper-and-darker-spellbooks)
 - **Что это:** Связка Iron's Spells 'n Spellbooks и Deeper and Darker. _(источник: docs сборки)_
 - **В сборке:** Iron's Spells × Deeper and Darker
-- **В наших docs:** [compat.md](../compat.md) (6), [enchanting-table.md](../enchanting-table.md) (2), [bosses.md](../bosses.md) (1), [roadmap.md](../roadmap.md) (1), [version-choice.md](../version-choice.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (7), [enchanting-table.md](../enchanting-table.md) (2), [bosses.md](../bosses.md) (1), [roadmap.md](../roadmap.md) (1), [version-choice.md](../version-choice.md) (1)
 <!-- auto:end card:deeper-and-darker-spellbooks -->
 
 ### Что даёт игроку
