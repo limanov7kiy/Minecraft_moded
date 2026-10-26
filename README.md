@@ -66,6 +66,7 @@
 | [docs/orespawn.md](docs/orespawn.md) | OreSpawn: ремейк Chaos Persists против оригинала 1.7.10, чего не хватает для порта |
 | [docs/wizardry-port.md](docs/wizardry-port.md) | Electroblob's Wizardry: опись недостающих заклинаний Redux против оригинала 1.12.2 и план переноса |
 | [docs/ntm.md](docs/ntm.md) | HBM's Nuclear Tech Mod (NTM): решение владельца не добавлять alpha-порты, сверка функций NTM с тем, что уже есть в сборке, список портов на будущее |
+| [docs/dedup.md](docs/dedup.md) | Логические дубли между модами: метод, очевидные и спорные группы, раздел «Энергия» (виды энергии и варианты), откат |
 | [docs/ysm-models.md](docs/ysm-models.md) | Модели игроков Yes Steve Model: где лежат, как перезагрузить, какие подключены, ограничения |
 | [docs/encyclopedia/INDEX.md](docs/encyclopedia/INDEX.md) | Справочник-энциклопедия: оглавление по категориям и алфавитный указатель всех модов (генерируется) |
 | [docs/encyclopedia/README-authoring.md](docs/encyclopedia/README-authoring.md) | Как писать в справочник: что генерируется (авто-блоки), что вручную, как добавить или перенести мод |
@@ -110,12 +111,18 @@
 | [scripts/tests/savecheck.js](scripts/tests/savecheck.js) | Замер сохранения мира по измерениям: автосейв, сохранение с flush (как выход из мира), во время генерации — см. `docs/performance.md` «Долгое сохранение» |
 | [scripts/tests/cn_nogrief.js](scripts/tests/cn_nogrief.js) | Проверка, что взрыв реактора Create Nuclear не ломает блоки (`createnuclear_no_grief.js`) — см. `docs/compat.md` «Create Nuclear» |
 | [scripts/tests/radsuit.js](scripts/tests/radsuit.js) | Проверка единого защитного костюма: костюм Create Nuclear защищает от радиации Mekanism и Create Nuclear, Hazmat не крафтится — см. `docs/compat.md` «Один защитный костюм» |
+| [scripts/tests/dedup_dump.js](scripts/tests/dedup_dump.js) | Выгрузка всех предметов и рецептов со стенда в JSON для аудита дублей — см. `docs/dedup.md` |
+| [scripts/dedup-audit/](scripts/dedup-audit/) | Аудит дублей: теги из jar, сложность крафта по графу рецептов, группы кандидатов, виды энергии — см. `docs/dedup.md` «Как считали» |
 | [scripts/clienttest/clientmobs.js](scripts/clienttest/clientmobs.js) | Клиентская проверка рендера мобов: по одному мобу каждого вида в ряд |
 | [scripts/clienttest/ExitTrace.java](scripts/clienttest/ExitTrace.java) | Java-агент для `test-client.sh`: печатает стек каждого `System.exit` |
 | [scripts/collect-diagnostics.bat](scripts/collect-diagnostics.bat) | Запуск двойным щелчком (Windows): вызывает `collect-diagnostics.ps1` |
 | [scripts/collect-diagnostics.ps1](scripts/collect-diagnostics.ps1) | Собирает логи и данные о ПК в один zip на рабочем столе — см. `docs/diagnostics.md` |
 | [scripts/memwatch.sh](scripts/memwatch.sh) | Слежение за кучей работающего сервера (поиск утечек): old gen и гистограммы объектов |
 | [scripts/jfr/JfrTop.java](scripts/jfr/JfrTop.java) | Разбор JFR-профиля серверного потока: топ методов и доля по модам |
+| [scripts/jfr/JfrMods.java](scripts/jfr/JfrMods.java) | JFR: «чьё время» в потоке — первый кадр мода от вершины стека, методы модов, события Forge по типу — см. `docs/performance.md` «Поток 67» |
+| [scripts/jfr/JfrMore.java](scripts/jfr/JfrMore.java) | JFR: CPU по потокам (сервер, генерация, Distant Horizons…), паузы GC, аллокации по модам и классам |
+| [scripts/jfr/JfrGrep.java](scripts/jfr/JfrGrep.java) | JFR: доля сэмплов с заданным методом в стеке и кто его вызывает (например `getChunkBlocking`) |
+| [scripts/tests/perfload.js](scripts/tests/perfload.js) | Нагрузочный замер сервера: покой → фейковые игроки → полёт с генерацией → save-all / flush; MSPT по фазам — `docs/performance.md` «Поток 67» |
 | [scripts/spore_infection_map.py](scripts/spore_infection_map.py) | Карта заражения мобов для Spore и SRP System по выгрузке реестра |
 
 ### Скрипты: проверка модов и совместимость

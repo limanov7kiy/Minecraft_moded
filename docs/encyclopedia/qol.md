@@ -200,7 +200,7 @@
 <a id="sophisticated-backpacks"></a>
 - **Версия:** 1.20.1-3.26.9.2194 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/sophisticated-backpacks)
 - **Что это:** Рюкзаки, которые можно ставить в мире, красить, расширять и улучшать множеством апгрейдов. _(источник: docs сборки)_
-- **В наших docs:** [client-checklist.md](../client-checklist.md) (1), [compat.md](../compat.md) (1), [friends.md](../friends.md) (1)
+- **В наших docs:** [client-checklist.md](../client-checklist.md) (1), [compat.md](../compat.md) (1), [dedup.md](../dedup.md) (1), [friends.md](../friends.md) (1)
 <!-- auto:end card:sophisticated-backpacks -->
 
 ### Как играть

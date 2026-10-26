@@ -40,3 +40,11 @@
 		# Поток 64: без сообщения в чат при входе «Chunky detected… LOD могут быть с дырами» (Chunky стоит ради прегенерации,
 		# docs/friends.md). Дыры в LOD закрываются, когда вы проходите рядом; предупреждения о памяти DH остаются включены.
 		showModCompatibilityWarningsOnStartup = false
+		# Поток 67: без сообщения в чат «G1 Garbage collector detected» при входе. Наш выбор — G1 с флагами Aikar (docs/friends.md);
+		# ZGC/Shenandoah на Java 17 для этой сборки не советуем. В лог предупреждение по-прежнему пишется.
+		showGarbageCollectorWarning = false
+
+[server]
+	# Поток 67, решение владельца В60: раздача LOD игрокам с сервера остаётся, но DH сам снижает скорость,
+	# если соединение игрока не справляется (лимит 500 КБ/с на игрока — по умолчанию, не меняли). Влияет только на выделенный сервер.
+	enableAdaptiveTransferSpeed = true

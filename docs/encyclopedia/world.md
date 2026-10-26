@@ -81,7 +81,7 @@
 <a id="legendary-survival-overhaul"></a>
 - **Версия:** 1.20.1-2.4.7 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/legendary-survival-overhaul)
 - **Что это:** Температура, жажда, повреждения конечностей и переработка здоровья для выживания. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (2), [roadmap.md](../roadmap.md) (1), [version-choice.md](../version-choice.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (2), [dedup.md](../dedup.md) (1), [roadmap.md](../roadmap.md) (1), [version-choice.md](../version-choice.md) (1)
 <!-- auto:end card:legendary-survival-overhaul -->
 
 ### Как играть
@@ -129,7 +129,7 @@
 - **Версия:** 2.0.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/natural_disasters)
 - **Что это:** 9 стихийных бедствий, которые могут возникать сами по себе. _(источник: docs сборки)_
 - **В сборке:** Natural Disasters! 2.0.0 (MCreator, YouTuber): метеоры, цунами, пожары, кислотный дождь, воронки, землетрясения; торнадо и песчаная буря отключены (дубли Weather2) модом disaster-ward
-- **В наших docs:** [compat.md](../compat.md) (34), [roadmap.md](../roadmap.md) (11), [friends.md](../friends.md) (2), [issue-history.md](../issue-history.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (34), [roadmap.md](../roadmap.md) (11), [friends.md](../friends.md) (2), [issue-history.md](../issue-history.md) (2), [performance.md](../performance.md) (1)
 <!-- auto:end card:natural_disasters -->
 
 ### Как играть
@@ -158,7 +158,7 @@
 <a id="serene-seasons"></a>
 - **Версия:** 9.1.0.3 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/serene-seasons)
 - **Что это:** Сезоны: смена цветов, температур и др. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (8), [roadmap.md](../roadmap.md) (3), [client-checklist.md](../client-checklist.md) (1), [version-choice.md](../version-choice.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (11), [performance.md](../performance.md) (4), [roadmap.md](../roadmap.md) (4), [client-checklist.md](../client-checklist.md) (1), [version-choice.md](../version-choice.md) (1)
 <!-- auto:end card:serene-seasons -->
 
 ### Как играть
@@ -186,7 +186,7 @@
 - **Версия:** Forge-1.20.1-5.1.4 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/serene-seasons-plus)
 - **Что это:** Развитие Serene Seasons: скорость дня и ночи по подсезонам, лучшее накопление и таяние снега. _(источник: docs сборки)_
 - **В сборке:** требует GabouLibs (удалена автором) — заменена нашей библиотекой pack/mods/gaboulibs-shim (patches/gaboulibs-shim)
-- **В наших docs:** [compat.md](../compat.md) (4), [roadmap.md](../roadmap.md) (2), [client-checklist.md](../client-checklist.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (7), [performance.md](../performance.md) (3), [roadmap.md](../roadmap.md) (3), [client-checklist.md](../client-checklist.md) (1)
 <!-- auto:end card:serene-seasons-plus -->
 
 ### Как играть
@@ -204,7 +204,7 @@
 - **Версия:** 1.20.1-2.8.3 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/weather-storms-tornadoes)
 - **Что это:** Бури, торнадо, ветер и множество эффектов частиц. _(источник: docs сборки)_
 - **В сборке:** Weather2 2.8.3 (Corosus/ProtoManly): штормы, торнадо, песчаные/снежные бури, сирены; профиль — pack/config (разрушение построек ВЫКЛ)
-- **В наших docs:** [compat.md](../compat.md) (23), [roadmap.md](../roadmap.md) (4), [issue-history.md](../issue-history.md) (2), [friends.md](../friends.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (27), [roadmap.md](../roadmap.md) (5), [performance.md](../performance.md) (3), [issue-history.md](../issue-history.md) (2), [friends.md](../friends.md) (1)
 <!-- auto:end card:weather-storms-tornadoes -->
 
 ### Как играть

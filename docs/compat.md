@@ -1706,3 +1706,21 @@ mm-compat пересобран из объединённых исходнико�
   они приведены к LF (`git ls-files --eol`), хэш `index.toml` в `pack.toml` снова совпадает с LF-версией, которую отдаёт GitHub.
 - Проверка: Windows, голый Forge 47.4.26 + мод + тестовый пак на локальном HTTP — остановка/обновление/повтор на старте/выход с кодом 0 (подробно — hosting.md).
   `scripts/test-server.sh` с полной сборкой на Linux в этом потоке не прогнан (на машине нет Linux/Docker/WSL) — ждёт облачного прогона.
+## Блокирующая догрузка чанков: Serene Seasons Plus, Falling Tree, Weather2 — mm-compat 0.5.13 (поток 67, 2026-10-26, сборка 2026.10.26-4)
+Нагрузочный тест `scripts/tests/perfload.js` (3 фейковых игрока появляются в несгенерированных местах): тик 54–58 с. JFR (`scripts/jfr/JfrGrep.java … getChunkBlocking`):
+главный поток ждёт генерации чанков, которые синхронно запросили моды из своих тиков — Serene Seasons Plus 5.1.4 (`ActiveSnowUpdateService`, снег/таяние вокруг игрока, 91 %),
+затем Falling Tree 4.3.4 (`LeafBreakingHandler.onBlockUpdate`: `getChunk` соседа до проверки `hasChunk`) и Weather2 2.8.3 (`StormObject.initFirstTime`: биом в точке новой тучи).
+Тот же класс бага, что у Mana and Artifice (`MnaChunkTickMixin`, 0.5.2). Исправления в mm-compat 0.5.13 (`SspSnowChunkMixin`, `FallingTreeLeafChunkMixin`, `Weather2StormBiomeMixin`, все `@Pseudo`, `require = 1`):
+не готовый (не FULL) чанк пропускается в этом тике; Weather2 берёт биом из источника биомов генератора без загрузки. Авторы модов: Gabou (SSP), RakSrinaNa (Falling Tree, LGPL-3.0),
+Corosus (Weather2) — здесь только перехват вызовов.
+- Замер до/после (сборка 2026.10.26-3, тот же стенд): макс. тик при появлении игроков 57,9 → 7,8 с, ср. MSPT 81,6 → 65,0; полёт ср 130,6 → 93,0, макс. 10,8 → 4,0 с. Подробности — `docs/performance.md`, «Поток 67».
+- Проверка: `test-server.sh` — `SERVER OK`, краш-отчётов нет, в логе `mm_compat: Serene Seasons Plus — снег/таяние только в готовых чанках…`, ошибок миксинов нет.
+- Остаток синхронных догрузок (не трогали): ванильный `CatSpawner` и соседние обновления от `ChaosPersists.setBlockFast` у края загруженной области.
+- Откат: `pack/mods/mm-compat-0.5.12.jar` из истории git вместо 0.5.13, `packwiz refresh`.
+
+## The Lost Cities: `City.isCityCenter` без `new Random` — mm-compat 0.5.14 (поток 67, 2026-10-26, сборка 2026.10.26-7)
+`City.isCityCenter` (The Lost Cities 1.20-7.5.7, McJty, MIT) создавал `new Random(seed)` на каждый вызов; через `getCityFactor` он вызывается для всей окрестности
+каждого чанка — ~26 % времени потоков генерации и ~110 МБ/с мусора. `LostCitiesCityCenterMixin` (`@Redirect` конструктора, `require = 1`) отдаёт
+`ReusableRandom` текущего потока с тем же сидом: алгоритм `java.util.Random` без `AtomicLong`, последовательность совпадает бит-в-бит (5 млн сидов — 0 расхождений).
+Генерация мира Chunky: 4,9–5,3 → 7,7 чанка/с. `SERVER OK`, ошибок миксинов нет. Подробности — `docs/performance.md`, «Поток 67».
+Откат: `pack/mods/mm-compat-0.5.13.jar` вместо 0.5.14, `packwiz refresh`.
