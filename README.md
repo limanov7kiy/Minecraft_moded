@@ -116,6 +116,10 @@
 | [scripts/collect-diagnostics.ps1](scripts/collect-diagnostics.ps1) | Собирает логи и данные о ПК в один zip на рабочем столе — см. `docs/diagnostics.md` |
 | [scripts/memwatch.sh](scripts/memwatch.sh) | Слежение за кучей работающего сервера (поиск утечек): old gen и гистограммы объектов |
 | [scripts/jfr/JfrTop.java](scripts/jfr/JfrTop.java) | Разбор JFR-профиля серверного потока: топ методов и доля по модам |
+| [scripts/jfr/JfrMods.java](scripts/jfr/JfrMods.java) | JFR: «чьё время» в потоке — первый кадр мода от вершины стека, методы модов, события Forge по типу — см. `docs/performance.md` «Поток 67» |
+| [scripts/jfr/JfrMore.java](scripts/jfr/JfrMore.java) | JFR: CPU по потокам (сервер, генерация, Distant Horizons…), паузы GC, аллокации по модам и классам |
+| [scripts/jfr/JfrGrep.java](scripts/jfr/JfrGrep.java) | JFR: доля сэмплов с заданным методом в стеке и кто его вызывает (например `getChunkBlocking`) |
+| [scripts/tests/perfload.js](scripts/tests/perfload.js) | Нагрузочный замер сервера: покой → фейковые игроки → полёт с генерацией → save-all / flush; MSPT по фазам — `docs/performance.md` «Поток 67» |
 | [scripts/spore_infection_map.py](scripts/spore_infection_map.py) | Карта заражения мобов для Spore и SRP System по выгрузке реестра |
 
 ### Скрипты: проверка модов и совместимость

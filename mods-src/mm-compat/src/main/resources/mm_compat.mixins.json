@@ -4,7 +4,8 @@
   "package": "dev.mcmoded.compat.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": ["SbwShipHitMixin", "FallingTreeDamageMixin", "MnaChunkTickMixin", "NorthstarCraterJoinMixin", "StructureTemplatePlaceMixin", "LostCitiesNeighborMixin", "DhChunkyBindMixin",
-             "ArknightsTickThrottleMixin", "TorchesMegaStructureLoadMixin", "TorchesMegaStructureSyncMixin"],
+             "ArknightsTickThrottleMixin", "TorchesMegaStructureLoadMixin", "TorchesMegaStructureSyncMixin",
+             "SspSnowChunkMixin", "FallingTreeLeafChunkMixin", "Weather2StormBiomeMixin"],
   "client": ["LycanitesFearLightMixin", "OriginFursReloadCacheMixin"],
   "injectors": { "defaultRequire": 0 }
 }
