@@ -23,15 +23,25 @@ final class AutoupdateConfig {
     static final ForgeConfigSpec.BooleanValue RETRY_ON_START;
     static final ForgeConfigSpec.ConfigValue<List<? extends String>> REMOVE_AFTER;
     static final ForgeConfigSpec.ConfigValue<List<? extends String>> DISABLE_AFTER;
+    static final ForgeConfigSpec.BooleanValue BACKUP;
+    static final ForgeConfigSpec.ConfigValue<List<? extends String>> BACKUP_DIRS;
 
     static {
         ForgeConfigSpec.Builder b = new ForgeConfigSpec.Builder();
         b.comment("Автообновление серверной сборки с GitHub при остановке сервера (docs/hosting.md, «Автообновление сервера с git»).",
             "Server pack auto-update from GitHub on server stop. Only runs on a dedicated server.");
-        ENABLED = b.comment("Включить обновление при остановке сервера / run packwiz-installer on server stop")
-            .define("enabled", true);
-        PACK_URL = b.comment("Ссылка на pack.toml сборки (raw.githubusercontent.com, ветка сборки) / pack.toml URL")
+        ENABLED = b.comment("Включить обновление при остановке сервера (по умолчанию выключено: включает хост осознанно, см. docs/hosting.md)",
+                "Run packwiz-installer on server stop (off by default)")
+            .define("enabled", false);
+        PACK_URL = b.comment("Ссылка на pack.toml сборки: по умолчанию тег autoupdate-stable (его двигает владелец после «да» на выкладку),",
+                "не живая ветка — перезапуск сервера без нового тега сборку не меняет / pack.toml URL (tag autoupdate-stable)")
             .define("pack_url", Updater.DEFAULT_PACK_URL);
+        BACKUP = b.comment("Перед обновлением копировать папки сборки (backup_dirs) и packwiz.json в " + Updater.BACKUP_DIR + "/;",
+                "при ошибке установщика вернуть копию целиком — сервер стартует на прежней версии. Нужно место на диске (~размер mods/ и config/)",
+                "Back up pack folders before updating and restore them completely if the installer fails")
+            .define("backup", true);
+        BACKUP_DIRS = b.comment("Папки в корне сервера, которые копируются и откатываются / folders to back up and roll back")
+            .defineListAllowEmpty(List.of("backup_dirs"), () -> new ArrayList<>(Updater.DEFAULT_BACKUP_DIRS), o -> o instanceof String);
         TIMEOUT_SECONDS = b.comment("Сколько секунд ждать packwiz-installer; дольше — процесс останавливается, обновление повторится на следующем старте",
                 "Seconds to wait for packwiz-installer before killing it")
             .defineInRange("timeout_seconds", Updater.DEFAULT_TIMEOUT_SECONDS, 10, 86400);
@@ -87,6 +97,8 @@ final class AutoupdateConfig {
         s.runOnWindows = RUN_ON_WINDOWS.get();
         s.removeAfter = new ArrayList<>(REMOVE_AFTER.get());
         s.disableAfter = new ArrayList<>(DISABLE_AFTER.get());
+        s.backup = BACKUP.get();
+        s.backupDirs = new ArrayList<>(BACKUP_DIRS.get());
         return s;
     }
 }

@@ -5,7 +5,7 @@ import java.nio.file.Path;
 /**
  * Ручной запуск того же обновления без Minecraft (проверка хостом или тест):
  * {@code java -cp mods/mm-autoupdate-<версия>.jar dev.mcmoded.autoupdate.Cli [--root <корень сервера>] [--timeout <с>]
- * [--windows] [--no-post] [<ссылка на pack.toml>]}. Код выхода 0 — обновлено, 2 — пропущено, 1 — ошибка.
+ * [--windows] [--no-post] [--no-backup] [<ссылка на pack.toml>]}. Код выхода 0 — обновлено, 2 — пропущено, 1 — ошибка.
  * Конфиг мода (config/mm-autoupdate.toml) здесь не читается: ссылка и параметры — из аргументов или значения по умолчанию.
  */
 public final class Cli {
@@ -21,6 +21,7 @@ public final class Cli {
                 case "--timeout" -> s.timeoutSeconds = Integer.parseInt(args[++i]);
                 case "--windows" -> s.runOnWindows = true;
                 case "--no-post" -> { s.removeAfter.clear(); s.disableAfter.clear(); }
+                case "--no-backup" -> s.backup = false;
                 case "--java" -> s.javaPath = args[++i];
                 default -> {
                     if (args[i].startsWith("-")) {

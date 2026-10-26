@@ -8,10 +8,13 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.DirectoryStream;
+import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.PathMatcher;
+import java.nio.file.SimpleFileVisitor;
 import java.nio.file.StandardCopyOption;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.time.ZonedDateTime;
@@ -39,10 +42,24 @@ import java.util.zip.ZipFile;
  * (ссылки и sha256 зафиксированы в настройках) → поставить маркер «обновление идёт» → запустить
  * {@code java -jar packwiz-installer-bootstrap.jar --bootstrap-no-update -g -s server <pack.toml>} в корне сервера
  * → после успеха убрать из mods/ клиентские jar и перенести необязательные моды в mods/optional/ → снять маркер.
- * Маркер остаётся при любой ошибке или таймауте: на следующем старте мод по нему понимает, что mods/ может быть неполным.
+ *
+ * <p>«Всё или ничего»: перед установщиком папки сборки (mods/, config/, kubejs/, defaultconfigs/) и манифест packwiz.json копируются
+ * в {@link #BACKUP_DIR}; при ошибке или таймауте установщика копия возвращается целиком, маркер снимается, сервер стартует на прежней
+ * версии, причина — в {@link #STATUS}. Маркер остаётся только если откат не удался (или копия выключена): тогда на следующем старте
+ * мод по нему понимает, что mods/ может быть неполным, и повторяет обновление.
  */
 public final class Updater {
-    public static final String DEFAULT_PACK_URL = "https://raw.githubusercontent.com/limanov7kiy/Minecraft_moded/refs/heads/claude/affectionate-davinci-4gddoh/pack/pack.toml";
+    /**
+     * Источник обновлений — тег {@code autoupdate-stable}, а не живая ветка сборки: тег двигает владелец после «да» на выкладку
+     * (docs/hosting.md, «Как одобряем»); пока тег стоит, перезапуски сервера сборку не меняют.
+     */
+    public static final String DEFAULT_PACK_URL = "https://raw.githubusercontent.com/limanov7kiy/Minecraft_moded/refs/tags/autoupdate-stable/pack/pack.toml";
+    /** Копия папок сборки перед обновлением; при ошибке установщика возвращается целиком. Хранится одна, последняя. */
+    public static final String BACKUP_DIR = ".mm-autoupdate.backup";
+    public static final List<String> DEFAULT_BACKUP_DIRS = List.of("mods", "config", "kubejs", "defaultconfigs");
+    /** Манифест packwiz-installer: что он поставил и с какими хэшами; откатывается вместе с папками, иначе установщик «не увидит» откат. */
+    static final String MANIFEST = "packwiz.json";
+    private static final long BACKUP_SPARE_BYTES = 256L << 20;
     public static final String DEFAULT_BOOTSTRAP_JAR = "packwiz-installer-bootstrap.jar";
     public static final String DEFAULT_BOOTSTRAP_URL = "https://github.com/packwiz/packwiz-installer-bootstrap/releases/download/v0.0.3/packwiz-installer-bootstrap.jar";
     public static final String DEFAULT_BOOTSTRAP_SHA256 = "a8fbb24dc604278e97f4688e82d3d91a318b98efc08d5dbfcbcbcab6443d116c";
@@ -86,6 +103,9 @@ public final class Updater {
         public boolean runOnWindows = false;
         public List<String> removeAfter = new ArrayList<>(DEFAULT_REMOVE_AFTER);
         public List<String> disableAfter = new ArrayList<>(DEFAULT_DISABLE_AFTER);
+        /** «Всё или ничего»: перед установкой копировать backupDirs в {@link #BACKUP_DIR}, при ошибке вернуть копию целиком. */
+        public boolean backup = true;
+        public List<String> backupDirs = new ArrayList<>(DEFAULT_BACKUP_DIRS);
     }
 
     public enum Result { UPDATED, SKIPPED, FAILED }
@@ -139,6 +159,19 @@ public final class Updater {
         cmd.add(s.packUrl);
         log.info("обновление сборки (" + reason + "): " + String.join(" ", cmd));
 
+        Path backupDir = root.resolve(BACKUP_DIR);
+        if (s.backup) {
+            try {
+                makeBackup(root, backupDir, s.backupDirs, log);
+            } catch (IOException | RuntimeException e) {
+                log.error("копия сборки перед обновлением не сделана: " + e + " — обновление отменено, сервер остаётся на текущей версии "
+                    + "/ backup failed, update cancelled");
+                deleteTree(backupDir);
+                writeStatus(root, "failed " + now() + " reason=" + reason + " backup-error", log);
+                return Result.FAILED;
+            }
+        }
+
         try {
             Files.writeString(root.resolve(MARKER), reason + " " + now() + System.lineSeparator(), StandardCharsets.UTF_8);
         } catch (IOException e) {
@@ -157,28 +190,23 @@ public final class Updater {
             if (!p.waitFor(Math.max(1, s.timeoutSeconds), TimeUnit.SECONDS)) {
                 p.destroyForcibly();
                 p.waitFor(15, TimeUnit.SECONDS);
-                log.error("packwiz-installer не уложился в " + s.timeoutSeconds + " с и остановлен; mods/ может быть обновлён частично — "
-                    + "обновление повторится при следующем запуске сервера (маркер " + MARKER + ") / timed out, will retry on next start");
-                writeStatus(root, "failed " + now() + " reason=" + reason + " timeout", log);
-                return Result.FAILED;
+                log.error("packwiz-installer не уложился в " + s.timeoutSeconds + " с и остановлен / timed out");
+                return fail(root, s, backupDir, reason, "timeout", log);
             }
             pump.join(5000);
             code = p.exitValue();
         } catch (IOException e) {
             log.error("не удалось запустить packwiz-installer: " + e + " / cannot start packwiz-installer");
-            writeStatus(root, "failed " + now() + " reason=" + reason + " start-error", log);
-            return Result.FAILED;
+            return fail(root, s, backupDir, reason, "start-error", log);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             log.error("ожидание packwiz-installer прервано / interrupted");
-            return Result.FAILED;
+            return fail(root, s, backupDir, reason, "interrupted", log);
         }
         if (code != 0) {
             log.error("packwiz-installer завершился с кодом " + code + "; последние строки / exit code " + code + ", last lines:");
             for (String l : tail) log.error("  " + l);
-            log.error("mods/ может быть обновлён частично — обновление повторится при следующем запуске сервера (маркер " + MARKER + ")");
-            writeStatus(root, "failed " + now() + " reason=" + reason + " exit=" + code, log);
-            return Result.FAILED;
+            return fail(root, s, backupDir, reason, "exit=" + code, log);
         }
         postProcess(root, s, log);
         pruneDuplicates(root, log);
@@ -191,6 +219,137 @@ public final class Updater {
         writeStatus(root, "ok " + now() + " reason=" + reason + " version=" + ver, log);
         log.info("обновление завершено, версия сборки " + ver + " / update finished, pack version " + ver);
         return Result.UPDATED;
+    }
+
+    /**
+     * Установщик не доработал: при включённой копии возвращаем папки сборки и манифест целиком («всё или ничего»), снимаем маркер —
+     * сервер стартует на прежней версии, причина остаётся в {@link #STATUS}. Если копия выключена или откат не удался, маркер
+     * остаётся: на следующем старте обновление повторится (retry_on_start), а mods/ до этого считается неполным.
+     */
+    private static Result fail(Path root, Settings s, Path backupDir, String reason, String why, Log log) {
+        if (!s.backup) {
+            log.error("mods/ может быть обновлён частично — обновление повторится при следующем запуске сервера (маркер " + MARKER + ")");
+            writeStatus(root, "failed " + now() + " reason=" + reason + " " + why, log);
+            return Result.FAILED;
+        }
+        try {
+            rollback(root, backupDir, s.backupDirs, log);
+        } catch (IOException | RuntimeException e) {
+            log.error("откат из " + BACKUP_DIR + " не удался: " + e + " — mods/ может быть неполным, обновление повторится при следующем "
+                + "запуске сервера (маркер " + MARKER + ") / rollback failed, will retry on next start");
+            writeStatus(root, "failed " + now() + " reason=" + reason + " " + why + " rollback-error", log);
+            return Result.FAILED;
+        }
+        try {
+            Files.deleteIfExists(root.resolve(MARKER));
+        } catch (IOException e) {
+            log.warn("не удалось снять маркер " + MARKER + ": " + e);
+        }
+        log.error("сборка возвращена к версии до обновления (" + packVersion(root) + "); причина — выше и в " + STATUS
+            + " / rolled back to the previous pack version");
+        writeStatus(root, "failed " + now() + " reason=" + reason + " " + why + " rolled-back version=" + packVersion(root), log);
+        return Result.FAILED;
+    }
+
+    /** Копия папок сборки и манифеста в backupDir (старая копия удаляется). Перед копированием — проверка места на диске. */
+    static void makeBackup(Path root, Path backupDir, List<String> dirs, Log log) throws IOException {
+        deleteTree(backupDir);
+        long need = 0;
+        List<Path> sources = new ArrayList<>();
+        for (String d : dirs) {
+            Path src = safeChild(root, d);
+            if (src == null || !Files.isDirectory(src)) continue;
+            sources.add(src);
+            need += treeSize(src);
+        }
+        Path manifest = root.resolve(MANIFEST);
+        if (Files.isRegularFile(manifest)) need += Files.size(manifest);
+        long usable = Files.getFileStore(root).getUsableSpace();
+        if (usable < need + BACKUP_SPARE_BYTES) {
+            throw new IOException("мало места на диске для копии: нужно " + (need >> 20) + " МБ, свободно " + (usable >> 20)
+                + " МБ / not enough disk space for backup");
+        }
+        Files.createDirectories(backupDir);
+        for (Path src : sources) copyTree(src, backupDir.resolve(src.getFileName()));
+        if (Files.isRegularFile(manifest)) Files.copy(manifest, backupDir.resolve(MANIFEST), StandardCopyOption.REPLACE_EXISTING);
+        log.info("копия сборки перед обновлением: " + BACKUP_DIR + "/ (" + (need >> 20) + " МБ: "
+            + String.join(", ", sources.stream().map(p -> p.getFileName().toString()).toList()) + ") / backup made");
+    }
+
+    /** Возвращает из backupDir всё, что там есть, поверх текущих папок (текущие удаляются целиком). */
+    static void rollback(Path root, Path backupDir, List<String> dirs, Log log) throws IOException {
+        if (!Files.isDirectory(backupDir)) throw new IOException("нет копии " + BACKUP_DIR);
+        for (String d : dirs) {
+            Path dst = safeChild(root, d);
+            Path src = backupDir.resolve(d);
+            if (dst == null || !Files.isDirectory(src)) continue;
+            deleteTree(dst);
+            moveTree(src, dst);
+            log.info("откат: " + d + "/ восстановлен из копии / restored from backup");
+        }
+        Path manifest = backupDir.resolve(MANIFEST);
+        if (Files.isRegularFile(manifest)) {
+            Files.move(manifest, root.resolve(MANIFEST), StandardCopyOption.REPLACE_EXISTING);
+        } else {
+            Files.deleteIfExists(root.resolve(MANIFEST));   // до обновления манифеста не было — не должно быть и после отката
+        }
+        deleteTree(backupDir);
+    }
+
+    /** Имя папки первого уровня в корне сервера; пути с разделителями, «..» и пустые — не принимаются. */
+    private static Path safeChild(Path root, String name) {
+        if (name == null || name.isBlank() || name.contains("/") || name.contains("\\") || name.equals(".") || name.equals("..")) return null;
+        return root.resolve(name.trim());
+    }
+
+    private static long treeSize(Path dir) throws IOException {
+        long[] n = {0};
+        Files.walkFileTree(dir, new SimpleFileVisitor<>() {
+            @Override public FileVisitResult visitFile(Path f, BasicFileAttributes a) { n[0] += a.size(); return FileVisitResult.CONTINUE; }
+        });
+        return n[0];
+    }
+
+    static void copyTree(Path src, Path dst) throws IOException {
+        Files.walkFileTree(src, new SimpleFileVisitor<>() {
+            @Override public FileVisitResult preVisitDirectory(Path d, BasicFileAttributes a) throws IOException {
+                Files.createDirectories(dst.resolve(src.relativize(d).toString()));
+                return FileVisitResult.CONTINUE;
+            }
+            @Override public FileVisitResult visitFile(Path f, BasicFileAttributes a) throws IOException {
+                Files.copy(f, dst.resolve(src.relativize(f).toString()), StandardCopyOption.REPLACE_EXISTING);
+                return FileVisitResult.CONTINUE;
+            }
+        });
+    }
+
+    /** Переименование (мгновенно на одном диске); если не вышло — копирование и удаление источника. */
+    private static void moveTree(Path src, Path dst) throws IOException {
+        try {
+            Files.move(src, dst);
+        } catch (IOException e) {
+            copyTree(src, dst);
+            deleteTree(src);
+        }
+    }
+
+    static void deleteTree(Path dir) {
+        if (!Files.exists(dir)) return;
+        try {
+            Files.walkFileTree(dir, new SimpleFileVisitor<>() {
+                @Override public FileVisitResult visitFile(Path f, BasicFileAttributes a) throws IOException {
+                    Files.delete(f);
+                    return FileVisitResult.CONTINUE;
+                }
+                @Override public FileVisitResult postVisitDirectory(Path d, IOException e) throws IOException {
+                    if (e != null) throw e;
+                    Files.delete(d);
+                    return FileVisitResult.CONTINUE;
+                }
+            });
+        } catch (IOException e) {
+            throw new IllegalStateException("не удалено " + dir + ": " + e, e);
+        }
     }
 
     private static void pump(InputStream in, Deque<String> tail, Log log) {
