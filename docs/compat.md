@@ -1686,3 +1686,15 @@ Bob's не затронуты, иммунитеты рас не менялись
 Решение владельца В35 «а»: фон тика сервера (Arknights Weapon — раз в 4 тика; Torches Become Sunlight — `syncState()` не чаще раза в секунду и урезанный бюджет при тике > 35 мс) влит в основную.
 mm-compat пересобран из объединённых исходников (0.5.7 из #80 + 0.5.8 Chunky/DH + 0.5.10 костюм Create Nuclear/радиация) под номером **0.5.12** — выше всех номеров в основной
 (0.5.11 оставлен Потоку 67). Код миксинов #80 — Поток 33; в `mm_compat.mixins.json` теперь ещё `DhChunkyBindMixin`. Откат — revert слияния и возврат `mm-compat-0.5.10.jar`.
+
+## Блокирующая догрузка чанков: Serene Seasons Plus, Falling Tree, Weather2 — mm-compat 0.5.13 (поток 67, 2026-10-26, сборка 2026.10.26-4)
+Нагрузочный тест `scripts/tests/perfload.js` (3 фейковых игрока появляются в несгенерированных местах): тик 54–58 с. JFR (`scripts/jfr/JfrGrep.java … getChunkBlocking`):
+главный поток ждёт генерации чанков, которые синхронно запросили моды из своих тиков — Serene Seasons Plus 5.1.4 (`ActiveSnowUpdateService`, снег/таяние вокруг игрока, 91 %),
+затем Falling Tree 4.3.4 (`LeafBreakingHandler.onBlockUpdate`: `getChunk` соседа до проверки `hasChunk`) и Weather2 2.8.3 (`StormObject.initFirstTime`: биом в точке новой тучи).
+Тот же класс бага, что у Mana and Artifice (`MnaChunkTickMixin`, 0.5.2). Исправления в mm-compat 0.5.13 (`SspSnowChunkMixin`, `FallingTreeLeafChunkMixin`, `Weather2StormBiomeMixin`, все `@Pseudo`, `require = 1`):
+не готовый (не FULL) чанк пропускается в этом тике; Weather2 берёт биом из источника биомов генератора без загрузки. Авторы модов: Gabou (SSP), RakSrinaNa (Falling Tree, LGPL-3.0),
+Corosus (Weather2) — здесь только перехват вызовов.
+- Замер до/после (сборка 2026.10.26-3, тот же стенд): макс. тик при появлении игроков 57,9 → 7,8 с, ср. MSPT 81,6 → 65,0; полёт ср 130,6 → 93,0, макс. 10,8 → 4,0 с. Подробности — `docs/performance.md`, «Поток 67».
+- Проверка: `test-server.sh` — `SERVER OK`, краш-отчётов нет, в логе `mm_compat: Serene Seasons Plus — снег/таяние только в готовых чанках…`, ошибок миксинов нет.
+- Остаток синхронных догрузок (не трогали): ванильный `CatSpawner` и соседние обновления от `ChaosPersists.setBlockFast` у края загруженной области.
+- Откат: `pack/mods/mm-compat-0.5.12.jar` из истории git вместо 0.5.13, `packwiz refresh`.
