@@ -1,3 +1,5 @@
 # Не раздаётся игрокам: служебные файлы сборки
 modlist.txt
 resourcepacks-src/
+# Серверный мод автообновления: клиент его не получает — у него свой mods/mm-autoupdate.pw.toml (side=server, url на raw GitHub)
+mods/mm-autoupdate-*.jar

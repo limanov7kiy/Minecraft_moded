@@ -80,7 +80,7 @@ optimization-ui = ["modernfix","ferrite-core","memoryleakfix","canary","ai-impro
 voice = ["simple-voice-chat","simple-radio","sound-physics-remastered","talkingheads","let-them-talk","vibrative-voice","vc-admin-voice-chat-moderation-tool","simplevoicechat-broadcast","admiral"]
 ysm = ["yes-steve-model"]
 libraries = ["geckolib","azurelib","citadel","cloth-config","curios","architectury-api","balm","baguettelib","almanac","botarium","caelus","cerbons-api","event-wrapper","fdlib","glitchcore","gtbcs-spelllib","irons-lib","kotlin-for-forge","ldlib","libx","lionfish-api","mezzconfig","moonlight","patchouli","placebo","playeranimator","photon-editor","resourceful-config","resourceful-lib","rhino","rpl","searchables","smartbrainlib","sophisticated-core","structure-gel-api","terrablender","aeroblender","yacl","zeta","apothic-attributes","attributes","attributefix","lexiconfig","cupboard","kubejs","guideme","modonomicon","almostunified","integrated-api","integrated-patches","lootintegrations","lootintegrations_cataclysm"]
-own = ["wizardry-restored","wizardry-golems","necromancers-delight","fishs-undead-rising-port","galacticraft-revival","mm-compat","mm-perf","ru-lang","voicechat-addons-forge","gaboulibs-shim","lycanites-refmap-fix","zombiehaveears","alshanex_familiars","arknights_weapon","cataclysm_spellbooks","cbc_nukes","mnaw","traveloptics","origin_visuals","eso-forge"]
+own = ["wizardry-restored","wizardry-golems","necromancers-delight","fishs-undead-rising-port","galacticraft-revival","mm-compat","mm-perf","mm-autoupdate","ru-lang","voicechat-addons-forge","gaboulibs-shim","lycanites-refmap-fix","zombiehaveears","alshanex_familiars","arknights_weapon","cataclysm_spellbooks","cbc_nukes","mnaw","traveloptics","origin_visuals","eso-forge"]
 
 # Дополнительные названия для поиска упоминаний в docs/ (если в docs мод назван иначе, чем в Modrinth).
 [doc_aliases]
@@ -139,6 +139,7 @@ fishs-undead-rising-port = "Частичный порт Fish's Undead Rising: м
 galacticraft-revival = "Перенос геймплея Galacticraft на Ad Astra: лунный данж с боссом, ключи и схемы."
 mm-compat = "Кодовые связки и исправления сборки: кислород скафандров, баги чужих модов, утечки памяти, JEI-категории."
 mm-perf = "Клиентские удобства: режим слабого ПК, отвязка клавиш модов, предупреждения о памяти, ускорение JEI."
+mm-autoupdate = "Серверное автообновление сборки с GitHub при остановке сервера: выключено по умолчанию, источник — тег, копия и откат при ошибке."
 ru-lang = "Клиентский мод: всегда включает русский ресурспак сборки и переводит захардкоженные строки модов."
 voicechat-addons-forge = "Forge-порт трёх аддонов Simple Voice Chat от Max Henkel: AudioPlayer, Enhanced Groups, Voice Chat Interaction."
 zombiehaveears = "Зомби слышат голос игроков в Simple Voice Chat; наша пересборка с исправленным mods.toml для Forge 47."

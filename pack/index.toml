@@ -82,7 +82,7 @@ hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "f2d7a649feda0887236a3361b652c70529003d38b9786529129a94e83c248222"
+hash = "e64e6755f1fc21a47f1946f82e14fbe2c91d47c0931ba7b9f6bbce0b1998f9ce"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -2870,6 +2870,15 @@ metafile = true
 [[files]]
 file = "mods/mezzconfig.pw.toml"
 hash = "c25495262a852dc02886ec8c4b695f30e53264a2e3d881dd36ee9de16a1ef499"
+metafile = true
+
+[[files]]
+file = "mods/mm-autoupdate-0.2.2.jar"
+hash = "0739f8658844c62971d8d0c7c1096a2ccd093494dbc74e7a9104a5967eb558dd"
+
+[[files]]
+file = "mods/mm-autoupdate.pw.toml"
+hash = "d36b1c0f6921a8b5b0f83af4c873c8eb36e029d8f0d0fc94120643f17cb071d6"
 metafile = true
 
 [[files]]
