@@ -420,7 +420,7 @@ OCC, EPT, энергоузел, ориджиниумная руда/криста
 <a id="origins-forge"></a>
 - **Версия:** 1.20.1-1.10.0.9 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/origins-forge)
 - **Что это:** Основа для рас: происхождения, слои выбора и силы (Forge-порт Origins). _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (13), [roadmap.md](../roadmap.md) (3), [performance.md](../performance.md) (2), [jei.md](../jei.md) (1), [russification-audit.md](../russification-audit.md) (1), [russification-glossary.md](../russification-glossary.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (13), [roadmap.md](../roadmap.md) (3), [performance.md](../performance.md) (2), [dedup.md](../dedup.md) (1), [jei.md](../jei.md) (1), [russification-audit.md](../russification-audit.md) (1)
 <!-- auto:end card:origins-forge -->
 
 ### Как играть
