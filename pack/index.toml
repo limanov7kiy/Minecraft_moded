@@ -78,7 +78,7 @@ hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "94e3c224d101fd26d96aa5ecb0a226b9b3d33460f296ab766076f3d7b2126e6f"
+hash = "b919dfa2e070b041ac5540981e877f7cecd0bea9a4a8a11f2ba33ef531c8eb64"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -111,6 +111,7 @@ hash = "cf5e599d8110f33b7483f43be29b6f2da325bf30d672b55e681ff7cfb6cdde99"
 [[files]]
 file = "config/voicechat/voicechat-server.properties"
 hash = "44e28ca45bf8648f18a9363105a7faa363d254ed8ace91ff523193b60786968d"
+preserve = true
 
 [[files]]
 file = "config/yes_steve_model/custom/arknights/AK_Chen.ysm.pw.toml"
@@ -2790,6 +2791,11 @@ metafile = true
 [[files]]
 file = "mods/mezzconfig.pw.toml"
 hash = "c25495262a852dc02886ec8c4b695f30e53264a2e3d881dd36ee9de16a1ef499"
+metafile = true
+
+[[files]]
+file = "mods/mm-autoupdate.pw.toml"
+hash = "b6ecdb05b71484f9f2107fcbc48cebe54c3defca065bf352089fb8e35d9a56c5"
 metafile = true
 
 [[files]]

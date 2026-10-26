@@ -1,0 +1,8 @@
+name = "Minecraft_moded Autoupdate"
+filename = "mm-autoupdate-0.1.0.jar"
+side = "server"
+
+[download]
+url = "https://raw.githubusercontent.com/limanov7kiy/Minecraft_moded/refs/heads/claude/affectionate-davinci-4gddoh/pack/mods/mm-autoupdate-0.1.0.jar"
+hash-format = "sha256"
+hash = "8545ca126ebb08f8b0d97efdfaad69c22f501a9c75c9dbcbb2b4a3125eba6c46"

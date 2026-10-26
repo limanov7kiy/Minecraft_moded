@@ -1,0 +1,19 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+license = "MIT"
+
+[[mods]]
+modId = "${mod_id}"
+version = "${mod_version}"
+displayName = "Minecraft_moded Autoupdate"
+authors = "Minecraft_moded"
+description = '''
+Серверное автообновление сборки Minecraft_moded с GitHub (docs/hosting.md, «Автообновление сервера с git»): при остановке сервера запускает packwiz-installer-bootstrap (-g -s server), чтобы к следующему старту mods/, config/ и kubejs/ были свежими. На клиенте и в одиночной игре ничего не делает.
+'''
+
+[[dependencies.${mod_id}]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "BOTH"

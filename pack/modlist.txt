@@ -328,3 +328,6 @@ mr iron-chests                    # Iron Chests 14.4.4 (alexbegt, GPL-3.0, both)
 ## Клиентские удобства (поток 28, решение владельца В28)
 mr controlling            # client: поиск по названию и категории в экране «Управление» + кнопка «только конфликты»; зависимость Searchables
 rp potato-craft-8x        # client: НЕОБЯЗАТЕЛЬНЫЙ ресурспак низких текстур 8x (CC-BY-4.0, автор — Modrinth «Potato Craft-8x»); в options.txt НЕ включён — игрок включает сам; ванильные текстуры, текстуры модов не меняет
+
+## Сервер: автообновление с git (поток 67; docs/hosting.md «Автообновление сервера с git»)
+#jar mm-autoupdate                # наш серверный мод (mods-src/mm-autoupdate, side=server, свой .pw.toml с url на raw GitHub): при остановке сервера запускает packwiz-installer-bootstrap (-g -s server) — к следующему старту mods/config/kubejs свежие; на Windows только предупреждает
