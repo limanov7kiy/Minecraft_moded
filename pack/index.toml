@@ -1489,6 +1489,10 @@ file = "kubejs/data/iceandfire/loot_tables/chest/graveyard.json"
 hash = "f17e210232a4e1f2fc47528ac057dfc6b5c2040f187906309182f344a09001cd"
 
 [[files]]
+file = "kubejs/data/iceandfire/loot_tables/chest/lightning_dragon_female_cave.json"
+hash = "d13c17620021507b316fe8d23574df04697d62edefc4657b95b9769071eef482"
+
+[[files]]
 file = "kubejs/data/iceandfire/loot_tables/chest/lightning_dragon_roost.json"
 hash = "d13c17620021507b316fe8d23574df04697d62edefc4657b95b9769071eef482"
 
