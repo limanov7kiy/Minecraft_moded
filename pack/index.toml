@@ -6,7 +6,7 @@ hash = "f1ceb92d0b8b72485894a12f2e434f475a127d59cae046ee5843be6318f6745e"
 
 [[files]]
 file = "config/DistantHorizons.toml"
-hash = "300a4b20831792af648c51f91eb1134ce465e9f56bb325daf63af6b7bf667338"
+hash = "382fc35061388d870c73b2f21907b6f1ff37e94488af500ce0c9cfa7f09a4977"
 
 [[files]]
 file = "config/Weather2/Misc.toml"
@@ -82,7 +82,7 @@ hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "5a288a20500a228a0ac52a7e72562d68bf780cb4be479aa26c7e253394afb620"
+hash = "e22e3815663eafc36dcaa327fd763715e4a97f52a6c339f6c8e616d4d7fbbc0f"
 
 [[files]]
 file = "config/modernfix-mixins.properties"

@@ -1,12 +1,12 @@
 name = "Minecraft_moded"
 author = "limanov7kiy"
-version = "2026.10.26-5"
+version = "2026.10.26-6"
 pack-format = "packwiz:1.1.0"
 
 [index]
 file = "index.toml"
 hash-format = "sha256"
-hash = "b432b7cb80fc1fd0e3c0bde958115c817d808d02f94b172bd1ab1c793d1cd65b"
+hash = "41debde5d2eb719c859791a1714f3b91472c23b85646ecb509249c127e218548"
 
 [versions]
 forge = "47.4.26"
