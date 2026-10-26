@@ -1,8 +1,9 @@
 """Подбор углов пальто и хвоста по позам default (вызывается из build.py после записи геометрии).
 
-Для каждой позы по очереди для костей CoatFront*, CoatBack*, CoatSide*, затем Tail0 ищется наименьший постоянный
+Для каждой позы по очереди для костей CoatFront*, CoatBack*, CoatSide*, затем SwordSwing и Tail0 ищется наименьший постоянный
 добавочный поворот (сначала 0, потом всё больше; у хвоста — ещё и вбок), при котором за весь цикл анимации (кадры через
-1/24 с — шаг ключей default) точки панели (кость с потомками) не попадают внутрь ног и меча (хвост — внутрь ног, меча и пальто), а в стоячих позах — не уходят ниже стоп;
+1/24 с — шаг ключей default) точки панели (кость с потомками) не попадают внутрь ног; меч (кость SwordSwing — ось у гарды) — внутрь ног, головы,
+и пальто в него; хвост — внутрь ног, меча и пальто, а в стоячих позах — не уходят ниже стоп;
 если без пересечений нельзя — берётся поворот с наименьшей суммой. Нижний сегмент передней полы сначала пробует висеть
 отвесно (когда верх полы лёг на бёдра — сидя, в лодке, — он свисает с колен, а не торчит вперёд). Постоянный (а не по кадрам) — чтобы полы не дёргались
 и между ключевыми кадрами ничего не проскакивало. Так полы «отходят» от шагающей ноги, ложатся на бёдра сидя и не
@@ -96,7 +97,10 @@ def inside(cubes, W, pts, eps=0.08):
         return hit
     H = np.c_[pts, np.ones(len(pts))]
     for n, C, lo, hi in cubes:
-        L = (H @ np.linalg.inv(W[n] @ C).T)[:, :3]
+        M = W[n] @ C
+        if abs(np.linalg.det(M[:3, :3])) < 1e-9:  # кость скрыта масштабом 0
+            continue
+        L = (H @ np.linalg.inv(M).T)[:, :3]
         hit |= np.all((L > lo + eps) & (L < hi - eps), axis=1)
     return hit
 
@@ -116,6 +120,7 @@ def tune(model_dir, an, poses, pre, par):
     legs = m.cubes_of(LEGS)
     tails = m.cubes_of([n for n in m.order if n.startswith("Tail")])
     sword = m.cubes_of(["Sword"])
+    heads = m.cubes_of(["Head", "Hair", "front_h1", "corner_h1"])  # голова и волосы (как в vivicheck)
     one = lambda rng: [(a, 0) for a in rng]
     both = lambda n: one([x * k for x in range(0, n, 4) for k in (1, -1)][1:])
     # хвост: вверх-вниз и вбок (z), сначала маленькие отклонения
@@ -125,19 +130,26 @@ def tune(model_dir, an, poses, pre, par):
         ORDER += [(f"CoatFront{s}", one(range(0, -96, -4))), (f"CoatFront{s}Low", both(64)),
                   (f"CoatBack{s}", one(range(0, 56, 4))), (f"CoatBack{s}Low", both(64)),
                   (f"CoatSide{s}", one(range(0, 64, 4)))]
-    ORDER.append(("Tail0", tail_c))  # хвост — после пол: у него больше свободы (вверх-вниз и вбок)
+    # меч: длинные ножны отходят назад от ног и пол (ось — перевязь у плеча); потом хвост — у него больше свободы
+    ORDER.append(("SwordSwing", sorted({(x, z) for x in range(-88, 64, 4) for z in range(-32, 36, 4)}, key=lambda v: (v[0] ** 2 + v[1] ** 2, v))))
+    ORDER.append(("Tail0", tail_c))
     own = {b: m.cubes_of(subtree(m, b)) for b, _ in ORDER}
     rigid = m.cubes_of(["Coat", "Hips", "UpperBody"])
     report = {}
 
     def score(bone, W, ground):
+        if bone == "SwordSwing":
+            sp = surf(sword, W)
+            coat = surf([c for b, _ in ORDER if b.startswith("Coat") for c in own[b]] + rigid, W)
+            sc = inside(legs, W, sp).sum() + inside(sword, W, coat).sum() + inside(heads, W, sp).sum()
+            return sc + ((sp[:, 1] < -0.3).sum() if ground else 0)
         if bone == "Tail0":
             tp = surf(tails, W)
             coat = surf([c for b, _ in ORDER if b != "Tail0" for c in own[b]] + rigid, W)
             sc = inside(legs, W, tp).sum() + inside(tails, W, coat).sum() + inside(tails, W, surf(sword, W)).sum()
             return sc + ((tp[:, 1] < -0.3).sum() if ground else 0)
         pts = surf(own[bone], W)
-        sc = inside(legs, W, pts).sum() + inside(sword, W, pts).sum()
+        sc = inside(legs, W, pts).sum()
         return sc + ((pts[:, 1] < -0.3).sum() if ground else 0)
 
     for pose, ctx, ground in poses:

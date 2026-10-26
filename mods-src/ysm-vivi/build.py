@@ -13,7 +13,7 @@
 
 Использование: python3 build.py [--out <папка>]
 """
-import argparse, copy, json, pathlib, sys
+import argparse, copy, json, math, pathlib, sys
 import numpy as np
 
 HERE = pathlib.Path(__file__).resolve().parent
@@ -597,16 +597,20 @@ def build_main(default_geo):
     return G
 
 
-SWORD_LONG = False  # вариант «б» (ножны до колен) — только для сравнения: в ходьбе их задевают ноги и полы
+SWORD_LONG = True  # В71 «б» (владелец): ножны до колен; вариант «а» (до пояса) — флаг --sword-short
 
 
 def sword(G, long=False):
-    """Кость Sword: pivot — наконечник ножен; ось меча — локальная +Y, затем поворот (наклон верха назад, диагональ)."""
+    """Кость Sword: pivot — наконечник ножен; ось меча — локальная +Y, затем поворот (наклон верха назад, диагональ).
+    Родитель — SwordSwing с осью у гарды: на ходьбе, беге и т. п. низ длинных ножен отходит назад от ног
+    и пол пальто (угол подбирает tune.py)."""
     if long:
-        px, py, pz, ang, back, L = 6.3, 9.5, 3.5, -22, -4, 33.0
+        px, py, pz, ang, back, L = 8.6, 9.5, 3.6, -26, -6, 33.0
     else:
         px, py, pz, ang, back, L = 3.0, 24.4, 3.42, -32, -8, 24.0
-    G.bone("Sword", "UpperBody", (px, py, pz), (back, 0, ang))
+    # ось качания — у гарды (рукоять над плечом остаётся на месте, отходит только низ ножен)
+    G.bone("SwordSwing", "UpperBody", (px - math.sin(math.radians(-ang)) * L * 0.72, py + math.cos(math.radians(-ang)) * L * 0.72, pz))
+    G.bone("Sword", "SwordSwing", (px, py, pz), (back, 0, ang))
     cb = G.cube
     sh = L * 0.72                       # ножны
     cb("Sword", (px - 0.6, py, pz - 0.36), (1.2, 0.7, 0.72), "steel")                 # наконечник
@@ -649,8 +653,8 @@ def parallels():
         "CoatFrontR": {"rotation": [f"-ysm.second_order('vv_cf', {sp}, 2, 0.6, 0) * 1.2 - 4 - {ln} * 32", 0, 0]},
         "CoatFrontLLow": {"rotation": [f"-ysm.second_order('vv_cfl', {sp}, 2, 0.6, 0) * 1.0 - 2 - {ln} * 12", 0, 0]},
         "CoatFrontRLow": {"rotation": [f"-ysm.second_order('vv_cfl', {sp}, 2, 0.6, 0) * 1.0 - 2 - {ln} * 12", 0, 0]},
-        "CoatBackL": {"rotation": [f"ysm.second_order('vv_cb', {sp}, 2, 0.6, 0) * 1.4 + ysm.second_order('vv_cv', {vs}, 2, 0.6, 0) * 0.4 + 4 + {ln} * 16", 0, "2"]},
-        "CoatBackR": {"rotation": [f"ysm.second_order('vv_cb', {sp}, 2, 0.6, 0) * 1.4 + ysm.second_order('vv_cv', {vs}, 2, 0.6, 0) * 0.4 + 4 + {ln} * 16", 0, "-2"]},
+        "CoatBackL": {"rotation": [f"ysm.second_order('vv_cb', {sp}, 2, 0.6, 0) * 1.4 + ysm.second_order('vv_cv', {vs}, 2, 0.6, 0) * 0.4 + 1 + {ln} * 16", 0, "2"]},
+        "CoatBackR": {"rotation": [f"ysm.second_order('vv_cb', {sp}, 2, 0.6, 0) * 1.4 + ysm.second_order('vv_cv', {vs}, 2, 0.6, 0) * 0.4 + 1 + {ln} * 16", 0, "-2"]},
         "CoatBackLLow": {"rotation": [f"ysm.second_order('vv_cbl', {sp}, 2, 0.6, 0) * 1.0 + {ln} * 18", 0,
                                       "ysm.second_order('vv_cy', math.clamp(0.02 * q.yaw_speed, -30, 30), 2, 0.6, 0)"]},
         "CoatBackRLow": {"rotation": [f"ysm.second_order('vv_cbl', {sp}, 2, 0.6, 0) * 1.0 + {ln} * 18", 0,
@@ -722,10 +726,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=str(OUT))
     ap.add_argument("--no-tune", action="store_true", help="без подбора углов (быстрая проба геометрии)")
-    ap.add_argument("--sword-long", action="store_true", help="вариант «б»: ножны до колен (только для сравнения)")
+    ap.add_argument("--sword-short", action="store_true", help="вариант «а»: ножны до пояса (для сравнения; В71 — «б»)")
     a = ap.parse_args()
     global SWORD_LONG
-    SWORD_LONG = a.sword_long
+    SWORD_LONG = not a.sword_short
     out = pathlib.Path(a.out)
     rd = PB.ysm_default()
     dgeo = json.loads(rd("models/main.json"))

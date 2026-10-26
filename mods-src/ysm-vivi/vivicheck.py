@@ -6,6 +6,7 @@
   хвост→ноги — точки хвоста (Tail*) внутри ног;   хвост→пальто — точки пальто внутри хвоста;
   меч→хвост — точки меча внутри хвоста;  меч→пальто — точки пальто внутри меча;  меч→ноги — точки меча внутри ног;            уши→волосы — точки ушей ниже макушки внутри головы не считаются (так задумано);
   ноги→тело — точки корпуса (UpperBody, Breast) внутри ног (у default в приседе ~1000 — поза поправлена);
+  меч→голова — точки меча внутри головы и волос;
   земля — точки пальто и хвоста ниже стоп (y < −0,3) в стоячих позах.
 Лежачие состояния (сон, плавание, элитры, смерть) не меряются.
 Использование: vivicheck.py [папка модели] (по умолчанию pack/config/yes_steve_model/custom/vivi).
@@ -25,6 +26,7 @@ POSES = [("idle", "main:idle", {}), ("gui", "main:gui", {}), ("walk", "main:walk
          ("climb", "main:climb", {}), ("climbing", "main:climbing", {}), ("ladder_up", "main:ladder_up", {}),
          ("ladder_down", "main:ladder_down", {})]
 LEGS = ("LeftLeg", "LeftLowerLeg", "LeftFoot", "RightLeg", "RightLowerLeg", "RightFoot")
+HEAD = ("Head", "Hair", "front_h1", "corner_h1")  # голова и волосы (уши не считаем)
 GROUND = {"idle", "walk", "run", "sneak", "sneaking"}
 
 
@@ -74,7 +76,7 @@ is_sword = lambda b: b == "Sword"
 
 def check(model, name, spec, ctx):
     ts = [i / 10 for i in range(10)]
-    res = {"ноги→пальто": 0, "хвост→ноги": 0, "хвост→пальто": 0, "меч→хвост": 0, "меч→пальто": 0, "меч→ноги": 0, "ноги→тело": 0, "земля": 0}
+    res = {"ноги→пальто": 0, "хвост→ноги": 0, "хвост→пальто": 0, "меч→хвост": 0, "меч→пальто": 0, "меч→ноги": 0, "ноги→тело": 0, "меч→голова": 0, "земля": 0}
     for t in ts:
         W = model.world(R.load_anims(D, spec + "," + PAR), t, dict(ctx))
         qs = model.quads(W)
@@ -84,6 +86,7 @@ def check(model, name, spec, ctx):
              "хвост→пальто": int(inside(tailb, coat).sum()), "меч→хвост": int(inside(tailb, sword).sum()),
              "меч→пальто": int(inside(boxes(model, W, is_sword), coat).sum()), "меч→ноги": int(inside(legs, sword).sum()),
              "ноги→тело": int(inside(legs, samples(qs, lambda b: b in ("UpperBody", "Breast"))).sum()),
+             "меч→голова": int(inside(boxes(model, W, lambda b: b in HEAD), sword).sum()),
              "земля": int((np.r_[coat[:, 1], tail[:, 1]] < -0.3).sum()) if name in GROUND else 0}
         for k, v in r.items():
             res[k] = max(res[k], v)
@@ -113,7 +116,7 @@ if __name__ == "__main__" and "--detail" in sys.argv:
             detail(m, p, t)
 elif __name__ == "__main__":
     m = R.Model(D / "models/main.json", D / "textures/vivi.png")
-    keys = ["ноги→пальто", "хвост→ноги", "хвост→пальто", "меч→хвост", "меч→пальто", "меч→ноги", "ноги→тело", "земля"]
+    keys = ["ноги→пальто", "хвост→ноги", "хвост→пальто", "меч→хвост", "меч→пальто", "меч→ноги", "ноги→тело", "меч→голова", "земля"]
     print(f"{'поза':9s} " + " ".join(f"{k:>12s}" for k in keys))
     tot = 0
     for name, spec, ctx in POSES:
