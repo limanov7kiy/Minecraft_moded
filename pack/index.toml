@@ -81,8 +81,12 @@ file = "config/jei/client/default/jei-client.ini"
 hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
 
 [[files]]
+file = "config/legendarysurvivaloverhaul/legendarysurvivaloverhaul-common.toml"
+hash = "849d8c22b15f44733ae4644b5d83b22a54ba3779c57481643ea2ce5ef14ba8f7"
+
+[[files]]
 file = "config/mm_pack_version.txt"
-hash = "cc660daceacf96c442fab8ee5d522c67d1b70d3dd7daa8f84b970e287e7a540f"
+hash = "f2d7a649feda0887236a3361b652c70529003d38b9786529129a94e83c248222"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
