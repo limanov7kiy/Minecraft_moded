@@ -51,7 +51,7 @@ _Обзор категории — вручную, следующие этапы
 - **Версия:** 0.4.4-cr6.0-SIMPLE-beta · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/precise-manufacturing)
 - **Что это:** Аддон Create: автоматизируемые рецепты с предметами TaC Zero. _(источник: docs сборки)_
 - **В сборке:** Create × TACZ
-- **В наших docs:** [compat.md](../compat.md) (43), [dedup.md](../dedup.md) (29), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7), [friends.md](../friends.md) (6)
+- **В наших docs:** [compat.md](../compat.md) (48), [dedup.md](../dedup.md) (29), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7), [friends.md](../friends.md) (6)
 <!-- auto:end card:precise-manufacturing -->
 
 ### Как играть
