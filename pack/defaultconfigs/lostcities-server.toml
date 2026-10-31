@@ -3,3 +3,7 @@
 [profiles]
 	selectedProfile = "rarecities"
 	selectedCustomJson = ""
+	# Города не строятся в чанках, через которые проходит структура из списка (Lost Cities смотрит ссылки структур
+	# в каждом чанке — вся площадь постройки, не только чанк старта). Первые 6 — значения Lost Cities по умолчанию;
+	# дальше все постройки Vampirism (поток 75, docs/vampirism.md). При слиянии с веткой SCP (поток 73) — один общий список.
+	avoidStructures = ["minecraft:mansion", "minecraft:jungle_pyramid", "minecraft:desert_pyramid", "minecraft:igloo", "minecraft:swamp_huts", "minecraft:pillager_outpost", "vampirism:crypt", "vampirism:vampire_hut", "vampirism:vampire_altar", "vampirism:mother", "vampirism:hunter_camp", "vampirism:hunter_outpost_plains", "vampirism:hunter_outpost_desert", "vampirism:hunter_outpost_badlands", "vampirism:hunter_outpost_vampire_forest"]

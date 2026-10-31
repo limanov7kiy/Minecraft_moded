@@ -331,3 +331,6 @@ rp potato-craft-8x        # client: НЕОБЯЗАТЕЛЬНЫЙ ресурсп�
 
 ## Сервер: автообновление с git (поток 67; docs/hosting.md «Автообновление сервера с git»)
 #jar mm-autoupdate                # наш серверный мод (mods-src/mm-autoupdate, side=server, свой .pw.toml с url на raw GitHub): на старте сервера (mode=on_start, по умолчанию с 0.3.0: есть новая версия — установка и выход с кодом 0, панель перезапускает) или при остановке (on_stop) запускает packwiz-installer-bootstrap (-g -s server); на Windows только предупреждает
+
+## Vampirism (поток 75, решение владельца В78 «а по возможности»; оценка — docs/vampirism.md, находки — docs/compat.md «Vampirism»)
+mr vampirism                     # both: Vampirism 1.20.1-1.10.17 (maxanier, cheaterpaul; LGPL-3.0) целиком: фракции вампиров и охотников, вампиры и охотники по Overworld, захват деревень, 9 построек, Вампирский лес (TerraBlender). Библиотека TeamLapen внутри jar. Оборотни, Integrations и аддон Iron's — НЕ ставим (условие В78). Города Lost Cities обходят постройки (defaultconfigs/lostcities-server.toml avoidStructures). ru_ru в jar неполный — 45 строк в russian-moded/assets/vampirism
