@@ -29,7 +29,7 @@ ServerEvents.tick(event => {
       'scp_ultimate:scp_site_1', 'scp_ultimate:scp_site_2', 'scp_ultimate:scp_site_3'].forEach(id => {
       try {
         var h = reg.getHolderOrThrow(RK.create(Reg.STRUCTURE, new RL(id)))
-        var r = level.getChunkSource().getGenerator().findNearestMapStructure(level, HS.direct([h]), new BP(0, 64, 0), 60, false)
+        var r = level.getChunkSource().getGenerator().findNearestMapStructure(level, HS.direct([h]), new BP(0, 64, 0), 3, false)
         if (r) { var p = r.getFirst(); SL.found.push(p); console.info('SCPLOAD found ' + id + ' ' + p.getX() + ' ' + p.getZ()) }
         else console.info('SCPLOAD found ' + id + ' none')
       } catch (e) { console.info('SCPLOAD error ' + id + ' ' + e) }
