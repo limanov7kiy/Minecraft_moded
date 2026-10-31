@@ -86,7 +86,7 @@ hash = "849d8c22b15f44733ae4644b5d83b22a54ba3779c57481643ea2ce5ef14ba8f7"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "b97166b5faf11824dd361b80d17f11893e54369ab05ad2b3d670ecb569c09a13"
+hash = "f4c4d87c7f1c051ea11be7266edda8d1827dfee3c8cd2f25f65d10ed99c12b16"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -123,6 +123,7 @@ hash = "cf5e599d8110f33b7483f43be29b6f2da325bf30d672b55e681ff7cfb6cdde99"
 [[files]]
 file = "config/voicechat/voicechat-server.properties"
 hash = "44e28ca45bf8648f18a9363105a7faa363d254ed8ace91ff523193b60786968d"
+preserve = true
 
 [[files]]
 file = "config/yes_steve_model/custom/arknights/AK_Chen.ysm.pw.toml"
