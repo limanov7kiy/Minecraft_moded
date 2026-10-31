@@ -2049,7 +2049,7 @@ Corosus (Weather2) — здесь только перехват вызовов.
 - **Откат:** убрать `TorchesChunkEdgePlaceMixin` и `TorchesPostProcessEdgeMixin` из `mm_compat.mixins.json` (или `git revert` PR), пересобрать mm-compat.
 - Авторство: Torches Become Sunlight — FreeFish и др., здесь только перехват вызовов; код мода не изменён.
 
-## Aether: гонка в `commonSetup` — «Mod loading error» при старте, mm-compat 0.5.18 (поток 76, 2026-10-31)
+## Aether: гонка в `commonSetup` — «Mod loading error» при старте, mm-compat 0.5.18 (поток 76, 2026-10-31, сборка 2026.10.31-10)
 **Симптом** (плавающий: 1 из 8 стартов сервера у потока 76): сервер не стартует, `Mod loading error has occurred`, `-- MOD aether --`,
 `ExceptionInInitializerError` ← `AetherPlacementModifiers.<clinit>` ← `Registry.register` ← `MappedRegistry` → `ConcurrentModificationException`
 в `HashMap.computeIfAbsent`.
