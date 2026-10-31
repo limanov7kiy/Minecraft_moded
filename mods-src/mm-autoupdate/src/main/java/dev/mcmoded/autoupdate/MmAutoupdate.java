@@ -2,9 +2,16 @@ package dev.mcmoded.autoupdate;
 
 import com.mojang.logging.LogUtils;
 import java.nio.file.Path;
+import java.time.ZonedDateTime;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.event.server.ServerStoppedEvent;
+import net.minecraftforge.event.server.ServerStoppingEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -24,6 +31,8 @@ import org.slf4j.Logger;
  * </ul>
  * С 0.4.0 обновление идёт только в окне update_window (по умолчанию ночь, 23:00–00:59 UTC); вне окна — обычный запуск.
  * Повтор оборванного обновления (маркер) окна не ждёт: mods/ может быть неполным.
+ * С 0.5.0 — самоперезапуск пустого сервера (idle_restart): в окне, при 0 игроков и новой сборке — обычная остановка с кодом 0,
+ * обновляет следующий старт (расписание панели Millida спящий сервер не будит).
  * В обоих режимах: если прошлое обновление оборвалось (маркер), на старте повторяет его и завершает сервер с кодом 0, чтобы не
  * поднимать мир на неполном наборе модов. На клиенте ничего не делает.
  */
@@ -41,6 +50,8 @@ public final class MmAutoupdate {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, AutoupdateConfig.SPEC, "mm-autoupdate.toml");
         FMLJavaModLoadingContext.get().getModEventBus().addListener(MmAutoupdate::onServerSetup);
         MinecraftForge.EVENT_BUS.addListener(MmAutoupdate::onServerStopped);
+        MinecraftForge.EVENT_BUS.addListener(MmAutoupdate::onServerStarted);
+        MinecraftForge.EVENT_BUS.addListener(MmAutoupdate::onServerStopping);
     }
 
     private static final Updater.Log LOG = new Updater.Log() {
@@ -100,6 +111,72 @@ public final class MmAutoupdate {
             LOGGER.error(TAG + "повторить обновление не удалось (" + r + "); продолжаю запуск с тем, что есть в mods/ — "
                 + "проверьте лог и " + Updater.STATUS + " / retry failed, starting anyway");
         }
+    }
+
+    private static ScheduledExecutorService idleTimer;
+    private static volatile boolean idleStopping;
+
+    /** Самоперезапуск пустого сервера: таймер в своём потоке (сеть не на главном), остановка — на главном потоке сервера. */
+    private static void onServerStarted(ServerStartedEvent e) {
+        if (!AutoupdateConfig.ENABLED.get() || !AutoupdateConfig.IDLE_RESTART.get()) return;
+        Updater.Settings s = AutoupdateConfig.settings();
+        if (s.updateWindow == null || s.updateWindow.isBlank()) {
+            LOGGER.info(TAG + "самоперезапуск пустого сервера выключен: update_window пуст (днём сервер сам не останавливается) / idle restart off: no window");
+            return;
+        }
+        int minutes = AutoupdateConfig.IDLE_CHECK_MINUTES.get();
+        MinecraftServer server = e.getServer();
+        LOGGER.info(TAG + "самоперезапуск пустого сервера: раз в " + minutes + " мин, только в окне " + s.updateWindow + " " + s.updateWindowTz
+            + " и при 0 игроков (idle_restart = false — выключить) / idle restart check every " + minutes + " min");
+        idleTimer = Executors.newSingleThreadScheduledExecutor(r -> {
+            Thread t = new Thread(r, "mm_autoupdate idle check");
+            t.setDaemon(true);
+            return t;
+        });
+        idleTimer.scheduleWithFixedDelay(() -> idleTick(server), minutes, minutes, TimeUnit.MINUTES);
+    }
+
+    private static void idleTick(MinecraftServer server) {
+        try {
+            if (idleStopping || !server.isRunning() || server.getPlayerCount() > 0) return;
+            Path root = FMLPaths.GAMEDIR.get();
+            Updater.Settings s = AutoupdateConfig.settings();
+            Updater.IdleDecision d = Updater.idleCheck(root, s, ZonedDateTime.now());
+            switch (d.result) {
+                case OUTSIDE_WINDOW, NO_WINDOW -> { return; }
+                case GUARD -> LOGGER.info(TAG + "самоперезапуск: " + d.why);
+                case CHECK_FAILED -> LOGGER.warn(TAG + "самоперезапуск: проверка pack.toml не удалась (" + d.why + ") — сервер не трогаю / check failed, not restarting");
+                case UP_TO_DATE -> LOGGER.info(TAG + "самоперезапуск: сервер пуст, сборка актуальна (" + Updater.packVersion(root) + ", проверка "
+                    + d.check.millis + " мс) — не останавливаю / up to date");
+                case SAME_VERSION -> LOGGER.warn(TAG + "самоперезапуск: " + d.why);
+                case RESTART -> server.execute(() -> idleStop(server, root, d.check));
+            }
+        } catch (RuntimeException ex) {
+            LOGGER.error(TAG + "самоперезапуск: ошибка проверки — сервер не трогаю / idle check error", ex);
+        }
+    }
+
+    /** На главном потоке: между проверкой и остановкой никто не войдёт; игрок успел войти — отмена. */
+    private static void idleStop(MinecraftServer server, Path root, Updater.Check c) {
+        if (idleStopping || !server.isRunning()) return;
+        int online = server.getPlayerCount();
+        if (online > 0) {
+            LOGGER.info(TAG + "самоперезапуск отменён: пока проверял обновление, вошёл игрок (" + online + ") / player joined, cancelled");
+            return;
+        }
+        if (Updater.windowBlock(AutoupdateConfig.settings(), ZonedDateTime.now()) != null) return;
+        idleStopping = true;
+        LOGGER.warn(TAG + "самоперезапуск: сервер пуст, в окне обновления вышла новая сборка " + Updater.packVersion(root) + " → " + c.remoteVersion
+            + " — сохраняю мир и останавливаю сервер (код выхода 0); панель хостинга запустит его снова, старт поставит обновление "
+            + "/ idle restart: empty server, new pack, saving and stopping with exit code 0");
+        Updater.markIdleRestart(root, c, LOG);
+        server.saveEverything(false, false, true);
+        server.halt(false);
+    }
+
+    private static void onServerStopping(ServerStoppingEvent e) {
+        idleStopping = true;
+        if (idleTimer != null) idleTimer.shutdownNow();
     }
 
     private static void onServerStopped(ServerStoppedEvent e) {

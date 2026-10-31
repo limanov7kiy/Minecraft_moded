@@ -13,6 +13,8 @@ final class AutoupdateConfig {
     static final ForgeConfigSpec.ConfigValue<String> PACK_URL;
     static final ForgeConfigSpec.ConfigValue<String> UPDATE_WINDOW;
     static final ForgeConfigSpec.ConfigValue<String> UPDATE_WINDOW_TZ;
+    static final ForgeConfigSpec.BooleanValue IDLE_RESTART;
+    static final ForgeConfigSpec.IntValue IDLE_CHECK_MINUTES;
     static final ForgeConfigSpec.ConfigValue<String> BOOTSTRAP_JAR;
     static final ForgeConfigSpec.ConfigValue<String> BOOTSTRAP_URL;
     static final ForgeConfigSpec.ConfigValue<String> BOOTSTRAP_SHA256;
@@ -63,6 +65,15 @@ final class AutoupdateConfig {
             .define("update_window", Updater.DEFAULT_UPDATE_WINDOW);
         UPDATE_WINDOW_TZ = b.comment("Часовой пояс окна: UTC, Asia/Yekaterinburg, +05:00 … / time zone of update_window")
             .define("update_window_tz", Updater.DEFAULT_UPDATE_WINDOW_TZ);
+        IDLE_RESTART = b.comment("Самоперезапуск пустого сервера (с 0.5.0): пока сервер работает, раз в idle_check_minutes — если сейчас внутри",
+                "update_window, игроков 0 и по pack_url новая сборка — сохранить мир и обычной остановкой выйти с кодом 0; панель запускает",
+                "сервер снова, и старт (on_start) ставит обновление. Нужно, когда расписание панели не будит пустой сервер (Millida).",
+                "Вне окна, при игроках, без сети и при пустом update_window — ничего; не чаще раза за окно и раз за версию (" + Updater.IDLE_MARKER + ")",
+                "Restart an empty server inside update_window when a new pack is available (exit 0, the panel restarts it)")
+            .define("idle_restart", true);
+        IDLE_CHECK_MINUTES = b.comment("Как часто (минуты) проверять при idle_restart; проверка вне окна и при игроках сеть не трогает",
+                "Minutes between idle_restart checks")
+            .defineInRange("idle_check_minutes", Updater.DEFAULT_IDLE_CHECK_MINUTES, 1, 1440);
         BACKUP = b.comment("Перед обновлением копировать папки сборки (backup_dirs) и packwiz.json в " + Updater.BACKUP_DIR + "/;",
                 "при ошибке установщика вернуть копию целиком — сервер стартует на прежней версии. Нужно место на диске (~размер mods/ и config/)",
                 "Back up pack folders before updating and restore them completely if the installer fails")

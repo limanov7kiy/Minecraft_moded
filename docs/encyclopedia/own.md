@@ -587,7 +587,7 @@ Sarkaz's Fables), добавлены в лут сундуков: `pack/kubejs/se
 
 <!-- auto:start card:mm-autoupdate -->
 <a id="mm-autoupdate"></a>
-- **Версия:** 0.4.0 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/mm-autoupdate-0.4.0.jar`
+- **Версия:** 0.5.0 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/mm-autoupdate-0.5.0.jar`
 - **Что это:** Серверное автообновление сборки с GitHub на старте сервера (или при остановке): выключено по умолчанию, источник — тег, копия и откат при ошибке. _(источник: docs сборки)_
 - **В сборке:** наш серверный мод (mods-src/mm-autoupdate, side=server, свой .pw.toml с url на raw GitHub): на старте сервера (mode=on_start, по умолчанию с 0.3.0; с 0.4.0 источник — ветка claude/autoupdate-stable и только в ночном окне update_window 23:00-00:59 UTC: есть новая версия — установка и выход с кодом 0, панель перезапускает) или при остановке (on_stop) запускает packwiz-installer-bootstrap (-g -s ser…
 <!-- auto:end card:mm-autoupdate -->
