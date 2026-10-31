@@ -78,6 +78,9 @@
     блокирующая догрузка чанков на главном потоке у Serene Seasons Plus, Falling Tree и Weather2 — тик до 54 с при входе в новое место;
     Lost Cities `City.isCityCenter` без new Random на каждый вызов — генерация +47–56 %, поток 67).
     Ad Astra в зависимостях — по Modrinth version id Forge-сборки (номер версии у Forge и Fabric одинаковый).
+  - `mods-src/mm-autoupdate` — серверный мод автообновления сборки с GitHub (side=server, свой `.pw.toml` с url на raw GitHub,
+    jar в `.packwizignore`): при остановке сервера запускает packwiz-installer-bootstrap; `docs/hosting.md`, «Автообновление сервера с git».
+    Версии/sha256 packwiz-installer зашиты в `Updater.java` — их же читает `export-pack.sh`.
   - `mods-src/voicechat-addons` — порт на Forge аддонов Simple Voice Chat от Max Henkel (Voice Chat Interaction,
     AudioPlayer, Enhanced Groups; оригиналы только Fabric). Сборка: `./gradlew build`, в `pack/mods/` — jar без `-reobf`.
   - `patches/gaboulibs-shim` — замена удалённой библиотеки для Serene Seasons Plus.

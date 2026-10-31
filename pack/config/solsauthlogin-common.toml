@@ -6,7 +6,7 @@
 	[general.timeout]
 		#Seconds before player is kicked for not logging in (0 = disabled)
 		#Range: 0 ~ 600
-		loginTimeoutSeconds = 180
+		loginTimeoutSeconds = 600
 		#Seconds to wait before teleporting player back after successful login
 		#Range: 1 ~ 60
 		gracePeriodSeconds = 5

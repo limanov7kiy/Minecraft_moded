@@ -21,7 +21,7 @@
 | [Звук и голосовой чат](voice.md) | 9 | Simple Voice Chat, рации, физика звука. |
 | [Модели и косметика (YSM)](ysm.md) | 1 | Yes Steve Model — свои модели игроков. Подробности — docs/ysm-models.md. |
 | [Библиотеки и инструменты](libraries.md) | 52 | Модули, нужные другим модам, а также KubeJS и Almost Unified. |
-| [Свои моды и патчи](own.md) | 20 | Моды и порты, собранные в этом репозитории (mods-src/, patches/). |
+| [Свои моды и патчи](own.md) | 21 | Моды и порты, собранные в этом репозитории (mods-src/, patches/). |
 <!-- auto:end cats -->
 
 ## Статьи
@@ -227,6 +227,7 @@
 - [Mekanism:More Machine](tech.md#mekanismmoremachine) — Техника и автоматизация
 - [Memory Leak Fix](optimization-ui.md#memoryleakfix) — Оптимизация, интерфейс и ресурспаки
 - [MezzConfig](libraries.md#mezzconfig) — Библиотеки и инструменты
+- [Minecraft_moded Autoupdate](own.md#mm-autoupdate) — Свои моды и патчи
 - [Minecraft_moded Compat](own.md#mm-compat) — Свои моды и патчи
 - [Minecraft_moded Perf](own.md#mm-perf) — Свои моды и патчи
 - [MNAOverpowered](magic.md#mnaoverpowered) — Магия
