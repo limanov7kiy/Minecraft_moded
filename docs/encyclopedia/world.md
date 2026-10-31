@@ -158,7 +158,7 @@
 <a id="serene-seasons"></a>
 - **Версия:** 9.1.0.3 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/serene-seasons)
 - **Что это:** Сезоны: смена цветов, температур и др. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (11), [performance.md](../performance.md) (5), [roadmap.md](../roadmap.md) (4), [client-checklist.md](../client-checklist.md) (1), [reset.md](../reset.md) (1), [vampirism.md](../vampirism.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (12), [performance.md](../performance.md) (5), [roadmap.md](../roadmap.md) (4), [client-checklist.md](../client-checklist.md) (1), [reset.md](../reset.md) (1), [vampirism.md](../vampirism.md) (1)
 <!-- auto:end card:serene-seasons -->
 
 ### Как играть
@@ -186,7 +186,7 @@
 - **Версия:** Forge-1.20.1-5.1.4 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/serene-seasons-plus)
 - **Что это:** Развитие Serene Seasons: скорость дня и ночи по подсезонам, лучшее накопление и таяние снега. _(источник: docs сборки)_
 - **В сборке:** требует GabouLibs (удалена автором) — заменена нашей библиотекой pack/mods/gaboulibs-shim (patches/gaboulibs-shim)
-- **В наших docs:** [compat.md](../compat.md) (7), [performance.md](../performance.md) (4), [roadmap.md](../roadmap.md) (3), [client-checklist.md](../client-checklist.md) (1), [vampirism.md](../vampirism.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (8), [performance.md](../performance.md) (4), [roadmap.md](../roadmap.md) (3), [client-checklist.md](../client-checklist.md) (1), [vampirism.md](../vampirism.md) (1)
 <!-- auto:end card:serene-seasons-plus -->
 
 ### Как играть
@@ -204,7 +204,7 @@
 - **Версия:** 1.20.1-2.8.3 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/weather-storms-tornadoes)
 - **Что это:** Бури, торнадо, ветер и множество эффектов частиц. _(источник: docs сборки)_
 - **В сборке:** Weather2 2.8.3 (Corosus/ProtoManly): штормы, торнадо, песчаные/снежные бури, сирены; профиль — pack/config (разрушение построек ВЫКЛ)
-- **В наших docs:** [compat.md](../compat.md) (27), [roadmap.md](../roadmap.md) (5), [performance.md](../performance.md) (4), [issue-history.md](../issue-history.md) (2), [friends.md](../friends.md) (1), [reset.md](../reset.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (28), [roadmap.md](../roadmap.md) (5), [performance.md](../performance.md) (4), [issue-history.md](../issue-history.md) (2), [friends.md](../friends.md) (1), [reset.md](../reset.md) (1)
 <!-- auto:end card:weather-storms-tornadoes -->
 
 ### Как играть

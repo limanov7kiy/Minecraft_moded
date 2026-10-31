@@ -11,7 +11,7 @@
 | [Магия](magic.md) | 36 | Заклинания, ритуалы, мана, кровь и дополнения к магическим модам. |
 | [Оружие](weapons.md) | 12 | Огнестрельное и тяжёлое оружие, пушки, патроны, зачарования для оружия. |
 | [Космос и ракеты](space.md) | 8 | Ракеты, планеты, скафандры, кислород и связки космических модов. |
-| [Мобы и боссы](mobs.md) | 17 | Новые существа, боссы, паразиты. Подробные таблицы боссов — docs/bosses.md. |
+| [Мобы и боссы](mobs.md) | 18 | Новые существа, боссы, паразиты. Подробные таблицы боссов — docs/bosses.md. |
 | [Измерения, данжи и структуры](dimensions.md) | 30 | Aether, Twilight Forest, Blue Skies, Undergarden, пещеры, заброшенные города и аддоны к ним. |
 | [Техника и автоматизация](tech.md) | 21 | Create, Mekanism, AE2, Refined Storage, корабли Valkyrien Skies. |
 | [Еда и фермерство](food.md) | 10 | Farmer's Delight и его связки с остальными модами. |
@@ -308,6 +308,7 @@
 - [Valkyrien Sails](tech.md#valkyrien-sails) — Техника и автоматизация
 - [Valkyrien Skies](tech.md#valkyrien-skies) — Техника и автоматизация
 - [Valkyrien Skies: Tournament Reforged](tech.md#vs-tournament-reforged) — Техника и автоматизация
+- [Vampirism](mobs.md#vampirism) — Мобы и боссы
 - [VC Admin - Voice Chat Moderation Tool](voice.md#vc-admin-voice-chat-moderation-tool) — Звук и голосовой чат
 - [Vibrative Voice](voice.md#vibrative-voice) — Звук и голосовой чат
 - [Voice Chat Interaction (Forge port)](own.md#voicechat-addons-forge) — Свои моды и патчи

@@ -86,7 +86,7 @@ hash = "849d8c22b15f44733ae4644b5d83b22a54ba3779c57481643ea2ce5ef14ba8f7"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "d684e3bb098f0cfb721d31d1c3f40617518baf4f2168b688dd46cfbb7e298f7a"
+hash = "5f43ec869ad6f598d33e3fffd1cc01fa13700b96f08a9c1de4f7c5b38f97062c"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -1279,7 +1279,7 @@ hash = "629f55aeaacc91d5a1974b3bcced5d30ea9020c02f473ad6152636f5072d406a"
 
 [[files]]
 file = "defaultconfigs/lostcities-server.toml"
-hash = "0eef4eb07f97787571abd8e43691e4e0247f5cfb1906252b61fee78b8d2b054a"
+hash = "05e2c928ebd655b0ccae0cd1f730b17bb18e900a9b8588e5855125176422afd2"
 
 [[files]]
 file = "kubejs/assets/mekmm/models/block/factory/painting/active/advanced.json"
@@ -3087,7 +3087,7 @@ metafile = true
 
 [[files]]
 file = "mods/ru-lang-1.0.0-client.jar"
-hash = "d4efdc5116bcad496159357f98be54978dc70e0a32b46af39d51d7058be8643d"
+hash = "b0f692d46049b93cca34c4ea3cfd22ce12293c7dcde50f3f4e34921c7ca1f03d"
 
 [[files]]
 file = "mods/sarkazs_furnace_side_fables-0.2.3-forge-1.20.1.jar"
@@ -3323,6 +3323,11 @@ metafile = true
 [[files]]
 file = "mods/valkyrien-skies.pw.toml"
 hash = "380bacc16e7736fc791bfd34ab38684d69642a93b80da0543cd06b7cee8a36d0"
+metafile = true
+
+[[files]]
+file = "mods/vampirism.pw.toml"
+hash = "2e23c17c935bd2bb323320e68b38c7bd0ffca332fc715c2f25ada7bf56ac7795"
 metafile = true
 
 [[files]]

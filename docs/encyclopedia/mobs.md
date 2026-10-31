@@ -3,7 +3,7 @@
 Новые существа, боссы, паразиты. Подробные таблицы боссов — docs/bosses.md.
 
 <!-- auto:start toc -->
-Модов в категории: **17**.
+Модов в категории: **18**.
 
 - [Alex's Mobs](#alexs-mobs)
 - [Alex's Mobs Interaction](#alexs-mobs-interaction)
@@ -22,6 +22,7 @@
 - [One-Click Parasite Transformation](#one-click-parasite-transformation)
 - [SCP Ultimate](#scp-ultimate)
 - [SCP: Foundation Requisites](#scp-foundation-requisites)
+- [Vampirism](#vampirism)
 
 Вернуться: [оглавление справочника](INDEX.md).
 <!-- auto:end toc -->
@@ -1251,6 +1252,52 @@ _Пока пусто — заполнит один из следующих эт�
 - **В сборке:** both: SCP: Foundation Requisites 3.2 (Egorich, MCreator; Modrinth): 25 комнат зон содержания (подземные Y ≤ 0, 5 наземных — в avoidStructures Lost Cities), ~2 000 блоков, биом Blue Forest в Overworld (MCreator-инъекция); огнестрел и патроны скрыты (дубли TACZ, рецептов у них нет). Перевод — russian-moded/assets/scpfr (поток 73)
 - **В наших docs:** [scp.md](../scp.md) (4), [compat.md](../compat.md) (2), [roadmap.md](../roadmap.md) (1)
 <!-- auto:end card:scp-foundation-requisites -->
+
+### Как играть
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Предметы/блоки
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Мобы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Эффекты
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### События
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Данжи/структуры (/locate)
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Чары
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Команды/гамерулы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Конфиги
+
+_Пока пусто — заполнит один из следующих этапов._
+
+## Vampirism
+
+<!-- auto:start card:vampirism -->
+<a id="vampirism"></a>
+- **Версия:** ? · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/jVZ0F1wn)
+- **Что это:** Вампиры и охотники: стать вампиром (кровь, страх солнца, умения) или охотником, захваты деревень, склепы, аванпосты, Вампирский лес. _(источник: docs сборки)_
+- **В сборке:** both: Vampirism 1.20.1-1.10.17 (maxanier, cheaterpaul; LGPL-3.0) целиком: фракции вампиров и охотников, вампиры и охотники по Overworld, захват деревень, 9 построек, Вампирский лес (TerraBlender). Библиотека TeamLapen внутри jar. Оборотни, Integrations и аддон Iron's — НЕ ставим (условие В78). Города Lost Cities обходят постройки (defaultconfigs/lostcities-server.toml avoidStructures). ru_ru в ja…
+- **В наших docs:** [vampirism.md](../vampirism.md) (38), [compat.md](../compat.md) (27), [roadmap.md](../roadmap.md) (2)
+<!-- auto:end card:vampirism -->
 
 ### Как играть
 

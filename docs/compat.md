@@ -1954,3 +1954,50 @@ Corosus (Weather2) — здесь только перехват вызовов.
 - Защита: `scripts/check-pack-index.py` (падает, если у файлов из `REQUIRED_PRESERVE` нет `preserve = true` или в индексе есть записи по шаблонам
   `.packwizignore`; зовут `export-pack.sh` и `test-server.sh`) и обёртка `scripts/refresh.sh` (refresh + возврат флагов + вычистка игнорируемых записей).
   Новый файл «обязательно preserve» — дописать в `REQUIRED_PRESERVE`. После слияния веток с правкой `pack/index.toml` — прогнать `check-pack-index.py`.
+
+## Vampirism (поток 75, 2026-10-31, сборка 2026.10.31-7, В78 «а по возможности»)
+Поставлен **Vampirism 1.20.1-1.10.17** (both, Modrinth; TeamLapen-lib внутри jar) целиком, с настройками по умолчанию. Оборотни, Vampirism Integrations
+и аддон Iron's — не ставились (условие В78). Оценка до установки — `docs/vampirism.md`, итог — там же «Итог установки».
+- **Lost Cities:** все 9 построек (`vampirism:crypt`, `vampire_hut`, `vampire_altar`, `mother`, `hunter_camp`, `hunter_outpost_{plains,desert,badlands,vampire_forest}`)
+  дописаны в общий `avoidStructures` (`pack/defaultconfigs/lostcities-server.toml`, тот же массив, что у SCP — поток 73). Проверено: список целиком попал в
+  `world/serverconfig/lostcities-server.toml` нового мира; все 9 построек находятся в мире (`scripts/tests/vampcheck.js`, ближайшие: лагерь охотников 160,−144;
+  алтарь 144,−496; аванпост на равнине −688,112; хижина −704,672; склеп −800,1856; логово Матери −2736,−5040).
+- **Origins / Arknights Races:** фейковый игрок с расой `arks:sarkaz_vampire` (слой `origins:origin`) + вампир Vampirism 5-го уровня — 400 тиков днём под открытым
+  небом, исключений нет; здоровье 16 → 24 (атрибуты расы и вампира складываются), еда 10 (урезание еды расы), кровь 20. Урон от солнца у фейкового игрока не
+  сработал (`isGettingSundamage=false`) — **проверить в игре** (у настоящего игрока счётчик солнца считается при тике с клиентом).
+- **Логический дубль по смыслу:** в Arknights Races уже есть подраса «Саркас-вампир» (`arks:sarkaz_vampire`: вампиризм при ударе, урезанная еда). Предметов-дублей нет,
+  механики разные (сила Origins против фракции Vampirism) — не тронуто, сообщено координатору.
+- **Миксины:** `Method overwrite conflict for getHiddenEffect in vampirism.mixins.json:MixinMobEffectInstance, previously written by apoli StatusEffectInstanceMixin` —
+  Vampirism пропускает свою перезапись (её заняла Apoli). Не краш; возможно, у вампира при наложении двух одинаковых эффектов (ночное зрение) скрытый эффект ведёт себя как в Apoli.
+- **LSO:** вампир Vampirism ест кровь, вода/температура LSO остаются — два счётчика (ожидаемо по оценке; LSO ослаблен В72). Двойного урона в тесте нет (тест без жажды) — смотреть в игре.
+- **Serene Seasons Plus / Weather2:** Vampirism проверяет день и видимость неба, не сезон; в модовых измерениях (Ad Astra, Northstar и др.) урона солнца нет
+  (`sundamageUnknownDimension = false` по умолчанию).
+- **Iron's / Wizardry:** общих хуков нет (оценка §2), аддон крови-маны не ставили.
+- **Almost Unified:** у Vampirism из общих тегов только `forge:crops/garlic`; других модов с чесноком в сборке нет, правок объединения не нужно (`hardrefs.py` не требовался).
+- **Дубли (`docs/dedup.md`):** предметов-дублей нет.
+- **Перевод:** `ru_ru` в jar есть, не хватало 45 строк (умения, броня вампира, торговля жителей, сообщения сервера) — `pack/resourcepacks-src/russian-moded/assets/vampirism/lang/ru_ru.json`.
+  13 строк книги-справочника (`vampirismguide`) не переводились — книга требует Guide-API, его в сборке нет.
+
+**Нагрузка** (стенд как в `docs/performance.md`: `perfload.js`, Xmx 6G, 4 ядра, свежий мир сид 12345; без Vampirism — сборка 2026.10.31-3, с ним — она же + Vampirism; по одному прогону):
+| Фаза | без | с Vampirism | Δ |
+|---|---|---|---|
+| Покой без игроков, MSPT ср / p95 | 3,9 / 7,1 | 5,3 / 12,8 | +1,4 мс |
+| 3 игрока, покой: ср / p95 | 89,5 / 146 | 89,6 / 185 | 0 % |
+| Полёт 3×10 бл/с (генерация): ср / p95 | 89,1 / 154 | 108,4 / 213 | **+22 %** |
+| Покой после полёта: ср / p95 | 125,9 / 203 | 141,8 / 240 | **+13 %** |
+| `save-all flush` | 47,3 с | 39,8 с | — |
+| Сущностей (3 игрока / после полёта) | 1018 / 1010 | 1007 / 945 | общий счёт мобов не вырос |
+
+Шум стенда ±10 %, поэтому +13–22 % — «заметно хуже» по ориентиру В78. Цифры и вариант «б» (заражение только по желанию, вампиры только в Вампирском лесу,
+без захватов деревень) отправлены координатору; **владелец (В80): «а» — оставить целиком.** Сервер: `SERVER OK`, краш-отчётов нет (оба прогона и короткий запуск `vampcheck.js`).
+**Клиент** (`scripts/test-client.sh`, сборка 2026.10.31-6 — до слияния #195, моды те же): `CLIENT OK` (594 с до меню, холодный старт под llvmpipe), ошибок Vampirism в логе нет.
+**Как переключить на «б» (если будет тормозить):** одним PR, без удаления мобов, поднять версию сборки.
+1. `pack/defaultconfigs/vampirism-server.toml` (Forge копирует в `world/serverconfig/` только нового мира; на работающем сервере — править
+   `world/serverconfig/vampirism-server.toml` и перезапустить): `disableMobBiteInfection = true`, `disableFangInfection = true`, `playersCanTurnPlayers = false`
+   (взять целиком сгенерированный модом файл и поменять значения — ключи лежат в своих секциях, частичный файл Forge «исправит» умолчаниями). В `vampirism-balance.toml` того же каталога — `randomRaidChance = 0.0`.
+2. `pack/config/vampirism-common.toml`: `villageTotemFactionChance = 0.0` (новые деревни нейтральные, захват не начинается сам).
+3. Вампиры только в Вампирском лесу — два тега с заменой: `pack/kubejs/data/vampirism/tags/worldgen/biome/has_spawn/vampire.json` и
+   `…/has_spawn/advanced_vampire.json` с содержимым `{"replace": true, "values": ["vampirism:vampire_forest"]}` (по умолчанию — `#minecraft:is_overworld`). Спавн уже существующих биомов меняется сразу после перезапуска.
+Постройки и Вампирский лес остаются; выигрыш ожидается в покое с игроками, на генерации — почти нет (её цену дают постройки и лес).
+**Откат:** удалить `pack/mods/vampirism.pw.toml`, `pack/resourcepacks-src/russian-moded/assets/vampirism/`, `vampirism:*` из `avoidStructures`, строку modlist;
+пересобрать ru-lang, поднять версию. В существующем мире блоки и мобы Vampirism пропадут (Forge предупредит о недостающих записях реестра).

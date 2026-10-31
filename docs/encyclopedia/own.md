@@ -419,7 +419,7 @@ Soiled, Corroded, Infested, Fragile («Смертное касание»), Immol
 - **Версия:** 0.2.0 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/necromancers-delight-0.2.0.jar`
 - **Что это:** Порт Wizardry — Necromancer's Delight (WinDanesz): 15 заклинаний некромантии и 12 артефактов. _(источник: docs сборки)_
 - **В сборке:** свой мод (both): pack/mods/necromancers-delight-*.jar из mods-src/necromancers-delight — порт Necromancer's Delight 1.12.2 (WinDanesz, GPL-3.0), docs/wizardry-port.md
-- **В наших docs:** [wizardry-port.md](../wizardry-port.md) (28), [roadmap.md](../roadmap.md) (21), [compat.md](../compat.md) (15), [client-checklist.md](../client-checklist.md) (4), [jei.md](../jei.md) (4), [enchanting-table.md](../enchanting-table.md) (3)
+- **В наших docs:** [wizardry-port.md](../wizardry-port.md) (28), [roadmap.md](../roadmap.md) (21), [compat.md](../compat.md) (16), [client-checklist.md](../client-checklist.md) (4), [jei.md](../jei.md) (4), [enchanting-table.md](../enchanting-table.md) (3)
 <!-- auto:end card:necromancers-delight -->
 
 ### Как играть

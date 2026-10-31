@@ -101,7 +101,7 @@ _Обзор категории — вручную, следующие этапы
 - **Версия:** 1.20.1-0.11.0+forge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/almostunified)
 - **Что это:** Объединяет дубли ресурсов разных модов в один (руды, слитки и т. д.). _(источник: docs сборки)_
 - **В сборке:** объединение дублей: один предмет на ресурс (config/almostunified)
-- **В наших docs:** [compat.md](../compat.md) (15), [roadmap.md](../roadmap.md) (5), [orespawn.md](../orespawn.md) (2), [dedup.md](../dedup.md) (1), [enchanting-table.md](../enchanting-table.md) (1), [jei.md](../jei.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (16), [roadmap.md](../roadmap.md) (5), [orespawn.md](../orespawn.md) (2), [dedup.md](../dedup.md) (1), [enchanting-table.md](../enchanting-table.md) (1), [jei.md](../jei.md) (1)
 <!-- auto:end card:almostunified -->
 
 ### Что даёт игроку
@@ -399,7 +399,7 @@ _Обзор категории — вручную, следующие этапы
 - **Версия:** 2001.6.5-build.26+forge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/kubejs)
 - **Что это:** Скрипты на JavaScript: правка рецептов, новые предметы, события мира. _(источник: docs сборки)_
 - **В сборке:** патчи данных/рецептов/добычи: pack/kubejs/
-- **В наших docs:** [compat.md](../compat.md) (64), [roadmap.md](../roadmap.md) (20), [expensive-crafts.md](../expensive-crafts.md) (11), [russification.md](../russification.md) (8), [orespawn.md](../orespawn.md) (6), [hosting.md](../hosting.md) (5)
+- **В наших docs:** [compat.md](../compat.md) (65), [roadmap.md](../roadmap.md) (20), [expensive-crafts.md](../expensive-crafts.md) (11), [russification.md](../russification.md) (8), [orespawn.md](../orespawn.md) (6), [hosting.md](../hosting.md) (5)
 <!-- auto:end card:kubejs -->
 
 ### Что даёт игроку
