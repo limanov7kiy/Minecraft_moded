@@ -1,8 +1,8 @@
 name = "Minecraft_moded Autoupdate"
-filename = "mm-autoupdate-0.3.0.jar"
+filename = "mm-autoupdate-0.4.0.jar"
 side = "server"
 
 [download]
-url = "https://raw.githubusercontent.com/limanov7kiy/Minecraft_moded/refs/tags/autoupdate-stable/pack/mods/mm-autoupdate-0.3.0.jar"
+url = "https://raw.githubusercontent.com/limanov7kiy/Minecraft_moded/refs/heads/claude/autoupdate-stable/pack/mods/mm-autoupdate-0.4.0.jar"
 hash-format = "sha256"
-hash = "c3022ea61fa37934630c598b8b87e432d04075304e8f3eda510909c6f227310a"
+hash = "29e3a0659eb10d76c389e0042c489c8d2d2646f2460339891d963d979fed97c5"

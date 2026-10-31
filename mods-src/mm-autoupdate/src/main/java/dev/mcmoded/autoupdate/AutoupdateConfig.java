@@ -11,6 +11,8 @@ final class AutoupdateConfig {
     static final ForgeConfigSpec.ConfigValue<String> MODE;
     static final ForgeConfigSpec.IntValue START_COOLDOWN_MINUTES;
     static final ForgeConfigSpec.ConfigValue<String> PACK_URL;
+    static final ForgeConfigSpec.ConfigValue<String> UPDATE_WINDOW;
+    static final ForgeConfigSpec.ConfigValue<String> UPDATE_WINDOW_TZ;
     static final ForgeConfigSpec.ConfigValue<String> BOOTSTRAP_JAR;
     static final ForgeConfigSpec.ConfigValue<String> BOOTSTRAP_URL;
     static final ForgeConfigSpec.ConfigValue<String> BOOTSTRAP_SHA256;
@@ -50,9 +52,17 @@ final class AutoupdateConfig {
                 "(защита от цикла «обновил → выход 0 → снова видит обновление»; после неудачной попытки — обычный запуск). 0 — без защиты",
                 "on_start: retry the same pack version at most once per this many minutes (loop guard)")
             .defineInRange("start_cooldown_minutes", Updater.DEFAULT_START_COOLDOWN_MINUTES, 0, 10080);
-        PACK_URL = b.comment("Ссылка на pack.toml сборки: по умолчанию тег autoupdate-stable (его двигает владелец после «да» на выкладку),",
-                "не живая ветка — перезапуск сервера без нового тега сборку не меняет / pack.toml URL (tag autoupdate-stable)")
+        PACK_URL = b.comment("Ссылка на pack.toml сборки: по умолчанию ветка claude/autoupdate-stable (её двигает координатор на сборки,",
+                "прошедшие Ревью), не живая основная ветка — пока стабильная ветка стоит, перезапуск сборку не меняет",
+                "/ pack.toml URL (branch claude/autoupdate-stable)")
             .define("pack_url", Updater.DEFAULT_PACK_URL);
+        UPDATE_WINDOW = b.comment("Окно обновления «ЧЧ:ММ-ЧЧ:ММ» (обе минуты включительно, через полночь можно) в поясе update_window_tz.",
+                "Вне окна сборка не проверяется и не обновляется (обычный запуск, в " + Updater.STATUS + " — skipped … outside-window),",
+                "в любом режиме. По умолчанию 23:00-00:59 UTC = 04:00–05:59 по Екатеринбургу (ночной перезапуск панели). Пусто — без ограничения.",
+                "Ошибка в значении — обновление пропускается. Update window HH:MM-HH:MM; empty = any time")
+            .define("update_window", Updater.DEFAULT_UPDATE_WINDOW);
+        UPDATE_WINDOW_TZ = b.comment("Часовой пояс окна: UTC, Asia/Yekaterinburg, +05:00 … / time zone of update_window")
+            .define("update_window_tz", Updater.DEFAULT_UPDATE_WINDOW_TZ);
         BACKUP = b.comment("Перед обновлением копировать папки сборки (backup_dirs) и packwiz.json в " + Updater.BACKUP_DIR + "/;",
                 "при ошибке установщика вернуть копию целиком — сервер стартует на прежней версии. Нужно место на диске (~размер mods/ и config/)",
                 "Back up pack folders before updating and restore them completely if the installer fails")
@@ -120,6 +130,8 @@ final class AutoupdateConfig {
         s.backup = BACKUP.get();
         s.backupDirs = new ArrayList<>(BACKUP_DIRS.get());
         s.keepBackup = KEEP_BACKUP.get();
+        s.updateWindow = UPDATE_WINDOW.get();
+        s.updateWindowTz = UPDATE_WINDOW_TZ.get();
         return s;
     }
 }

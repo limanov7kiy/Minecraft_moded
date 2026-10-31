@@ -1743,6 +1743,13 @@ mm-compat пересобран из объединённых исходнико�
   дальше. Защита от цикла — `.mm-autoupdate.attempt` (sha256 + время), `start_cooldown_minutes = 15`. Linux-прогон A/B/C/D и замеры — hosting.md,
   «Как проверено: 0.3.0». `scripts/test-server.sh` печатает `server exit code`.
 
+- **0.4.0 — ветка вместо тега и ночное окно (поток 78, сборка 2026.10.31-6, В79 «а + б»):** облачные сессии не могут пушить теги (403),
+  поэтому источник по умолчанию — ветка `claude/autoupdate-stable` (`refs/heads/claude/autoupdate-stable/pack/pack.toml`; jar мода в
+  `.pw.toml` — оттуда же). «/» в имени ветки raw GitHub и packwiz-installer 0.5.14 понимают (проверено на основной ветке). Новые ключи
+  `update_window` (по умолчанию `23:00-00:59`) и `update_window_tz` (`UTC`): вне окна — ни запроса к GitHub, ни обновления (`skipped …
+  outside-window`), в `on_start` и `on_stop`; ошибка в значении — тоже пропуск (`bad-window`); повтор по маркеру окна не ждёт. `Cli`
+  без `--window` окна не знает (start.sh/start.bat не меняются). Прогоны A/B/C — hosting.md, «Как проверено: 0.4.0».
+
 ## Блокирующая догрузка чанков: Serene Seasons Plus, Falling Tree, Weather2 — mm-compat 0.5.13 (поток 67, 2026-10-26, сборка 2026.10.26-4)
 Нагрузочный тест `scripts/tests/perfload.js` (3 фейковых игрока появляются в несгенерированных местах): тик 54–58 с. JFR (`scripts/jfr/JfrGrep.java … getChunkBlocking`):
 главный поток ждёт генерации чанков, которые синхронно запросили моды из своих тиков — Serene Seasons Plus 5.1.4 (`ActiveSnowUpdateService`, снег/таяние вокруг игрока, 91 %),

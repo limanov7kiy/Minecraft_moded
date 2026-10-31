@@ -22,6 +22,8 @@ import org.slf4j.Logger;
  * запускает сервер снова уже с новыми jar), ошибка — полный откат и запуск на прежней версии, нет изменений — обычный запуск;</li>
  * <li>{@code on_stop}: после {@link ServerStoppedEvent} (мир уже сохранён, игроки отключены) — к следующему старту сборка свежая.</li>
  * </ul>
+ * С 0.4.0 обновление идёт только в окне update_window (по умолчанию ночь, 23:00–00:59 UTC); вне окна — обычный запуск.
+ * Повтор оборванного обновления (маркер) окна не ждёт: mods/ может быть неполным.
  * В обоих режимах: если прошлое обновление оборвалось (маркер), на старте повторяет его и завершает сервер с кодом 0, чтобы не
  * поднимать мир на неполном наборе модов. На клиенте ничего не делает.
  */
@@ -56,7 +58,8 @@ public final class MmAutoupdate {
         }
         boolean onStart = onStartMode();
         LOGGER.info(TAG + (onStart ? "обновление на старте сервера (mode = on_start): " : "обновление при остановке сервера (mode = on_stop): ")
-            + AutoupdateConfig.PACK_URL.get());
+            + AutoupdateConfig.PACK_URL.get() + ", окно " + (AutoupdateConfig.UPDATE_WINDOW.get().isBlank() ? "— без ограничения"
+            : AutoupdateConfig.UPDATE_WINDOW.get() + " " + AutoupdateConfig.UPDATE_WINDOW_TZ.get()));
         if (Updater.markerExists(root)) {
             retryInterrupted(root);
             return;
@@ -103,6 +106,8 @@ public final class MmAutoupdate {
         if (ran) return;
         ran = true;
         if (!AutoupdateConfig.ENABLED.get() || onStartMode()) return;
-        Updater.run(FMLPaths.GAMEDIR.get(), AutoupdateConfig.settings(), LOG, "stop");
+        Updater.Settings s = AutoupdateConfig.settings();
+        if (Updater.blockedByWindow(FMLPaths.GAMEDIR.get(), s, LOG, "stop")) return;
+        Updater.run(FMLPaths.GAMEDIR.get(), s, LOG, "stop");
     }
 }
