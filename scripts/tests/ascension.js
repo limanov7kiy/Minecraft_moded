@@ -6,10 +6,10 @@
 // 4) ещё через 3 с: сердце лежит у вызванного босса и не лежит у обычного.
 // Вывод: строки ASCENSION … → OK|FAIL. Запуск: EXTRA_SERVER_SCRIPTS=<папка с файлом> + TEST_COMMANDS «#sleep 60».
 let mmAsc = null
-let mmAscDrops = 0   // сколько сердец вошло в мир (EntityJoinLevel) — независимо от поиска по области
+let mmAscDrops = 0, mmAscHeart = null   // сердца, вошедшие в мир (EntityJoinLevel), — независимо от поиска по области
 EntityEvents.spawned(event => {
   let e = event.entity
-  if (String(e.type) == 'minecraft:item' && String(e.getItem().getId()) == 'mm:ascended_heart') mmAscDrops++
+  if (String(e.type) == 'minecraft:item' && String(e.getItem().getId()) == 'mm:ascended_heart') { mmAscDrops++; mmAscHeart = e }
 })
 function ascLog(name, ok, info) { console.info(`ASCENSION ${name} ${info} → ${ok ? 'OK' : 'FAIL'}`) }
 
@@ -60,6 +60,11 @@ function ascCheckAndKill(server) {
   ascLog('boss tag+name', b.getTags().contains('mm_ascended') && b.hasCustomName(), `tags=${b.getTags()} name=${b.getCustomName() ? b.getCustomName().getString() : null} persistent=${b.isPersistenceRequired()}`)
   ascLog('plain max_health', p.getMaxHealth() < 1024 && !p.getTags().contains('mm_ascended'), `max=${p.getMaxHealth()} attack=${p.getAttribute(Attributes.ATTACK_DAMAGE).getBaseValue()}`)
   mmAsc.pos = { b: b.position(), p: p.position() }
+  // контроль поиска: обычный алмаз рядом с боссом
+  const ItemEntity = Java.loadClass('net.minecraft.world.entity.item.ItemEntity')
+  let ctl = new ItemEntity(level, b.x + 2, b.y + 1, b.z, Item.of('minecraft:diamond'))
+  level.addFreshEntity(ctl)
+  mmAsc.ctl = ctl
   ;[b, p].forEach(e => {
     e.kill()   // hurt(genericKill, MAX); если урон срезан капом Cataclysm — добиваем die()
     if (e.isAlive() && e.getHealth() > 0) { e.die(level.damageSources().genericKill()); e.setHealth(0) }
@@ -88,6 +93,8 @@ ServerEvents.tick(event => {
   else if (t == 360 && mmAsc && mmAsc.pos) {
     let level = event.server.getLevel('minecraft:overworld')
     let hb = ascHearts(level, mmAsc.pos.b), hp = ascHearts(level, mmAsc.pos.p)
+    let h = mmAscHeart, c = mmAsc.ctl
+    console.info(`ASCENSION debug heart=${h ? `alive=${h.isAlive()} removed=${h.getRemovalReason()} pos=${h.position()} age=${h.age}` : 'нет'} control=alive=${c.isAlive()} removed=${c.getRemovalReason()} pos=${c.position()}`)
     ascLog('heart from ascended', hb == 1 && mmAscDrops == 1, `hearts_near=${hb} hearts_spawned=${mmAscDrops}`)
     ascLog('no heart from plain', hp == 0, `hearts=${hp}`)
   }
