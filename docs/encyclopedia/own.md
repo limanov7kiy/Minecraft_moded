@@ -270,7 +270,7 @@ Soiled, Corroded, Infested, Fragile («Смертное касание»), Immol
 
 <!-- auto:start card:mm-compat -->
 <a id="mm-compat"></a>
-- **Версия:** 0.5.16 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/mm-compat-0.5.16.jar`
+- **Версия:** 0.5.17 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/mm-compat-0.5.17.jar`
 - **Что это:** Кодовые связки и исправления сборки: кислород скафандров, баги чужих модов, утечки памяти, JEI-категории. _(источник: docs сборки)_
 <!-- auto:end card:mm-compat -->
 

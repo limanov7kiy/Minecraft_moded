@@ -1296,7 +1296,7 @@ _Пока пусто — заполнит один из следующих эт�
 - **Версия:** ? · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/jVZ0F1wn)
 - **Что это:** Вампиры и охотники: стать вампиром (кровь, страх солнца, умения) или охотником, захваты деревень, склепы, аванпосты, Вампирский лес. _(источник: docs сборки)_
 - **В сборке:** both: Vampirism 1.20.1-1.10.17 (maxanier, cheaterpaul; LGPL-3.0) целиком: фракции вампиров и охотников, вампиры и охотники по Overworld, захват деревень, 9 построек, Вампирский лес (TerraBlender). Библиотека TeamLapen внутри jar. Оборотни, Integrations и аддон Iron's — НЕ ставим (условие В78). Города Lost Cities обходят постройки (defaultconfigs/lostcities-server.toml avoidStructures). ru_ru в ja…
-- **В наших docs:** [vampirism.md](../vampirism.md) (38), [compat.md](../compat.md) (27), [roadmap.md](../roadmap.md) (2)
+- **В наших docs:** [vampirism.md](../vampirism.md) (38), [compat.md](../compat.md) (27), [roadmap.md](../roadmap.md) (6)
 <!-- auto:end card:vampirism -->
 
 ### Как играть
