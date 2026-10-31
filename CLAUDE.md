@@ -83,7 +83,7 @@
     падение сервера «Chunk not there when requested» от мегаструктур Torches Become Sunlight у края загруженной области, поток 76).
     Ad Astra в зависимостях — по Modrinth version id Forge-сборки (номер версии у Forge и Fabric одинаковый).
   - `mods-src/mm-autoupdate` — серверный мод автообновления сборки с GitHub (side=server, свой `.pw.toml` с url на raw GitHub,
-    jar в `.packwizignore`): источник — ветка `claude/autoupdate-stable` (двигает координатор fast-forward на проверенные сборки), только в ночном окне `update_window` (23:00–00:59 UTC); на старте сервера (mode=on_start, по умолчанию; после обновления выход с кодом 0) или при остановке (on_stop) запускает packwiz-installer-bootstrap; `docs/hosting.md`, «Автообновление сервера с git».
+    jar в `.packwizignore`): источник — ветка `claude/autoupdate-stable` (двигает координатор fast-forward на проверенные сборки), окно `update_window` с 0.5.0 по умолчанию пусто (обновление при каждом перезапуске); на старте сервера (mode=on_start, по умолчанию; после обновления выход с кодом 0) или при остановке (on_stop) запускает packwiz-installer-bootstrap; с 0.5.0 пустой сервер при новой сборке сам перезапускается (idle_restart, в любое время, выход 0); `docs/hosting.md`, «Автообновление сервера с git».
     Версии/sha256 packwiz-installer зашиты в `Updater.java` — их же читает `export-pack.sh`.
   - `mods-src/voicechat-addons` — порт на Forge аддонов Simple Voice Chat от Max Henkel (Voice Chat Interaction,
     AudioPlayer, Enhanced Groups; оригиналы только Fabric). Сборка: `./gradlew build`, в `pack/mods/` — jar без `-reobf`.
