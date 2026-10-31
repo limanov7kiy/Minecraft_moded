@@ -86,7 +86,7 @@ hash = "849d8c22b15f44733ae4644b5d83b22a54ba3779c57481643ea2ce5ef14ba8f7"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "e4d4f5f87f1718e0db87fe18293ff00667d40a20bd7977007a058b62d46f0315"
+hash = "ccd9d7e52a097c0a10bb3970c246c5bfb4668a5b4e2f748c2bac1a1c9f5fdf9d"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -2927,7 +2927,7 @@ metafile = true
 
 [[files]]
 file = "mods/mm-autoupdate.pw.toml"
-hash = "0062e8ec79f94a5aaadf5752caf2a0b1bb91626eb679c67ffea56ac5d7b47580"
+hash = "65975f439db29c58e49bf488c1430244e7568cec91a585fb0cc71327dec70232"
 metafile = true
 
 [[files]]

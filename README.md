@@ -206,7 +206,7 @@
 | [mods-src/voicechat-addons/README.md](mods-src/voicechat-addons/README.md) | Порт на Forge аддонов Simple Voice Chat (Voice Chat Interaction, AudioPlayer, Enhanced Groups) |
 | [mods-src/mm-compat/](mods-src/mm-compat/) | Кодовые связки и исправления сборки (кислород скафандров, фризы, утечки памяти и др.) |
 | [mods-src/mm-perf/](mods-src/mm-perf/) | Клиентские удобства: режим слабого ПК, клавиши «Не назначено», подсказки о памяти |
-| [mods-src/mm-autoupdate/](mods-src/mm-autoupdate/) | Серверный мод: в ночном окне (update_window) с ветки `claude/autoupdate-stable` — на старте сервера (on_start, выход 0 после обновления) или при остановке (on_stop) обновляет сборку с GitHub через packwiz-installer (хостинг без команды перед стартом; `docs/hosting.md`) |
+| [mods-src/mm-autoupdate/](mods-src/mm-autoupdate/) | Серверный мод: с ветки `claude/autoupdate-stable` — на старте сервера (on_start, выход 0 после обновления) или при остановке (on_stop) обновляет сборку с GitHub через packwiz-installer (хостинг без команды перед стартом; с 0.5.0 — при каждом перезапуске, а пустой сервер при новой сборке сам перезапускается; `docs/hosting.md`) |
 | [mods-src/disaster-ward/](mods-src/disaster-ward/) | Блок-оберег от катаклизмов, заражения и ориджиниумной бури; редкий спавн бедствий |
 | [mods-src/ru-lang/](mods-src/ru-lang/) | Клиентский мод, всегда включающий русский ресурспак сборки |
 | [mods-src/jar-ports/](mods-src/jar-ports/) | Классы-переходники для портов чужих jar |

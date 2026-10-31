@@ -8,7 +8,7 @@ version = "${mod_version}"
 displayName = "Minecraft_moded Autoupdate"
 authors = "Minecraft_moded"
 description = '''
-Серверное автообновление сборки Minecraft_moded с GitHub (docs/hosting.md, «Автообновление сервера с git»): на старте сервера (mode = on_start, до загрузки мира) или после его остановки (on_stop) запускает packwiz-installer-bootstrap (-g -s server); после обновления на старте выходит с кодом 0, чтобы панель хостинга запустила сервер на новых модах. На клиенте и в одиночной игре ничего не делает.
+Серверное автообновление сборки Minecraft_moded с GitHub (docs/hosting.md, «Автообновление сервера с git»): на старте сервера (mode = on_start, до загрузки мира) или после его остановки (on_stop) запускает packwiz-installer-bootstrap (-g -s server); после обновления на старте выходит с кодом 0, чтобы панель хостинга запустила сервер на новых модах; пустой сервер при новой сборке сам останавливается (код 0) для обновления. На клиенте и в одиночной игре ничего не делает.
 '''
 
 [[dependencies.${mod_id}]]

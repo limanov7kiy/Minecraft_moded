@@ -13,6 +13,9 @@ final class AutoupdateConfig {
     static final ForgeConfigSpec.ConfigValue<String> PACK_URL;
     static final ForgeConfigSpec.ConfigValue<String> UPDATE_WINDOW;
     static final ForgeConfigSpec.ConfigValue<String> UPDATE_WINDOW_TZ;
+    static final ForgeConfigSpec.BooleanValue IDLE_RESTART;
+    static final ForgeConfigSpec.IntValue IDLE_CHECK_MINUTES;
+    static final ForgeConfigSpec.ConfigValue<String> IDLE_RESTART_WINDOW;
     static final ForgeConfigSpec.ConfigValue<String> BOOTSTRAP_JAR;
     static final ForgeConfigSpec.ConfigValue<String> BOOTSTRAP_URL;
     static final ForgeConfigSpec.ConfigValue<String> BOOTSTRAP_SHA256;
@@ -56,13 +59,25 @@ final class AutoupdateConfig {
                 "прошедшие Ревью), не живая основная ветка — пока стабильная ветка стоит, перезапуск сборку не меняет",
                 "/ pack.toml URL (branch claude/autoupdate-stable)")
             .define("pack_url", Updater.DEFAULT_PACK_URL);
-        UPDATE_WINDOW = b.comment("Окно обновления «ЧЧ:ММ-ЧЧ:ММ» (обе минуты включительно, через полночь можно) в поясе update_window_tz.",
-                "Вне окна сборка не проверяется и не обновляется (обычный запуск, в " + Updater.STATUS + " — skipped … outside-window),",
-                "в любом режиме. По умолчанию 23:00-00:59 UTC = 04:00–05:59 по Екатеринбургу (ночной перезапуск панели). Пусто — без ограничения.",
-                "Ошибка в значении — обновление пропускается. Update window HH:MM-HH:MM; empty = any time")
+        UPDATE_WINDOW = b.comment("Окно обновления на старте «ЧЧ:ММ-ЧЧ:ММ» (обе минуты включительно, через полночь можно) в поясе update_window_tz.",
+                "Пусто (по умолчанию с 0.5.0) — обновлять при каждом перезапуске. Если задано — вне окна сборка не проверяется (обычный запуск,",
+                "в " + Updater.STATUS + " — skipped … outside-window); ошибка в значении — обновление пропускается.",
+                "Update window HH:MM-HH:MM; empty (default) = update on every start")
             .define("update_window", Updater.DEFAULT_UPDATE_WINDOW);
         UPDATE_WINDOW_TZ = b.comment("Часовой пояс окна: UTC, Asia/Yekaterinburg, +05:00 … / time zone of update_window")
             .define("update_window_tz", Updater.DEFAULT_UPDATE_WINDOW_TZ);
+        IDLE_RESTART = b.comment("Самоперезапуск пустого сервера (с 0.5.0): пока сервер работает, раз в idle_check_minutes — если игроков 0",
+                "(и сейчас внутри idle_restart_window, если оно задано) и по pack_url новая сборка — сохранить мир и обычной остановкой выйти",
+                "с кодом 0; панель запускает сервер снова, и старт (on_start) ставит обновление. Нужно, когда расписание панели не будит",
+                "пустой сервер (Millida). При игроках, без сети и вне idle_restart_window — ничего; ради одной версии — один раз (" + Updater.IDLE_MARKER + ")",
+                "Restart an empty server when a new pack is available (exit 0, the panel restarts it)")
+            .define("idle_restart", true);
+        IDLE_CHECK_MINUTES = b.comment("Как часто (минуты) проверять при idle_restart; проверка вне окна и при игроках сеть не трогает",
+                "Minutes between idle_restart checks")
+            .defineInRange("idle_check_minutes", Updater.DEFAULT_IDLE_CHECK_MINUTES, 1, 1440);
+        IDLE_RESTART_WINDOW = b.comment("Когда можно самоперезапускаться: «ЧЧ:ММ-ЧЧ:ММ» в поясе update_window_tz; пусто (по умолчанию) — в любое время",
+                "(каждая новая версия — один раз; с окном — не чаще раза за окно). Ошибка в значении — самоперезапуска нет. Idle restart window; empty = any time")
+            .define("idle_restart_window", Updater.DEFAULT_IDLE_RESTART_WINDOW);
         BACKUP = b.comment("Перед обновлением копировать папки сборки (backup_dirs) и packwiz.json в " + Updater.BACKUP_DIR + "/;",
                 "при ошибке установщика вернуть копию целиком — сервер стартует на прежней версии. Нужно место на диске (~размер mods/ и config/)",
                 "Back up pack folders before updating and restore them completely if the installer fails")
@@ -132,6 +147,7 @@ final class AutoupdateConfig {
         s.keepBackup = KEEP_BACKUP.get();
         s.updateWindow = UPDATE_WINDOW.get();
         s.updateWindowTz = UPDATE_WINDOW_TZ.get();
+        s.idleRestartWindow = IDLE_RESTART_WINDOW.get();
         return s;
     }
 }
