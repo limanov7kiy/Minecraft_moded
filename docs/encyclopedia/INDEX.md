@@ -11,7 +11,7 @@
 | [Магия](magic.md) | 36 | Заклинания, ритуалы, мана, кровь и дополнения к магическим модам. |
 | [Оружие](weapons.md) | 12 | Огнестрельное и тяжёлое оружие, пушки, патроны, зачарования для оружия. |
 | [Космос и ракеты](space.md) | 8 | Ракеты, планеты, скафандры, кислород и связки космических модов. |
-| [Мобы и боссы](mobs.md) | 15 | Новые существа, боссы, паразиты. Подробные таблицы боссов — docs/bosses.md. |
+| [Мобы и боссы](mobs.md) | 17 | Новые существа, боссы, паразиты. Подробные таблицы боссов — docs/bosses.md. |
 | [Измерения, данжи и структуры](dimensions.md) | 30 | Aether, Twilight Forest, Blue Skies, Undergarden, пещеры, заброшенные города и аддоны к ним. |
 | [Техника и автоматизация](tech.md) | 21 | Create, Mekanism, AE2, Refined Storage, корабли Valkyrien Skies. |
 | [Еда и фермерство](food.md) | 10 | Farmer's Delight и его связки с остальными модами. |
@@ -266,6 +266,8 @@
 - [Russian Translations and Fixes | Переводы модификаций на русский](optimization-ui.md#rtf) — Оптимизация, интерфейс и ресурспаки
 - [Sarkaz's Furnace Side Fables](arknights.md#sarkazs_furnace_side_fables) — Arknights
 - [Saturn](optimization-ui.md#saturn) — Оптимизация, интерфейс и ресурспаки
+- [SCP Ultimate](mobs.md#scp_ultimate) — Мобы и боссы
+- [SCP: Foundation Requisites](mobs.md#scp-foundation-requisites) — Мобы и боссы
 - [Searchables](libraries.md#searchables) — Библиотеки и инструменты
 - [Serene Seasons](world.md#serene-seasons) — Мир: выживание, погода и катастрофы
 - [Serene Seasons Plus](world.md#serene-seasons-plus) — Мир: выживание, погода и катастрофы

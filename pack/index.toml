@@ -1279,7 +1279,7 @@ hash = "629f55aeaacc91d5a1974b3bcced5d30ea9020c02f473ad6152636f5072d406a"
 
 [[files]]
 file = "defaultconfigs/lostcities-server.toml"
-hash = "cd8919cee8c45c4b5e243fa0fb03e4a08f12094ed5c0dd053814fff0f6d7e85d"
+hash = "0eef4eb07f97787571abd8e43691e4e0247f5cfb1906252b61fee78b8d2b054a"
 
 [[files]]
 file = "kubejs/assets/mekmm/models/block/factory/painting/active/advanced.json"
@@ -1934,6 +1934,14 @@ file = "kubejs/data/northstar_structures/worldgen/structure/south_pole_aitken_ba
 hash = "88fe83d6f47486f23745e3b3594c05667a7feedabfdb486d8f3590bb013bd3ab"
 
 [[files]]
+file = "kubejs/data/scp_ultimate/loot_tables/entities/scp_guard.json"
+hash = "145f2d742cf7e6da01e0af033eadc60941caad0876fcd794bdbd53f5476919f4"
+
+[[files]]
+file = "kubejs/data/scp_ultimate/loot_tables/loot1.json"
+hash = "9ec9bb4b5d19734dce8dd45f42998209d0e5102b61b5cfe3705c86fc91036fd5"
+
+[[files]]
 file = "kubejs/data/spore/spore_mob_conversion/mm_moded.json"
 hash = "e8a1c5f1d859c24104088b8abc0f482582bee196f1945e9952bb65c20bc2836f"
 
@@ -1995,7 +2003,7 @@ hash = "936a53c82988205a015331ae4c1f14b04157faf4282d559cc5cf5f3355da1b8c"
 
 [[files]]
 file = "kubejs/startup_scripts/dedup_list.js"
-hash = "453ba913e6e685222a72a3333d902061b5b39d1618b7c123e92820c4db5ff9be"
+hash = "56ce41e76367d93a096588e6563fff4c13f0312cfb8e7ca1d14bce91e03d3b5e"
 
 [[files]]
 file = "kubejs/startup_scripts/space_rockets_list.js"
@@ -2918,13 +2926,17 @@ hash = "c25495262a852dc02886ec8c4b695f30e53264a2e3d881dd36ee9de16a1ef499"
 metafile = true
 
 [[files]]
+file = "mods/mm-autoupdate-0.3.0.jar"
+hash = "c3022ea61fa37934630c598b8b87e432d04075304e8f3eda510909c6f227310a"
+
+[[files]]
 file = "mods/mm-autoupdate.pw.toml"
 hash = "4c5b5328b181f204116adf880eb3ecc47105ac2f104506cb3725f41f62eaa924"
 metafile = true
 
 [[files]]
-file = "mods/mm-compat-0.5.15.jar"
-hash = "c1e25f36b069b8b8d9a7d5738aa21193762e638300bf73017674cc916782d61a"
+file = "mods/mm-compat-0.5.16.jar"
+hash = "2ad6bca1ef9dd7fc85e153b8d410c81c02af67309266c2a55737305aa11f66ac"
 
 [[files]]
 file = "mods/mm-perf-0.3.2-client.jar"
@@ -3079,7 +3091,7 @@ metafile = true
 
 [[files]]
 file = "mods/ru-lang-1.0.0-client.jar"
-hash = "a3752cdec9b6c146ce134ac9f7e9498098dd8d5f488ec52f78022acf0db65ac0"
+hash = "d4efdc5116bcad496159357f98be54978dc70e0a32b46af39d51d7058be8643d"
 
 [[files]]
 file = "mods/sarkazs_furnace_side_fables-0.2.3-forge-1.20.1.jar"
@@ -3089,6 +3101,15 @@ hash = "a2dd286bd8602067f1c7e3f34bf410d1f7de8fd51262f329775396852c27310d"
 file = "mods/saturn.pw.toml"
 hash = "3602f220a9d98e89d44168a6e84dc7bb169fb8b8209b4b966288d1fa1c3650bc"
 metafile = true
+
+[[files]]
+file = "mods/scp-foundation-requisites.pw.toml"
+hash = "03797b4faa78b0c7a5e1f18157432d0894a597d63b7ac7598afb397ed20a5302"
+metafile = true
+
+[[files]]
+file = "mods/scp_ultimate-1.2.4-forge-1.20.1.jar"
+hash = "c104bc3dffc412356a7462e2bc4e7748457f47746b6004ed60664f9b2332d29b"
 
 [[files]]
 file = "mods/searchables.pw.toml"
