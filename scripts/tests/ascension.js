@@ -63,9 +63,14 @@ function ascCheckAndKill(server) {
 function ascHearts(level, v) {
   const AABB = Java.loadClass('net.minecraft.world.phys.AABB')
   const ItemEntity = Java.loadClass('net.minecraft.world.entity.item.ItemEntity')
-  let n = 0
+  let n = 0, seen = []
   level.getEntitiesOfClass(ItemEntity, new AABB(v.x() - 12, v.y() - 12, v.z() - 12, v.x() + 12, v.y() + 12, v.z() + 12))
-    .forEach(ie => { if (ie.getItem().getId() == 'mm:ascended_heart') n += ie.getItem().getCount() })
+    .forEach(ie => {
+      let st = ie.getItem(), id = String(st.getId())
+      seen.push(id)
+      if (id == 'mm:ascended_heart') n += Number(st.getCount())
+    })
+  console.info(`ASCENSION items near ${v}: ${seen.join(', ') || 'нет'}`)
   return n
 }
 
