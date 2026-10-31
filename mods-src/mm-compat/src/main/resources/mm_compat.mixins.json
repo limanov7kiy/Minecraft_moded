@@ -6,7 +6,7 @@
   "mixins": ["SbwShipHitMixin", "FallingTreeDamageMixin", "MnaChunkTickMixin", "NorthstarCraterJoinMixin", "StructureTemplatePlaceMixin", "LostCitiesNeighborMixin", "DhChunkyBindMixin",
              "ArknightsTickThrottleMixin", "TorchesMegaStructureLoadMixin", "TorchesMegaStructureSyncMixin", "TorchesChunkEdgePlaceMixin", "TorchesPostProcessEdgeMixin",
              "SspSnowChunkMixin", "FallingTreeLeafChunkMixin", "Weather2StormBiomeMixin", "LostCitiesCityCenterMixin",
-             "AlexsCavesHazmatMixin", "ScpGasMaskMixin"],
+             "AlexsCavesHazmatMixin", "ScpGasMaskMixin", "AetherSetupRaceMixin"],
   "client": ["LycanitesFearLightMixin", "OriginFursReloadCacheMixin"],
   "injectors": { "defaultRequire": 0 }
 }

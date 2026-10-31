@@ -80,7 +80,8 @@
     (логические дубли, поток 66); противогаз Spore засчитывается охраной SCP: Ultimate и от SCP-008 (поток 73);
     блокирующая догрузка чанков на главном потоке у Serene Seasons Plus, Falling Tree и Weather2 — тик до 54 с при входе в новое место;
     Lost Cities `City.isCityCenter` без new Random на каждый вызов — генерация +47–56 %, поток 67;
-    падение сервера «Chunk not there when requested» от мегаструктур Torches Become Sunlight у края загруженной области, поток 76).
+    падение сервера «Chunk not there when requested» от мегаструктур Torches Become Sunlight у края загруженной области, поток 76;
+    гонка Aether в `commonSetup` (регистрация в ванильный реестр вне главного потока → «Mod loading error»), поток 76).
     Ad Astra в зависимостях — по Modrinth version id Forge-сборки (номер версии у Forge и Fabric одинаковый).
   - `mods-src/mm-autoupdate` — серверный мод автообновления сборки с GitHub (side=server, свой `.pw.toml` с url на raw GitHub,
     jar в `.packwizignore`): источник — ветка `claude/autoupdate-stable` (двигает координатор fast-forward на проверенные сборки), только в ночном окне `update_window` (23:00–00:59 UTC); на старте сервера (mode=on_start, по умолчанию; после обновления выход с кодом 0) или при остановке (on_stop) запускает packwiz-installer-bootstrap; `docs/hosting.md`, «Автообновление сервера с git».

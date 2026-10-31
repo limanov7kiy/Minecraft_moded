@@ -2045,6 +2045,21 @@ Corosus (Weather2) — здесь только перехват вызовов.
   куда ставятся, только пропускает реакцию на соседей.
 - **Находка по пути (не связана с TBS):** один старт сервера упал на загрузке модов — Aether `AetherPlacementModifiers.register` в `commonSetup`
   пишет в ванильный реестр без `enqueueWork`, `ConcurrentModificationException` в `MappedRegistry` (гонка с другим модом, параллельная инициализация).
-  Повторный запуск — нормально. Плавающее; если начнёт повторяться у игроков/на хосте — патч в mm-compat (перенести регистрацию в `enqueueWork`).
+  Повторный запуск — нормально. Исправлено в mm-compat 0.5.18 — раздел «Aether: гонка в commonSetup» ниже.
 - **Откат:** убрать `TorchesChunkEdgePlaceMixin` и `TorchesPostProcessEdgeMixin` из `mm_compat.mixins.json` (или `git revert` PR), пересобрать mm-compat.
 - Авторство: Torches Become Sunlight — FreeFish и др., здесь только перехват вызовов; код мода не изменён.
+
+## Aether: гонка в `commonSetup` — «Mod loading error» при старте, mm-compat 0.5.18 (поток 76, 2026-10-31)
+**Симптом** (плавающий: 1 из 8 стартов сервера у потока 76): сервер не стартует, `Mod loading error has occurred`, `-- MOD aether --`,
+`ExceptionInInitializerError` ← `AetherPlacementModifiers.<clinit>` ← `Registry.register` ← `MappedRegistry` → `ConcurrentModificationException`
+в `HashMap.computeIfAbsent`.
+**Причина.** The Aether 1.20.1-1.5.2 в `Aether.commonSetup` (параллельная фаза загрузки модов, несколько потоков) вызывает
+`Reflection.initialize(...)` для `SunAltarWhitelist`, `AetherPlacementModifiers` (статическая запись в ванильный реестр типов модификаторов
+размещения), `AetherRecipeBookTypes`, `AetherBlockPathTypes`, `AetherMobCategory` (расширение enum). Ванильные реестры и enum не потокобезопасны:
+если в ту же миллисекунду другой мод пишет туда же — исключение.
+**Исправление.** `AetherSetupRaceMixin` (`@Redirect` всех 5 вызовов `Reflection.initialize` в `commonSetup`): инициализация переносится в
+`event.enqueueWork` — на главный поток после параллельной фазы, порядок тот же. Если что-то из Aether обратится к классу раньше, JVM
+инициализирует его сама (как и было).
+**Проверка:** `test-server.sh` — `SERVER OK`, миксин применился без ошибок, модификаторы `aether:*` зарегистрированы (worldgen Aether загрузился
+без ошибок про неизвестный тип). Гонку прогоном не доказать (плавающая) — проверено, что вызовы больше не в параллельной фазе.
+**Откат:** убрать `AetherSetupRaceMixin` из `mm_compat.mixins.json`. Авторство: The Aether — The Aether Team; здесь только перенос вызовов.
