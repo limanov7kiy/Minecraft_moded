@@ -76,7 +76,7 @@ final class AutoupdateConfig {
                 "Minutes between idle_restart checks")
             .defineInRange("idle_check_minutes", Updater.DEFAULT_IDLE_CHECK_MINUTES, 1, 1440);
         IDLE_RESTART_WINDOW = b.comment("Когда можно самоперезапускаться: «ЧЧ:ММ-ЧЧ:ММ» в поясе update_window_tz; пусто (по умолчанию) — в любое время",
-                "(не чаще раза в час; с окном — раза за окно). Ошибка в значении — самоперезапуска нет. Idle restart window; empty = any time")
+                "(каждая новая версия — один раз; с окном — не чаще раза за окно). Ошибка в значении — самоперезапуска нет. Idle restart window; empty = any time")
             .define("idle_restart_window", Updater.DEFAULT_IDLE_RESTART_WINDOW);
         BACKUP = b.comment("Перед обновлением копировать папки сборки (backup_dirs) и packwiz.json в " + Updater.BACKUP_DIR + "/;",
                 "при ошибке установщика вернуть копию целиком — сервер стартует на прежней версии. Нужно место на диске (~размер mods/ и config/)",

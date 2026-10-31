@@ -2927,7 +2927,7 @@ metafile = true
 
 [[files]]
 file = "mods/mm-autoupdate.pw.toml"
-hash = "c99d94341b6ea50048da59e9dbfb5435a8c489555ca516618bbc571be20f6cf3"
+hash = "65975f439db29c58e49bf488c1430244e7568cec91a585fb0cc71327dec70232"
 metafile = true
 
 [[files]]

@@ -326,9 +326,9 @@ public final class Updater {
     /** Маркер самоперезапуска пустого сервера (0.5.0): «sha256 pack.toml, ради которого остановили; время мс; версия; время ISO». */
     public static final String IDLE_MARKER = ".mm-autoupdate.idle-restart";
     public static final int DEFAULT_IDLE_CHECK_MINUTES = 10;
-    /** С заданным idle_restart_window — не чаще раза в 20 ч (окно не длиннее суток: «раз за окно»); без окна — не чаще раза в час. */
+    /** С заданным idle_restart_window — не чаще раза в 20 ч (окно не длиннее суток: «раз за окно»); без окна ограничения по времени нет:
+     *  каждая новая версия — один самоперезапуск (та же версия — никогда повторно). */
     static final long IDLE_MIN_GAP_WINDOW_MS = 20L * 3600_000L;
-    static final long IDLE_MIN_GAP_MS = 60L * 60_000L;
     /** Сколько минут после самоперезапуска старт обновляет, даже если окно только что закрылось (остановились в его последние минуты). */
     static final long IDLE_START_GRACE_MS = 30L * 60_000L;
 
@@ -345,7 +345,7 @@ public final class Updater {
     /**
      * Самоперезапуск пустого сервера (docs/hosting.md, «Самоперезапуск пустого сервера»): вызывается раз в idle_check_minutes,
      * когда на сервере 0 игроков. Окно — idle_restart_window (пусто — в любое время); вне него или при битом окне — ничего, даже без сети;
-     * самоперезапуск был недавно (20 ч с окном, 1 ч без) — ничего;
+     * с окном самоперезапуск был меньше 20 ч назад — ничего;
      * потом дешёвая проверка pack.toml; нет новой сборки или сеть недоступна — ничего; ради этой же версии уже останавливались — ничего
      * (старт её не поставил: не зацикливаемся). Сам ничего не останавливает и в статус не пишет — только решает.
      */
@@ -355,11 +355,11 @@ public final class Updater {
         boolean windowed = s.idleRestartWindow != null && !s.idleRestartWindow.isBlank();
         String[] prev = readIdle(root);
         long nowMs = at.toInstant().toEpochMilli();
-        if (prev != null) {
+        if (prev != null && windowed) {
             long age = nowMs - Long.parseLong(prev[1]);
-            if (age >= 0 && age < (windowed ? IDLE_MIN_GAP_WINDOW_MS : IDLE_MIN_GAP_MS)) {
+            if (age >= 0 && age < IDLE_MIN_GAP_WINDOW_MS) {
                 return new IdleDecision(IdleResult.GUARD, null, "самоперезапуск уже был " + (age / 60_000) + " мин назад (" + prev[2]
-                    + ") — не чаще " + (windowed ? "раза за окно" : "раза в час"));
+                    + ") — не чаще раза за окно");
             }
         }
         Check c;
