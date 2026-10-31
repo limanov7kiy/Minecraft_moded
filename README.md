@@ -69,6 +69,7 @@
 | [docs/wizardry-port.md](docs/wizardry-port.md) | Electroblob's Wizardry: опись недостающих заклинаний Redux против оригинала 1.12.2 и план переноса |
 | [docs/ntm.md](docs/ntm.md) | HBM's Nuclear Tech Mod (NTM): решение владельца не добавлять alpha-порты, сверка функций NTM с тем, что уже есть в сборке, список портов на будущее |
 | [docs/scp.md](docs/scp.md) | SCP-моды под 1.20.1 Forge: кандидаты (структуры в мире, сущности, предметы), совместимость, нагрузка, дубли, рекомендация и вопрос владельцу |
+| [docs/vampirism.md](docs/vampirism.md) | Vampirism (Become a vampire!) под 1.20.1 Forge: версия, аддоны (Werewolves и др.), совместимость с Origins/LSO/Lost Cities, нагрузка, дубли, мобы и структуры, что отключается конфигом, вопрос владельцу В77 |
 | [docs/expensive-crafts.md](docs/expensive-crafts.md) | «Невероятно дорогие многоступенчатые крафты»: что уже есть (эндгейм, боссы), моды-кандидаты, вариант своих KubeJS-цепочек, вопрос владельцу |
 | [docs/dedup.md](docs/dedup.md) | Логические дубли между модами: метод, очевидные и спорные группы, раздел «Энергия» (виды энергии и варианты), откат |
 | [docs/ysm-models.md](docs/ysm-models.md) | Модели игроков Yes Steve Model: где лежат, как перезагрузить, какие подключены, ограничения |
@@ -202,7 +203,7 @@
 | [mods-src/voicechat-addons/README.md](mods-src/voicechat-addons/README.md) | Порт на Forge аддонов Simple Voice Chat (Voice Chat Interaction, AudioPlayer, Enhanced Groups) |
 | [mods-src/mm-compat/](mods-src/mm-compat/) | Кодовые связки и исправления сборки (кислород скафандров, фризы, утечки памяти и др.) |
 | [mods-src/mm-perf/](mods-src/mm-perf/) | Клиентские удобства: режим слабого ПК, клавиши «Не назначено», подсказки о памяти |
-| [mods-src/mm-autoupdate/](mods-src/mm-autoupdate/) | Серверный мод: при остановке сервера обновляет сборку с GitHub через packwiz-installer (хостинг без команды перед стартом; `docs/hosting.md`) |
+| [mods-src/mm-autoupdate/](mods-src/mm-autoupdate/) | Серверный мод: на старте сервера (on_start, выход 0 после обновления) или при остановке (on_stop) обновляет сборку с GitHub через packwiz-installer (хостинг без команды перед стартом; `docs/hosting.md`) |
 | [mods-src/disaster-ward/](mods-src/disaster-ward/) | Блок-оберег от катаклизмов, заражения и ориджиниумной бури; редкий спавн бедствий |
 | [mods-src/ru-lang/](mods-src/ru-lang/) | Клиентский мод, всегда включающий русский ресурспак сборки |
 | [mods-src/jar-ports/](mods-src/jar-ports/) | Классы-переходники для портов чужих jar |

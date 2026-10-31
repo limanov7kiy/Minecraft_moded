@@ -1736,6 +1736,13 @@ mm-compat пересобран из объединённых исходнико�
   поверх jar: копия → изменение/добавление/удаление файлов в `config/` (включая имя с иероглифами) и «чужой» каталог, который держит открытый
   файл → откат возвращает все файлы копии, лишнее удаляет, неудаляемое помечает `WARN`, не падает. Linux-прогон A/B/POSIX — за Ревью.
 
+- **0.3.0 — режим `on_start` (поток 71, сборка 2026.10.31-3):** на Millida панель убивает процесс через 60 с после «Остановить» (≈5 с после
+  «Перезапустить»), и обновление при остановке обрывалось (273/715 файлов). Новый ключ `mode` (`on_start` по умолчанию, `on_stop` — как раньше):
+  на `FMLDedicatedServerSetupEvent` sha256 `pack.toml` по ссылке сравнивается с `packFileHash` в `packwiz.json` (packwiz-installer 0.5.14 пишет туда
+  именно sha256 байтов `pack.toml`: `{"type":"sha256","value":…}`, проверено); изменилось — копия → установщик → `System.exit(0)`, ошибка — откат и запуск
+  дальше. Защита от цикла — `.mm-autoupdate.attempt` (sha256 + время), `start_cooldown_minutes = 15`. Linux-прогон A/B/C/D и замеры — hosting.md,
+  «Как проверено: 0.3.0». `scripts/test-server.sh` печатает `server exit code`.
+
 ## Блокирующая догрузка чанков: Serene Seasons Plus, Falling Tree, Weather2 — mm-compat 0.5.13 (поток 67, 2026-10-26, сборка 2026.10.26-4)
 Нагрузочный тест `scripts/tests/perfload.js` (3 фейковых игрока появляются в несгенерированных местах): тик 54–58 с. JFR (`scripts/jfr/JfrGrep.java … getChunkBlocking`):
 главный поток ждёт генерации чанков, которые синхронно запросили моды из своих тиков — Serene Seasons Plus 5.1.4 (`ActiveSnowUpdateService`, снег/таяние вокруг игрока, 91 %),
@@ -1893,7 +1900,7 @@ Corosus (Weather2) — здесь только перехват вызовов.
 - **Сервер (2026-10-31, вариант «б», сборка 2026.10.31-1):** `SERVER OK` (Done 46 с), `/ysm export vivi` → `[YSM] Saved as 'export/vivi.ysm'` (105 КБ), crash-reports нет. Клиент не перезапускал (изменилась только папка модели).
 - **Откат:** `git revert` PR #181 (папка модели, генератор, превью, docs).
 
-## SCP: Ultimate и SCP: Foundation Requisites (поток 73, 2026-10-31, сборка 2026.10.31-3, В74 «а и б»)
+## SCP: Ultimate и SCP: Foundation Requisites (поток 73, 2026-10-31, сборка 2026.10.31-4, В74 «а и б»; тесты — на 2026.10.31-3 до слияния с основной)
 Исследование — `docs/scp.md` (поток 70). Оба мода — MCreator, side=both, зависимостей нет.
 - **SCP: Ultimate 1.2.4** (onneim, All Rights Reserved, только CurseForge 1134764 без стороннего скачивания) — jar в `pack/mods/`.
   **SCP: Foundation Requisites 3.2** (Egorich) — Modrinth (`scp-foundation-requisites.pw.toml`).
