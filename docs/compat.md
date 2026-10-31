@@ -1982,6 +1982,14 @@ Corosus (Weather2) — здесь только перехват вызовов.
 | Сущностей (3 игрока / после полёта) | 1018 / 1010 | 1007 / 945 | общий счёт мобов не вырос |
 
 Шум стенда ±10 %, поэтому +13–22 % — «заметно хуже» по ориентиру В78. Цифры и вариант «б» (заражение только по желанию, вампиры только в Вампирском лесу,
-без захватов деревень) отправлены координатору — вопрос владельцу. Сервер: `SERVER OK`, краш-отчётов нет (оба прогона и короткий запуск `vampcheck.js`).
+без захватов деревень) отправлены координатору; **владелец (В80): «а» — оставить целиком.** Сервер: `SERVER OK`, краш-отчётов нет (оба прогона и короткий запуск `vampcheck.js`).
+**Как переключить на «б» (если будет тормозить):** одним PR, без удаления мобов, поднять версию сборки.
+1. `pack/defaultconfigs/vampirism-server.toml` (Forge копирует в `world/serverconfig/` только нового мира; на работающем сервере — править
+   `world/serverconfig/vampirism-server.toml` и перезапустить): `disableMobBiteInfection = true`, `disableFangInfection = true`, `playersCanTurnPlayers = false`
+   (взять целиком сгенерированный модом файл и поменять значения — ключи лежат в своих секциях, частичный файл Forge «исправит» умолчаниями). В `vampirism-balance.toml` того же каталога — `randomRaidChance = 0.0`.
+2. `pack/config/vampirism-common.toml`: `villageTotemFactionChance = 0.0` (новые деревни нейтральные, захват не начинается сам).
+3. Вампиры только в Вампирском лесу — два тега с заменой: `pack/kubejs/data/vampirism/tags/worldgen/biome/has_spawn/vampire.json` и
+   `…/has_spawn/advanced_vampire.json` с содержимым `{"replace": true, "values": ["vampirism:vampire_forest"]}` (по умолчанию — `#minecraft:is_overworld`). Спавн уже существующих биомов меняется сразу после перезапуска.
+Постройки и Вампирский лес остаются; выигрыш ожидается в покое с игроками, на генерации — почти нет (её цену дают постройки и лес).
 **Откат:** удалить `pack/mods/vampirism.pw.toml`, `pack/resourcepacks-src/russian-moded/assets/vampirism/`, `vampirism:*` из `avoidStructures`, строку modlist;
 пересобрать ru-lang, поднять версию. В существующем мире блоки и мобы Vampirism пропадут (Forge предупредит о недостающих записях реестра).
