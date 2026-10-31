@@ -117,7 +117,7 @@ _Обзор категории — вручную, следующие этапы
 <a id="aether-lost-content"></a>
 - **Версия:** 1.2.3 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/aether-lost-content)
 - **Что это:** Аддон к The Aether: возвращает вырезанный, неиспользованный и концептуальный контент и механики прошлых версий Эфира. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (21), [russification.md](../russification.md) (9), [enchanting-table.md](../enchanting-table.md) (6), [dedup.md](../dedup.md) (4), [roadmap.md](../roadmap.md) (4), [bosses.md](../bosses.md) (3)
+- **В наших docs:** [compat.md](../compat.md) (21), [russification.md](../russification.md) (9), [enchanting-table.md](../enchanting-table.md) (6), [roadmap.md](../roadmap.md) (5), [dedup.md](../dedup.md) (4), [bosses.md](../bosses.md) (3)
 <!-- auto:end card:aether-lost-content -->
 
 ### Как играть
@@ -165,7 +165,7 @@ _Обзор категории — вручную, следующие этапы
 <a id="alexs-caves"></a>
 - **Версия:** 2.0.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/alexs-caves)
 - **Что это:** Шесть редких пещерных биомов под поверхностью Верхнего мира, со своими мобами и предметами. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (11), [enchanting-table.md](../enchanting-table.md) (5), [dedup.md](../dedup.md) (4), [ntm.md](../ntm.md) (4), [friends.md](../friends.md) (3), [orespawn.md](../orespawn.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (11), [enchanting-table.md](../enchanting-table.md) (5), [dedup.md](../dedup.md) (4), [ntm.md](../ntm.md) (4), [expensive-crafts.md](../expensive-crafts.md) (3), [friends.md](../friends.md) (3)
 <!-- auto:end card:alexs-caves -->
 
 ### Как играть
@@ -393,7 +393,7 @@ Everdawn: хрустальный верблюд (`crystal_camel`), космич�
 <a id="create-alexs-caves-compat"></a>
 - **Версия:** 1.6.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/create-alexs-caves-compat)
 - **Что это:** Совместимость Create и Alex's Caves. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (58), [dedup.md](../dedup.md) (29), [friends.md](../friends.md) (15), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7)
+- **В наших docs:** [compat.md](../compat.md) (59), [dedup.md](../dedup.md) (29), [friends.md](../friends.md) (15), [roadmap.md](../roadmap.md) (9), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8)
 <!-- auto:end card:create-alexs-caves-compat -->
 
 ### Что даёт игроку
@@ -616,7 +616,7 @@ Everdawn: хрустальный верблюд (`crystal_camel`), космич�
 <a id="aether"></a>
 - **Версия:** 1.20.1-1.5.2-neoforge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/aether)
 - **Что это:** Оригинальный мод The Aether: небесное измерение с островами, мо, валькириями и боссами; для современных версий, с мультиплеером. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (21), [russification.md](../russification.md) (9), [enchanting-table.md](../enchanting-table.md) (6), [dedup.md](../dedup.md) (4), [roadmap.md](../roadmap.md) (4), [bosses.md](../bosses.md) (3)
+- **В наших docs:** [compat.md](../compat.md) (21), [russification.md](../russification.md) (9), [enchanting-table.md](../enchanting-table.md) (6), [roadmap.md](../roadmap.md) (5), [dedup.md](../dedup.md) (4), [bosses.md](../bosses.md) (3)
 <!-- auto:end card:aether -->
 
 ### Как играть
@@ -788,7 +788,7 @@ Everdawn: хрустальный верблюд (`crystal_camel`), космич�
 - **Версия:** 1.20-7.5.7 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/the-lost-cities)
 - **Что это:** Генерирует заброшенные города (улицы, шоссе, здания с подвалами, метро, спавнерами и сундуками) прямо в обычном Overworld; в сборке включён редкий профиль rarecities (≈6 % городских чанков), действует для нового мира. _(источник: docs сборки)_
 - **В сборке:** The Lost Cities (McJty, MIT): города в обычном Overworld; профиль — pack/defaultconfigs/lostcities-server.toml
-- **В наших docs:** [lost-cities.md](../lost-cities.md) (17), [compat.md](../compat.md) (14), [performance.md](../performance.md) (8), [roadmap.md](../roadmap.md) (8), [friends.md](../friends.md) (3), [issue-history.md](../issue-history.md) (3)
+- **В наших docs:** [lost-cities.md](../lost-cities.md) (17), [compat.md](../compat.md) (14), [roadmap.md](../roadmap.md) (10), [performance.md](../performance.md) (8), [friends.md](../friends.md) (3), [issue-history.md](../issue-history.md) (3)
 <!-- auto:end card:the-lost-cities -->
 
 ### Как играть
@@ -1028,7 +1028,7 @@ HP, броня и слабые места — в [bosses.md](../bosses.md#twilig
 <a id="the-twilight-forest-dungeons-villages"></a>
 - **Версия:** 1.2.3 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/the-twilight-forest-dungeons-villages)
 - **Что это:** Новый контент для Сумеречного леса, в основном деревни. _(источник: docs сборки)_
-- **В наших docs:** [bosses.md](../bosses.md) (8), [compat.md](../compat.md) (6), [reset.md](../reset.md) (2), [roadmap.md](../roadmap.md) (2), [client-checklist.md](../client-checklist.md) (1), [version-choice.md](../version-choice.md) (1)
+- **В наших docs:** [bosses.md](../bosses.md) (8), [compat.md](../compat.md) (6), [expensive-crafts.md](../expensive-crafts.md) (2), [reset.md](../reset.md) (2), [roadmap.md](../roadmap.md) (2), [client-checklist.md](../client-checklist.md) (1)
 <!-- auto:end card:the-twilight-forest-dungeons-villages -->
 
 ### Что даёт игроку
@@ -1076,7 +1076,7 @@ HP, броня и слабые места — в [bosses.md](../bosses.md#twilig
 <a id="twilight-forest-the-lost-blocks"></a>
 - **Версия:** 1.20.1-1.5.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/twilight-forest-the-lost-blocks)
 - **Что это:** Добавляет в Сумеречный лес недостающие блоки для строителей. _(источник: docs сборки)_
-- **В наших docs:** [bosses.md](../bosses.md) (8), [compat.md](../compat.md) (6), [reset.md](../reset.md) (2), [roadmap.md](../roadmap.md) (2), [client-checklist.md](../client-checklist.md) (1), [version-choice.md](../version-choice.md) (1)
+- **В наших docs:** [bosses.md](../bosses.md) (8), [compat.md](../compat.md) (6), [expensive-crafts.md](../expensive-crafts.md) (2), [reset.md](../reset.md) (2), [roadmap.md](../roadmap.md) (2), [client-checklist.md](../client-checklist.md) (1)
 <!-- auto:end card:twilight-forest-the-lost-blocks -->
 
 ### Что даёт игроку

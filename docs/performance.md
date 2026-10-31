@@ -345,6 +345,7 @@ scripts/test-server.sh <папка вне репо> 2100`; мир удалить
 ### Серверный пакет: G1 Aikar, sync-chunk-writes, раздача LOD (сборка 2026.10.26-6, решения владельца В60–В62)
 - **`scripts/export-pack.sh` → `user_jvm_args.txt`**: `-Xms9G -Xmx9G` (под тариф 12 ГБ: 9 + 2,5 ГБ вне кучи) и флаги G1 Aikar (как в `friends.md`, плюс `AlwaysPreTouch`). Замер на тестовом сервере
   (`perfload.js`, Xmx 6G, тот же стенд; сводка пауз из `-Xlog:gc`, без «Diagnostic Command» и `System.gc`):
+  На Millida этот файл не действует: кучу задаёт панель (`MAX_MEMORY`, сейчас 10 ГБ) — риск OOM на тарифе 12 ГБ, см. `hosting.md` (2026-10-31).
 
   | | G1 по умолчанию (3 прогона) | G1 Aikar |
   |---|---|---|

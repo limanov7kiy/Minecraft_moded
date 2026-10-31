@@ -81,8 +81,12 @@ file = "config/jei/client/default/jei-client.ini"
 hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
 
 [[files]]
+file = "config/legendarysurvivaloverhaul/legendarysurvivaloverhaul-common.toml"
+hash = "849d8c22b15f44733ae4644b5d83b22a54ba3779c57481643ea2ce5ef14ba8f7"
+
+[[files]]
 file = "config/mm_pack_version.txt"
-hash = "cc660daceacf96c442fab8ee5d522c67d1b70d3dd7daa8f84b970e287e7a540f"
+hash = "2244d1a9c96bf439e805b2e21bb1558e4df77dd2c484ac6b6497a371e87e5bce"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -94,7 +98,7 @@ hash = "ae0213dfbc7561b527d00565ad849c32e096914967590c1aaf85c4133195c885"
 
 [[files]]
 file = "config/solsauthlogin-common.toml"
-hash = "03774e9720dbb20d1054caf5ef3830e4f58bb3854035a3ad9b43d24a5aa76e08"
+hash = "ab7064f523a218d3a2a99b967e4770b698e145ffea3421cdcd21404ebc8b1fa2"
 
 [[files]]
 file = "config/sound_physics_remastered/soundphysics.properties"
@@ -1269,6 +1273,14 @@ file = "kubejs/client_scripts/space_rockets.js"
 hash = "c5f3ef1a27991ac16c6f99ff138572a82654f52f514605e7a423b3c9adfb0eac"
 
 [[files]]
+file = "kubejs/data/ad_astra/advancements/ad_astra.json"
+hash = "653697c67ca626b213f7ccec9f653643f9386024b9439edd5647b0003a9a472b"
+
+[[files]]
+file = "kubejs/data/ad_astra/advancements/carbon_footprint.json"
+hash = "6ab896f3a1ad9e334f3e0d7b364b14904f2bf51bf8f5b98b81685c38dded79b4"
+
+[[files]]
 file = "kubejs/data/ad_astra/creatingspace/rocket_accessible_dimension/earth_orbit.json"
 hash = "7ec00a861c3989fff503d88aad810565905340014aa56e3bb084a57378dc46fb"
 
@@ -1942,7 +1954,7 @@ hash = "936a53c82988205a015331ae4c1f14b04157faf4282d559cc5cf5f3355da1b8c"
 
 [[files]]
 file = "kubejs/startup_scripts/dedup_list.js"
-hash = "6e7174227b2f169e050b9e8230177c0ae57f287c87dba0bf54481dc386061c19"
+hash = "453ba913e6e685222a72a3333d902061b5b39d1618b7c123e92820c4db5ff9be"
 
 [[files]]
 file = "kubejs/startup_scripts/space_rockets_list.js"
@@ -2862,6 +2874,15 @@ metafile = true
 [[files]]
 file = "mods/mezzconfig.pw.toml"
 hash = "c25495262a852dc02886ec8c4b695f30e53264a2e3d881dd36ee9de16a1ef499"
+metafile = true
+
+[[files]]
+file = "mods/mm-autoupdate-0.2.2.jar"
+hash = "0739f8658844c62971d8d0c7c1096a2ccd093494dbc74e7a9104a5967eb558dd"
+
+[[files]]
+file = "mods/mm-autoupdate.pw.toml"
+hash = "d36b1c0f6921a8b5b0f83af4c873c8eb36e029d8f0d0fc94120643f17cb071d6"
 metafile = true
 
 [[files]]

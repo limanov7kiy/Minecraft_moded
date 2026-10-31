@@ -332,7 +332,7 @@ _Обзор категории — вручную, следующие этапы
 - **Версия:** 1.1.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/bosses-of-mass-destruction-forge)
 - **Что это:** Боссы-арены (Лич, Обсидилит, Пустотный цветок, Гаунтлет) — мод в разработке. _(источник: docs сборки)_
 - **В сборке:** both: Bosses of Mass Destruction 1.1.2 — Лич, Обсидилит, Void Blossom, Гаунтлет с аренами (поток 9)
-- **В наших docs:** [compat.md](../compat.md) (9), [roadmap.md](../roadmap.md) (5), [orespawn.md](../orespawn.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (9), [roadmap.md](../roadmap.md) (5), [expensive-crafts.md](../expensive-crafts.md) (2), [orespawn.md](../orespawn.md) (1)
 <!-- auto:end card:bosses-of-mass-destruction-forge -->
 
 ### Как играть
@@ -404,7 +404,7 @@ _Обзор категории — вручную, следующие этапы
 - **Версия:** 1.20.1-0.9.1 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/chaospersists-1.20.1-0.9.1.jar`
 - **Что это:** Ремейк OreSpawn 1.7.10 на 1.20.1: около 130 мобов и боссов (Король, Королева, Мобзилла, Кракен, Кошмар), шесть измерений, 54 структуры, руды, оружие и броня «Хаоса», питомцы и еда. _(источник: docs сборки)_
 - **В сборке:** both: Chaos Persists 0.9.1 (Astryxion; All Rights Reserved, CF 1460238) — ремейк OreSpawn 1.7.10 (В16, поток 23): ~130 мобов, King/Queen/Mobzilla, измерения Utopia/Mining/Village/Crystal/Chaos/Danger; зависимостей нет. Сравнение с оригиналом — docs/orespawn.md
-- **В наших docs:** [orespawn.md](../orespawn.md) (15), [performance.md](../performance.md) (12), [compat.md](../compat.md) (9), [roadmap.md](../roadmap.md) (5), [dedup.md](../dedup.md) (2), [friends.md](../friends.md) (1)
+- **В наших docs:** [orespawn.md](../orespawn.md) (15), [performance.md](../performance.md) (12), [compat.md](../compat.md) (9), [expensive-crafts.md](../expensive-crafts.md) (6), [roadmap.md](../roadmap.md) (6), [dedup.md](../dedup.md) (2)
 <!-- auto:end card:chaospersists -->
 
 ### Как играть
@@ -709,7 +709,7 @@ Id `spore:<имя>`; накладываются на оружие и броню 
 - **Версия:** 2.1.13-1.20.1-beta-5 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/ice-and-fire-dragons)
 - **Что это:** Драконы (огненные, ледяные, молниевые) и мифические существа. _(источник: docs сборки)_
 - **В сборке:** both: Ice and Fire CE 2.1.13 — драконы (огненный/ледяной/молниевый), гидра, сирены и др.; зависимость Citadel (поток 9)
-- **В наших docs:** [compat.md](../compat.md) (23), [roadmap.md](../roadmap.md) (14), [orespawn.md](../orespawn.md) (8), [dedup.md](../dedup.md) (6), [performance.md](../performance.md) (4), [bosses.md](../bosses.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (23), [roadmap.md](../roadmap.md) (16), [expensive-crafts.md](../expensive-crafts.md) (12), [orespawn.md](../orespawn.md) (8), [dedup.md](../dedup.md) (6), [performance.md](../performance.md) (4)
 <!-- auto:end card:ice-and-fire-dragons -->
 
 ### Как играть
@@ -755,7 +755,7 @@ Ice and Fire CE: **огненные, ледяные и молниевые дра
 <a id="l_enders-cataclysm"></a>
 - **Версия:** 3.31 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/l_enders-cataclysm)
 - **Что это:** Cataclysm от L_Ender: восемь крупных структур-арен с боссами (Игнис, Левиафан, Сцилла, Предвестник и др.), мини-боссы и мобы Незера, пустыни, океана и Края, оружие и броня по ступеням (чёрная сталь, игнит, проклятый слиток) и аметистовые пещеры. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (31), [roadmap.md](../roadmap.md) (12), [enchanting-table.md](../enchanting-table.md) (4), [client-checklist.md](../client-checklist.md) (2), [orespawn.md](../orespawn.md) (2), [version-choice.md](../version-choice.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (31), [expensive-crafts.md](../expensive-crafts.md) (12), [roadmap.md](../roadmap.md) (12), [enchanting-table.md](../enchanting-table.md) (4), [client-checklist.md](../client-checklist.md) (2), [orespawn.md](../orespawn.md) (2)
 <!-- auto:end card:l_enders-cataclysm -->
 
 ### Как играть
@@ -1095,7 +1095,7 @@ Seastorm, Shadow Games, Sharknado, Subzero, The Swarm, Tsunami, Windstorm, Winge
 <a id="mowzies-mobs"></a>
 - **Версия:** 1.8.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/mowzies-mobs)
 - **Что это:** Вымышленные существа с уникальным ИИ и плавной анимацией; боссы (Ferrous Wroughtnaut, Frostmaw, Sculptor, Barako и др.) и их маски. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (13), [roadmap.md](../roadmap.md) (9), [orespawn.md](../orespawn.md) (1), [performance.md](../performance.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (13), [roadmap.md](../roadmap.md) (9), [expensive-crafts.md](../expensive-crafts.md) (1), [orespawn.md](../orespawn.md) (1), [performance.md](../performance.md) (1)
 <!-- auto:end card:mowzies-mobs -->
 
 ### Как играть

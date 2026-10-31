@@ -51,7 +51,7 @@
 | [docs/report-form.md](docs/report-form.md) | Как устроен приём отчётов игроков: форма, таблица, номера и статусы, процесс приёмщика, правила приватности для публичного репозитория; пожелания (раздел 10): статусы, граница «влияет на баланс», шаги обновления |
 | [docs/report-status.md](docs/report-status.md) | Открытая страница статусов отчётов: номер, суть, категория, мод, статус, PR; без ников и текстов игроков; отдельный раздел «Пожелания» |
 | [docs/issue-history.md](docs/issue-history.md) | История решений: прошлые проблемы и вопросы игроков (H-###) — причина, PR или версия мода, что делать игроку, статус; без ников |
-| [docs/hosting.md](docs/hosting.md) | Где поднимать сервер: замер ресурсов сборки, сервер на ПК друга или платный хостинг |
+| [docs/hosting.md](docs/hosting.md) | Где поднимать сервер: замер ресурсов сборки, сервер на ПК друга или платный хостинг; автообновление сервера с git (mm-autoupdate) |
 | [docs/reset.md](docs/reset.md) | Чистый сброс сервера после тестирования: где хранится прогресс, порядок на Millida, что почистить у игроков (только по команде владельца) |
 | [scripts/reset-inventory.sh](scripts/reset-inventory.sh) | Опись прогресса на сервере перед сбросом (ничего не удаляет) — см. `docs/reset.md` |
 
@@ -68,6 +68,8 @@
 | [docs/orespawn.md](docs/orespawn.md) | OreSpawn: ремейк Chaos Persists против оригинала 1.7.10, чего не хватает для порта |
 | [docs/wizardry-port.md](docs/wizardry-port.md) | Electroblob's Wizardry: опись недостающих заклинаний Redux против оригинала 1.12.2 и план переноса |
 | [docs/ntm.md](docs/ntm.md) | HBM's Nuclear Tech Mod (NTM): решение владельца не добавлять alpha-порты, сверка функций NTM с тем, что уже есть в сборке, список портов на будущее |
+| [docs/scp.md](docs/scp.md) | SCP-моды под 1.20.1 Forge: кандидаты (структуры в мире, сущности, предметы), совместимость, нагрузка, дубли, рекомендация и вопрос владельцу |
+| [docs/expensive-crafts.md](docs/expensive-crafts.md) | «Невероятно дорогие многоступенчатые крафты»: что уже есть (эндгейм, боссы), моды-кандидаты, вариант своих KubeJS-цепочек, вопрос владельцу |
 | [docs/dedup.md](docs/dedup.md) | Логические дубли между модами: метод, очевидные и спорные группы, раздел «Энергия» (виды энергии и варианты), откат |
 | [docs/ysm-models.md](docs/ysm-models.md) | Модели игроков Yes Steve Model: где лежат, как перезагрузить, какие подключены, ограничения |
 | [docs/encyclopedia/INDEX.md](docs/encyclopedia/INDEX.md) | Справочник-энциклопедия: оглавление по категориям и алфавитный указатель всех модов (генерируется) |
@@ -199,6 +201,7 @@
 | [mods-src/voicechat-addons/README.md](mods-src/voicechat-addons/README.md) | Порт на Forge аддонов Simple Voice Chat (Voice Chat Interaction, AudioPlayer, Enhanced Groups) |
 | [mods-src/mm-compat/](mods-src/mm-compat/) | Кодовые связки и исправления сборки (кислород скафандров, фризы, утечки памяти и др.) |
 | [mods-src/mm-perf/](mods-src/mm-perf/) | Клиентские удобства: режим слабого ПК, клавиши «Не назначено», подсказки о памяти |
+| [mods-src/mm-autoupdate/](mods-src/mm-autoupdate/) | Серверный мод: при остановке сервера обновляет сборку с GitHub через packwiz-installer (хостинг без команды перед стартом; `docs/hosting.md`) |
 | [mods-src/disaster-ward/](mods-src/disaster-ward/) | Блок-оберег от катаклизмов, заражения и ориджиниумной бури; редкий спавн бедствий |
 | [mods-src/ru-lang/](mods-src/ru-lang/) | Клиентский мод, всегда включающий русский ресурспак сборки |
 | [mods-src/jar-ports/](mods-src/jar-ports/) | Классы-переходники для портов чужих jar |

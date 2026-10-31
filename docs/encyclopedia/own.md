@@ -3,7 +3,7 @@
 Моды и порты, собранные в этом репозитории (mods-src/, patches/).
 
 <!-- auto:start toc -->
-Модов в категории: **20**.
+Модов в категории: **21**.
 
 - [Alshanex Familiars Mod](#alshanex-familiars-mod)
 - [Cataclysm: Spellbooks](#cataclysm-spellbooks)
@@ -14,6 +14,7 @@
 - [Galacticraft Revival (private port)](#galacticraft-revival-private-port)
 - [lycanites-refmap-fix](#lycanites-refmap-fix)
 - [M&A Witchcraft](#ma-witchcraft)
+- [Minecraft_moded Autoupdate](#minecraft_moded-autoupdate)
 - [Minecraft_moded Compat](#minecraft_moded-compat)
 - [Minecraft_moded Perf](#minecraft_moded-perf)
 - [Origin Furs Forge](#origin-furs-forge)
@@ -83,7 +84,7 @@
 <a id="cataclysm_spellbooks"></a>
 - **Версия:** 1.2.9-1.20.1-mmport · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/cataclysm_spellbooks-1.2.9-1.20.1-mmport.jar`
 - **Что это:** Мод-связка Cataclysm и Iron's Spells: заклинания, книги, посохи, оружие и броня по мотивам боссов Cataclysm, две новые школы магии (Бездна и Техномантия); в сборке — наш порт под Cataclysm 3.31. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (35), [bosses.md](../bosses.md) (32), [roadmap.md](../roadmap.md) (13), [enchanting-table.md](../enchanting-table.md) (4), [orespawn.md](../orespawn.md) (4), [jei.md](../jei.md) (3)
+- **В наших docs:** [compat.md](../compat.md) (35), [bosses.md](../bosses.md) (32), [expensive-crafts.md](../expensive-crafts.md) (15), [roadmap.md](../roadmap.md) (13), [enchanting-table.md](../enchanting-table.md) (4), [orespawn.md](../orespawn.md) (4)
 <!-- auto:end card:cataclysm_spellbooks -->
 
 Автор — Ace The Eldritch King и StarOcean (MIT). В сборке — наш порт `cataclysm_spellbooks-1.2.9-1.20.1-mmport.jar` (мод собран под другую версию Cataclysm; подробности порта — [compat.md](../compat.md), п. К4 и «Cataclysm: Spellbooks 1.2.9»). Требует [Iron's Spells 'n Spellbooks](magic.md#irons-spells-n-spellbooks), L_Ender's Cataclysm, AzureLib.
@@ -365,7 +366,7 @@ Soiled, Corroded, Infested, Fragile («Смертное касание»), Immol
 <a id="traveloptics"></a>
 - **Версия:** 6.3.0-1.20.1 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/traveloptics-6.3.0-1.20.1-mmport.jar`
 - **Что это:** Большое дополнение к Cataclysm и Iron's Spells: оружие, броня, боссы и 176 заклинаний; порт под версии сборки. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (7), [roadmap.md](../roadmap.md) (4), [performance.md](../performance.md) (3), [enchanting-table.md](../enchanting-table.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (7), [roadmap.md](../roadmap.md) (4), [expensive-crafts.md](../expensive-crafts.md) (3), [performance.md](../performance.md) (3), [enchanting-table.md](../enchanting-table.md) (2)
 <!-- auto:end card:traveloptics -->
 
 ### Как играть
@@ -581,5 +582,50 @@ Sarkaz's Fables), добавлены в лут сундуков: `pack/kubejs/se
 `config/eso/config.json` (изучение включено, уровни открываются сразу, лимит чар 4), `config/eso/default-recipe.json`
 (цена чар без своего рецепта ≈ ×2,5), `config/eso/material-overrides/` (лимиты по материалам, генерируется модом).
 Порт: `patches/jar-ports/eso` — `getName()` модовой брони с `@OnlyIn(CLIENT)` ронял сервер (поток 57).
+
+## Minecraft_moded Autoupdate
+
+<!-- auto:start card:mm-autoupdate -->
+<a id="mm-autoupdate"></a>
+- **Версия:** 0.2.2 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/mm-autoupdate-0.2.2.jar`
+- **Что это:** Серверное автообновление сборки с GitHub при остановке сервера: выключено по умолчанию, источник — тег, копия и откат при ошибке. _(источник: docs сборки)_
+- **В сборке:** наш серверный мод (mods-src/mm-autoupdate, side=server, свой .pw.toml с url на raw GitHub): при остановке сервера запускает packwiz-installer-bootstrap (-g -s server) — к следующему старту mods/config/kubejs свежие; на Windows только предупреждает
+<!-- auto:end card:mm-autoupdate -->
+
+### Как играть
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Предметы/блоки
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Мобы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Эффекты
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### События
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Данжи/структуры (/locate)
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Чары
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Команды/гамерулы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Конфиги
+
+_Пока пусто — заполнит один из следующих этапов._
 
 <!-- cards:end -->
