@@ -44,24 +44,33 @@ StartupEvents.registry('item', event => {
 // Свойство меча. LivingHurtEvent — до брони, поэтому прибавка тоже режется бронёй цели, как обычный урон.
 // У боссов Cataclysm кап урона срабатывает раньше (в их hurt), прибавка идёт поверх капа — в этом и смысл «меча для боссов».
 // global.mmAscendedBladeLast — последний расчёт (для теста scripts/tests/ascended_blade.js).
+// Обработчик зовётся на КАЖДЫЙ урон на сервере: сначала дешёвая проверка «в руке меч», всё — в try/catch
+// (исключение в обработчике Forge-события роняет сервер: так и было в первом прогоне — горящий на солнце зомби).
+// В KubeJS 6 часть методов переименована для скриптов (@RemapForJS): DamageSource.getEntity → actual, getDirectEntity → immediate,
+// Entity.hurt → attack.
+let mmBladeErrLogged = false
 ForgeEvents.onEvent('net.minecraftforge.event.entity.living.LivingHurtEvent', event => {
-  const src = event.getSource()
-  const attacker = src.getEntity()
-  if (attacker == null || src.getDirectEntity() !== attacker) return   // только ближний бой, не снаряды
-  if (!attacker.isLiving()) return
-  if (String(attacker.getMainHandItem().getId()) != 'mm:ascended_blade') return
-  const cfg = global.mmAscendedBlade
-  const target = event.getEntity()
-  target.setSecondsOnFire(cfg.fireSeconds)
-  let bonus = 0
-  // KubeJS подменяет entity.type/getType() строкой id — тип берём из реестра Forge
-  const RL = Java.loadClass('net.minecraft.resources.ResourceLocation')
-  const FR = Java.loadClass('net.minecraftforge.registries.ForgeRegistries')
-  const BOSSES = Java.loadClass('net.minecraftforge.common.Tags$EntityTypes').BOSSES
-  const typeId = String(target.type)
-  if (FR.ENTITY_TYPES.tags().getTag(BOSSES).contains(FR.ENTITY_TYPES.getValue(new RL(typeId)))) {
-    bonus = Math.min(target.getMaxHealth() * cfg.bossBonusPercent, cfg.bossBonusCap)
-    event.setAmount(event.getAmount() + bonus)
+  try {
+    const src = event.getSource()
+    const attacker = src.actual
+    if (attacker == null || src.immediate == null || !attacker.equals(src.immediate) || !attacker.isLiving()) return   // только ближний бой, не снаряды
+    if (String(attacker.getMainHandItem().getId()) != 'mm:ascended_blade') return
+    const cfg = global.mmAscendedBlade
+    const target = event.getEntity()
+    target.setSecondsOnFire(cfg.fireSeconds)
+    let bonus = 0
+    // KubeJS подменяет entity.type/getType() строкой id — тип берём из реестра Forge
+    const RL = Java.loadClass('net.minecraft.resources.ResourceLocation')
+    const FR = Java.loadClass('net.minecraftforge.registries.ForgeRegistries')
+    const BOSSES = Java.loadClass('net.minecraftforge.common.Tags$EntityTypes').BOSSES
+    const typeId = String(target.type)
+    if (FR.ENTITY_TYPES.tags().getTag(BOSSES).contains(FR.ENTITY_TYPES.getValue(new RL(typeId)))) {
+      bonus = Math.min(target.getMaxHealth() * cfg.bossBonusPercent, cfg.bossBonusCap)
+      event.setAmount(event.getAmount() + bonus)
+    }
+    global.mmAscendedBladeLast = { target: typeId, bonus: bonus, amount: event.getAmount() }
+  } catch (err) {
+    global.mmAscendedBladeErr = String(err)
+    if (!mmBladeErrLogged) { mmBladeErrLogged = true; console.error(`[mm_ascended_blade] ошибка в свойстве меча (дальше не пишем): ${err}`) }
   }
-  global.mmAscendedBladeLast = { target: typeId, bonus: bonus, amount: event.getAmount() }
 })

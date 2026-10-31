@@ -1,6 +1,6 @@
 // Тест (поток 80): «Клинок Возвышения» (pack/kubejs/startup_scripts/mm_ascended_blade.js, рецепты — server_scripts/mm_ascension.js).
 // 1) меч зарегистрирован: урон/скорость в подсказке и прочность = global.mmAscendedBlade, огнестойкий; три рецепта загружены;
-// 2) фейковый игрок с мечом бьёт (hurt с playerAttack): Возвышенное чудовище (6000 HP, forge:bosses) → прибавка упирается в предел;
+// 2) фейковый игрок с мечом бьёт (attack с playerAttack): Возвышенное чудовище (6000 HP, forge:bosses) → прибавка упирается в предел;
 //    обычное Незеритовое чудовище (600 HP) → ровно доля от HP (ниже предела); зомби → прибавки нет, цель горит;
 // 3) контроль: тот же удар без меча — свойство не срабатывает.
 // Вывод: строки BLADE … → OK|FAIL. Запуск вместе с ascension.js: EXTRA_SERVER_SCRIPTS + TEST_COMMANDS «#sleep 60».
@@ -57,7 +57,7 @@ function bladeRun(server) {
     global.mmAscendedBladeLast = null
     target.invulnerableTime = 0
     let hp0 = target.getHealth()
-    let hurt = target.hurt(level.damageSources().playerAttack(fake), 10)
+    let hurt = target.attack(level.damageSources().playerAttack(fake), 10)   // KubeJS: attack(source, amount); hurt из Rhino не виден
     return { last: global.mmAscendedBladeLast, hurt: hurt, lost: hp0 - target.getHealth() }
   }
   const expectBonus = t => Math.min(t.getMaxHealth() * cfg.bossBonusPercent, cfg.bossBonusCap)
@@ -77,6 +77,7 @@ function bladeRun(server) {
   zombie.clearFire()
   r = hit(plainBoss, false)
   let r2 = hit(zombie, false)
+  bladeLog('no_errors', !global.mmAscendedBladeErr, 'обработчик без исключений (иначе строка [mm_ascended_blade] в логе)')
   bladeLog('no_blade', r.last == null && r2.last == null && zombie.getRemainingFireTicks() <= 0, `boss_last=${r.last} mob_last=${r2.last} fire_ticks=${zombie.getRemainingFireTicks()}`)
 
   fake.setItemSlot(Slot.MAINHAND, ItemStack.EMPTY)
