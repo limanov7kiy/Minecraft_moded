@@ -1938,3 +1938,12 @@ Corosus (Weather2) — здесь только перехват вызовов.
   (`MegaStructureTask.placeBlockInLevelChunk` → воронка обновляет соседа в незагруженном чанке → `Chunk not there when requested`, мегаструктура
   `sankta_holy_city`). Может повториться у игроков на краю загрузки — отдельная задача (сообщено координатору).
 - **Откат**: `git revert` PR (jar, `.pw.toml`, строки `dedup_list.js`, `kubejs/data/scp_ultimate`, `avoidStructures`, переводы, mm-compat 0.5.16).
+
+## Индекс packwiz: потеря `preserve = true` (поток 77, 2026-10-31)
+- Симптом: после автообновления Millida `voicechat-server.properties` получил порт сборки 24454 вместо порта хостинга 13021 — в индексе
+  у файла пропал `preserve = true` (был с #172, исчез к a3f48df). Заодно `refresh` на Linux добавлял `mods/mm-autoupdate-*.jar` вопреки `.packwizignore`.
+- Проверка на Linux (packwiz из `go install`): штатный `packwiz refresh` флаг **сохраняет** — и при неизменном файле, и при смене хэша файла. Значит,
+  флаг терялся не самим refresh, а при пересборке индекса «с нуля»/разрешении конфликта слияния индекса не в пользу ветки с флагом. Точную команду восстановить не удалось.
+- Защита: `scripts/check-pack-index.py` (падает, если у файлов из `REQUIRED_PRESERVE` нет `preserve = true` или в индексе есть записи по шаблонам
+  `.packwizignore`; зовут `export-pack.sh` и `test-server.sh`) и обёртка `scripts/refresh.sh` (refresh + возврат флагов + вычистка игнорируемых записей).
+  Новый файл «обязательно preserve» — дописать в `REQUIRED_PRESERVE`. После слияния веток с правкой `pack/index.toml` — прогнать `check-pack-index.py`.

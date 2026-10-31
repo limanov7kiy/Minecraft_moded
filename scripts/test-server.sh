@@ -13,6 +13,7 @@ dir="$1"; tmo="${2:-900}"
 root="$(cd "$(dirname "$0")/.." && pwd)"
 forge="$(sed -n 's/^forge = "\(.*\)"/\1/p' "$root/pack/pack.toml")"
 python3 "$root/scripts/check-pack-version.py"
+python3 "$root/scripts/check-pack-index.py"
 mkdir -p "$dir" && cd "$dir"
 if [ ! -f run.sh ]; then
   curl -sSLo forge-installer.jar "https://maven.minecraftforge.net/net/minecraftforge/forge/1.20.1-$forge/forge-1.20.1-$forge-installer.jar"
