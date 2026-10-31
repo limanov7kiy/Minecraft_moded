@@ -331,3 +331,7 @@ rp potato-craft-8x        # client: НЕОБЯЗАТЕЛЬНЫЙ ресурсп�
 
 ## Сервер: автообновление с git (поток 67; docs/hosting.md «Автообновление сервера с git»)
 #jar mm-autoupdate                # наш серверный мод (mods-src/mm-autoupdate, side=server, свой .pw.toml с url на raw GitHub): при остановке сервера запускает packwiz-installer-bootstrap (-g -s server) — к следующему старту mods/config/kubejs свежие; на Windows только предупреждает
+
+## SCP (поток 73, решение владельца В74 «а и б»; исследование — docs/scp.md, установка и находки — docs/compat.md «SCP»)
+#jar scp-ultimate                 # both: SCP: Ultimate 1.2.4 (onneim; All Rights Reserved, только CurseForge 1134764, без стороннего скачивания → jar в pack/mods): ~100 SCP, базы SCP Site и заброшенные комплексы в Overworld, 5 измерений; мобы ломают блоки как в оригинале. Города Lost Cities обходят базы (defaultconfigs/lostcities-server.toml avoidStructures). Дубли — противогаз → Spore (mm-compat ScpGasMaskMixin), P90 и патроны → TACZ (dedup_list.js, лут охраны — kubejs/data/scp_ultimate). Перевод — russian-moded/assets/scp_ultimate (поток 73)
+mr scp-foundation-requisites     # both: SCP: Foundation Requisites 3.2 (Egorich, MCreator; Modrinth): 25 комнат зон содержания (подземные Y ≤ 0, 5 наземных — в avoidStructures Lost Cities), ~2 000 блоков, биом Blue Forest в Overworld (MCreator-инъекция); огнестрел и патроны скрыты (дубли TACZ, рецептов у них нет). Перевод — russian-moded/assets/scpfr (поток 73)
