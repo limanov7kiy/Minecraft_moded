@@ -2926,10 +2926,6 @@ hash = "c25495262a852dc02886ec8c4b695f30e53264a2e3d881dd36ee9de16a1ef499"
 metafile = true
 
 [[files]]
-file = "mods/mm-autoupdate-0.3.0.jar"
-hash = "c3022ea61fa37934630c598b8b87e432d04075304e8f3eda510909c6f227310a"
-
-[[files]]
 file = "mods/mm-autoupdate.pw.toml"
 hash = "4c5b5328b181f204116adf880eb3ecc47105ac2f104506cb3725f41f62eaa924"
 metafile = true
