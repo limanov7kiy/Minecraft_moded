@@ -1343,7 +1343,7 @@ MythicBotany 4.0.4 (расширение Botania): после терра-сту�
 <a id="occultism"></a>
 - **Версия:** 1.20.1-1.158.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/occultism)
 - **Что это:** Ритуальная магия с призываемыми духами: автоматизация, хранение предметов, демоны, добывающие в пустоте, инструменты и украшения. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (20), [expensive-crafts.md](../expensive-crafts.md) (16), [jei.md](../jei.md) (10), [russification.md](../russification.md) (8), [roadmap.md](../roadmap.md) (6), [russification-audit.md](../russification-audit.md) (4)
+- **В наших docs:** [compat.md](../compat.md) (20), [expensive-crafts.md](../expensive-crafts.md) (16), [jei.md](../jei.md) (10), [roadmap.md](../roadmap.md) (8), [russification.md](../russification.md) (8), [russification-audit.md](../russification-audit.md) (4)
 <!-- auto:end card:occultism -->
 
 ### Как играть
