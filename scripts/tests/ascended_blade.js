@@ -54,11 +54,12 @@ function bladeRun(server) {
   fake.setPos(sp.getX() + 0.5, 320, sp.getZ() + 0.5)
   const hit = (target, withBlade) => {
     fake.setItemSlot(Slot.MAINHAND, withBlade ? Item.of('mm:ascended_blade') : ItemStack.EMPTY)
-    global.mmAscendedBladeLast = null
+    global.mmAscendedBladeLast = { target: '', bonus: -1, amount: 0 }   // null в global класть нельзя (NPE при чтении)
     target.invulnerableTime = 0
     let hp0 = target.getHealth()
     let hurt = target.attack(level.damageSources().playerAttack(fake), 10)   // KubeJS: attack(source, amount); hurt из Rhino не виден
-    return { last: global.mmAscendedBladeLast, hurt: hurt, lost: hp0 - target.getHealth() }
+    let l = global.mmAscendedBladeLast
+    return { last: String(l.target) == '' ? null : { target: String(l.target), bonus: Number(l.bonus) }, hurt: hurt, lost: hp0 - target.getHealth() }
   }
   const expectBonus = t => Math.min(t.getMaxHealth() * cfg.bossBonusPercent, cfg.bossBonusCap)
 
@@ -77,8 +78,8 @@ function bladeRun(server) {
   zombie.clearFire()
   r = hit(plainBoss, false)
   let r2 = hit(zombie, false)
-  bladeLog('no_errors', !global.mmAscendedBladeErr, 'обработчик без исключений (иначе строка [mm_ascended_blade] в логе)')
-  bladeLog('no_blade', r.last == null && r2.last == null && zombie.getRemainingFireTicks() <= 0, `boss_last=${r.last} mob_last=${r2.last} fire_ticks=${zombie.getRemainingFireTicks()}`)
+  bladeLog('no_errors', String(global.mmAscendedBladeErr) == '', `err='${global.mmAscendedBladeErr}'`)
+  bladeLog('no_blade', r.last == null && r2.last == null && zombie.getRemainingFireTicks() <= 0, `boss_last=${JSON.stringify(r.last)} mob_last=${JSON.stringify(r2.last)} fire_ticks=${zombie.getRemainingFireTicks()}`)
 
   fake.setItemSlot(Slot.MAINHAND, ItemStack.EMPTY)
   ;[ascended, plainBoss, zombie].forEach(e => e.discard())
