@@ -81,7 +81,7 @@
 <a id="legendary-survival-overhaul"></a>
 - **Версия:** 1.20.1-2.4.7 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/legendary-survival-overhaul)
 - **Что это:** Температура, жажда, повреждения конечностей и переработка здоровья для выживания. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (4), [roadmap.md](../roadmap.md) (2), [dedup.md](../dedup.md) (1), [performance.md](../performance.md) (1), [version-choice.md](../version-choice.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (4), [roadmap.md](../roadmap.md) (2), [dedup.md](../dedup.md) (1), [performance.md](../performance.md) (1), [vampirism.md](../vampirism.md) (1), [version-choice.md](../version-choice.md) (1)
 <!-- auto:end card:legendary-survival-overhaul -->
 
 ### Как играть
@@ -158,7 +158,7 @@
 <a id="serene-seasons"></a>
 - **Версия:** 9.1.0.3 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/serene-seasons)
 - **Что это:** Сезоны: смена цветов, температур и др. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (11), [performance.md](../performance.md) (5), [roadmap.md](../roadmap.md) (4), [client-checklist.md](../client-checklist.md) (1), [reset.md](../reset.md) (1), [version-choice.md](../version-choice.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (11), [performance.md](../performance.md) (5), [roadmap.md](../roadmap.md) (4), [client-checklist.md](../client-checklist.md) (1), [reset.md](../reset.md) (1), [vampirism.md](../vampirism.md) (1)
 <!-- auto:end card:serene-seasons -->
 
 ### Как играть
@@ -186,7 +186,7 @@
 - **Версия:** Forge-1.20.1-5.1.4 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/serene-seasons-plus)
 - **Что это:** Развитие Serene Seasons: скорость дня и ночи по подсезонам, лучшее накопление и таяние снега. _(источник: docs сборки)_
 - **В сборке:** требует GabouLibs (удалена автором) — заменена нашей библиотекой pack/mods/gaboulibs-shim (patches/gaboulibs-shim)
-- **В наших docs:** [compat.md](../compat.md) (7), [performance.md](../performance.md) (4), [roadmap.md](../roadmap.md) (3), [client-checklist.md](../client-checklist.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (7), [performance.md](../performance.md) (4), [roadmap.md](../roadmap.md) (3), [client-checklist.md](../client-checklist.md) (1), [vampirism.md](../vampirism.md) (1)
 <!-- auto:end card:serene-seasons-plus -->
 
 ### Как играть
