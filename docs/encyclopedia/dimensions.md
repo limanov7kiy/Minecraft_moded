@@ -117,7 +117,7 @@ _Обзор категории — вручную, следующие этапы
 <a id="aether-lost-content"></a>
 - **Версия:** 1.2.3 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/aether-lost-content)
 - **Что это:** Аддон к The Aether: возвращает вырезанный, неиспользованный и концептуальный контент и механики прошлых версий Эфира. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (22), [russification.md](../russification.md) (9), [enchanting-table.md](../enchanting-table.md) (6), [roadmap.md](../roadmap.md) (5), [dedup.md](../dedup.md) (4), [bosses.md](../bosses.md) (3)
+- **В наших docs:** [compat.md](../compat.md) (30), [russification.md](../russification.md) (9), [enchanting-table.md](../enchanting-table.md) (6), [roadmap.md](../roadmap.md) (6), [dedup.md](../dedup.md) (4), [bosses.md](../bosses.md) (3)
 <!-- auto:end card:aether-lost-content -->
 
 ### Как играть
@@ -616,7 +616,7 @@ Everdawn: хрустальный верблюд (`crystal_camel`), космич�
 <a id="aether"></a>
 - **Версия:** 1.20.1-1.5.2-neoforge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/aether)
 - **Что это:** Оригинальный мод The Aether: небесное измерение с островами, мо, валькириями и боссами; для современных версий, с мультиплеером. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (22), [russification.md](../russification.md) (9), [enchanting-table.md](../enchanting-table.md) (6), [roadmap.md](../roadmap.md) (5), [dedup.md](../dedup.md) (4), [bosses.md](../bosses.md) (3)
+- **В наших docs:** [compat.md](../compat.md) (30), [russification.md](../russification.md) (9), [enchanting-table.md](../enchanting-table.md) (6), [roadmap.md](../roadmap.md) (6), [dedup.md](../dedup.md) (4), [bosses.md](../bosses.md) (3)
 <!-- auto:end card:aether -->
 
 ### Как играть
@@ -677,6 +677,7 @@ Everdawn: хрустальный верблюд (`crystal_camel`), космич�
 <a id="the-aether-redux"></a>
 - **Версия:** 2.0.19-1.20.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/the-aether-redux)
 - **Что это:** Аддон к The Aether: разные улучшения и изменения. _(источник: docs сборки)_
+- **В наших docs:** [compat.md](../compat.md) (3)
 <!-- auto:end card:the-aether-redux -->
 
 ### Как играть
