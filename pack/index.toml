@@ -82,7 +82,7 @@ hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
 
 [[files]]
 file = "config/legendarysurvivaloverhaul/legendarysurvivaloverhaul-common.toml"
-hash = "4ea79656401e79ed4cd604454d6fdc78f2a9e6b996649b046712946ced6e0797"
+hash = "849d8c22b15f44733ae4644b5d83b22a54ba3779c57481643ea2ce5ef14ba8f7"
 
 [[files]]
 file = "config/mm_pack_version.txt"

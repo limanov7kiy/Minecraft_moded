@@ -1842,8 +1842,9 @@ Corosus (Weather2) — здесь только перехват вызовов.
 **Сделано (В72 «б», версия 2026.10.31-1):** в сборку добавлен `pack/config/legendarysurvivaloverhaul/legendarysurvivaloverhaul-common.toml`
 (копия сгенерированного LSO 2.4.7, изменены только три ключа): `"Base Food Exhaustion" = 0.015`, `"Sprinting Food Exhaustion" = 0.03`,
 `"On Attack Food Exhaustion" = 0.03`. Температура, жажда, здоровье LSO, расы (draco/sarkaz) и Mahou Tsukai не тронуты.
-`"Wetness Immunity Mounts"` — умолчание из кода мода (`alexscaves:submarine` и четыре машины `immersive_machinery`): в сгенерированном файле
-был только `alexscaves:submarine` (замечание Ревью).
+`"Wetness Immunity Mounts" = ["alexscaves:submarine"]` — это и есть умолчание для нашей сборки: в коде мода список ещё с четырьмя машинами
+`immersive_machinery:*`, но проверка LSO отбрасывает id отсутствующих модов (Immersive Machinery в сборке нет) — с полным списком Forge пишет
+«is not correct. Correcting» и переписывает файл на `["alexscaves:submarine"]` (проверено на тестовом сервере 2026-10-31).
 Повторный замер C (тот же `hungercheck.js`; мир с другим сидом — биом dark_forest, тёплый, поэтому фонового «холодного» расхода как в A/B нет):
 | Без расы, усталость за минуту | ваниль | A (было) | C (стало) | вклад LSO в C |
 |---|---|---|---|---|

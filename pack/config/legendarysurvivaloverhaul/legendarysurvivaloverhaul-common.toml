@@ -107,7 +107,7 @@
 		# Enable the wetness mechanic.
 		"Wetness Enabled" = true
 		# List of mounts that provide a wetness immunity.
-		"Wetness Immunity Mounts" = ["alexscaves:submarine", "immersive_machinery:bamboo_bee", "immersive_machinery:tunnel_digger", "immersive_machinery:redstone_sheep", "immersive_machinery:copperfin"]
+		"Wetness Immunity Mounts" = ["alexscaves:submarine"]
 		# How much being wet influences the player's temperature.
 		# It means that for a value of -10, the body temperature of the player is reduced by 10.
 		#Range: -1000.0 ~ 1000.0
