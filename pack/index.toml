@@ -81,8 +81,12 @@ file = "config/jei/client/default/jei-client.ini"
 hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
 
 [[files]]
+file = "config/legendarysurvivaloverhaul/legendarysurvivaloverhaul-common.toml"
+hash = "849d8c22b15f44733ae4644b5d83b22a54ba3779c57481643ea2ce5ef14ba8f7"
+
+[[files]]
 file = "config/mm_pack_version.txt"
-hash = "e64e6755f1fc21a47f1946f82e14fbe2c91d47c0931ba7b9f6bbce0b1998f9ce"
+hash = "2244d1a9c96bf439e805b2e21bb1558e4df77dd2c484ac6b6497a371e87e5bce"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -94,7 +98,7 @@ hash = "ae0213dfbc7561b527d00565ad849c32e096914967590c1aaf85c4133195c885"
 
 [[files]]
 file = "config/solsauthlogin-common.toml"
-hash = "03774e9720dbb20d1054caf5ef3830e4f58bb3854035a3ad9b43d24a5aa76e08"
+hash = "ab7064f523a218d3a2a99b967e4770b698e145ffea3421cdcd21404ebc8b1fa2"
 
 [[files]]
 file = "config/sound_physics_remastered/soundphysics.properties"

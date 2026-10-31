@@ -1082,7 +1082,7 @@ Iron's Recipe Additions 2.7: добавляет рецепты к [Iron's Spells
 <a id="mahou-tsukai"></a>
 - **Версия:** 1.20.1-v1.34.74 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/mahou-tsukai)
 - **Что это:** Магия со спецэффектами и уникальными заклинаниями. _(источник: docs сборки)_
-- **В наших docs:** [roadmap.md](../roadmap.md) (4), [compat.md](../compat.md) (3), [orespawn.md](../orespawn.md) (1), [russification.md](../russification.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (4), [roadmap.md](../roadmap.md) (4), [orespawn.md](../orespawn.md) (1), [russification.md](../russification.md) (1)
 <!-- auto:end card:mahou-tsukai -->
 
 ### Как играть
@@ -1343,7 +1343,7 @@ MythicBotany 4.0.4 (расширение Botania): после терра-сту�
 <a id="occultism"></a>
 - **Версия:** 1.20.1-1.158.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/occultism)
 - **Что это:** Ритуальная магия с призываемыми духами: автоматизация, хранение предметов, демоны, добывающие в пустоте, инструменты и украшения. _(источник: docs сборки)_
-- **В наших docs:** [expensive-crafts.md](../expensive-crafts.md) (16), [jei.md](../jei.md) (10), [russification.md](../russification.md) (8), [compat.md](../compat.md) (4), [roadmap.md](../roadmap.md) (4), [russification-audit.md](../russification-audit.md) (4)
+- **В наших docs:** [expensive-crafts.md](../expensive-crafts.md) (16), [jei.md](../jei.md) (10), [russification.md](../russification.md) (8), [roadmap.md](../roadmap.md) (6), [compat.md](../compat.md) (4), [russification-audit.md](../russification-audit.md) (4)
 <!-- auto:end card:occultism -->
 
 ### Как играть
