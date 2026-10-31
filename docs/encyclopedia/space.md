@@ -41,7 +41,7 @@
 <a id="ad-astra"></a>
 - **Версия:** 1.15.21 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/ad-astra)
 - **Что это:** Космическое расширение: планеты как отдельные измерения (Луна, Марс, Венера, Меркурий, Глацио) со своим воздухом, температурой и гравитацией, скафандры, кислородные машины, ровер и реактивный костюм. В сборке отвечает за планеты и орбиты единой Солнечной системы; его крафтовые ракеты убраны. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (31), [galacticraft.md](../galacticraft.md) (25), [dedup.md](../dedup.md) (12), [performance.md](../performance.md) (11), [roadmap.md](../roadmap.md) (10), [client-checklist.md](../client-checklist.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (31), [galacticraft.md](../galacticraft.md) (25), [dedup.md](../dedup.md) (12), [performance.md](../performance.md) (11), [roadmap.md](../roadmap.md) (11), [client-checklist.md](../client-checklist.md) (2)
 <!-- auto:end card:ad-astra -->
 
 ### Как играть
@@ -452,7 +452,7 @@ Creating Space (MIT; автор Real Ant Engineer) — ракеты на Create,
 <a id="mekanism-ad-astra-ores"></a>
 - **Версия:** 1.1.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/mekanism-ad-astra-ores)
 - **Что это:** Руды Mekanism на планетах Ad Astra. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (46), [dedup.md](../dedup.md) (23), [jei.md](../jei.md) (10), [expensive-crafts.md](../expensive-crafts.md) (9), [friends.md](../friends.md) (8), [ntm.md](../ntm.md) (7)
+- **В наших docs:** [compat.md](../compat.md) (46), [dedup.md](../dedup.md) (23), [jei.md](../jei.md) (10), [expensive-crafts.md](../expensive-crafts.md) (9), [friends.md](../friends.md) (8), [roadmap.md](../roadmap.md) (8)
 <!-- auto:end card:mekanism-ad-astra-ores -->
 
 ### Что даёт игроку
