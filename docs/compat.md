@@ -1892,3 +1892,40 @@ Corosus (Weather2) — здесь только перехват вызовов.
   в игре смотреть по чек-листу `docs/ysm-models.md` («Vivi: …»).
 - **Сервер (2026-10-31, вариант «б», сборка 2026.10.31-1):** `SERVER OK` (Done 46 с), `/ysm export vivi` → `[YSM] Saved as 'export/vivi.ysm'` (105 КБ), crash-reports нет. Клиент не перезапускал (изменилась только папка модели).
 - **Откат:** `git revert` PR #181 (папка модели, генератор, превью, docs).
+
+## SCP: Ultimate и SCP: Foundation Requisites (поток 73, 2026-10-31, сборка 2026.10.31-3, В74 «а и б»)
+Исследование — `docs/scp.md` (поток 70). Оба мода — MCreator, side=both, зависимостей нет.
+- **SCP: Ultimate 1.2.4** (onneim, All Rights Reserved, только CurseForge 1134764 без стороннего скачивания) — jar в `pack/mods/`.
+  **SCP: Foundation Requisites 3.2** (Egorich) — Modrinth (`scp-foundation-requisites.pw.toml`).
+- **Ломание блоков — как в оригинале** (В74): ничего не смягчали; своих конфигов и gamerule у модов нет, действует общий `mobGriefing`.
+- **Не внутри городов Lost Cities.** `pack/defaultconfigs/lostcities-server.toml`: `avoidStructures` = 6 значений Lost Cities по умолчанию +
+  `scp_ultimate:scp_site_1..3`, `facility_natural_1..3` и 5 наземных комнат Requisites (`hcz_armory`, `med_bay`, `scp_294_chamber`, `scp_330_chamber`,
+  `storage_room`). По байткоду `StructureAvoidance.hasAvoidedStructure` Lost Cities смотрит **ссылки** структур (`ChunkAccess.getAllReferences`),
+  т.е. город не строится ни в одном чанке, через который проходит постройка (комплекс ~110×115 — до 8×8 чанков), а не только в чанке старта.
+  Подземные комнаты Requisites (Y −60…0) не добавлены — они ниже подвалов и метро, иначе в городах были бы лишние дыры. Действует только на **новый** мир.
+- **Дубли** (`docs/dedup.md`, `global.mmDedup`): противогаз Ultimate → противогаз Spore (mm-compat 0.5.16 `ScpGasMaskMixin`: в процедурах
+  `ScpGuardprocedure1`, `Playertickguard1`, `SCP008OnTickUpdate2` маска Spore на голове считается противогазом SCP — охрана и SCP-008; оверлей не трогаем);
+  FN P90 и патроны 5.7×28 → TACZ (рецепт патронов убран; лут — `pack/kubejs/data/scp_ultimate/loot_tables/loot1.json` и `entities/scp_guard.json`
+  без них, охрана теперь ничего не роняет). Requisites: 43 ствола и 18 видов патронов → TACZ (рецептов и лута у них нет — только скрыты из JEI и
+  вкладки `scpfr:weapons_and_armor`). Не трогали: очки ночного видения, фонарик, шприцы, ключ-карты (у каждого мода свои считыватели), броня/инструменты
+  телекилла и титана, электрошокер, Jailbird, Particle Disruptor, гранаты, броня MTF/ПХ/класса D/охраны/учёных (РП-форма — вопрос координатору).
+  Противогаз SCP по-прежнему выдают интерфейсы самого мода (торговля учёных) — предмет рабочий, правка — только миксином, не стоит того.
+  `dedupcheck.js`: **91/91 OK**.
+- **Almost Unified / теги**: forge-тегов предметов у Ultimate нет, у Requisites только `forge:keycards` (свой); все теги `replace:false`; общих руд нет
+  (телекилл, титан Requisites без `forge:ingots/*`) — объединять нечего, `hardrefs.py` не нужен (конфиг AU не менялся).
+- **Биом Requisites.** Requisites встраивает свой биом `scpfr:blue_forest` в источник биомов Overworld (MCreator-инъекция параметров климата) — сервер
+  с ним стартует нормально; это меняет генерацию только новых чанков.
+- **Перевод**: `russian-moded/assets/scp_ultimate/lang/ru_ru.json` (2 196 ключей) и `assets/scpfr/lang/ru_ru.json` (3 863; устаревшие `tile.*` не нужны в 1.20) —
+  переведено нами (поток 73), термины — по русской вики Фонда SCP; `lang_validate.py` 0 ошибок. Длинные описания в каталоге Ultimate разбиты автором
+  на строки-кнопки GUI — стыки могут читаться неидеально.
+- **Сервер** (2026-10-31): `SERVER OK` (Done 37–56 с), crash-reports с SCP нет. Безвредные ошибки самих модов в логе: ачивки
+  `scpfr:i_am_the_most_powerful_here` (`scpfr:plasma`) и `scp_ultimate:scp_513ad` (`deleted_mod_element`) не грузятся.
+- **Нагрузка** (`scripts/tests/scpload.js`, новый мир): все 6 построек Ultimate найдены в 900–2000 блоках от (0,0) (`facility_natural_1` −880,240 …
+  `scp_site_3` 624,576). Покой — **6,4 мс/тик**; 6 построек одновременно загружены (9×9 чанков каждая, сущности тикают) — **43–44 мс** (p95 62),
+  453 SCP-сущности (≈75 на постройку): больше всего `chara` (180, служебные «сиденья» стульев), крысы 71, SCP-019-2 32, SCP-772 27, класс D 23, охрана 20.
+  Итого ≈ **+6 мс на каждую загруженную постройку**; у одной-двух баз рядом с игроками — приемлемо. Если будет мешать — spark и, при необходимости,
+  троттлинг процедур `chara`/крыс в mm-compat (как Arknights).
+- **Находка не по SCP**: при первом замере поиск структур с радиусом 60 ячеек сетки подгрузил дальние чанки, и Torches Become Sunlight упал
+  (`MegaStructureTask.placeBlockInLevelChunk` → воронка обновляет соседа в незагруженном чанке → `Chunk not there when requested`, мегаструктура
+  `sankta_holy_city`). Может повториться у игроков на краю загрузки — отдельная задача (сообщено координатору).
+- **Откат**: `git revert` PR (jar, `.pw.toml`, строки `dedup_list.js`, `kubejs/data/scp_ultimate`, `avoidStructures`, переводы, mm-compat 0.5.16).
