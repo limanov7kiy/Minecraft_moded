@@ -2007,7 +2007,7 @@ hash = "98f946259767d1ecf5cd8f6f43192b0832b5d68b60d5f3273e48a7edc2847817"
 
 [[files]]
 file = "kubejs/server_scripts/mm_ascension.js"
-hash = "31bc2b569f2b68acc8aef8ab2af54441fcb73cc78eafa69d9ee789120e52b686"
+hash = "105375d2920258bd6485cff407ba5656f9e4e0eafe0447c4234a9501b3cb1051"
 
 [[files]]
 file = "kubejs/server_scripts/orespawn_spawn_thin.js"

@@ -2077,7 +2077,7 @@ Corosus (Weather2) — здесь только перехват вызовов.
 - **AttributeFix:** `config/attributefix.json` (создаётся при первом запуске) — `minecraft:generic.max_health` max = 1 000 000, `attack_damage` — 1 000 000.
 - **Тест** `scripts/tests/ascension.js` (повторяет шаги ритуала: create → finalizeSpawn → merge NBT **из загруженного рецепта** → addFreshEntity; рядом контрольное
   обычное чудовище): `max_health=6000 base=6000 hp=6000`, `attack_damage base=50 value=50` (×2 от 25), `tags=[mm_ascended]`, имя, `persistent=true`;
-  контроль — 600 / 25, без тега. Через 5 с ни Chaos Persists, ни другие моды атрибуты не переписали. После `kill()` сердце выпадает у вызванного
+  контроль — 600 / 25, без тега. Финальный прогон — на чистом мире, все строки `ASCENSION … → OK`, `SERVER OK`. Через 5 с ни Chaos Persists, ни другие моды атрибуты не переписали. После `kill()` сердце выпадает у вызванного
   босса (1 шт.) и не выпадает у обычного; обычный лут Cataclysm (Infernal Forge, рог, Lava Power Cell, мясо Lender's Delight) выпадает у обоих.
 - **Грабли Rhino (KubeJS 6), найдены тестом:** `const` внутри `if` в обработчике тика → «redeclaration of var»; `Entity.moveTo(5 чисел)` и
   `spawnAtLocation(ItemStack[, float])` — неоднозначные перегрузки (ItemLike/ItemStack, int/float). Сердце создаётся через `new ItemEntity(level, x, y, z, stack)`.
