@@ -6,6 +6,11 @@
 // 4) ещё через 3 с: сердце лежит у вызванного босса и не лежит у обычного.
 // Вывод: строки ASCENSION … → OK|FAIL. Запуск: EXTRA_SERVER_SCRIPTS=<папка с файлом> + TEST_COMMANDS «#sleep 60».
 let mmAsc = null
+let mmAscDrops = 0   // сколько сердец вошло в мир (EntityJoinLevel) — независимо от поиска по области
+EntityEvents.spawned(event => {
+  let e = event.entity
+  if (String(e.type) == 'minecraft:item' && String(e.getItem().getId()) == 'mm:ascended_heart') mmAscDrops++
+})
 function ascLog(name, ok, info) { console.info(`ASCENSION ${name} ${info} → ${ok ? 'OK' : 'FAIL'}`) }
 
 function ascStart(server) {
@@ -30,6 +35,8 @@ function ascStart(server) {
   let sp = level.getSharedSpawnPos()
   let spawn = (dx, merge) => {
     let x = sp.getX() + dx, z = sp.getZ()
+    server.runCommandSilent(`forceload add ${x} ${z}`)
+    level.getChunk(x >> 4, z >> 4)   // полностью сгенерировать чанк, иначе карта высот пуста (y = дно мира)
     let y = level.getHeight(Heightmap.MOTION_BLOCKING, x, z) + 1
     let e = type.create(level)
     e.setPos(x + 0.5, y + 0.0, z + 0.5)
@@ -81,7 +88,7 @@ ServerEvents.tick(event => {
   else if (t == 360 && mmAsc && mmAsc.pos) {
     let level = event.server.getLevel('minecraft:overworld')
     let hb = ascHearts(level, mmAsc.pos.b), hp = ascHearts(level, mmAsc.pos.p)
-    ascLog('heart from ascended', hb == 1, `hearts=${hb}`)
+    ascLog('heart from ascended', hb == 1 && mmAscDrops == 1, `hearts_near=${hb} hearts_spawned=${mmAscDrops}`)
     ascLog('no heart from plain', hp == 0, `hearts=${hp}`)
   }
 })
