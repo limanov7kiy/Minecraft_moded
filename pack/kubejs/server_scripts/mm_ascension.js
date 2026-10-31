@@ -67,6 +67,6 @@ EntityEvents.death(event => {
   const e = event.entity
   if (!e.getTags().contains('mm_ascended')) return
   e.removeTag('mm_ascended')   // не выдать второй раз, если смерть придёт повторно
-  e.spawnAtLocation(Item.of('mm:ascended_heart'))
+  e.spawnAtLocation(Item.of('mm:ascended_heart'), 0.0)   // перегрузка (ItemStack, float): у одноаргументной Rhino не выбирает между ItemLike и ItemStack
   console.info(`[mm_ascension] Возвышенное сердце выпало: ${e.type} @ ${e.blockX} ${e.blockY} ${e.blockZ}`)
 })
