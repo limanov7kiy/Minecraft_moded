@@ -299,7 +299,7 @@ Ars Magica: Legacy 1.5.0 (`arsmagicalegacy`) — порт классическо
 <a id="ars-nouveau"></a>
 - **Версия:** 4.12.7 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/ars-nouveau)
 - **Что это:** Создание заклинаний из глифов и магическая автоматизация. _(источник: docs сборки)_
-- **В наших docs:** [russification.md](../russification.md) (18), [compat.md](../compat.md) (8), [roadmap.md](../roadmap.md) (8), [enchanting-table.md](../enchanting-table.md) (6), [expensive-crafts.md](../expensive-crafts.md) (4), [russification-glossary.md](../russification-glossary.md) (4)
+- **В наших docs:** [russification.md](../russification.md) (18), [compat.md](../compat.md) (10), [roadmap.md](../roadmap.md) (8), [enchanting-table.md](../enchanting-table.md) (6), [expensive-crafts.md](../expensive-crafts.md) (4), [russification-glossary.md](../russification-glossary.md) (4)
 <!-- auto:end card:ars-nouveau -->
 
 ### Как играть
@@ -806,7 +806,7 @@ Extra Golems 20.1.0.2 (модид `golems`, автор skyjay1, лицензия
 <a id="extrabotany"></a>
 - **Версия:** 1.20.1-1.9.2-forge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/extrabotany)
 - **Что это:** Дополнение к Botania. _(источник: docs сборки)_
-- **В наших docs:** [bosses.md](../bosses.md) (12), [expensive-crafts.md](../expensive-crafts.md) (10), [russification.md](../russification.md) (4), [client-checklist.md](../client-checklist.md) (2), [compat.md](../compat.md) (2), [jei.md](../jei.md) (2)
+- **В наших docs:** [bosses.md](../bosses.md) (12), [expensive-crafts.md](../expensive-crafts.md) (12), [russification.md](../russification.md) (4), [client-checklist.md](../client-checklist.md) (2), [compat.md](../compat.md) (2), [jei.md](../jei.md) (2)
 <!-- auto:end card:extrabotany -->
 
 ### Как играть
@@ -1343,7 +1343,7 @@ MythicBotany 4.0.4 (расширение Botania): после терра-сту�
 <a id="occultism"></a>
 - **Версия:** 1.20.1-1.158.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/occultism)
 - **Что это:** Ритуальная магия с призываемыми духами: автоматизация, хранение предметов, демоны, добывающие в пустоте, инструменты и украшения. _(источник: docs сборки)_
-- **В наших docs:** [expensive-crafts.md](../expensive-crafts.md) (16), [jei.md](../jei.md) (10), [russification.md](../russification.md) (8), [roadmap.md](../roadmap.md) (6), [compat.md](../compat.md) (4), [russification-audit.md](../russification-audit.md) (4)
+- **В наших docs:** [compat.md](../compat.md) (20), [expensive-crafts.md](../expensive-crafts.md) (16), [jei.md](../jei.md) (10), [roadmap.md](../roadmap.md) (8), [russification.md](../russification.md) (8), [russification-audit.md](../russification-audit.md) (4)
 <!-- auto:end card:occultism -->
 
 ### Как играть

@@ -91,6 +91,9 @@ KubeJS-аддоны: [KubeJS Create](https://modrinth.com/mod/kubejs-create) п�
 десятки часов на группу.
 
 ### Пример 2. Предмет призыва «Печать Возвышения» (`mm:ascension_sigil`) → «Возвышенное чудовище»
+**Сделано (поток 80, сборка 2026.10.31-11)** — описание для игроков: [encyclopedia/own/ascension-sigil.md](encyclopedia/own/ascension-sigil.md),
+проверка — [compat.md](compat.md), «Печать Возвышения». Отличия от наброска ниже: на этапе 1 — заготовка «Спящая печать» (`mm:ascension_sigil_blank`);
+в ритуале печать — активирующий предмет, в чашах 2 незеритовых слитка + Рог чудовища + слиток игнития; Hero Medal — ExtraBotany; сердце пока ни во что не крафтится.
 1. **Заготовка** — Cataclysm `weapon_fusion`: Monstrous Eye + Void Core.
 2. **Зарядка** — Ars Nouveau, Enchanting Apparatus: + 8 «эссенций» (Essence of the Storm, Lacrima, Abyssal Egg, Gaia Spirit,
    демонический кристалл Blood Magic, Hero Medal, `alexscaves:pure_darkness`, звезда Незера).

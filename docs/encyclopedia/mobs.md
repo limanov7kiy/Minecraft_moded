@@ -24,6 +24,8 @@
 - [SCP: Foundation Requisites](#scp-foundation-requisites)
 - [Vampirism](#vampirism)
 
+**См. также:** [Возвышенное чудовище](own/ascension-sigil.md) — усиленный ритуалом Незеритовое чудовище (6000 HP), трофей «Возвышенное сердце»
+
 Вернуться: [оглавление справочника](INDEX.md).
 <!-- auto:end toc -->
 
@@ -407,7 +409,7 @@ _Обзор категории — вручную, следующие этапы
 - **Версия:** 1.20.1-0.9.1 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/chaospersists-1.20.1-0.9.1.jar`
 - **Что это:** Ремейк OreSpawn 1.7.10 на 1.20.1: около 130 мобов и боссов (Король, Королева, Мобзилла, Кракен, Кошмар), шесть измерений, 54 структуры, руды, оружие и броня «Хаоса», питомцы и еда. _(источник: docs сборки)_
 - **В сборке:** both: Chaos Persists 0.9.1 (Astryxion; All Rights Reserved, CF 1460238) — ремейк OreSpawn 1.7.10 (В16, поток 23): ~130 мобов, King/Queen/Mobzilla, измерения Utopia/Mining/Village/Crystal/Chaos/Danger; зависимостей нет. Сравнение с оригиналом — docs/orespawn.md
-- **В наших docs:** [orespawn.md](../orespawn.md) (15), [performance.md](../performance.md) (12), [compat.md](../compat.md) (9), [expensive-crafts.md](../expensive-crafts.md) (6), [roadmap.md](../roadmap.md) (6), [dedup.md](../dedup.md) (2)
+- **В наших docs:** [orespawn.md](../orespawn.md) (15), [performance.md](../performance.md) (12), [compat.md](../compat.md) (10), [expensive-crafts.md](../expensive-crafts.md) (6), [roadmap.md](../roadmap.md) (6), [dedup.md](../dedup.md) (2)
 <!-- auto:end card:chaospersists -->
 
 ### Как играть
@@ -758,7 +760,7 @@ Ice and Fire CE: **огненные, ледяные и молниевые дра
 <a id="l_enders-cataclysm"></a>
 - **Версия:** 3.31 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/l_enders-cataclysm)
 - **Что это:** Cataclysm от L_Ender: восемь крупных структур-арен с боссами (Игнис, Левиафан, Сцилла, Предвестник и др.), мини-боссы и мобы Незера, пустыни, океана и Края, оружие и броня по ступеням (чёрная сталь, игнит, проклятый слиток) и аметистовые пещеры. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (31), [expensive-crafts.md](../expensive-crafts.md) (12), [roadmap.md](../roadmap.md) (12), [enchanting-table.md](../enchanting-table.md) (4), [vampirism.md](../vampirism.md) (3), [client-checklist.md](../client-checklist.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (39), [roadmap.md](../roadmap.md) (13), [expensive-crafts.md](../expensive-crafts.md) (12), [enchanting-table.md](../enchanting-table.md) (4), [vampirism.md](../vampirism.md) (3), [client-checklist.md](../client-checklist.md) (2)
 <!-- auto:end card:l_enders-cataclysm -->
 
 ### Как играть
