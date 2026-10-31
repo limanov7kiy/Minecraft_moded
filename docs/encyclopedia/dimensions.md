@@ -117,7 +117,7 @@ _Обзор категории — вручную, следующие этапы
 <a id="aether-lost-content"></a>
 - **Версия:** 1.2.3 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/aether-lost-content)
 - **Что это:** Аддон к The Aether: возвращает вырезанный, неиспользованный и концептуальный контент и механики прошлых версий Эфира. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (21), [russification.md](../russification.md) (9), [enchanting-table.md](../enchanting-table.md) (6), [roadmap.md](../roadmap.md) (5), [dedup.md](../dedup.md) (4), [bosses.md](../bosses.md) (3)
+- **В наших docs:** [compat.md](../compat.md) (22), [russification.md](../russification.md) (9), [enchanting-table.md](../enchanting-table.md) (6), [roadmap.md](../roadmap.md) (5), [dedup.md](../dedup.md) (4), [bosses.md](../bosses.md) (3)
 <!-- auto:end card:aether-lost-content -->
 
 ### Как играть
@@ -616,7 +616,7 @@ Everdawn: хрустальный верблюд (`crystal_camel`), космич�
 <a id="aether"></a>
 - **Версия:** 1.20.1-1.5.2-neoforge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/aether)
 - **Что это:** Оригинальный мод The Aether: небесное измерение с островами, мо, валькириями и боссами; для современных версий, с мультиплеером. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (21), [russification.md](../russification.md) (9), [enchanting-table.md](../enchanting-table.md) (6), [roadmap.md](../roadmap.md) (5), [dedup.md](../dedup.md) (4), [bosses.md](../bosses.md) (3)
+- **В наших docs:** [compat.md](../compat.md) (22), [russification.md](../russification.md) (9), [enchanting-table.md](../enchanting-table.md) (6), [roadmap.md](../roadmap.md) (5), [dedup.md](../dedup.md) (4), [bosses.md](../bosses.md) (3)
 <!-- auto:end card:aether -->
 
 ### Как играть
@@ -788,7 +788,7 @@ Everdawn: хрустальный верблюд (`crystal_camel`), космич�
 - **Версия:** 1.20-7.5.7 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/the-lost-cities)
 - **Что это:** Генерирует заброшенные города (улицы, шоссе, здания с подвалами, метро, спавнерами и сундуками) прямо в обычном Overworld; в сборке включён редкий профиль rarecities (≈6 % городских чанков), действует для нового мира. _(источник: docs сборки)_
 - **В сборке:** The Lost Cities (McJty, MIT): города в обычном Overworld; профиль — pack/defaultconfigs/lostcities-server.toml
-- **В наших docs:** [compat.md](../compat.md) (18), [lost-cities.md](../lost-cities.md) (17), [roadmap.md](../roadmap.md) (11), [vampirism.md](../vampirism.md) (9), [performance.md](../performance.md) (8), [friends.md](../friends.md) (3)
+- **В наших docs:** [compat.md](../compat.md) (18), [lost-cities.md](../lost-cities.md) (17), [roadmap.md](../roadmap.md) (12), [vampirism.md](../vampirism.md) (9), [performance.md](../performance.md) (8), [friends.md](../friends.md) (3)
 <!-- auto:end card:the-lost-cities -->
 
 ### Как играть
