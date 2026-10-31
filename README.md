@@ -105,6 +105,8 @@
 | [scripts/fetch-config-files.py](scripts/fetch-config-files.py) | Разворачивает метафайлы конфигов (модели YSM) для сервера |
 | [scripts/export-pack.sh](scripts/export-pack.sh) | Раздача: `dist/*.mrpack` для клиента и `dist/*-server.zip` для сервера |
 | [scripts/check-pack-version.py](scripts/check-pack-version.py) | Проверка версии сборки: `pack.toml` и `config/mm_pack_version.txt` совпадают и вида `ГГГГ.ММ.ДД-N` |
+| [scripts/check-pack-index.py](scripts/check-pack-index.py) | Проверка `pack/index.toml`: `preserve = true` у обязательных файлов (порт голоса) и нет записей из `.packwizignore` |
+| [scripts/refresh.sh](scripts/refresh.sh) | `packwiz refresh` + возврат `preserve` и вычистка игнорируемых записей + проверки (вместо голого refresh) |
 | [scripts/mrpack-install.py](scripts/mrpack-install.py) | Ставит `.mrpack` в папку как лаунчер — для проверки без лаунчера |
 | [scripts/mrpack-optional.py](scripts/mrpack-optional.py) | Помечает необязательные моды в `.mrpack`, чтобы клиент их не получал |
 | [scripts/pack-index-refresh.py](scripts/pack-index-refresh.py) | Пересчёт хэшей `pack/index.toml` и `pack/pack.toml` после правки метафайлов моделей YSM |
@@ -116,6 +118,7 @@
 | [scripts/tests/savecheck.js](scripts/tests/savecheck.js) | Замер сохранения мира по измерениям: автосейв, сохранение с flush (как выход из мира), во время генерации — см. `docs/performance.md` «Долгое сохранение» |
 | [scripts/tests/cn_nogrief.js](scripts/tests/cn_nogrief.js) | Проверка, что взрыв реактора Create Nuclear не ломает блоки (`createnuclear_no_grief.js`) — см. `docs/compat.md` «Create Nuclear» |
 | [scripts/tests/radsuit.js](scripts/tests/radsuit.js) | Проверка единого защитного костюма: костюм Create Nuclear защищает от радиации Mekanism и Create Nuclear, Hazmat не крафтится — см. `docs/compat.md` «Один защитный костюм» |
+| [scripts/tests/scpload.js](scripts/tests/scpload.js) | Нагрузка рядом с базами SCP: Ultimate: ищет комплексы и базы, держит чанки загруженными, время тика до/после — см. `docs/compat.md` «SCP» |
 | [scripts/tests/dedup_dump.js](scripts/tests/dedup_dump.js) | Выгрузка всех предметов и рецептов со стенда в JSON для аудита дублей — см. `docs/dedup.md` |
 | [scripts/tests/dedupcheck.js](scripts/tests/dedupcheck.js) | Проверка убранных логических дублей: нет рецептов, нет жёстких ссылок в чужих рецептах, оставшийся предмет есть — см. `docs/compat.md` «пачка dedup-1» |
 | [scripts/tests/hazardgear.js](scripts/tests/hazardgear.js) | Проверка защитного снаряжения после объединения дублей: костюм Create Nuclear в Alex's Caves, противогаз Spore против газа CBC — см. `docs/compat.md` «пачка dedup-2» |

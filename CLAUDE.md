@@ -60,6 +60,9 @@
   потому что `pack.toml` до игрока не доходит (packwiz-installer его не кладёт в экземпляр, в `.mrpack` его нет), а `config/` идёт и клиенту, и серверу.
   Клиентский мод mm-perf показывает версию в главном меню, в заголовке окна и в логе (`[mm_perf] версия сборки`); `scripts/check-pack-version.py`
   (его зовут `export-pack.sh` и `test-server.sh`) падает, если версии разошлись или не вида `ГГГГ.ММ.ДД-N`.
+- **Индекс после `packwiz refresh`**: пересобирай через `scripts/refresh.sh` (не голым refresh) — он возвращает `preserve = true` обязательным файлам
+  (список `REQUIRED_PRESERVE` в `scripts/check-pack-index.py`, сейчас порт голоса `voicechat-server.properties`) и убирает записи по `.packwizignore`;
+  `check-pack-index.py` зовут `export-pack.sh` и `test-server.sh`. Причина — поток 77, `docs/compat.md`.
 - `scripts/export-pack.sh` — раздача: `dist/*.mrpack` (клиент) и `dist/*-server.zip` (сервер); инструкция для друзей — `docs/friends.md`.
 - Сторону мода (`side` в `pack/mods/*.pw.toml`) packwiz берёт с Modrinth; если она неверна — поправь вручную.
 - Свои моды и патчи: `mods-src/` (Gradle, ModDevGradle legacyforge + Parchment, как у Redux) и `patches/`.
@@ -74,7 +77,7 @@
     огромных шаблонов структур в каждый чанк — OOM при полёте, поток 34;
     падение сервера от подписки Distant Horizons на Chunky до его запуска, поток 64;
     костюм Create Nuclear защищает и от радиации Mekanism и от облучения Alex's Caves, противогаз Spore — и от газа Create Big Cannons
-    (логические дубли, поток 66);
+    (логические дубли, поток 66); противогаз Spore засчитывается охраной SCP: Ultimate и от SCP-008 (поток 73);
     блокирующая догрузка чанков на главном потоке у Serene Seasons Plus, Falling Tree и Weather2 — тик до 54 с при входе в новое место;
     Lost Cities `City.isCityCenter` без new Random на каждый вызов — генерация +47–56 %, поток 67).
     Ad Astra в зависимостях — по Modrinth version id Forge-сборки (номер версии у Forge и Fabric одинаковый).

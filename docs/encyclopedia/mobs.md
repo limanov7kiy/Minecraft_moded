@@ -3,7 +3,7 @@
 Новые существа, боссы, паразиты. Подробные таблицы боссов — docs/bosses.md.
 
 <!-- auto:start toc -->
-Модов в категории: **16**.
+Модов в категории: **18**.
 
 - [Alex's Mobs](#alexs-mobs)
 - [Alex's Mobs Interaction](#alexs-mobs-interaction)
@@ -20,6 +20,8 @@
 - [Mowzie's Cataclysm](#mowzies-cataclysm)
 - [Mowzie's Mobs](#mowzies-mobs)
 - [One-Click Parasite Transformation](#one-click-parasite-transformation)
+- [SCP Ultimate](#scp-ultimate)
+- [SCP: Foundation Requisites](#scp-foundation-requisites)
 - [Vampirism](#vampirism)
 
 Вернуться: [оглавление справочника](INDEX.md).
@@ -1195,6 +1197,97 @@ Seastorm, Shadow Games, Sharknado, Subzero, The Swarm, Tsunami, Windstorm, Winge
 Прочее — значения по умолчанию: `forced_infection` включено, `infection_base_duration = 6000`, `infection_transform_threshold = 0.3`, `death_rebirth` включено (таблица `mappings` — 33 пары).
 Замечания (не проверяли в игре): в `death_rebirth.mappings` есть записи с id, которых нет в Spore (`spore:Jagd`, `spore:volatele`, `spore:prot_spawnegg` — это предмет); такие пары, видимо, не срабатывают.
 Нагрузка и клиентская проверка: [performance.md](../performance.md), раздел «Нагрузка от Spore + SRP System»; в логе клиента безвредное предупреждение — файла звука `srpsystem:sounds/nude.ogg` нет (в jar лежит `node.ogg`).
+
+## SCP Ultimate
+
+<!-- auto:start card:scp_ultimate -->
+<a id="scp_ultimate"></a>
+- **Версия:** 1.2.4 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/scp_ultimate-1.2.4-forge-1.20.1.jar`
+- **Что это:** Фонд SCP: около 100 SCP-объектов (173, 096, 106, 682, 939…), охраняемые базы SCP Site и заброшенные комплексы со сбежавшими SCP в обычном мире, 5 измерений, создание SCP из ядер в сборщике SCP, руда телекилла. Мобы ломают блоки, как в оригинале. _(источник: docs сборки)_
+- **В сборке:** both: SCP: Ultimate 1.2.4 (onneim; All Rights Reserved, только CurseForge 1134764, без стороннего скачивания → jar в pack/mods): ~100 SCP, базы SCP Site и заброшенные комплексы в Overworld, 5 измерений; мобы ломают блоки как в оригинале. Города Lost Cities обходят базы (defaultconfigs/lostcities-server.toml avoidStructures). Дубли — противогаз → Spore (mm-compat ScpGasMaskMixin), P90 и патроны →…
+<!-- auto:end card:scp_ultimate -->
+
+### Как играть
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Предметы/блоки
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Мобы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Эффекты
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### События
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Данжи/структуры (/locate)
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Чары
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Команды/гамерулы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Конфиги
+
+_Пока пусто — заполнит один из следующих этапов._
+
+## SCP: Foundation Requisites
+
+<!-- auto:start card:scp-foundation-requisites -->
+<a id="scp-foundation-requisites"></a>
+- **Версия:** ? · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/XWxnCMZK)
+- **Что это:** Всё для своей зоны содержания SCP: ~2 000 блоков (двери, гермодвери, считыватели ключ-карт, кнопки, декор из SCP: CB/SL), админ-панель и 25 видов подземных комнат и коридоров в мире. Огнестрел мода скрыт — оружие в сборке из TACZ. _(источник: docs сборки)_
+- **В сборке:** both: SCP: Foundation Requisites 3.2 (Egorich, MCreator; Modrinth): 25 комнат зон содержания (подземные Y ≤ 0, 5 наземных — в avoidStructures Lost Cities), ~2 000 блоков, биом Blue Forest в Overworld (MCreator-инъекция); огнестрел и патроны скрыты (дубли TACZ, рецептов у них нет). Перевод — russian-moded/assets/scpfr (поток 73)
+- **В наших docs:** [scp.md](../scp.md) (4), [compat.md](../compat.md) (2), [roadmap.md](../roadmap.md) (1)
+<!-- auto:end card:scp-foundation-requisites -->
+
+### Как играть
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Предметы/блоки
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Мобы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Эффекты
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### События
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Данжи/структуры (/locate)
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Чары
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Команды/гамерулы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Конфиги
+
+_Пока пусто — заполнит один из следующих этапов._
 
 ## Vampirism
 
