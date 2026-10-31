@@ -63,10 +63,14 @@ ServerEvents.recipes(event => {
 })
 
 // 4. Награда: только босс с тегом mm_ascended (обычное Незеритовое чудовище сердце не даёт)
+const ItemEntity = Java.loadClass('net.minecraft.world.entity.item.ItemEntity')
 EntityEvents.death(event => {
   const e = event.entity
   if (!e.getTags().contains('mm_ascended')) return
   e.removeTag('mm_ascended')   // не выдать второй раз, если смерть придёт повторно
-  e.spawnAtLocation(Item.of('mm:ascended_heart'), 0.0)   // перегрузка (ItemStack, float): у одноаргументной Rhino не выбирает между ItemLike и ItemStack
+  // ItemEntity напрямую: у spawnAtLocation перегрузки (ItemLike|ItemStack, int|float), Rhino не может выбрать
+  const drop = new ItemEntity(e.level, e.x, e.y + 1, e.z, Item.of('mm:ascended_heart'))
+  drop.setDefaultPickUpDelay()
+  e.level.addFreshEntity(drop)
   console.info(`[mm_ascension] Возвышенное сердце выпало: ${e.type} @ ${e.blockX} ${e.blockY} ${e.blockZ}`)
 })
