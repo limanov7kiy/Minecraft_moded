@@ -4,11 +4,12 @@
 // Vampirism 5-го уровня, ставит его днём под открытое небо и тикает 600 тиков: здоровье, еда, кровь, урон от солнца, исключения.
 // Вывод: строки VAMPCHECK …; итог — VAMPCHECK DONE (или VAMPCHECK FAIL <этап> <ошибка>).
 // Запуск: EXTRA_SERVER_SCRIPTS=<папка с файлом> TEST_COMMANDS=<«#sleep N»> scripts/test-server.sh <папка вне репо>
+// VC.start — секунды после первого тика (1420 — после perfload.js; для отдельного запуска поставить 60)
 var VC = { start: 1420, t0: 0, step: 0, fp: null, n: 0 }
 function vcEntities(server) {
   var m = {}, all = 0, v = 0
   server.overworld().getAllEntities().forEach(e => {
-    all++; var id = String(e.getType().builtInRegistryHolder().key().location())
+    all++; var id = String(e.getType())
     if (id.indexOf('vampirism:') == 0) { v++; m[id] = (m[id] || 0) + 1 }
   })
   console.info('VAMPCHECK entities all=' + all + ' vampirism=' + v + ' ' + JSON.stringify(m))
@@ -28,11 +29,11 @@ function vcStructures(server) {
   })
 }
 function vcPlayer(server) {
-  var level = server.overworld()
+  var level = server.overworld(); VC.level = level
   var Fake = Java.loadClass('net.minecraftforge.common.util.FakePlayerFactory'), GP = Java.loadClass('com.mojang.authlib.GameProfile')
   var UUID = Java.loadClass('java.util.UUID'), RL = Java.loadClass('net.minecraft.resources.ResourceLocation')
   var fp = Fake.get(level, new GP(UUID.fromString('9e7f0000-0000-4000-8000-0000000000a1'), 'vamp0'))
-  var sp = level.getSharedSpawnPos(), y = level.getHeight(Java.loadClass('net.minecraft.world.level.levelgen.Heightmap$Types').MOTION_BLOCKING, sp.getX(), sp.getZ())
+  var sp = level.getSharedSpawnPos(); level.getChunk(sp.getX() >> 4, sp.getZ() >> 4); var y = level.getHeight(Java.loadClass('net.minecraft.world.level.levelgen.Heightmap$Types').MOTION_BLOCKING, sp.getX(), sp.getZ())
   fp.setPos(sp.getX() + 0.5, y + 0.0, sp.getZ() + 0.5)
   fp.setGameMode(Java.loadClass('net.minecraft.world.level.GameType').SURVIVAL)
   level.addFreshEntity(fp)
@@ -54,9 +55,9 @@ function vcState(fp, t) {
   var s = 'VAMPCHECK tick ' + t + ' hp=' + fp.getHealth().toFixed(1) + ' food=' + fp.getFoodData().getFoodLevel() + ' alive=' + fp.isAlive()
   try {
     var VP = Java.loadClass('de.teamlapen.vampirism.entity.player.vampire.VampirePlayer'), vp = VP.get(fp)
-    s += ' vlevel=' + vp.getLevel() + ' blood=' + vp.getBloodStats().getBloodLevel() + ' sun=' + vp.isGettingSundamage(fp.level(), true)
+    s += ' vlevel=' + vp.getLevel() + ' blood=' + vp.getBloodStats().getBloodLevel() + ' sun=' + vp.isGettingSundamage(VC.level, true)
   } catch (e) { s += ' vp-error ' + e }
-  s += ' effects=' + fp.getActiveEffects().size() + ' sky=' + fp.level().canSeeSky(fp.blockPosition().above())
+  s += ' effects=' + fp.getActiveEffects().size() + ' sky=' + VC.level.canSeeSky(fp.blockPosition().above()) + ' y=' + Math.round(fp.getY())
   console.info(s)
 }
 ServerEvents.tick(event => {
