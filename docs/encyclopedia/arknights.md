@@ -223,7 +223,7 @@ MCreator-мод goods (в jar названия на китайском; мы п�
 <a id="caerula-arbor"></a>
 - **Версия:** 0.12.7.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/caerula-arbor)
 - **Что это:** Порождения моря и расползающаяся метка пучины: сложная кампания с рассудком, эволюцией, 46 структурами и около 15 боссами. _(источник: docs сборки)_
-- **В наших docs:** [russification.md](../russification.md) (9), [roadmap.md](../roadmap.md) (6), [compat.md](../compat.md) (4), [performance.md](../performance.md) (2), [enchanting-table.md](../enchanting-table.md) (1), [version-choice.md](../version-choice.md) (1)
+- **В наших docs:** [russification.md](../russification.md) (9), [roadmap.md](../roadmap.md) (6), [compat.md](../compat.md) (4), [performance.md](../performance.md) (3), [enchanting-table.md](../enchanting-table.md) (1), [version-choice.md](../version-choice.md) (1)
 <!-- auto:end card:caerula-arbor -->
 
 ### Как играть
@@ -420,7 +420,7 @@ OCC, EPT, энергоузел, ориджиниумная руда/криста
 <a id="origins-forge"></a>
 - **Версия:** 1.20.1-1.10.0.9 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/origins-forge)
 - **Что это:** Основа для рас: происхождения, слои выбора и силы (Forge-порт Origins). _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (13), [roadmap.md](../roadmap.md) (3), [performance.md](../performance.md) (2), [dedup.md](../dedup.md) (1), [jei.md](../jei.md) (1), [russification-audit.md](../russification-audit.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (13), [roadmap.md](../roadmap.md) (3), [performance.md](../performance.md) (2), [reset.md](../reset.md) (2), [dedup.md](../dedup.md) (1), [jei.md](../jei.md) (1)
 <!-- auto:end card:origins-forge -->
 
 ### Как играть

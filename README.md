@@ -52,6 +52,8 @@
 | [docs/report-status.md](docs/report-status.md) | Открытая страница статусов отчётов: номер, суть, категория, мод, статус, PR; без ников и текстов игроков; отдельный раздел «Пожелания» |
 | [docs/issue-history.md](docs/issue-history.md) | История решений: прошлые проблемы и вопросы игроков (H-###) — причина, PR или версия мода, что делать игроку, статус; без ников |
 | [docs/hosting.md](docs/hosting.md) | Где поднимать сервер: замер ресурсов сборки, сервер на ПК друга или платный хостинг; автообновление сервера с git (mm-autoupdate) |
+| [docs/reset.md](docs/reset.md) | Чистый сброс сервера после тестирования: где хранится прогресс, порядок на Millida, что почистить у игроков (только по команде владельца) |
+| [scripts/reset-inventory.sh](scripts/reset-inventory.sh) | Опись прогресса на сервере перед сбросом (ничего не удаляет) — см. `docs/reset.md` |
 
 ### Моды и совместимость
 | Файл | Что здесь объясняется |
@@ -128,6 +130,7 @@
 | [scripts/jfr/JfrGrep.java](scripts/jfr/JfrGrep.java) | JFR: доля сэмплов с заданным методом в стеке и кто его вызывает (например `getChunkBlocking`) |
 | [scripts/tests/perfload.js](scripts/tests/perfload.js) | Нагрузочный замер сервера: покой → фейковые игроки → полёт с генерацией → save-all / flush; MSPT по фазам — `docs/performance.md` «Поток 67» |
 | [scripts/tests/hungercheck.js](scripts/tests/hungercheck.js) | Замер расхода голода (усталости) за минуту: стоя / ходьба / бег / прыжки, без расы и с расами Arknights — см. `docs/compat.md`, «Быстрый голод» |
+| [scripts/tests/ticketdump.js](scripts/tests/ticketdump.js) | Кто держит чанки загруженными: тикеты по типам в каждом измерении раз в 30 с (пример — мегаструктура Torches Become Sunlight) |
 | [scripts/spore_infection_map.py](scripts/spore_infection_map.py) | Карта заражения мобов для Spore и SRP System по выгрузке реестра |
 
 ### Скрипты: проверка модов и совместимость

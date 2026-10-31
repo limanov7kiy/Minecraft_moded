@@ -1082,7 +1082,7 @@ Iron's Recipe Additions 2.7: добавляет рецепты к [Iron's Spells
 <a id="mahou-tsukai"></a>
 - **Версия:** 1.20.1-v1.34.74 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/mahou-tsukai)
 - **Что это:** Магия со спецэффектами и уникальными заклинаниями. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (4), [roadmap.md](../roadmap.md) (4), [orespawn.md](../orespawn.md) (1), [russification.md](../russification.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (4), [roadmap.md](../roadmap.md) (4), [orespawn.md](../orespawn.md) (1), [reset.md](../reset.md) (1), [russification.md](../russification.md) (1)
 <!-- auto:end card:mahou-tsukai -->
 
 ### Как играть

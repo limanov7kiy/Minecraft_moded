@@ -788,7 +788,7 @@ Everdawn: хрустальный верблюд (`crystal_camel`), космич�
 - **Версия:** 1.20-7.5.7 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/the-lost-cities)
 - **Что это:** Генерирует заброшенные города (улицы, шоссе, здания с подвалами, метро, спавнерами и сундуками) прямо в обычном Overworld; в сборке включён редкий профиль rarecities (≈6 % городских чанков), действует для нового мира. _(источник: docs сборки)_
 - **В сборке:** The Lost Cities (McJty, MIT): города в обычном Overworld; профиль — pack/defaultconfigs/lostcities-server.toml
-- **В наших docs:** [lost-cities.md](../lost-cities.md) (17), [compat.md](../compat.md) (14), [roadmap.md](../roadmap.md) (10), [performance.md](../performance.md) (7), [friends.md](../friends.md) (3), [issue-history.md](../issue-history.md) (3)
+- **В наших docs:** [lost-cities.md](../lost-cities.md) (17), [compat.md](../compat.md) (14), [roadmap.md](../roadmap.md) (10), [performance.md](../performance.md) (8), [friends.md](../friends.md) (3), [issue-history.md](../issue-history.md) (3)
 <!-- auto:end card:the-lost-cities -->
 
 ### Как играть
@@ -1028,7 +1028,7 @@ HP, броня и слабые места — в [bosses.md](../bosses.md#twilig
 <a id="the-twilight-forest-dungeons-villages"></a>
 - **Версия:** 1.2.3 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/the-twilight-forest-dungeons-villages)
 - **Что это:** Новый контент для Сумеречного леса, в основном деревни. _(источник: docs сборки)_
-- **В наших docs:** [bosses.md](../bosses.md) (8), [compat.md](../compat.md) (6), [expensive-crafts.md](../expensive-crafts.md) (2), [roadmap.md](../roadmap.md) (2), [client-checklist.md](../client-checklist.md) (1), [version-choice.md](../version-choice.md) (1)
+- **В наших docs:** [bosses.md](../bosses.md) (8), [compat.md](../compat.md) (6), [expensive-crafts.md](../expensive-crafts.md) (2), [reset.md](../reset.md) (2), [roadmap.md](../roadmap.md) (2), [client-checklist.md](../client-checklist.md) (1)
 <!-- auto:end card:the-twilight-forest-dungeons-villages -->
 
 ### Что даёт игроку
@@ -1076,7 +1076,7 @@ HP, броня и слабые места — в [bosses.md](../bosses.md#twilig
 <a id="twilight-forest-the-lost-blocks"></a>
 - **Версия:** 1.20.1-1.5.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/twilight-forest-the-lost-blocks)
 - **Что это:** Добавляет в Сумеречный лес недостающие блоки для строителей. _(источник: docs сборки)_
-- **В наших docs:** [bosses.md](../bosses.md) (8), [compat.md](../compat.md) (6), [expensive-crafts.md](../expensive-crafts.md) (2), [roadmap.md](../roadmap.md) (2), [client-checklist.md](../client-checklist.md) (1), [version-choice.md](../version-choice.md) (1)
+- **В наших docs:** [bosses.md](../bosses.md) (8), [compat.md](../compat.md) (6), [expensive-crafts.md](../expensive-crafts.md) (2), [reset.md](../reset.md) (2), [roadmap.md](../roadmap.md) (2), [client-checklist.md](../client-checklist.md) (1)
 <!-- auto:end card:twilight-forest-the-lost-blocks -->
 
 ### Что даёт игроку
