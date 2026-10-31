@@ -1,0 +1,15 @@
+{
+  "item.mm.ascension_sigil_blank": "Dormant Sigil",
+  "item.mm.ascension_sigil_blank.tooltip": "Charge it in an Ars Nouveau Enchanting Apparatus",
+  "item.mm.ascension_sigil": "Sigil of Ascension",
+  "item.mm.ascension_sigil.tooltip": "Occultism ritual key (Marid pentacle): summons the Ascended Monstrosity",
+  "item.mm.ascended_heart": "Ascended Heart",
+  "item.mm.ascended_heart.tooltip": "Trophy of the Ascended Monstrosity",
+  "entity.mm.ascended_monstrosity": "Ascended Monstrosity",
+  "ritual.mm.ascended_monstrosity": "Summon: Ascended Monstrosity",
+  "ritual.mm.ascended_monstrosity.conditions": "Not all requirements for this ritual are met.",
+  "ritual.mm.ascended_monstrosity.started": "The sigil cracks, Nether heat rises from the pentacle…",
+  "ritual.mm.ascended_monstrosity.finished": "The Ascended Monstrosity has awakened!",
+  "ritual.mm.ascended_monstrosity.interrupted": "The ritual was interrupted.",
+  "ritual.mm.ascended_monstrosity.result": "Dropped by the summoned boss"
+}

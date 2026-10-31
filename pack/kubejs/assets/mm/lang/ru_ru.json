@@ -1,0 +1,15 @@
+{
+  "item.mm.ascension_sigil_blank": "Спящая печать",
+  "item.mm.ascension_sigil_blank.tooltip": "Зарядите в Чародейском аппарате Ars Nouveau",
+  "item.mm.ascension_sigil": "Печать Возвышения",
+  "item.mm.ascension_sigil.tooltip": "Ключ ритуала Occultism (пентаграмма марида): вызывает Возвышенное чудовище",
+  "item.mm.ascended_heart": "Возвышенное сердце",
+  "item.mm.ascended_heart.tooltip": "Трофей Возвышенного чудовища",
+  "entity.mm.ascended_monstrosity": "Возвышенное чудовище",
+  "ritual.mm.ascended_monstrosity": "Вызов: Возвышенное чудовище",
+  "ritual.mm.ascended_monstrosity.conditions": "Не все условия ритуала выполнены.",
+  "ritual.mm.ascended_monstrosity.started": "Печать трескается, из пентаграммы поднимается жар Незера…",
+  "ritual.mm.ascended_monstrosity.finished": "Возвышенное чудовище пробудилось!",
+  "ritual.mm.ascended_monstrosity.interrupted": "Ритуал прерван.",
+  "ritual.mm.ascended_monstrosity.result": "Выпадает с вызванного босса"
+}

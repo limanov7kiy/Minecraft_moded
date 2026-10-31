@@ -27,7 +27,7 @@
 - [Zombie Have Ears](#zombie-have-ears)
 - [方舟武器](#方舟武器)
 
-**См. также:** [Оберег от катаклизмов](own/disaster-ward.md) — подробный разбор нашего мода disaster-ward
+**См. также:** [Оберег от катаклизмов](own/disaster-ward.md) — подробный разбор нашего мода disaster-ward; [Печать Возвышения и Возвышенное чудовище](own/ascension-sigil.md) — свой дорогой крафт и усиленный босс (KubeJS)
 
 Вернуться: [оглавление справочника](INDEX.md).
 <!-- auto:end toc -->

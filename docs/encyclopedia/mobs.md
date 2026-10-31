@@ -24,6 +24,8 @@
 - [SCP: Foundation Requisites](#scp-foundation-requisites)
 - [Vampirism](#vampirism)
 
+**См. также:** [Возвышенное чудовище](own/ascension-sigil.md) — усиленный ритуалом Незеритовое чудовище (6000 HP), трофей «Возвышенное сердце»
+
 Вернуться: [оглавление справочника](INDEX.md).
 <!-- auto:end toc -->
 

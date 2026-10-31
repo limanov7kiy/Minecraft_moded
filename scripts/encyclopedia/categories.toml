@@ -23,6 +23,7 @@ desc = "Ракеты, планеты, скафандры, кислород и с
 [categories.mobs]
 title = "Мобы и боссы"
 desc = "Новые существа, боссы, паразиты. Подробные таблицы боссов — docs/bosses.md."
+extra = ["[Возвышенное чудовище](own/ascension-sigil.md) — усиленный ритуалом Незеритовое чудовище (6000 HP), трофей «Возвышенное сердце»"]
 
 [categories.dimensions]
 title = "Измерения, данжи и структуры"
@@ -63,7 +64,7 @@ desc = "Модули, нужные другим модам, а также KubeJS
 [categories.own]
 title = "Свои моды и патчи"
 desc = "Моды и порты, собранные в этом репозитории (mods-src/, patches/)."
-extra = ["[Оберег от катаклизмов](own/disaster-ward.md) — подробный разбор нашего мода disaster-ward"]
+extra = ["[Оберег от катаклизмов](own/disaster-ward.md) — подробный разбор нашего мода disaster-ward", "[Печать Возвышения и Возвышенное чудовище](own/ascension-sigil.md) — свой дорогой крафт и усиленный босс (KubeJS)"]
 
 [members]
 arknights = ["caerula-arbor","bobs-originium-dream","originiumarts","endfield-industry","contigency-contract-lite","arknights-races","arknights-skills","arknightsfurniture","arknights-furs","origins-forge","arknights-origins-originium-arts","sarkazs_furnace_side_fables","torchesbecomesunlight","skills","skills-origins"]
