@@ -1,0 +1,13 @@
+name = "SCP: Foundation Requisites"
+filename = "SCP Foundation Requisites 3.2.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/XWxnCMZK/versions/CAORA3Yj/SCP%20Foundation%20Requisites%203.2.jar"
+hash-format = "sha512"
+hash = "340f6629549d71b7a95117fbe44dcf7dfe7471d745b67ad224a49f35497af79f6831fc4e6d32b1090ac25200fc34d03d76b0e5f1cfc733c8606ce58dacf3d542"
+
+[update]
+[update.modrinth]
+mod-id = "XWxnCMZK"
+version = "CAORA3Yj"
