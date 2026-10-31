@@ -55,6 +55,7 @@ function bladeRun(server) {
   const hit = (target, withBlade) => {
     fake.setItemSlot(Slot.MAINHAND, withBlade ? Item.of('mm:ascended_blade') : ItemStack.EMPTY)
     global.mmAscendedBladeLast = { target: '', bonus: -1, amount: 0 }   // null в global класть нельзя (NPE при чтении)
+    fake.setPos(target.x + 1.5, target.y, target.z)   // боссы Cataclysm не принимают урон от далёкого атакующего (rangeCap)
     target.invulnerableTime = 0
     let hp0 = target.getHealth()
     let hurt = target.attack(level.damageSources().playerAttack(fake), 10)   // KubeJS: attack(source, amount); hurt из Rhino не виден
@@ -69,13 +70,13 @@ function bladeRun(server) {
   r = hit(plainBoss, true)
   bladeLog('boss_percent', r.last != null && Math.abs(r.last.bonus - expectBonus(plainBoss)) < 0.01 && r.last.bonus < cfg.bossBonusCap,
     `max_hp=${plainBoss.getMaxHealth()} bonus=${r.last ? r.last.bonus : null} ждали ${expectBonus(plainBoss)} hurt=${r.hurt} hp_lost=${r.lost.toFixed(1)}`)
-  zombie.clearFire()
+  zombie.extinguish()   // Entity.clearFire → extinguish (@RemapForJS KubeJS)
   r = hit(zombie, true)
   bladeLog('mob_no_bonus', r.last != null && r.last.bonus == 0, `bonus=${r.last ? r.last.bonus : null} hurt=${r.hurt}`)
   bladeLog('mob_fire', zombie.getRemainingFireTicks() > 0, `fire_ticks=${zombie.getRemainingFireTicks()}`)
 
   // 3. контроль без меча
-  zombie.clearFire()
+  zombie.extinguish()   // Entity.clearFire → extinguish (@RemapForJS KubeJS)
   r = hit(plainBoss, false)
   let r2 = hit(zombie, false)
   bladeLog('no_errors', String(global.mmAscendedBladeErr) == '', `err='${global.mmAscendedBladeErr}'`)
