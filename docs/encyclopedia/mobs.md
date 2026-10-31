@@ -755,7 +755,7 @@ Ice and Fire CE: **огненные, ледяные и молниевые дра
 <a id="l_enders-cataclysm"></a>
 - **Версия:** 3.31 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/l_enders-cataclysm)
 - **Что это:** Cataclysm от L_Ender: восемь крупных структур-арен с боссами (Игнис, Левиафан, Сцилла, Предвестник и др.), мини-боссы и мобы Незера, пустыни, океана и Края, оружие и броня по ступеням (чёрная сталь, игнит, проклятый слиток) и аметистовые пещеры. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (31), [expensive-crafts.md](../expensive-crafts.md) (12), [roadmap.md](../roadmap.md) (12), [enchanting-table.md](../enchanting-table.md) (4), [client-checklist.md](../client-checklist.md) (2), [orespawn.md](../orespawn.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (31), [expensive-crafts.md](../expensive-crafts.md) (12), [roadmap.md](../roadmap.md) (12), [enchanting-table.md](../enchanting-table.md) (4), [vampirism.md](../vampirism.md) (3), [client-checklist.md](../client-checklist.md) (2)
 <!-- auto:end card:l_enders-cataclysm -->
 
 ### Как играть

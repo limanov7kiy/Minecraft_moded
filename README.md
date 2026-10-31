@@ -69,6 +69,7 @@
 | [docs/wizardry-port.md](docs/wizardry-port.md) | Electroblob's Wizardry: опись недостающих заклинаний Redux против оригинала 1.12.2 и план переноса |
 | [docs/ntm.md](docs/ntm.md) | HBM's Nuclear Tech Mod (NTM): решение владельца не добавлять alpha-порты, сверка функций NTM с тем, что уже есть в сборке, список портов на будущее |
 | [docs/scp.md](docs/scp.md) | SCP-моды под 1.20.1 Forge: кандидаты (структуры в мире, сущности, предметы), совместимость, нагрузка, дубли, рекомендация и вопрос владельцу |
+| [docs/vampirism.md](docs/vampirism.md) | Vampirism (Become a vampire!) под 1.20.1 Forge: версия, аддоны (Werewolves и др.), совместимость с Origins/LSO/Lost Cities, нагрузка, дубли, мобы и структуры, что отключается конфигом, вопрос владельцу В77 |
 | [docs/expensive-crafts.md](docs/expensive-crafts.md) | «Невероятно дорогие многоступенчатые крафты»: что уже есть (эндгейм, боссы), моды-кандидаты, вариант своих KubeJS-цепочек, вопрос владельцу |
 | [docs/dedup.md](docs/dedup.md) | Логические дубли между модами: метод, очевидные и спорные группы, раздел «Энергия» (виды энергии и варианты), откат |
 | [docs/ysm-models.md](docs/ysm-models.md) | Модели игроков Yes Steve Model: где лежат, как перезагрузить, какие подключены, ограничения |
