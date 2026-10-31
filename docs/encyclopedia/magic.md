@@ -910,7 +910,7 @@ Iron's Recipe Additions 2.7: добавляет рецепты к [Iron's Spells
 <a id="irons-spells-n-spellbooks"></a>
 - **Версия:** 1.20.1-3.16.3 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/irons-spells-n-spellbooks)
 - **Что это:** Магия в духе классических RPG: заклинания хранятся в свитках и книгах, колдуются за ману в школах (огонь, лёд, молния, свет, эндер, кровь, призыв, природа, потусторонье); добавляет посохи, броню магов, станции начертания и улучшения, магические структуры с боссами (Мёртвый король, Эхо Тироса). _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (18), [russification.md](../russification.md) (9), [performance.md](../performance.md) (8), [roadmap.md](../roadmap.md) (8), [ysm-models.md](../ysm-models.md) (6), [version-choice.md](../version-choice.md) (3)
+- **В наших docs:** [compat.md](../compat.md) (18), [ysm-models.md](../ysm-models.md) (10), [russification.md](../russification.md) (9), [performance.md](../performance.md) (8), [roadmap.md](../roadmap.md) (8), [version-choice.md](../version-choice.md) (3)
 <!-- auto:end card:irons-spells-n-spellbooks -->
 
 Автор — Iron431 (лицензия All Rights Reserved; в сборке — по решению пользователя, см. [CLAUDE.md](../../CLAUDE.md)). Модид `irons_spellbooks`, зависимости: `irons_lib`, `playeranimator`, GeckoLib, Curios ([compat.md](../compat.md), п. 1). Сторона — both.
