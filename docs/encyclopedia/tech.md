@@ -155,7 +155,7 @@ Create 6.0.8 (автор simibubi; зависимости по `mods.toml` — F
 <a id="createaddition"></a>
 - **Версия:** forge-1.20.1-1.3.3 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/createaddition)
 - **Что это:** Create Crafts & Additions: мост между электричеством и кинетической энергией. _(источник: docs сборки)_
-- **В наших docs:** [dedup.md](../dedup.md) (3), [jei.md](../jei.md) (3), [compat.md](../compat.md) (1), [ntm.md](../ntm.md) (1), [russification-audit.md](../russification-audit.md) (1)
+- **В наших docs:** [dedup.md](../dedup.md) (3), [jei.md](../jei.md) (3), [compat.md](../compat.md) (2), [ntm.md](../ntm.md) (1), [russification-audit.md](../russification-audit.md) (1)
 <!-- auto:end card:createaddition -->
 
 ### Как играть
@@ -257,7 +257,7 @@ Copycats+ (3.0.10) — блоки-«хамелеоны» для Create: любо
 - **Версия:** 0.4.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/create-propulsion)
 - **Что это:** Красные магниты, оптические датчики, двигатели и др. для Create; работает с Valkyrien Skies 2. _(источник: docs сборки)_
 - **В сборке:** Create × Valkyrien Skies (двигатели для кораблей)
-- **В наших docs:** [compat.md](../compat.md) (47), [dedup.md](../dedup.md) (29), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7), [friends.md](../friends.md) (6)
+- **В наших docs:** [compat.md](../compat.md) (57), [dedup.md](../dedup.md) (29), [friends.md](../friends.md) (15), [roadmap.md](../roadmap.md) (9), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8)
 <!-- auto:end card:create-propulsion -->
 
 ### Как играть
@@ -283,7 +283,7 @@ Create: Propulsion (0.4.1) добавляет к Create двигатели, кр
 <a id="create-steam-n-rails"></a>
 - **Версия:** 1.7.3+forge-mc1.20.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/create-steam-n-rails)
 - **Что это:** Расширяет рельсы и паровую систему Create. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (47), [dedup.md](../dedup.md) (29), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8), [performance.md](../performance.md) (7), [friends.md](../friends.md) (6)
+- **В наших docs:** [compat.md](../compat.md) (57), [dedup.md](../dedup.md) (29), [friends.md](../friends.md) (15), [roadmap.md](../roadmap.md) (9), [version-choice.md](../version-choice.md) (9), [enchanting-table.md](../enchanting-table.md) (8)
 <!-- auto:end card:create-steam-n-rails -->
 
 ### Как играть
@@ -335,7 +335,7 @@ Eureka (Valkyrien Skies Eureka, `vs_eureka` 1.6.3; Tri0de, ewoudje и др.) —
 <a id="mekanism"></a>
 - **Версия:** 10.4.16.80 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/mekanism)
 - **Что это:** Высокотехнологичные машины, энергетика, гаджеты. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (28), [dedup.md](../dedup.md) (23), [ntm.md](../ntm.md) (7), [galacticraft.md](../galacticraft.md) (4), [friends.md](../friends.md) (3), [jei.md](../jei.md) (3)
+- **В наших docs:** [compat.md](../compat.md) (38), [dedup.md](../dedup.md) (23), [friends.md](../friends.md) (8), [ntm.md](../ntm.md) (7), [roadmap.md](../roadmap.md) (7), [galacticraft.md](../galacticraft.md) (4)
 <!-- auto:end card:mekanism -->
 
 ### Как играть
@@ -460,7 +460,7 @@ Mekanism Generators 10.4.16 — генераторы и реакторы. Пор
 <a id="mekanism-tools"></a>
 - **Версия:** 10.4.16.80 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/mekanism-tools)
 - **Что это:** Модуль Mekanism: мощные инструменты и броня. _(источник: docs сборки)_
-- **В наших docs:** [dedup.md](../dedup.md) (3), [compat.md](../compat.md) (1)
+- **В наших docs:** [dedup.md](../dedup.md) (3), [compat.md](../compat.md) (1), [roadmap.md](../roadmap.md) (1)
 <!-- auto:end card:mekanism-tools -->
 
 ### Что даёт игроку
@@ -474,7 +474,7 @@ Mekanism Tools 10.4.16 — инструменты и броня из матер�
 - **Версия:** 1.20.1-1.2.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/mekanismmoremachine)
 - **Что это:** Дополнительные машины и фабрики для Mekanism. _(источник: docs сборки)_
 - **В сборке:** Mekanism: больше машин и фабрик
-- **В наших docs:** [compat.md](../compat.md) (34), [dedup.md](../dedup.md) (23), [jei.md](../jei.md) (10), [ntm.md](../ntm.md) (7), [galacticraft.md](../galacticraft.md) (4), [friends.md](../friends.md) (3)
+- **В наших docs:** [compat.md](../compat.md) (46), [dedup.md](../dedup.md) (23), [jei.md](../jei.md) (10), [friends.md](../friends.md) (8), [ntm.md](../ntm.md) (7), [roadmap.md](../roadmap.md) (7)
 <!-- auto:end card:mekanismmoremachine -->
 
 ### Как играть
@@ -501,7 +501,7 @@ Mekanism: More Machine (`mekmm`, 1.2.1, автор Lost Myself) — расшир
 - **Версия:** 1.12.4 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/refined-storage)
 - **Что это:** Сеть хранения: удобное решение проблемы захламлённых сундуков. _(источник: docs сборки)_
 - **В сборке:** нужен More Backpack Upgrades (не объявлен на Modrinth)
-- **В наших docs:** [compat.md](../compat.md) (4), [roadmap.md](../roadmap.md) (3), [dedup.md](../dedup.md) (2), [client-checklist.md](../client-checklist.md) (1), [russification.md](../russification.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (5), [roadmap.md](../roadmap.md) (3), [dedup.md](../dedup.md) (2), [client-checklist.md](../client-checklist.md) (1), [russification.md](../russification.md) (1)
 <!-- auto:end card:refined-storage -->
 
 ### Как играть
@@ -620,7 +620,7 @@ VS Tournament Reforged (`vs_tournament` 1.0.3; alex-s168, Balatan, 411_Cat, bloc
 - **Версия:** 2.0.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/createnuclear)
 - **Что это:** Create Nuclear: ядерный реактор на Create (стержни урана и графита, охлаждение водой, вращение на выходе), руды урана/тория, радиация и антирадиационный костюм. _(источник: docs сборки)_
 - **В сборке:** Create Nuclear: реактор на Create, уран, радиация, костюм (решение владельца 2026-10-26, поток 66)
-- **В наших docs:** [compat.md](../compat.md) (25), [dedup.md](../dedup.md) (3), [friends.md](../friends.md) (3), [ntm.md](../ntm.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (26), [friends.md](../friends.md) (5), [dedup.md](../dedup.md) (3), [ntm.md](../ntm.md) (2), [roadmap.md](../roadmap.md) (1)
 <!-- auto:end card:createnuclear -->
 
 ### Как играть
@@ -645,7 +645,8 @@ _Пока пусто — заполнит один из следующих эт�
 - `createnuclear:radiation` — радиация (I–III по накопленной дозе): от радиоактивных предметов мода в инвентаре (уран, стержни) и облучённого биома.
   Защита — антирадиационный костюм мода (красится), эффект `createnuclear:iodine` (йод). **Костюм защищает и от радиации Mekanism**
   (mm-compat `RadiationSuitShielding`, доли как у Hazmat: 25/40/20/15 %) — в сборке это единственный защитный костюм, Hazmat Mekanism
-  убран из крафта, JEI и креатива (`docs/compat.md` «Один защитный костюм»). Облучение Alex's Caves — отдельное, своя броня.
+  убран из крафта, JEI и креатива (`docs/compat.md` «Один защитный костюм»). С dedup-2 костюм защищает и от облучения и кислоты
+  Alex's Caves (mm-compat `AlexsCavesHazmatMixin`), Hazmat Alex's Caves тоже без крафта.
 
 ### События
 

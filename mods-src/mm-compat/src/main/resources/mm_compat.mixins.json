@@ -5,7 +5,8 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": ["SbwShipHitMixin", "FallingTreeDamageMixin", "MnaChunkTickMixin", "NorthstarCraterJoinMixin", "StructureTemplatePlaceMixin", "LostCitiesNeighborMixin", "DhChunkyBindMixin",
              "ArknightsTickThrottleMixin", "TorchesMegaStructureLoadMixin", "TorchesMegaStructureSyncMixin",
-             "SspSnowChunkMixin", "FallingTreeLeafChunkMixin", "Weather2StormBiomeMixin", "LostCitiesCityCenterMixin"],
+             "SspSnowChunkMixin", "FallingTreeLeafChunkMixin", "Weather2StormBiomeMixin", "LostCitiesCityCenterMixin",
+             "AlexsCavesHazmatMixin"],
   "client": ["LycanitesFearLightMixin", "OriginFursReloadCacheMixin"],
   "injectors": { "defaultRequire": 0 }
 }

@@ -3,7 +3,7 @@
 Моды и порты, собранные в этом репозитории (mods-src/, patches/).
 
 <!-- auto:start toc -->
-Модов в категории: **20**.
+Модов в категории: **21**.
 
 - [Alshanex Familiars Mod](#alshanex-familiars-mod)
 - [Cataclysm: Spellbooks](#cataclysm-spellbooks)
@@ -14,6 +14,7 @@
 - [Galacticraft Revival (private port)](#galacticraft-revival-private-port)
 - [lycanites-refmap-fix](#lycanites-refmap-fix)
 - [M&A Witchcraft](#ma-witchcraft)
+- [Minecraft_moded Autoupdate](#minecraft_moded-autoupdate)
 - [Minecraft_moded Compat](#minecraft_moded-compat)
 - [Minecraft_moded Perf](#minecraft_moded-perf)
 - [Origin Furs Forge](#origin-furs-forge)
@@ -269,7 +270,7 @@ Soiled, Corroded, Infested, Fragile («Смертное касание»), Immol
 
 <!-- auto:start card:mm-compat -->
 <a id="mm-compat"></a>
-- **Версия:** 0.5.14 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/mm-compat-0.5.14.jar`
+- **Версия:** 0.5.15 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/mm-compat-0.5.15.jar`
 - **Что это:** Кодовые связки и исправления сборки: кислород скафандров, баги чужих модов, утечки памяти, JEI-категории. _(источник: docs сборки)_
 <!-- auto:end card:mm-compat -->
 
@@ -581,5 +582,50 @@ Sarkaz's Fables), добавлены в лут сундуков: `pack/kubejs/se
 `config/eso/config.json` (изучение включено, уровни открываются сразу, лимит чар 4), `config/eso/default-recipe.json`
 (цена чар без своего рецепта ≈ ×2,5), `config/eso/material-overrides/` (лимиты по материалам, генерируется модом).
 Порт: `patches/jar-ports/eso` — `getName()` модовой брони с `@OnlyIn(CLIENT)` ронял сервер (поток 57).
+
+## Minecraft_moded Autoupdate
+
+<!-- auto:start card:mm-autoupdate -->
+<a id="mm-autoupdate"></a>
+- **Версия:** 0.2.2 · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/mm-autoupdate-0.2.2.jar`
+- **Что это:** Серверное автообновление сборки с GitHub при остановке сервера: выключено по умолчанию, источник — тег, копия и откат при ошибке. _(источник: docs сборки)_
+- **В сборке:** наш серверный мод (mods-src/mm-autoupdate, side=server, свой .pw.toml с url на raw GitHub): при остановке сервера запускает packwiz-installer-bootstrap (-g -s server) — к следующему старту mods/config/kubejs свежие; на Windows только предупреждает
+<!-- auto:end card:mm-autoupdate -->
+
+### Как играть
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Предметы/блоки
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Мобы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Эффекты
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### События
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Данжи/структуры (/locate)
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Чары
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Команды/гамерулы
+
+_Пока пусто — заполнит один из следующих этапов._
+
+### Конфиги
+
+_Пока пусто — заполнит один из следующих этапов._
 
 <!-- cards:end -->

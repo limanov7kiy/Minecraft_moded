@@ -82,7 +82,7 @@ hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "4d32c6c58cfd4ff89bbf0948e82c800653caddc147ceb54710591d3ef37ad507"
+hash = "2244d1a9c96bf439e805b2e21bb1558e4df77dd2c484ac6b6497a371e87e5bce"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -1250,7 +1250,7 @@ hash = "37cc6952c62fbe24376a1effdca702a015ae224c4cde5c042e2ed70a94987fb9"
 
 [[files]]
 file = "config/yes_steve_model/custom/vivi/animations/main.animation.json"
-hash = "7a6205b03235f16246fef31ba9c0df2402ae474688e628e719dfbd381991c01c"
+hash = "6ae069febea181c41a9e6b1fc11076927ca9e6f247c781d371fa2b2b075eabe7"
 
 [[files]]
 file = "config/yes_steve_model/custom/vivi/animations/tac.animation.json"
@@ -1258,15 +1258,15 @@ hash = "4594de398c4d34311d540caa2c1b314f631307fd68d810dfc84a8ac1552b3e88"
 
 [[files]]
 file = "config/yes_steve_model/custom/vivi/models/arm.json"
-hash = "e210faf5d45adf2f281c1d0dc6eb37b7a504849b8a3ffba8c5bc6f4711a5b820"
+hash = "147cf3f437009cedd70d963c0f7b85430b6f301571b500bd58c4cb5b5d237012"
 
 [[files]]
 file = "config/yes_steve_model/custom/vivi/models/main.json"
-hash = "3241707dda175b8910ed66a0bdde7eb80a4d36dd4dc31bfb8385290b3ddb0402"
+hash = "4d6abc37d6a03dd753627250de8445bbf834cdba35ae966a2b7fa87a08e72f90"
 
 [[files]]
 file = "config/yes_steve_model/custom/vivi/textures/vivi.png"
-hash = "b587f5d4bc02e11ded6bd37198f544e2f721c368b499858bc527c3507bb5c818"
+hash = "3214dfac8e5fca36d23e98328187e91931d3d3903637384d4cfad3a2c5e1b4ee"
 
 [[files]]
 file = "config/yes_steve_model/custom/vivi/ysm.json"
@@ -1307,6 +1307,14 @@ hash = "f460bcf44f0702f4b3557dff80fa4a008a2ce532a41aaed2ff01042959a6ab6f"
 [[files]]
 file = "kubejs/client_scripts/space_rockets.js"
 hash = "c5f3ef1a27991ac16c6f99ff138572a82654f52f514605e7a423b3c9adfb0eac"
+
+[[files]]
+file = "kubejs/data/ad_astra/advancements/ad_astra.json"
+hash = "653697c67ca626b213f7ccec9f653643f9386024b9439edd5647b0003a9a472b"
+
+[[files]]
+file = "kubejs/data/ad_astra/advancements/carbon_footprint.json"
+hash = "6ab896f3a1ad9e334f3e0d7b364b14904f2bf51bf8f5b98b81685c38dded79b4"
 
 [[files]]
 file = "kubejs/data/ad_astra/creatingspace/rocket_accessible_dimension/earth_orbit.json"
@@ -1393,6 +1401,10 @@ file = "kubejs/data/ad_astra/tags/items/heat_resistant_armor.json"
 hash = "e6a37ab8d7346bae209fce92b1078f8701a4835b103d898847d45b47aa416d35"
 
 [[files]]
+file = "kubejs/data/aether/loot_tables/advancements/enter_aether.json"
+hash = "3540857b8b050f1dc97c8a93c1a98a45ba7ed92d5542630af5bd07226b0513e5"
+
+[[files]]
 file = "kubejs/data/aether_redux/recipes/genesis_dark_gummy_swet.json"
 hash = "61c01488bd1bc9113ef1a64e626a0ba9dbbe7d4178d4d8767c0e9cb3d8cdf4a2"
 
@@ -1409,8 +1421,44 @@ file = "kubejs/data/aether_treasure_reforging/recipes/valkyrie_upgrade_smithing_
 hash = "61c01488bd1bc9113ef1a64e626a0ba9dbbe7d4178d4d8767c0e9cb3d8cdf4a2"
 
 [[files]]
+file = "kubejs/data/alexscaves/advancements/alexscaves/hazmat_armor.json"
+hash = "ff1c663e65a1625c9c4a4aa2e7f8b18e63be64563b37cd1d02c010baa1b6f815"
+
+[[files]]
+file = "kubejs/data/alexscaves/loot_tables/chests/toxic_ruins.json"
+hash = "3ff51a9afde32565dd21621107cd2a42e3bddecbc1d12b1d8624ed437359fcf6"
+
+[[files]]
 file = "kubejs/data/alexsmobsinteraction/patchouli_books/amiwiki/book.json"
 hash = "3190cea8e6dbc4495746a90f9944c2308b6a3231dc366060b5f74ef84d4f7482"
+
+[[files]]
+file = "kubejs/data/ancient_aether/loot_tables/chests/dungeon/laboratory/sentry_laboratory_miscellaneous.json"
+hash = "09c17c6ec220ce290685f4f740fd6269bcb026986c85314828aff6e764936079"
+
+[[files]]
+file = "kubejs/data/ancient_aether/loot_tables/selectors/accessories/ancient_dungeon.json"
+hash = "cbd3de543cb2e1451fa44808c50478ea79df6b30ae6c89bf8ebf78d2ad8721aa"
+
+[[files]]
+file = "kubejs/data/ancient_aether/loot_tables/selectors/accessories/bronze_dungeon.json"
+hash = "b67fc926eeaca345001d56c3d0ea63f6ddee32713949dc8251932fbbb5c9b315"
+
+[[files]]
+file = "kubejs/data/ancient_aether/loot_tables/selectors/accessories/generic.json"
+hash = "a5cd28109d2c7fbe691f1e7d9aae201e2b9965de5a38bcca5512bd3404a58609"
+
+[[files]]
+file = "kubejs/data/ancient_aether/loot_tables/selectors/accessories/gold_dungeon.json"
+hash = "7db89792a7a2c5713b9ca7ee9992b42989ef67a64ce7da8b541a05648c89696d"
+
+[[files]]
+file = "kubejs/data/ancient_aether/loot_tables/selectors/accessories/sentry_laboratory.json"
+hash = "8e38b6f67d4641e45b1778350660bb2a1b913abea4c193d79855c712f1f4f886"
+
+[[files]]
+file = "kubejs/data/ancient_aether/loot_tables/selectors/accessories/silver_dungeon.json"
+hash = "4c8158b7bf4d33aa111da9fa597cbe5379c48848615daaf02bac273a52f1997a"
 
 [[files]]
 file = "kubejs/data/ancient_aether/recipes/ancient_rune.json"
@@ -1475,6 +1523,10 @@ hash = "61c01488bd1bc9113ef1a64e626a0ba9dbbe7d4178d4d8767c0e9cb3d8cdf4a2"
 [[files]]
 file = "kubejs/data/contigency_contract/loot_tables/gameplay/chronicle_bonus.json"
 hash = "cfb14d04d7eb95a148a52408ebe2dc29c283d367962f80471abdf5f95b94b0bd"
+
+[[files]]
+file = "kubejs/data/create/advancements/diving_suit.json"
+hash = "15d8f766318136017ffd5e7414ecb93708b94a1cfaa5b0905064be44e78aa53f"
 
 [[files]]
 file = "kubejs/data/createnuclear/forge/biome_modifier/lead_ore.json"
@@ -1545,8 +1597,16 @@ file = "kubejs/data/irons_spellbooks/loot_tables/chests/citadel/citadel_tomes.js
 hash = "2786b834de51e30e359168272b7f307289d8f9ef846d39ff9e809da310e3b6b0"
 
 [[files]]
+file = "kubejs/data/mekanism/advancements/hydrogen_powered_flight.json"
+hash = "66b3c642c883f511ad06069f25aa57c0c9cf39ae93b1bf4c9ca45f8b688499a0"
+
+[[files]]
 file = "kubejs/data/mekanism/advancements/radiation_prevention.json"
-hash = "6ff164b8e370f7f59ca5fef65cae496b03fe6a36c872ede4f09fed52901f4d6c"
+hash = "945f359419723cb4588da3d21f9c239b16018d4b9099c2e778b69fc1c4218e8b"
+
+[[files]]
+file = "kubejs/data/mekanismtools/advancements/alternate_armor.json"
+hash = "aa72db0eb205dd61339dd5285aeb3850c335d6c2e921f4c4f6702e78fdf88f11"
 
 [[files]]
 file = "kubejs/data/minecraft/creatingspace/rocket_accessible_dimension/overworld.json"
@@ -1930,7 +1990,7 @@ hash = "936a53c82988205a015331ae4c1f14b04157faf4282d559cc5cf5f3355da1b8c"
 
 [[files]]
 file = "kubejs/startup_scripts/dedup_list.js"
-hash = "ed5fa33ea54bba11025fd768a03453ad9b975d2cf53cb7eef1a452937c71fe6f"
+hash = "453ba913e6e685222a72a3333d902061b5b39d1618b7c123e92820c4db5ff9be"
 
 [[files]]
 file = "kubejs/startup_scripts/space_rockets_list.js"
@@ -2853,8 +2913,13 @@ hash = "c25495262a852dc02886ec8c4b695f30e53264a2e3d881dd36ee9de16a1ef499"
 metafile = true
 
 [[files]]
-file = "mods/mm-compat-0.5.14.jar"
-hash = "5f17e9646864bdc453742bfd79fa1af0ab1522bd1d4f824430fea642777ac9c7"
+file = "mods/mm-autoupdate.pw.toml"
+hash = "d36b1c0f6921a8b5b0f83af4c873c8eb36e029d8f0d0fc94120643f17cb071d6"
+metafile = true
+
+[[files]]
+file = "mods/mm-compat-0.5.15.jar"
+hash = "c1e25f36b069b8b8d9a7d5738aa21193762e638300bf73017674cc916782d61a"
 
 [[files]]
 file = "mods/mm-perf-0.3.2-client.jar"

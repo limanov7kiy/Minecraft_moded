@@ -51,7 +51,7 @@
 | [docs/report-form.md](docs/report-form.md) | Как устроен приём отчётов игроков: форма, таблица, номера и статусы, процесс приёмщика, правила приватности для публичного репозитория; пожелания (раздел 10): статусы, граница «влияет на баланс», шаги обновления |
 | [docs/report-status.md](docs/report-status.md) | Открытая страница статусов отчётов: номер, суть, категория, мод, статус, PR; без ников и текстов игроков; отдельный раздел «Пожелания» |
 | [docs/issue-history.md](docs/issue-history.md) | История решений: прошлые проблемы и вопросы игроков (H-###) — причина, PR или версия мода, что делать игроку, статус; без ников |
-| [docs/hosting.md](docs/hosting.md) | Где поднимать сервер: замер ресурсов сборки, сервер на ПК друга или платный хостинг |
+| [docs/hosting.md](docs/hosting.md) | Где поднимать сервер: замер ресурсов сборки, сервер на ПК друга или платный хостинг; автообновление сервера с git (mm-autoupdate) |
 
 ### Моды и совместимость
 | Файл | Что здесь объясняется |
@@ -113,7 +113,8 @@
 | [scripts/tests/radsuit.js](scripts/tests/radsuit.js) | Проверка единого защитного костюма: костюм Create Nuclear защищает от радиации Mekanism и Create Nuclear, Hazmat не крафтится — см. `docs/compat.md` «Один защитный костюм» |
 | [scripts/tests/dedup_dump.js](scripts/tests/dedup_dump.js) | Выгрузка всех предметов и рецептов со стенда в JSON для аудита дублей — см. `docs/dedup.md` |
 | [scripts/tests/dedupcheck.js](scripts/tests/dedupcheck.js) | Проверка убранных логических дублей: нет рецептов, нет жёстких ссылок в чужих рецептах, оставшийся предмет есть — см. `docs/compat.md` «пачка dedup-1» |
-| [scripts/dedup-audit/](scripts/dedup-audit/) | Аудит дублей: теги из jar, сложность крафта по графу рецептов, группы кандидатов, виды энергии — см. `docs/dedup.md` «Как считали» |
+| [scripts/tests/hazardgear.js](scripts/tests/hazardgear.js) | Проверка защитного снаряжения после объединения дублей: костюм Create Nuclear в Alex's Caves, противогаз Spore против газа CBC — см. `docs/compat.md` «пачка dedup-2» |
+| [scripts/dedup-audit/](scripts/dedup-audit/) | Аудит дублей: теги из jar, сложность крафта по графу рецептов, группы кандидатов, виды энергии, перенос тегов (tagcopy.py), переопределения лута и достижений (overrides.py) — см. `docs/dedup.md` «Как считали» |
 | [scripts/clienttest/clientmobs.js](scripts/clienttest/clientmobs.js) | Клиентская проверка рендера мобов: по одному мобу каждого вида в ряд |
 | [scripts/clienttest/ExitTrace.java](scripts/clienttest/ExitTrace.java) | Java-агент для `test-client.sh`: печатает стек каждого `System.exit` |
 | [scripts/collect-diagnostics.bat](scripts/collect-diagnostics.bat) | Запуск двойным щелчком (Windows): вызывает `collect-diagnostics.ps1` |
@@ -124,6 +125,7 @@
 | [scripts/jfr/JfrMore.java](scripts/jfr/JfrMore.java) | JFR: CPU по потокам (сервер, генерация, Distant Horizons…), паузы GC, аллокации по модам и классам |
 | [scripts/jfr/JfrGrep.java](scripts/jfr/JfrGrep.java) | JFR: доля сэмплов с заданным методом в стеке и кто его вызывает (например `getChunkBlocking`) |
 | [scripts/tests/perfload.js](scripts/tests/perfload.js) | Нагрузочный замер сервера: покой → фейковые игроки → полёт с генерацией → save-all / flush; MSPT по фазам — `docs/performance.md` «Поток 67» |
+| [scripts/tests/hungercheck.js](scripts/tests/hungercheck.js) | Замер расхода голода (усталости) за минуту: стоя / ходьба / бег / прыжки, без расы и с расами Arknights — см. `docs/compat.md`, «Быстрый голод» |
 | [scripts/spore_infection_map.py](scripts/spore_infection_map.py) | Карта заражения мобов для Spore и SRP System по выгрузке реестра |
 
 ### Скрипты: проверка модов и совместимость
@@ -194,6 +196,7 @@
 | [mods-src/voicechat-addons/README.md](mods-src/voicechat-addons/README.md) | Порт на Forge аддонов Simple Voice Chat (Voice Chat Interaction, AudioPlayer, Enhanced Groups) |
 | [mods-src/mm-compat/](mods-src/mm-compat/) | Кодовые связки и исправления сборки (кислород скафандров, фризы, утечки памяти и др.) |
 | [mods-src/mm-perf/](mods-src/mm-perf/) | Клиентские удобства: режим слабого ПК, клавиши «Не назначено», подсказки о памяти |
+| [mods-src/mm-autoupdate/](mods-src/mm-autoupdate/) | Серверный мод: при остановке сервера обновляет сборку с GitHub через packwiz-installer (хостинг без команды перед стартом; `docs/hosting.md`) |
 | [mods-src/disaster-ward/](mods-src/disaster-ward/) | Блок-оберег от катаклизмов, заражения и ориджиниумной бури; редкий спавн бедствий |
 | [mods-src/ru-lang/](mods-src/ru-lang/) | Клиентский мод, всегда включающий русский ресурспак сборки |
 | [mods-src/jar-ports/](mods-src/jar-ports/) | Классы-переходники для портов чужих jar |
