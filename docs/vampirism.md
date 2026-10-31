@@ -139,7 +139,7 @@ Lost Cities `avoidStructures` для `vampirism:*`, перевод (в jar `ru_r
 ## Итог установки (поток 75, 2026-10-31, сборка 2026.10.31-6)
 Владелец (В78): «а по возможности» → Vampirism **поставлен целиком** (без Werewolves, Integrations и аддона Iron's), настройки мода по умолчанию.
 Подробно — `docs/compat.md` «Vampirism». Коротко:
-- Мод грузится, сервер `SERVER OK`, краш-отчётов нет; клиент — см. compat.md «Vampirism» (`CLIENT OK`).
+- Мод грузится, сервер `SERVER OK`, краш-отчётов нет; клиент `CLIENT OK`.
 - Все 9 построек генерируются; города Lost Cities их обходят (`avoidStructures`, общий список с SCP).
 - Раса Origins/Arknights + вампир Vampirism на одном игроке — без падений (атрибуты складываются). В Arknights Races уже есть подраса «Саркас-вампир» — дубль по смыслу, не по предметам.
 - Перевод: 45 недостающих строк — в `russian-moded`.
