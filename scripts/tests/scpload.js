@@ -7,7 +7,7 @@ function slStat(server, name) {
   var s = SL.t.slice().sort((a, b) => a - b), sum = 0
   s.forEach(v => sum += v)
   var scp = 0, all = 0
-  server.overworld().getAllEntities().forEach(e => { all++; if (String(e.getType().builtInRegistryHolder().key().location()).indexOf('scp') == 0) scp++ })
+  server.overworld().getAllEntities().forEach(e => { all++; if (String(e.getType()).indexOf('scp') == 0) scp++ })
   console.info('SCPLOAD stat ' + name + ' mspt avg=' + (sum / Math.max(1, s.length)).toFixed(1) + ' p95=' + (s[Math.floor(0.95 * s.length)] || 0).toFixed(1) +
     ' max=' + (s[s.length - 1] || 0).toFixed(0) + ' entities=' + all + ' scp=' + scp + ' chunks=' + server.overworld().getChunkSource().getLoadedChunksCount())
   SL.t = []
