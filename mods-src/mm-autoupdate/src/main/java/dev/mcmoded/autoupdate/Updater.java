@@ -18,6 +18,7 @@ import java.nio.file.StandardCopyOption;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayDeque;
@@ -51,10 +52,18 @@ import java.util.zip.ZipFile;
  */
 public final class Updater {
     /**
-     * Источник обновлений — тег {@code autoupdate-stable}, а не живая ветка сборки: тег двигает владелец после «да» на выкладку
-     * (docs/hosting.md, «Как одобряем»); пока тег стоит, перезапуски сервера сборку не меняют.
+     * Источник обновлений (0.4.0) — ветка {@code claude/autoupdate-stable}, а не живая основная ветка сборки: её fast-forward двигает
+     * координатор на слитые и проверенные Ревью коммиты (docs/hosting.md, «Как продвигаем стабильную ветку»); пока ветка стоит,
+     * перезапуски сервера сборку не меняют. До 0.4.0 был тег autoupdate-stable (облачные сессии не могут пушить теги).
      */
-    public static final String DEFAULT_PACK_URL = "https://raw.githubusercontent.com/limanov7kiy/Minecraft_moded/refs/tags/autoupdate-stable/pack/pack.toml";
+    public static final String DEFAULT_PACK_URL =
+        "https://raw.githubusercontent.com/limanov7kiy/Minecraft_moded/refs/heads/claude/autoupdate-stable/pack/pack.toml";
+    /**
+     * Окно обновления по умолчанию для мода (решение владельца В79): 04:00–05:59 по Екатеринбургу = 23:00–00:59 UTC, когда панель
+     * Millida перезапускает сервер по расписанию. Днём обновлений нет. {@link Cli} окна по умолчанию не знает (обновление перед запуском).
+     */
+    public static final String DEFAULT_UPDATE_WINDOW = "23:00-00:59";
+    public static final String DEFAULT_UPDATE_WINDOW_TZ = "UTC";
     /** Копия папок сборки перед обновлением; при ошибке установщика возвращается целиком. Хранится одна, последняя. */
     public static final String BACKUP_DIR = ".mm-autoupdate.backup";
     public static final List<String> DEFAULT_BACKUP_DIRS = List.of("mods", "config", "kubejs", "defaultconfigs");
@@ -116,12 +125,67 @@ public final class Updater {
         public List<String> backupDirs = new ArrayList<>(DEFAULT_BACKUP_DIRS);
         /** После успешного обновления копию удалять (место на диске хостинга); true — оставить до следующего обновления. */
         public boolean keepBackup = false;
+        /** «ЧЧ:ММ-ЧЧ:ММ» (обе минуты включительно, через полночь можно); пусто — без ограничения. Мод берёт из конфига. */
+        public String updateWindow = "";
+        public String updateWindowTz = DEFAULT_UPDATE_WINDOW_TZ;
+    }
+
+    private static final Pattern WINDOW = Pattern.compile("^\\s*([01]?\\d|2[0-3]):([0-5]\\d)\\s*-\\s*([01]?\\d|2[0-3]):([0-5]\\d)\\s*$");
+
+    /** Проверка окна: null — можно обновлять; иначе причина для лога/статуса ({@code outside-window} или {@code bad-window}). */
+    public static String windowBlock(Settings s, ZonedDateTime at) {
+        String w = s.updateWindow == null ? "" : s.updateWindow.strip();
+        if (w.isEmpty()) return null;
+        Matcher m = WINDOW.matcher(w);
+        ZoneId zone;
+        try {
+            zone = ZoneId.of(s.updateWindowTz == null || s.updateWindowTz.isBlank() ? "UTC" : s.updateWindowTz.strip());
+        } catch (RuntimeException e) {
+            return "bad-window";
+        }
+        if (!m.matches()) return "bad-window";
+        int from = Integer.parseInt(m.group(1)) * 60 + Integer.parseInt(m.group(2));
+        int to = Integer.parseInt(m.group(3)) * 60 + Integer.parseInt(m.group(4));
+        ZonedDateTime t = at.withZoneSameInstant(zone);
+        int now = t.getHour() * 60 + t.getMinute();
+        boolean in = from <= to ? now >= from && now <= to : now >= from || now <= to;
+        return in ? null : "outside-window";
+    }
+
+    /**
+     * true — обновлять нельзя (вне окна или окно задано с ошибкой — тогда тоже не обновляем: опечатка не должна открыть дневные
+     * обновления); пишет строку в лог и {@link #STATUS}.
+     */
+    public static boolean blockedByWindow(Path root, Settings s, Log log, String reason) {
+        ZonedDateTime at = ZonedDateTime.now();
+        String b = windowBlock(s, at);
+        if (b == null) return false;
+        String local = packVersion(root);
+        String w = s.updateWindow.strip() + " " + s.updateWindowTz;
+        if (b.equals("bad-window")) {
+            log.error("update_window = \"" + s.updateWindow + "\" / update_window_tz = \"" + s.updateWindowTz + "\" не разобраны (нужно «ЧЧ:ММ-ЧЧ:ММ» и"
+                + " часовой пояс вроде UTC или Asia/Yekaterinburg) — обновление пропущено, обычный запуск на версии " + local
+                + " / bad update window, update skipped");
+        } else {
+            log.info("вне окна обновления (" + w + "; сейчас " + at.withZoneSameInstant(zoneOr(s.updateWindowTz)).toLocalTime().withNano(0)
+                + ") — обновление не проверяется, обычный запуск на версии " + local + " / outside update window, skipped");
+        }
+        writeStatus(root, "skipped " + now() + " reason=" + reason + " " + b + " window=" + w.replace(' ', '/') + " version=" + local, log);
+        return true;
+    }
+
+    private static ZoneId zoneOr(String tz) {
+        try {
+            return ZoneId.of(tz.strip());
+        } catch (RuntimeException e) {
+            return ZoneId.of("UTC");
+        }
     }
 
     public enum Result { UPDATED, SKIPPED, FAILED }
 
     /** Итог {@link #onStart}: UPDATED — файлы сборки сменились, сервер надо перезапустить; остальное — обычный запуск. */
-    public enum StartResult { UPDATED, UP_TO_DATE, LOOP_GUARD, CHECK_FAILED, FAILED, SKIPPED }
+    public enum StartResult { UPDATED, UP_TO_DATE, LOOP_GUARD, CHECK_FAILED, FAILED, SKIPPED, OUTSIDE_WINDOW }
 
     /** Что лежит по pack_url и что поставлено: sha256 pack.toml (его же packwiz-installer пишет в packwiz.json как packFileHash). */
     public static final class Check {
@@ -198,6 +262,7 @@ public final class Updater {
             log.error("pack_url пуст — обновлять нечего / pack_url is empty");
             return StartResult.CHECK_FAILED;
         }
+        if (blockedByWindow(root, s, log, "start")) return StartResult.OUTSIDE_WINDOW;
         String local = packVersion(root);
         Check c;
         try {
@@ -243,7 +308,7 @@ public final class Updater {
             String got = installedPackHash(root);
             if (got == null || !got.equalsIgnoreCase(c.remoteHash)) {
                 log.warn("установщик завершился успешно, но в packwiz.json другая версия pack.toml (" + (got == null ? "нет" : shortHash(got))
-                    + ", ждали " + shortHash(c.remoteHash) + ") — тег мог сдвинуться во время установки; файлы сменились, перезапуск нужен");
+                    + ", ждали " + shortHash(c.remoteHash) + ") — ветка autoupdate-stable могла сдвинуться во время установки; файлы сменились, перезапуск нужен");
             }
             return StartResult.UPDATED;
         }

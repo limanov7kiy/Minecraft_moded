@@ -8,7 +8,8 @@ import java.nio.file.Path;
  * [--windows] [--no-post] [--no-backup] [--on-start [--cooldown <мин>]] [<ссылка на pack.toml>]}. Код выхода 0 — обновлено, 2 — пропущено,
  * 1 — ошибка. {@code --on-start} — как режим on_start мода: сначала проверить pack.toml; 0 — обновлено, 3 — изменений нет,
  * 4 — защита от цикла, 1 — ошибка проверки или установки (откат), 2 — пропущено (Windows). {@code --check} — только проверить:
- * 0 — есть обновление, 3 — изменений нет, 1 — ошибка.
+ * 0 — есть обновление, 3 — изменений нет, 1 — ошибка. {@code --window ЧЧ:ММ-ЧЧ:ММ [--window-tz <пояс>]} — окно обновления, как у мода
+ * (по умолчанию в Cli окна нет); вне окна — код 5.
  * Конфиг мода (config/mm-autoupdate.toml) здесь не читается: ссылка и параметры — из аргументов или значения по умолчанию.
  */
 public final class Cli {
@@ -33,6 +34,8 @@ public final class Cli {
                 case "--on-start" -> onStart = true;
                 case "--check" -> checkOnly = true;
                 case "--cooldown" -> cooldown = Integer.parseInt(args[++i]);
+                case "--window" -> s.updateWindow = args[++i];
+                case "--window-tz" -> s.updateWindowTz = args[++i];
                 default -> {
                     if (args[i].startsWith("-")) {
                         System.err.println("неизвестный аргумент: " + args[i]);
@@ -66,9 +69,11 @@ public final class Cli {
                 case UP_TO_DATE -> 3;
                 case LOOP_GUARD -> 4;
                 case SKIPPED -> 2;
+                case OUTSIDE_WINDOW -> 5;
                 case CHECK_FAILED, FAILED -> 1;
             });
         }
+        if (Updater.blockedByWindow(root.toAbsolutePath().normalize(), s, log, "cli")) System.exit(5);
         Updater.Result r = Updater.run(root, s, log, "cli");
         System.exit(r == Updater.Result.UPDATED ? 0 : r == Updater.Result.SKIPPED ? 2 : 1);
     }

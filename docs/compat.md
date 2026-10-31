@@ -1743,6 +1743,13 @@ mm-compat пересобран из объединённых исходнико�
   дальше. Защита от цикла — `.mm-autoupdate.attempt` (sha256 + время), `start_cooldown_minutes = 15`. Linux-прогон A/B/C/D и замеры — hosting.md,
   «Как проверено: 0.3.0». `scripts/test-server.sh` печатает `server exit code`.
 
+- **0.4.0 — ветка вместо тега и ночное окно (поток 78, сборка 2026.10.31-6, В79 «а + б»):** облачные сессии не могут пушить теги (403),
+  поэтому источник по умолчанию — ветка `claude/autoupdate-stable` (`refs/heads/claude/autoupdate-stable/pack/pack.toml`; jar мода в
+  `.pw.toml` — оттуда же). «/» в имени ветки raw GitHub и packwiz-installer 0.5.14 понимают (проверено на основной ветке). Новые ключи
+  `update_window` (по умолчанию `23:00-00:59`) и `update_window_tz` (`UTC`): вне окна — ни запроса к GitHub, ни обновления (`skipped …
+  outside-window`), в `on_start` и `on_stop`; ошибка в значении — тоже пропуск (`bad-window`); повтор по маркеру окна не ждёт. `Cli`
+  без `--window` окна не знает (start.sh/start.bat не меняются). Прогоны A/B/C — hosting.md, «Как проверено: 0.4.0».
+
 ## Блокирующая догрузка чанков: Serene Seasons Plus, Falling Tree, Weather2 — mm-compat 0.5.13 (поток 67, 2026-10-26, сборка 2026.10.26-4)
 Нагрузочный тест `scripts/tests/perfload.js` (3 фейковых игрока появляются в несгенерированных местах): тик 54–58 с. JFR (`scripts/jfr/JfrGrep.java … getChunkBlocking`):
 главный поток ждёт генерации чанков, которые синхронно запросили моды из своих тиков — Serene Seasons Plus 5.1.4 (`ActiveSnowUpdateService`, снег/таяние вокруг игрока, 91 %),
@@ -1948,7 +1955,7 @@ Corosus (Weather2) — здесь только перехват вызовов.
   `.packwizignore`; зовут `export-pack.sh` и `test-server.sh`) и обёртка `scripts/refresh.sh` (refresh + возврат флагов + вычистка игнорируемых записей).
   Новый файл «обязательно preserve» — дописать в `REQUIRED_PRESERVE`. После слияния веток с правкой `pack/index.toml` — прогнать `check-pack-index.py`.
 
-## Vampirism (поток 75, 2026-10-31, сборка 2026.10.31-6, В78 «а по возможности»)
+## Vampirism (поток 75, 2026-10-31, сборка 2026.10.31-7, В78 «а по возможности»)
 Поставлен **Vampirism 1.20.1-1.10.17** (both, Modrinth; TeamLapen-lib внутри jar) целиком, с настройками по умолчанию. Оборотни, Vampirism Integrations
 и аддон Iron's — не ставились (условие В78). Оценка до установки — `docs/vampirism.md`, итог — там же «Итог установки».
 - **Lost Cities:** все 9 построек (`vampirism:crypt`, `vampire_hut`, `vampire_altar`, `mother`, `hunter_camp`, `hunter_outpost_{plains,desert,badlands,vampire_forest}`)
@@ -1983,7 +1990,7 @@ Corosus (Weather2) — здесь только перехват вызовов.
 
 Шум стенда ±10 %, поэтому +13–22 % — «заметно хуже» по ориентиру В78. Цифры и вариант «б» (заражение только по желанию, вампиры только в Вампирском лесу,
 без захватов деревень) отправлены координатору; **владелец (В80): «а» — оставить целиком.** Сервер: `SERVER OK`, краш-отчётов нет (оба прогона и короткий запуск `vampcheck.js`).
-**Клиент** (`scripts/test-client.sh`, сборка 2026.10.31-6): `CLIENT OK` (594 с до меню, холодный старт под llvmpipe), ошибок Vampirism в логе нет.
+**Клиент** (`scripts/test-client.sh`, сборка 2026.10.31-6 — до слияния #195, моды те же): `CLIENT OK` (594 с до меню, холодный старт под llvmpipe), ошибок Vampirism в логе нет.
 **Как переключить на «б» (если будет тормозить):** одним PR, без удаления мобов, поднять версию сборки.
 1. `pack/defaultconfigs/vampirism-server.toml` (Forge копирует в `world/serverconfig/` только нового мира; на работающем сервере — править
    `world/serverconfig/vampirism-server.toml` и перезапустить): `disableMobBiteInfection = true`, `disableFangInfection = true`, `playersCanTurnPlayers = false`

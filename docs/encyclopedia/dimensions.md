@@ -788,7 +788,7 @@ Everdawn: хрустальный верблюд (`crystal_camel`), космич�
 - **Версия:** 1.20-7.5.7 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/the-lost-cities)
 - **Что это:** Генерирует заброшенные города (улицы, шоссе, здания с подвалами, метро, спавнерами и сундуками) прямо в обычном Overworld; в сборке включён редкий профиль rarecities (≈6 % городских чанков), действует для нового мира. _(источник: docs сборки)_
 - **В сборке:** The Lost Cities (McJty, MIT): города в обычном Overworld; профиль — pack/defaultconfigs/lostcities-server.toml
-- **В наших docs:** [compat.md](../compat.md) (17), [lost-cities.md](../lost-cities.md) (17), [roadmap.md](../roadmap.md) (10), [performance.md](../performance.md) (8), [vampirism.md](../vampirism.md) (7), [friends.md](../friends.md) (3)
+- **В наших docs:** [compat.md](../compat.md) (18), [lost-cities.md](../lost-cities.md) (17), [roadmap.md](../roadmap.md) (11), [vampirism.md](../vampirism.md) (9), [performance.md](../performance.md) (8), [friends.md](../friends.md) (3)
 <!-- auto:end card:the-lost-cities -->
 
 ### Как играть
