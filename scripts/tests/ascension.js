@@ -32,7 +32,7 @@ function ascStart(server) {
     let x = sp.getX() + dx, z = sp.getZ()
     let y = level.getHeight(Heightmap.MOTION_BLOCKING, x, z) + 1
     let e = type.create(level)
-    e.moveTo(x + 0.5, y, z + 0.5, 0, 0)
+    e.setPos(x + 0.5, y + 0.0, z + 0.5)
     e.finalizeSpawn(level, level.getCurrentDifficultyAt(e.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null)
     if (merge) { let tag = e.saveWithoutId(new CompoundTag()); tag.merge(nbt); e.load(tag) }
     level.addFreshEntity(e)
