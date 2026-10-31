@@ -11,6 +11,7 @@ root="$(cd "$(dirname "$0")/.." && pwd)"
 out="$(mkdir -p "${1:-$root/dist}" && cd "${1:-$root/dist}" && pwd)"
 PACKWIZ="${PACKWIZ:-packwiz}"
 python3 "$root/scripts/check-pack-version.py" || exit 1
+python3 "$root/scripts/check-pack-index.py" || exit 1
 toml() { sed -n "s/^$1 = \"\(.*\)\"/\1/p" "$root/pack/pack.toml" | head -1; }
 name="$(toml name)"; ver="$(toml version)"; mc="$(toml minecraft)"; forge="$(toml forge)"
 rev="$(git -C "$root" rev-parse --short HEAD 2>/dev/null || echo local)"

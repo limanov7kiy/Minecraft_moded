@@ -60,6 +60,9 @@
   потому что `pack.toml` до игрока не доходит (packwiz-installer его не кладёт в экземпляр, в `.mrpack` его нет), а `config/` идёт и клиенту, и серверу.
   Клиентский мод mm-perf показывает версию в главном меню, в заголовке окна и в логе (`[mm_perf] версия сборки`); `scripts/check-pack-version.py`
   (его зовут `export-pack.sh` и `test-server.sh`) падает, если версии разошлись или не вида `ГГГГ.ММ.ДД-N`.
+- **Индекс после `packwiz refresh`**: пересобирай через `scripts/refresh.sh` (не голым refresh) — он возвращает `preserve = true` обязательным файлам
+  (список `REQUIRED_PRESERVE` в `scripts/check-pack-index.py`, сейчас порт голоса `voicechat-server.properties`) и убирает записи по `.packwizignore`;
+  `check-pack-index.py` зовут `export-pack.sh` и `test-server.sh`. Причина — поток 77, `docs/compat.md`.
 - `scripts/export-pack.sh` — раздача: `dist/*.mrpack` (клиент) и `dist/*-server.zip` (сервер); инструкция для друзей — `docs/friends.md`.
 - Сторону мода (`side` в `pack/mods/*.pw.toml`) packwiz берёт с Modrinth; если она неверна — поправь вручную.
 - Свои моды и патчи: `mods-src/` (Gradle, ModDevGradle legacyforge + Parchment, как у Redux) и `patches/`.
