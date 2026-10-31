@@ -37,7 +37,7 @@ import java.util.zip.ZipFile;
 
 /**
  * Обновление серверной сборки с GitHub силами packwiz-installer (docs/hosting.md, «Автообновление сервера с git»).
- * Чистая Java без классов Minecraft: тот же код зовут мод (при остановке сервера) и {@link Cli} (вручную).
+ * Чистая Java без классов Minecraft: тот же код зовут мод (на старте или при остановке сервера) и {@link Cli} (вручную).
  *
  * <p>Порядок: проверить ОС → при необходимости скачать packwiz-installer-bootstrap.jar и packwiz-installer.jar
  * (ссылки и sha256 зафиксированы в настройках) → поставить маркер «обновление идёт» → запустить
@@ -78,6 +78,13 @@ public final class Updater {
     public static final String MARKER = ".mm-autoupdate.updating";
     /** Итог последнего запуска (для хоста): ok/failed, время, версия сборки. */
     public static final String STATUS = "mm-autoupdate.status";
+    /**
+     * Защита от цикла в режиме on_start: какую версию (sha256 pack.toml) и когда пытались поставить на старте. Если после выхода
+     * с кодом 0 сервер снова видит ту же «новую» версию (установщик не применил её, или тег битый и был откат), второй попытки
+     * в течение {@code start_cooldown_minutes} не будет — обычный запуск и строка {@code skipped … loop-guard} в {@link #STATUS}.
+     */
+    public static final String ATTEMPT = ".mm-autoupdate.attempt";
+    public static final int DEFAULT_START_COOLDOWN_MINUTES = 15;
     static final String PACK_VERSION_FILE = "config/mm_pack_version.txt";
     private static final int KEEP_LINES = 25;
 
@@ -113,6 +120,20 @@ public final class Updater {
 
     public enum Result { UPDATED, SKIPPED, FAILED }
 
+    /** Итог {@link #onStart}: UPDATED — файлы сборки сменились, сервер надо перезапустить; остальное — обычный запуск. */
+    public enum StartResult { UPDATED, UP_TO_DATE, LOOP_GUARD, CHECK_FAILED, FAILED, SKIPPED }
+
+    /** Что лежит по pack_url и что поставлено: sha256 pack.toml (его же packwiz-installer пишет в packwiz.json как packFileHash). */
+    public static final class Check {
+        public String remoteHash;
+        public String remoteVersion = "unknown";
+        /** null — нет packwiz.json (установщик здесь ещё не работал) или в нём другая сторона. */
+        public String installedHash;
+        public long millis;
+        public boolean updateAvailable() {
+            return installedHash == null || !installedHash.equalsIgnoreCase(remoteHash);
+        }
+    }
     private Updater() {
     }
 
@@ -124,7 +145,138 @@ public final class Updater {
         return Files.exists(root.resolve(MARKER));
     }
 
-    /** @param reason для лога и маркера: «stop» (остановка сервера), «retry» (повтор на старте), «cli». */
+    private static final Pattern PACK_FILE_HASH =
+        Pattern.compile("\"packFileHash\"\\s*:\\s*\\{[^}]*\"value\"\\s*:\\s*\"([0-9A-Fa-f]{64})\"");
+    private static final Pattern CACHED_SIDE = Pattern.compile("\"cachedSide\"\\s*:\\s*\"([a-z]+)\"");
+    private static final Pattern TOML_VERSION = Pattern.compile("^version\\s*=\\s*\"([^\"]{1,64})\"", Pattern.MULTILINE);
+
+    /**
+     * Есть ли новая версия: один GET pack.toml (≈0,3 КБ) и сравнение его sha256 с packFileHash из packwiz.json. Индекс и моды
+     * не качаются: pack.toml содержит хэш index.toml, так что любое изменение сборки меняет и его. Бросает IOException при ошибке сети.
+     */
+    public static Check check(Path root, Settings s) throws IOException {
+        long t0 = System.nanoTime();
+        Check c = new Check();
+        byte[] pack = download(s.packUrl, 10_000, 30_000);
+        c.remoteHash = sha256(pack);
+        Matcher v = TOML_VERSION.matcher(new String(pack, StandardCharsets.UTF_8));
+        if (v.find()) c.remoteVersion = v.group(1);
+        c.installedHash = installedPackHash(root);
+        c.millis = (System.nanoTime() - t0) / 1_000_000;
+        return c;
+    }
+
+    /** packFileHash из packwiz.json, если манифест есть и поставлен для сервера; иначе null. */
+    static String installedPackHash(Path root) {
+        try {
+            Path m = root.resolve(MANIFEST);
+            if (!Files.isRegularFile(m)) return null;
+            String json = Files.readString(m, StandardCharsets.UTF_8);
+            Matcher side = CACHED_SIDE.matcher(json);
+            if (side.find() && !side.group(1).equals("server") && !side.group(1).equals("both")) return null;
+            Matcher h = PACK_FILE_HASH.matcher(json);
+            return h.find() ? h.group(1).toLowerCase(Locale.ROOT) : null;
+        } catch (IOException | RuntimeException e) {
+            return null;
+        }
+    }
+
+    /**
+     * Режим on_start (docs/hosting.md): на раннем старте сервера проверить pack_url; нет изменений — сразу обычный запуск;
+     * есть — та же установка, что при остановке (копия → установщик → при ошибке полный откат). Вызывающий при UPDATED завершает
+     * процесс с кодом 0 (панель запускает сервер снова уже на новых jar), при остальных результатах продолжает запуск.
+     * @param cooldownMinutes не повторять попытку той же версии на старте чаще, чем раз в столько минут (0 — без защиты)
+     */
+    public static StartResult onStart(Path root, Settings s, Log log, int cooldownMinutes) {
+        root = root.toAbsolutePath().normalize();
+        if (isWindows() && !s.runOnWindows) {
+            log.warn("Windows не даёт заменять jar, которые держит запущенная Java: обновление на старте пропущено "
+                + "(start.bat обновляет сборку до запуска) / Windows: update on start skipped");
+            return StartResult.SKIPPED;
+        }
+        if (s.packUrl == null || s.packUrl.isBlank()) {
+            log.error("pack_url пуст — обновлять нечего / pack_url is empty");
+            return StartResult.CHECK_FAILED;
+        }
+        String local = packVersion(root);
+        Check c;
+        try {
+            c = check(root, s);
+        } catch (IOException | RuntimeException e) {
+            log.warn("не удалось проверить обновление (" + e + ") — запуск на текущей версии " + local
+                + " / update check failed, starting current version");
+            writeStatus(root, "failed " + now() + " reason=start check-error version=" + local, log);
+            return StartResult.CHECK_FAILED;
+        }
+        if (!c.updateAvailable()) {
+            log.info("сборка актуальна: версия " + local + " (по " + s.packUrl + " — " + c.remoteVersion + "), проверка " + c.millis
+                + " мс — обычный запуск / pack is up to date");
+            try {
+                Files.deleteIfExists(root.resolve(ATTEMPT));
+            } catch (IOException ignored) {
+                // не мешает
+            }
+            writeStatus(root, "ok " + now() + " reason=start up-to-date version=" + local, log);
+            return StartResult.UP_TO_DATE;
+        }
+        log.info("есть обновление сборки: " + local + " → " + c.remoteVersion + " (pack.toml " + shortHash(c.remoteHash)
+            + ", поставлено " + (c.installedHash == null ? "— нет packwiz.json" : shortHash(c.installedHash)) + "; проверка "
+            + c.millis + " мс) / update available");
+        long nowMs = System.currentTimeMillis();
+        String[] prev = readAttempt(root);
+        if (cooldownMinutes > 0 && prev != null && prev[0].equalsIgnoreCase(c.remoteHash)) {
+            long ageMs = nowMs - Long.parseLong(prev[1]);
+            if (ageMs >= 0 && ageMs < cooldownMinutes * 60_000L) {
+                log.warn("эту версию (" + c.remoteVersion + ", " + shortHash(c.remoteHash) + ") уже пытались поставить на старте "
+                    + (ageMs / 1000) + " с назад (" + prev[2] + ") — защита от цикла: повтор не раньше чем через " + cooldownMinutes
+                    + " мин после той попытки; обычный запуск на версии " + local + ". Проверьте лог прошлого запуска и " + STATUS
+                    + " / same update already attempted recently, loop guard: starting current version");
+                writeStatus(root, "skipped " + now() + " reason=start loop-guard remote=" + c.remoteVersion + " last=" + prev[2]
+                    + " version=" + local, log);
+                return StartResult.LOOP_GUARD;
+            }
+        }
+        writeAttempt(root, c.remoteHash, nowMs, "started", log);
+        Result r = run(root, s, log, "start");
+        writeAttempt(root, c.remoteHash, nowMs, r.name().toLowerCase(Locale.ROOT), log);
+        if (r == Result.UPDATED) {
+            String got = installedPackHash(root);
+            if (got == null || !got.equalsIgnoreCase(c.remoteHash)) {
+                log.warn("установщик завершился успешно, но в packwiz.json другая версия pack.toml (" + (got == null ? "нет" : shortHash(got))
+                    + ", ждали " + shortHash(c.remoteHash) + ") — тег мог сдвинуться во время установки; файлы сменились, перезапуск нужен");
+            }
+            return StartResult.UPDATED;
+        }
+        return r == Result.SKIPPED ? StartResult.SKIPPED : StartResult.FAILED;
+    }
+
+    static String shortHash(String h) {
+        return h == null ? "?" : h.substring(0, Math.min(12, h.length()));
+    }
+
+    /** {hash, millis, итог} или null. */
+    private static String[] readAttempt(Path root) {
+        try {
+            Path p = root.resolve(ATTEMPT);
+            if (!Files.isRegularFile(p) || Files.size(p) > 1024) return null;
+            String[] f = Files.readString(p, StandardCharsets.UTF_8).strip().split("\\s+");
+            if (f.length < 3 || !f[0].matches("[0-9A-Fa-f]{64}") || !f[1].matches("[0-9]{1,19}")) return null;
+            return new String[] {f[0], f[1], f[2]};
+        } catch (IOException | RuntimeException e) {
+            return null;
+        }
+    }
+
+    private static void writeAttempt(Path root, String hash, long millis, String result, Log log) {
+        try {
+            Files.writeString(root.resolve(ATTEMPT), hash + " " + millis + " " + result + " " + now() + System.lineSeparator(),
+                StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            log.warn("не записан " + ATTEMPT + ": " + e);
+        }
+    }
+
+    /** @param reason для лога и маркера: «stop» (остановка сервера), «start» (режим on_start), «retry» (повтор на старте), «cli». */
     public static Result run(Path root, Settings s, Log log, String reason) {
         root = root.toAbsolutePath().normalize();
         if (isWindows() && !s.runOnWindows) {
@@ -608,10 +760,15 @@ public final class Updater {
     }
 
     static byte[] download(String url) throws IOException {
+        return download(url, 30_000, 120_000);
+    }
+
+    static byte[] download(String url, int connectMs, int readMs) throws IOException {
         HttpURLConnection c = (HttpURLConnection) URI.create(url).toURL().openConnection();
         c.setInstanceFollowRedirects(true);
-        c.setConnectTimeout(30_000);
-        c.setReadTimeout(120_000);
+        c.setUseCaches(false);
+        c.setConnectTimeout(connectMs);
+        c.setReadTimeout(readMs);
         c.setRequestProperty("User-Agent", "Minecraft_moded mm-autoupdate");
         int status = c.getResponseCode();
         if (status / 100 != 2) throw new IOException("HTTP " + status + " для " + url);

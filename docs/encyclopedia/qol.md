@@ -297,7 +297,7 @@
 - **Версия:** 7.2.15 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/worldedit)
 - **Что это:** Редактор карты прямо в игре: выделения, схематики, копирование, кисти, скрипты. _(источник: docs сборки)_
 - **В сборке:** WorldEdit 7.2.15 (Forge 1.20.1): перенос построек схематиками, см. docs/friends.md
-- **В наших docs:** [compat.md](../compat.md) (62), [roadmap.md](../roadmap.md) (26), [friends.md](../friends.md) (24), [hosting.md](../hosting.md) (24), [issue-history.md](../issue-history.md) (8), [orespawn.md](../orespawn.md) (4)
+- **В наших docs:** [compat.md](../compat.md) (62), [hosting.md](../hosting.md) (26), [roadmap.md](../roadmap.md) (26), [friends.md](../friends.md) (24), [issue-history.md](../issue-history.md) (8), [orespawn.md](../orespawn.md) (4)
 <!-- auto:end card:worldedit -->
 
 ### Как играть

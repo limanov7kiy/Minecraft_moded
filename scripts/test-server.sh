@@ -51,7 +51,8 @@ while kill -0 $pid 2>/dev/null; do
   if grep -qs 'Failed to start the minecraft server\|Crash report saved\|crash report has been saved' logs/latest.log; then sleep 5; pkill -9 -f unix_args.txt || true; break; fi
   sleep 5
 done
-wait $pid || true; exec 3>&-
+rc=0; wait $pid || rc=$?; exec 3>&-
+echo "server exit code: $rc"   # mm-autoupdate (mode = on_start) после обновления выходит с кодом 0 до Done
 # битый мод-файл — Forge пишет предупреждение и стартует сервер БЕЗ модов, поэтому это провал
 if grep -q 'Mods loaded with [0-9]* warnings' logs/latest.log; then grep 'is not a valid mod file\|ServerModLoader' logs/latest.log; echo "SERVER FAILED: mod loading warnings"; exit 1; fi
 # падение уже после Done (например, при загрузке первых чанков) — тоже провал, хотя строка Done в логе есть
