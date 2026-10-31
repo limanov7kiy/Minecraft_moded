@@ -399,7 +399,7 @@ _Обзор категории — вручную, следующие этапы
 - **Версия:** 2001.6.5-build.26+forge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/kubejs)
 - **Что это:** Скрипты на JavaScript: правка рецептов, новые предметы, события мира. _(источник: docs сборки)_
 - **В сборке:** патчи данных/рецептов/добычи: pack/kubejs/
-- **В наших docs:** [compat.md](../compat.md) (73), [roadmap.md](../roadmap.md) (20), [expensive-crafts.md](../expensive-crafts.md) (11), [russification.md](../russification.md) (8), [orespawn.md](../orespawn.md) (6), [hosting.md](../hosting.md) (5)
+- **В наших docs:** [compat.md](../compat.md) (76), [roadmap.md](../roadmap.md) (20), [expensive-crafts.md](../expensive-crafts.md) (11), [russification.md](../russification.md) (8), [orespawn.md](../orespawn.md) (6), [hosting.md](../hosting.md) (5)
 <!-- auto:end card:kubejs -->
 
 ### Что даёт игроку

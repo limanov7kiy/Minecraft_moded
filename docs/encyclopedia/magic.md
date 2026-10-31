@@ -470,7 +470,7 @@ Ars Technica 1.4.2 (`ars_technica`): связка Ars Nouveau и Create — за
 <a id="botania"></a>
 - **Версия:** 1.20.1-456-forge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/botania)
 - **Что это:** Природная магия и техника: цветы-генераторы, мана, пестик и т. д. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (5), [dedup.md](../dedup.md) (4), [expensive-crafts.md](../expensive-crafts.md) (4), [russification.md](../russification.md) (4), [bosses.md](../bosses.md) (2), [roadmap.md](../roadmap.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (6), [dedup.md](../dedup.md) (4), [expensive-crafts.md](../expensive-crafts.md) (4), [russification.md](../russification.md) (4), [bosses.md](../bosses.md) (2), [roadmap.md](../roadmap.md) (2)
 <!-- auto:end card:botania -->
 
 ### Как играть
@@ -806,7 +806,7 @@ Extra Golems 20.1.0.2 (модид `golems`, автор skyjay1, лицензия
 <a id="extrabotany"></a>
 - **Версия:** 1.20.1-1.9.2-forge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/extrabotany)
 - **Что это:** Дополнение к Botania. _(источник: docs сборки)_
-- **В наших docs:** [bosses.md](../bosses.md) (12), [expensive-crafts.md](../expensive-crafts.md) (12), [russification.md](../russification.md) (4), [client-checklist.md](../client-checklist.md) (2), [compat.md](../compat.md) (2), [jei.md](../jei.md) (2)
+- **В наших docs:** [bosses.md](../bosses.md) (12), [expensive-crafts.md](../expensive-crafts.md) (12), [compat.md](../compat.md) (4), [russification.md](../russification.md) (4), [client-checklist.md](../client-checklist.md) (2), [jei.md](../jei.md) (2)
 <!-- auto:end card:extrabotany -->
 
 ### Как играть

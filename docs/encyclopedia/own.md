@@ -27,7 +27,7 @@
 - [Zombie Have Ears](#zombie-have-ears)
 - [方舟武器](#方舟武器)
 
-**См. также:** [Оберег от катаклизмов](own/disaster-ward.md) — подробный разбор нашего мода disaster-ward; [Печать Возвышения и Возвышенное чудовище](own/ascension-sigil.md) — свой дорогой крафт и усиленный босс (KubeJS)
+**См. также:** [Оберег от катаклизмов](own/disaster-ward.md) — подробный разбор нашего мода disaster-ward; [Печать Возвышения и Клинок Возвышения](own/ascension-sigil.md) — свой дорогой крафт, усиленный босс и меч из его сердца (KubeJS)
 
 Вернуться: [оглавление справочника](INDEX.md).
 <!-- auto:end toc -->
@@ -84,7 +84,7 @@
 <a id="cataclysm_spellbooks"></a>
 - **Версия:** 1.2.9-1.20.1-mmport · **Сторона:** both · **Источник:** jar в репозитории: `pack/mods/cataclysm_spellbooks-1.2.9-1.20.1-mmport.jar`
 - **Что это:** Мод-связка Cataclysm и Iron's Spells: заклинания, книги, посохи, оружие и броня по мотивам боссов Cataclysm, две новые школы магии (Бездна и Техномантия); в сборке — наш порт под Cataclysm 3.31. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (42), [bosses.md](../bosses.md) (32), [expensive-crafts.md](../expensive-crafts.md) (15), [roadmap.md](../roadmap.md) (14), [enchanting-table.md](../enchanting-table.md) (4), [orespawn.md](../orespawn.md) (4)
+- **В наших docs:** [compat.md](../compat.md) (46), [bosses.md](../bosses.md) (32), [expensive-crafts.md](../expensive-crafts.md) (16), [roadmap.md](../roadmap.md) (14), [enchanting-table.md](../enchanting-table.md) (4), [orespawn.md](../orespawn.md) (4)
 <!-- auto:end card:cataclysm_spellbooks -->
 
 Автор — Ace The Eldritch King и StarOcean (MIT). В сборке — наш порт `cataclysm_spellbooks-1.2.9-1.20.1-mmport.jar` (мод собран под другую версию Cataclysm; подробности порта — [compat.md](../compat.md), п. К4 и «Cataclysm: Spellbooks 1.2.9»). Требует [Iron's Spells 'n Spellbooks](magic.md#irons-spells-n-spellbooks), L_Ender's Cataclysm, AzureLib.
