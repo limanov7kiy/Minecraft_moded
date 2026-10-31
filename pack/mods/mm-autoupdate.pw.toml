@@ -5,4 +5,4 @@ side = "server"
 [download]
 url = "https://raw.githubusercontent.com/limanov7kiy/Minecraft_moded/refs/heads/claude/autoupdate-stable/pack/mods/mm-autoupdate-0.5.0.jar"
 hash-format = "sha256"
-hash = "ca5030e3113ebd7ababe74a7e2440109dbc594f0f72bdf04db00a32297db47c6"
+hash = "c9c530fdbb6ab6011d98f23665bdcf1c0357573eca68d6b31d11350bc464d976"

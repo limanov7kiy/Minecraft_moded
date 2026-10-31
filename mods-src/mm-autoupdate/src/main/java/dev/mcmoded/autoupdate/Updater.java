@@ -59,10 +59,11 @@ public final class Updater {
     public static final String DEFAULT_PACK_URL =
         "https://raw.githubusercontent.com/limanov7kiy/Minecraft_moded/refs/heads/claude/autoupdate-stable/pack/pack.toml";
     /**
-     * Окно обновления по умолчанию для мода (решение владельца В79): 04:00–05:59 по Екатеринбургу = 23:00–00:59 UTC, когда панель
-     * Millida перезапускает сервер по расписанию. Днём обновлений нет. {@link Cli} окна по умолчанию не знает (обновление перед запуском).
+     * Окно обновления по умолчанию: в 0.4.0 (В79) — 23:00–00:59 UTC; с 0.5.0 (решение владельца, поток 79) — пусто, обновление при каждом
+     * перезапуске; окно можно задать в конфиге. {@link Cli} окна по умолчанию не знает (обновление перед запуском).
      */
-    public static final String DEFAULT_UPDATE_WINDOW = "23:00-00:59";
+    public static final String DEFAULT_UPDATE_WINDOW = "";
+    public static final String DEFAULT_IDLE_RESTART_WINDOW = "";
     public static final String DEFAULT_UPDATE_WINDOW_TZ = "UTC";
     /** Копия папок сборки перед обновлением; при ошибке установщика возвращается целиком. Хранится одна, последняя. */
     public static final String BACKUP_DIR = ".mm-autoupdate.backup";
@@ -128,6 +129,8 @@ public final class Updater {
         /** «ЧЧ:ММ-ЧЧ:ММ» (обе минуты включительно, через полночь можно); пусто — без ограничения. Мод берёт из конфига. */
         public String updateWindow = "";
         public String updateWindowTz = DEFAULT_UPDATE_WINDOW_TZ;
+        /** Окно самоперезапуска пустого сервера (0.5.0); пусто — в любое время. */
+        public String idleRestartWindow = DEFAULT_IDLE_RESTART_WINDOW;
     }
 
     private static final Pattern WINDOW = Pattern.compile("^\\s*([01]?\\d|2[0-3]):([0-5]\\d)\\s*-\\s*([01]?\\d|2[0-3]):([0-5]\\d)\\s*$");
@@ -323,13 +326,14 @@ public final class Updater {
     /** Маркер самоперезапуска пустого сервера (0.5.0): «sha256 pack.toml, ради которого остановили; время мс; версия; время ISO». */
     public static final String IDLE_MARKER = ".mm-autoupdate.idle-restart";
     public static final int DEFAULT_IDLE_CHECK_MINUTES = 10;
-    /** Самоперезапуск не чаще раза в столько часов: окно не длиннее суток, так что это «один раз за окно». */
-    static final long IDLE_MIN_GAP_MS = 20L * 3600_000L;
+    /** С заданным idle_restart_window — не чаще раза в 20 ч (окно не длиннее суток: «раз за окно»); без окна — не чаще раза в час. */
+    static final long IDLE_MIN_GAP_WINDOW_MS = 20L * 3600_000L;
+    static final long IDLE_MIN_GAP_MS = 60L * 60_000L;
     /** Сколько минут после самоперезапуска старт обновляет, даже если окно только что закрылось (остановились в его последние минуты). */
     static final long IDLE_START_GRACE_MS = 30L * 60_000L;
 
     /** Итог {@link #idleCheck}: RESTART — пора останавливать (перед этим ещё раз проверить, что игроков нет). */
-    public enum IdleResult { RESTART, UP_TO_DATE, OUTSIDE_WINDOW, NO_WINDOW, GUARD, SAME_VERSION, CHECK_FAILED }
+    public enum IdleResult { RESTART, UP_TO_DATE, OUTSIDE_WINDOW, GUARD, SAME_VERSION, CHECK_FAILED }
 
     public static final class IdleDecision {
         public IdleResult result;
@@ -339,23 +343,23 @@ public final class Updater {
     }
 
     /**
-     * Самоперезапуск пустого сервера (docs/hosting.md, «Самоперезапуск пустого сервера ночью»): вызывается раз в idle_check_minutes,
-     * когда на сервере 0 игроков. Вне окна (и при пустом/битом окне) — ничего, даже без сети; самоперезапуск был меньше 20 ч назад — ничего;
+     * Самоперезапуск пустого сервера (docs/hosting.md, «Самоперезапуск пустого сервера»): вызывается раз в idle_check_minutes,
+     * когда на сервере 0 игроков. Окно — idle_restart_window (пусто — в любое время); вне него или при битом окне — ничего, даже без сети;
+     * самоперезапуск был недавно (20 ч с окном, 1 ч без) — ничего;
      * потом дешёвая проверка pack.toml; нет новой сборки или сеть недоступна — ничего; ради этой же версии уже останавливались — ничего
      * (старт её не поставил: не зацикливаемся). Сам ничего не останавливает и в статус не пишет — только решает.
      */
     public static IdleDecision idleCheck(Path root, Settings s, ZonedDateTime at) {
-        String w = s.updateWindow == null ? "" : s.updateWindow.strip();
-        if (w.isEmpty()) return new IdleDecision(IdleResult.NO_WINDOW, null, "update_window пуст — самоперезапуск только в окне");
-        String b = windowBlock(s, at);
+        String b = idleWindowBlock(s, at);
         if (b != null) return new IdleDecision(IdleResult.OUTSIDE_WINDOW, null, b);
+        boolean windowed = s.idleRestartWindow != null && !s.idleRestartWindow.isBlank();
         String[] prev = readIdle(root);
         long nowMs = at.toInstant().toEpochMilli();
         if (prev != null) {
             long age = nowMs - Long.parseLong(prev[1]);
-            if (age >= 0 && age < IDLE_MIN_GAP_MS) {
+            if (age >= 0 && age < (windowed ? IDLE_MIN_GAP_WINDOW_MS : IDLE_MIN_GAP_MS)) {
                 return new IdleDecision(IdleResult.GUARD, null, "самоперезапуск уже был " + (age / 60_000) + " мин назад (" + prev[2]
-                    + ") — не чаще раза за окно");
+                    + ") — не чаще " + (windowed ? "раза за окно" : "раза в час"));
             }
         }
         Check c;
@@ -370,6 +374,14 @@ public final class Updater {
                 + ") сервер уже перезапускался (" + prev[2] + "), а она не встала — повторно не останавливаю; смотрите лог старта и " + STATUS);
         }
         return new IdleDecision(IdleResult.RESTART, c, "");
+    }
+
+    /** Окно самоперезапуска (idle_restart_window, пояс update_window_tz): null — можно; пусто — в любое время. */
+    public static String idleWindowBlock(Settings s, ZonedDateTime at) {
+        Settings w = new Settings();
+        w.updateWindow = s.idleRestartWindow;
+        w.updateWindowTz = s.updateWindowTz;
+        return windowBlock(w, at);
     }
 
     /** Перед остановкой: маркер (защита от повтора) и строка {@code restart … reason=idle-restart} в {@link #STATUS}. */

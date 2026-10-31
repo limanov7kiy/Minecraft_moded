@@ -29,10 +29,11 @@ import org.slf4j.Logger;
  * запускает сервер снова уже с новыми jar), ошибка — полный откат и запуск на прежней версии, нет изменений — обычный запуск;</li>
  * <li>{@code on_stop}: после {@link ServerStoppedEvent} (мир уже сохранён, игроки отключены) — к следующему старту сборка свежая.</li>
  * </ul>
- * С 0.4.0 обновление идёт только в окне update_window (по умолчанию ночь, 23:00–00:59 UTC); вне окна — обычный запуск.
+ * С 0.4.0 можно задать окно update_window (в 0.4.0 по умолчанию ночь, с 0.5.0 по умолчанию пусто — без ограничения); вне окна — обычный запуск.
  * Повтор оборванного обновления (маркер) окна не ждёт: mods/ может быть неполным.
- * С 0.5.0 — самоперезапуск пустого сервера (idle_restart): в окне, при 0 игроков и новой сборке — обычная остановка с кодом 0,
- * обновляет следующий старт (расписание панели Millida спящий сервер не будит).
+ * С 0.5.0 окна по умолчанию нет (обновление на каждом старте) и есть самоперезапуск пустого сервера (idle_restart): при 0 игроков
+ * и новой сборке (в idle_restart_window, если задано) — обычная остановка с кодом 0, обновляет следующий старт
+ * (расписание панели Millida спящий сервер не будит).
  * В обоих режимах: если прошлое обновление оборвалось (маркер), на старте повторяет его и завершает сервер с кодом 0, чтобы не
  * поднимать мир на неполном наборе модов. На клиенте ничего не делает.
  */
@@ -120,14 +121,16 @@ public final class MmAutoupdate {
     private static void onServerStarted(ServerStartedEvent e) {
         if (!AutoupdateConfig.ENABLED.get() || !AutoupdateConfig.IDLE_RESTART.get()) return;
         Updater.Settings s = AutoupdateConfig.settings();
-        if (s.updateWindow == null || s.updateWindow.isBlank()) {
-            LOGGER.info(TAG + "самоперезапуск пустого сервера выключен: update_window пуст (днём сервер сам не останавливается) / idle restart off: no window");
+        if ("bad-window".equals(Updater.idleWindowBlock(s, ZonedDateTime.now()))) {
+            LOGGER.error(TAG + "idle_restart_window = \"" + s.idleRestartWindow + "\" не разобрано (нужно «ЧЧ:ММ-ЧЧ:ММ» или пусто) — самоперезапуска не будет"
+                + " / bad idle_restart_window, idle restart off");
             return;
         }
         int minutes = AutoupdateConfig.IDLE_CHECK_MINUTES.get();
         MinecraftServer server = e.getServer();
-        LOGGER.info(TAG + "самоперезапуск пустого сервера: раз в " + minutes + " мин, только в окне " + s.updateWindow + " " + s.updateWindowTz
-            + " и при 0 игроков (idle_restart = false — выключить) / idle restart check every " + minutes + " min");
+        LOGGER.info(TAG + "самоперезапуск пустого сервера: раз в " + minutes + " мин, при 0 игроков и новой сборке, "
+            + (s.idleRestartWindow == null || s.idleRestartWindow.isBlank() ? "в любое время" : "только в окне " + s.idleRestartWindow + " " + s.updateWindowTz)
+            + " (idle_restart = false — выключить) / idle restart check every " + minutes + " min");
         idleTimer = Executors.newSingleThreadScheduledExecutor(r -> {
             Thread t = new Thread(r, "mm_autoupdate idle check");
             t.setDaemon(true);
@@ -143,7 +146,7 @@ public final class MmAutoupdate {
             Updater.Settings s = AutoupdateConfig.settings();
             Updater.IdleDecision d = Updater.idleCheck(root, s, ZonedDateTime.now());
             switch (d.result) {
-                case OUTSIDE_WINDOW, NO_WINDOW -> { return; }
+                case OUTSIDE_WINDOW -> { return; }
                 case GUARD -> LOGGER.info(TAG + "самоперезапуск: " + d.why);
                 case CHECK_FAILED -> LOGGER.warn(TAG + "самоперезапуск: проверка pack.toml не удалась (" + d.why + ") — сервер не трогаю / check failed, not restarting");
                 case UP_TO_DATE -> LOGGER.info(TAG + "самоперезапуск: сервер пуст, сборка актуальна (" + Updater.packVersion(root) + ", проверка "
@@ -164,9 +167,9 @@ public final class MmAutoupdate {
             LOGGER.info(TAG + "самоперезапуск отменён: пока проверял обновление, вошёл игрок (" + online + ") / player joined, cancelled");
             return;
         }
-        if (Updater.windowBlock(AutoupdateConfig.settings(), ZonedDateTime.now()) != null) return;
+        if (Updater.idleWindowBlock(AutoupdateConfig.settings(), ZonedDateTime.now()) != null) return;
         idleStopping = true;
-        LOGGER.warn(TAG + "самоперезапуск: сервер пуст, в окне обновления вышла новая сборка " + Updater.packVersion(root) + " → " + c.remoteVersion
+        LOGGER.warn(TAG + "самоперезапуск: сервер пуст, вышла новая сборка " + Updater.packVersion(root) + " → " + c.remoteVersion
             + " — сохраняю мир и останавливаю сервер (код выхода 0); панель хостинга запустит его снова, старт поставит обновление "
             + "/ idle restart: empty server, new pack, saving and stopping with exit code 0");
         Updater.markIdleRestart(root, c, LOG);
