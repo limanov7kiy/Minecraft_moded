@@ -2082,8 +2082,36 @@ Corosus (Weather2) — здесь только перехват вызовов.
 - **Грабли Rhino (KubeJS 6), найдены тестом:** `const` внутри `if` в обработчике тика → «redeclaration of var»; `Entity.moveTo(5 чисел)` и
   `spawnAtLocation(ItemStack[, float])` — неоднозначные перегрузки (ItemLike/ItemStack, int/float). Сердце создаётся через `new ItemEntity(level, x, y, z, stack)`.
   Тест в старом мире: сохранённые сердца прошлых прогонов снова «входят» в мир при загрузке чанков — считаются только появившиеся после убийства.
+  **Исправление (сборка -12):** у Ревью проверка падала (`hearts_near=0` при `hearts_spawned=1`) — поиск по области ±12 вокруг точки убийства промахивался;
+  теперь сердце проверяется по самой сущности из `EntityEvents.spawned`: ровно одно после убийства, появилось ≤ 16 блоков от босса и цело.
 - **Не проверено:** сам ритуал на построенной пентаграмме (нужен игрок и мультиблок) — проверен тот же путь применения NBT; рецепты в JEI глазами
   (рецепты загружены на сервере; Cataclysm/Ars/Occultism показывают свои типы в JEI, см. `docs/jei.md`); баланс боя (damageCap/dpsCap Cataclysm
   ограничивают урон за удар — 6000 HP ≈ в 10 раз больше ударов); текстуры в игре.
 - **Откат:** удалить `mm_items.js`, `mm_ascension.js`, `pack/kubejs/assets/mm/`. Предметы `mm:*`, лежащие в мирах, после отката станут пустыми (это предметы KubeJS).
 - Авторство: босс и исходные текстуры — L_Ender's Cataclysm (L_Ender); ритуал — Occultism (klikli-dev); здесь только рецепты и NBT.
+
+## Клинок Возвышения — меч из Возвышенного сердца (поток 80, 2026-10-31, сборка 2026.10.31-12)
+Вариант «А» вопроса В85 (без ответа владельца — рекомендация), 1 сердце на меч. Для игроков — `docs/encyclopedia/own/ascension-sigil.md`.
+Файлы: `pack/kubejs/startup_scripts/mm_ascended_blade.js` (**все числа — в `global.mmAscendedBlade` в начале файла**; свой тир `mm_ascended`,
+предметы, свойство), рецепты — `pack/kubejs/server_scripts/mm_ascension.js`, тест — `scripts/tests/ascended_blade.js`.
+- **Числа:** урон 30, скорость 1.6, прочность 4000 (чинится сердцем), зачаровываемость 22, огнестойкий. Свойство: поджог 5 с; по `forge:bosses`
+  +5 % макс. HP цели за удар, не больше 60. Только ближний бой (`source.actual` = `source.immediate`, не снаряды).
+- **Рецепт:** Cataclysm `weapon_fusion` (The Incinerator + сердце) → Ice and Fire `dragonforge` (огонь, кровь огненного дракона, 2000 тиков) →
+  Botania `terra_plate` 2 млн маны (+ меч из огненной драконьей стали, Excalibur, Soul Render, Stellothorn 3-го уровня).
+- **Как устроено свойство:** `ForgeEvents.onEvent(LivingHurtEvent)` в startup-скрипте — до брони (прибавку режет броня цели) и после капа урона
+  боссов Cataclysm (кап в их `hurt`, прибавка идёт поверх). Тег боссов проверяется через реестр Forge.
+- **Тест** (итоговый прогон на чистом мире, `SERVER OK`, крашей нет, все `BLADE … → OK` и `ASCENSION … → OK`): урон 30 / скорость 1.60 / прочность 4000 из атрибутов
+  предмета; 3 рецепта загружены; фейковый игрок с мечом (`attack(playerAttack, 10)`): Возвышенное чудовище 6000 HP → прибавка **60 (предел)**,
+  потеря HP 52,1 (броня); обычное чудовище 600 HP → **30** (5 %), потеря 25,0; зомби → прибавки нет, горит 100 тиков; тот же удар без меча —
+  свойство не срабатывает; ошибок в обработчике нет.
+- **Грабли (KubeJS 6 / Rhino), найдены прогонами — учитывать в следующих скриптах:**
+  - **исключение в обработчике `ForgeEvents.onEvent` роняет сервер** (краш «Ticking entity»: горящий зомби → `LivingHurtEvent`) — обработчик целиком в `try/catch`;
+  - `const`/`let` внутри блока (`try`, `if`) в функции, которая зовётся много раз, → «redeclaration of var» — внутри обработчиков `var` или объявления на верхнем уровне функции;
+  - `null` в `global` (это Java-Map) читать нельзя — NPE в `ValueUnwrapper`;
+  - переименования `@RemapForJS`: `DamageSource.getEntity/getDirectEntity` → `actual/immediate`, `Entity.hurt` → `attack`, `clearFire` → `extinguish`,
+    `moveTo(x,y,z,yaw,pitch)` → `setPositionAndRotation`, `getType()` → строка id (`EntityType` — `getEntityType()`);
+  - боссы Cataclysm игнорируют урон от далёкого атакующего (`rangeCap`) — в тестах ставить атакующего рядом.
+- **Не проверено:** крафт руками (Кузня дракона и Terra Plate — мультиблоки, нужен игрок), JEI и текстуры в клиенте, бой с живым игроком
+  (кулдаун атаки, криты, зачарования складываются с прибавкой как обычный урон).
+- **Откат:** удалить `mm_ascended_blade.js`, рецепты клинка в `mm_ascension.js`, текстуры `ascended_blade*` и строки lang. Мечи в мирах станут пустыми.
+- Авторство: The Incinerator, Soul Render — L_Ender's Cataclysm; драконья сталь — Ice and Fire; Excalibur — ExtraBotany; Stellothorn — Traveloptics.

@@ -3,13 +3,15 @@
 // 2) вызов как в Occultism SummonRitual: create → finalizeSpawn → saveWithoutId + merge(entity_nbt из рецепта) → load → addFreshEntity;
 //    рядом — обычное Незеритовое чудовище (контроль);
 // 3) через 5 с: HP = 6000 (AttributeFix), урон = 50 (×2 от 25), тег, имя; затем оба убиваются;
-// 4) ещё через 3 с: сердце лежит у вызванного босса и не лежит у обычного.
+// 4) ещё через 3 с: после убийства в мир вошло ровно одно сердце — рядом с вызванным боссом, и оно цело; у обычного — ни одного.
+//    Проверка по самой сущности (EntityEvents.spawned), а не поиском по области: предмет разлетается и падает, босс к смерти мог сдвинуться
+//    (у Ревью поиск AABB ±12 дал hearts_near=0 при hearts_spawned=1).
 // Вывод: строки ASCENSION … → OK|FAIL. Запуск: EXTRA_SERVER_SCRIPTS=<папка с файлом> + TEST_COMMANDS «#sleep 60».
 let mmAsc = null
-let mmAscDrops = 0, mmAscHeart = null   // сердца, вошедшие в мир (EntityJoinLevel), — независимо от поиска по области
+let mmAscHearts = []   // сердца, вошедшие в мир после убийства (EntityJoinLevel): [{e, pos}]; старые из сохранённого мира не считаются
 EntityEvents.spawned(event => {
   let e = event.entity
-  if (mmAsc && mmAsc.killed && String(e.type) == 'minecraft:item' && String(e.getItem().getId()) == 'mm:ascended_heart') { mmAscDrops++; mmAscHeart = e }
+  if (mmAsc && mmAsc.killed && String(e.type) == 'minecraft:item' && String(e.getItem().getId()) == 'mm:ascended_heart') mmAscHearts.push({ e: e, pos: e.position() })
 })
 function ascLog(name, ok, info) { console.info(`ASCENSION ${name} ${info} → ${ok ? 'OK' : 'FAIL'}`) }
 
@@ -60,11 +62,6 @@ function ascCheckAndKill(server) {
   ascLog('boss tag+name', b.getTags().contains('mm_ascended') && b.hasCustomName(), `tags=${b.getTags()} name=${b.getCustomName() ? b.getCustomName().getString() : null} persistent=${b.isPersistenceRequired()}`)
   ascLog('plain max_health', p.getMaxHealth() < 1024 && !p.getTags().contains('mm_ascended'), `max=${p.getMaxHealth()} attack=${p.getAttribute(Attributes.ATTACK_DAMAGE).getBaseValue()}`)
   mmAsc.pos = { b: b.position(), p: p.position() }
-  // контроль поиска: обычный алмаз рядом с боссом
-  const ItemEntity = Java.loadClass('net.minecraft.world.entity.item.ItemEntity')
-  let ctl = new ItemEntity(level, b.x + 2, b.y + 1, b.z, Item.of('minecraft:diamond'))
-  level.addFreshEntity(ctl)
-  mmAsc.ctl = ctl
   mmAsc.killed = true   // считать только сердца, появившиеся после убийства (в старом мире могут лежать сердца прошлых прогонов)
   ;[b, p].forEach(e => {
     e.kill()   // hurt(genericKill, MAX); если урон срезан капом Cataclysm — добиваем die()
@@ -73,18 +70,9 @@ function ascCheckAndKill(server) {
   ascLog('killed', !b.isAlive() || b.getHealth() <= 0, `boss_hp=${b.getHealth()} plain_hp=${p.getHealth()}`)
 }
 
-function ascHearts(level, v) {
-  const AABB = Java.loadClass('net.minecraft.world.phys.AABB')
-  const ItemEntity = Java.loadClass('net.minecraft.world.entity.item.ItemEntity')
-  let n = 0, seen = []
-  level.getEntitiesOfClass(ItemEntity, new AABB(v.x() - 12, v.y() - 12, v.z() - 12, v.x() + 12, v.y() + 12, v.z() + 12))
-    .forEach(ie => {
-      let st = ie.getItem(), id = String(st.getId())
-      seen.push(id)
-      if (id == 'mm:ascended_heart') n += Number(st.getCount())
-    })
-  console.info(`ASCENSION items near ${v}: ${seen.join(', ') || 'нет'}`)
-  return n
+// сердца, появившиеся не дальше 16 блоков по горизонтали от точки (позиция босса в момент убийства)
+function ascHeartsNear(v) {
+  return mmAscHearts.filter(h => Math.hypot(h.pos.x() - v.x(), h.pos.z() - v.z()) <= 16)
 }
 
 ServerEvents.tick(event => {
@@ -92,11 +80,9 @@ ServerEvents.tick(event => {
   if (t == 200) ascStart(event.server)
   else if (t == 300 && mmAsc) ascCheckAndKill(event.server)
   else if (t == 360 && mmAsc && mmAsc.pos) {
-    let level = event.server.getLevel('minecraft:overworld')
-    let hb = ascHearts(level, mmAsc.pos.b), hp = ascHearts(level, mmAsc.pos.p)
-    let h = mmAscHeart, c = mmAsc.ctl
-    console.info(`ASCENSION debug heart=${h ? `alive=${h.isAlive()} removed=${h.getRemovalReason()} pos=${h.position()} age=${h.age}` : 'нет'} control=alive=${c.isAlive()} removed=${c.getRemovalReason()} pos=${c.position()}`)
-    ascLog('heart from ascended', hb >= 1 && mmAscDrops == 1 && mmAscHeart.isAlive(), `hearts_near=${hb} hearts_spawned=${mmAscDrops}`)
-    ascLog('no heart from plain', hp == 0, `hearts=${hp}`)
+    let hb = ascHeartsNear(mmAsc.pos.b), hp = ascHeartsNear(mmAsc.pos.p)
+    let info = mmAscHearts.map(h => `spawn=${h.pos} now=${h.e.position()} alive=${h.e.isAlive()} removed=${h.e.getRemovalReason()}`).join('; ')
+    ascLog('heart from ascended', mmAscHearts.length == 1 && hb.length == 1 && hb[0].e.isAlive(), `hearts_spawned=${mmAscHearts.length} near_boss=${hb.length} [${info}]`)
+    ascLog('no heart from plain', hp.length == 0, `near_plain=${hp.length}`)
   }
 })

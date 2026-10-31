@@ -714,7 +714,7 @@ Id `spore:<имя>`; накладываются на оружие и броню 
 - **Версия:** 2.1.13-1.20.1-beta-5 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/ice-and-fire-dragons)
 - **Что это:** Драконы (огненные, ледяные, молниевые) и мифические существа. _(источник: docs сборки)_
 - **В сборке:** both: Ice and Fire CE 2.1.13 — драконы (огненный/ледяной/молниевый), гидра, сирены и др.; зависимость Citadel (поток 9)
-- **В наших docs:** [compat.md](../compat.md) (23), [roadmap.md](../roadmap.md) (16), [expensive-crafts.md](../expensive-crafts.md) (12), [orespawn.md](../orespawn.md) (8), [dedup.md](../dedup.md) (6), [performance.md](../performance.md) (4)
+- **В наших docs:** [compat.md](../compat.md) (27), [roadmap.md](../roadmap.md) (16), [expensive-crafts.md](../expensive-crafts.md) (14), [orespawn.md](../orespawn.md) (8), [dedup.md](../dedup.md) (6), [performance.md](../performance.md) (4)
 <!-- auto:end card:ice-and-fire-dragons -->
 
 ### Как играть
@@ -760,7 +760,7 @@ Ice and Fire CE: **огненные, ледяные и молниевые дра
 <a id="l_enders-cataclysm"></a>
 - **Версия:** 3.31 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/l_enders-cataclysm)
 - **Что это:** Cataclysm от L_Ender: восемь крупных структур-арен с боссами (Игнис, Левиафан, Сцилла, Предвестник и др.), мини-боссы и мобы Незера, пустыни, океана и Края, оружие и броня по ступеням (чёрная сталь, игнит, проклятый слиток) и аметистовые пещеры. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (39), [roadmap.md](../roadmap.md) (13), [expensive-crafts.md](../expensive-crafts.md) (12), [enchanting-table.md](../enchanting-table.md) (4), [vampirism.md](../vampirism.md) (3), [client-checklist.md](../client-checklist.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (44), [expensive-crafts.md](../expensive-crafts.md) (13), [roadmap.md](../roadmap.md) (13), [enchanting-table.md](../enchanting-table.md) (4), [vampirism.md](../vampirism.md) (3), [client-checklist.md](../client-checklist.md) (2)
 <!-- auto:end card:l_enders-cataclysm -->
 
 ### Как играть

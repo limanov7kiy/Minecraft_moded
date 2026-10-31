@@ -11,5 +11,11 @@
   "ritual.mm.ascended_monstrosity.started": "Печать трескается, из пентаграммы поднимается жар Незера…",
   "ritual.mm.ascended_monstrosity.finished": "Возвышенное чудовище пробудилось!",
   "ritual.mm.ascended_monstrosity.interrupted": "Ритуал прерван.",
-  "ritual.mm.ascended_monstrosity.result": "Выпадает с вызванного босса"
+  "ritual.mm.ascended_monstrosity.result": "Выпадает с вызванного босса",
+  "item.mm.ascended_blade_blank": "Заготовка Клинка Возвышения",
+  "item.mm.ascended_blade_blank.tooltip": "Закалите в Кузне огненного дракона (Ice and Fire)",
+  "item.mm.ascended_blade_forged": "Раскалённый клинок",
+  "item.mm.ascended_blade_forged.tooltip": "Завершите на Terra Plate (Botania)",
+  "item.mm.ascended_blade": "Клинок Возвышения",
+  "item.mm.ascended_blade.tooltip": "Поджигает цель. По боссам: +%s %% их максимального здоровья за удар (не больше %s)"
 }
