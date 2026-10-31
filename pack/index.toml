@@ -2047,7 +2047,7 @@ hash = "56ce41e76367d93a096588e6563fff4c13f0312cfb8e7ca1d14bce91e03d3b5e"
 
 [[files]]
 file = "kubejs/startup_scripts/mm_ascended_blade.js"
-hash = "54e8068246dc26d8885eeeafb726b8292b058701dc2296ca298e6e32624dec80"
+hash = "fa86351187071db1997ad3103503a1f2be081f63d35d4bb9a48260bac64a0de5"
 
 [[files]]
 file = "kubejs/startup_scripts/mm_items.js"
