@@ -11,5 +11,11 @@
   "ritual.mm.ascended_monstrosity.started": "The sigil cracks, Nether heat rises from the pentacle…",
   "ritual.mm.ascended_monstrosity.finished": "The Ascended Monstrosity has awakened!",
   "ritual.mm.ascended_monstrosity.interrupted": "The ritual was interrupted.",
-  "ritual.mm.ascended_monstrosity.result": "Dropped by the summoned boss"
+  "ritual.mm.ascended_monstrosity.result": "Dropped by the summoned boss",
+  "item.mm.ascended_blade_blank": "Ascended Blade Blank",
+  "item.mm.ascended_blade_blank.tooltip": "Temper it in a Fire Dragon Forge (Ice and Fire)",
+  "item.mm.ascended_blade_forged": "Searing Blade",
+  "item.mm.ascended_blade_forged.tooltip": "Finish it on a Terrestrial Agglomeration Plate (Botania)",
+  "item.mm.ascended_blade": "Blade of Ascension",
+  "item.mm.ascended_blade.tooltip": "Sets the target on fire. Against bosses: +%s%% of their max health per hit (up to %s)"
 }

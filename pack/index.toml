@@ -86,7 +86,7 @@ hash = "849d8c22b15f44733ae4644b5d83b22a54ba3779c57481643ea2ce5ef14ba8f7"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "775af6ca517674eb07d9d64e324d0ad849fe04f6a0b981a433a9d9783c61fc90"
+hash = "1d631b81889bdff5ad310cc8433e8d63a4d22f26791bd0e2e492ca8d358fe01d"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -1303,11 +1303,23 @@ hash = "52ca3fdfa8aee6d4819281a99ee4a0465225c878dfb723f6040582ede2153e6d"
 
 [[files]]
 file = "kubejs/assets/mm/lang/en_us.json"
-hash = "f858a7f449cb3cc0b6020d4273498527fe472aee19cd31a7754bbf87a270bbc0"
+hash = "aed6554b413adf61aca75d9169351b3c1d0f54e7d8999cc990bdc49fcf28d648"
 
 [[files]]
 file = "kubejs/assets/mm/lang/ru_ru.json"
-hash = "f95eb6ce3f574167b87e5484da443cbe8f14dc9067ba74948c841e5acaabe1f2"
+hash = "c26b174aff79d238444045e80fc1a5436ec6e711259d64c7ab3f87e8262ae217"
+
+[[files]]
+file = "kubejs/assets/mm/textures/item/ascended_blade.png"
+hash = "3b360147bcf474e6ea4aee0d6ee754818ef2378d773291a24f9a50465cffc43b"
+
+[[files]]
+file = "kubejs/assets/mm/textures/item/ascended_blade_blank.png"
+hash = "10398003be4b09758c8ae01b38cab06d3a36f6b27de21624610de487f07cba57"
+
+[[files]]
+file = "kubejs/assets/mm/textures/item/ascended_blade_forged.png"
+hash = "1fb449a3b3817bff902bc3aefdfbb7255233a74d4234c7913ec3a598b1ba4eb3"
 
 [[files]]
 file = "kubejs/assets/mm/textures/item/ascended_heart.png"
@@ -2007,7 +2019,7 @@ hash = "98f946259767d1ecf5cd8f6f43192b0832b5d68b60d5f3273e48a7edc2847817"
 
 [[files]]
 file = "kubejs/server_scripts/mm_ascension.js"
-hash = "105375d2920258bd6485cff407ba5656f9e4e0eafe0447c4234a9501b3cb1051"
+hash = "15f9362e28db72b795b88f59a9ade2d0cd0308343cb0ab4b679c00e152e6a19a"
 
 [[files]]
 file = "kubejs/server_scripts/orespawn_spawn_thin.js"
@@ -2032,6 +2044,10 @@ hash = "936a53c82988205a015331ae4c1f14b04157faf4282d559cc5cf5f3355da1b8c"
 [[files]]
 file = "kubejs/startup_scripts/dedup_list.js"
 hash = "56ce41e76367d93a096588e6563fff4c13f0312cfb8e7ca1d14bce91e03d3b5e"
+
+[[files]]
+file = "kubejs/startup_scripts/mm_ascended_blade.js"
+hash = "bc864e7cf0c89e84f24595725ac8406426d0f2653cfc443bf84e0d62f44b6e9b"
 
 [[files]]
 file = "kubejs/startup_scripts/mm_items.js"

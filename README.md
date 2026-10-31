@@ -117,6 +117,7 @@
 | [scripts/tests/](scripts/tests/) | Проверочные скрипты и списки команд для тестового сервера (заклинания, ракеты, спавн, города, боссы, отчёты) |
 | [scripts/tests/savecheck.js](scripts/tests/savecheck.js) | Замер сохранения мира по измерениям: автосейв, сохранение с flush (как выход из мира), во время генерации — см. `docs/performance.md` «Долгое сохранение» |
 | [scripts/tests/ascension.js](scripts/tests/ascension.js) | Проверка «Печати Возвышения»: рецепты, вызов босса с NBT ритуала (HP 6000, урон 50), сердце только с вызванного босса — см. `docs/compat.md` «Печать Возвышения» |
+| [scripts/tests/ascended_blade.js](scripts/tests/ascended_blade.js) | Проверка «Клинка Возвышения»: атрибуты и рецепты, прибавка по боссам (предел), поджог, без меча — ничего — см. `docs/compat.md` «Клинок Возвышения» |
 | [scripts/tests/cn_nogrief.js](scripts/tests/cn_nogrief.js) | Проверка, что взрыв реактора Create Nuclear не ломает блоки (`createnuclear_no_grief.js`) — см. `docs/compat.md` «Create Nuclear» |
 | [scripts/tests/radsuit.js](scripts/tests/radsuit.js) | Проверка единого защитного костюма: костюм Create Nuclear защищает от радиации Mekanism и Create Nuclear, Hazmat не крафтится — см. `docs/compat.md` «Один защитный костюм» |
 | [scripts/tests/scpload.js](scripts/tests/scpload.js) | Нагрузка рядом с базами SCP: Ultimate: ищет комплексы и базы, держит чанки загруженными, время тика до/после — см. `docs/compat.md` «SCP» |
@@ -188,7 +189,7 @@
 |---|---|
 | [pack/kubejs/server_scripts/](pack/kubejs/server_scripts/) | KubeJS-правки: убранные ссылки в тегах, спавн OreSpawn, правила бури, ракеты, свечение и формы модели Priestess, выключенный бонусный лут мобов Contingency Contract |
 | [pack/kubejs/startup_scripts/dedup_list.js](pack/kubejs/startup_scripts/dedup_list.js) | Список логических дублей между модами (`global.mmDedup`: убранный предмет → оставшийся): рецепты, JEI, креатив — см. `docs/compat.md` «Один защитный костюм» |
-| [pack/kubejs/server_scripts/mm_ascension.js](pack/kubejs/server_scripts/mm_ascension.js) | «Печать Возвышения»: рецепты (Cataclysm → Ars Nouveau), ритуал Occultism с усиленным Незеритовым чудовищем (NBT), выпадение «Возвышенного сердца»; предметы — `startup_scripts/mm_items.js`, игрокам — [docs/encyclopedia/own/ascension-sigil.md](docs/encyclopedia/own/ascension-sigil.md) |
+| [pack/kubejs/server_scripts/mm_ascension.js](pack/kubejs/server_scripts/mm_ascension.js) | «Печать Возвышения» и «Клинок Возвышения»: рецепты (Cataclysm → Ars Nouveau; Cataclysm → Ice and Fire → Botania), ритуал Occultism с усиленным Незеритовым чудовищем (NBT), выпадение «Возвышенного сердца»; предметы — `startup_scripts/mm_items.js`, меч и его числа — `startup_scripts/mm_ascended_blade.js`, игрокам — [docs/encyclopedia/own/ascension-sigil.md](docs/encyclopedia/own/ascension-sigil.md) |
 | [pack/kubejs/data/](pack/kubejs/data/) | Данные KubeJS: рецепты, лут, теги, патчи Patchouli-книг модов |
 | [pack/kubejs/assets/](pack/kubejs/assets/) | Модели и атласы текстур, поправленные KubeJS |
 | [pack/config/almostunified/](pack/config/almostunified/) | Объединение дублей предметов между модами (Almost Unified) |

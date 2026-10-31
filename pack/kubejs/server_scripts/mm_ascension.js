@@ -1,6 +1,6 @@
 // «Печать Возвышения» → «Возвышенное чудовище» → «Возвышенное сердце» (поток 80, пилот дорогих крафтов).
 // Спецификация — docs/expensive-crafts.md, раздел 3, «Пример 2»; итоги и проверка — docs/compat.md «Печать Возвышения».
-// Предметы — startup_scripts/mm_items.js. Тест — scripts/tests/ascension.js.
+// Предметы — startup_scripts/mm_items.js и mm_ascended_blade.js. Тесты — scripts/tests/ascension.js, ascended_blade.js.
 // Босс — Незеритовое чудовище из L_Ender's Cataclysm (cataclysm:netherite_monstrosity): база HP 600, урон 25.
 
 // NBT вызванного босса. Occultism (SummonRitual.applyEntityNbt) сливает его с NBT уже созданной сущности
@@ -60,6 +60,39 @@ ServerEvents.recipes(event => {
       nbt: { display: { Lore: ['[{"translate":"ritual.mm.ascended_monstrosity.result","italic":false,"color":"gray"}]'] } }
     }
   }).id('mm:ritual/ascended_monstrosity')
+
+  // ---- «Клинок Возвышения» (числа и свойство — startup_scripts/mm_ascended_blade.js) ----
+  // 1. Cataclysm, Наковальня слияния: The Incinerator (Игнис) + Возвышенное сердце
+  event.custom({
+    type: 'cataclysm:weapon_fusion',
+    base: { item: 'cataclysm:the_incinerator' },
+    addition: { item: 'mm:ascended_heart' },
+    result: { item: 'mm:ascended_blade_blank' }
+  }).id('mm:ascended_blade_blank')
+
+  // 2. Ice and Fire, Кузня огненного дракона: заготовка + кровь огненного дракона (вдвое дольше слитка драконьей стали)
+  event.custom({
+    type: 'iceandfire:dragonforge',
+    dragon_type: 'fire',
+    cook_time: 2000,
+    input: { item: 'mm:ascended_blade_blank' },
+    blood: { item: 'iceandfire:fire_dragon_blood' },
+    result: { item: 'mm:ascended_blade_forged' }
+  }).id('mm:ascended_blade_forged')
+
+  // 3. Botania, Terra Plate, 2 млн маны: клинок + вершины мечей четырёх модов
+  event.custom({
+    type: 'botania:terra_plate',
+    ingredients: [
+      { item: 'mm:ascended_blade_forged' },
+      { item: 'iceandfire:dragonsteel_fire_sword' },     // Ice and Fire
+      { item: 'extrabotany:excalibur' },                 // ExtraBotany
+      { item: 'cataclysm:soul_render' },                 // Cataclysm (Maledictus)
+      { item: 'traveloptics:stellothorn_level_three' }   // Traveloptics (Nightwarden), 3-й уровень эволюции
+    ],
+    mana: 2000000,
+    result: { item: 'mm:ascended_blade' }
+  }).id('mm:ascended_blade')
 })
 
 // 4. Награда: только босс с тегом mm_ascended (обычное Незеритовое чудовище сердце не даёт)

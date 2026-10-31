@@ -64,7 +64,7 @@ desc = "Модули, нужные другим модам, а также KubeJS
 [categories.own]
 title = "Свои моды и патчи"
 desc = "Моды и порты, собранные в этом репозитории (mods-src/, patches/)."
-extra = ["[Оберег от катаклизмов](own/disaster-ward.md) — подробный разбор нашего мода disaster-ward", "[Печать Возвышения и Возвышенное чудовище](own/ascension-sigil.md) — свой дорогой крафт и усиленный босс (KubeJS)"]
+extra = ["[Оберег от катаклизмов](own/disaster-ward.md) — подробный разбор нашего мода disaster-ward", "[Печать Возвышения и Клинок Возвышения](own/ascension-sigil.md) — свой дорогой крафт, усиленный босс и меч из его сердца (KubeJS)"]
 
 [members]
 arknights = ["caerula-arbor","bobs-originium-dream","originiumarts","endfield-industry","contigency-contract-lite","arknights-races","arknights-skills","arknightsfurniture","arknights-furs","origins-forge","arknights-origins-originium-arts","sarkazs_furnace_side_fables","torchesbecomesunlight","skills","skills-origins"]

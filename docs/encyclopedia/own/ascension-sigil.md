@@ -1,10 +1,10 @@
-# Печать Возвышения и Возвышенное чудовище (`mm:ascension_sigil`)
+# Печать Возвышения, Возвышенное чудовище и Клинок Возвышения (`mm:ascension_sigil`, `mm:ascended_blade`)
 
 Свой контент сборки: предметы и рецепты на KubeJS, без новых модов (поток 80, сборка 2026.10.31-11). Первый пилот «дорогих крафтов»
 (решение владельца В75 «а»: сначала печать и босс, потом меч, потом броня). Спецификация — [expensive-crafts.md](../../expensive-crafts.md), раздел 3, «Пример 2»;
 проверка на сервере — [compat.md](../../compat.md), «Печать Возвышения».
 Файлы: `pack/kubejs/startup_scripts/mm_items.js` (предметы), `pack/kubejs/server_scripts/mm_ascension.js` (рецепты, ритуал, награда),
-`pack/kubejs/assets/mm/` (текстуры, ru_ru/en_us), тест `scripts/tests/ascension.js`.
+`pack/kubejs/assets/mm/` (текстуры, ru_ru/en_us), тесты `scripts/tests/ascension.js`, `scripts/tests/ascended_blade.js`; меч — `pack/kubejs/startup_scripts/mm_ascended_blade.js`.
 
 Вернуться: [Свои моды и патчи](../own.md) · [Мобы и боссы](../mobs.md) · [оглавление справочника](../INDEX.md).
 
@@ -20,7 +20,24 @@
    жертвенной чаше. Ритуал идёт 60 с, печать расходуется. Появляется **Возвышенное чудовище** прямо на пентаграмме — стройте её на арене
    (босс 5,75 × 3 блока, огненные атаки по площади).
 4. **Награда** — **Возвышенное сердце** (`mm:ascended_heart`), 1 шт. Выпадает **только** с вызванного босса (тег `mm_ascended`);
-   обычное Незеритовое чудовище его не даёт. Пока ни во что не крафтится — ингредиент будущих меча и брони (отдельные PR).
+   обычное Незеритовое чудовище его не даёт. Из сердца делается Клинок Возвышения (ниже); броня — следующий этап.
+
+## Клинок Возвышения (`mm:ascended_blade`)
+Сборка 2026.10.31-12 (поток 80; вариант «А» вопроса В85, 1 сердце на меч). Числа — в начале `pack/kubejs/startup_scripts/mm_ascended_blade.js`
+(`global.mmAscendedBlade`; после правки нужен перезапуск).
+| | |
+|---|---|
+| урон / скорость | **30 / 1.6** (драконья сталь Ice and Fire — 25, Soul Render — 15, Excalibur — 13) |
+| прочность | 4000, чинится Возвышенным сердцем; огнестойкий, зачаровывается (22) |
+| свойство | удар **поджигает** цель на 5 с; по **боссам** (тег `forge:bosses`: Cataclysm, Иссушитель, Дракон и др.) **+5 % их максимального здоровья за удар, не больше 60** |
+Прибавка считается до брони (броня цели её режет, как обычный урон) и идёт поверх капа урона боссов Cataclysm — меч «для боссов».
+Работает только в ближнем бою (не через снаряды).
+
+Крафт:
+1. **Наковальня слияния** (Cataclysm): The Incinerator (Игнис) + Возвышенное сердце → Заготовка Клинка Возвышения.
+2. **Кузня огненного дракона** (Ice and Fire): заготовка + кровь огненного дракона, вдвое дольше слитка драконьей стали → Раскалённый клинок.
+3. **Terra Plate** (Botania), **2 млн маны**: Раскалённый клинок + меч из огненной драконьей стали + Excalibur (ExtraBotany) + Soul Render (Cataclysm)
+   + Stellothorn 3-го уровня (Traveloptics) → **Клинок Возвышения**.
 
 ## Предметы/блоки
 | Предмет | id | Откуда |
@@ -28,7 +45,10 @@
 | Спящая печать / Dormant Sigil | `mm:ascension_sigil_blank` | Наковальня слияния (Cataclysm) |
 | Печать Возвышения / Sigil of Ascension | `mm:ascension_sigil` | Чародейский аппарат (Ars Nouveau) |
 | Возвышенное сердце / Ascended Heart | `mm:ascended_heart` | только с Возвышенного чудовища |
-Все три огнестойкие (не горят в лаве); печати — по одной в стаке. Текстуры собраны из ассетов Cataclysm (L_Ender: ядро пустоты, глаз чудовища).
+| Заготовка Клинка Возвышения / Ascended Blade Blank | `mm:ascended_blade_blank` | Наковальня слияния (Cataclysm) |
+| Раскалённый клинок / Searing Blade | `mm:ascended_blade_forged` | Кузня огненного дракона (Ice and Fire) |
+| Клинок Возвышения / Blade of Ascension | `mm:ascended_blade` | Terra Plate (Botania) |
+Все огнестойкие (не горят в лаве); печати и клинки — по одной в стаке. Текстуры собраны из ассетов Cataclysm (L_Ender: ядро пустоты, глаз чудовища).
 
 ## Мобы
 **Возвышенное чудовище** — `cataclysm:netherite_monstrosity` с NBT из ритуала:
@@ -44,5 +64,5 @@
 
 ## Команды/гамерулы
 Проверить или показать босса без ритуала (оператор):
-`/give @s mm:ascension_sigil`, `/give @s mm:ascended_heart`;
+`/give @s mm:ascension_sigil`, `/give @s mm:ascended_heart`, `/give @s mm:ascended_blade`;
 вызов с тем же NBT, что у ритуала — `/summon cataclysm:netherite_monstrosity ~ ~ ~ {Attributes:[{Name:"minecraft:generic.max_health",Base:6000.0d},{Name:"minecraft:generic.attack_damage",Base:50.0d}],Health:6000.0f,PersistenceRequired:1b,CustomName:'{"translate":"entity.mm.ascended_monstrosity","color":"dark_red"}',Tags:["mm_ascended"]}`.
