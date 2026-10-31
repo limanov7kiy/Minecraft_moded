@@ -119,6 +119,7 @@
 | [scripts/tests/cn_nogrief.js](scripts/tests/cn_nogrief.js) | Проверка, что взрыв реактора Create Nuclear не ломает блоки (`createnuclear_no_grief.js`) — см. `docs/compat.md` «Create Nuclear» |
 | [scripts/tests/radsuit.js](scripts/tests/radsuit.js) | Проверка единого защитного костюма: костюм Create Nuclear защищает от радиации Mekanism и Create Nuclear, Hazmat не крафтится — см. `docs/compat.md` «Один защитный костюм» |
 | [scripts/tests/scpload.js](scripts/tests/scpload.js) | Нагрузка рядом с базами SCP: Ultimate: ищет комплексы и базы, держит чанки загруженными, время тика до/после — см. `docs/compat.md` «SCP» |
+| [scripts/tests/tbsedge.js](scripts/tests/tbsedge.js) | Мегаструктура Torches Become Sunlight у края загрузки: волны подгрузки чанков вокруг строящейся `sankta_holy_city` — см. `docs/compat.md` «Torches Become Sunlight: падение сервера» |
 | [scripts/tests/dedup_dump.js](scripts/tests/dedup_dump.js) | Выгрузка всех предметов и рецептов со стенда в JSON для аудита дублей — см. `docs/dedup.md` |
 | [scripts/tests/dedupcheck.js](scripts/tests/dedupcheck.js) | Проверка убранных логических дублей: нет рецептов, нет жёстких ссылок в чужих рецептах, оставшийся предмет есть — см. `docs/compat.md` «пачка dedup-1» |
 | [scripts/tests/hazardgear.js](scripts/tests/hazardgear.js) | Проверка защитного снаряжения после объединения дублей: костюм Create Nuclear в Alex's Caves, противогаз Spore против газа CBC — см. `docs/compat.md` «пачка dedup-2» |
