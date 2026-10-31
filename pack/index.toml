@@ -86,7 +86,7 @@ hash = "849d8c22b15f44733ae4644b5d83b22a54ba3779c57481643ea2ce5ef14ba8f7"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "2244d1a9c96bf439e805b2e21bb1558e4df77dd2c484ac6b6497a371e87e5bce"
+hash = "007b2ce9591095808b056d0086d5f8bc33b7743c9b200527da65ff3d6353e870"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -1235,6 +1235,46 @@ metafile = true
 [[files]]
 file = "config/yes_steve_model/custom/punishing_gray_raven/ysm-pack.json"
 hash = "17880cdb60e684e3b1df193f8f75aeb91fc7177818e4ea137a066fa0cc5130d4"
+
+[[files]]
+file = "config/yes_steve_model/custom/vivi/animations/arm.animation.json"
+hash = "239e2dadcc57f8fa08e8087c9eb2e3db9fafef289c787421caa77f2dce09538e"
+
+[[files]]
+file = "config/yes_steve_model/custom/vivi/animations/extra.animation.json"
+hash = "2aa88262140011ed15bb248ea22784222d87567650b27361e44a4953d832f5fc"
+
+[[files]]
+file = "config/yes_steve_model/custom/vivi/animations/fp.arm.animation.json"
+hash = "6030836fffd11cc9883b495cc01e314c377db9f428bd0d76578f3431898a3b9a"
+
+[[files]]
+file = "config/yes_steve_model/custom/vivi/animations/iss.animation.json"
+hash = "37cc6952c62fbe24376a1effdca702a015ae224c4cde5c042e2ed70a94987fb9"
+
+[[files]]
+file = "config/yes_steve_model/custom/vivi/animations/main.animation.json"
+hash = "6ae069febea181c41a9e6b1fc11076927ca9e6f247c781d371fa2b2b075eabe7"
+
+[[files]]
+file = "config/yes_steve_model/custom/vivi/animations/tac.animation.json"
+hash = "4594de398c4d34311d540caa2c1b314f631307fd68d810dfc84a8ac1552b3e88"
+
+[[files]]
+file = "config/yes_steve_model/custom/vivi/models/arm.json"
+hash = "147cf3f437009cedd70d963c0f7b85430b6f301571b500bd58c4cb5b5d237012"
+
+[[files]]
+file = "config/yes_steve_model/custom/vivi/models/main.json"
+hash = "4d6abc37d6a03dd753627250de8445bbf834cdba35ae966a2b7fa87a08e72f90"
+
+[[files]]
+file = "config/yes_steve_model/custom/vivi/textures/vivi.png"
+hash = "3214dfac8e5fca36d23e98328187e91931d3d3903637384d4cfad3a2c5e1b4ee"
+
+[[files]]
+file = "config/yes_steve_model/custom/vivi/ysm.json"
+hash = "629f55aeaacc91d5a1974b3bcced5d30ea9020c02f473ad6152636f5072d406a"
 
 [[files]]
 file = "defaultconfigs/lostcities-server.toml"

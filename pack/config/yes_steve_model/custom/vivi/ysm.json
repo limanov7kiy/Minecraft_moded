@@ -1,0 +1,110 @@
+{
+  "spec": 2,
+  "metadata": {
+    "name": "Vivi",
+    "tips": "Vivi — девушка-волчица в бордовом пальто, меч в ножнах за спиной. Авторский персонаж. Модель Minecraft_moded.",
+    "license": {
+      "type": "CC BY-NC 4.0",
+      "desc": "Персонаж — авторский (владелец сборки Minecraft_moded). Скелет и базовые анимации — встроенная модель YSM «default» (CC 0)."
+    },
+    "authors": [
+      {
+        "name": "Minecraft_moded (Поток 69, Claude)",
+        "role": "модель, текстура, уши, хвост, пальто, меч, позы",
+        "comment": "Сборка для друзей, некоммерческая"
+      },
+      {
+        "name": "哥斯拉",
+        "role": "模型 (default, CC 0)"
+      },
+      {
+        "name": "端木一动不动",
+        "role": "动画 (default, CC 0)"
+      },
+      {
+        "name": "甜粽子",
+        "role": "动画 (default, CC 0)"
+      },
+      {
+        "name": "星屑海螺",
+        "role": "动画 (default, CC 0)"
+      },
+      {
+        "name": "蓝玫瑰",
+        "role": "材质/模型 (default, CC 0)"
+      },
+      {
+        "name": "艾雷克亚",
+        "role": "铁魔法动画 (default, CC 0)"
+      }
+    ],
+    "link": {
+      "home": "https://github.com/limanov7kiy/minecraft_moded"
+    }
+  },
+  "properties": {
+    "height_scale": 0.7,
+    "width_scale": 0.7,
+    "extra_animation": {
+      "extra0": "#vv_config",
+      "extra1": "vv_pockets",
+      "extra2": "vv_glance",
+      "extra3": "vv_hilt",
+      "extra4": "vv_bow",
+      "#classic": "Ещё позы (default)"
+    },
+    "extra_animation_buttons": [
+      {
+        "id": "vv_config",
+        "name": "Настройки",
+        "config_forms": [
+          {
+            "type": "checkbox",
+            "title": "Меч за спиной",
+            "description": "Показывать меч в ножнах за спиной",
+            "value": "v.roaming.vv_sword"
+          }
+        ]
+      }
+    ],
+    "extra_animation_classify": [
+      {
+        "id": "classic",
+        "extra_animation": {
+          "extra0": "classic_extra0",
+          "extra1": "classic_extra1",
+          "extra2": "classic_extra2",
+          "extra3": "classic_extra3",
+          "extra4": "classic_extra4",
+          "extra5": "classic_extra5",
+          "extra6": "classic_extra6",
+          "extra7": "classic_extra7"
+        }
+      }
+    ],
+    "preview_animation": "gui",
+    "default_texture": "vivi",
+    "merge_multiline_expr": true,
+    "free": true
+  },
+  "files": {
+    "player": {
+      "model": {
+        "main": "models/main.json",
+        "arm": "models/arm.json"
+      },
+      "animation": {
+        "main": "animations/main.animation.json",
+        "arm": "animations/arm.animation.json",
+        "extra": "animations/extra.animation.json",
+        "irons_spell_books": "animations/iss.animation.json",
+        "tac": "animations/tac.animation.json",
+        "fp_arm": "animations/fp.arm.animation.json"
+      },
+      "animation_controllers": [],
+      "texture": [
+        "textures/vivi.png"
+      ]
+    }
+  }
+}
