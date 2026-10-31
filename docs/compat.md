@@ -2063,3 +2063,27 @@ Corosus (Weather2) — здесь только перехват вызовов.
 **Проверка:** `test-server.sh` — `SERVER OK`, миксин применился без ошибок, модификаторы `aether:*` зарегистрированы (worldgen Aether загрузился
 без ошибок про неизвестный тип). Гонку прогоном не доказать (плавающая) — проверено, что вызовы больше не в параллельной фазе.
 **Откат:** убрать `AetherSetupRaceMixin` из `mm_compat.mixins.json`. Авторство: The Aether — The Aether Team; здесь только перенос вызовов.
+
+## Печать Возвышения: дорогой крафт, ритуал Occultism и усиленный босс (поток 80, 2026-10-31, сборка 2026.10.31-11)
+Пилот «дорогих крафтов» (В75 «а»), спецификация — `docs/expensive-crafts.md`, раздел 3, «Пример 2»; для игроков — `docs/encyclopedia/own/ascension-sigil.md`.
+Файлы: `pack/kubejs/startup_scripts/mm_items.js` (первые свои предметы KubeJS: `mm:ascension_sigil_blank`, `mm:ascension_sigil`, `mm:ascended_heart`),
+`pack/kubejs/server_scripts/mm_ascension.js` (рецепты, ритуал, выпадение), `pack/kubejs/assets/mm/` (текстуры из ассетов Cataclysm, ru_ru/en_us). Новых модов нет.
+- **Цепочка:** Cataclysm `weapon_fusion` (Глаз чудовища + Ядро пустоты) → Ars Nouveau `enchanting_apparatus` (+8 трофеев, 10 000 источника) →
+  Occultism `occultism:ritual` / `occultism:summon`, пентаграмма `occultism:summon_marid`, печать — `activation_item` (расходуется).
+- **`entity_nbt` в Occultism 1.20.1 (1.158.0) есть** — запасной вариант (правый клик печатью в KubeJS) не понадобился. Порядок в `SummonRitual.finish`:
+  `createSummonedEntity` → `prepareLivingEntityForSpawn` (там `finalizeSpawn`) → `applyEntityNbt` (`saveWithoutId` → `merge` → `load`) → `spawnEntity`.
+  NBT ложится **после** спавна, поэтому `Attributes[].Base` перекрывают значения Cataclysm (`setConfigattribute` в конструкторе, множители конфига —
+  по умолчанию 1). Список `Attributes` при merge заменяется целиком, остальные атрибуты сущности при `load` не трогаются.
+- **AttributeFix:** `config/attributefix.json` (создаётся при первом запуске) — `minecraft:generic.max_health` max = 1 000 000, `attack_damage` — 1 000 000.
+- **Тест** `scripts/tests/ascension.js` (повторяет шаги ритуала: create → finalizeSpawn → merge NBT **из загруженного рецепта** → addFreshEntity; рядом контрольное
+  обычное чудовище): `max_health=6000 base=6000 hp=6000`, `attack_damage base=50 value=50` (×2 от 25), `tags=[mm_ascended]`, имя, `persistent=true`;
+  контроль — 600 / 25, без тега. Через 5 с ни Chaos Persists, ни другие моды атрибуты не переписали. После `kill()` сердце выпадает у вызванного
+  босса (1 шт.) и не выпадает у обычного; обычный лут Cataclysm (Infernal Forge, рог, Lava Power Cell, мясо Lender's Delight) выпадает у обоих.
+- **Грабли Rhino (KubeJS 6), найдены тестом:** `const` внутри `if` в обработчике тика → «redeclaration of var»; `Entity.moveTo(5 чисел)` и
+  `spawnAtLocation(ItemStack[, float])` — неоднозначные перегрузки (ItemLike/ItemStack, int/float). Сердце создаётся через `new ItemEntity(level, x, y, z, stack)`.
+  Тест в старом мире: сохранённые сердца прошлых прогонов снова «входят» в мир при загрузке чанков — считаются только появившиеся после убийства.
+- **Не проверено:** сам ритуал на построенной пентаграмме (нужен игрок и мультиблок) — проверен тот же путь применения NBT; рецепты в JEI глазами
+  (рецепты загружены на сервере; Cataclysm/Ars/Occultism показывают свои типы в JEI, см. `docs/jei.md`); баланс боя (damageCap/dpsCap Cataclysm
+  ограничивают урон за удар — 6000 HP ≈ в 10 раз больше ударов); текстуры в игре.
+- **Откат:** удалить `mm_items.js`, `mm_ascension.js`, `pack/kubejs/assets/mm/`. Предметы `mm:*`, лежащие в мирах, после отката станут пустыми (это предметы KubeJS).
+- Авторство: босс и исходные текстуры — L_Ender's Cataclysm (L_Ender); ритуал — Occultism (klikli-dev); здесь только рецепты и NBT.
