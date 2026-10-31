@@ -333,8 +333,8 @@ git merge-base --is-ancestor origin/claude/autoupdate-stable <коммит>   # 
 git push origin <коммит>:refs/heads/claude/autoupdate-stable           # без -f
 ```
 `<коммит>` — merge-коммит слитого и проверенного PR в основной (или `origin/claude/affectionate-davinci-4gddoh`, если там ничего непроверенного).
-Первый раз ветку создаёт координатор после слияния PR с 0.4.0 — той же командой; пока её нет, ссылка 404, мод пишет
-`не удалось проверить обновление … HTTP 404` и сервер стартует как есть. Сдвинутая днём ветка применится только в ближайшее **ночное окно**.
+Ветку координатор создал 2026-10-31 на `fb33fd1` (сборка 2026.10.31-5, одобрена владельцем; там ещё 0.3.0); после слияния PR с 0.4.0 —
+fast-forward на его merge-коммит. Если ветки нет, ссылка 404, мод пишет `не удалось проверить обновление … HTTP 404` и сервер стартует как есть. Сдвинутая днём ветка применится только в ближайшее **ночное окно**.
 
 ### Окно обновления (`update_window`, с 0.4.0)
 Обновления идут **автоматически, но только ночью**: по умолчанию `update_window = "23:00-00:59"`, `update_window_tz = "UTC"` =
@@ -424,7 +424,8 @@ jar, поднимать мир на неполном наборе модов н�
   статус `failed … reason=start exit=1 rolled-back version=t2`.
 - Разбор окна тестовым классом поверх jar: `23:00-00:59 UTC` — 22:59 и 01:00 вне, 23:00/23:59/00:00/00:59 в окне; `04:00-05:59 Asia/Yekaterinburg`
   в 23:30 UTC — в окне; `25:00-01:00` и пояс `Mars/Base` — `bad-window`; пусто — без ограничения.
-- raw-ссылка `refs/heads/claude/affectionate-davinci-4gddoh/pack/pack.toml` (ветка с «/») — 200; packwiz-installer по ней прочитал `index.toml` и начал качать файлы.
+- raw-ссылки `claude/autoupdate-stable/pack/pack.toml` и `refs/heads/claude/autoupdate-stable/pack/pack.toml` (ветка с «/», на `fb33fd1`) — обе 200;
+  packwiz-installer 0.5.14 по `refs/heads/…` прочитал `index.toml` и начал качать файлы (745) — так же на основной ветке.
 
 ### Как проверено: 0.3.0, `on_start` (поток 71, 2026-10-31, Linux, полная сборка 2026.10.31-3, пак с локального HTTP)
 `scripts/test-server.sh` с `config/mm-autoupdate.toml` (`enabled = true`, `mode = "on_start"`, `pack_url` на локальную копию `pack/` с другой версией),
