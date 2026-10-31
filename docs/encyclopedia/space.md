@@ -452,7 +452,7 @@ Creating Space (MIT; автор Real Ant Engineer) — ракеты на Create,
 <a id="mekanism-ad-astra-ores"></a>
 - **Версия:** 1.1.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/mekanism-ad-astra-ores)
 - **Что это:** Руды Mekanism на планетах Ad Astra. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (46), [dedup.md](../dedup.md) (23), [jei.md](../jei.md) (10), [friends.md](../friends.md) (8), [ntm.md](../ntm.md) (7), [roadmap.md](../roadmap.md) (7)
+- **В наших docs:** [compat.md](../compat.md) (46), [dedup.md](../dedup.md) (23), [jei.md](../jei.md) (10), [expensive-crafts.md](../expensive-crafts.md) (9), [friends.md](../friends.md) (8), [ntm.md](../ntm.md) (7)
 <!-- auto:end card:mekanism-ad-astra-ores -->
 
 ### Что даёт игроку

@@ -165,7 +165,7 @@ _Обзор категории — вручную, следующие этапы
 <a id="alexs-caves"></a>
 - **Версия:** 2.0.2 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/alexs-caves)
 - **Что это:** Шесть редких пещерных биомов под поверхностью Верхнего мира, со своими мобами и предметами. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (11), [enchanting-table.md](../enchanting-table.md) (5), [dedup.md](../dedup.md) (4), [ntm.md](../ntm.md) (4), [friends.md](../friends.md) (3), [orespawn.md](../orespawn.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (11), [enchanting-table.md](../enchanting-table.md) (5), [dedup.md](../dedup.md) (4), [ntm.md](../ntm.md) (4), [expensive-crafts.md](../expensive-crafts.md) (3), [friends.md](../friends.md) (3)
 <!-- auto:end card:alexs-caves -->
 
 ### Как играть
@@ -1028,7 +1028,7 @@ HP, броня и слабые места — в [bosses.md](../bosses.md#twilig
 <a id="the-twilight-forest-dungeons-villages"></a>
 - **Версия:** 1.2.3 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/the-twilight-forest-dungeons-villages)
 - **Что это:** Новый контент для Сумеречного леса, в основном деревни. _(источник: docs сборки)_
-- **В наших docs:** [bosses.md](../bosses.md) (8), [compat.md](../compat.md) (6), [roadmap.md](../roadmap.md) (2), [client-checklist.md](../client-checklist.md) (1), [version-choice.md](../version-choice.md) (1)
+- **В наших docs:** [bosses.md](../bosses.md) (8), [compat.md](../compat.md) (6), [expensive-crafts.md](../expensive-crafts.md) (2), [roadmap.md](../roadmap.md) (2), [client-checklist.md](../client-checklist.md) (1), [version-choice.md](../version-choice.md) (1)
 <!-- auto:end card:the-twilight-forest-dungeons-villages -->
 
 ### Что даёт игроку
@@ -1076,7 +1076,7 @@ HP, броня и слабые места — в [bosses.md](../bosses.md#twilig
 <a id="twilight-forest-the-lost-blocks"></a>
 - **Версия:** 1.20.1-1.5.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/twilight-forest-the-lost-blocks)
 - **Что это:** Добавляет в Сумеречный лес недостающие блоки для строителей. _(источник: docs сборки)_
-- **В наших docs:** [bosses.md](../bosses.md) (8), [compat.md](../compat.md) (6), [roadmap.md](../roadmap.md) (2), [client-checklist.md](../client-checklist.md) (1), [version-choice.md](../version-choice.md) (1)
+- **В наших docs:** [bosses.md](../bosses.md) (8), [compat.md](../compat.md) (6), [expensive-crafts.md](../expensive-crafts.md) (2), [roadmap.md](../roadmap.md) (2), [client-checklist.md](../client-checklist.md) (1), [version-choice.md](../version-choice.md) (1)
 <!-- auto:end card:twilight-forest-the-lost-blocks -->
 
 ### Что даёт игроку

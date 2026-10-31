@@ -335,7 +335,7 @@ Eureka (Valkyrien Skies Eureka, `vs_eureka` 1.6.3; Tri0de, ewoudje и др.) —
 <a id="mekanism"></a>
 - **Версия:** 10.4.16.80 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/mekanism)
 - **Что это:** Высокотехнологичные машины, энергетика, гаджеты. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (38), [dedup.md](../dedup.md) (23), [friends.md](../friends.md) (8), [ntm.md](../ntm.md) (7), [roadmap.md](../roadmap.md) (7), [galacticraft.md](../galacticraft.md) (4)
+- **В наших docs:** [compat.md](../compat.md) (38), [dedup.md](../dedup.md) (23), [friends.md](../friends.md) (8), [expensive-crafts.md](../expensive-crafts.md) (7), [ntm.md](../ntm.md) (7), [roadmap.md](../roadmap.md) (7)
 <!-- auto:end card:mekanism -->
 
 ### Как играть
@@ -474,7 +474,7 @@ Mekanism Tools 10.4.16 — инструменты и броня из матер�
 - **Версия:** 1.20.1-1.2.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/mekanismmoremachine)
 - **Что это:** Дополнительные машины и фабрики для Mekanism. _(источник: docs сборки)_
 - **В сборке:** Mekanism: больше машин и фабрик
-- **В наших docs:** [compat.md](../compat.md) (46), [dedup.md](../dedup.md) (23), [jei.md](../jei.md) (10), [friends.md](../friends.md) (8), [ntm.md](../ntm.md) (7), [roadmap.md](../roadmap.md) (7)
+- **В наших docs:** [compat.md](../compat.md) (46), [dedup.md](../dedup.md) (23), [jei.md](../jei.md) (10), [expensive-crafts.md](../expensive-crafts.md) (9), [friends.md](../friends.md) (8), [ntm.md](../ntm.md) (7)
 <!-- auto:end card:mekanismmoremachine -->
 
 ### Как играть
@@ -620,7 +620,7 @@ VS Tournament Reforged (`vs_tournament` 1.0.3; alex-s168, Balatan, 411_Cat, bloc
 - **Версия:** 2.0.1 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/createnuclear)
 - **Что это:** Create Nuclear: ядерный реактор на Create (стержни урана и графита, охлаждение водой, вращение на выходе), руды урана/тория, радиация и антирадиационный костюм. _(источник: docs сборки)_
 - **В сборке:** Create Nuclear: реактор на Create, уран, радиация, костюм (решение владельца 2026-10-26, поток 66)
-- **В наших docs:** [compat.md](../compat.md) (26), [friends.md](../friends.md) (5), [dedup.md](../dedup.md) (3), [ntm.md](../ntm.md) (2), [roadmap.md](../roadmap.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (26), [friends.md](../friends.md) (5), [dedup.md](../dedup.md) (3), [ntm.md](../ntm.md) (2), [scp.md](../scp.md) (2), [roadmap.md](../roadmap.md) (1)
 <!-- auto:end card:createnuclear -->
 
 ### Как играть

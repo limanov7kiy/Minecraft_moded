@@ -59,7 +59,7 @@ _Обзор категории — вручную, следующие этапы
 - **Версия:** 1.20.1-3.0.35 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/animus)
 - **Что это:** Добавка к Blood Magic: больше магии. _(источник: docs сборки)_
 - **В сборке:** Blood Magic
-- **В наших docs:** [russification.md](../russification.md) (9), [compat.md](../compat.md) (8), [roadmap.md](../roadmap.md) (7), [client-checklist.md](../client-checklist.md) (1), [jei.md](../jei.md) (1), [russification-audit.md](../russification-audit.md) (1)
+- **В наших docs:** [russification.md](../russification.md) (9), [compat.md](../compat.md) (8), [roadmap.md](../roadmap.md) (7), [client-checklist.md](../client-checklist.md) (1), [expensive-crafts.md](../expensive-crafts.md) (1), [jei.md](../jei.md) (1)
 <!-- auto:end card:animus -->
 
 ### Как играть
@@ -299,7 +299,7 @@ Ars Magica: Legacy 1.5.0 (`arsmagicalegacy`) — порт классическо
 <a id="ars-nouveau"></a>
 - **Версия:** 4.12.7 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/ars-nouveau)
 - **Что это:** Создание заклинаний из глифов и магическая автоматизация. _(источник: docs сборки)_
-- **В наших docs:** [russification.md](../russification.md) (18), [compat.md](../compat.md) (8), [roadmap.md](../roadmap.md) (8), [enchanting-table.md](../enchanting-table.md) (6), [russification-glossary.md](../russification-glossary.md) (4), [bosses.md](../bosses.md) (2)
+- **В наших docs:** [russification.md](../russification.md) (18), [compat.md](../compat.md) (8), [roadmap.md](../roadmap.md) (8), [enchanting-table.md](../enchanting-table.md) (6), [expensive-crafts.md](../expensive-crafts.md) (4), [russification-glossary.md](../russification-glossary.md) (4)
 <!-- auto:end card:ars-nouveau -->
 
 ### Как играть
@@ -412,7 +412,7 @@ Ars Technica 1.4.2 (`ars_technica`): связка Ars Nouveau и Create — за
 <a id="blood-magic"></a>
 - **Версия:** 3.3.8-50 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/blood-magic)
 - **Что это:** Магия крови: алтари, ритуалы, сети души ради мощи. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (7), [russification.md](../russification.md) (4), [roadmap.md](../roadmap.md) (3), [russification-glossary.md](../russification-glossary.md) (2), [client-checklist.md](../client-checklist.md) (1), [dedup.md](../dedup.md) (1)
+- **В наших docs:** [compat.md](../compat.md) (7), [expensive-crafts.md](../expensive-crafts.md) (6), [russification.md](../russification.md) (4), [roadmap.md](../roadmap.md) (3), [russification-glossary.md](../russification-glossary.md) (2), [client-checklist.md](../client-checklist.md) (1)
 <!-- auto:end card:blood-magic -->
 
 ### Как играть
@@ -470,7 +470,7 @@ Ars Technica 1.4.2 (`ars_technica`): связка Ars Nouveau и Create — за
 <a id="botania"></a>
 - **Версия:** 1.20.1-456-forge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/botania)
 - **Что это:** Природная магия и техника: цветы-генераторы, мана, пестик и т. д. _(источник: docs сборки)_
-- **В наших docs:** [compat.md](../compat.md) (5), [dedup.md](../dedup.md) (4), [russification.md](../russification.md) (4), [bosses.md](../bosses.md) (2), [roadmap.md](../roadmap.md) (2), [russification-glossary.md](../russification-glossary.md) (2)
+- **В наших docs:** [compat.md](../compat.md) (5), [dedup.md](../dedup.md) (4), [expensive-crafts.md](../expensive-crafts.md) (4), [russification.md](../russification.md) (4), [bosses.md](../bosses.md) (2), [roadmap.md](../roadmap.md) (2)
 <!-- auto:end card:botania -->
 
 ### Как играть
@@ -806,7 +806,7 @@ Extra Golems 20.1.0.2 (модид `golems`, автор skyjay1, лицензия
 <a id="extrabotany"></a>
 - **Версия:** 1.20.1-1.9.2-forge · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/extrabotany)
 - **Что это:** Дополнение к Botania. _(источник: docs сборки)_
-- **В наших docs:** [bosses.md](../bosses.md) (12), [russification.md](../russification.md) (4), [client-checklist.md](../client-checklist.md) (2), [compat.md](../compat.md) (2), [jei.md](../jei.md) (2), [russification-audit.md](../russification-audit.md) (2)
+- **В наших docs:** [bosses.md](../bosses.md) (12), [expensive-crafts.md](../expensive-crafts.md) (10), [russification.md](../russification.md) (4), [client-checklist.md](../client-checklist.md) (2), [compat.md](../compat.md) (2), [jei.md](../jei.md) (2)
 <!-- auto:end card:extrabotany -->
 
 ### Как играть
@@ -1343,7 +1343,7 @@ MythicBotany 4.0.4 (расширение Botania): после терра-сту�
 <a id="occultism"></a>
 - **Версия:** 1.20.1-1.158.0 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/occultism)
 - **Что это:** Ритуальная магия с призываемыми духами: автоматизация, хранение предметов, демоны, добывающие в пустоте, инструменты и украшения. _(источник: docs сборки)_
-- **В наших docs:** [jei.md](../jei.md) (10), [russification.md](../russification.md) (8), [compat.md](../compat.md) (4), [roadmap.md](../roadmap.md) (4), [russification-audit.md](../russification-audit.md) (4), [client-checklist.md](../client-checklist.md) (2)
+- **В наших docs:** [expensive-crafts.md](../expensive-crafts.md) (16), [jei.md](../jei.md) (10), [russification.md](../russification.md) (8), [compat.md](../compat.md) (4), [roadmap.md](../roadmap.md) (4), [russification-audit.md](../russification-audit.md) (4)
 <!-- auto:end card:occultism -->
 
 ### Как играть
@@ -1435,7 +1435,7 @@ Spell Forge 1.1.0 (`spellforge`, автор ZettaSword; CurseForge, в сбор�
 - **Версия:** 1.20.1-0.4.5 · **Сторона:** both · **Источник:** [Modrinth](https://modrinth.com/mod/tome-of-blood-rebirth)
 - **Что это:** Интеграция Ars Nouveau и Blood Magic; духовный преемник Tome of Blood. _(источник: docs сборки)_
 - **В сборке:** Ars Nouveau × Blood Magic
-- **В наших docs:** [russification.md](../russification.md) (2)
+- **В наших docs:** [russification.md](../russification.md) (2), [expensive-crafts.md](../expensive-crafts.md) (1)
 <!-- auto:end card:tome-of-blood-rebirth -->
 
 ### Что даёт игроку
