@@ -15,11 +15,15 @@ import net.minecraftforge.fml.loading.FMLPaths;
 import org.slf4j.Logger;
 
 /**
- * Серверное автообновление сборки с GitHub (docs/hosting.md, «Автообновление сервера с git»).
- * На выделенном сервере: после {@link ServerStoppedEvent} (мир уже сохранён, игроки отключены) запускает
- * packwiz-installer-bootstrap в корне сервера — к следующему старту mods/, config/, kubejs/ свежие.
- * Если прошлое обновление оборвалось (хостинг убил процесс по таймауту), на старте повторяет его и
- * завершает сервер с кодом 0, чтобы не поднимать мир на неполном наборе модов. На клиенте ничего не делает.
+ * Серверное автообновление сборки с GitHub (docs/hosting.md, «Автообновление сервера с git»). Два режима (mode в конфиге):
+ * <ul>
+ * <li>{@code on_start} (по умолчанию с 0.3.0): на {@link FMLDedicatedServerSetupEvent}, до загрузки мира, сверяет pack.toml по pack_url
+ * с поставленным (packwiz.json); есть новая версия — packwiz-installer-bootstrap в корне сервера и выход с кодом 0 (панель хостинга
+ * запускает сервер снова уже с новыми jar), ошибка — полный откат и запуск на прежней версии, нет изменений — обычный запуск;</li>
+ * <li>{@code on_stop}: после {@link ServerStoppedEvent} (мир уже сохранён, игроки отключены) — к следующему старту сборка свежая.</li>
+ * </ul>
+ * В обоих режимах: если прошлое обновление оборвалось (маркер), на старте повторяет его и завершает сервер с кодом 0, чтобы не
+ * поднимать мир на неполном наборе модов. На клиенте ничего не делает.
  */
 @Mod("mm_autoupdate")
 public final class MmAutoupdate {
@@ -50,8 +54,33 @@ public final class MmAutoupdate {
             LOGGER.info(TAG + "выключено в config/mm-autoupdate.toml (enabled = false) / disabled");
             return;
         }
-        LOGGER.info(TAG + "обновление при остановке сервера включено: " + AutoupdateConfig.PACK_URL.get());
-        if (!Updater.markerExists(root)) return;
+        boolean onStart = onStartMode();
+        LOGGER.info(TAG + (onStart ? "обновление на старте сервера (mode = on_start): " : "обновление при остановке сервера (mode = on_stop): ")
+            + AutoupdateConfig.PACK_URL.get());
+        if (Updater.markerExists(root)) {
+            retryInterrupted(root);
+            return;
+        }
+        if (!onStart) return;
+        Updater.StartResult r = Updater.onStart(root, AutoupdateConfig.settings(), LOG, AutoupdateConfig.START_COOLDOWN_MINUTES.get());
+        if (r == Updater.StartResult.UPDATED) {
+            ran = true;
+            LOGGER.warn(TAG + "сборка обновлена до " + Updater.packVersion(root) + "; сервер завершает работу с кодом 0, чтобы загрузить "
+                + "новые моды — панель хостинга запустит его снова (если нет — ЗАПУСТИТЕ СЕРВЕР ВРУЧНУЮ) "
+                + "/ pack updated, exiting with code 0 so the panel restarts the server on the new mods");
+            System.exit(0);
+        }
+        if (r == Updater.StartResult.FAILED) {
+            LOGGER.error(TAG + "обновление на старте не удалось — сервер запускается на прежней версии " + Updater.packVersion(root)
+                + ", причина — выше и в " + Updater.STATUS + " / update failed, starting the previous version");
+        }
+    }
+
+    static boolean onStartMode() {
+        return !AutoupdateConfig.MODE_ON_STOP.equals(AutoupdateConfig.MODE.get());
+    }
+
+    private static void retryInterrupted(Path root) {
         LOGGER.warn(TAG + "прошлое обновление не завершилось (есть " + Updater.MARKER + "): сервер мог быть остановлен хостингом "
             + "до конца обновления, mods/ может быть неполным / previous update did not finish");
         if (!AutoupdateConfig.RETRY_ON_START.get()) {
@@ -61,8 +90,8 @@ public final class MmAutoupdate {
         Updater.Result r = Updater.run(root, AutoupdateConfig.settings(), LOG, "retry");
         if (r == Updater.Result.UPDATED) {
             ran = true;
-            LOGGER.warn(TAG + "обновление доделано; сервер завершает работу, чтобы загрузить новые моды — ЗАПУСТИТЕ ЕГО СНОВА "
-                + "/ update completed, exiting with code 0: START THE SERVER AGAIN");
+            LOGGER.warn(TAG + "обновление доделано; сервер завершает работу с кодом 0, чтобы загрузить новые моды — панель хостинга "
+                + "запустит его снова (если нет — ЗАПУСТИТЕ СЕРВЕР ВРУЧНУЮ) / update completed, exiting with code 0: START THE SERVER AGAIN");
             System.exit(0);
         } else {
             LOGGER.error(TAG + "повторить обновление не удалось (" + r + "); продолжаю запуск с тем, что есть в mods/ — "
@@ -73,7 +102,7 @@ public final class MmAutoupdate {
     private static void onServerStopped(ServerStoppedEvent e) {
         if (ran) return;
         ran = true;
-        if (!AutoupdateConfig.ENABLED.get()) return;
+        if (!AutoupdateConfig.ENABLED.get() || onStartMode()) return;
         Updater.run(FMLPaths.GAMEDIR.get(), AutoupdateConfig.settings(), LOG, "stop");
     }
 }

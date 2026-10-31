@@ -8,6 +8,8 @@ import net.minecraftforge.common.ForgeConfigSpec;
 final class AutoupdateConfig {
     static final ForgeConfigSpec SPEC;
     static final ForgeConfigSpec.BooleanValue ENABLED;
+    static final ForgeConfigSpec.ConfigValue<String> MODE;
+    static final ForgeConfigSpec.IntValue START_COOLDOWN_MINUTES;
     static final ForgeConfigSpec.ConfigValue<String> PACK_URL;
     static final ForgeConfigSpec.ConfigValue<String> BOOTSTRAP_JAR;
     static final ForgeConfigSpec.ConfigValue<String> BOOTSTRAP_URL;
@@ -27,13 +29,27 @@ final class AutoupdateConfig {
     static final ForgeConfigSpec.ConfigValue<List<? extends String>> BACKUP_DIRS;
     static final ForgeConfigSpec.BooleanValue KEEP_BACKUP;
 
+    static final String MODE_ON_START = "on_start";
+    static final String MODE_ON_STOP = "on_stop";
+
     static {
         ForgeConfigSpec.Builder b = new ForgeConfigSpec.Builder();
-        b.comment("Автообновление серверной сборки с GitHub при остановке сервера (docs/hosting.md, «Автообновление сервера с git»).",
-            "Server pack auto-update from GitHub on server stop. Only runs on a dedicated server.");
-        ENABLED = b.comment("Включить обновление при остановке сервера (по умолчанию выключено: включает хост осознанно, см. docs/hosting.md)",
-                "Run packwiz-installer on server stop (off by default)")
+        b.comment("Автообновление серверной сборки с GitHub (docs/hosting.md, «Автообновление сервера с git»).",
+            "Server pack auto-update from GitHub. Only runs on a dedicated server.");
+        ENABLED = b.comment("Включить автообновление (по умолчанию выключено: включает хост осознанно, см. docs/hosting.md)",
+                "Enable the auto-update (off by default)")
             .define("enabled", false);
+        MODE = b.comment("Когда обновлять:",
+                "  on_start — на старте сервера, до загрузки мира: проверить pack_url (один запрос pack.toml); нет изменений — обычный запуск;",
+                "             есть — копия, установщик, при успехе выход с кодом 0 (панель запускает сервер снова), при ошибке — откат и запуск",
+                "             на прежней версии. Для хостинга, который убивает процесс вскоре после «Остановить» (Millida).",
+                "  on_stop  — после остановки сервера (ServerStoppedEvent), как в 0.2.x; нужно, чтобы панель ждала конца обновления.",
+                "When to update: on_start (on server start, exit 0 after an update) or on_stop (after the server stopped)")
+            .defineInList("mode", MODE_ON_START, List.of(MODE_ON_START, MODE_ON_STOP));
+        START_COOLDOWN_MINUTES = b.comment("on_start: одну и ту же версию сборки пытаться ставить на старте не чаще раза в столько минут",
+                "(защита от цикла «обновил → выход 0 → снова видит обновление»; после неудачной попытки — обычный запуск). 0 — без защиты",
+                "on_start: retry the same pack version at most once per this many minutes (loop guard)")
+            .defineInRange("start_cooldown_minutes", Updater.DEFAULT_START_COOLDOWN_MINUTES, 0, 10080);
         PACK_URL = b.comment("Ссылка на pack.toml сборки: по умолчанию тег autoupdate-stable (его двигает владелец после «да» на выкладку),",
                 "не живая ветка — перезапуск сервера без нового тега сборку не меняет / pack.toml URL (tag autoupdate-stable)")
             .define("pack_url", Updater.DEFAULT_PACK_URL);
@@ -46,12 +62,12 @@ final class AutoupdateConfig {
         KEEP_BACKUP = b.comment("Оставлять копию после успешного обновления (до следующего); по умолчанию удаляется — место на диске хостинга",
                 "Keep the backup after a successful update (default: delete it)")
             .define("keep_backup", false);
-        TIMEOUT_SECONDS = b.comment("Сколько секунд ждать packwiz-installer; дольше — процесс останавливается, обновление повторится на следующем старте",
+        TIMEOUT_SECONDS = b.comment("Сколько секунд ждать packwiz-installer; дольше — процесс останавливается, сборка откатывается из копии",
                 "Seconds to wait for packwiz-installer before killing it")
             .defineInRange("timeout_seconds", Updater.DEFAULT_TIMEOUT_SECONDS, 10, 86400);
         RETRY_ON_START = b.comment("Если прошлое обновление не завершилось (маркер " + Updater.MARKER + "), повторить его на старте сервера",
                 "и остановить сервер с кодом 0, чтобы хостинг запустил его заново уже с обновлёнными модами",
-                "Retry an interrupted update on server start, then exit(0) so the panel restarts the server")
+                "(в любом режиме) Retry an interrupted update on server start, then exit(0) so the panel restarts the server")
             .define("retry_on_start", true);
         RUN_ON_WINDOWS = b.comment("На Windows запущенная Java держит jar — заменить их нельзя; по умолчанию обновление пропускается с предупреждением",
                 "On Windows loaded jars are locked; set true to try anyway")
