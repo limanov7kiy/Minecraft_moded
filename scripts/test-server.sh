@@ -34,14 +34,19 @@ rm -rf crash-reports
 rm -f logs/latest.log
 # "stop" отправляем, как только сервер написал Done; выходим сразу, если сервер упал
 mkfifo -m 600 .stdin 2>/dev/null || true
-timeout "$tmo" ./run.sh nogui < .stdin > console.log 2>&1 & pid=$!
+# Windows: run.sh собирает unix-только classpath (разделитель ":") — java.exe падает на InvalidPathException;
+# запускаем run.bat (win_args.txt), stdin-механика та же / on Windows use run.bat (win_args.txt)
+case "$(uname -s)" in
+  MINGW*|MSYS*|CYGWIN*) timeout "$tmo" cmd //c run.bat nogui < .stdin > console.log 2>&1 & pid=$! ;;
+  *) timeout "$tmo" ./run.sh nogui < .stdin > console.log 2>&1 & pid=$! ;;
+esac
 exec 3>.stdin
 last=0; still=0
 while kill -0 $pid 2>/dev/null; do
   # лог не растёт 3 минуты — сервер мёртв или завис
   size=$(stat -c %s logs/latest.log 2>/dev/null || echo 0)
   if [ "$size" = "$last" ]; then still=$((still+5)); else still=0; last=$size; fi
-  if [ $still -ge 180 ]; then echo "log stalled"; pkill -9 -f unix_args.txt || true; break; fi
+  if [ $still -ge 180 ]; then echo "log stalled"; pkill -9 -f "args.txt" || true; break; fi
   if grep -qs 'Done (' logs/latest.log; then
     # проверочные команды консоли (по одной в строке), затем stop
     # паузы — по 5 с с проверкой, что сервер жив: иначе этот скрипт отправил бы stop в FIFO следующего запуска
@@ -49,7 +54,7 @@ while kill -0 $pid 2>/dev/null; do
     kill -0 $pid 2>/dev/null && echo stop >&3; break
   fi
   # после падения сторонние потоки могут держать JVM живой — добиваем
-  if grep -qs 'Failed to start the minecraft server\|Crash report saved\|crash report has been saved' logs/latest.log; then sleep 5; pkill -9 -f unix_args.txt || true; break; fi
+  if grep -qs 'Failed to start the minecraft server\|Crash report saved\|crash report has been saved' logs/latest.log; then sleep 5; pkill -9 -f "args.txt" || true; break; fi
   sleep 5
 done
 rc=0; wait $pid || rc=$?; exec 3>&-
