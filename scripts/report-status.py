@@ -406,7 +406,7 @@ def main(argv):
         print('ПРЕДУПРЕЖДЕНИЕ: ' + w, file=sys.stderr)
     print('Опубликовано строк: %d из %d (из них пожеланий: %d из %d). Предупреждений: %d. Файл: %s' % (
         len(records), sum(counts.values()) + sum(wish_counts.values()),
-        sum(1 for r in records if r['cat'] == WISH_CAT), sum(wish_counts.values()), len(warnings), out))
+        sum(1 for r in records if r['cat'] == WISH_CAT), sum(wish_counts.values()), len(warnings), out.name))
     print('Теперь: закоммитьте только docs/report-status.md и удалите CSV.')
 
 
