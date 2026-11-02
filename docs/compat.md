@@ -1750,6 +1750,15 @@ mm-compat пересобран из объединённых исходнико�
   outside-window`), в `on_start` и `on_stop`; ошибка в значении — тоже пропуск (`bad-window`); повтор по маркеру окна не ждёт. `Cli`
   без `--window` окна не знает (start.sh/start.bat не меняются). Прогоны A/B/C — hosting.md, «Как проверено: 0.4.0».
 
+- **0.5.1 — чистка логов чистки дублей + эталон конфига (поток автообновления, 2026-11-03):** чистка дублей (`cleanDuplicateMods`)
+  трижды логировала один файл: jar mm-compat с `modId="forge"` в mods.toml мультимод-jar попадал в список под одним id несколько раз —
+  первый `Files.delete` удалял, две последующие попытки падали с `NoSuchFileException` (1 × «удалён дубль» + 2 × «не удалён», WARN в каждом
+  логе millida). Теперь `modIds()` возвращает id без повторов (`LinkedHashSet`), а удаление — `Files.deleteIfExists` (лог только при
+  реальном удалении). Попутно эталон `mm-autoupdate.toml` (`mm-millida-test`) поправлен: `keep_backup = false` стоял после `java_args`,
+  то есть внутри `[installer]`, где такого ключа нет — Forge при каждом старте «исправлял» конфиг (WARN «keep_backup corrected from null»,
+  «installer.keep_backup corrected from false»); теперь ключ верхнего уровня, до `[installer]`; в hosting.md (таблица ключей) — примечание.
+  Сборка jar 0.5.1 и выкладка на `claude/autoupdate-stable` — после ревью.
+
 ## Блокирующая догрузка чанков: Serene Seasons Plus, Falling Tree, Weather2 — mm-compat 0.5.13 (поток 67, 2026-10-26, сборка 2026.10.26-4)
 Нагрузочный тест `scripts/tests/perfload.js` (3 фейковых игрока появляются в несгенерированных местах): тик 54–58 с. JFR (`scripts/jfr/JfrGrep.java … getChunkBlocking`):
 главный поток ждёт генерации чанков, которые синхронно запросили моды из своих тиков — Serene Seasons Plus 5.1.4 (`ActiveSnowUpdateService`, снег/таяние вокруг игрока, 91 %),

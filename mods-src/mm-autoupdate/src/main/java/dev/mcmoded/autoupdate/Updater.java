@@ -25,6 +25,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
+import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -871,8 +872,9 @@ public final class Updater {
             for (Path j : jars) {
                 if (managed.contains(j.getFileName().toString())) continue;
                 try {
-                    Files.delete(j);
-                    log.warn("удалён дубль мода " + e.getKey() + " вне сборки: mods/" + j.getFileName() + " / removed duplicate mod jar");
+                    // deleteIfExists: тот же jar может стоять в списке под несколькими modId — повторное удаление не ошибка
+                    if (Files.deleteIfExists(j))
+                        log.warn("удалён дубль мода " + e.getKey() + " вне сборки: mods/" + j.getFileName() + " / removed duplicate mod jar");
                 } catch (IOException ex) {
                     log.warn("не удалён дубль mods/" + j.getFileName() + ": " + ex);
                 }
@@ -891,7 +893,8 @@ public final class Updater {
         } catch (IOException | RuntimeException ignored) {
             // не zip или битый jar — не наше дело
         }
-        return ids;
+        // мультимод-jar может объявлять один modId несколькими записями — дубли не нужны: один jar в списке id должен стоять раз
+        return new ArrayList<>(new LinkedHashSet<>(ids));
     }
 
     private static List<PathMatcher> matchers(Path dir, List<String> globs) {
