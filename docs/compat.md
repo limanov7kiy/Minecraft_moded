@@ -2096,3 +2096,9 @@ Corosus (Weather2) — здесь только перехват вызовов.
   ограничивают урон за удар — 6000 HP ≈ в 10 раз больше ударов); текстуры в игре.
 - **Откат:** удалить `mm_items.js`, `mm_ascension.js`, `pack/kubejs/assets/mm/`. Предметы `mm:*`, лежащие в мирах, после отката станут пустыми (это предметы KubeJS).
 - Авторство: босс и исходные текстуры — L_Ender's Cataclysm (L_Ender); ритуал — Occultism (klikli-dev); здесь только рецепты и NBT.
+
+## Клиенты не запускались после обновления: CRLF-хэши индекса packwiz (поток автообновления, 2026-11-05, сборка 2026.11.05-1, PR #208)
+После #206 у игроков packwiz-installer падал до загрузки игры: `Invalid mod file hash` × 453 (YSM-модели AL_/AK_ и все текстовые метаданные с изменившимися байтами), Prism обрывает старт. Причина: `packwiz refresh` в #206 выполнялся на Windows-клоне с `core.autocrlf=true` — индекс получил хэши CRLF-байтов, GitHub raw отдаёт LF. Серверные проверки мимо (`fetch-mods.py` не ходит через index), millida успел обновиться до поломки; сам набор модов запускается (клиент до меню, `Game took 187 s`, Windows-стенд с реальным GPU).
+- **Фикс:** `core.autocrlf false` в клоне, worktree нормализован в LF, `refresh.sh` — индекс от LF-байтов; 17 блобов с CRLF (анимации priestess/vivi, kubejs-data json) переведены в LF; `.gitattributes` `* -text` — EOL-нормализация выключена навсегда.
+- **Проверка:** симуляция «как у ребят» (packwiz-installer v0.5.14 + bootstrap v0.0.3, sha256 сверены; база 31-3 из git-архива, `-s client` на живую основную): до фикса 453 × Invalid hash, после — `Finished successfully!`, 754/754 файлов, 526 jar, модели на месте. Сверка index↔GitHub raw по 748 файлам — 0 несовпадений.
+- **Правило:** `packwiz refresh`/`refresh.sh` — только в клоне с `core.autocrlf=false` и `.gitattributes * -text`; клиентский тест сборки (fetch-mods) не проверяет index-хэши — после refresh с новой машины сверять индекс с GitHub raw или гнать `packwiz-installer -s client` со старой базы.
