@@ -86,7 +86,7 @@ hash = "849d8c22b15f44733ae4644b5d83b22a54ba3779c57481643ea2ce5ef14ba8f7"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "562b365b440aa2d94b0f5c72fdcb60243d84fa674fb81675a109c7b6fb255470"
+hash = "b7935a587add201fde209d4fb3c7b95819317ccf1fe52a074a325f905a07b45e"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -1550,6 +1550,10 @@ file = "kubejs/data/cataclysm/recipes/stonecutting/azure_seastone_brick_stair_fr
 hash = "61c01488bd1bc9113ef1a64e626a0ba9dbbe7d4178d4d8767c0e9cb3d8cdf4a2"
 
 [[files]]
+file = "kubejs/data/chaospersists/forge/biome_modifier/criminal_village.json"
+hash = "45e42a4893e24ffc4f56a32625cab5317825444e2d594c52e9f819586bc67ca6"
+
+[[files]]
 file = "kubejs/data/contigency_contract/loot_tables/gameplay/chronicle_bonus.json"
 hash = "cfb14d04d7eb95a148a52408ebe2dc29c283d367962f80471abdf5f95b94b0bd"
 
@@ -1640,6 +1644,22 @@ hash = "aa72db0eb205dd61339dd5285aeb3850c335d6c2e921f4c4f6702e78fdf88f11"
 [[files]]
 file = "kubejs/data/minecraft/creatingspace/rocket_accessible_dimension/overworld.json"
 hash = "9d8b81df3ae9b4497894fee34dd753d0438d28317ca9683a80b6712c5cfcea08"
+
+[[files]]
+file = "kubejs/data/mm/forge/biome_modifier/mm_rare_bee.json"
+hash = "e7164dfc662b636c48a218685ffdce962e346b0d45faab955c17ade1cd583787"
+
+[[files]]
+file = "kubejs/data/mm/forge/biome_modifier/mm_rare_chaos_remove.json"
+hash = "a8256e9fe4a89553887d362647c243ba1ba9c44c88fae2dc259228c88ab4e92e"
+
+[[files]]
+file = "kubejs/data/mm/forge/biome_modifier/mm_rare_criminal.json"
+hash = "8eae1a95c41e28524c06b693d4eda325ba4f1a705f19309449f72cee60fd5ddd"
+
+[[files]]
+file = "kubejs/data/mm/forge/biome_modifier/mm_rare_mantis.json"
+hash = "4f32b4570e79fe7377281872fac4e167bf33d37cf976eec9ce92556c9f71eec8"
 
 [[files]]
 file = "kubejs/data/mm_space/forge/biome_modifier/mars_surface_structures.json"

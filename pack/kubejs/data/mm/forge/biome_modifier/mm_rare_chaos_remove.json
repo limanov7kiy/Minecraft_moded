@@ -1,0 +1,9 @@
+{
+  "type": "forge:remove_spawns",
+  "entity_types": [
+    "chaospersists:mantis",
+    "chaospersists:bee",
+    "chaospersists:criminal"
+  ],
+  "biomes": "#minecraft:is_overworld"
+}
