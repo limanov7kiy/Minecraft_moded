@@ -86,7 +86,7 @@ hash = "849d8c22b15f44733ae4644b5d83b22a54ba3779c57481643ea2ce5ef14ba8f7"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "b7935a587add201fde209d4fb3c7b95819317ccf1fe52a074a325f905a07b45e"
+hash = "7e5bc391cc91331e0312bc7e396dc7ea2dc4a1f00e10f016106718c30445957b"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -1651,7 +1651,7 @@ hash = "e7164dfc662b636c48a218685ffdce962e346b0d45faab955c17ade1cd583787"
 
 [[files]]
 file = "kubejs/data/mm/forge/biome_modifier/mm_rare_chaos_remove.json"
-hash = "a8256e9fe4a89553887d362647c243ba1ba9c44c88fae2dc259228c88ab4e92e"
+hash = "a7aea289098c4af6e683d6fb61ee5aea93e449fb011c6d34dc45b0ab502974be"
 
 [[files]]
 file = "kubejs/data/mm/forge/biome_modifier/mm_rare_criminal.json"
