@@ -78,7 +78,7 @@ hash = "4e686e3616fc1885ce4380e95fe8c9d32be13536693da638e27b091372c0777b"
 
 [[files]]
 file = "config/jei/client/default/jei-client.ini"
-hash = "1ef42c839b92e8b6ca0caa5b590f34b59ca3d82e8204cb6141c6a9816c73b706"
+hash = "26f36a6489a5ebd08ea17f5ddd449bed704e5232138ecd34bdc67648d58a650a"
 
 [[files]]
 file = "config/legendarysurvivaloverhaul/legendarysurvivaloverhaul-common.toml"
@@ -86,7 +86,7 @@ hash = "849d8c22b15f44733ae4644b5d83b22a54ba3779c57481643ea2ce5ef14ba8f7"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "bed5521d5b8db1605df3ec5d6ea45aa672645e286f84724f36d866f27a5bf196"
+hash = "d77da7f79c261669cb90ebe10aed893298f554520f02711308f8704c6c249bc5"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -1187,15 +1187,15 @@ hash = "907f7ccf4590bd02486d7784ad7152286a0238a95f38896b26746596436cb2bb"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/functions/pr_form_l.molang"
-hash = "1d5ea39c32cbca702eccc64784677e626150ee10a4b4801a3cc58ac88f7c5643"
+hash = "6d9f0f6cd02dda66737538b1772ceb8dcad94f2d77964440abab58c84403069f"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/functions/pr_form_r.molang"
-hash = "ccdcd8cd4f6b05e020a9938cba137d3ab1bd27b195ed9bc4f193539d6ab56d14"
+hash = "1453dc7f3083beff6f06f4da09c5276c9d18a1179615ace8039429c463e33ad7"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/functions/pr_update@player_update.molang"
-hash = "d2efcd4660611da3124f488cf564c043a708bd63b4037fd39874817d80a69b6d"
+hash = "3ac7b04dcac9e6ecd2079112055fbd62adbafb4578a71b5d8e0ae26f7492b9f2"
 
 [[files]]
 file = "config/yes_steve_model/custom/priestess/models/arm.json"
@@ -1327,7 +1327,7 @@ hash = "4adc7fbc2ae7fcf537ac81ddcdd7b94de812270bb1a116f216a2d9ac7abdda81"
 
 [[files]]
 file = "kubejs/assets/mna/models/block/obj/pylon/pylon_ring.obj"
-hash = "17d7ebc790133f7576223b9ab5ede2d400c282b9992b7bad5e27ad0cbba0ea28"
+hash = "14e3cd0b623c2e784d3c75e1fa54d7f059df7f24f00262934a19730427c33c6e"
 
 [[files]]
 file = "kubejs/client_scripts/dedup.js"
