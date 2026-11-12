@@ -86,7 +86,7 @@ hash = "849d8c22b15f44733ae4644b5d83b22a54ba3779c57481643ea2ce5ef14ba8f7"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "bed5521d5b8db1605df3ec5d6ea45aa672645e286f84724f36d866f27a5bf196"
+hash = "d77da7f79c261669cb90ebe10aed893298f554520f02711308f8704c6c249bc5"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
