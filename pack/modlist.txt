@@ -100,6 +100,7 @@ mr legendary-survival-overhaul
 mr serene-seasons
 
 ## Удобство и мультиплеер
+mr polymorph                # both: Polymorph 0.49.11 (TheIllusiveC4, LGPL-3.0): выбор рецепта при конфликтах — два мода дают одинаковый крафт, кнопка в верстаке/печке показывает все варианты (R-жалоба владельца 13.11)
 mr jei
 mr jade
 mr appleskin
