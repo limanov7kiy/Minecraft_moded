@@ -1,0 +1,8 @@
+name = "ForgeEndertech"
+filename = "ForgeEndertech-1.20.1-11.1.11.2-build.2374.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/EgS8gGp8/versions/fVjtdSoU/ForgeEndertech-1.20.1-11.1.11.2-build.2374.jar"
+hash-format = "sha512"
+hash = "a29098ae3e4c531e255bd11f0a4d5c77b3a4fe7c5ca6a16324f8f6b0c1323613c33c48786a4126e86b42f44df8a49fc3120363af56a85bd009a9675f3485df6d"

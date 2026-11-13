@@ -1,0 +1,13 @@
+name = "Pollution of the Realms (AdPother)"
+filename = "AdPother-1.20.1-8.1.53.0-build.2380.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/SN8xUUfR/versions/g4Zuw1Lj/AdPother-1.20.1-8.1.53.0-build.2380.jar"
+hash-format = "sha512"
+hash = "ac4242170eb6e5bed98967b124c3ae52bd494726c779df098a3f20b0afb67979b5de02f7232bbe90ace9fe494ad1773e4d89e931a5c4881dcdb68c3930d41e53"
+
+[update]
+[update.modrinth]
+mod-id = "SN8xUUfR"
+version = "g4Zuw1Lj"
