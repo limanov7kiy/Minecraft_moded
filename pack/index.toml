@@ -86,7 +86,7 @@ hash = "849d8c22b15f44733ae4644b5d83b22a54ba3779c57481643ea2ce5ef14ba8f7"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "26fbedff12ffce6356007eadf86f834260aea58786652c4a612f0550ab53b0aa"
+hash = "e05cf8877ad324ac3ceeabf2e5b2ba5ff335b9cb89d3119c0de11d98d02a9223"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -2077,6 +2077,11 @@ hash = "a25d868d37c78985c604b897191bf5ded528f7ba58b55096779c0e5a1890a586"
 metafile = true
 
 [[files]]
+file = "mods/adpother.pw.toml"
+hash = "d10995e51be2eebc4cb4830a558e7a90c6410d0414d3571d2585302c8d9a74df"
+metafile = true
+
+[[files]]
 file = "mods/ae2.pw.toml"
 hash = "4f94db9eeb714f81d02e125e2021e55c7ca6c6ef8423bf6488dd51ebdfdf6fc5"
 metafile = true
@@ -2671,6 +2676,11 @@ metafile = true
 [[files]]
 file = "mods/fishs-undead-rising-port-0.3.0.jar"
 hash = "91a5083ffd78ce6b5c6f90a57acec42d330b0feee4f1adf7618bb86df9052e0b"
+
+[[files]]
+file = "mods/forgeendertech.pw.toml"
+hash = "89e9d6a8b6285d31de106912a7abba398d22b8419c4090ed2fa6fee953d02c6b"
+metafile = true
 
 [[files]]
 file = "mods/fungal-infectionspore.pw.toml"
