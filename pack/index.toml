@@ -86,7 +86,7 @@ hash = "849d8c22b15f44733ae4644b5d83b22a54ba3779c57481643ea2ce5ef14ba8f7"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "d77da7f79c261669cb90ebe10aed893298f554520f02711308f8704c6c249bc5"
+hash = "26fbedff12ffce6356007eadf86f834260aea58786652c4a612f0550ab53b0aa"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -3100,6 +3100,11 @@ metafile = true
 [[files]]
 file = "mods/playeranimator.pw.toml"
 hash = "765987a78e5d8c782d0da2de99998b43b5907d6c41347d3804045ad109e4a586"
+metafile = true
+
+[[files]]
+file = "mods/polymorph.pw.toml"
+hash = "ea8571ba9dc8e74bad5e4257d50e9bb80d02be8f3d5de7fe3dede969e26fa15c"
 metafile = true
 
 [[files]]
