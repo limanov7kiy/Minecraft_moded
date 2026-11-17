@@ -1,0 +1,13 @@
+name = "MoreAvaritia"
+filename = "MoreAvaritiaMc1.20.1-2.5.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/GkKw6pl3/versions/LeHOvyRc/MoreAvaritiaMc1.20.1-2.5.jar"
+hash-format = "sha512"
+hash = "7bfdb6a9aab395850391d7c773cb0ca954ba346e4cb8f48d7919d8d93f7b0df070f628049eea6dbebe421a0bca0bdbb5878a4052aff3c09c0f3fb77c61ec8a36"
+
+[update]
+[update.modrinth]
+mod-id = "GkKw6pl3"
+version = "LeHOvyRc"
