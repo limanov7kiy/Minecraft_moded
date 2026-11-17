@@ -4254,7 +4254,7 @@ hash = "849d8c22b15f44733ae4644b5d83b22a54ba3779c57481643ea2ce5ef14ba8f7"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "0e6e89026e7c98eba91ec6d0b71d12a03d8be3d4a6723287e6b14a65e35230c1"
+hash = "6b22dd2bb390e8aac1d05945981178f2e6bff3187c264427d0865722324bc3a7"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -6196,6 +6196,10 @@ hash = "98f946259767d1ecf5cd8f6f43192b0832b5d68b60d5f3273e48a7edc2847817"
 [[files]]
 file = "kubejs/server_scripts/mm_ascension.js"
 hash = "105375d2920258bd6485cff407ba5656f9e4e0eafe0447c4234a9501b3cb1051"
+
+[[files]]
+file = "kubejs/server_scripts/mm_reavaritia_balancer.js"
+hash = "5b0ea95040cd398aa726603d1b77102cc727d11b10d01a740c7d40da2e28e16e"
 
 [[files]]
 file = "kubejs/server_scripts/orespawn_spawn_thin.js"
