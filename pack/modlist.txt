@@ -97,6 +97,7 @@ mr dimensional-dungeons
 
 ## Реализм (умеренный)
 mr pollution-of-the-realms      # both: Pollution of the Realms / AdPother 8.1.53 (EnderLabs aka Fitoco, LGPL-3.0): видимые облака загрязнения (углерод/сера/пыль) от сжигания топлива, кислотные дожди, эффекты на урожай/деревья/здоровье. Конфиг «мягкого старта» — pack/config/adpother-*.toml (см. compat.md, 2026.11.13-3)
+mr celestia-sky                   # both: Celestia: Shooting Stars 1.2.4 (Supers chiang, MIT): синхронные метеорные потоки в Overworld — сервер считает траекторию, все игроки видят одну и ту же падающую звезду. Чисто атмосфера (decoration), баланс не трогает
 mr legendary-survival-overhaul
 mr serene-seasons
 

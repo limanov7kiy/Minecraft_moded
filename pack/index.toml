@@ -4254,7 +4254,7 @@ hash = "849d8c22b15f44733ae4644b5d83b22a54ba3779c57481643ea2ce5ef14ba8f7"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "6b22dd2bb390e8aac1d05945981178f2e6bff3187c264427d0865722324bc3a7"
+hash = "610e0ca813e5b82297155173ff118c12d95a6282e033023f787000e37ed08a7b"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -6543,6 +6543,11 @@ hash = "440a806e54d48cd4c5ef447ff8f1a6cd9a99d53d02ab90d50204be9b31c2f30d"
 metafile = true
 
 [[files]]
+file = "mods/brandons-core.pw.toml"
+hash = "caa8311258034282d576ef5a7e747d83196e1895c73328009453e8bb5368ee12"
+metafile = true
+
+[[files]]
 file = "mods/bstweaks-1.20.1-Forge-1.0.3.jar"
 hash = "cdfe44de891e53ece8b7ecb8602c7b80581fee6b8e54e5631f73eef6d88e43a3"
 
@@ -6572,6 +6577,11 @@ hash = "4dc1557481cda5e4e99fbdc35fa7262861a0106bfdffba65e0c87e4cdd803f8e"
 [[files]]
 file = "mods/cbc_nukes-2.1.1-mmport.jar"
 hash = "9cfaa0742987ac26b70b08a994b1b0f38abc41cf642baaf637f1d9179a0533f9"
+
+[[files]]
+file = "mods/celestia.pw.toml"
+hash = "f7d2bac1dde3c8fb16179d16e1ace0dcb6a57ad566f7128a3ac1856a5b31bad8"
+metafile = true
 
 [[files]]
 file = "mods/cerbons-api.pw.toml"
@@ -6609,6 +6619,11 @@ metafile = true
 [[files]]
 file = "mods/clumps.pw.toml"
 hash = "903352ffbd84d4b95fed905893f4715d9c3f88ec9fff6fb06f6e359e0b839dc3"
+metafile = true
+
+[[files]]
+file = "mods/codechicken-lib.pw.toml"
+hash = "f07afaba9decbc85bc7e6d07d5f8b44c3090963f369e27303f4d580a7017cac8"
 metafile = true
 
 [[files]]
@@ -6745,6 +6760,11 @@ hash = "4d9304dd821506dde36da4fe70fea2390fd4463338642755ec007b7e4536370e"
 [[files]]
 file = "mods/distanthorizons.pw.toml"
 hash = "084a056c8eca61bdfcb53d7a9ae05693e27ea856256d783cd7757612df125ee5"
+metafile = true
+
+[[files]]
+file = "mods/draconic-evolution.pw.toml"
+hash = "bd39c958001bcdf13acd853692e21d57c34b199ffb5343a14f38eb657a84d65b"
 metafile = true
 
 [[files]]
@@ -7199,6 +7219,11 @@ metafile = true
 [[files]]
 file = "mods/more-backpack-upgrades.pw.toml"
 hash = "6c989a8361f6c1dd0590b5e2b00fb07ce24ef7efcc14c06d0d7f7e32b78b5edd"
+metafile = true
+
+[[files]]
+file = "mods/moreavaritia.pw.toml"
+hash = "ca1ee90f8d38bcc49557477f7e6aa132192a5c388b3a18f969093b5ccee65a57"
 metafile = true
 
 [[files]]
