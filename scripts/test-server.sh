@@ -29,7 +29,28 @@ python3 "$root/scripts/fetch-config-files.py" .   # модели YSM и др. ф
 [ -n "${EXTRA_CONFIG:-}" ] && cp -r "$EXTRA_CONFIG"/. config/
 echo eula=true > eula.txt
 [ -f server.properties ] || printf 'online-mode=false\nlevel-seed=12345\nmax-tick-time=-1\n' > server.properties   # max-tick-time=-1: WorldEdit на старте делает тик >60 с, иначе сторож убивает сервер (docs/hosting.md)
-echo "-Xmx${SERVER_XMX:-8G} ${SERVER_JVM_EXTRA:-}" > user_jvm_args.txt
+# Aikar's flags (8G heap, <12GB вариант): меньше длительность GC-пауз — второй источник фризов (см. compat.md «Aikar flags»)
+cat > user_jvm_args.txt <<'JVMFLAGS'
+-Xms8G -Xmx8G
+-XX:+UseG1GC
+-XX:+ParallelRefProcEnabled
+-XX:MaxGCPauseMillis=200
+-XX:+UnlockExperimentalVMOptions
+-XX:+DisableExplicitGC
+-XX:G1NewSizePercent=40
+-XX:G1MaxNewSizePercent=50
+-XX:G1HeapRegionSize=16M
+-XX:G1ReservePercent=15
+-XX:G1HeapWastePercent=5
+-XX:G1MixedGCCountTarget=4
+-XX:InitiatingHeapOccupancyPercent=15
+-XX:G1MixedGCLiveThresholdPercent=90
+-XX:G1RSetUpdatingPauseTimePercent=5
+-XX:SurvivorRatio=32
+-XX:+PerfDisableSharedMem
+-XX:MaxTenuringThreshold=1
+JVMFLAGS
+echo "-Xmx8G ${SERVER_JVM_EXTRA:-}" >> user_jvm_args.txt
 rm -rf crash-reports
 rm -f logs/latest.log
 # "stop" отправляем, как только сервер написал Done; выходим сразу, если сервер упал
