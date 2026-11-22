@@ -4210,7 +4210,7 @@ hash = "2e2c36ee619e886c53f36d0123f931adc4d41fa7805ae1648f40613ac20edfd4"
 
 [[files]]
 file = "config/canary.properties"
-hash = "9bd2ad135005fb8323b70f9d510ea8c497c2fda393eacf6be7ec1c3dae2241dd"
+hash = "9ebd640aa2466cc449ed16ded9cf99ab8aff6fb9688594f9eaa81c5512566b68"
 
 [[files]]
 file = "config/chaospersists.cfg"
@@ -4254,7 +4254,7 @@ hash = "849d8c22b15f44733ae4644b5d83b22a54ba3779c57481643ea2ce5ef14ba8f7"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "610e0ca813e5b82297155173ff118c12d95a6282e033023f787000e37ed08a7b"
+hash = "bd54866bf0ff94d1abb9a8c28d0fd6a24c4d036d1ca6a29e6adf09036fdf0359"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -7555,6 +7555,11 @@ hash = "b2d6b4da7f7f81824ce13ace1d0c3cd2d03ef5edf0284a039bcf3112d5d82b80"
 [[files]]
 file = "mods/traveloptics-6.3.0-1.20.1-mmport.jar"
 hash = "a427563e66516bc5abed1d5243054e31ac2f338e8859b170403361b22cc096c5"
+
+[[files]]
+file = "mods/tweaked-controllers.pw.toml"
+hash = "9f44e3ca0fb7c34a8de416f8b357ef41c2b2c914a8f80e83c55e7e51c230c74d"
+metafile = true
 
 [[files]]
 file = "mods/twilight-delight.pw.toml"
