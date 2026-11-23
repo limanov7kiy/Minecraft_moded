@@ -94,3 +94,6 @@ R-015/владелец (квадраты FUR): точечное обновлен
 
 ## 2026-11-22 — финал: сборка 2026.11.22-2 проверена и на проде (Celestia совместима с canary-фиксом)
 Полный сервер-тест полной сборки (Celestia + Re:Avaritia балансер + MoreAvaritia + DE/BC/CCL + Tweaked Controllers + Polymorph + PoTR): **Done 433.9 с, FATAL 0, crash 0** — Canary-фикс (обе секции off) решает краш. Прод ff на 292306d. millida обновится при цикле. Проверки владельцем в игре: Polymorph-кнопка, PoTR-облака, метеоры Celestia, Tweaked Controllers пульт, DE-энергия. Открыто: R-019 скрин, R-006/R-003/R-015 (игроки), java 22992 убить руками.
+
+## 2026-11-23 — сборка 2026.11.23-1 (Unbound) на проде, millida подтвердила
+Unbound 0.15.4 (Moltea, AGPL-3.0): тест стенда — Done, FATAL 0, crash 0, 35 измерений `unbound:*` сгенерированы, с ad_astra/northstar не конфликтуют (разные namespaces), Canary-фикс 22-1 прикрывает. compat-запись 23.11, whats-new W12. PR#249 merged → main `44ee8b9` → ff прод (gifted) и autoupdate-stable. millida: jar 20.1 МБ в mods/, сервер сам перезапустился — «Работает», Done 156.5 с, FATAL нет. Проверка владельцем в игре: полёт/ракеты/исследования Unbound (планеты в ночном небе).
