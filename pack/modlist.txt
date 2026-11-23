@@ -108,7 +108,8 @@ mr draconic-evolution         # both: Draconic Evolution 3.1.2.621 (brandon3055,
 mr brandons-core              # both: Brandon's Core 3.2.1.302 — библиотека для Draconic Evolution
 mr codechicken-lib            # both: CodeChicken Lib 4.4.0.528 (LGPL-2.1) — библиотека для DE/BC                # both: Polymorph 0.49.11 (TheIllusiveC4, LGPL-3.0): выбор рецепта при конфликтах — два мода дают одинаковый крафт, кнопка в верстаке/печке показывает все варианты (R-жалоба владельца 13.11)
 mr celestia-sky                   # both: Celestia: Shooting Stars 1.2.4 (Supers chiang, MIT): синхронные метеорные потоки в Overworld — сервер считает траекторию, все игроки видят одну и ту же падающую звезду. Чисто атмосфера (decoration), баланс не трогает
-mr tweaked-controllers           # both: Create: Tweaked Controllers 1.2.7 (getItemFromBlock, MIT): Advanced Linked Controller — пульт с настраиваемой (расширяемой) сеткой кнопок вместо базовых 6; мышь/клава/геймпад (просьба владельца 14.11)                   # both: Celestia: Shooting Stars 1.2.4 (MIT): синхронные метеорные потоки — чисто атмосфера
+mr tweaked-controllers
+mr unbound                       # both: Unbound 0.15.4 (Moltea, AGPL-3.0): космос с собственной лором — 26 миров, планеты в реальном ночном небе, ракеты, исследования (jar подключён напрямую, CF file 9652402). Тест конфликтов с Ad Astra/Canary — 23.11           # both: Create: Tweaked Controllers 1.2.7 (getItemFromBlock, MIT): Advanced Linked Controller — пульт с настраиваемой (расширяемой) сеткой кнопок вместо базовых 6; мышь/клава/геймпад (просьба владельца 14.11)                   # both: Celestia: Shooting Stars 1.2.4 (MIT): синхронные метеорные потоки — чисто атмосфера
 mr jei
 mr jade
 mr appleskin
