@@ -1,0 +1,24 @@
+# Проверка UnboundBorder (mm_compat): урон границы мира (minecraft:outside_border) в измерениях unbound:* должен отменяться, в обычном мире — наноситься.
+# TEST_COMMANDS=scripts/tests/border_commands.txt bash scripts/test-server.sh <стенд> <таймаут>. Ожидаемые ответы: MM-OW — «Applied 10.0 damage»;
+# MM-FIX и MM-SS — «Target is invulnerable to the given damage type»; в итоге Health: MM-OW 90, MM-FIX 90 (обычный урон прошёл), MM-SS 100.
+# Големы — только мишени для /damage: сами они урон границы не получают (в принудительно загруженных чанках сущности не тикают).
+execute in minecraft:overworld run forceload add 16 16
+execute in minecraft:overworld run summon minecraft:iron_golem 16 200 16 {NoAI:1b,PersistenceRequired:1b,Silent:1b,Tags:["mm_ow"],CustomName:"{\"text\":\"MM-OW\"}"}
+execute in unbound:aboard run forceload add 16 16
+execute in unbound:aboard run summon minecraft:iron_golem 16 30 16 {NoAI:1b,PersistenceRequired:1b,Silent:1b,Tags:["mm_fix"],CustomName:"{\"text\":\"MM-FIX\"}"}
+execute in unbound:solar_system run forceload add 16 16
+execute in unbound:solar_system run summon minecraft:iron_golem 16 100 16 {NoAI:1b,PersistenceRequired:1b,Silent:1b,Tags:["mm_ss"],CustomName:"{\"text\":\"MM-SS\"}"}
+#sleep 5
+execute in minecraft:overworld run damage @e[tag=mm_ow,limit=1] 10 minecraft:outside_border
+execute in unbound:aboard run damage @e[tag=mm_fix,limit=1] 10 minecraft:outside_border
+execute in unbound:solar_system run damage @e[tag=mm_ss,limit=1] 10 minecraft:outside_border
+execute in unbound:aboard run damage @e[tag=mm_fix,limit=1] 10 minecraft:generic
+execute in minecraft:overworld run data get entity @e[tag=mm_ow,limit=1] Health
+execute in unbound:aboard run data get entity @e[tag=mm_fix,limit=1] Health
+execute in unbound:solar_system run data get entity @e[tag=mm_ss,limit=1] Health
+execute in minecraft:overworld run kill @e[tag=mm_ow]
+execute in unbound:aboard run kill @e[tag=mm_fix]
+execute in unbound:solar_system run kill @e[tag=mm_ss]
+execute in minecraft:overworld run forceload remove all
+execute in unbound:aboard run forceload remove all
+execute in unbound:solar_system run forceload remove all
