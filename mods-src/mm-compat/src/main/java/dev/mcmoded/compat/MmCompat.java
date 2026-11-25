@@ -17,5 +17,6 @@ public class MmCompat {
         MissingAttributes.register(modBus);
         RadiationSuitShielding.register();
         modBus.addListener(GasMaskCompat::onSetup);
+        MinecraftForge.EVENT_BUS.register(UnboundBorder.class);
     }
 }

@@ -4254,7 +4254,7 @@ hash = "849d8c22b15f44733ae4644b5d83b22a54ba3779c57481643ea2ce5ef14ba8f7"
 
 [[files]]
 file = "config/mm_pack_version.txt"
-hash = "0baba3f9d22a466b803b93cb78ea185575c25d0d62136cf1fab86a1a6d49d1ef"
+hash = "8be049d5cd8de2bdf98d0be53b9c6181efee20e13767037f38eb4df31163ee23"
 
 [[files]]
 file = "config/modernfix-mixins.properties"
@@ -7185,8 +7185,8 @@ hash = "f45f1b57f27105a1429c5bff712449509aefacfdbfe83da8597f3f4170e307f6"
 metafile = true
 
 [[files]]
-file = "mods/mm-compat-0.5.18.jar"
-hash = "c27a2824091d5782c89a2f794cb006671cbab748b59e7bb5b49707d2cb82dede"
+file = "mods/mm-compat-0.5.19.jar"
+hash = "83d0ac4c6a2aa707fac5a3dfa5c50dc785ef4daeb4b8be2c50a76f33be546d10"
 
 [[files]]
 file = "mods/mm-perf-0.3.2-client.jar"
