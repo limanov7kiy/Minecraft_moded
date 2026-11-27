@@ -18,5 +18,6 @@ public class MmCompat {
         RadiationSuitShielding.register();
         modBus.addListener(GasMaskCompat::onSetup);
         MinecraftForge.EVENT_BUS.register(UnboundBorder.class);
+        TextureShrinkPack.register(modBus);
     }
 }
